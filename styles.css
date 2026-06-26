@@ -383,15 +383,12 @@ h1, h2, h3, h4 {
   text-decoration: none;
 }
 .nav-logo img {
-  height: 56px;
-  width: auto;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  background: transparent;
-  border: none;
-  padding: 0;
-  display: block;
-  transition: height 300ms var(--ease-out);
+  height: 100px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  filter: brightness(0) invert(1) !important;
+  transform: scale(1.8) !important;
+  transform-origin: left center !important;
 }
 .nav.is-scrolled .nav-logo img { height: 48px; }
 
