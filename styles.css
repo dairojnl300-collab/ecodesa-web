@@ -1004,14 +1004,12 @@ h1, h2, h3, h4 {
   transition: color .2s, padding-left .2s;
 }
 .sc-list li::before {
-  content: "";
+  content: "✓ ";
+  color: #4CAF50;
+  font-weight: 700;
   position: absolute;
   left: 0; top: 50%;
   transform: translateY(-50%);
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--area-color, var(--green-mid));
-  opacity: 0.6;
 }
 .sc-list li:hover {
   color: var(--green-dark);
