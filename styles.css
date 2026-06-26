@@ -1705,6 +1705,6 @@ p {
 nav li::before { content: none !important; }
 nav li::marker { content: none !important; }
 
-.hero-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; pointer-events: none; }
+.hero-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; pointer-events: none; }
 .hero-watermark img { width: 600px; height: auto; opacity: 0.15; filter: brightness(0) invert(1); }
 
