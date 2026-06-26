@@ -1634,3 +1634,19 @@ ul li {
   text-align: justify;
 }
 
+.service-list li,
+.service-list p,
+.services-grid li,
+li.service-item,
+ul li span,
+.gestión-list li {
+  font-family: 'Inter', sans-serif !important;
+  text-align: justify !important;
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
+}
+
+p {
+  text-align: justify !important;
+  font-family: 'Inter', sans-serif !important;
+}
