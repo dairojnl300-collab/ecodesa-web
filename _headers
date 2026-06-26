@@ -1,0 +1,17 @@
+/*
+  Cache-Control: no-cache, must-revalidate
+
+/*.jpg
+  Cache-Control: public, max-age=2592000
+
+/*.png
+  Cache-Control: public, max-age=2592000
+
+/*.svg
+  Cache-Control: public, max-age=2592000
+
+/*.woff2
+  Cache-Control: public, max-age=2592000
+
+/*.woff
+  Cache-Control: public, max-age=2592000
