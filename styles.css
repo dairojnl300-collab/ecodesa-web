@@ -1653,7 +1653,7 @@ nav li::before { content: none !important; }
 nav li::marker { content: none !important; }
 
 .nav-logo img {
-  height: 36px !important;
+  height: 90px !important;
   width: auto !important;
   background: transparent !important;
 }
@@ -1671,6 +1671,6 @@ nav li::marker { content: none !important; }
 }
 
 .nav-logo img {
-  height: 36px !important;
+  height: 90px !important;
   filter: brightness(0) invert(1) !important;
 }
