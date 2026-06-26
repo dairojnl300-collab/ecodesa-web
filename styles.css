@@ -1782,4 +1782,41 @@ nav li::marker { content: none !important; }
 .sc-arrow { transition: transform 0.3s ease; display: inline-block; }
 .sc-accordion-btn[aria-expanded="true"] .sc-arrow { transform: rotate(180deg); }
 
+.sc-desc {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 15px !important;
+  line-height: 1.8 !important;
+  color: #4a4a4a !important;
+  text-align: justify !important;
+  margin-bottom: 1rem !important;
+}
+
+.sc-accordion-btn {
+  font-size: 12px !important;
+  letter-spacing: 2px !important;
+  color: #2d6a2d !important;
+  border-bottom: 2px solid #6DC83A !important;
+  padding-bottom: 0.4rem !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.sc-list li {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  color: #2d6a2d !important;
+  line-height: 1.7 !important;
+  padding: 0.5rem 0 !important;
+  border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+  text-align: left !important;
+}
+
+.sc-title {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: #143C26 !important;
+  line-height: 1.2 !important;
+  margin-bottom: 1rem !important;
+}
+
 
