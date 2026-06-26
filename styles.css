@@ -29,8 +29,8 @@
 
   /* Typography */
   --serif:        "DM Serif Display", "Georgia", serif;
-  --sans:         "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --mono:         "Space Mono", "Courier New", monospace;
+  --sans:         'Inter', -apple-system, sans-serif;
+  --mono:         'Inter', -apple-system, sans-serif;
 
   /* Spacing */
   --gutter:       clamp(1.25rem, 5vw, 4rem);
