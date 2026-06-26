@@ -1650,3 +1650,10 @@ p {
   text-align: justify !important;
   font-family: 'Inter', sans-serif !important;
 }
+
+ul li::marker {
+  content: "✓ ";
+  color: #4CAF50;
+  font-weight: 700;
+  font-size: 1rem;
+}
