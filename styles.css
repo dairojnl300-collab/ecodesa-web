@@ -387,7 +387,7 @@ h1, h2, h3, h4 {
   width: auto !important;
   object-fit: contain !important;
   filter: brightness(0) invert(1) !important;
-  transform: scale(1.8) !important;
+  transform: scale(2.8) !important;
   transform-origin: left center !important;
 }
 .nav.is-scrolled .nav-logo img { height: 48px; }
