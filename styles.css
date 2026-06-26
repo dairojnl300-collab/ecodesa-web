@@ -1705,6 +1705,26 @@ p {
 nav li::before { content: none !important; }
 nav li::marker { content: none !important; }
 
-.hero-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; pointer-events: none; }
-.hero-watermark img { width: 600px; height: auto; opacity: 0.06; }
+.service-slide {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-slide::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background-image: url('logotipo-solo.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
 
