@@ -407,3 +407,12 @@
   }
 
 })();
+
+document.querySelectorAll('.sc-accordion-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body = btn.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', !isOpen);
+  });
+});

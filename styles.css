@@ -1775,4 +1775,11 @@ nav li::marker { content: none !important; }
 .valor-icon { color: #6DC83A; font-size: 8px; }
 .valor-name { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.8); }
 
+.sc-accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1); }
+.sc-accordion-body.open { max-height: 600px; }
+.sc-accordion-btn { background: none; border: none; color: #2d6a2d; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1px; cursor: pointer; padding: 0.8rem 0; display: flex; align-items: center; gap: 0.5rem; text-transform: uppercase; }
+.sc-accordion-btn:hover { color: #6DC83A; }
+.sc-arrow { transition: transform 0.3s ease; display: inline-block; }
+.sc-accordion-btn[aria-expanded="true"] .sc-arrow { transform: rotate(180deg); }
+
 
