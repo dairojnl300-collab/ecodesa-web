@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 /* =============================================================
    ECODESA — styles.css · v20260626
    Archetype: Editorial Light Cream adaptado a verde corporativo
@@ -1614,3 +1615,4 @@ h1, h2, h3, h4 {
   .splash-bar-fill { animation-duration: .5s; }
   /* DO NOT gate: reveals, tilts, hover effects, cursor, counters */
 }
+
