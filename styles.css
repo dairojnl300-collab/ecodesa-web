@@ -1651,3 +1651,9 @@ p {
 
 nav li::before { content: none !important; }
 nav li::marker { content: none !important; }
+
+.nav-logo img {
+  height: 44px !important;
+  width: auto !important;
+  background: transparent !important;
+}
