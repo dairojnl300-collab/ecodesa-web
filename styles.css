@@ -1768,4 +1768,11 @@ nav li::marker { content: none !important; }
   margin: 0 !important;
 }
 
+.valores-wrap { margin-top: 2rem; }
+.valores-title { display: block; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 3px; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
+.valores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.valor-item { display: flex; align-items: center; gap: 0.5rem; }
+.valor-icon { color: #6DC83A; font-size: 8px; }
+.valor-name { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.8); }
+
 
