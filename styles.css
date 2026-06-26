@@ -1657,3 +1657,11 @@ nav li::marker { content: none !important; }
   width: auto !important;
   background: transparent !important;
 }
+
+.nav-logo, .nav-logo img {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
