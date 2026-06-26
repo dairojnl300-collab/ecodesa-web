@@ -1665,3 +1665,12 @@ nav li::marker { content: none !important; }
   box-shadow: none !important;
   padding: 0 !important;
 }
+
+.nav {
+  background: rgba(0,0,0,0.3) !important;
+}
+
+.nav-logo img {
+  height: 60px !important;
+  filter: brightness(0) invert(1) !important;
+}
