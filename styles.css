@@ -2103,5 +2103,6 @@ p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-s
 .nc-list{list-style:none;padding:0;margin:0 0 18px}
 .nc-list li{padding:5px 0;color:var(--ink-70);font-size:.92rem;border-top:1px solid rgba(10,46,35,.08)}
 .nc-list li:first-child{border-top:none}
+.nc-list li::before{content:"✓";color:var(--emerald);font-weight:600;margin-right:6px}
 .nc-cta{display:inline-flex;align-items:center;gap:4px;color:var(--emerald);font-weight:600;font-size:.9rem;text-decoration:none}
 .nc-cta:hover{color:var(--emerald-2)}
