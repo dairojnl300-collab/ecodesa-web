@@ -2091,3 +2091,5 @@ a.info-link:hover { transform: translateX(4px); }
 
   .sector:hover, .prod:hover, .stat:hover { transform: none; }
 }
+
+.brand-logo{height:48px;width:auto}.hero-logo{max-width:240px;width:100%;margin:0 auto 2rem}.footer-logo{height:60px;width:auto}
