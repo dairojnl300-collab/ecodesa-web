@@ -2093,12 +2093,13 @@ a.info-link:hover { transform: translateX(4px); }
 }
 
 .brand-logo{height:48px;width:auto}.hero-logo{max-width:240px;width:100%;margin:0 auto 2rem}.footer-logo{height:60px;width:auto}
-p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-sub):not(.serv-hint){text-align:justify;text-justify:inter-word;hyphens:auto}
+p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-sub):not(.serv-hint):not(.nc-desc){text-align:justify;text-justify:inter-word;hyphens:auto}
 
 .nc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
 .nc-card{position:relative;background:var(--white,#fff);border:1px solid rgba(10,46,35,.12);border-radius:14px;padding:28px 24px}
 .nc-num{display:block;font-size:2.4rem;font-weight:700;color:var(--emerald);opacity:.18;line-height:1;margin-bottom:8px}
 .nc-title{font-size:1.05rem;font-weight:600;color:var(--ink);margin:0 0 14px}
+.nc-desc{font-size:.9rem;color:var(--ink-55,#666);margin:-8px 0 14px}
 .nc-list{list-style:none;padding:0;margin:0 0 18px}
 .nc-list li{padding:5px 0;color:var(--ink-70);font-size:.92rem;border-top:1px solid rgba(10,46,35,.08)}
 .nc-list li:first-child{border-top:none}
