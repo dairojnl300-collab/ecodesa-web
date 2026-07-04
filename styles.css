@@ -1282,8 +1282,15 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
    la altura de la tarjeta al espacio real disponible y se habilita
    scroll interno de respaldo en cada columna para garantizar que el
    botón "Cotizar" siempre sea alcanzable. */
+.servicios.js-hscroll {
+  padding-bottom: 0.75rem;
+}
 .servicios.js-hscroll .serv-head {
   margin-bottom: 1rem;
+}
+.servicios.js-hscroll .serv-title {
+  margin-top: 0.4rem;
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
 }
 .servicios.js-hscroll .serv-viewport {
   flex: 1 1 0;
