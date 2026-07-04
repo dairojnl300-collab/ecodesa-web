@@ -2129,7 +2129,7 @@ a.info-link:hover { transform: translateX(4px); }
 }
 
 .brand-logo{height:48px;width:auto}.hero-logo{max-width:240px;width:100%;margin:0 auto 2rem}.footer-logo{height:60px;width:auto}
-p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-sub):not(.serv-hint):not(.nc-desc){text-align:justify;text-justify:inter-word;hyphens:auto}
+p:not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-sub):not(.serv-hint):not(.nc-desc){text-align:justify;text-justify:inter-word;hyphens:auto}
 
 .nc-grid{display:flex;flex-wrap:wrap;gap:32px}
 .nc-card{--hue:var(--emerald);display:flex;gap:24px;flex:0 1 calc(50% - 16px);background:color-mix(in srgb, var(--hue) 6%, white);border:none;border-top:4px solid var(--hue);border-radius:14px;padding:32px}
