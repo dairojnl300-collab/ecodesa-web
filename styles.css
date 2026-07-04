@@ -1272,7 +1272,7 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
 
 @media (min-width: 960px) {
   .serv-card { grid-template-columns: 0.44fr 0.56fr; gap: 3rem; align-items: center; }
-  .servicios.js-hscroll .serv-hint { visibility: hidden; }
+  .servicios.js-hscroll .serv-hint { display: none; }
 }
 
 /* Mientras la sección está fijada (pin de GSAP), el scroll vertical
@@ -1282,6 +1282,9 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
    la altura de la tarjeta al espacio real disponible y se habilita
    scroll interno de respaldo en cada columna para garantizar que el
    botón "Cotizar" siempre sea alcanzable. */
+.servicios.js-hscroll .serv-head {
+  margin-bottom: 1rem;
+}
 .servicios.js-hscroll .serv-viewport {
   flex: 1 1 0;
   min-height: 0;
@@ -1293,6 +1296,7 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   height: 100%;
   min-height: 0;
   align-items: start;
+  padding-block: clamp(1.2rem, 2.4vw, 2.2rem);
 }
 .servicios.js-hscroll .sc-head,
 .servicios.js-hscroll .sc-body {
