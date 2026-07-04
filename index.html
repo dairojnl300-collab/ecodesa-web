@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ECODESA — Consultoría Ambiental Cartagena | Ecología Desarrollo e Ingeniería S.A.S</title>
   <meta name="description" content="ECODESA — Firma de consultoría ambiental, hidrología, SG-SST y gestión del riesgo en Cartagena de Indias, Colombia. Cumplimiento normativo ante CARDIQUE.">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#1A4D2E">
+  <meta name="theme-color" content="#FFFFFF">
 
   <!-- Open Graph -->
   <meta property="og:title" content="ECODESA — Consultoría Ambiental Cartagena">
@@ -14,816 +14,831 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CO">
 
-  <!-- Preload hero image (first paint) -->
-  <link rel="preload" as="image" href="assets/img/hero.jpg" fetchpriority="high">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Cpath d='M17 3.5C11 11 6.5 16.4 6.5 21.5a10.5 10.5 0 0 0 21 0C27.5 16.4 23 11 17 3.5Z' fill='none' stroke='%230C8A5F' stroke-width='2.4' stroke-linejoin='round'/%3E%3Cpath d='M11.5 21.5c1.8-1.4 3.9-1.4 5.5 0s3.7 1.4 5.5 0' fill='none' stroke='%2335C9AC' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
 
-  <!-- Google Fonts -->
+  <script>document.documentElement.classList.replace('no-js','js')</script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
 
-  <!-- Main stylesheet (bump ?v= on every deploy) -->
-  <link rel="stylesheet" href="styles.css?v=20260626">
+  <link rel="stylesheet" href="styles.css?v=20260701b">
 </head>
 <body>
 
-  <!-- Skip link (accessibility) -->
   <a class="skip-link" href="#main">Saltar al contenido principal</a>
 
-  <!-- ═══════════════════════════════════════════════
-       SPLASH LOADER
-       Double safety: CSS 4.5s + JS hide
-  ══════════════════════════════════════════════════ -->
-  <div class="splash" data-splash aria-hidden="true">
-    <div class="splash-inner">
-      <div class="splash-letters" aria-hidden="true">
-        <span class="sl" style="--i:0">E</span>
-        <span class="sl" style="--i:1">C</span>
-        <span class="sl" style="--i:2">O</span>
-        <span class="sl" style="--i:3">D</span>
-        <span class="sl" style="--i:4">E</span>
-        <span class="sl" style="--i:5">S</span>
-        <span class="sl" style="--i:6">A</span>
-      </div>
-      <div class="splash-bar" aria-hidden="true">
-        <div class="splash-bar-fill"></div>
-      </div>
-      <p class="splash-sub">Ecología Desarrollo e Ingeniería S.A.S</p>
-    </div>
-  </div>
+  <!-- Progreso de scroll -->
+  <div class="progress-rail" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
 
-  <!-- ═══════════════════════════════════════════════
-       CUSTOM CURSOR (desktop only — hidden by default)
-  ══════════════════════════════════════════════════ -->
-  <div class="cursor" id="cursor" aria-hidden="true">
-    <div class="cursor-ring"></div>
-    <div class="cursor-dot"></div>
-    <span class="cursor-label"></span>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════
-       FLOATING WHATSAPP BUTTON
-  ══════════════════════════════════════════════════ -->
-  <a class="float-wa" href="https://wa.me/573013653273" target="_blank" rel="noopener noreferrer" aria-label="Contactar ECODESA por WhatsApp" data-cursor="cotizar">
-    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="16" cy="16" r="16" fill="#25D366"/>
-      <path d="M22.6 9.38A9.2 9.2 0 0 0 16 6.8c-5.1 0-9.22 4.14-9.22 9.22 0 1.63.43 3.22 1.24 4.62L6.7 25.2l4.7-1.23A9.21 9.21 0 0 0 16 25.24c5.09 0 9.22-4.14 9.22-9.22a9.17 9.17 0 0 0-2.62-6.64Zm-6.6 14.18a7.64 7.64 0 0 1-3.9-1.06l-.28-.17-2.9.76.77-2.83-.18-.29a7.65 7.65 0 1 1 6.49 3.59Zm4.2-5.73c-.23-.12-1.37-.67-1.58-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.14.16-.27.18-.5.06-.23-.12-.97-.36-1.85-1.14-.68-.6-1.14-1.35-1.27-1.57-.13-.23-.01-.35.1-.47.1-.1.23-.27.34-.4.12-.14.15-.23.23-.38.08-.16.04-.3-.02-.42-.06-.12-.52-1.25-.72-1.71-.18-.45-.38-.38-.52-.39h-.45c-.15 0-.4.06-.6.3-.21.23-.8.78-.8 1.9s.82 2.2.93 2.35c.12.15 1.61 2.46 3.9 3.45.55.23.97.37 1.3.48.55.17 1.05.15 1.44.09.44-.07 1.37-.56 1.56-1.1.2-.53.2-.99.14-1.09-.06-.1-.22-.16-.45-.28Z" fill="white"/>
-    </svg>
-  </a>
-
-  <!-- ═══════════════════════════════════════════════
-       SIDE MARKER (vertical text, right edge)
-  ══════════════════════════════════════════════════ -->
-  <div class="side-marker" aria-hidden="true">
-    <span>CARTAGENA · COLOMBIA · ECODESA</span>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════
-       NAVIGATION
-  ══════════════════════════════════════════════════ -->
+  <!-- ═══════════ NAV ═══════════ -->
   <header class="nav" id="nav" role="banner">
-    <a class="nav-logo" href="#hero" aria-label="ECODESA — Inicio"><img src="ECODESA_SAS-04-removebg-preview.png" alt="ECODESA"></a>
+    <div class="nav-inner">
+      <a class="brand" href="#hero" aria-label="ECODESA — Inicio">
+        <svg class="brand-mark" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="bm-g" x1="0" y1="0" x2="34" y2="34">
+              <stop offset="0" stop-color="#0C8A5F"/><stop offset="1" stop-color="#3ECFB2"/>
+            </linearGradient>
+          </defs>
+          <path d="M17 3.5C11 11 6.5 16.4 6.5 21.5a10.5 10.5 0 0 0 21 0C27.5 16.4 23 11 17 3.5Z" fill="url(#bm-g)" opacity=".14"/>
+          <path d="M17 3.5C11 11 6.5 16.4 6.5 21.5a10.5 10.5 0 0 0 21 0C27.5 16.4 23 11 17 3.5Z" stroke="url(#bm-g)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M11.5 21.5c1.8-1.4 3.9-1.4 5.5 0s3.7 1.4 5.5 0" stroke="url(#bm-g)" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M13 25.4c1.3-1 2.8-1 4 0s2.7 1 4 0" stroke="url(#bm-g)" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+        </svg>
+        <span class="brand-word">ECODESA<sup class="brand-sas">S.A.S</sup></span>
+      </a>
 
-    <nav class="nav-links-wrap" aria-label="Navegación principal">
-      <ul class="nav-links" role="list">
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#sectores">Sectores</a></li>
-        <li><a href="#tienda">Tienda</a></li>
-        <li><a href="#proceso">Proceso</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </nav>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <ul role="list">
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#sectores">Sectores</a></li>
+          <li><a href="#tienda">Tienda</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
 
-    <a class="nav-cta" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20solicitar%20una%20cotizaci%C3%B3n." target="_blank" rel="noopener" data-cursor="cotizar">Cotizar ahora</a>
+      <a class="btn btn-solid btn-nav magnetic" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20solicitar%20una%20cotizaci%C3%B3n." target="_blank" rel="noopener">Cotizar ahora</a>
 
-    <button class="nav-burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobileMenu">
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
-    </button>
+      <button class="burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+        <span></span><span></span>
+      </button>
+    </div>
   </header>
 
-  <!-- Mobile menu overlay -->
-  <div class="nav-mobile-menu" id="navMobileMenu" role="dialog" aria-label="Menú móvil" aria-hidden="true">
-    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">✕</button>
+  <!-- Overlay móvil -->
+  <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Menú" hidden>
+    <button class="overlay-close" id="navClose" aria-label="Cerrar menú">✕</button>
     <nav aria-label="Menú móvil">
       <ul role="list">
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#sectores">Sectores</a></li>
-        <li><a href="#tienda">Tienda</a></li>
-        <li><a href="#proceso">Proceso</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li style="--i:0"><a href="#nosotros">Nosotros</a></li>
+        <li style="--i:1"><a href="#servicios">Servicios</a></li>
+        <li style="--i:2"><a href="#sectores">Sectores</a></li>
+        <li style="--i:3"><a href="#tienda">Tienda</a></li>
+        <li style="--i:4"><a href="#proceso">Proceso</a></li>
+        <li style="--i:5"><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
-    <a class="btn-green" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20solicitar%20una%20cotizaci%C3%B3n." target="_blank" rel="noopener">Cotizar por WhatsApp</a>
-    <div class="mobile-menu-contact">
+    <a class="btn btn-solid" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20solicitar%20una%20cotizaci%C3%B3n." target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+    <div class="overlay-contact">
       <a href="tel:+573013653273">+57 301 365 3273</a>
       <a href="mailto:ecodesaingenieria@outlook.es">ecodesaingenieria@outlook.es</a>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════
-       MAIN CONTENT
-  ══════════════════════════════════════════════════ -->
   <main id="main">
 
-    <!-- ─── SECCIÓN: HERO ─── -->
+    <!-- ═══════════ HERO ═══════════ -->
     <section class="hero" id="hero" aria-label="Presentación ECODESA">
-      <img
-        src="assets/img/hero.jpg"
-        alt="Manglar y humedal tropical en Colombia — zona de trabajo de ECODESA consultoría ambiental"
-        class="hero-bg"
-        fetchpriority="high"
-        loading="eager"
-        decoding="sync"
-      >
-      <div class="hero-veil" aria-hidden="true"></div>
+      <div class="hero-bg" aria-hidden="true">
+        <canvas id="causticsCanvas" class="hero-canvas"></canvas>
+        <div class="hero-veil"></div>
+      </div>
 
-      <div class="hero-content">
-        <p class="hero-kicker">Consultoría Ambiental · Cartagena de Indias · Colombia</p>
-        <h1 class="hero-title">
-          <span class="hero-line">Cumplimos</span>
-          <span class="hero-line accent-line">la norma.</span>
-        </h1>
-        <p class="hero-tagline">Para que tu empresa opere sin sanciones.</p>
-        <div class="hero-actions">
-          <a class="btn-primary" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20solicitar%20una%20cotizaci%C3%B3n." target="_blank" rel="noopener" data-cursor="cotizar">
-            Solicitar cotización <span aria-hidden="true">→</span>
-          </a>
-          <a class="btn-ghost" href="#servicios" data-cursor="ver">Ver servicios</a>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="kicker-pill hero-kicker"><span class="kp-dot" aria-hidden="true"></span>Consultoría ambiental · Cartagena de Indias</p>
+          <h1 class="hero-title" id="heroTitle">
+            <span class="mask"><span class="line">Cumplimos</span></span>
+            <span class="mask"><span class="line grad-text">la norma.</span></span>
+          </h1>
+          <p class="hero-sub">Gestión ambiental, hidrología, SG-SST y gestión del riesgo — para que tu empresa opere <strong>sin sanciones</strong> ante CARDIQUE y demás autoridades.</p>
+          <div class="hero-actions">
+            <a class="btn btn-solid btn-lg magnetic" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20solicitar%20una%20cotizaci%C3%B3n." target="_blank" rel="noopener">Solicitar cotización <span aria-hidden="true">→</span></a>
+            <a class="btn btn-line btn-lg magnetic" href="#servicios">Ver servicios</a>
+          </div>
+          <ul class="hero-proof" role="list">
+            <li><svg viewBox="0 0 16 16" width="15" aria-hidden="true"><path d="M2.5 8.5L6 12l7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>6+ años de experiencia</li>
+            <li><svg viewBox="0 0 16 16" width="15" aria-hidden="true"><path d="M2.5 8.5L6 12l7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>20+ clientes asesorados</li>
+            <li><svg viewBox="0 0 16 16" width="15" aria-hidden="true"><path d="M2.5 8.5L6 12l7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>100% cumplimiento</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <svg class="hero-deco" data-depth="0.10" viewBox="0 0 520 520" fill="none">
+            <g class="hd-spin">
+              <circle cx="260" cy="260" r="216" stroke="currentColor" stroke-width="1.4" stroke-dasharray="3 14" opacity=".5"/>
+              <circle cx="260" cy="260" r="240" stroke="currentColor" stroke-width="1" stroke-dasharray="1 30" opacity=".35"/>
+            </g>
+            <circle cx="260" cy="260" r="182" stroke="currentColor" stroke-width="1" opacity=".2"/>
+            <path d="M260 40V86M260 434V480M40 260H86M434 260H480" stroke="currentColor" stroke-width="1.4" opacity=".4"/>
+            <path d="M170 300c-26-38-14-92 30-114s102-8 118 32-8 88-52 100-72 8-96-18Z" stroke="currentColor" stroke-width="1.2" opacity=".3"/>
+            <path d="M192 292c-18-28-8-66 24-82s74-4 84 26-8 62-40 70-52 4-68-14Z" stroke="currentColor" stroke-width="1.2" opacity=".24"/>
+          </svg>
+
+          <div class="hv-card" data-depth="0.30">
+            <div class="hv-float">
+              <div class="hvc-head">
+                <span class="hvc-ico">
+                  <svg viewBox="0 0 24 24" width="20" fill="none"><path d="M12 2.5C8 7.5 5 11 5 14.5a7 7 0 0 0 14 0C19 11 16 7.5 12 2.5Z" fill="currentColor" opacity=".15"/><path d="M12 2.5C8 7.5 5 11 5 14.5a7 7 0 0 0 14 0C19 11 16 7.5 12 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.5 14.5c1.2-.9 2.6-.9 3.5 0s2.3.9 3.5 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                </span>
+                <span class="hvc-titles">
+                  <strong>Licencia ambiental</strong>
+                  <em>EXP. ECD-2026-0417 · CARDIQUE</em>
+                </span>
+                <span class="hvc-status">Aprobada</span>
+              </div>
+              <div class="hvc-rows">
+                <span style="--w:94%"></span>
+                <span style="--w:78%"></span>
+                <span style="--w:86%"></span>
+                <span style="--w:52%"></span>
+              </div>
+              <div class="hvc-foot">
+                <svg class="hvc-seal" viewBox="0 0 96 96" fill="none">
+                  <circle cx="48" cy="48" r="44" stroke="currentColor" stroke-width="2.4"/>
+                  <circle cx="48" cy="48" r="35" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5"/>
+                  <text x="48" y="46" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="13" fill="currentColor">CUMPLE</text>
+                  <text x="48" y="60" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="6.2" fill="currentColor" opacity=".8">AUTORIDAD AMBIENTAL</text>
+                </svg>
+                <svg class="hvc-sign" viewBox="0 0 110 34" fill="none">
+                  <path d="M4 24c8-14 14 6 22-8s12 10 20-4 12 8 22-2 14 6 24-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  <path d="M4 30h84" stroke="currentColor" stroke-width="1" opacity=".3"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="hv-chip hv-chip-a" data-depth="0.55">
+            <span class="hv-float">
+              <i class="kp-dot" aria-hidden="true"></i>
+              <span>RAD. CARDIQUE<em>al día · 26-0417</em></span>
+              <span class="hv-bar"><span></span></span>
+            </span>
+          </div>
+
+          <div class="hv-chip hv-chip-b" data-depth="0.18">
+            <span class="hv-float">
+              <svg viewBox="0 0 20 20" width="18" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="M6.4 10.4l2.4 2.4 4.8-5.4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>ISO 14001 · ISO 45001<em>sistemas certificables</em></span>
+            </span>
+          </div>
         </div>
       </div>
 
-      <div class="hero-scroll-hint" aria-hidden="true">
-        <div class="scroll-line-wrap"><div class="scroll-line"></div></div>
-        <span>scroll</span>
+      <div class="scrollcue" aria-hidden="true">
+        <span class="scrollcue-track"><span class="scrollcue-dot"></span></span>
+        <span class="scrollcue-label">Desplaza</span>
       </div>
     </section>
 
-    <!-- ─── MARQUEE TICKER ─── -->
-    <div class="marquee-band" aria-hidden="true" role="presentation">
-      <div class="marquee-track">
-        <div class="marquee-inner">
-          <span>Gestión Ambiental</span><span class="marquee-dot">·</span>
-          <span>Hidrología y Saneamiento</span><span class="marquee-dot">·</span>
-          <span>Seguridad Química</span><span class="marquee-dot">·</span>
-          <span>Gestión del Riesgo</span><span class="marquee-dot">·</span>
-          <span>Forestal y Biodiversidad</span><span class="marquee-dot">·</span>
-          <span>CARDIQUE</span><span class="marquee-dot">·</span>
-          <span>ISO 14001</span><span class="marquee-dot">·</span>
-          <span>ISO 45001</span><span class="marquee-dot">·</span>
-          <span>Cartagena</span><span class="marquee-dot">·</span>
-          <span>Colombia</span><span class="marquee-dot">·</span>
-        </div>
-        <div class="marquee-inner" aria-hidden="true">
-          <span>Gestión Ambiental</span><span class="marquee-dot">·</span>
-          <span>Hidrología y Saneamiento</span><span class="marquee-dot">·</span>
-          <span>Seguridad Química</span><span class="marquee-dot">·</span>
-          <span>Gestión del Riesgo</span><span class="marquee-dot">·</span>
-          <span>Forestal y Biodiversidad</span><span class="marquee-dot">·</span>
-          <span>CARDIQUE</span><span class="marquee-dot">·</span>
-          <span>ISO 14001</span><span class="marquee-dot">·</span>
-          <span>ISO 45001</span><span class="marquee-dot">·</span>
-          <span>Cartagena</span><span class="marquee-dot">·</span>
-          <span>Colombia</span><span class="marquee-dot">·</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── SECCIÓN 01: NOSOTROS ─── -->
-    <section class="nosotros" id="nosotros" aria-labelledby="nosotros-title">
-      <div class="container nosotros-layout">
-
-        <div class="nosotros-main">
-          <div class="section-eyebrow" aria-hidden="true">
-            <span class="section-num">01</span>
-            <span class="section-label-text">Nosotros</span>
+    <!-- ═══════════ SELLOS · AUTORIDADES Y NORMAS ═══════════ -->
+    <section class="normas" aria-label="Autoridades ambientales y normas que cumplimos">
+      <p class="normas-title">Trabajamos ante las autoridades y bajo los estándares</p>
+      <div class="seal-marquee" aria-hidden="true">
+        <div class="seal-track">
+          <div class="seal-set">
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>CAR<i>DIQUE</i></b></span><span class="seal-name">Autoridad Ambiental<br>de Bolívar</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>ANLA</b></span><span class="seal-name">Licencias<br>Ambientales</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>EPA</b></span><span class="seal-name">EPA<br>Cartagena</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>SDS</b></span><span class="seal-name">Secretaría<br>de Salud</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>UNGRD</b></span><span class="seal-name">Gestión<br>del Riesgo</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>INVIMA</b></span><span class="seal-name">Vigilancia<br>Sanitaria</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>ICA</b></span><span class="seal-name">Sistemas<br>Bioseguros</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>ISO<i>14001</i></b></span><span class="seal-name">Gestión<br>Ambiental</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>ISO<i>45001</i></b></span><span class="seal-name">Seguridad<br>y Salud</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>HACCP</b></span><span class="seal-name">Inocuidad<br>Alimentaria</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>G.A.P.</b></span><span class="seal-name">GlobalG.A.P.<br>Agrícola</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>MSC·ASC</b></span><span class="seal-name">Cadena de<br>Custodia</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>SGA<i>773</i></b></span><span class="seal-name">Seguridad<br>Química</span></span>
           </div>
-
-          <h2 id="nosotros-title" class="nosotros-title reveal">
-            Una firma técnica que conoce<br>la norma y <em>entrega a tiempo.</em>
-          </h2>
-
-          <p class="nosotros-body reveal">
-            Somos ECODESA, una firma de consultoría con sede en Cartagena de Indias especializada en gestión ambiental, hidrología, SG-SST, gestión del riesgo y manejo forestal. Acompañamos a empresas e instituciones en el cumplimiento de sus obligaciones ante la autoridad ambiental, con rigor técnico, conocimiento de la norma y entrega puntual.
-          </p>
-
-          <div class="counters-grid">
-            <div class="counter-item">
-              <div class="counter-val">
-                <span class="counter-num" data-count="6">0</span><span class="counter-plus">+</span>
-              </div>
-              <p class="counter-label">años de<br>experiencia</p>
-            </div>
-            <div class="counter-item">
-              <div class="counter-val">
-                <span class="counter-num" data-count="20">0</span><span class="counter-plus">+</span>
-              </div>
-              <p class="counter-label">clientes<br>asesorados</p>
-            </div>
-            <div class="counter-item">
-              <div class="counter-val">
-                <span class="counter-num" data-count="5">0</span>
-              </div>
-              <p class="counter-label">áreas de<br>especialidad</p>
-            </div>
-            <div class="counter-item">
-              <div class="counter-val">
-                <span class="counter-num" data-count="100">0</span><span class="counter-plus">%</span>
-              </div>
-              <p class="counter-label">cumplimiento<br>normativo</p>
-            </div>
+          <div class="seal-set" aria-hidden="true">
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>CAR<i>DIQUE</i></b></span><span class="seal-name">Autoridad Ambiental<br>de Bolívar</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>ANLA</b></span><span class="seal-name">Licencias<br>Ambientales</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>EPA</b></span><span class="seal-name">EPA<br>Cartagena</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>SDS</b></span><span class="seal-name">Secretaría<br>de Salud</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>UNGRD</b></span><span class="seal-name">Gestión<br>del Riesgo</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>INVIMA</b></span><span class="seal-name">Vigilancia<br>Sanitaria</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>ICA</b></span><span class="seal-name">Sistemas<br>Bioseguros</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>ISO<i>14001</i></b></span><span class="seal-name">Gestión<br>Ambiental</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>ISO<i>45001</i></b></span><span class="seal-name">Seguridad<br>y Salud</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>HACCP</b></span><span class="seal-name">Inocuidad<br>Alimentaria</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>G.A.P.</b></span><span class="seal-name">GlobalG.A.P.<br>Agrícola</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>MSC·ASC</b></span><span class="seal-name">Cadena de<br>Custodia</span></span>
+            <span class="seal"><span class="seal-ring"><svg viewBox="0 0 76 76" fill="none"><circle cx="38" cy="38" r="35" stroke="currentColor" stroke-width="1.6"/><circle class="sr-spin" cx="38" cy="38" r="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/></svg><b>SGA<i>773</i></b></span><span class="seal-name">Seguridad<br>Química</span></span>
           </div>
         </div>
-
-        <aside class="nosotros-aside" aria-label="Datos clave ECODESA">
-          <div class="aside-card">
-            <img src="assets/img/nosotros.jpg" alt="Naturaleza verde — entorno de trabajo de ECODESA" class="aside-img" loading="lazy" decoding="async">
-            <div class="aside-overlay"></div>
-            <div class="aside-data">
-              <div class="aside-item">
-                <span class="aside-label">Fundada</span>
-                <span class="aside-val">2020</span>
-              </div>
-              <div class="aside-item">
-                <span class="aside-label">Ciudad</span>
-                <span class="aside-val">Cartagena de Indias</span>
-              </div>
-              <div class="aside-item">
-                <span class="aside-label">Autoridades</span>
-                <span class="aside-val">CARDIQUE · Secretaría de Salud · ANLA</span>
-              </div>
-              <div class="aside-item">
-                <span class="aside-label">Clientes</span>
-                <span class="aside-val">Sector privado y público</span>
-              </div>
-
-              <div class="mision-vision-wrap">
-                <div class="mv-card" data-mv="mision">
-                  <span class="mv-label">MISIÓN</span>
-                  <p class="mv-text">Brindar consultoría ambiental, hidrología, saneamiento básico, seguridad química, gestión del riesgo y biodiversidad forestal con rigor técnico e innovación tecnológica — integrando inteligencia artificial y herramientas digitales de vanguardia para transformar la consultoría tradicional, garantizar el cumplimiento normativo ante las autoridades ambientales colombianas y contribuir al desarrollo sostenible del territorio.</p>
-                </div>
-                <div class="mv-card" data-mv="vision">
-                  <span class="mv-label">VISIÓN</span>
-                  <p class="mv-text">Ser en 2030 la firma de consultoría ambiental más innovadora del Caribe colombiano, reconocida por combinar experticia técnica en gestión ambiental, hidrología, SST, riesgo y biodiversidad con tecnologías de vanguardia — para construir territorios más sostenibles, empresas más responsables y ecosistemas más protegidos.</p>
-                </div>
-              </div>
-
-              <div class="valores-wrap">
-                <span class="valores-title">VALORES</span>
-                <div class="valores-grid">
-                  <div class="valor-item">
-                    <span class="valor-icon">◆</span>
-                    <span class="valor-name">Responsabilidad</span>
-                  </div>
-                  <div class="valor-item">
-                    <span class="valor-icon">◆</span>
-                    <span class="valor-name">Innovación</span>
-                  </div>
-                  <div class="valor-item">
-                    <span class="valor-icon">◆</span>
-                    <span class="valor-name">Sostenibilidad</span>
-                  </div>
-                  <div class="valor-item">
-                    <span class="valor-icon">◆</span>
-                    <span class="valor-name">Precisión técnica</span>
-                  </div>
-                  <div class="valor-item">
-                    <span class="valor-icon">◆</span>
-                    <span class="valor-name">Ética profesional</span>
-                  </div>
-                  <div class="valor-item">
-                    <span class="valor-icon">◆</span>
-                    <span class="valor-name">Compromiso ambiental</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </aside>
-
       </div>
     </section>
 
-    <!-- ─── SECCIÓN 02: SERVICIOS (Horizontal Scroll Pinned) ─── -->
-    <section class="servicios-section" id="servicios" aria-labelledby="servicios-heading">
+    <!-- ═══════════ 01 · NOSOTROS ═══════════ -->
+    <section class="sec nosotros" id="nosotros" aria-labelledby="nosotros-title">
+      <div class="container">
+        <div class="sec-head">
+          <span class="kicker-pill">01 · Nosotros</span>
+          <h2 id="nosotros-title" class="h2" data-reveal>Una firma técnica que conoce la norma y <em>entrega a tiempo.</em></h2>
+        </div>
+
+        <div class="nos-grid">
+          <div class="nos-main">
+            <p class="lead" data-reveal>
+              Somos ECODESA, una firma de consultoría con sede en Cartagena de Indias especializada en gestión ambiental, hidrología, SG-SST, gestión del riesgo y manejo forestal. Acompañamos a empresas e instituciones en el cumplimiento de sus obligaciones ante la autoridad ambiental, con rigor técnico y entrega puntual.
+            </p>
+
+          </div>
+
+          <aside class="ficha" aria-label="Ficha técnica ECODESA">
+            <div class="ficha-card" data-reveal>
+              <div class="ficha-band">
+                <svg viewBox="0 0 24 24" width="18" fill="none" aria-hidden="true"><path d="M12 2.5C8 7.5 5 11 5 14.5a7 7 0 0 0 14 0C19 11 16 7.5 12 2.5Z" fill="currentColor" opacity=".2"/><path d="M12 2.5C8 7.5 5 11 5 14.5a7 7 0 0 0 14 0C19 11 16 7.5 12 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                Ficha técnica
+              </div>
+              <svg class="ficha-topo" viewBox="0 0 400 520" fill="none" aria-hidden="true">
+                <g stroke="currentColor" stroke-width="1">
+                  <path d="M60 90c60-40 160-40 220 0s70 110 20 160-170 60-230 10S0 130 60 90Z" opacity=".12"/>
+                  <path d="M85 115c48-30 128-30 176 0s56 86 16 126-136 48-184 8S37 145 85 115Z" opacity=".18"/>
+                  <path d="M110 140c36-22 96-22 132 0s42 64 12 94-102 36-138 6S74 162 110 140Z" opacity=".24"/>
+                  <path d="M135 165c24-14 64-14 88 0s28 42 8 62-68 24-92 4S111 179 135 165Z" opacity=".3"/>
+                  <path d="M40 380c70-50 200-50 260 0" opacity=".14"/>
+                  <path d="M20 430c90-60 250-60 340 0" opacity=".1"/>
+                </g>
+              </svg>
+
+              <dl class="ficha-rows">
+                <div class="frow"><dt>Fundada</dt><dd>2020</dd></div>
+                <div class="frow"><dt>Ciudad</dt><dd>Cartagena de Indias</dd></div>
+                <div class="frow"><dt>Autoridades</dt><dd>CARDIQUE · Secretaría de Salud · ANLA</dd></div>
+                <div class="frow"><dt>Clientes</dt><dd>Sector privado y público</dd></div>
+              </dl>
+
+              <details class="mv">
+                <summary><span>Misión</span><i aria-hidden="true">+</i></summary>
+                <p>Brindar consultoría ambiental, hidrología, saneamiento básico, seguridad química, gestión del riesgo y biodiversidad forestal con rigor técnico e innovación tecnológica — integrando inteligencia artificial y herramientas digitales de vanguardia para transformar la consultoría tradicional, garantizar el cumplimiento normativo ante las autoridades ambientales colombianas y contribuir al desarrollo sostenible del territorio.</p>
+              </details>
+              <details class="mv">
+                <summary><span>Visión</span><i aria-hidden="true">+</i></summary>
+                <p>Ser en 2030 la firma de consultoría ambiental más innovadora del Caribe colombiano, reconocida por combinar experticia técnica en gestión ambiental, hidrología, SST, riesgo y biodiversidad con tecnologías de vanguardia — para construir territorios más sostenibles, empresas más responsables y ecosistemas más protegidos.</p>
+              </details>
+
+              <div class="valores">
+                <p class="valores-title">Valores</p>
+                <ul role="list">
+                  <li>Responsabilidad</li>
+                  <li>Innovación</li>
+                  <li>Sostenibilidad</li>
+                  <li>Precisión técnica</li>
+                  <li>Ética profesional</li>
+                  <li>Compromiso ambiental</li>
+                </ul>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="stats" data-reveal>
+          <div class="stat" style="--hue:#0C8A5F">
+            <span class="stat-ico"><svg viewBox="0 0 24 24" width="20" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="stat-val"><span data-count="6">0</span><i>+</i></span>
+            <span class="stat-label">años de experiencia</span>
+          </div>
+          <div class="stat" style="--hue:#0E86C8">
+            <span class="stat-ico"><svg viewBox="0 0 24 24" width="20" fill="none"><circle cx="9" cy="8.5" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.8-3.2 3-5 5.5-5s4.7 1.8 5.5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="17" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.5"/><path d="M16 14.5c2.2.2 4 1.7 4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            <span class="stat-val"><span data-count="20">0</span><i>+</i></span>
+            <span class="stat-label">clientes asesorados</span>
+          </div>
+          <div class="stat" style="--hue:#0F766E">
+            <span class="stat-ico"><svg viewBox="0 0 24 24" width="20" fill="none"><rect x="3.5" y="3.5" width="7.5" height="7.5" rx="2" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="2" stroke="currentColor" stroke-width="1.6"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M16.75 13.5v6.5M13.5 16.75H20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="stat-val"><span data-count="5">0</span></span>
+            <span class="stat-label">áreas de especialidad</span>
+          </div>
+          <div class="stat" style="--hue:#DF8A00">
+            <span class="stat-ico"><svg viewBox="0 0 24 24" width="20" fill="none"><path d="M12 3l2.5 5.3 5.5.7-4 4 1 5.6-5-2.8-5 2.8 1-5.6-4-4 5.5-.7L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="currentColor" fill-opacity=".12"/></svg></span>
+            <span class="stat-val"><span data-count="100">0</span><i>%</i></span>
+            <span class="stat-label">cumplimiento normativo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 · SERVICIOS (horizontal) ═══════════ -->
+    <section class="servicios band" id="servicios" aria-labelledby="servicios-heading">
       <h2 id="servicios-heading" class="sr-only">Nuestros servicios</h2>
 
-      <div class="servicios-header">
-        <div class="section-eyebrow light" aria-hidden="true">
-          <span class="section-num">02</span>
-          <span class="section-label-text">Servicios</span>
+      <div class="serv-head">
+        <div class="serv-head-copy">
+          <span class="kicker-pill">02 · Servicios</span>
+          <p class="serv-title h2">Cinco áreas, <em>un solo responsable.</em></p>
         </div>
-        <div class="servicios-progress" aria-live="polite" aria-label="Servicio actual">
-          <span class="servicios-progress-num" id="serviciosProgressNum">01</span>
-          <span class="servicios-progress-sep" aria-hidden="true">/</span>
-          <span class="servicios-progress-total" aria-hidden="true">05</span>
+        <div class="serv-progress" aria-hidden="true">
+          <span class="serv-num" id="servNum">01</span><span class="serv-total">/05</span>
+          <span class="serv-bar"><span id="servBarFill"></span></span>
         </div>
       </div>
 
-      <div class="servicios-track" id="serviciosTrack">
+      <div class="serv-viewport">
+        <div class="serv-track" id="servTrack">
 
-        <!-- ÁREA 01 — Gestión Ambiental -->
-        <article class="service-card is-active" data-area="01" style="--area-color:#2E7D32;position:relative;overflow:hidden;" aria-label="Área 01: Gestión Ambiental">
-          <img src="logotipo-solo.png" alt="" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:auto;opacity:0.09;pointer-events:none;z-index:0;">
-          <div class="sc-inner">
-            <div class="sc-top">
-              <span class="sc-num" aria-hidden="true">01</span>
+          <article class="serv-card is-active" style="--hue:#0C8A5F" aria-label="Área 01: Gestión Ambiental">
+            <svg class="sc-mark" viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="M30 7L49 14V29C49 42.5 40.5 49.5 30 53C19.5 49.5 11 42.5 11 29V14L30 7Z" stroke="currentColor" stroke-width="1.4"/><path d="M30 44V26M30 30C30 21 22 17 17 16C17 24 21 29 30 30ZM30 34C30 26.5 37 23 43 22.5C42.5 30 38 33.5 30 34Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <div class="sc-head">
+              <span class="sc-idx" aria-hidden="true">01</span>
               <div class="sc-icon" aria-hidden="true">
-                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path class="icon-path" d="M30 52V30M30 30C30 18 13 12 13 12C13 12 16 27 30 30ZM30 30C30 18 47 12 47 12C47 12 44 27 30 30ZM30 30C30 42 18 46 18 46M30 30C30 42 42 46 42 46" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg viewBox="0 0 60 60" fill="none">
+                  <path d="M30 7L49 14V29C49 42.5 40.5 49.5 30 53C19.5 49.5 11 42.5 11 29V14L30 7Z" fill="currentColor" opacity=".1"/>
+                  <path class="icon-path" d="M30 7L49 14V29C49 42.5 40.5 49.5 30 53C19.5 49.5 11 42.5 11 29V14L30 7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path class="icon-path" d="M30 44V26" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M30 30C30 21 22 17 17 16C17 24 21 29 30 30Z" fill="currentColor" opacity=".22"/>
+                  <path class="icon-path" d="M30 30C30 21 22 17 17 16C17 24 21 29 30 30Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M30 34C30 26.5 37 23 43 22.5C42.5 30 38 33.5 30 34Z" fill="currentColor" opacity=".22"/>
+                  <path class="icon-path" d="M30 34C30 26.5 37 23 43 22.5C42.5 30 38 33.5 30 34Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <div class="sc-title-wrap">
-                <h3 class="sc-title">Gestión<br>Ambiental</h3>
-              </div>
+              <h3 class="sc-title">Gestión<br>Ambiental</h3>
+              <p class="sc-desc">Acompañamiento integral en el cumplimiento de requerimientos ambientales ante CARDIQUE y demás autoridades.</p>
             </div>
             <div class="sc-body">
-              <p class="sc-desc">Acompañamiento integral en el cumplimiento de requerimientos ambientales ante CARDIQUE y demás autoridades.</p>
-              <button class="sc-accordion-btn" aria-expanded="false">Ver servicios <span class="sc-arrow">▼</span></button>
-              <div class="sc-accordion-body">
-              <ul class="sc-list">
+              <ul class="sc-list" role="list">
                 <li>Análisis de requerimientos ambientales</li>
                 <li>Estudios de Impacto Ambiental (EIA)</li>
-                <li>Licencias ambientales y Planes de Manejo Ambiental (PMA)</li>
-                <li>Permisos de vertimiento, ocupación de cauce y emisiones atmosféricas</li>
+                <li>Licencias ambientales y PMA</li>
+                <li>Permisos de vertimiento, cauce y emisiones</li>
                 <li>Informes técnicos ambientales</li>
-                <li>Trámite PIN RCD (generador, receptor, transportador)</li>
-                <li>Creación del Departamento de Gestión Ambiental ante la autoridad</li>
-                <li>Trámite para autorización de eventos y publicidad exterior visual</li>
-                <li>Interventoría ambiental en implementación de PMA</li>
+                <li>Trámite PIN RCD</li>
+                <li>Departamento de Gestión Ambiental</li>
+                <li>Eventos y publicidad exterior visual</li>
+                <li>Interventoría ambiental de PMA</li>
               </ul>
-              </div>
-              <a class="sc-cta" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Gesti%C3%B3n%20Ambiental." target="_blank" rel="noopener" data-cursor="cotizar">Cotizar este servicio <span aria-hidden="true">→</span></a>
+              <a class="sc-cta btn btn-hue" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Gesti%C3%B3n%20Ambiental." target="_blank" rel="noopener">Cotizar este servicio <span aria-hidden="true">→</span></a>
             </div>
-          </div>
-        </article>
+          </article>
 
-        <!-- ÁREA 02 — Hidrología y Saneamiento -->
-        <article class="service-card" data-area="02" style="--area-color:#1565C0;position:relative;overflow:hidden;" aria-label="Área 02: Hidrología y Saneamiento">
-          <img src="logotipo-solo.png" alt="" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:auto;opacity:0.09;pointer-events:none;z-index:0;">
-          <div class="sc-inner">
-            <div class="sc-top">
-              <span class="sc-num" aria-hidden="true">02</span>
+          <article class="serv-card" style="--hue:#0E86C8" aria-label="Área 02: Hidrología y Saneamiento">
+            <svg class="sc-mark" viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="M28 10C28 10 12 28 12 38C12 47 19 53 28 53C37 53 44 47 44 38C44 28 28 10 28 10Z" stroke="currentColor" stroke-width="1.4"/><path d="M18 40C21 37 25 39 28 41C31 43 35 38 38 36" stroke="currentColor" stroke-width="1.4"/></svg>
+            <div class="sc-head">
+              <span class="sc-idx" aria-hidden="true">02</span>
               <div class="sc-icon" aria-hidden="true">
-                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path class="icon-path" d="M30 8C30 8 11 30 11 40C11 50.5 19.7 56 30 56C40.3 56 49 50.5 49 40C49 30 30 8 30 8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path class="icon-path" d="M19 43C22 39 26 41 30 43C34 45 38 39 42 37" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <svg viewBox="0 0 60 60" fill="none">
+                  <path d="M28 10C28 10 12 28 12 38C12 47 19 53 28 53C37 53 44 47 44 38C44 28 28 10 28 10Z" fill="currentColor" opacity=".1"/>
+                  <path class="icon-path" d="M28 10C28 10 12 28 12 38C12 47 19 53 28 53C37 53 44 47 44 38C44 28 28 10 28 10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path class="icon-path" d="M18 40C21 37 25 39 28 41C31 43 35 38 38 36" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path class="icon-path" d="M20 46C23 44 26 45.5 28 47" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".55"/>
+                  <path d="M47 12C47 12 41.5 18 41.5 21C41.5 24 44 26 47 26C50 26 52.5 24 52.5 21C52.5 18 47 12 47 12Z" fill="currentColor" opacity=".16"/>
+                  <path class="icon-path" d="M47 12C47 12 41.5 18 41.5 21C41.5 24 44 26 47 26C50 26 52.5 24 52.5 21C52.5 18 47 12 47 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <div class="sc-title-wrap">
-                <h3 class="sc-title">Hidrología y<br>Saneamiento</h3>
-              </div>
+              <h3 class="sc-title">Hidrología y<br>Saneamiento</h3>
+              <p class="sc-desc">Diseño, diagnóstico y gestión de sistemas de tratamiento de agua, residuos y saneamiento ambiental.</p>
             </div>
             <div class="sc-body">
-              <p class="sc-desc">Diseño, diagnóstico y gestión de sistemas de tratamiento de agua, residuos y saneamiento ambiental.</p>
-              <button class="sc-accordion-btn" aria-expanded="false">Ver servicios <span class="sc-arrow">▼</span></button>
-              <div class="sc-accordion-body">
-              <ul class="sc-list">
+              <ul class="sc-list" role="list">
                 <li>Diseño e interventoría de PTAP y PTAR</li>
-                <li>Sistemas de tratamiento pluviales y de riego</li>
-                <li>Captación de aguas subterráneas, superficiales y pluviales</li>
-                <li>Diagnóstico de sistemas de captación, tratamiento y vertimientos</li>
+                <li>Sistemas pluviales y de riego</li>
+                <li>Captación de aguas subterráneas y superficiales</li>
+                <li>Diagnóstico de captación y vertimientos</li>
                 <li>Diseño de sistemas de flujo de aguas</li>
                 <li>Planes de acueducto y alcantarillado</li>
-                <li>Caracterización de aguas domésticas e industriales</li>
-                <li>Plan de manejo ambiental de residuos sólidos e industriales</li>
-                <li>Plan de manejo ambiental de RCD</li>
-                <li>Puntos de almacenamiento temporal de residuos sólidos</li>
-                <li>Retiro y disposición final de residuos sólidos</li>
+                <li>Caracterización de aguas</li>
+                <li>PMA de residuos sólidos e industriales</li>
+                <li>Plan de manejo de RCD</li>
+                <li>Almacenamiento temporal de residuos</li>
+                <li>Retiro y disposición final</li>
               </ul>
-              </div>
-              <a class="sc-cta" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Hidrolog%C3%ADa%20y%20Saneamiento." target="_blank" rel="noopener" data-cursor="cotizar">Cotizar este servicio <span aria-hidden="true">→</span></a>
+              <a class="sc-cta btn btn-hue" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Hidrolog%C3%ADa%20y%20Saneamiento." target="_blank" rel="noopener">Cotizar este servicio <span aria-hidden="true">→</span></a>
             </div>
-          </div>
-        </article>
+          </article>
 
-        <!-- ÁREA 03 — Seguridad Química y SG-SST -->
-        <article class="service-card" data-area="03" style="--area-color:#E65100;position:relative;overflow:hidden;" aria-label="Área 03: Seguridad Química y SG-SST">
-          <img src="logotipo-solo.png" alt="" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:auto;opacity:0.09;pointer-events:none;z-index:0;">
-          <div class="sc-inner">
-            <div class="sc-top">
-              <span class="sc-num" aria-hidden="true">03</span>
+          <article class="serv-card" style="--hue:#DF8A00" aria-label="Área 03: Seguridad Química y SG-SST">
+            <svg class="sc-mark" viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="M24 12V32L14 50C12.5 52.7 14.4 56 17.5 56H42.5C45.6 56 47.5 52.7 46 50L36 32V12" stroke="currentColor" stroke-width="1.4"/><path d="M21 12H39" stroke="currentColor" stroke-width="1.4"/></svg>
+            <div class="sc-head">
+              <span class="sc-idx" aria-hidden="true">03</span>
               <div class="sc-icon" aria-hidden="true">
-                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path class="icon-path" d="M22 10L22 30L8 50H52L38 30L38 10Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path class="icon-path" d="M22 10H38" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                  <circle class="icon-path" cx="30" cy="38" r="5" stroke="currentColor" stroke-width="1.8"/>
+                <svg viewBox="0 0 60 60" fill="none">
+                  <path d="M14 50L24 32V12H36V32L46 50C47.5 52.7 45.6 56 42.5 56H17.5C14.4 56 12.5 52.7 14 50Z" fill="currentColor" opacity=".08"/>
+                  <path class="icon-path" d="M24 12V32L14 50C12.5 52.7 14.4 56 17.5 56H42.5C45.6 56 47.5 52.7 46 50L36 32V12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="icon-path" d="M21 12H39" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M19.5 44H40.5L44.8 51.6C45.6 53.2 44.5 55 42.7 55H17.3C15.5 55 14.4 53.2 15.2 51.6L19.5 44Z" fill="currentColor" opacity=".22"/>
+                  <path class="icon-path" d="M19 44H41" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <circle cx="26" cy="49.5" r="1.6" fill="currentColor"/>
+                  <circle cx="33" cy="47.5" r="1.2" fill="currentColor"/>
+                  <circle class="icon-path" cx="30" cy="37.5" r="1.6" stroke="currentColor" stroke-width="1.3"/>
                 </svg>
               </div>
-              <div class="sc-title-wrap">
-                <h3 class="sc-title">Seguridad Química<br>y SG-SST</h3>
-              </div>
+              <h3 class="sc-title">Seguridad Química<br>y SG-SST</h3>
+              <p class="sc-desc">Sistemas de gestión de la seguridad y salud en el trabajo, riesgo químico y certificaciones internacionales.</p>
             </div>
             <div class="sc-body">
-              <p class="sc-desc">Sistemas de gestión de la seguridad y salud en el trabajo, riesgo químico y certificaciones internacionales.</p>
-              <button class="sc-accordion-btn" aria-expanded="false">Ver servicios <span class="sc-arrow">▼</span></button>
-              <div class="sc-accordion-body">
-              <ul class="sc-list">
-                <li>Creación de programas de gestión en seguridad química</li>
-                <li>Sistema Globalmente Armonizado — Resolución 773/2021</li>
-                <li>Auditorías y seguimiento en riesgo químico</li>
-                <li>Sistemas de gestión ambiental ISO 14001:2015</li>
-                <li>Sistemas de SST ISO 45001:2018</li>
-                <li>Elaboración de planes de saneamiento básico</li>
+              <ul class="sc-list" role="list">
+                <li>Programas de seguridad química</li>
+                <li>SGA — Resolución 773/2021</li>
+                <li>Auditorías de riesgo químico</li>
+                <li>ISO 14001:2015</li>
+                <li>ISO 45001:2018</li>
+                <li>Planes de saneamiento básico</li>
                 <li>Inocuidad alimentaria HACCP</li>
-                <li>Buenas prácticas agrícolas Global GAP</li>
-                <li>Estándares ASC y cadena de custodia MSC</li>
+                <li>Global GAP</li>
+                <li>Estándares ASC · MSC</li>
                 <li>Sistemas Bioseguros ICA</li>
               </ul>
-              </div>
-              <a class="sc-cta" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Seguridad%20Qu%C3%ADmica%20y%20SG-SST." target="_blank" rel="noopener" data-cursor="cotizar">Cotizar este servicio <span aria-hidden="true">→</span></a>
+              <a class="sc-cta btn btn-hue" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Seguridad%20Qu%C3%ADmica%20y%20SG-SST." target="_blank" rel="noopener">Cotizar este servicio <span aria-hidden="true">→</span></a>
             </div>
-          </div>
-        </article>
+          </article>
 
-        <!-- ÁREA 04 — Gestión del Riesgo y Desastres -->
-        <article class="service-card" data-area="04" style="--area-color:#B71C1C;position:relative;overflow:hidden;" aria-label="Área 04: Gestión del Riesgo y Desastres">
-          <img src="logotipo-solo.png" alt="" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:auto;opacity:0.09;pointer-events:none;z-index:0;">
-          <div class="sc-inner">
-            <div class="sc-top">
-              <span class="sc-num" aria-hidden="true">04</span>
+          <article class="serv-card" style="--hue:#E0523C" aria-label="Área 04: Gestión del Riesgo y Desastres">
+            <svg class="sc-mark" viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="M27.4 12.5C28.5 10.5 31.5 10.5 32.6 12.5L51.8 46.5C52.9 48.5 51.4 51 49.1 51H10.9C8.6 51 7.1 48.5 8.2 46.5L27.4 12.5Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <div class="sc-head">
+              <span class="sc-idx" aria-hidden="true">04</span>
               <div class="sc-icon" aria-hidden="true">
-                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path class="icon-path" d="M30 8L55 52H5L30 8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  <line class="icon-path" x1="30" y1="24" x2="30" y2="38" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                  <circle cx="30" cy="45" r="2" fill="currentColor"/>
+                <svg viewBox="0 0 60 60" fill="none">
+                  <path d="M27.4 12.5C28.5 10.5 31.5 10.5 32.6 12.5L51.8 46.5C52.9 48.5 51.4 51 49.1 51H10.9C8.6 51 7.1 48.5 8.2 46.5L27.4 12.5Z" fill="currentColor" opacity=".1"/>
+                  <path class="icon-path" d="M27.4 12.5C28.5 10.5 31.5 10.5 32.6 12.5L51.8 46.5C52.9 48.5 51.4 51 49.1 51H10.9C8.6 51 7.1 48.5 8.2 46.5L27.4 12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path class="icon-path" d="M30 24V37" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                  <circle cx="30" cy="43.5" r="1.8" fill="currentColor"/>
+                  <path class="icon-path" d="M46.5 13.5C49 16 50.5 19.3 50.5 23" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".6"/>
+                  <path class="icon-path" d="M51 9C55 13 57.5 18.5 57.5 24.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".35"/>
                 </svg>
               </div>
-              <div class="sc-title-wrap">
-                <h3 class="sc-title">Gestión del Riesgo<br>y Desastres</h3>
-              </div>
+              <h3 class="sc-title">Gestión del Riesgo<br>y Desastres</h3>
+              <p class="sc-desc">Elaboración de planes, análisis de vulnerabilidad territorial y trámites ante entidades de gestión del riesgo.</p>
             </div>
             <div class="sc-body">
-              <p class="sc-desc">Elaboración de planes, análisis de vulnerabilidad territorial y trámites ante entidades de gestión del riesgo.</p>
-              <button class="sc-accordion-btn" aria-expanded="false">Ver servicios <span class="sc-arrow">▼</span></button>
-              <div class="sc-accordion-body">
-              <ul class="sc-list">
-                <li>Elaboración de informes técnicos de gestión del riesgo</li>
-                <li>Trámites ante entidades públicas en gestión del riesgo</li>
+              <ul class="sc-list" role="list">
+                <li>Informes técnicos de gestión del riesgo</li>
+                <li>Trámites ante entidades públicas</li>
                 <li>Planes de emergencia y contingencia</li>
                 <li>Análisis de vulnerabilidad territorial</li>
                 <li>Gestión ante UNGRD y CDGRD</li>
               </ul>
-              </div>
-              <a class="sc-cta" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Gesti%C3%B3n%20del%20Riesgo%20y%20Desastres." target="_blank" rel="noopener" data-cursor="cotizar">Cotizar este servicio <span aria-hidden="true">→</span></a>
+              <a class="sc-cta btn btn-hue" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Gesti%C3%B3n%20del%20Riesgo%20y%20Desastres." target="_blank" rel="noopener">Cotizar este servicio <span aria-hidden="true">→</span></a>
             </div>
-          </div>
-        </article>
+          </article>
 
-        <!-- ÁREA 05 — Forestal y Biodiversidad -->
-        <article class="service-card" data-area="05" style="--area-color:#1B5E20;position:relative;overflow:hidden;" aria-label="Área 05: Forestal y Biodiversidad">
-          <img src="logotipo-solo.png" alt="" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:auto;opacity:0.09;pointer-events:none;z-index:0;">
-          <div class="sc-inner">
-            <div class="sc-top">
-              <span class="sc-num" aria-hidden="true">05</span>
+          <article class="serv-card" style="--hue:#0F766E" aria-label="Área 05: Forestal y Biodiversidad">
+            <svg class="sc-mark" viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="M21 52V32M21 32C14 32 9 27 9 20.5C9 14 14.5 9 21 9C27.5 9 33 14 33 20.5C33 27 28 32 21 32Z" stroke="currentColor" stroke-width="1.4"/><path d="M43 52V34M43 34C38.6 34 35 30.4 35 26C35 21.6 38.6 18 43 18C47.4 18 51 21.6 51 26C51 30.4 47.4 34 43 34Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <div class="sc-head">
+              <span class="sc-idx" aria-hidden="true">05</span>
               <div class="sc-icon" aria-hidden="true">
-                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path class="icon-path" d="M18 52V32L8 32L18 16L28 32L18 32" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path class="icon-path" d="M38 52V26L25 26L38 8L51 26L38 26" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path class="icon-path" d="M6 52H54" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <svg viewBox="0 0 60 60" fill="none">
+                  <circle cx="21" cy="20.5" r="12" fill="currentColor" opacity=".1"/>
+                  <path class="icon-path" d="M21 52V32M21 32C14 32 9 27 9 20.5C9 14 14.5 9 21 9C27.5 9 33 14 33 20.5C33 27 28 32 21 32Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="icon-path" d="M21 40L16 35M21 45L25.5 40.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+                  <path d="M43 34C38.6 34 35 30.4 35 26C35 21.6 38.6 18 43 18C47.4 18 51 21.6 51 26C51 30.4 47.4 34 43 34Z" fill="currentColor" opacity=".16"/>
+                  <path class="icon-path" d="M43 52V34M43 34C38.6 34 35 30.4 35 26C35 21.6 38.6 18 43 18C47.4 18 51 21.6 51 26C51 30.4 47.4 34 43 34Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="icon-path" d="M6 52H54" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path class="icon-path" d="M45 11C46.5 9 49.5 9 51 11C52.5 9 55.5 9 57 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
                 </svg>
               </div>
-              <div class="sc-title-wrap">
-                <h3 class="sc-title">Forestal y<br>Biodiversidad</h3>
-              </div>
+              <h3 class="sc-title">Forestal y<br>Biodiversidad</h3>
+              <p class="sc-desc">Gestión integral de recursos forestales, flora, fauna y monitoreo ambiental para proyectos productivos y de conservación.</p>
             </div>
             <div class="sc-body">
-              <p class="sc-desc">Gestión integral de recursos forestales, flora, fauna y monitoreo ambiental para proyectos productivos y de conservación.</p>
-              <button class="sc-accordion-btn" aria-expanded="false">Ver servicios <span class="sc-arrow">▼</span></button>
-              <div class="sc-accordion-body">
-              <ul class="sc-list">
+              <ul class="sc-list" role="list">
                 <li>Inventarios forestales</li>
                 <li>Tala, poda y aprovechamiento forestal</li>
                 <li>Reforestación y compensación ambiental</li>
-                <li>Gestión de Fauna y Flora — diagnóstico</li>
+                <li>Gestión de fauna y flora</li>
                 <li>Monitoreo de emisiones y calidad de aire</li>
-                <li>Capacitaciones en educación ambiental</li>
-                <li>Suministro y siembra de árboles frutales</li>
+                <li>Educación ambiental</li>
+                <li>Siembra de árboles frutales</li>
                 <li>Diseño de jardines y ornamentación</li>
               </ul>
-              </div>
-              <a class="sc-cta" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Forestal%20y%20Biodiversidad." target="_blank" rel="noopener" data-cursor="cotizar">Cotizar este servicio <span aria-hidden="true">→</span></a>
+              <a class="sc-cta btn btn-hue" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Forestal%20y%20Biodiversidad." target="_blank" rel="noopener">Cotizar este servicio <span aria-hidden="true">→</span></a>
             </div>
-          </div>
-        </article>
+          </article>
 
-      </div><!-- /servicios-track -->
-
-      <div class="servicios-mobile-hint" aria-hidden="true">
-        <svg viewBox="0 0 24 12" fill="none" width="24"><path d="M0 6H24M18 1L24 6L18 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <span>Desliza para ver los 5 servicios</span>
+        </div>
       </div>
 
+      <p class="serv-hint" aria-hidden="true">Desliza para recorrer las 5 áreas →</p>
     </section>
 
-    <!-- ─── SECCIÓN 03: SECTORES ─── -->
-    <section class="sectores" id="sectores" aria-labelledby="sectores-title">
+    <!-- ═══════════ 03 · SECTORES ═══════════ -->
+    <section class="sec sectores" id="sectores" aria-labelledby="sectores-title">
       <div class="container">
-        <div class="section-eyebrow" aria-hidden="true">
-          <span class="section-num">03</span>
-          <span class="section-label-text">Sectores</span>
+        <div class="sec-head">
+          <span class="kicker-pill">03 · Sectores</span>
+          <h2 id="sectores-title" class="h2" data-reveal>Sectores que <em>atendemos.</em></h2>
         </div>
-        <h2 id="sectores-title" class="sectores-title reveal">Sectores que <em>atendemos.</em></h2>
 
         <div class="sectores-grid">
-
-          <div class="sector-item reveal">
-            <div class="sector-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="24" width="40" height="20" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M4 24L14 17L14 24M14 24L24 17L24 24M24 24L34 17L34 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="8" y="32" width="8" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="20" y="32" width="8" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M36 10L36 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
+          <div class="sector" data-reveal>
+            <span class="medallion" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M6 42V22L17 15V22L28 15V22L42 15V42H6Z" fill="currentColor" opacity=".1"/><path d="M6 42V22L17 15V22L28 15V22L42 15V42H6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><rect x="12" y="30" width="7" height="12" stroke="currentColor" stroke-width="1.6"/><rect x="25" y="30" width="7" height="7" stroke="currentColor" stroke-width="1.6"/><path d="M34 15V8H39V15" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </span>
             <span class="sector-name">Industrial</span>
+            <span class="sector-sub">Plantas y manufactura</span>
           </div>
-
-          <div class="sector-item reveal">
-            <div class="sector-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="22" width="32" height="22" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M4 22L24 8L44 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="18" y="32" width="12" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M20 8L20 4L36 4L36 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </div>
+          <div class="sector" data-reveal>
+            <span class="medallion" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="20" width="16" height="24" fill="currentColor" opacity=".1"/><rect x="8" y="20" width="16" height="24" stroke="currentColor" stroke-width="1.6"/><path d="M12 26H20M12 32H20M12 38H20" stroke="currentColor" stroke-width="1.4" opacity=".6"/><path d="M16 20V10H40M40 10V15M40 10L44 6M33 10V13.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 15.5H43V21.5H37V15.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4 44H44" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
             <span class="sector-name">Construcción</span>
+            <span class="sector-sub">Obras e infraestructura</span>
           </div>
-
-          <div class="sector-item reveal">
-            <div class="sector-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="14" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M24 19L24 44" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14 26L34 26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 40C10 40 24 48 38 40" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </div>
+          <div class="sector" data-reveal>
+            <span class="medallion" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M6 30H42L38 40H11L6 30Z" fill="currentColor" opacity=".12"/><path d="M6 30H42L38 40H11L6 30Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><rect x="13" y="24" width="9" height="6" stroke="currentColor" stroke-width="1.5"/><rect x="22" y="18" width="9" height="6" stroke="currentColor" stroke-width="1.5"/><rect x="22" y="24" width="9" height="6" stroke="currentColor" stroke-width="1.5"/><path d="M34 30V12H38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 45C8 42.5 12 42.5 16 45C20 47.5 24 47.5 28 45C32 42.5 36 42.5 40 45" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".55"/></svg>
+            </span>
             <span class="sector-name">Portuario</span>
+            <span class="sector-sub">Muelles y logística</span>
           </div>
-
-          <div class="sector-item reveal">
-            <div class="sector-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none"><circle cx="16" cy="36" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="36" cy="38" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M23 36L23 28L31 24L31 38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 30L23 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M32 16C32 16 36 10 42 14C42 14 38 18 32 16Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-            </div>
+          <div class="sector" data-reveal>
+            <span class="medallion" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><circle cx="38" cy="10" r="5" fill="currentColor" opacity=".14"/><circle cx="38" cy="10" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M24 26C24 19 18 16 13 15.5C13.5 22 18 25.5 24 26Z" fill="currentColor" opacity=".16"/><path d="M24 40V26M24 26C24 19 18 16 13 15.5C13.5 22 18 25.5 24 26ZM24 30C24 24 29.5 21 34.5 20.5C34 26.5 30 29.7 24 30Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 40H44M8 45H40" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".65"/></svg>
+            </span>
             <span class="sector-name">Agropecuario</span>
+            <span class="sector-sub">Campo y acuicultura</span>
           </div>
-
-          <div class="sector-item reveal">
-            <div class="sector-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none"><path d="M4 44L44 44" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M6 44L6 24L42 24L42 44" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 24L24 10L44 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="14" y="32" width="8" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="26" y="32" width="8" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
+          <div class="sector" data-reveal>
+            <span class="medallion" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M8 18L24 8L40 18V20H8V18Z" fill="currentColor" opacity=".14"/><path d="M8 18L24 8L40 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 20H38" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M13 25V37M20.4 25V37M27.6 25V37M35 25V37" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8 42H40M6 45.5H42" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="24" cy="14.5" r="1.6" fill="currentColor"/></svg>
+            </span>
             <span class="sector-name">Institucional</span>
+            <span class="sector-sub">Entidades públicas</span>
           </div>
-
-          <div class="sector-item reveal">
-            <div class="sector-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="22" width="32" height="22" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="16" y="30" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="28" y="30" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M16 22L16 14L32 14L32 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
+          <div class="sector" data-reveal>
+            <span class="medallion" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="22" y="16" width="20" height="28" fill="currentColor" opacity=".08"/><rect x="22" y="16" width="20" height="28" stroke="currentColor" stroke-width="1.6"/><path d="M27 22H31M35 22H39M27 28H31M35 28H39M27 34H31M35 34H39" stroke="currentColor" stroke-width="1.4" opacity=".6"/><path d="M30 44V40H36V44" stroke="currentColor" stroke-width="1.5"/><path d="M11 44V26" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M11 26C8 21 4 20 2 21C4.5 24 8 26 11 26Z" fill="currentColor" opacity=".16"/><path d="M11 26C8 21 4 20 2 21C4.5 24 8 26 11 26ZM11 26C11 21 13.5 17.5 17 16.5C16.5 21 14.5 24.5 11 26ZM11 26C7.5 26 4.5 28 3.5 30.5C6.5 30.5 9.5 29 11 26Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 44H46" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
             <span class="sector-name">Turístico y Hotelero</span>
+            <span class="sector-sub">Hoteles y turismo</span>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ─── SECCIÓN 04: TIENDA DIGITAL ─── -->
-    <section class="tienda" id="tienda" aria-labelledby="tienda-title">
-      <div class="tienda-bg-wrap" aria-hidden="true">
-        <img src="assets/img/tienda.jpg" alt="" class="tienda-bg" loading="lazy" decoding="async">
-        <div class="tienda-veil"></div>
-      </div>
-
-      <div class="container tienda-content">
-        <div class="section-eyebrow light" aria-hidden="true">
-          <span class="section-num">04</span>
-          <span class="section-label-text">Tienda digital</span>
+    <!-- ═══════════ 04 · TIENDA ═══════════ -->
+    <section class="sec tienda band" id="tienda" aria-labelledby="tienda-title">
+      <div class="tienda-glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="sec-head">
+          <span class="kicker-pill">04 · Tienda digital</span>
+          <h2 id="tienda-title" class="h2" data-reveal>Herramientas para <em>profesionales ambientales.</em></h2>
+          <p class="tienda-sub" data-reveal>Descarga y usa. Sin esperar, sin reuniones.</p>
         </div>
-        <h2 id="tienda-title" class="tienda-title reveal">Herramientas para <em>profesionales ambientales.</em></h2>
-        <p class="tienda-sub reveal">Descarga y usa. Sin esperar, sin reuniones.</p>
 
         <div class="tienda-grid">
-
-          <article class="product-card" data-cursor="comprar">
-            <div class="product-badge">WORD</div>
-            <h3 class="product-name">Plantilla Plan de Saneamiento Básico</h3>
-            <p class="product-format">Formato Word editable</p>
-            <p class="product-desc">Lista para diligenciar. Cumple con resoluciones Secretaría de Salud.</p>
-            <div class="product-footer">
-              <span class="product-price">$80.000 COP</span>
-              <a class="btn-comprar" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20comprar%3A%20Plantilla%20Plan%20de%20Saneamiento%20B%C3%A1sico" target="_blank" rel="noopener" data-cursor="comprar">Comprar <span aria-hidden="true">→</span></a>
+          <article class="prod" style="--fc:#0E86C8" data-reveal>
+            <div class="prod-top">
+              <span class="prod-badge"><svg viewBox="0 0 20 20" width="13" fill="none" aria-hidden="true"><path d="M4 2.5h8.5L16 6v11.5H4V2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 2.5V6h3.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>WORD</span>
+            </div>
+            <h3 class="prod-name">Plantilla Plan de Saneamiento Básico</h3>
+            <p class="prod-format">Formato Word editable</p>
+            <p class="prod-desc">Lista para diligenciar. Cumple con resoluciones de la Secretaría de Salud.</p>
+            <div class="prod-foot">
+              <span class="prod-price">$80.000 <em>COP</em></span>
+              <a class="btn btn-mini" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20comprar%3A%20Plantilla%20Plan%20de%20Saneamiento%20B%C3%A1sico" target="_blank" rel="noopener">Comprar <span aria-hidden="true">→</span></a>
             </div>
           </article>
 
-          <article class="product-card" data-cursor="comprar">
-            <div class="product-badge">PDF</div>
-            <h3 class="product-name">Checklist Inspección Sanitaria Restaurantes</h3>
-            <p class="product-format">PDF interactivo</p>
-            <p class="product-desc">40 ítems de verificación según normativa Invima.</p>
-            <div class="product-footer">
-              <span class="product-price">$50.000 COP</span>
-              <a class="btn-comprar" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20comprar%3A%20Checklist%20Inspecci%C3%B3n%20Sanitaria%20Restaurantes" target="_blank" rel="noopener" data-cursor="comprar">Comprar <span aria-hidden="true">→</span></a>
+          <article class="prod" style="--fc:#E0523C" data-reveal>
+            <div class="prod-top">
+              <span class="prod-badge"><svg viewBox="0 0 20 20" width="13" fill="none" aria-hidden="true"><path d="M4 2.5h8.5L16 6v11.5H4V2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 12.5h6M7 9.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>PDF</span>
+            </div>
+            <h3 class="prod-name">Checklist Inspección Sanitaria Restaurantes</h3>
+            <p class="prod-format">PDF interactivo</p>
+            <p class="prod-desc">40 ítems de verificación según normativa Invima.</p>
+            <div class="prod-foot">
+              <span class="prod-price">$50.000 <em>COP</em></span>
+              <a class="btn btn-mini" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20comprar%3A%20Checklist%20Inspecci%C3%B3n%20Sanitaria%20Restaurantes" target="_blank" rel="noopener">Comprar <span aria-hidden="true">→</span></a>
             </div>
           </article>
 
-          <article class="product-card" data-cursor="comprar">
-            <div class="product-badge">EXCEL</div>
-            <h3 class="product-name">Matriz de Riesgos GTC-45 Prellenada</h3>
-            <p class="product-format">Excel por sector</p>
-            <p class="product-desc">Sector construcción, industria y servicios incluidos.</p>
-            <div class="product-footer">
-              <span class="product-price">$120.000 COP</span>
-              <a class="btn-comprar" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20comprar%3A%20Matriz%20de%20Riesgos%20GTC-45%20Prellenada" target="_blank" rel="noopener" data-cursor="comprar">Comprar <span aria-hidden="true">→</span></a>
+          <article class="prod" style="--fc:#0C8A5F" data-reveal>
+            <div class="prod-top">
+              <span class="prod-badge"><svg viewBox="0 0 20 20" width="13" fill="none" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h14M8 8v9" stroke="currentColor" stroke-width="1.5"/></svg>EXCEL</span>
+            </div>
+            <h3 class="prod-name">Matriz de Riesgos GTC-45 Prellenada</h3>
+            <p class="prod-format">Excel por sector</p>
+            <p class="prod-desc">Sector construcción, industria y servicios incluidos.</p>
+            <div class="prod-foot">
+              <span class="prod-price">$120.000 <em>COP</em></span>
+              <a class="btn btn-mini" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20comprar%3A%20Matriz%20de%20Riesgos%20GTC-45%20Prellenada" target="_blank" rel="noopener">Comprar <span aria-hidden="true">→</span></a>
             </div>
           </article>
 
-          <article class="product-card product-card--featured" data-cursor="comprar">
-            <div class="product-badge">KIT</div>
-            <h3 class="product-name">Kit SG-SST Básico</h3>
-            <p class="product-format">10 formatos Word</p>
-            <p class="product-desc">Todo lo que necesita una empresa para arrancar su sistema de gestión.</p>
-            <div class="product-footer">
-              <span class="product-price">$250.000 COP</span>
-              <a class="btn-comprar" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20comprar%3A%20Kit%20SG-SST%20B%C3%A1sico" target="_blank" rel="noopener" data-cursor="comprar">Comprar <span aria-hidden="true">→</span></a>
+          <article class="prod prod--featured" style="--fc:#B8860B" data-reveal>
+            <span class="prod-flag">★ Más vendido</span>
+            <div class="prod-top">
+              <span class="prod-badge"><svg viewBox="0 0 20 20" width="13" fill="none" aria-hidden="true"><path d="M3 7l7-4 7 4v6l-7 4-7-4V7Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 7l7 4 7-4M10 11v6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>KIT</span>
+            </div>
+            <h3 class="prod-name">Kit SG-SST Básico</h3>
+            <p class="prod-format">10 formatos Word</p>
+            <p class="prod-desc">Todo lo que necesita una empresa para arrancar su sistema de gestión.</p>
+            <div class="prod-foot">
+              <span class="prod-price">$250.000 <em>COP</em></span>
+              <a class="btn btn-mini" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20comprar%3A%20Kit%20SG-SST%20B%C3%A1sico" target="_blank" rel="noopener">Comprar <span aria-hidden="true">→</span></a>
             </div>
           </article>
 
-          <article class="product-card" data-cursor="comprar">
-            <div class="product-badge">PDF</div>
-            <h3 class="product-name">Guía Decreto 1072 en Lenguaje Simple</h3>
-            <p class="product-format">PDF · 30 páginas</p>
-            <p class="product-desc">Para empresas sin área SST. Sin tecnicismos.</p>
-            <div class="product-footer">
-              <span class="product-price">$60.000 COP</span>
-              <a class="btn-comprar" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20comprar%3A%20Gu%C3%ADa%20Decreto%201072%20en%20Lenguaje%20Simple" target="_blank" rel="noopener" data-cursor="comprar">Comprar <span aria-hidden="true">→</span></a>
+          <article class="prod" style="--fc:#E0523C" data-reveal>
+            <div class="prod-top">
+              <span class="prod-badge"><svg viewBox="0 0 20 20" width="13" fill="none" aria-hidden="true"><path d="M4 2.5h8.5L16 6v11.5H4V2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 12.5h6M7 9.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>PDF</span>
+            </div>
+            <h3 class="prod-name">Guía Decreto 1072 en Lenguaje Simple</h3>
+            <p class="prod-format">PDF · 30 páginas</p>
+            <p class="prod-desc">Para empresas sin área SST. Sin tecnicismos.</p>
+            <div class="prod-foot">
+              <span class="prod-price">$60.000 <em>COP</em></span>
+              <a class="btn btn-mini" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20comprar%3A%20Gu%C3%ADa%20Decreto%201072%20en%20Lenguaje%20Simple" target="_blank" rel="noopener">Comprar <span aria-hidden="true">→</span></a>
             </div>
           </article>
 
-          <article class="product-card" data-cursor="comprar">
-            <div class="product-badge">PDF</div>
-            <h3 class="product-name">Pack de Prompts IA para Ingenieros Ambientales</h3>
-            <p class="product-format">PDF</p>
-            <p class="product-desc">20 prompts listos para generar informes, matrices y planes con Claude.</p>
-            <div class="product-footer">
-              <span class="product-price">$40.000 COP</span>
-              <a class="btn-comprar" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20comprar%3A%20Pack%20de%20Prompts%20IA%20para%20Ingenieros%20Ambientales" target="_blank" rel="noopener" data-cursor="comprar">Comprar <span aria-hidden="true">→</span></a>
+          <article class="prod" style="--fc:#7C5CD6" data-reveal>
+            <div class="prod-top">
+              <span class="prod-badge"><svg viewBox="0 0 20 20" width="13" fill="none" aria-hidden="true"><path d="M10 3l1.8 3.6L16 7.2l-3 2.9.7 4.1L10 12.3l-3.7 1.9.7-4.1-3-2.9 4.2-.6L10 3Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>IA</span>
+            </div>
+            <h3 class="prod-name">Pack de Prompts IA para Ingenieros Ambientales</h3>
+            <p class="prod-format">PDF</p>
+            <p class="prod-desc">20 prompts listos para generar informes, matrices y planes con Claude.</p>
+            <div class="prod-foot">
+              <span class="prod-price">$40.000 <em>COP</em></span>
+              <a class="btn btn-mini" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20comprar%3A%20Pack%20de%20Prompts%20IA%20para%20Ingenieros%20Ambientales" target="_blank" rel="noopener">Comprar <span aria-hidden="true">→</span></a>
             </div>
           </article>
-
         </div>
 
-        <div class="tienda-cta reveal">
+        <div class="tienda-cta" data-reveal>
           <p>¿Necesitas un documento a medida?</p>
-          <a class="btn-ghost-light" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20necesito%20un%20documento%20personalizado." target="_blank" rel="noopener">Hablemos <span aria-hidden="true">→</span></a>
+          <a class="btn btn-line magnetic" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20necesito%20un%20documento%20personalizado." target="_blank" rel="noopener">Hablemos <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
 
-    <!-- ─── SECCIÓN 05: PROCESO ─── -->
+    <!-- ═══════════ 05 · PROCESO (scrollytelling) ═══════════ -->
     <section class="proceso" id="proceso" aria-labelledby="proceso-title">
-      <div class="container">
-        <div class="section-eyebrow" aria-hidden="true">
-          <span class="section-num">05</span>
-          <span class="section-label-text">Proceso</span>
-        </div>
-        <h2 id="proceso-title" class="proceso-title reveal">Cómo <em>trabajamos.</em></h2>
+      <div class="container proceso-head">
+        <span class="kicker-pill">05 · Proceso</span>
+        <h2 id="proceso-title" class="h2" data-reveal>Cómo <em>trabajamos.</em></h2>
+        <p class="proceso-sub" data-reveal>Cada proyecto avanza como un plano: se levanta, se propone, se ejecuta y se sella. Desplázate para verlo.</p>
+      </div>
 
-        <div class="proceso-timeline">
+      <div class="proceso-stage" id="procesoStage">
+        <div class="container proceso-grid">
 
-          <div class="paso reveal">
-            <div class="paso-head">
-              <span class="paso-num" aria-hidden="true">01</span>
-              <div class="paso-line" aria-hidden="true"></div>
+          <ol class="steps" role="list">
+            <li class="step is-active" data-step="0">
+              <span class="step-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="19" fill="none"><circle cx="10.5" cy="10.5" r="6" stroke="currentColor" stroke-width="1.7"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8 10.5h5M10.5 8v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".6"/></svg>
+              </span>
+              <div class="step-body">
+                <h3 class="step-name"><span class="step-num">01</span>Diagnóstico</h3>
+                <p class="step-desc">Evaluamos el estado actual de tu empresa frente a las exigencias de la autoridad ambiental.</p>
+              </div>
+              <span class="step-bar" aria-hidden="true"><span></span></span>
+            </li>
+            <li class="step" data-step="1">
+              <span class="step-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="19" fill="none"><path d="M5 2.5h10L19 6v15.5H5V2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M15 2.5V6h4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 11h8M8 14.5h8M8 18h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".7"/></svg>
+              </span>
+              <div class="step-body">
+                <h3 class="step-name"><span class="step-num">02</span>Propuesta técnica</h3>
+                <p class="step-desc">Diseñamos un plan de acción con cronograma, entregables y responsabilidades documentadas.</p>
+              </div>
+              <span class="step-bar" aria-hidden="true"><span></span></span>
+            </li>
+            <li class="step" data-step="2">
+              <span class="step-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="19" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+              <div class="step-body">
+                <h3 class="step-name"><span class="step-num">03</span>Ejecución</h3>
+                <p class="step-desc">Realizamos estudios, trámites e implementaciones con nuestro equipo técnico especializado.</p>
+              </div>
+              <span class="step-bar" aria-hidden="true"><span></span></span>
+            </li>
+            <li class="step" data-step="3">
+              <span class="step-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="19" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 12.5l2.8 2.8L16.5 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div class="step-body">
+                <h3 class="step-name"><span class="step-num">04</span>Entrega y seguimiento</h3>
+                <p class="step-desc">Entregamos informes técnicos y hacemos seguimiento hasta el cumplimiento ante la autoridad.</p>
+              </div>
+              <span class="step-bar" aria-hidden="true"><span></span></span>
+            </li>
+          </ol>
+
+          <div class="plano">
+            <div class="plano-frame">
+              <canvas id="planoCanvas" aria-hidden="true"></canvas>
+              <p class="sr-only">Animación decorativa: un plano técnico que se dibuja en cuatro etapas — levantamiento, propuesta, ejecución y sello de cumplimiento.</p>
             </div>
-            <h3 class="paso-name">Diagnóstico</h3>
-            <p class="paso-desc">Evaluamos el estado actual de tu empresa frente a las exigencias de la autoridad ambiental.</p>
-          </div>
-
-          <div class="paso reveal">
-            <div class="paso-head">
-              <span class="paso-num" aria-hidden="true">02</span>
-              <div class="paso-line" aria-hidden="true"></div>
+            <div class="plano-hud" aria-hidden="true">
+              <span id="frameCounter">F.001/096</span>
+              <span class="plano-code">PL-ECD-26 · ESC 1:500</span>
             </div>
-            <h3 class="paso-name">Propuesta técnica</h3>
-            <p class="paso-desc">Diseñamos un plan de acción con cronograma, entregables y responsabilidades documentadas.</p>
-          </div>
-
-          <div class="paso reveal">
-            <div class="paso-head">
-              <span class="paso-num" aria-hidden="true">03</span>
-              <div class="paso-line" aria-hidden="true"></div>
-            </div>
-            <h3 class="paso-name">Ejecución</h3>
-            <p class="paso-desc">Realizamos estudios, trámites e implementaciones con nuestro equipo técnico especializado.</p>
-          </div>
-
-          <div class="paso reveal">
-            <div class="paso-head">
-              <span class="paso-num" aria-hidden="true">04</span>
-            </div>
-            <h3 class="paso-name">Entrega y seguimiento</h3>
-            <p class="paso-desc">Entregamos informes técnicos y hacemos seguimiento hasta el cumplimiento ante la autoridad.</p>
+            <span class="plano-bar" aria-hidden="true"><span id="planoBarFill"></span></span>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- ─── SECCIÓN 06: CONTACTO ─── -->
-    <section class="contacto" id="contacto" aria-labelledby="contacto-title">
-      <div class="container contacto-layout">
-
-        <div class="contacto-form-side">
-          <div class="section-eyebrow" aria-hidden="true">
-            <span class="section-num">06</span>
-            <span class="section-label-text">Contacto</span>
-          </div>
-          <h2 id="contacto-title" class="contacto-title reveal">Hablemos de<br>tu <em>proyecto.</em></h2>
-
-          <form class="contacto-form" id="contactoForm" novalidate aria-label="Formulario de contacto ECODESA">
-            <div class="form-field">
-              <label for="nombre">Nombre <span aria-label="requerido">*</span></label>
-              <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Tu nombre completo">
-            </div>
-            <div class="form-field">
-              <label for="empresa">Empresa</label>
-              <input type="text" id="empresa" name="empresa" autocomplete="organization" placeholder="Nombre de tu empresa u organización">
-            </div>
-            <div class="form-field">
-              <label for="telefono">Teléfono <span aria-label="requerido">*</span></label>
-              <input type="tel" id="telefono" name="telefono" required autocomplete="tel" placeholder="+57 300 000 0000">
-            </div>
-            <div class="form-field">
-              <label for="servicio">Servicio de interés</label>
-              <select id="servicio" name="servicio">
-                <option value="">Selecciona un área</option>
-                <option value="Gestión Ambiental">01. Gestión Ambiental</option>
-                <option value="Hidrología y Saneamiento">02. Hidrología y Saneamiento</option>
-                <option value="Seguridad Química y SG-SST">03. Seguridad Química y SG-SST</option>
-                <option value="Gestión del Riesgo y Desastres">04. Gestión del Riesgo y Desastres</option>
-                <option value="Forestal y Biodiversidad">05. Forestal y Biodiversidad</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="mensaje">Mensaje <span aria-label="requerido">*</span></label>
-              <textarea id="mensaje" name="mensaje" required rows="4" placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
-            </div>
-            <button type="submit" class="btn-green btn-full" data-cursor="contactar">
-              <svg viewBox="0 0 20 20" fill="currentColor" width="18" aria-hidden="true"><path d="M2 3a1 1 0 0 1 1-1h2.153a1 1 0 0 1 .986.836l.74 4.435a1 1 0 0 1-.54 1.06l-1.548.773a11.037 11.037 0 0 0 6.105 6.105l.774-1.548a1 1 0 0 1 1.059-.54l4.435.74a1 1 0 0 1 .836.986V17a1 1 0 0 1-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
-              Enviar por WhatsApp
-            </button>
-          </form>
+    <!-- ═══════════ 06 · CONTACTO ═══════════ -->
+    <section class="sec contacto band" id="contacto" aria-labelledby="contacto-title">
+      <div class="container">
+        <div class="sec-head">
+          <span class="kicker-pill">06 · Contacto</span>
+          <h2 id="contacto-title" class="h2" data-reveal>Hablemos de tu <em>proyecto.</em></h2>
         </div>
 
-        <aside class="contacto-info-side" aria-label="Información de contacto">
-          <div class="contacto-info-card">
-            <h3 class="info-heading">Contáctanos<br>directamente.</h3>
-
-            <a class="info-link wa-link" href="https://wa.me/573013653273" target="_blank" rel="noopener" data-cursor="cotizar">
-              <svg viewBox="0 0 24 24" fill="none" width="20" aria-hidden="true"><path d="M17.1 14.4c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.1c-.2.3-.8 1-1 1.2s-.4.2-.7.1c-1-.4-2-.9-2.8-1.7-.7-.7-1.2-1.5-1.4-2.4-.1-.3 0-.5.1-.7l.5-.6c.1-.2.2-.4.3-.6 0-.2 0-.4-.1-.6L8.5 6.4C8.3 5.8 8 5.7 7.7 5.7h-.6C6.8 5.7 6.4 6 6 6.4c-.9 1-1.3 2.1-1.3 3.3.1 2.2 1.8 4.7 2.1 5.2 1.4 2.2 3.3 3.8 5.5 4.5 2.2.6 3.6.4 4.2.2.9-.3 1.7-.9 2.1-1.8.4-.9.2-1.8-.1-2.1-.1-.1-.2-.2-.4-.3Z" fill="currentColor"/><path d="M20.5 3.5C18.3 1.3 15.3 0 12 0 5.4 0 0 5.4 0 12c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7C8 23.4 10 24 12 24c6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.5ZM12 22c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.6 16 2 14 2 12 2 6.5 6.5 2 12 2s10 4.5 10 10-4.5 10-10 10Z" fill="currentColor"/></svg>
-              +57 301 365 3273
-            </a>
-
-            <a class="info-link" href="mailto:ecodesaingenieria@outlook.es">
-              <svg viewBox="0 0 24 24" fill="none" width="20" aria-hidden="true"><path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              ecodesaingenieria@outlook.es
-            </a>
-
-            <a class="info-link" href="https://instagram.com/ecodesa_ingenieria_sas" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" width="20" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" stroke="currentColor" stroke-width="1.5"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              @ecodesa_ingenieria_sas
-            </a>
-
-            <div class="info-city">
-              <svg viewBox="0 0 24 24" fill="none" width="20" aria-hidden="true"><path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
-              <span>Cartagena de Indias,<br>Bolívar, Colombia</span>
-            </div>
-
-            <div class="info-cardique">
-              <span class="info-badge">Autoridad competente: CARDIQUE</span>
-            </div>
+        <div class="cont-grid">
+          <div class="cont-form-side" data-reveal>
+            <form class="cont-form" id="contactoForm" novalidate aria-label="Formulario de contacto ECODESA">
+              <div class="field">
+                <label for="nombre">Nombre <span aria-label="requerido">*</span></label>
+                <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Tu nombre completo">
+              </div>
+              <div class="field">
+                <label for="empresa">Empresa</label>
+                <input type="text" id="empresa" name="empresa" autocomplete="organization" placeholder="Nombre de tu empresa u organización">
+              </div>
+              <div class="field">
+                <label for="telefono">Teléfono <span aria-label="requerido">*</span></label>
+                <input type="tel" id="telefono" name="telefono" required autocomplete="tel" placeholder="+57 300 000 0000">
+              </div>
+              <div class="field">
+                <label for="servicio">Servicio de interés</label>
+                <select id="servicio" name="servicio">
+                  <option value="">Selecciona un área</option>
+                  <option value="Gestión Ambiental">01. Gestión Ambiental</option>
+                  <option value="Hidrología y Saneamiento">02. Hidrología y Saneamiento</option>
+                  <option value="Seguridad Química y SG-SST">03. Seguridad Química y SG-SST</option>
+                  <option value="Gestión del Riesgo y Desastres">04. Gestión del Riesgo y Desastres</option>
+                  <option value="Forestal y Biodiversidad">05. Forestal y Biodiversidad</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="mensaje">Mensaje <span aria-label="requerido">*</span></label>
+                <textarea id="mensaje" name="mensaje" required rows="4" placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
+              </div>
+              <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button type="submit" class="btn btn-solid btn-full magnetic" id="contactoSubmit">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="18" aria-hidden="true"><path d="M10 2a8 8 0 1 0 8 8 8 8 0 0 0-8-8Zm4.3 6.3-5 5a1 1 0 0 1-1.4 0l-2.2-2.2a1 1 0 1 1 1.4-1.4l1.5 1.5 4.3-4.3a1 1 0 0 1 1.4 1.4Z"/></svg>
+                Enviar solicitud
+              </button>
+              <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+              <a class="form-wa-alt" href="https://wa.me/573013653273?text=Hola%20ECODESA%2C%20quiero%20solicitar%20una%20cotizaci%C3%B3n." target="_blank" rel="noopener">
+                ¿Prefieres WhatsApp? Escríbenos directo <span aria-hidden="true">→</span>
+              </a>
+            </form>
           </div>
-        </aside>
 
+          <aside class="cont-card" aria-label="Información de contacto" data-reveal>
+            <div class="orb-field" aria-hidden="true">
+              <span class="orb orb-a"></span>
+              <span class="orb orb-b"></span>
+              <span class="orb orb-c"></span>
+            </div>
+            <h3 class="cont-card-title">Contáctanos directamente.</h3>
+
+            <a class="info-link info-wa" href="https://wa.me/573013653273" target="_blank" rel="noopener">
+              <span class="info-ico"><svg viewBox="0 0 24 24" fill="none" width="18" aria-hidden="true"><path d="M17.1 14.4c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.1c-.2.3-.8 1-1 1.2s-.4.2-.7.1c-1-.4-2-.9-2.8-1.7-.7-.7-1.2-1.5-1.4-2.4-.1-.3 0-.5.1-.7l.5-.6c.1-.2.2-.4.3-.6 0-.2 0-.4-.1-.6L8.5 6.4C8.3 5.8 8 5.7 7.7 5.7h-.6C6.8 5.7 6.4 6 6 6.4c-.9 1-1.3 2.1-1.3 3.3.1 2.2 1.8 4.7 2.1 5.2 1.4 2.2 3.3 3.8 5.5 4.5 2.2.6 3.6.4 4.2.2.9-.3 1.7-.9 2.1-1.8.4-.9.2-1.8-.1-2.1-.1-.1-.2-.2-.4-.3Z" fill="currentColor"/><path d="M20.5 3.5C18.3 1.3 15.3 0 12 0 5.4 0 0 5.4 0 12c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7C8 23.4 10 24 12 24c6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.5ZM12 22c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.6 16 2 14 2 12 2 6.5 6.5 2 12 2s10 4.5 10 10-4.5 10-10 10Z" fill="currentColor"/></svg></span>
+              <span class="info-txt"><strong>WhatsApp</strong><em>+57 301 365 3273</em></span>
+            </a>
+            <a class="info-link" href="mailto:ecodesaingenieria@outlook.es">
+              <span class="info-ico"><svg viewBox="0 0 24 24" fill="none" width="18" aria-hidden="true"><path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="info-txt"><strong>Correo</strong><em>ecodesaingenieria@outlook.es</em></span>
+            </a>
+            <a class="info-link" href="https://instagram.com/ecodesa_ingenieria_sas" target="_blank" rel="noopener">
+              <span class="info-ico"><svg viewBox="0 0 24 24" fill="none" width="18" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" stroke="currentColor" stroke-width="1.5"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              <span class="info-txt"><strong>Instagram</strong><em>@ecodesa_ingenieria_sas</em></span>
+            </a>
+            <div class="info-link info-static">
+              <span class="info-ico"><svg viewBox="0 0 24 24" fill="none" width="18" aria-hidden="true"><path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/></svg></span>
+              <span class="info-txt"><strong>Cartagena de Indias</strong><em>Bolívar, Colombia</em></span>
+            </div>
+            <span class="badge-cardique">Autoridad competente: CARDIQUE</span>
+          </aside>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ─── FOOTER ─── -->
+  <!-- ═══════════ FOOTER ═══════════ -->
   <footer class="footer" aria-label="Pie de página ECODESA">
-
-    <div class="footer-marquee-wrap" aria-hidden="true">
-      <div class="footer-marquee">
-        <span>ECODESA · </span><span>ECODESA · </span><span>ECODESA · </span>
-        <span>ECODESA · </span><span>ECODESA · </span><span>ECODESA · </span>
-        <span>ECODESA · </span><span>ECODESA · </span><span>ECODESA · </span>
+    <div class="foot-marquee" aria-hidden="true">
+      <div class="foot-marquee-track">
+        <span>ECODESA — ECODESA — ECODESA — ECODESA — ECODESA — </span>
+        <span>ECODESA — ECODESA — ECODESA — ECODESA — ECODESA — </span>
       </div>
     </div>
 
-    <div class="container footer-grid">
+    <svg class="foot-topo" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+      <g stroke="currentColor" stroke-width="1">
+        <path d="M40 260c70-50 200-50 320 0" opacity=".5"/>
+        <path d="M20 220c90-60 250-60 360 0" opacity=".35"/>
+        <path d="M0 180c110-70 300-70 400 0" opacity=".25"/>
+        <path d="M60 130c60-40 160-40 220 0s70 90 20 130" opacity=".2"/>
+      </g>
+    </svg>
 
-      <div class="footer-col footer-brand-col">
-        <a href="#hero" class="footer-logo" aria-label="Volver al inicio" data-cursor="arriba">ECODESA</a>
-        <p class="footer-tagline">"Cumplimiento ambiental que protege tu empresa."</p>
-        <a class="footer-wa" href="https://wa.me/573013653273" target="_blank" rel="noopener" data-cursor="cotizar">
+    <div class="container foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="#hero" class="foot-logo">ECODESA</a>
+        <p class="foot-tagline">Cumplimiento ambiental que protege tu empresa.</p>
+        <a class="foot-wa" href="https://wa.me/573013653273" target="_blank" rel="noopener">
           <svg viewBox="0 0 20 20" fill="currentColor" width="16" aria-hidden="true"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
           +57 301 365 3273
         </a>
       </div>
 
-      <nav class="footer-col" aria-label="Servicios ECODESA">
-        <h4 class="footer-col-title">Servicios</h4>
-        <ul>
+      <nav class="foot-col" aria-label="Servicios ECODESA">
+        <h4>Servicios</h4>
+        <ul role="list">
           <li><a href="#servicios">Gestión Ambiental</a></li>
           <li><a href="#servicios">Hidrología y Saneamiento</a></li>
           <li><a href="#servicios">Seguridad Química y SG-SST</a></li>
@@ -832,9 +847,9 @@
         </ul>
       </nav>
 
-      <nav class="footer-col" aria-label="Tienda digital ECODESA">
-        <h4 class="footer-col-title">Tienda digital</h4>
-        <ul>
+      <nav class="foot-col" aria-label="Tienda digital ECODESA">
+        <h4>Tienda digital</h4>
+        <ul role="list">
           <li><a href="#tienda">Plan de Saneamiento</a></li>
           <li><a href="#tienda">Checklist Sanitario</a></li>
           <li><a href="#tienda">Matriz GTC-45</a></li>
@@ -844,33 +859,35 @@
         </ul>
       </nav>
 
-      <div class="footer-col">
-        <h4 class="footer-col-title">Contacto</h4>
-        <a href="https://wa.me/573013653273" target="_blank" rel="noopener">+57 301 365 3273</a>
-        <a href="mailto:ecodesaingenieria@outlook.es">ecodesaingenieria@outlook.es</a>
-        <a href="https://instagram.com/ecodesa_ingenieria_sas" target="_blank" rel="noopener">@ecodesa_ingenieria_sas</a>
-        <span>Cartagena de Indias, Colombia</span>
+      <div class="foot-col">
+        <h4>Contacto</h4>
+        <ul role="list">
+          <li><a href="https://wa.me/573013653273" target="_blank" rel="noopener">+57 301 365 3273</a></li>
+          <li><a href="mailto:ecodesaingenieria@outlook.es">ecodesaingenieria@outlook.es</a></li>
+          <li><a href="https://instagram.com/ecodesa_ingenieria_sas" target="_blank" rel="noopener">@ecodesa_ingenieria_sas</a></li>
+          <li><span>Cartagena de Indias, Colombia</span></li>
+        </ul>
       </div>
-
     </div>
 
-    <div class="footer-bottom">
+    <div class="container foot-bottom">
       <p>© 2026 Ecología Desarrollo e Ingeniería S.A.S — Cartagena de Indias, Colombia. Todos los derechos reservados.</p>
-      <p class="footer-credits">
-        Imágenes: <a href="https://openverse.org" target="_blank" rel="noopener">Openverse</a> (licencias abiertas) ·
-        <a href="assets/credits.json" target="_blank" rel="noopener">Ver créditos</a>
-      </p>
     </div>
   </footer>
 
-  <!-- ═══════════════════════════════════════════════
-       SCRIPTS — defer + IIFE pattern
-       Bump ?v= on every deploy
-  ══════════════════════════════════════════════════ -->
-  <script defer src="lib/gsap.min.js"></script>
-  <script defer src="lib/ScrollTrigger.min.js"></script>
-  <script defer src="lib/manifest.js?v=20260626"></script>
-  <script defer src="main.js?v=20260626"></script>
+  <!-- WhatsApp flotante -->
+  <a class="float-wa" href="https://wa.me/573013653273" target="_blank" rel="noopener noreferrer" aria-label="Contactar ECODESA por WhatsApp">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="16" cy="16" r="16" fill="#25D366"/>
+      <path d="M22.6 9.38A9.2 9.2 0 0 0 16 6.8c-5.1 0-9.22 4.14-9.22 9.22 0 1.63.43 3.22 1.24 4.62L6.7 25.2l4.7-1.23A9.21 9.21 0 0 0 16 25.24c5.09 0 9.22-4.14 9.22-9.22a9.17 9.17 0 0 0-2.62-6.64Zm-6.6 14.18a7.64 7.64 0 0 1-3.9-1.06l-.28-.17-2.9.76.77-2.83-.18-.29a7.65 7.65 0 1 1 6.49 3.59Zm4.2-5.73c-.23-.12-1.37-.67-1.58-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.14.16-.27.18-.5.06-.23-.12-.97-.36-1.85-1.14-.68-.6-1.14-1.35-1.27-1.57-.13-.23-.01-.35.1-.47.1-.1.23-.27.34-.4.12-.14.15-.23.23-.38.08-.16.04-.3-.02-.42-.06-.12-.52-1.25-.72-1.71-.18-.45-.38-.38-.52-.39h-.45c-.15 0-.4.06-.6.3-.21.23-.8.78-.8 1.9s.82 2.2.93 2.35c.12.15 1.61 2.46 3.9 3.45.55.23.97.37 1.3.48.55.17 1.05.15 1.44.09.44-.07 1.37-.56 1.56-1.1.2-.53.2-.99.14-1.09-.06-.1-.22-.16-.45-.28Z" fill="white"/>
+    </svg>
+  </a>
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/motion@12/dist/motion.js"></script>
+  <script defer src="main.js?v=20260701b"></script>
 
 </body>
 </html>
