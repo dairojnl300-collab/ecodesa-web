@@ -1274,6 +1274,32 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   .serv-card { grid-template-columns: 0.44fr 0.56fr; gap: 3rem; align-items: center; }
   .servicios.js-hscroll .serv-hint { visibility: hidden; }
 }
+
+/* Mientras la sección está fijada (pin de GSAP), el scroll vertical
+   normal queda capturado para mover el carrusel horizontal. Si el
+   contenido de una tarjeta es más alto que el viewport disponible,
+   el CTA queda inalcanzable (no hay forma de bajar a verlo). Se limita
+   la altura de la tarjeta al espacio real disponible y se habilita
+   scroll interno de respaldo en cada columna para garantizar que el
+   botón "Cotizar" siempre sea alcanzable. */
+.servicios.js-hscroll .serv-viewport {
+  flex: 1 1 0;
+  min-height: 0;
+}
+.servicios.js-hscroll .serv-track {
+  height: 100%;
+}
+.servicios.js-hscroll .serv-card {
+  height: 100%;
+  min-height: 0;
+  align-items: start;
+}
+.servicios.js-hscroll .sc-head,
+.servicios.js-hscroll .sc-body {
+  max-height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
 @media (min-width: 1100px) {
   .sc-list { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
 }
