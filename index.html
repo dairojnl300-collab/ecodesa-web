@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
 
-  <link rel="stylesheet" href="styles.css?v=20260714l">
+  <link rel="stylesheet" href="styles.css?v=20260714m">
 </head>
 <body>
 
@@ -345,13 +345,20 @@
         <div class="serv-track" id="servTrack">
 
           <article class="serv-card service-card is-active" style="--hue:#0C8A5F" data-serv-theme="ambiental" aria-label="Área 01: Gestión Ambiental">
-            <div class="serv-card-ambient" aria-hidden="true">
+            <div class="serv-card-ambient serv-card-ambient--ambiental" aria-hidden="true">
               <span class="bio-blob bio-blob--card bio-blob--a"></span>
               <span class="bio-blob bio-blob--card bio-blob--b"></span>
-              <span class="bio-pollen bio-pollen--1"></span>
-              <span class="bio-pollen bio-pollen--2"></span>
-              <span class="bio-pollen bio-pollen--3"></span>
-              <span class="bio-pollen bio-pollen--4"></span>
+              <div class="ambient-bulb">
+                <span class="ambient-bulb-glow"></span>
+                <svg class="ambient-bulb-icon" viewBox="0 0 64 96" fill="none" aria-hidden="true">
+                  <path class="bulb-rays" d="M32 4V14M18 8l7 9M46 8l-7 9M10 22h8M46 22h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".55"/>
+                  <path class="bulb-glass" d="M20 28c0-7.7 5.4-14 12-14s12 6.3 12 14v22c0 9.9-5.4 18-12 18s-12-8.1-12-18V28z" fill="currentColor" opacity=".12"/>
+                  <path class="bulb-glass" d="M20 28c0-7.7 5.4-14 12-14s12 6.3 12 14v22c0 9.9-5.4 18-12 18s-12-8.1-12-18V28z" stroke="currentColor" stroke-width="1.8"/>
+                  <path class="bulb-filament" d="M28 40c2 6 8 6 8 0M28 52c2 5 8 5 8 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M24 68h16v6c0 2.2-1.8 4-4 4H28c-2.2 0-4-1.8-4-4v-6z" fill="currentColor" opacity=".2"/>
+                  <path d="M22 68h20v5c0 1.7-1.3 3-3 3H25c-1.7 0-3-1.3-3-3v-5z" stroke="currentColor" stroke-width="1.6"/>
+                </svg>
+              </div>
             </div>
             <svg class="sc-mark" viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="M30 7L49 14V29C49 42.5 40.5 49.5 30 53C19.5 49.5 11 42.5 11 29V14L30 7Z" stroke="currentColor" stroke-width="1.4"/><path d="M30 44V26M30 30C30 21 22 17 17 16C17 24 21 29 30 30ZM30 34C30 26.5 37 23 43 22.5C42.5 30 38 33.5 30 34Z" stroke="currentColor" stroke-width="1.4"/></svg>
             <div class="sc-head">
@@ -434,6 +441,24 @@
             <div class="serv-card-ambient serv-card-ambient--sst" aria-hidden="true">
               <span class="hud-scan"></span>
               <span class="hud-grid"></span>
+              <div class="lab-spark-field">
+                <span class="lab-spark" style="--spark-angle:0deg;--spark-delay:0s"></span>
+                <span class="lab-spark" style="--spark-angle:30deg;--spark-delay:.35s"></span>
+                <span class="lab-spark" style="--spark-angle:60deg;--spark-delay:.7s"></span>
+                <span class="lab-spark" style="--spark-angle:90deg;--spark-delay:1.05s"></span>
+                <span class="lab-spark" style="--spark-angle:120deg;--spark-delay:1.4s"></span>
+                <span class="lab-spark" style="--spark-angle:150deg;--spark-delay:1.75s"></span>
+                <span class="lab-spark" style="--spark-angle:180deg;--spark-delay:2.1s"></span>
+                <span class="lab-spark" style="--spark-angle:210deg;--spark-delay:2.45s"></span>
+                <span class="lab-spark" style="--spark-angle:240deg;--spark-delay:2.8s"></span>
+                <span class="lab-spark" style="--spark-angle:270deg;--spark-delay:3.15s"></span>
+                <span class="lab-spark" style="--spark-angle:300deg;--spark-delay:3.5s"></span>
+                <span class="lab-spark" style="--spark-angle:330deg;--spark-delay:3.85s"></span>
+                <span class="lab-spark lab-spark--green" style="--spark-angle:15deg;--spark-delay:1.2s"></span>
+                <span class="lab-spark lab-spark--green" style="--spark-angle:75deg;--spark-delay:2.6s"></span>
+                <span class="lab-spark lab-spark--green" style="--spark-angle:195deg;--spark-delay:0.9s"></span>
+                <span class="lab-spark lab-spark--green" style="--spark-angle:285deg;--spark-delay:3.3s"></span>
+              </div>
             </div>
             <svg class="sc-mark" viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="M24 12V32L14 50C12.5 52.7 14.4 56 17.5 56H42.5C45.6 56 47.5 52.7 46 50L36 32V12" stroke="currentColor" stroke-width="1.4"/><path d="M21 12H39" stroke="currentColor" stroke-width="1.4"/></svg>
             <div class="sc-head">
@@ -471,8 +496,10 @@
           </article>
 
           <article class="serv-card service-card" style="--hue:#E0523C" data-serv-theme="riesgo" aria-label="Área 04: Gestión del Riesgo y Desastres">
-            <div class="serv-card-ambient serv-card-ambient--aurora" aria-hidden="true">
+            <div class="serv-card-ambient serv-card-ambient--riesgo" aria-hidden="true">
               <span class="aurora-mesh"></span>
+              <span class="risk-spiral"></span>
+              <span class="risk-flames"></span>
             </div>
             <svg class="sc-mark" viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="M27.4 12.5C28.5 10.5 31.5 10.5 32.6 12.5L51.8 46.5C52.9 48.5 51.4 51 49.1 51H10.9C8.6 51 7.1 48.5 8.2 46.5L27.4 12.5Z" stroke="currentColor" stroke-width="1.4"/></svg>
             <div class="sc-head">
@@ -503,13 +530,24 @@
           </article>
 
           <article class="serv-card service-card" style="--hue:#0F766E" data-serv-theme="forestal" aria-label="Área 05: Forestal y Biodiversidad">
-            <div class="serv-card-ambient" aria-hidden="true">
+            <div class="serv-card-ambient serv-card-ambient--forestal" aria-hidden="true">
               <span class="bio-blob bio-blob--card bio-blob--forest-a"></span>
               <span class="bio-blob bio-blob--card bio-blob--forest-b"></span>
-              <span class="bio-leaf bio-leaf--1"></span>
-              <span class="bio-leaf bio-leaf--2"></span>
-              <span class="bio-leaf bio-leaf--3"></span>
-              <span class="bio-leaf bio-leaf--4"></span>
+              <svg class="forest-tree forest-tree--1" viewBox="0 0 80 120" fill="none" aria-hidden="true">
+                <path d="M40 118V72M40 72C28 72 20 58 20 44C20 30 28 18 40 18C52 18 60 30 60 44C60 58 52 72 40 72Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M40 50L34 44M40 58L46 52" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+              </svg>
+              <svg class="forest-tree forest-tree--2" viewBox="0 0 80 120" fill="none" aria-hidden="true">
+                <path d="M40 118V78M40 78C30 78 24 66 24 54C24 42 30 32 40 28C50 32 56 42 56 54C56 66 50 78 40 78Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" opacity=".85"/>
+              </svg>
+              <svg class="forest-tree forest-tree--3" viewBox="0 0 80 120" fill="none" aria-hidden="true">
+                <path d="M40 118V68M40 68C26 68 16 52 16 38C16 24 26 12 40 10C54 12 64 24 64 38C64 52 54 68 40 68Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" opacity=".7"/>
+              </svg>
+              <span class="bio-leaf bio-leaf--fall bio-leaf--1"></span>
+              <span class="bio-leaf bio-leaf--fall bio-leaf--2"></span>
+              <span class="bio-leaf bio-leaf--fall bio-leaf--3"></span>
+              <span class="bio-leaf bio-leaf--fall bio-leaf--4"></span>
+              <span class="bio-leaf bio-leaf--fall bio-leaf--5"></span>
             </div>
             <svg class="sc-mark" viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="M21 52V32M21 32C14 32 9 27 9 20.5C9 14 14.5 9 21 9C27.5 9 33 14 33 20.5C33 27 28 32 21 32Z" stroke="currentColor" stroke-width="1.4"/><path d="M43 52V34M43 34C38.6 34 35 30.4 35 26C35 21.6 38.6 18 43 18C47.4 18 51 21.6 51 26C51 30.4 47.4 34 43 34Z" stroke="currentColor" stroke-width="1.4"/></svg>
             <div class="sc-head">
