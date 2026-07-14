@@ -1099,7 +1099,7 @@ html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
   background:
     radial-gradient(70% 55% at 88% 8%, rgba(53, 201, 172, 0.16) 0%, transparent 55%),
     linear-gradient(180deg, var(--wash-a) 0%, var(--wash-b) 100%);
-  overflow: clip;
+  overflow: visible;
 }
 
 .serv-head {
@@ -1152,7 +1152,7 @@ html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
 
 .serv-viewport {
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: visible;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -1184,11 +1184,11 @@ html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  min-height: min(68vh, 620px);
+  min-height: auto;
+  height: auto;
   box-shadow: var(--shadow-lum);
-  overflow: hidden;
+  overflow: visible;
   will-change: transform, opacity;
-  contain: layout paint;
 }
 
 /* Scroll-triggered grow-in — IntersectionObserver */
@@ -1316,7 +1316,7 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
 }
 
 @media (min-width: 960px) {
-  .serv-card { grid-template-columns: 0.44fr 0.56fr; gap: 3rem; align-items: center; }
+  .serv-card { grid-template-columns: 0.44fr 0.56fr; gap: 3rem; align-items: start; }
   .servicios.js-hscroll .serv-hint { visibility: hidden; }
 }
 @media (min-width: 1100px) {
@@ -2194,16 +2194,27 @@ html.js .serv-card.service-card.is-grown .sc-list li {
 .brand-logo{height:48px;width:auto}.hero-logo{max-width:240px;width:100%;margin:0 auto 2rem}.footer-logo{height:60px;width:auto}
 p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-sub):not(.serv-hint):not(.nc-desc){text-align:justify;text-justify:inter-word;hyphens:auto}
 
-.nc-grid{display:flex;flex-wrap:wrap;gap:32px}
+.nc-grid{
+  display:flex;flex-wrap:wrap;gap:32px;
+  overflow:visible;
+  padding-block:12px;
+}
 
 /* ── Negocios Comerciales: base ── */
+.nc-section,
+.nc-section .container{
+  overflow:visible;
+}
 .nc-card{
   --nc-accent:#5BA832;
-  display:flex;gap:24px;flex:0 1 calc(50% - 16px);
+  display:flex;gap:24px;
+  flex:0 0 calc(50% - 16px);
+  width:calc(50% - 16px);
+  max-width:calc(50% - 16px);
   position:relative;
   background:rgba(12,138,95,.06);
   border:none;border-radius:14px;padding:32px;
-  overflow:hidden;
+  overflow:visible;
   will-change:transform,opacity;
 }
 .nc-num{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:12px;background:rgba(12,138,95,.14);font-size:1.4rem;font-weight:700;color:var(--emerald);will-change:transform,opacity}
@@ -2296,4 +2307,10 @@ html.js .nc-grid.is-grown .nc-card .nc-list li{
   }
 }
 
-@media (max-width:720px){.nc-card{flex:1 1 100%}}
+@media (max-width:720px){
+  .nc-card{
+    flex:0 0 100%;
+    width:100%;
+    max-width:100%;
+  }
+}
