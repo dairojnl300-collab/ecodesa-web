@@ -1111,7 +1111,7 @@ html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
   width: 100%;
   margin-inline: auto;
   padding-inline: var(--gutter);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 .serv-title {
   margin-top: 1.1rem;
@@ -1180,10 +1180,10 @@ html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
   border: 1px solid var(--line);
   border-top: 5px solid var(--hue);
   border-radius: var(--r-xl);
-  padding: clamp(1.7rem, 3.6vw, 3.2rem);
+  padding: clamp(1.25rem, 2.8vw, 2rem);
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.35rem;
   min-height: auto;
   height: auto;
   box-shadow: var(--shadow-lum);
@@ -1224,14 +1224,14 @@ html.js .serv-card.service-card.is-grown {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.2rem;
+  gap: 0.7rem;
   will-change: transform;
 }
 .sc-idx {
   font-family: var(--display);
   font-weight: 800;
-  font-size: clamp(3.2rem, 6.5vw, 5.6rem);
-  line-height: 1;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 0.95;
   letter-spacing: -0.04em;
   color: color-mix(in srgb, var(--hue) 22%, transparent);
   transition: color 0.5s;
@@ -1241,8 +1241,8 @@ html.js .serv-card.service-card.is-grown {
   color: color-mix(in srgb, var(--hue) 38%, transparent);
 }
 .sc-icon {
-  width: 84px; height: 84px;
-  border-radius: 22px;
+  width: 72px; height: 72px;
+  border-radius: 18px;
   display: grid;
   place-content: center;
   background: color-mix(in srgb, var(--hue) 10%, white);
@@ -1250,7 +1250,7 @@ html.js .serv-card.service-card.is-grown {
   color: var(--hue);
   will-change: transform;
 }
-.sc-icon svg { width: 52px; height: 52px; }
+.sc-icon svg { width: 44px; height: 44px; }
 .icon-path {
   stroke-dasharray: 400;
   stroke-dashoffset: 400;
@@ -1260,50 +1260,52 @@ html.js .serv-card.service-card.is-grown {
 html.no-js .icon-path { stroke-dashoffset: 0; }
 
 .sc-title {
-  font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+  font-size: clamp(1.55rem, 2.8vw, 2.2rem);
   font-weight: 760;
   color: var(--ink);
+  line-height: 1.08;
 }
 .sc-desc {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   color: var(--ink-70);
   max-width: 40ch;
-  line-height: 1.7;
+  line-height: 1.5;
 }
 
 .sc-body {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.9rem;
   min-width: 0;
   will-change: transform;
 }
 .sc-list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.1rem;
+  gap: 0;
 }
 .sc-list li {
   position: relative;
-  font-size: 0.87rem;
+  font-size: 0.84rem;
   color: var(--ink-70);
-  padding: 0.5rem 0 0.5rem 1.6rem;
+  padding: 0.32rem 0 0.32rem 1.5rem;
   border-bottom: 1px solid var(--line-soft);
+  line-height: 1.35;
 }
 .sc-list li::before {
   content: "✓";
   position: absolute;
-  left: 0; top: 0.42rem;
-  width: 17px; height: 17px;
-  border-radius: 6px;
+  left: 0; top: 0.34rem;
+  width: 15px; height: 15px;
+  border-radius: 5px;
   display: grid;
   place-content: center;
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   font-weight: 700;
   color: var(--hue);
   background: color-mix(in srgb, var(--hue) 12%, white);
 }
-.sc-cta { align-self: flex-start; font-size: 0.86rem; padding: 0.75rem 1.5rem; }
+.sc-cta { align-self: flex-start; font-size: 0.82rem; padding: 0.6rem 1.25rem; }
 
 .serv-hint {
   margin-top: 1.6rem;
@@ -1316,11 +1318,14 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
 }
 
 @media (min-width: 960px) {
-  .serv-card { grid-template-columns: 0.44fr 0.56fr; gap: 3rem; align-items: start; }
+  .servicios {
+    padding-block: calc(var(--nav-h) + 1rem) 1.75rem;
+  }
+  .serv-card { grid-template-columns: 0.42fr 0.58fr; gap: 2rem; align-items: start; }
   .servicios.js-hscroll .serv-hint { visibility: hidden; }
 }
 @media (min-width: 1100px) {
-  .sc-list { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
+  .sc-list { grid-template-columns: 1fr 1fr; column-gap: 1.5rem; }
 }
 
 /* =============================================================
