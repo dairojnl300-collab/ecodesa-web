@@ -797,10 +797,30 @@
   ═══════════════════════════════════════════════════════════ */
   const FRAMES = 96;
 
-  const INK     = "rgba(6, 46, 36, ";
-  const EMERALD = "#0C8A5F";
-  const AQUA    = "#3ECFB2";
-  const AZURE   = "#0E86C8";
+  function getPlanoPalette() {
+    if (getTheme() === "dark") {
+      return {
+        ink: "rgba(232, 245, 233, ",
+        inkStroke: "rgba(0, 230, 118, ",
+        emerald: "#0C8A5F",
+        aqua: "#3ECFB2",
+        azure: "#0E86C8",
+        waterFill: "rgba(62, 207, 178, ",
+        hatch: "rgba(14, 134, 200, 0.5)",
+        cota: "#69f0ae"
+      };
+    }
+    return {
+      ink: "rgba(6, 46, 36, ",
+      inkStroke: "rgba(6, 46, 36, ",
+      emerald: "#0C8A5F",
+      aqua: "#3ECFB2",
+      azure: "#0E86C8",
+      waterFill: "rgba(62, 207, 178, ",
+      hatch: "rgba(14, 134, 200, 0.5)",
+      cota: "#0C8A5F"
+    };
+  }
 
   const phase = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
   const easeOut = (k) => 1 - Math.pow(1 - k, 3);
@@ -832,6 +852,8 @@
   }
 
   function drawPlano(ctx, W, H, t) {
+    const P = getPlanoPalette();
+    const textMul = getTheme() === "dark" ? 0.88 : 0.5;
     ctx.clearRect(0, 0, W, H);
     const s = W / 560; /* escala de diseño */
     const mono = (px, weight) => (weight || 500) + " " + (px * s).toFixed(1) + "px 'IBM Plex Mono', monospace";
@@ -858,7 +880,7 @@
       const kk = phase(easeOut(tA), k * 0.09, 0.62 + k * 0.06);
       if (kk <= 0) continue;
       const r = (30 + k * 26) * s;
-      ctx.strokeStyle = INK + (0.42 - k * 0.05) + ")";
+      ctx.strokeStyle = P.inkStroke + (0.42 - k * 0.05) + ")";
       ctx.lineWidth = 1.1 * s;
       progStroke(ctx, Math.PI * 2 * r * 1.2, kk, () => {
         contourPath(ctx, cx, cy, r, k * 1.7 + 3, 0.78);
@@ -867,7 +889,7 @@
     }
     /* espejo de agua (se llena en ejecución) */
     if (tC > 0) {
-      ctx.fillStyle = "rgba(62, 207, 178, " + (0.16 * tC) + ")";
+      ctx.fillStyle = P.waterFill + (0.16 * tC) + ")";
       contourPath(ctx, cx, cy, 30 * s, 3, 0.78);
       ctx.fill();
     }
@@ -875,7 +897,7 @@
     /* cruces de retícula */
     if (tA > 0.3) {
       const ga = (tA - 0.3) / 0.7;
-      ctx.strokeStyle = INK + (0.20 * ga) + ")";
+      ctx.strokeStyle = P.inkStroke + (0.20 * ga) + ")";
       ctx.lineWidth = 1 * s;
       for (let gx = 1; gx < 5; gx++) {
         for (let gy = 1; gy < 6; gy++) {
@@ -886,7 +908,7 @@
           ctx.stroke();
         }
       }
-      ctx.fillStyle = INK + (0.5 * ga) + ")";
+      ctx.fillStyle = P.ink + (textMul * ga) + ")";
       ctx.font = mono(9);
       ctx.fillText("N 10°25'", 16 * s, 22 * s);
       ctx.fillText("W 75°31'", 16 * s, 34 * s);
@@ -899,7 +921,7 @@
     const bx = W * 0.66, by = H * 0.66;
     if (tB > 0) {
       const eB = easeOut(tB);
-      ctx.strokeStyle = AZURE;
+      ctx.strokeStyle = P.azure;
       ctx.lineWidth = 1.3 * s;
 
       /* tres tanques */
@@ -916,7 +938,7 @@
         });
         ctx.restore();
         if (kk > 0.9) {
-          ctx.fillStyle = INK + "0.55)";
+          ctx.fillStyle = P.ink + (getTheme() === "dark" ? "0.82)" : "0.55)");
           ctx.font = mono(8);
           ctx.textAlign = "center";
           ctx.fillText("T-" + (i + 1), x, y + 3 * s);
@@ -935,7 +957,7 @@
         });
         ctx.restore();
         const nH = Math.floor(kH * 7);
-        ctx.strokeStyle = "rgba(14, 134, 200, 0.5)";
+        ctx.strokeStyle = P.hatch;
         ctx.lineWidth = 1 * s;
         for (let i = 1; i <= nH; i++) {
           const off = (i / 8) * (hw + hh);
@@ -952,7 +974,7 @@
         const y2 = by + 42 * s;
         const x1 = bx - 80 * s, x2 = bx + 80 * s;
         const xm = lerp(x1, x2, ka);
-        ctx.strokeStyle = EMERALD;
+        ctx.strokeStyle = P.emerald;
         ctx.lineWidth = 1.1 * s;
         ctx.beginPath(); ctx.moveTo(x1, y2); ctx.lineTo(xm, y2); ctx.stroke();
         const arr = (x, dir) => {
@@ -965,7 +987,7 @@
         };
         arr(x1, 1);
         if (ka > 0.96) arr(x2, -1);
-        ctx.fillStyle = EMERALD;
+        ctx.fillStyle = P.cota;
         ctx.font = mono(9, 600);
         ctx.textAlign = "center";
         ctx.globalAlpha = ka;
@@ -982,7 +1004,7 @@
       const p0 = { x: cx + 20 * s, y: cy + 30 * s };
       const p1 = { x: cx + 60 * s, y: by - 40 * s };
       const p2 = { x: bx - 60 * s, y: by };
-      ctx.strokeStyle = AQUA;
+      ctx.strokeStyle = P.aqua;
       ctx.lineWidth = 2 * s;
       ctx.save();
       ctx.setLineDash([9 * s, 7 * s]);
@@ -1001,13 +1023,13 @@
         const kk = phase(eC, 0.3 + i * 0.16, 0.75 + i * 0.08);
         if (kk <= 0) return;
         const r = 22 * s, x = bx + (i - 1) * 58 * s;
-        ctx.fillStyle = "rgba(62, 207, 178, " + (0.22 * kk) + ")";
-        ctx.strokeStyle = EMERALD;
+        ctx.fillStyle = P.waterFill + (0.22 * kk) + ")";
+        ctx.strokeStyle = P.emerald;
         ctx.lineWidth = 1.4 * s;
         ctx.beginPath(); ctx.arc(x, by, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
       });
 
-      ctx.fillStyle = INK + (0.55 * eC) + ")";
+      ctx.fillStyle = P.ink + (textMul * eC) + ")";
       ctx.font = mono(8);
       ctx.fillText("LÍNEA DE FLUJO — Q = 12 L/s", W * 0.12, H * 0.56);
     }
@@ -1022,13 +1044,13 @@
       ctx.scale(0.5 + 0.5 * eD, 0.5 + 0.5 * eD);
       ctx.globalAlpha = clamp(tD * 2.2, 0, 1);
 
-      ctx.strokeStyle = EMERALD;
+      ctx.strokeStyle = P.emerald;
       ctx.lineWidth = 2 * s;
       ctx.beginPath(); ctx.arc(0, 0, R, 0, Math.PI * 2); ctx.stroke();
       ctx.lineWidth = 1 * s;
       ctx.beginPath(); ctx.arc(0, 0, R - 7 * s, 0, Math.PI * 2); ctx.stroke();
 
-      ctx.fillStyle = EMERALD;
+      ctx.fillStyle = P.emerald;
       ctx.font = mono(13, 600);
       ctx.textAlign = "center";
       ctx.fillText("CUMPLE", 0, -2 * s);
@@ -1038,7 +1060,7 @@
       /* chulo */
       const kV = phase(tD, 0.45, 1);
       if (kV > 0) {
-        ctx.strokeStyle = EMERALD;
+        ctx.strokeStyle = P.emerald;
         ctx.lineWidth = 2.6 * s;
         progStroke(ctx, 40 * s, kV, () => {
           ctx.beginPath();
@@ -1050,7 +1072,7 @@
       }
       ctx.restore();
 
-      ctx.fillStyle = INK + (0.6 * clamp(tD * 1.6, 0, 1)) + ")";
+      ctx.fillStyle = P.ink + ((getTheme() === "dark" ? 0.78 : 0.6) * clamp(tD * 1.6, 0, 1)) + ")";
       ctx.font = mono(8);
       ctx.fillText("RAD. CARDIQUE 26-0417", sx - 42 * s, sy + R + 20 * s);
     }
@@ -1111,6 +1133,10 @@
 
     resize();
     addEventListener("resize", resize);
+    window.addEventListener("ecodesa-theme-change", () => {
+      lastFrame = -1;
+      render(current);
+    });
 
     if (hasGSAP() && !reduced) {
       const mm = gsap.matchMedia();
