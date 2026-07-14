@@ -15,6 +15,7 @@
 
   const reduced  = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePtr  = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const lowEnd   = (navigator.hardwareConcurrency || 4) <= 4;
   const hasGSAP  = () => !!(window.gsap && window.ScrollTrigger);
   const hasLenis = () => typeof window.Lenis === "function";
   const hasMotion= () => !!(window.Motion && window.Motion.animate);
@@ -296,7 +297,8 @@
      PARTÍCULAS FLOTANTES — hero, desktop, deep forest dark
   ═══════════════════════════════════════════════════════════ */
   function initParticles() {
-    if (reduced || !matchMedia("(min-width: 768px)").matches) return;
+    if (reduced) return;
+    if (lowEnd && matchMedia("(max-width: 767px)").matches) return;
 
     const canvas = $("#particlesCanvas");
     const hero   = $("#hero");
@@ -305,7 +307,8 @@
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const COUNT  = 25;
+    const mobile = matchMedia("(max-width: 767px)").matches;
+    const COUNT  = lowEnd ? 12 : (mobile ? 14 : 25);
     const COLORS = [
       "rgba(0, 230, 118, 0.32)",
       "rgba(105, 240, 174, 0.26)",
@@ -611,34 +614,108 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
-     PARALLAX — chips del hero, salida del hero, topo de la ficha
+     HERO DEPTH PARALLAX — translateY cross-platform (iOS-safe)
+     Fondo 0.3x · media 0.6x · frente 1x · gama baja: 2 capas
+  ═══════════════════════════════════════════════════════════ */
+  function initHeroDepthParallax() {
+    if (reduced) return;
+
+    const hero = $("#hero");
+    if (!hero) return;
+
+    const back  = $(".hero-depth-layer[data-hero-layer='back']", hero);
+    const mid   = $(".hero-depth-layer[data-hero-layer='mid']", hero);
+    const front = $(".hero-depth-layer[data-hero-layer='front']", hero);
+    if (!back || !front) return;
+
+    const layers = [{ el: back, speed: 0.3 }];
+    if (!lowEnd && mid) {
+      layers.push({ el: mid, speed: 0.6 });
+    }
+    layers.push({ el: front, speed: 1 });
+
+    hero.classList.add("is-depth-active");
+
+    const MAX_TRAVEL = lowEnd ? 140 : 180;
+    let inView = false;
+    let ticking = false;
+    let exitP = 0;
+
+    const getScrollY = () => (lenis && typeof lenis.scroll === "number") ? lenis.scroll : scrollY;
+
+    const apply = () => {
+      ticking = false;
+      const rect = hero.getBoundingClientRect();
+      const heroH = Math.max(hero.offsetHeight, 1);
+      const progress = clamp(-rect.top / heroH, 0, 1);
+      exitP = progress;
+      heroExitP = progress;
+
+      if (!inView && progress <= 0) return;
+
+      const offset = progress * MAX_TRAVEL;
+      layers.forEach(({ el, speed }) => {
+        const y = -(offset * speed);
+        el.style.transform = "translate3d(0," + y.toFixed(2) + "px,0)";
+      });
+
+      if (progress > 0.001) {
+        front.style.opacity = String(lerp(1, 0.28, progress));
+      } else {
+        front.style.opacity = "";
+      }
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(apply);
+      }
+    };
+
+    const setActive = (active) => {
+      inView = active;
+      const wc = active ? "transform" : "auto";
+      layers.forEach(({ el }) => { el.style.willChange = wc; });
+      front.style.willChange = active ? "transform, opacity" : "auto";
+      if (!active) {
+        layers.forEach(({ el }) => {
+          el.style.transform = "";
+          el.style.willChange = "auto";
+        });
+        front.style.opacity = "";
+        front.style.willChange = "auto";
+      } else {
+        apply();
+      }
+    };
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => setActive(e.isIntersecting), {
+        root: null,
+        threshold: 0,
+        rootMargin: "10% 0px 10% 0px"
+      }).observe(hero);
+    } else {
+      setActive(true);
+    }
+
+    if (lenis) {
+      lenis.on("scroll", onScroll);
+    } else {
+      addEventListener("scroll", onScroll, { passive: true });
+    }
+
+    apply();
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     PARALLAX — topo de la ficha (GSAP); hero usa depth layers
   ═══════════════════════════════════════════════════════════ */
   function initParallax() {
+    initHeroDepthParallax();
     if (!hasGSAP() || reduced) return;
 
-    /* Capas del hero: GSAP mueve el contenedor con data-depth
-       (la flotación CSS vive en el hijo .hv-float — anidado) */
-    $$("#hero [data-depth]").forEach((el) => {
-      const depth = parseFloat(el.dataset.depth || 0.4);
-      gsap.to(el, {
-        y: () => -(depth * 210),
-        ease: "none",
-        scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true }
-      });
-    });
-
-    /* Salida del hero: el texto sube más lento y las cáusticas se apagan */
-    gsap.to(".hero-copy", {
-      y: -70,
-      opacity: 0.25,
-      ease: "none",
-      scrollTrigger: {
-        trigger: "#hero", start: "top top", end: "bottom top", scrub: true,
-        onUpdate: (self) => { heroExitP = self.progress; }
-      }
-    });
-
-    /* Contornos de la ficha técnica */
     const topo = $(".ficha-topo");
     if (topo) {
       gsap.fromTo(topo, { y: 46 }, {

@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
 
-  <link rel="stylesheet" href="styles.css?v=20260714g">
+  <link rel="stylesheet" href="styles.css?v=20260714h">
 </head>
 <body>
 
@@ -83,14 +83,14 @@
 
     <!-- ═══════════ HERO ═══════════ -->
     <section class="hero" id="hero" aria-label="Presentación ECODESA">
-      <div class="hero-bg" aria-hidden="true">
+      <div class="hero-bg hero-depth-layer" data-hero-layer="back" data-parallax-speed="0.3" aria-hidden="true">
         <canvas id="causticsCanvas" class="hero-canvas"></canvas>
         <canvas id="particlesCanvas" class="hero-particles" aria-hidden="true"></canvas>
         <div class="hero-veil"></div>
       </div>
 
       <div class="container hero-grid">
-        <div class="hero-copy">
+        <div class="hero-copy hero-depth-layer" data-hero-layer="front" data-parallax-speed="1">
           <p class="kicker-pill hero-kicker"><span class="kp-dot" aria-hidden="true"></span>Consultoría ambiental · Cartagena de Indias</p>
           <h1 class="hero-title" id="heroTitle">
             <span class="mask"><span class="line">Cumplimos</span></span>
@@ -108,8 +108,8 @@
           </ul>
         </div>
 
-        <div class="hero-visual" aria-hidden="true">
-          <svg class="hero-deco" data-depth="0.10" viewBox="0 0 520 520" fill="none">
+        <div class="hero-visual hero-depth-layer" data-hero-layer="mid" data-parallax-speed="0.6" aria-hidden="true">
+          <svg class="hero-deco" viewBox="0 0 520 520" fill="none">
             <g class="hd-spin">
               <circle cx="260" cy="260" r="216" stroke="currentColor" stroke-width="1.4" stroke-dasharray="3 14" opacity=".5"/>
               <circle cx="260" cy="260" r="240" stroke="currentColor" stroke-width="1" stroke-dasharray="1 30" opacity=".35"/>
@@ -120,7 +120,7 @@
             <path d="M192 292c-18-28-8-66 24-82s74-4 84 26-8 62-40 70-52 4-68-14Z" stroke="currentColor" stroke-width="1.2" opacity=".24"/>
           </svg>
 
-          <div class="hv-card" data-depth="0.30">
+          <div class="hv-card">
             <div class="hv-float">
               <div class="hvc-head">
                 <span class="hvc-ico">
@@ -153,7 +153,7 @@
             </div>
           </div>
 
-          <div class="hv-chip hv-chip-a" data-depth="0.55">
+          <div class="hv-chip hv-chip-a">
             <span class="hv-float">
               <i class="kp-dot" aria-hidden="true"></i>
               <span>RAD. Autoridad Ambiental<em>al día · 26-0417</em></span>
@@ -161,7 +161,7 @@
             </span>
           </div>
 
-          <div class="hv-chip hv-chip-b" data-depth="0.18">
+          <div class="hv-chip hv-chip-b">
             <span class="hv-float">
               <svg viewBox="0 0 20 20" width="18" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="M6.4 10.4l2.4 2.4 4.8-5.4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <span>ISO 14001 · ISO 45001<em>sistemas certificables</em></span>
@@ -990,7 +990,7 @@
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/motion@12/dist/motion.js"></script>
-  <script defer src="main.js?v=20260714c"></script>
+  <script defer src="main.js?v=20260714d"></script>
 
 </body>
 </html>
