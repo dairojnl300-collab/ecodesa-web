@@ -20,6 +20,59 @@
   const hasLenis = () => typeof window.Lenis === "function";
   const hasMotion= () => !!(window.Motion && window.Motion.animate);
 
+  const THEME_KEY = "ecodesa-theme";
+  const getTheme  = () => document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  const readCssPx = (name, fallback) => {
+    const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    const n = parseFloat(raw);
+    return Number.isFinite(n) ? n : fallback;
+  };
+
+  const PARTICLE_PALETTES = {
+    light: [
+      "rgba(12, 138, 95, 0.26)",
+      "rgba(53, 201, 172, 0.2)",
+      "rgba(10, 46, 35, 0.12)",
+      "rgba(14, 134, 200, 0.14)"
+    ],
+    dark: [
+      "rgba(0, 230, 118, 0.32)",
+      "rgba(105, 240, 174, 0.26)",
+      "rgba(27, 94, 32, 0.2)",
+      "rgba(200, 230, 201, 0.16)"
+    ]
+  };
+
+  function initThemeToggle() {
+    const btn = $("#themeToggle");
+    if (!btn) return;
+
+    const systemTheme = () => matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+    const syncUi = (theme) => {
+      const dark = theme === "dark";
+      btn.setAttribute("aria-pressed", dark ? "true" : "false");
+      btn.setAttribute("aria-label", dark ? "Activar modo claro" : "Activar modo oscuro");
+      btn.title = dark ? "Modo claro" : "Modo oscuro";
+    };
+
+    const applyTheme = (theme, persist) => {
+      const next = theme === "dark" ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", next);
+      if (persist) localStorage.setItem(THEME_KEY, next);
+      syncUi(next);
+      window.dispatchEvent(new CustomEvent("ecodesa-theme-change", { detail: { theme: next } }));
+    };
+
+    const stored = localStorage.getItem(THEME_KEY);
+    applyTheme(stored || systemTheme(), false);
+    syncUi(getTheme());
+
+    btn.addEventListener("click", () => {
+      applyTheme(getTheme() === "dark" ? "light" : "dark", true);
+    });
+  }
+
   function safe(fn, name) {
     try { fn(); } catch (e) { console.warn("[ECODESA:" + name + "]", e); }
   }
@@ -140,7 +193,7 @@
 
   const FRAG = [
     "precision highp float;",
-    "uniform vec2 uRes; uniform float uT; uniform vec2 uMouse; uniform float uFade;",
+    "uniform vec2 uRes; uniform float uT; uniform vec2 uMouse; uniform float uFade; uniform float uDark;",
     "float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123); }",
     "float noise(vec2 p){",
     "  vec2 i = floor(p); vec2 f = fract(p);",
@@ -160,10 +213,10 @@
     "  float c2 = pow(1.0 - abs(n2 * 2.0 - 1.0), 7.0);",
     "  float m = smoothstep(0.55, 0.0, distance(uv, uMouse));",
     "  c1 += m * 0.25 * c2;",
-    "  vec3 paper = vec3(0.965, 0.984, 0.976);",
-    "  vec3 aqua  = vec3(0.243, 0.812, 0.698);",
-    "  vec3 emer  = vec3(0.047, 0.541, 0.373);",
-    "  vec3 azur  = vec3(0.055, 0.525, 0.784);",
+    "  vec3 paper = mix(vec3(0.965, 0.984, 0.976), vec3(0.024, 0.051, 0.027), step(0.5, uDark));",
+    "  vec3 aqua  = mix(vec3(0.243, 0.812, 0.698), vec3(0.412, 0.941, 0.682), step(0.5, uDark));",
+    "  vec3 emer  = mix(vec3(0.047, 0.541, 0.373), vec3(0.0, 0.902, 0.463), step(0.5, uDark));",
+    "  vec3 azur  = mix(vec3(0.055, 0.525, 0.784), vec3(0.18, 0.62, 0.86), step(0.5, uDark));",
     "  vec3 col = paper;",
     "  col = mix(col, aqua, c1 * 0.30);",
     "  col = mix(col, azur, c2 * 0.10);",
@@ -220,6 +273,11 @@
     const uT     = gl.getUniformLocation(prog, "uT");
     const uMouse = gl.getUniformLocation(prog, "uMouse");
     const uFade  = gl.getUniformLocation(prog, "uFade");
+    const uDark  = gl.getUniformLocation(prog, "uDark");
+    let shaderDark = getTheme() === "dark" ? 1 : 0;
+    window.addEventListener("ecodesa-theme-change", (e) => {
+      shaderDark = e.detail.theme === "dark" ? 1 : 0;
+    });
 
     /* Calidad adaptativa: arranca en 1.25x y baja la resolución de
        render si el frame medio supera ~22ms — el scroll manda, 60fps. */
@@ -277,6 +335,7 @@
         gl.uniform1f(uT, (now - t0) / 1000);
         gl.uniform2f(uMouse, mx, my);
         gl.uniform1f(uFade, heroExitP);
+        gl.uniform1f(uDark, shaderDark);
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       }
       if (!reduced) requestAnimationFrame(frame);
@@ -287,6 +346,7 @@
       gl.uniform1f(uT, 8.0);
       gl.uniform2f(uMouse, 0.6, 0.6);
       gl.uniform1f(uFade, 0);
+      gl.uniform1f(uDark, shaderDark);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     } else {
       requestAnimationFrame(frame);
@@ -309,12 +369,7 @@
 
     const mobile = matchMedia("(max-width: 767px)").matches;
     const COUNT  = lowEnd ? 12 : (mobile ? 14 : 25);
-    const COLORS = [
-      "rgba(0, 230, 118, 0.32)",
-      "rgba(105, 240, 174, 0.26)",
-      "rgba(27, 94, 32, 0.20)",
-      "rgba(200, 230, 201, 0.16)"
-    ];
+    const paletteFor = () => PARTICLE_PALETTES[getTheme()] || PARTICLE_PALETTES.light;
 
     let w = 0, h = 0, dpr = 1, particles = [], visible = true;
 
@@ -330,6 +385,7 @@
 
     const spawn = () => {
       const W = w / dpr, H = h / dpr;
+      const COLORS = paletteFor();
       particles = Array.from({ length: COUNT }, () => ({
         x: Math.random() * W,
         y: Math.random() * H,
@@ -350,6 +406,10 @@
     }
 
     addEventListener("resize", () => { resize(); spawn(); }, { passive: true });
+    window.addEventListener("ecodesa-theme-change", () => {
+      const COLORS = paletteFor();
+      particles.forEach((p, i) => { p.color = COLORS[i % COLORS.length]; });
+    });
 
     const frame = (now) => {
       if (!document.hidden && visible) {
@@ -459,7 +519,7 @@
     const grid = $("#ncGrid");
     if (!grid) return;
 
-    const MAX_DEG = 8;
+    const MAX_DEG = () => readCssPx("--tilt-max-deg", 8);
     const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
     $$(".nc-card").forEach((card) => {
@@ -469,8 +529,8 @@
         const r = card.getBoundingClientRect();
         const nx = (e.clientX - r.left) / r.width - 0.5;
         const ny = (e.clientY - r.top) / r.height - 0.5;
-        card.style.setProperty("--nc-ry", clamp(nx * MAX_DEG * 2, -MAX_DEG, MAX_DEG) + "deg");
-        card.style.setProperty("--nc-rx", clamp(-ny * MAX_DEG * 2, -MAX_DEG, MAX_DEG) + "deg");
+        card.style.setProperty("--nc-ry", clamp(nx * MAX_DEG() * 2, -MAX_DEG(), MAX_DEG()) + "deg");
+        card.style.setProperty("--nc-rx", clamp(-ny * MAX_DEG() * 2, -MAX_DEG(), MAX_DEG()) + "deg");
       });
       card.addEventListener("pointerleave", () => {
         card.classList.remove("nc-tilting");
@@ -636,7 +696,12 @@
 
     hero.classList.add("is-depth-active");
 
-    const MAX_TRAVEL = lowEnd ? 140 : 180;
+    const MAX_TRAVEL = () => {
+      const raw = getComputedStyle(document.documentElement).getPropertyValue("--depth-travel").trim();
+      const n = parseFloat(raw);
+      return Number.isFinite(n) ? n : (lowEnd ? 140 : 180);
+    };
+    const FADE_MIN = () => readCssPx("--parallax-fade-min", 0.28);
     let inView = false;
     let ticking = false;
     let exitP = 0;
@@ -653,14 +718,14 @@
 
       if (!inView && progress <= 0) return;
 
-      const offset = progress * MAX_TRAVEL;
+      const offset = progress * MAX_TRAVEL();
       layers.forEach(({ el, speed }) => {
         const y = -(offset * speed);
         el.style.transform = "translate3d(0," + y.toFixed(2) + "px,0)";
       });
 
       if (progress > 0.001) {
-        front.style.opacity = String(lerp(1, 0.28, progress));
+        front.style.opacity = String(lerp(1, FADE_MIN(), progress));
       } else {
         front.style.opacity = "";
       }
@@ -1176,6 +1241,7 @@
       try { gsap.registerPlugin(ScrollTrigger); } catch (e) {}
     }
 
+    safe(initThemeToggle,       "theme");
     safe(initLenis,            "lenis");
     safe(initNav,              "nav");
     safe(initHeroIntro,        "heroIntro");

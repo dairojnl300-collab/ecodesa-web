@@ -49,6 +49,73 @@
   --ease-soft:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* ── Tema claro (default explícito) · Minimalism & Swiss ── */
+:root,
+[data-theme="light"] {
+  --depth-travel: 120px;
+  --parallax-fade-min: 0.55;
+  --particle-opacity: 0.14;
+  --particle-opacity-desk: 0.22;
+  --tilt-max-deg: 6;
+  --nc-grow-rotate-x: 12deg;
+  --nc-grow-translate-y: 36px;
+  --nc-grow-scale-from: 0.96;
+  --serv-grow-scale-y: 0.55;
+  --serv-grow-translate-y: 28px;
+  --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ── Tema oscuro · Deep forest + Dimensional Layering ── */
+[data-theme="dark"] {
+  --white:      #060d07;
+  --wash-a:     #0d1a0e;
+  --wash-b:     #142115;
+  --wash-sun:   #1a2b1c;
+  --ink:        #e8f5e9;
+  --ink-70:     rgba(232, 245, 233, 0.74);
+  --ink-55:     rgba(232, 245, 233, 0.58);
+  --ink-40:     rgba(232, 245, 233, 0.42);
+  --line:       rgba(0, 230, 118, 0.14);
+  --line-soft:  rgba(0, 230, 118, 0.08);
+  --emerald:    #00e676;
+  --emerald-2:  #69f0ae;
+  --aqua:       #69f0ae;
+  --azure:      #4dd0e1;
+  --shadow-lum: 0 20px 50px -24px rgba(0, 230, 118, 0.16), 0 4px 14px -8px rgba(0, 0, 0, 0.42);
+  --shadow-deep:0 34px 74px -30px rgba(0, 230, 118, 0.22), 0 8px 22px -10px rgba(0, 0, 0, 0.5);
+  --depth-travel: 200px;
+  --parallax-fade-min: 0.22;
+  --particle-opacity: 0.22;
+  --particle-opacity-desk: 0.38;
+  --tilt-max-deg: 12;
+  --nc-grow-rotate-x: 28deg;
+  --nc-grow-translate-y: 72px;
+  --nc-grow-scale-from: 0.86;
+  --serv-grow-scale-y: 0.3;
+  --serv-grow-translate-y: 48px;
+}
+
+[data-theme="dark"] ::selection {
+  background: var(--emerald);
+  color: #060d07;
+}
+
+/* Transiciones suaves al cambiar de tema */
+html[data-theme] body,
+html[data-theme] .nav,
+html[data-theme] .sec,
+html[data-theme] .band,
+html[data-theme] .serv-card,
+html[data-theme] .nc-card,
+html[data-theme] .kicker-pill,
+html[data-theme] .btn,
+html[data-theme] .nav-overlay,
+html[data-theme] .hero-bg,
+html[data-theme] .hero-veil,
+html[data-theme] .nc-section--dimensional {
+  transition: var(--theme-transition);
+}
+
 /* =============================================================
    2. RESET & BASE
    ============================================================= */
@@ -294,6 +361,10 @@ html.js [data-reveal].in {
   border-bottom-color: var(--line-soft);
   box-shadow: 0 8px 30px -18px rgba(10, 46, 35, 0.2);
 }
+[data-theme="dark"] .nav.is-scrolled {
+  background: rgba(6, 13, 7, 0.9);
+  box-shadow: 0 8px 30px -18px rgba(0, 230, 118, 0.12);
+}
 
 .nav-inner {
   max-width: 1380px;
@@ -365,8 +436,48 @@ html.js [data-reveal].in {
 
 .btn-nav { display: none; padding: 0.66rem 1.5rem; font-size: 0.86rem; flex-shrink: 0; }
 
-.burger {
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   margin-left: auto;
+  flex-shrink: 0;
+}
+@media (min-width: 992px) {
+  .nav-actions { margin-left: 0; }
+}
+
+.theme-toggle {
+  display: grid;
+  place-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--white) 72%, transparent);
+  color: var(--ink-70);
+  flex-shrink: 0;
+  transition: var(--theme-transition), transform 0.2s var(--ease-out);
+}
+.theme-toggle:hover {
+  color: var(--ink);
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--emerald) 8%, var(--white));
+}
+.theme-toggle:active { transform: scale(0.94); }
+.theme-icon { display: block; }
+.theme-icon--sun  { display: none; }
+.theme-icon--moon { display: block; }
+[data-theme="dark"] .theme-icon--sun  { display: block; }
+[data-theme="dark"] .theme-icon--moon { display: none; }
+[data-theme="dark"] .theme-toggle {
+  background: rgba(0, 230, 118, 0.08);
+  border-color: var(--line);
+  color: var(--emerald);
+}
+
+.burger {
+  margin-left: 0;
   width: 44px; height: 44px;
   display: grid;
   place-content: center;
@@ -492,12 +603,30 @@ html.js [data-reveal].in {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0.14;
+  opacity: var(--particle-opacity);
 }
 @media (min-width: 768px) {
   .hero-particles {
-    opacity: 0.28;
+    opacity: var(--particle-opacity-desk);
   }
+}
+
+[data-theme="dark"] .hero-bg {
+  background:
+    radial-gradient(85% 65% at 80% 15%, rgba(0, 230, 118, 0.14) 0%, transparent 58%),
+    radial-gradient(65% 55% at 10% 85%, rgba(27, 94, 32, 0.32) 0%, transparent 55%),
+    var(--white);
+}
+[data-theme="dark"] .hero-veil {
+  background:
+    linear-gradient(to bottom, rgba(6, 13, 7, 0.72) 0%, transparent 24%, transparent 68%, var(--white) 100%),
+    radial-gradient(65% 85% at 16% 60%, rgba(0, 230, 118, 0.1) 0%, transparent 60%);
+}
+[data-theme="dark"] .nav-overlay {
+  background:
+    radial-gradient(120% 90% at 85% -10%, rgba(0, 230, 118, 0.12) 0%, transparent 55%),
+    radial-gradient(100% 80% at -10% 110%, rgba(27, 94, 32, 0.22) 0%, transparent 50%),
+    var(--white);
 }
 
 .hero-veil {
@@ -1202,7 +1331,7 @@ html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
 /* Scroll-triggered grow-in — IntersectionObserver */
 html.js .serv-card.service-card {
   opacity: 0;
-  transform: scaleY(0.3) translateY(40px);
+  transform: scaleY(var(--serv-grow-scale-y)) translateY(var(--serv-grow-translate-y));
   transform-origin: bottom center;
   transition:
     opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -2210,9 +2339,9 @@ html.js .serv-card.service-card.is-grown .sc-list li {
   opacity: 1;
 }
 
-/* Partículas sutiles — no compiten con crema/ink del copy */
+/* Partículas sutiles — opacidad por tema */
 @media (min-width: 768px) {
-  .hero-particles { opacity: 0.28; }
+  .hero-particles { opacity: var(--particle-opacity-desk); }
 }
 
 /* Logo respirando: solo escala, sin fade que reduzca contraste */
@@ -2230,6 +2359,57 @@ p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-s
   perspective:1000px;
   position:relative;
   z-index:2;
+}
+
+/* ── Light mode: NC minimal (Swiss) ── */
+[data-theme="light"] .nc-section--dimensional{
+  --nc-bg:#EFF9F5;
+  --nc-bg-2:#FFFFFF;
+  --nc-bg-card:#FFFFFF;
+  --nc-cream:#0A2E23;
+  --nc-cream-2:rgba(10,46,35,.74);
+  --nc-muted:rgba(10,46,35,.58);
+  --nc-accent:#0C8A5F;
+  --nc-accent-dim:rgba(12,138,95,.09);
+  --nc-line:rgba(10,46,35,.12);
+  --nc-elev-1:0 1px 3px rgba(10,46,35,.06);
+  --nc-elev-2:var(--shadow-lum);
+  --nc-elev-3:0 12px 32px rgba(12,138,95,.1);
+  --nc-elev-4:var(--shadow-deep);
+  color:var(--nc-cream);
+  background:
+    radial-gradient(85% 55% at 12% -8%, rgba(12,138,95,.06) 0%, transparent 58%),
+    linear-gradient(180deg,var(--nc-bg) 0%,var(--nc-bg-2) 100%);
+}
+[data-theme="light"] .nc-section--dimensional .nc-depth-plane--back{
+  background:rgba(12,138,95,.06);
+}
+[data-theme="light"] .nc-section--dimensional .nc-depth-plane--mid{
+  background:rgba(53,201,172,.08);
+}
+[data-theme="light"] .nc-section--dimensional .nc-card{
+  background:linear-gradient(155deg,#FFFFFF 0%,#F0FAF6 100%);
+}
+[data-theme="light"] .nc-section--dimensional .nc-card::after{
+  background:rgba(12,138,95,.1);
+  opacity:.3;
+  filter:blur(10px);
+}
+[data-theme="light"] .nc-section--dimensional .nc-grid.is-grown .nc-card:nth-child(even){
+  margin-top:0;
+}
+[data-theme="light"] .nc-num{
+  background:rgba(12,138,95,.09);
+  border-color:rgba(12,138,95,.2);
+  color:var(--nc-accent);
+}
+[data-theme="light"] .nc-cta{
+  color:#FFFFFF;
+  background:var(--nc-accent);
+  box-shadow:0 4px 18px rgba(12,138,95,.22);
+}
+[data-theme="light"] .nc-cta:hover{
+  background:var(--emerald-2);
 }
 
 /* ── Negocios Comerciales · Dimensional Layering + deep forest dark ── */
@@ -2384,11 +2564,18 @@ p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-s
   margin-top:1.15rem;
   z-index:2;
 }
+[data-theme="dark"] .nc-section--dimensional .nc-card::after{
+  opacity:.68;
+  filter:blur(18px);
+}
+[data-theme="dark"] .nc-section--dimensional .nc-depth-plane{
+  opacity:.72;
+}
 
 /* ── 1. Entrada escalonada 3D (grow-in) ── */
 html.js .nc-grid .nc-card{
   opacity:0;
-  transform:rotateX(20deg) translateY(60px) scale(.9);
+  transform:rotateX(var(--nc-grow-rotate-x)) translateY(var(--nc-grow-translate-y)) scale(var(--nc-grow-scale-from));
   transition:
     transform .9s cubic-bezier(.34,1.56,.64,1),
     opacity .9s ease-out,
