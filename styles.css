@@ -2151,6 +2151,17 @@ a.info-link:hover { transform: translateX(4px); }
     animation: none !important;
     height: 100% !important;
   }
+
+  /* NC: solo fade simple, sin 3D ni tilt */
+  html.js .nc-grid .nc-card {
+    opacity: 0 !important;
+    transform: none !important;
+    transition: opacity 0.5s ease-out !important;
+    transition-delay: calc(var(--nc-i, 0) * 80ms) !important;
+  }
+  html.js .nc-grid.is-grown .nc-card {
+    opacity: 1 !important;
+  }
 }
 
 /* =============================================================
@@ -2202,7 +2213,8 @@ p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-s
 .nc-grid{
   display:flex;flex-wrap:wrap;gap:32px;
   overflow:visible;
-  padding-block:12px;
+  padding-block:36px;
+  perspective:1000px;
 }
 
 /* ── Negocios Comerciales: base ── */
@@ -2212,6 +2224,8 @@ p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-s
 }
 .nc-card{
   --nc-accent:#5BA832;
+  --nc-rx:0deg;
+  --nc-ry:0deg;
   display:flex;gap:24px;
   flex:0 0 calc(50% - 16px);
   width:calc(50% - 16px);
@@ -2220,6 +2234,9 @@ p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-s
   background:rgba(12,138,95,.06);
   border:none;border-radius:14px;padding:32px;
   overflow:visible;
+  transform-style:preserve-3d;
+  transform-origin:center center;
+  box-shadow:0 4px 22px rgba(10,46,35,.06);
   will-change:transform,opacity;
 }
 .nc-num{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:12px;background:rgba(12,138,95,.14);font-size:1.4rem;font-weight:700;color:var(--emerald);will-change:transform,opacity}
@@ -2232,19 +2249,19 @@ p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-s
 .nc-cta{display:inline-flex;align-items:center;gap:4px;color:var(--white,#fff);background:var(--emerald);font-weight:600;font-size:.9rem;text-decoration:none;padding:10px 20px;border-radius:20px;transition:background .2s}
 .nc-cta:hover{background:var(--emerald-2)}
 
-/* ── 1. Entrada escalonada (grow-in) ── */
+/* ── 1. Entrada escalonada 3D (grow-in) ── */
 html.js .nc-grid .nc-card{
   opacity:0;
-  transform:translateY(60px);
+  transform:rotateX(20deg) translateY(60px) scale(.9);
   transition:
-    opacity .7s cubic-bezier(.34,1.56,.64,1),
-    transform .7s cubic-bezier(.34,1.56,.64,1),
+    transform .9s cubic-bezier(.34,1.56,.64,1),
+    opacity .9s ease-out,
     box-shadow .35s ease;
-  transition-delay:calc(var(--nc-i,0) * 100ms);
+  transition-delay:calc(var(--nc-i,0) * 120ms);
 }
 html.js .nc-grid.is-grown .nc-card{
   opacity:1;
-  transform:translateY(0);
+  transform:rotateX(0) translateY(0) scale(1);
 }
 
 /* ── 2. Ícono / número — rotación de entrada ── */
@@ -2258,7 +2275,7 @@ html.js .nc-grid .nc-card .nc-num{
 html.js .nc-grid.is-grown .nc-card .nc-num{
   opacity:1;
   transform:rotate(0) scale(1);
-  transition-delay:calc(var(--nc-i,0) * 100ms + 150ms);
+  transition-delay:calc(var(--nc-i,0) * 120ms + 150ms);
 }
 
 /* ── 3. Borde izquierdo progresivo ── */
@@ -2272,7 +2289,7 @@ html.js .nc-grid .nc-card::before{
 }
 html.js .nc-grid.is-grown .nc-card::before{
   animation:ncBorderGrow .55s cubic-bezier(.34,1.56,.64,1) forwards;
-  animation-delay:calc(var(--nc-i,0) * 100ms + 120ms);
+  animation-delay:calc(var(--nc-i,0) * 120ms + 120ms);
 }
 @keyframes ncBorderGrow{
   from{height:0%}
@@ -2295,20 +2312,21 @@ html.js .nc-grid .nc-card .nc-list li:nth-child(4){--li-i:3}
 html.js .nc-grid.is-grown .nc-card .nc-list li{
   opacity:1;
   transform:translateX(0);
-  transition-delay:calc(var(--nc-i,0) * 100ms + 280ms + var(--li-i) * 50ms);
+  transition-delay:calc(var(--nc-i,0) * 120ms + 280ms + var(--li-i) * 50ms);
 }
 
-/* ── 5. Hover glow — solo desktop ── */
+/* ── 5. Hover 3D tilt — solo desktop ── */
 @media (hover:hover) and (pointer:fine){
   html.js .nc-grid.is-grown .nc-card{
-    transition:
-      opacity .7s cubic-bezier(.34,1.56,.64,1),
-      transform .7s cubic-bezier(.34,1.56,.64,1),
-      box-shadow .35s ease;
+    transform:rotateX(var(--nc-rx)) rotateY(var(--nc-ry)) translateY(0) scale(1);
+  }
+  html.js .nc-grid.is-grown .nc-card.nc-tilting{
+    transition:transform .2s ease-out,box-shadow .2s ease-out;
   }
   html.js .nc-grid.is-grown .nc-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 0 30px rgba(91,168,50,.15);
+    box-shadow:
+      0 14px 44px rgba(91,168,50,.18),
+      0 6px 20px rgba(10,46,35,.1);
   }
 }
 

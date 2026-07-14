@@ -443,12 +443,38 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
-     NEGOCIOS COMERCIALES — grow-in escalonado
+     NEGOCIOS COMERCIALES — grow-in 3D escalonado
   ═══════════════════════════════════════════════════════════ */
   function initNcCardGrow() {
     const grid = $("#ncGrid");
     if (!grid) return;
     observeGrowIn([grid], { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
+  }
+
+  function initNcCardTilt() {
+    if (reduced || !matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const grid = $("#ncGrid");
+    if (!grid) return;
+
+    const MAX_DEG = 8;
+    const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+    $$(".nc-card").forEach((card) => {
+      card.addEventListener("pointerenter", () => card.classList.add("nc-tilting"));
+      card.addEventListener("pointermove", (e) => {
+        if (!grid.classList.contains("is-grown")) return;
+        const r = card.getBoundingClientRect();
+        const nx = (e.clientX - r.left) / r.width - 0.5;
+        const ny = (e.clientY - r.top) / r.height - 0.5;
+        card.style.setProperty("--nc-ry", clamp(nx * MAX_DEG * 2, -MAX_DEG, MAX_DEG) + "deg");
+        card.style.setProperty("--nc-rx", clamp(-ny * MAX_DEG * 2, -MAX_DEG, MAX_DEG) + "deg");
+      });
+      card.addEventListener("pointerleave", () => {
+        card.classList.remove("nc-tilting");
+        card.style.setProperty("--nc-rx", "0deg");
+        card.style.setProperty("--nc-ry", "0deg");
+      });
+    });
   }
 
   /* ═══════════════════════════════════════════════════════════
@@ -1082,6 +1108,7 @@
     safe(initReveals,          "reveals");
     safe(initServiceCardGrow,  "serviceGrow");
     safe(initNcCardGrow,       "ncGrow");
+    safe(initNcCardTilt,       "ncTilt");
     safe(initCounters,         "counters");
     safe(initServicios,        "servicios");
     safe(initParallax,         "parallax");
