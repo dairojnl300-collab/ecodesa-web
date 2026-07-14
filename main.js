@@ -406,27 +406,49 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
-     SERVICE CARDS — grow-in al entrar en viewport
+     GROW-IN — IntersectionObserver reutilizable
   ═══════════════════════════════════════════════════════════ */
-  function initServiceCardGrow() {
-    const cards = $$(".service-card");
-    if (!cards.length) return;
+  function observeGrowIn(selector, opts) {
+    const options = opts || {};
+    const grownClass = options.grownClass || "is-grown";
+    const threshold  = options.threshold  ?? 0.12;
+    const rootMargin = options.rootMargin || "0px 0px -4% 0px";
+    const safetyMs   = options.safetyMs   ?? 5000;
+
+    const els = typeof selector === "string" ? $$(selector) : selector;
+    if (!els.length) return;
 
     if (reduced || !("IntersectionObserver" in window)) {
-      cards.forEach(c => c.classList.add("is-grown"));
+      els.forEach(el => el.classList.add(grownClass));
       return;
     }
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (!e.isIntersecting) return;
-        e.target.classList.add("is-grown");
+        e.target.classList.add(grownClass);
         io.unobserve(e.target);
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -4% 0px" });
+    }, { threshold, rootMargin });
 
-    cards.forEach(c => io.observe(c));
-    setTimeout(() => cards.forEach(c => c.classList.add("is-grown")), 5000);
+    els.forEach(el => io.observe(el));
+    setTimeout(() => els.forEach(el => el.classList.add(grownClass)), safetyMs);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     SERVICE CARDS — grow-in al entrar en viewport
+  ═══════════════════════════════════════════════════════════ */
+  function initServiceCardGrow() {
+    observeGrowIn(".service-card");
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     NEGOCIOS COMERCIALES — grow-in escalonado
+  ═══════════════════════════════════════════════════════════ */
+  function initNcCardGrow() {
+    const grid = $("#ncGrid");
+    if (!grid) return;
+    observeGrowIn([grid], { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
   }
 
   /* ═══════════════════════════════════════════════════════════
@@ -1059,6 +1081,7 @@
     safe(initParticles,        "particles");
     safe(initReveals,          "reveals");
     safe(initServiceCardGrow,  "serviceGrow");
+    safe(initNcCardGrow,       "ncGrow");
     safe(initCounters,         "counters");
     safe(initServicios,        "servicios");
     safe(initParallax,         "parallax");
