@@ -293,6 +293,86 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
+     PARTÍCULAS FLOTANTES — hero, desktop, deep forest dark
+  ═══════════════════════════════════════════════════════════ */
+  function initParticles() {
+    if (reduced || !matchMedia("(min-width: 768px)").matches) return;
+
+    const canvas = $("#particlesCanvas");
+    const hero   = $("#hero");
+    if (!canvas || !hero) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const COUNT  = 25;
+    const COLORS = [
+      "rgba(0, 230, 118, 0.32)",
+      "rgba(105, 240, 174, 0.26)",
+      "rgba(27, 94, 32, 0.20)",
+      "rgba(200, 230, 201, 0.16)"
+    ];
+
+    let w = 0, h = 0, dpr = 1, particles = [], visible = true;
+
+    const resize = () => {
+      const rect = hero.getBoundingClientRect();
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      w = canvas.width  = Math.round(rect.width  * dpr);
+      h = canvas.height = Math.round(rect.height * dpr);
+      canvas.style.width  = rect.width  + "px";
+      canvas.style.height = rect.height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const spawn = () => {
+      const W = w / dpr, H = h / dpr;
+      particles = Array.from({ length: COUNT }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: 1.4 + Math.random() * 2.4,
+        vx: (Math.random() - 0.5) * 0.16,
+        vy: -0.1 - Math.random() * 0.2,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        phase: Math.random() * Math.PI * 2
+      }));
+    };
+
+    resize();
+    spawn();
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0 })
+        .observe(hero);
+    }
+
+    addEventListener("resize", () => { resize(); spawn(); }, { passive: true });
+
+    const frame = (now) => {
+      if (!document.hidden && visible) {
+        const W = w / dpr, H = h / dpr;
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => {
+          p.x += p.vx + Math.sin(now * 0.001 + p.phase) * 0.05;
+          p.y += p.vy;
+          if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
+          if (p.x < -10) p.x = W + 10;
+          if (p.x > W + 10) p.x = -10;
+          ctx.globalAlpha = 0.5 + Math.sin(now * 0.002 + p.phase) * 0.22;
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+      }
+      requestAnimationFrame(frame);
+    };
+
+    requestAnimationFrame(frame);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
      REVEALS — IntersectionObserver + escalonado por grupo
   ═══════════════════════════════════════════════════════════ */
   function initReveals() {
@@ -326,6 +406,30 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
+     SERVICE CARDS — grow-in al entrar en viewport
+  ═══════════════════════════════════════════════════════════ */
+  function initServiceCardGrow() {
+    const cards = $$(".service-card");
+    if (!cards.length) return;
+
+    if (reduced || !("IntersectionObserver" in window)) {
+      cards.forEach(c => c.classList.add("is-grown"));
+      return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("is-grown");
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -4% 0px" });
+
+    cards.forEach(c => io.observe(c));
+    setTimeout(() => cards.forEach(c => c.classList.add("is-grown")), 5000);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
      CONTADORES
   ═══════════════════════════════════════════════════════════ */
   function initCounters() {
@@ -336,13 +440,16 @@
       const target = parseInt(el.dataset.count, 10);
       if (isNaN(target)) return;
       if (reduced) { el.textContent = target; return; }
-      const start = performance.now();
-      const dur = 1400;
-      const tick = (now) => {
-        const k = clamp((now - start) / dur, 0, 1);
-        const e = 1 - Math.pow(1 - k, 3);
-        el.textContent = Math.round(e * target);
-        if (k < 1) requestAnimationFrame(tick);
+
+      const FRAMES = 60;
+      let frame = 0;
+      const tick = () => {
+        frame++;
+        const k = frame / FRAMES;
+        const eased = 1 - Math.pow(1 - k, 3);
+        el.textContent = Math.round(eased * target);
+        if (frame < FRAMES) requestAnimationFrame(tick);
+        else el.textContent = target;
       };
       requestAnimationFrame(tick);
     };
@@ -390,6 +497,7 @@
     const cardFx = () => {
       if (reduced) return;
       cards.forEach((card, i) => {
+        if (!card.classList.contains("is-grown")) return;
         const r = card.getBoundingClientRect();
         const norm = clamp((r.left + r.width / 2 - innerWidth / 2) / innerWidth, -1, 1);
         const abs = Math.abs(norm);
@@ -948,7 +1056,9 @@
     safe(initHeroIntro,        "heroIntro");
     safe(initProgressFallback, "progress");
     safe(initShader,           "shader");
+    safe(initParticles,        "particles");
     safe(initReveals,          "reveals");
+    safe(initServiceCardGrow,  "serviceGrow");
     safe(initCounters,         "counters");
     safe(initServicios,        "servicios");
     safe(initParallax,         "parallax");
