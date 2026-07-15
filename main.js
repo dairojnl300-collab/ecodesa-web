@@ -1573,6 +1573,110 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
+     TIENDA HUD — escaneo digital SaniCheck
+  ═══════════════════════════════════════════════════════════ */
+  function initTiendaHud() {
+    if (reduced) return;
+
+    const section   = $("#tienda");
+    const hud       = $(".tienda-hud");
+    const terminals = $(".tienda-terminals");
+    const card      = $(".prod--sanichek");
+    if (!section || !hud) return;
+
+    const SCAN_MS   = 3500;
+    const HIT_PAD   = 28;
+    const SNIPPETS  = [
+      "SCAN OK", "0x4F2A", "0xA3B1", "PSB:30+", "B/R/D OK", "PWA SYNC",
+      "NODE 04", "CHK 100%", "SIG OK", "BUF CLR", "I/O RDY", "0x7E91",
+      "TLS OK", "SYNC 1ms", "DATA OK"
+    ];
+    const ZONES = [
+      { l: 0.04, t: 0.08 }, { l: 0.88, t: 0.12 }, { l: 0.06, t: 0.82 },
+      { l: 0.90, t: 0.78 }, { l: 0.50, t: 0.04 }, { l: 0.48, t: 0.92 },
+      { l: 0.02, t: 0.45 }, { l: 0.94, t: 0.52 }
+    ];
+
+    let visible = true, travel = 700, termTimer = 0;
+
+    const easeInOut = (t) => t < 0.5
+      ? 2 * t * t
+      : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+    const scanY = (now) => {
+      const cycle = (now % SCAN_MS) / SCAN_MS;
+      const prog  = cycle < 0.5
+        ? easeInOut(cycle * 2)
+        : 1 - easeInOut((cycle - 0.5) * 2);
+      return prog * travel;
+    };
+
+    const syncPause = () => {
+      hud.classList.toggle("tienda-hud--paused", document.hidden || !visible);
+    };
+
+    const resize = () => {
+      const h = hud.offsetHeight;
+      travel = Math.max(0, h - 3);
+      hud.style.setProperty("--scan-travel", travel + "px");
+    };
+
+    const spawnTerminal = () => {
+      if (!terminals || document.hidden || !visible) return;
+      const zone = ZONES[Math.floor(Math.random() * ZONES.length)];
+      const el   = document.createElement("span");
+      el.className = "tienda-terminal";
+      el.textContent = SNIPPETS[Math.floor(Math.random() * SNIPPETS.length)];
+      el.style.left = (zone.l * 100 + (Math.random() - 0.5) * 4) + "%";
+      el.style.top  = (zone.t * 100 + (Math.random() - 0.5) * 4) + "%";
+      terminals.appendChild(el);
+      requestAnimationFrame(() => el.classList.add("is-on"));
+      const life = 1400 + Math.random() * 1600;
+      setTimeout(() => {
+        el.classList.remove("is-on");
+        setTimeout(() => el.remove(), 380);
+      }, life);
+    };
+
+    const scheduleTerminal = () => {
+      if (document.hidden || !visible) {
+        termTimer = setTimeout(scheduleTerminal, 800);
+        return;
+      }
+      spawnTerminal();
+      termTimer = setTimeout(scheduleTerminal, 2000 + Math.random() * 2000);
+    };
+
+    resize();
+    scheduleTerminal();
+    addEventListener("resize", resize, { passive: true });
+    document.addEventListener("visibilitychange", syncPause);
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => {
+        visible = e.isIntersecting;
+        syncPause();
+      }, { threshold: 0 }).observe(section);
+    }
+
+    const frame = (now) => {
+      if (!document.hidden && visible && card) {
+        const secRect  = section.getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        const y        = scanY(now) + 1.5;
+        const cardTop  = cardRect.top - secRect.top;
+        const cardBot  = cardRect.bottom - secRect.top;
+        const hit      = y >= cardTop - HIT_PAD && y <= cardBot + HIT_PAD;
+        card.classList.toggle("is-scan-hit", hit);
+      } else if (card) {
+        card.classList.remove("is-scan-hit");
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
      BOOT
   ═══════════════════════════════════════════════════════════ */
   function boot() {
@@ -1588,6 +1692,7 @@
     safe(initShader,           "shader");
     safe(initParticles,        "particles");
     safe(initConstellation,    "constellation");
+    safe(initTiendaHud,        "tiendaHud");
     safe(initReveals,          "reveals");
     safe(initServiceCardGrow,  "serviceGrow");
     safe(initNcCardGrow,       "ncGrow");
