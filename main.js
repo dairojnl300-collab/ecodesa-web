@@ -43,6 +43,11 @@
     ]
   };
 
+  const CONSTELLATION_COLORS = {
+    light: { node: [12, 138, 95], line: [12, 138, 95], accent: [53, 201, 172] },
+    dark:  { node: [0, 230, 118], line: [105, 240, 174], accent: [0, 230, 118] }
+  };
+
   function initThemeToggle() {
     const btn = $("#themeToggle");
     if (!btn) return;
@@ -432,6 +437,142 @@
       requestAnimationFrame(frame);
     };
 
+    requestAnimationFrame(frame);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     CONSTELACIÓN — Nosotros, desktop, red de expertise
+  ═══════════════════════════════════════════════════════════ */
+  function initConstellation() {
+    if (!matchMedia("(min-width: 768px)").matches) return;
+
+    const canvas  = $("#constellationCanvas");
+    const section = $("#nosotros");
+    if (!canvas || !section) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const NODE_COUNT      = 18;
+    const LINK_DIST       = 150;
+    const LINK_MAX_ALPHA  = 0.3;
+    const isStatic        = reduced;
+    const paletteFor      = () => CONSTELLATION_COLORS[getTheme()] || CONSTELLATION_COLORS.light;
+
+    let w = 0, h = 0, dpr = 1, nodes = [], visible = true, frameSkip = 0;
+
+    const resize = () => {
+      const rect = section.getBoundingClientRect();
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      w = canvas.width  = Math.round(rect.width  * dpr);
+      h = canvas.height = Math.round(rect.height * dpr);
+      canvas.style.width  = rect.width  + "px";
+      canvas.style.height = rect.height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const spawn = () => {
+      const W = w / dpr, H = h / dpr;
+      nodes = Array.from({ length: NODE_COUNT }, () => ({
+        x: Math.random() * W * 0.88 + W * 0.06,
+        y: Math.random() * H * 0.88 + H * 0.06,
+        vx: isStatic ? 0 : (Math.random() - 0.5) * 0.1,
+        vy: isStatic ? 0 : (Math.random() - 0.5) * 0.1,
+        baseR: 2 + Math.random() * 1.2,
+        phase: Math.random() * Math.PI * 2,
+        pulseHz: 0.002 + Math.random() * 0.0012
+      }));
+    };
+
+    const drawLinks = (pal) => {
+      const maxSq = LINK_DIST * LINK_DIST;
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+        for (let j = i + 1; j < nodes.length; j++) {
+          const b = nodes[j];
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          if (Math.abs(dx) > LINK_DIST || Math.abs(dy) > LINK_DIST) continue;
+          const distSq = dx * dx + dy * dy;
+          if (distSq > maxSq) continue;
+          const dist = Math.sqrt(distSq);
+          const alpha = LINK_MAX_ALPHA * (1 - dist / LINK_DIST);
+          ctx.globalAlpha = alpha;
+          ctx.strokeStyle = `rgba(${pal.line[0]}, ${pal.line[1]}, ${pal.line[2]}, 1)`;
+          ctx.lineWidth = 0.75;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    };
+
+    const drawNodes = (pal, now) => {
+      nodes.forEach(n => {
+        let r = n.baseR;
+        let alpha = 0.48;
+        if (!isStatic) {
+          r = clamp(n.baseR + Math.sin(now * n.pulseHz + n.phase) * 1, 2, 4);
+          alpha = 0.42 + Math.sin(now * n.pulseHz * 1.15 + n.phase) * 0.14;
+        }
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = `rgba(${pal.accent[0]}, ${pal.accent[1]}, ${pal.accent[2]}, 1)`;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = alpha * 0.65;
+        ctx.fillStyle = `rgba(${pal.node[0]}, ${pal.node[1]}, ${pal.node[2]}, 1)`;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r * 0.55, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+    };
+
+    const draw = (now = 0) => {
+      const W = w / dpr, H = h / dpr;
+      const pal = paletteFor();
+      ctx.clearRect(0, 0, W, H);
+
+      if (!isStatic) {
+        nodes.forEach(n => {
+          n.x += n.vx;
+          n.y += n.vy;
+          if (n.x < 10 || n.x > W - 10) { n.vx *= -1; n.x = clamp(n.x, 10, W - 10); }
+          if (n.y < 10 || n.y > H - 10) { n.vy *= -1; n.y = clamp(n.y, 10, H - 10); }
+        });
+      }
+
+      drawLinks(pal);
+      drawNodes(pal, now);
+    };
+
+    resize();
+    spawn();
+    draw(0);
+
+    addEventListener("resize", () => { resize(); spawn(); draw(performance.now()); }, { passive: true });
+    window.addEventListener("ecodesa-theme-change", () => draw(isStatic ? 0 : performance.now()));
+
+    if (isStatic) return;
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0 })
+        .observe(section);
+    }
+
+    const frame = (now) => {
+      if (!document.hidden && visible) {
+        if (lowEnd) {
+          frameSkip = (frameSkip + 1) % 2;
+          if (frameSkip === 0) draw(now);
+        } else {
+          draw(now);
+        }
+      }
+      requestAnimationFrame(frame);
+    };
     requestAnimationFrame(frame);
   }
 
@@ -1274,6 +1415,7 @@
     safe(initProgressFallback, "progress");
     safe(initShader,           "shader");
     safe(initParticles,        "particles");
+    safe(initConstellation,    "constellation");
     safe(initReveals,          "reveals");
     safe(initServiceCardGrow,  "serviceGrow");
     safe(initNcCardGrow,       "ncGrow");
