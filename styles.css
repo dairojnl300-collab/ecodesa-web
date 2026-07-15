@@ -651,10 +651,76 @@ html.js [data-reveal].in {
   z-index: 0;
   height: 112%;
   top: -6%;
-  background:
-    radial-gradient(85% 65% at 80% 15%, rgba(53, 201, 172, 0.28) 0%, transparent 58%),
-    radial-gradient(65% 55% at 10% 85%, rgba(12, 138, 95, 0.14) 0%, transparent 55%),
-    var(--white);
+  background: var(--white);
+  overflow: hidden;
+}
+
+/* Aurora boreal — blobs animados detrás de cáusticas/venas */
+.hero-aurora {
+  position: absolute;
+  inset: -12%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+.hero-aurora-blob--1 {
+  width: 58%;
+  height: 52%;
+  top: 2%;
+  right: 6%;
+  background: radial-gradient(circle at 42% 38%, rgba(53, 201, 172, 0.82) 0%, rgba(12, 138, 95, 0.42) 42%, transparent 72%);
+  animation: auroraFlow1 14s ease-in-out infinite, auroraBreathe1 9s ease-in-out infinite;
+}
+.hero-aurora-blob--2 {
+  width: 50%;
+  height: 48%;
+  bottom: 4%;
+  left: -4%;
+  background: radial-gradient(circle at 55% 50%, rgba(12, 138, 95, 0.72) 0%, rgba(53, 201, 172, 0.38) 48%, transparent 74%);
+  animation: auroraFlow2 17s ease-in-out infinite, auroraBreathe2 11s ease-in-out infinite;
+  animation-delay: 0s, -2s;
+}
+.hero-aurora-blob--3 {
+  width: 44%;
+  height: 44%;
+  top: 38%;
+  left: 18%;
+  filter: blur(60px);
+  background: radial-gradient(circle at 50% 45%, rgba(14, 134, 199, 0.55) 0%, rgba(53, 201, 172, 0.32) 50%, transparent 75%);
+  animation: auroraFlow3 12s ease-in-out infinite, auroraBreathe3 8s ease-in-out infinite;
+  animation-delay: 0s, -4s;
+}
+.hero-aurora-blob--4 {
+  width: 46%;
+  height: 40%;
+  top: 8%;
+  left: 42%;
+  filter: blur(80px);
+  background: radial-gradient(circle at 48% 52%, rgba(53, 201, 172, 0.68) 0%, rgba(14, 134, 199, 0.28) 46%, transparent 72%);
+  animation: auroraFlow4 20s ease-in-out infinite, auroraBreathe4 13s ease-in-out infinite;
+  animation-delay: 0s, -1s;
+}
+[data-theme="dark"] .hero-aurora-blob--1 {
+  background: radial-gradient(circle at 42% 38%, rgba(0, 230, 118, 0.62) 0%, rgba(27, 94, 32, 0.38) 42%, transparent 72%);
+}
+[data-theme="dark"] .hero-aurora-blob--2 {
+  background: radial-gradient(circle at 55% 50%, rgba(105, 240, 174, 0.52) 0%, rgba(0, 230, 118, 0.32) 48%, transparent 74%);
+}
+[data-theme="dark"] .hero-aurora-blob--3 {
+  background: radial-gradient(circle at 50% 45%, rgba(0, 150, 199, 0.48) 0%, rgba(0, 230, 118, 0.28) 50%, transparent 75%);
+}
+[data-theme="dark"] .hero-aurora-blob--4 {
+  background: radial-gradient(circle at 48% 52%, rgba(0, 230, 118, 0.55) 0%, rgba(77, 208, 225, 0.22) 46%, transparent 72%);
+}
+[data-theme="dark"] .hero-aurora-blob {
+  mix-blend-mode: lighten;
 }
 .hero-canvas {
   position: absolute;
@@ -681,10 +747,7 @@ html.js [data-reveal].in {
 }
 
 [data-theme="dark"] .hero-bg {
-  background:
-    radial-gradient(85% 65% at 80% 15%, rgba(0, 230, 118, 0.14) 0%, transparent 58%),
-    radial-gradient(65% 55% at 10% 85%, rgba(27, 94, 32, 0.32) 0%, transparent 55%),
-    var(--white);
+  background: var(--white);
 }
 [data-theme="dark"] .hero-veil {
   background:
@@ -2334,6 +2397,7 @@ a.info-link:hover { transform: translateX(4px); }
   .bio-pollen,
   .bio-leaf,
   .aurora-mesh,
+  .hero-aurora-blob,
   .hud-scan,
   .hydro-ripple,
   .hydro-flow,
@@ -2351,6 +2415,11 @@ a.info-link:hover { transform: translateX(4px); }
   .bio-leaf--fall,
   .serv-card[data-serv-theme="sst"] .sc-icon {
     animation: none !important;
+  }
+
+  .hero-aurora-blob {
+    will-change: auto;
+    opacity: 0.55;
   }
 
   html.js [data-reveal],
@@ -2404,9 +2473,10 @@ a.info-link:hover { transform: translateX(4px); }
    Solo transform/opacity/clip-path; contraste preservado.
    ============================================================= */
 
-/* Capas hero: partículas y cáusticas bajo el velo, copy encima */
+/* Capas hero: aurora → cáusticas/venas → velo → copy */
+.hero-aurora    { z-index: 0; }
 .hero-canvas,
-.hero-particles { z-index: 0; }
+.hero-particles { z-index: 1; }
 .hero-veil      { z-index: 2; }
 .hero-grid      { z-index: 3; }
 
@@ -2819,6 +2889,41 @@ html.js .nc-grid.is-grown .nc-card .nc-list li{
 @keyframes auroraShift {
   0%, 100% { background-position: 0% 50%; opacity: 0.55; }
   50%      { background-position: 100% 50%; opacity: 0.85; }
+}
+@keyframes auroraFlow1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(5%, -8%) scale(1.15); }
+  66%      { transform: translate(-8%, 5%) scale(0.9); }
+}
+@keyframes auroraFlow2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%      { transform: translate(-7%, 6%) scale(1.12); }
+  70%      { transform: translate(6%, -5%) scale(0.88); }
+}
+@keyframes auroraFlow3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25%      { transform: translate(4%, 7%) scale(1.1); }
+  75%      { transform: translate(-6%, -5%) scale(0.94); }
+}
+@keyframes auroraFlow4 {
+  0%, 100% { transform: translate(0, 0) scale(1.05); }
+  50%      { transform: translate(-5%, -7%) scale(0.92); }
+}
+@keyframes auroraBreathe1 {
+  0%, 100% { opacity: 0.42; }
+  50%      { opacity: 0.78; }
+}
+@keyframes auroraBreathe2 {
+  0%, 100% { opacity: 0.48; }
+  50%      { opacity: 0.8; }
+}
+@keyframes auroraBreathe3 {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.72; }
+}
+@keyframes auroraBreathe4 {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 0.76; }
 }
 @keyframes hudScan {
   0%   { transform: translate3d(0, -110%, 0); opacity: 0; }
