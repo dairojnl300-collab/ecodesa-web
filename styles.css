@@ -2621,6 +2621,7 @@ a.info-link:hover { transform: translateX(4px); }
   .risk-fire-layer,
   .risk-smoke,
   .forest-tree,
+  .forest-crown,
   .bio-leaf--fall,
   .serv-card[data-serv-theme="sst"] .sc-icon {
     animation: none !important;
@@ -3182,46 +3183,56 @@ html.js .nc-grid.is-grown .nc-card .nc-list li{
   50%      { transform: scale(1.03); }
 }
 @keyframes bulbGlowPulse {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-    filter: drop-shadow(0 0 10px rgba(255, 194, 75, 0.35));
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 40px rgba(255, 194, 75, 0.9)) drop-shadow(0 0 18px rgba(255, 224, 130, 0.55));
-  }
+  0%, 100% { opacity: 0.42; transform: scale(1); }
+  50%      { opacity: 0.92; transform: scale(1.06); }
+}
+@keyframes bulbGlowPulseMid {
+  0%, 100% { opacity: 0.28; transform: scale(0.96) translate(-4%, 2%); }
+  50%      { opacity: 0.72; transform: scale(1.08) translate(3%, -2%); }
+}
+@keyframes bulbGlowPulseSoft {
+  0%, 100% { opacity: 0.18; transform: scale(1.04) translate(5%, -3%); }
+  50%      { opacity: 0.48; transform: scale(1.14) translate(-2%, 4%); }
 }
 @keyframes bulbFilamentPulse {
-  0%, 100% { opacity: 0.55; }
-  50%      { opacity: 1; }
+  0%, 100% { opacity: 0.62; filter: brightness(0.92); }
+  50%      { opacity: 0.95; filter: brightness(1.08); }
 }
 @keyframes labSparkBurst {
-  0%   { transform: translate(-50%, -50%) rotate(var(--spark-angle)) translate3d(0, 0, 0) scale(1); opacity: 0.75; }
-  100% { transform: translate(-50%, -50%) rotate(var(--spark-angle)) translate3d(52px, 0, 0) scale(0.35); opacity: 0; }
+  0%   { transform: translate(-50%, -50%) rotate(var(--spark-angle)) translate3d(0, 0, 0) scale(1); opacity: 0; }
+  6%   { opacity: 0.72; }
+  28%  { transform: translate(-50%, -50%) rotate(var(--spark-angle)) translate3d(22px, 0, 0) scale(0.95); opacity: 0.65; }
+  100% { transform: translate(-50%, -50%) rotate(var(--spark-angle)) translate3d(54px, 0, 0) scale(0.15); opacity: 0; }
 }
 @keyframes riskFlameFlicker {
-  0%, 100% { transform: scaleY(1) skewX(-3deg); }
-  25%      { transform: scaleY(1.15) skewX(0deg); }
-  50%      { transform: scaleY(0.95) skewX(3deg); }
-  75%      { transform: scaleY(1.08) skewX(-1deg); }
+  0%, 100% { transform: scaleY(1) scaleX(1) skewX(-2deg); }
+  22%      { transform: scaleY(1.12) scaleX(0.96) skewX(1deg); }
+  48%      { transform: scaleY(0.94) scaleX(1.04) skewX(-1deg); }
+  74%      { transform: scaleY(1.06) scaleX(0.98) skewX(2deg); }
 }
 @keyframes riskFireWarm {
-  0%, 100% { opacity: 0.92; }
-  50%      { opacity: 0.45; }
+  0%, 100% { opacity: 0.82; }
+  50%      { opacity: 0.58; }
 }
 @keyframes riskFireHot {
-  0%, 100% { opacity: 0.5; }
-  50%      { opacity: 1; }
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 0.88; }
 }
 @keyframes riskSmokeRise {
-  0%   { transform: translateY(0); opacity: 0.4; }
-  100% { transform: translateY(-40px); opacity: 0; }
+  0%   { transform: translateY(0) scale(1); opacity: 0.32; }
+  100% { transform: translateY(-48px) scale(1.35); opacity: 0; }
 }
 @keyframes treeSway {
-  0%, 100% { transform: rotate(-3deg); }
-  50%      { transform: rotate(3deg); }
+  0%, 100% { transform: rotate(-1.2deg); }
+  50%      { transform: rotate(1.6deg); }
+}
+@keyframes branchSwayLower {
+  0%, 100% { transform: rotate(-2.8deg); }
+  50%      { transform: rotate(3.2deg); }
+}
+@keyframes branchSwayUpper {
+  0%, 100% { transform: rotate(-4.5deg); }
+  50%      { transform: rotate(5deg); }
 }
 @keyframes leafFall {
   0%   { transform: translate3d(0, -8%, 0) rotate(0deg); opacity: 0; }
@@ -3355,50 +3366,71 @@ html.js .nc-grid.is-grown .nc-card .nc-list li{
 .bio-leaf--3 { top: 62%; left: 34%; transform: rotate(18deg); animation-duration: 11s; animation-delay: -6s; }
 .bio-leaf--4 { top: 48%; left: 56%; width: 11px; height: 18px; animation-duration: 15s; animation-delay: -9s; }
 
-/* ── 01 Gestión Ambiental — bombillo con glow pulsante ── */
+/* ── 01 Gestión Ambiental — luz realista multicapa ── */
 .ambient-bulb {
   position: absolute;
   top: 14%;
   right: 10%;
   width: 72px;
   height: 108px;
-  color: rgba(223, 138, 0, 0.55);
+  color: rgba(180, 128, 48, 0.48);
 }
-[data-theme="dark"] .ambient-bulb { color: rgba(200, 255, 120, 0.65); }
+[data-theme="dark"] .ambient-bulb { color: rgba(175, 210, 130, 0.52); }
 .ambient-bulb-icon {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   height: 100%;
-  animation: bulbFilamentPulse 3.5s ease-in-out infinite;
-  will-change: opacity;
+  animation: bulbFilamentPulse 4.2s ease-in-out infinite;
+  will-change: opacity, filter;
 }
 .ambient-bulb-glow {
   position: absolute;
-  inset: -35%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 194, 75, 0.45) 0%, transparent 68%);
-  animation: bulbGlowPulse 3.5s ease-in-out infinite;
-  will-change: transform, opacity, filter;
   pointer-events: none;
+  will-change: transform, opacity;
 }
-[data-theme="dark"] .ambient-bulb-glow {
-  background: radial-gradient(circle, rgba(180, 255, 100, 0.4) 0%, rgba(0, 230, 118, 0.12) 42%, transparent 70%);
+.ambient-bulb-glow--core {
+  inset: -18%;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 42% 38% at 48% 46%, rgba(255, 252, 235, 0.72) 0%, rgba(255, 220, 140, 0.38) 28%, transparent 62%),
+    radial-gradient(ellipse 55% 50% at 52% 54%, rgba(255, 194, 75, 0.28) 0%, transparent 70%);
+  animation: bulbGlowPulse 4.2s ease-in-out infinite;
 }
-[data-theme="dark"] .ambient-bulb-glow {
-  animation-name: bulbGlowPulseDark;
+.ambient-bulb-glow--mid {
+  inset: -42%;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 48% 44% at 44% 48%, rgba(255, 210, 120, 0.22) 0%, rgba(255, 180, 80, 0.1) 40%, transparent 72%);
+  animation: bulbGlowPulseMid 5.1s ease-in-out infinite;
+  animation-delay: -1.2s;
+}
+.ambient-bulb-glow--soft {
+  inset: -68%;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 52% 46% at 56% 52%, rgba(255, 194, 75, 0.12) 0%, rgba(255, 160, 60, 0.05) 45%, transparent 78%);
+  animation: bulbGlowPulseSoft 6.4s ease-in-out infinite;
+  animation-delay: -2.4s;
+}
+[data-theme="dark"] .ambient-bulb-glow--core {
+  background:
+    radial-gradient(ellipse 42% 38% at 48% 46%, rgba(240, 255, 210, 0.55) 0%, rgba(160, 230, 100, 0.28) 30%, transparent 64%),
+    radial-gradient(ellipse 55% 50% at 52% 54%, rgba(0, 200, 100, 0.18) 0%, transparent 72%);
+}
+[data-theme="dark"] .ambient-bulb-glow--mid {
+  background: radial-gradient(ellipse 48% 44% at 44% 48%, rgba(120, 220, 90, 0.16) 0%, transparent 74%);
+}
+[data-theme="dark"] .ambient-bulb-glow--soft {
+  background: radial-gradient(ellipse 52% 46% at 56% 52%, rgba(0, 180, 90, 0.08) 0%, transparent 80%);
 }
 @keyframes bulbGlowPulseDark {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-    filter: drop-shadow(0 0 12px rgba(180, 255, 100, 0.35));
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.12);
-    filter: drop-shadow(0 0 42px rgba(200, 255, 120, 0.85)) drop-shadow(0 0 20px rgba(0, 230, 118, 0.45));
-  }
+  0%, 100% { opacity: 0.38; transform: scale(1); }
+  50%      { opacity: 0.85; transform: scale(1.06); }
+}
+[data-theme="dark"] .ambient-bulb-glow--core {
+  animation-name: bulbGlowPulseDark;
 }
 
 /* Hidrología — ondas concéntricas + flujo */
@@ -3468,7 +3500,7 @@ html.js .nc-grid.is-grown .nc-card .nc-list li{
   will-change: transform;
 }
 
-/* SST — chispas de reacción química (dispersión radial) */
+/* SST — partículas granulares con estela */
 .lab-spark-field {
   position: absolute;
   top: 58%;
@@ -3481,17 +3513,53 @@ html.js .nc-grid.is-grown .nc-card .nc-list li{
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 4px;
-  height: 4px;
+  width: 2px;
+  height: 2px;
   border-radius: 50%;
-  background: rgba(223, 138, 0, 0.75);
-  animation: labSparkBurst 3.8s ease-out infinite;
+  background: rgba(198, 128, 42, 0.62);
+  box-shadow: 0 0 3px rgba(198, 128, 42, 0.35);
+  animation: labSparkBurst var(--spark-dur, 4s) cubic-bezier(0.12, 0.82, 0.28, 1) infinite;
   animation-delay: var(--spark-delay, 0s);
   will-change: transform, opacity;
 }
-.lab-spark--green { background: rgba(12, 138, 95, 0.65); width: 3px; height: 3px; }
-[data-theme="dark"] .lab-spark { background: rgba(255, 194, 75, 0.8); }
-[data-theme="dark"] .lab-spark--green { background: rgba(0, 230, 118, 0.7); }
+.lab-spark::before,
+.lab-spark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  background: inherit;
+  pointer-events: none;
+}
+.lab-spark::before {
+  width: 1.5px;
+  height: 1.5px;
+  transform: translate(-160%, -50%);
+  opacity: 0.45;
+  filter: blur(0.6px);
+}
+.lab-spark::after {
+  width: 1px;
+  height: 1px;
+  transform: translate(-280%, -50%);
+  opacity: 0.22;
+  filter: blur(1.2px);
+}
+.lab-spark--green {
+  background: rgba(12, 120, 92, 0.55);
+  box-shadow: 0 0 2px rgba(12, 120, 92, 0.3);
+  width: 1.5px;
+  height: 1.5px;
+}
+[data-theme="dark"] .lab-spark {
+  background: rgba(210, 165, 72, 0.58);
+  box-shadow: 0 0 3px rgba(210, 165, 72, 0.28);
+}
+[data-theme="dark"] .lab-spark--green {
+  background: rgba(72, 190, 130, 0.52);
+  box-shadow: 0 0 2px rgba(72, 190, 130, 0.25);
+}
 
 /* Gestión del Riesgo — casa incendiándose (ilustración SVG) */
 .risk-house-fire {
@@ -3520,63 +3588,82 @@ html.js .nc-grid.is-grown .nc-card .nc-list li{
 .risk-fire-flame {
   transform-box: fill-box;
   transform-origin: center bottom;
-  animation: riskFlameFlicker 1.8s ease-in-out infinite;
+  animation: riskFlameFlicker 2.4s ease-in-out infinite;
   will-change: transform;
 }
-.risk-fire-flame--1 { animation-delay: 0s; }
-.risk-fire-flame--2 { animation-delay: 0.3s; }
-.risk-fire-flame--3 { animation-delay: 0.6s; }
-.risk-fire-flame--4 { animation-delay: 0.9s; }
+.risk-fire-flame--1 { animation-delay: 0s; animation-duration: 2.2s; }
+.risk-fire-flame--2 { animation-delay: 0.45s; animation-duration: 2.6s; }
+.risk-fire-flame--3 { animation-delay: 0.9s; animation-duration: 2.3s; }
+.risk-fire-flame--4 { animation-delay: 1.35s; animation-duration: 2.5s; }
 
 .risk-fire-layer--warm {
-  fill: #FFB74D;
-  opacity: 0.9;
-  animation: riskFireWarm 1.8s ease-in-out infinite;
+  fill: url(#riskFlameWarm);
+  opacity: 0.88;
+  animation: riskFireWarm 2.4s ease-in-out infinite;
   will-change: opacity;
 }
 .risk-fire-layer--hot {
-  fill: #E0523C;
-  opacity: 0.55;
-  animation: riskFireHot 1.8s ease-in-out infinite;
+  fill: url(#riskFlameHot);
+  opacity: 0.62;
+  animation: riskFireHot 2.4s ease-in-out infinite;
   will-change: opacity;
 }
 .risk-fire-flame--1 .risk-fire-layer--warm,
 .risk-fire-flame--1 .risk-fire-layer--hot { animation-delay: 0s; }
 .risk-fire-flame--2 .risk-fire-layer--warm,
-.risk-fire-flame--2 .risk-fire-layer--hot { animation-delay: 0.3s; }
+.risk-fire-flame--2 .risk-fire-layer--hot { animation-delay: 0.45s; }
 .risk-fire-flame--3 .risk-fire-layer--warm,
-.risk-fire-flame--3 .risk-fire-layer--hot { animation-delay: 0.6s; }
+.risk-fire-flame--3 .risk-fire-layer--hot { animation-delay: 0.9s; }
 .risk-fire-flame--4 .risk-fire-layer--warm,
-.risk-fire-flame--4 .risk-fire-layer--hot { animation-delay: 0.9s; }
-[data-theme="dark"] .risk-fire-layer--warm { fill: #FFCA28; }
-[data-theme="dark"] .risk-fire-layer--hot { fill: #FF7043; }
+.risk-fire-flame--4 .risk-fire-layer--hot { animation-delay: 1.35s; }
 
 .risk-smoke {
-  fill: rgba(100, 116, 125, 0.28);
-  animation: riskSmokeRise 4s ease-out infinite;
+  fill: rgba(90, 106, 115, 0.22);
+  animation: riskSmokeRise 5.5s ease-out infinite;
   will-change: transform, opacity;
 }
-.risk-smoke--1 { animation-delay: 0s; }
-.risk-smoke--2 { animation-delay: 1.3s; }
-.risk-smoke--3 { animation-delay: 2.6s; }
+.risk-smoke--1 { animation-delay: 0s; animation-duration: 5.2s; }
+.risk-smoke--2 { animation-delay: 1.6s; animation-duration: 6s; }
+.risk-smoke--3 { animation-delay: 3.2s; animation-duration: 5.8s; }
 [data-theme="dark"] .risk-smoke {
-  fill: rgba(176, 190, 197, 0.22);
+  fill: rgba(150, 165, 172, 0.18);
 }
 
-/* Forestal — árboles balanceándose + hojas cayendo */
+/* Forestal — árboles con balanceo orgánico por capas */
 .forest-tree {
   position: absolute;
   bottom: 8%;
-  color: rgba(15, 118, 110, 0.28);
+  color: rgba(15, 108, 100, 0.24);
   transform-origin: center bottom;
-  animation: treeSway 4.5s ease-in-out infinite;
+  animation: treeSway 5.8s ease-in-out infinite;
   will-change: transform;
   pointer-events: none;
 }
-[data-theme="dark"] .forest-tree { color: rgba(105, 240, 174, 0.32); }
-.forest-tree--1 { left: 10%; width: 64px; height: 96px; animation-duration: 4.2s; }
-.forest-tree--2 { left: 42%; width: 52px; height: 78px; animation-duration: 5s; animation-delay: -1.4s; opacity: 0.85; }
-.forest-tree--3 { right: 12%; width: 58px; height: 88px; animation-duration: 4.8s; animation-delay: -2.6s; opacity: 0.72; }
+[data-theme="dark"] .forest-tree { color: rgba(95, 200, 165, 0.28); }
+.forest-tree--1 { left: 10%; width: 64px; height: 96px; animation-duration: 5.4s; }
+.forest-tree--2 { left: 42%; width: 52px; height: 78px; animation-duration: 6.6s; animation-delay: -2.1s; opacity: 0.85; }
+.forest-tree--3 { right: 12%; width: 58px; height: 88px; animation-duration: 6.1s; animation-delay: -3.8s; opacity: 0.72; }
+.forest-trunk {
+  transform-origin: center bottom;
+}
+.forest-crown {
+  transform-box: fill-box;
+  will-change: transform;
+}
+.forest-crown--lower {
+  transform-origin: 40px 74px;
+  animation: branchSwayLower 4.8s ease-in-out infinite;
+}
+.forest-crown--upper {
+  transform-origin: 40px 34px;
+  animation: branchSwayUpper 5.6s ease-in-out infinite;
+}
+.forest-tree--1 .forest-crown--lower { animation-delay: 0s; }
+.forest-tree--1 .forest-crown--upper { animation-delay: -1.4s; animation-duration: 4.2s; }
+.forest-tree--2 .forest-crown--lower { animation-delay: -0.8s; animation-duration: 5.2s; }
+.forest-tree--2 .forest-crown--upper { animation-delay: -2.2s; animation-duration: 6.1s; }
+.forest-tree--3 .forest-crown--lower { animation-delay: -1.6s; animation-duration: 5.5s; }
+.forest-tree--3 .forest-crown--upper { animation-delay: -3s; animation-duration: 4.6s; }
 .bio-leaf--fall {
   animation-name: leafFall;
   animation-timing-function: ease-in-out;
