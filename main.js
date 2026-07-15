@@ -43,6 +43,25 @@
     ]
   };
 
+  const CLOSE_MESH_PALETTES = {
+    light: {
+      nodes: [[14, 134, 199], [77, 208, 225], [20, 160, 180]],
+      line:  [35, 190, 185],
+      glow:  [50, 220, 200]
+    },
+    dark: {
+      nodes: [[70, 210, 255], [0, 190, 230], [90, 255, 220]],
+      line:  [55, 235, 210],
+      glow:  [0, 230, 195]
+    }
+  };
+
+  const CLOSE_LAYERS = [
+    { z: -130, rBase: 3.2, rVar: 1.2, alpha: 0.34, glow: 10 },
+    { z: -35,  rBase: 5.5, rVar: 1.5, alpha: 0.42, glow: 18 },
+    { z: 95,   rBase: 7.5, rVar: 2.0, alpha: 0.5,  glow: 26 }
+  ];
+
   const CONSTELLATION_PALETTES = {
     light: {
       nodes: [[8, 190, 130], [0, 210, 185], [0, 175, 230]],
@@ -1573,6 +1592,203 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
+     CLOSE MESH — Contacto/Footer, red 3D con colapso suave
+  ═══════════════════════════════════════════════════════════ */
+  function initCloseMesh() {
+    const zone   = $("#closeMeshZone");
+    const canvas = $("#closeMeshCanvas");
+    const scene  = zone ? $(".close-mesh-scene", zone) : null;
+    if (!zone || !canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const COUNT         = 22;
+    const LINK_DIST     = 130;
+    const CYCLE_MS      = 18000;
+    const PERSPECTIVE   = 800;
+    const isStatic      = reduced;
+    const rgba          = (rgb, a) => `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${a})`;
+    const paletteFor    = () => CLOSE_MESH_PALETTES[getTheme()] || CLOSE_MESH_PALETTES.light;
+    const collapseFactor = (now) => {
+      const t = (now % CYCLE_MS) / CYCLE_MS;
+      return (1 - Math.cos(t * Math.PI * 2)) * 0.5;
+    };
+
+    let w = 0, h = 0, dpr = 1, nodes = [], visible = true, frameSkip = 0;
+
+    const resize = () => {
+      const rect = zone.getBoundingClientRect();
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      w = canvas.width  = Math.round(rect.width  * dpr);
+      h = canvas.height = Math.round(rect.height * dpr);
+      canvas.style.width  = rect.width  + "px";
+      canvas.style.height = rect.height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const spawn = () => {
+      const pal = paletteFor();
+      nodes = Array.from({ length: COUNT }, (_, i) => {
+        const layer = i % 3;
+        const L = CLOSE_LAYERS[layer];
+        const angle = Math.random() * Math.PI * 2;
+        const dist  = 0.14 + Math.random() * 0.4;
+        return {
+          layer,
+          bx: 0.5 + Math.cos(angle) * dist * 0.88,
+          by: 0.5 + Math.sin(angle) * dist * 0.82,
+          z: L.z + (Math.random() - 0.5) * 24,
+          rBase: L.rBase + Math.random() * L.rVar,
+          alpha: L.alpha,
+          glow: L.glow,
+          color: pal.nodes[layer % pal.nodes.length],
+          glowColor: pal.glow,
+          phase: Math.random() * Math.PI * 2
+        };
+      });
+    };
+
+    const project = (n, W, H, cx, cy, spread) => {
+      const wx = cx + (n.bx - 0.5) * spread * W * 0.94;
+      const wy = cy + (n.by - 0.5) * spread * H * 0.9;
+      const wz = n.z * (0.55 + spread * 0.45);
+      const scale = PERSPECTIVE / (PERSPECTIVE + wz);
+      const x = cx + (wx - cx) * scale;
+      const y = cy + (wy - cy) * scale;
+      const blurFactor = n.layer === 0 ? 1.3 : n.layer === 1 ? 1 : 0.72;
+      return {
+        x, y, scale,
+        r: n.rBase * scale,
+        alpha: n.alpha * (0.68 + scale * 0.32),
+        glow: n.glow * scale,
+        blurFactor
+      };
+    };
+
+    const nodePositions = (now, W, H) => {
+      const cx = W * 0.5;
+      const cy = H * 0.48;
+      const collapse = isStatic ? 0 : collapseFactor(now);
+      const spread = lerp(1, 0.36, collapse);
+      return nodes.map(n => {
+        const p = project(n, W, H, cx, cy, spread);
+        if (!isStatic) {
+          const t = now * 0.001;
+          p.x += Math.sin(t * 0.38 + n.phase) * 5 * p.scale;
+          p.y += Math.cos(t * 0.33 + n.phase) * 3.5 * p.scale;
+        }
+        return Object.assign({}, n, p);
+      });
+    };
+
+    const collectLinks = (pos) => {
+      const links = [];
+      for (let i = 0; i < pos.length; i++) {
+        for (let j = i + 1; j < pos.length; j++) {
+          const a = pos[i], b = pos[j];
+          if (Math.abs(a.layer - b.layer) > 1) continue;
+          const dist = Math.hypot(b.x - a.x, b.y - a.y);
+          if (dist > LINK_DIST) continue;
+          const proximity = 1 - dist / LINK_DIST;
+          links.push({ i, j, proximity, alpha: lerp(0.2, 0.35, proximity) });
+        }
+      }
+      return links;
+    };
+
+    const drawLinks = (pos, links, pal) => {
+      links.forEach(({ i, j, proximity, alpha }) => {
+        const a = pos[i], b = pos[j];
+        const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+        const [lr, lg, lb] = pal.line;
+        grad.addColorStop(0,   rgba([lr, lg, lb], alpha * 0.45));
+        grad.addColorStop(0.5, rgba([lr, lg, lb], alpha));
+        grad.addColorStop(1,   rgba([lr, lg, lb], alpha * 0.45));
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 0.55 + proximity * 0.75;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      });
+    };
+
+    const drawNodes = (pos) => {
+      pos.slice().sort((a, b) => a.layer - b.layer).forEach(p => {
+        const glow = p.glow * p.blurFactor;
+        ctx.globalAlpha = p.alpha;
+        ctx.shadowBlur = glow;
+        ctx.shadowColor = rgba(p.glowColor, 0.88);
+        ctx.fillStyle = rgba(p.color, 1);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = p.alpha * 0.88;
+        ctx.shadowBlur = glow * 0.42;
+        ctx.fillStyle = rgba([255, 255, 255], p.layer === 2 ? 0.52 : 0.28);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * 0.34, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
+      });
+    };
+
+    const syncScene = (now) => {
+      if (!scene || isStatic) return;
+      const collapse = collapseFactor(now);
+      const scale = lerp(1, 0.93, collapse);
+      const tz = lerp(0, -32, collapse);
+      scene.style.transform = `scale(${scale}) translateZ(${tz}px)`;
+    };
+
+    const syncPause = () => {
+      zone.classList.toggle("close-mesh--paused", document.hidden || !visible);
+    };
+
+    const draw = (now = 0) => {
+      const W = w / dpr, H = h / dpr;
+      const pal = paletteFor();
+      const pos = nodePositions(now, W, H);
+      ctx.clearRect(0, 0, W, H);
+      drawLinks(pos, collectLinks(pos), pal);
+      drawNodes(pos);
+      syncScene(now);
+    };
+
+    resize();
+    spawn();
+    draw(0);
+
+    addEventListener("resize", () => { resize(); spawn(); draw(performance.now()); }, { passive: true });
+    document.addEventListener("visibilitychange", syncPause);
+    window.addEventListener("ecodesa-theme-change", () => {
+      const pal = paletteFor();
+      nodes.forEach(n => {
+        n.color = pal.nodes[n.layer % pal.nodes.length];
+        n.glowColor = pal.glow;
+      });
+      draw(isStatic ? 0 : performance.now());
+    });
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => {
+        visible = e.isIntersecting;
+        syncPause();
+      }, { threshold: 0 }).observe(zone);
+    }
+
+    if (isStatic) return;
+
+    const frame = (now) => {
+      if (!document.hidden && visible) draw(now);
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
      TIENDA HUD — escaneo digital SaniCheck
   ═══════════════════════════════════════════════════════════ */
   function initTiendaHud() {
@@ -1692,6 +1908,7 @@
     safe(initShader,           "shader");
     safe(initParticles,        "particles");
     safe(initConstellation,    "constellation");
+    safe(initCloseMesh,        "closeMesh");
     safe(initTiendaHud,        "tiendaHud");
     safe(initReveals,          "reveals");
     safe(initServiceCardGrow,  "serviceGrow");

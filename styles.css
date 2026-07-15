@@ -2163,62 +2163,61 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
 }
 
 /* =============================================================
-   14. CONTACTO + CIERRE AURORA
+   14. CONTACTO + CIERRE 3D
    ============================================================= */
 .close-zone {
   position: relative;
   isolation: isolate;
   overflow: clip;
-  background: linear-gradient(180deg, var(--wash-a) 0%, #0a3024 58%, #07271D 100%);
+  background: linear-gradient(180deg, var(--wash-a) 0%, #0a3024 52%, #07271D 100%);
 }
-.close-aurora {
+.close-mesh {
   position: absolute;
-  inset: -10%;
+  inset: 0;
   z-index: 0;
-  overflow: hidden;
   pointer-events: none;
+  overflow: hidden;
 }
-.close-aurora-blob {
-  mix-blend-mode: screen;
-  filter: blur(80px);
+.close-mesh-scene {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  height: 112%;
+  perspective: 800px;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
-.close-aurora-blob--1 {
-  width: 54%;
-  height: 50%;
-  top: 12%;
-  left: 8%;
-  background: radial-gradient(circle at 50% 45%, rgba(14, 134, 199, 0.48) 0%, rgba(77, 208, 225, 0.28) 50%, transparent 75%);
-  animation: auroraFlow3 22s ease-in-out infinite, closeAuroraBreathe1 18s ease-in-out infinite;
+.close-mesh-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(0);
 }
-.close-aurora-blob--2 {
-  width: 50%;
-  height: 46%;
-  bottom: 6%;
-  right: -2%;
-  filter: blur(90px);
-  background: radial-gradient(circle at 48% 52%, rgba(11, 91, 102, 0.42) 0%, rgba(14, 134, 199, 0.26) 46%, transparent 72%);
-  animation: auroraFlow4 24s ease-in-out infinite, closeAuroraBreathe2 20s ease-in-out infinite;
-  animation-delay: 0s, -3s;
+.close-mesh-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(247, 250, 248, 0.78) 0%, rgba(247, 250, 248, 0.18) 26%, transparent 48%),
+    linear-gradient(180deg, transparent 38%, rgba(7, 39, 29, 0.28) 100%);
 }
-[data-theme="dark"] .close-aurora-blob--1 {
-  background: radial-gradient(circle at 50% 45%, rgba(0, 150, 199, 0.4) 0%, rgba(77, 208, 225, 0.22) 50%, transparent 75%);
-}
-[data-theme="dark"] .close-aurora-blob--2 {
-  background: radial-gradient(circle at 48% 52%, rgba(0, 120, 180, 0.36) 0%, rgba(77, 208, 225, 0.18) 46%, transparent 72%);
-}
-[data-theme="dark"] .close-aurora-blob {
-  mix-blend-mode: lighten;
+[data-theme="dark"] .close-mesh-veil {
+  background:
+    linear-gradient(180deg, rgba(4, 18, 9, 0.82) 0%, rgba(4, 18, 9, 0.22) 28%, transparent 50%),
+    linear-gradient(180deg, transparent 40%, rgba(2, 12, 7, 0.35) 100%);
 }
 .close-zone .contacto,
 .close-zone .footer {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 .close-zone .container {
   position: relative;
   z-index: 1;
 }
-.close-aurora--paused .close-aurora-blob {
+.close-mesh--paused .close-mesh-scene {
   animation-play-state: paused;
 }
 
@@ -2608,7 +2607,7 @@ a.info-link:hover { transform: translateX(4px); }
   .bio-leaf,
   .aurora-mesh,
   .hero-aurora-blob,
-  .close-aurora-blob,
+  .close-mesh-scene,
   .hud-scan,
   .hydro-ripple,
   .hydro-flow,
@@ -2633,9 +2632,9 @@ a.info-link:hover { transform: translateX(4px); }
     opacity: 0.55;
   }
 
-  .close-aurora-blob {
+  .close-mesh-scene {
     will-change: auto;
-    opacity: 0.2;
+    transform: none !important;
   }
 
   .tienda-scan { display: none !important; }
@@ -3147,14 +3146,6 @@ html.js .nc-grid.is-grown .nc-card .nc-list li{
 @keyframes auroraBreathe4 {
   0%, 100% { opacity: 0.5; }
   50%      { opacity: 0.76; }
-}
-@keyframes closeAuroraBreathe1 {
-  0%, 100% { opacity: 0.15; }
-  50%      { opacity: 0.25; }
-}
-@keyframes closeAuroraBreathe2 {
-  0%, 100% { opacity: 0.17; }
-  50%      { opacity: 0.23; }
 }
 @keyframes hudScan {
   0%   { transform: translate3d(0, -110%, 0); opacity: 0; }
