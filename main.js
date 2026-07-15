@@ -45,9 +45,9 @@
 
   const CLOSE_MESH_PALETTES = {
     light: {
-      nodes: [[14, 134, 199], [77, 208, 225], [20, 160, 180]],
-      line:  [35, 190, 185],
-      glow:  [50, 220, 200]
+      nodes: [[12, 138, 95], [10, 107, 86], [11, 91, 102]],
+      line:  [12, 120, 108],
+      glow:  [12, 138, 95]
     },
     dark: {
       nodes: [[70, 210, 255], [0, 190, 230], [90, 255, 220]],
@@ -1627,6 +1627,10 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
+    const layerAlpha = (L) => getTheme() === "light"
+      ? Math.min(L.alpha + 0.14, 0.62)
+      : L.alpha;
+
     const spawn = () => {
       const pal = paletteFor();
       nodes = Array.from({ length: COUNT }, (_, i) => {
@@ -1640,7 +1644,7 @@
           by: 0.5 + Math.sin(angle) * dist * 0.82,
           z: L.z + (Math.random() - 0.5) * 24,
           rBase: L.rBase + Math.random() * L.rVar,
-          alpha: L.alpha,
+          alpha: layerAlpha(L),
           glow: L.glow,
           color: pal.nodes[layer % pal.nodes.length],
           glowColor: pal.glow,
@@ -1691,7 +1695,7 @@
           const dist = Math.hypot(b.x - a.x, b.y - a.y);
           if (dist > LINK_DIST) continue;
           const proximity = 1 - dist / LINK_DIST;
-          links.push({ i, j, proximity, alpha: lerp(0.2, 0.35, proximity) });
+          links.push({ i, j, proximity, alpha: lerp(0.2, 0.35, proximity) * (getTheme() === "light" ? 1.15 : 1) });
         }
       }
       return links;
@@ -1768,6 +1772,7 @@
       nodes.forEach(n => {
         n.color = pal.nodes[n.layer % pal.nodes.length];
         n.glowColor = pal.glow;
+        n.alpha = layerAlpha(CLOSE_LAYERS[n.layer]);
       });
       draw(isStatic ? 0 : performance.now());
     });
