@@ -433,6 +433,34 @@ html.js [data-reveal].in {
   background-color: var(--btn-hover-bg-mini);
 }
 
+/* Tienda — botones con acento de tarjeta (--fc) */
+.prod .btn-mini {
+  --prod-btn-accent: var(--fc);
+  --prod-btn-surface: var(--prod-btn-accent);
+  --prod-btn-wave: color-mix(in srgb, var(--prod-btn-accent) 52%, #000);
+  --prod-btn-fg: #fff;
+  background: var(--prod-btn-surface);
+  color: var(--prod-btn-fg);
+  box-shadow: 0 8px 20px -12px color-mix(in srgb, var(--prod-btn-accent) 58%, transparent);
+}
+
+.prod .btn-mini::before {
+  background-color: var(--prod-btn-wave);
+}
+
+/* WCAG AA: fondo mínimamente más oscuro donde el acento no alcanza 4.5:1 con blanco */
+.prod[style*="#0C8A5F"] .btn-mini { --prod-btn-surface: color-mix(in srgb, var(--fc) 93%, #000); }
+.prod[style*="#0E86C8"] .btn-mini { --prod-btn-surface: color-mix(in srgb, var(--fc) 86%, #000); }
+.prod[style*="#E0523C"] .btn-mini { --prod-btn-surface: color-mix(in srgb, var(--fc) 82%, #000); }
+.prod[style*="#7C5CD6"] .btn-mini { --prod-btn-surface: color-mix(in srgb, var(--fc) 78%, #000); }
+
+/* Acentos claros: texto oscuro para contraste ≥ 4.5:1 */
+.prod[style*="#B8860B"] .btn-mini {
+  --prod-btn-surface: var(--prod-btn-accent);
+  --prod-btn-fg: #1a1408;
+  --prod-btn-wave: color-mix(in srgb, var(--prod-btn-accent) 42%, #000);
+}
+
 .btn-hue {
   background: var(--hue, var(--emerald));
   color: var(--on-accent);
@@ -518,6 +546,14 @@ html.js [data-reveal].in {
   .btn-mini:hover .btn-text,
   .btn-mini:focus-visible .btn-text {
     color: var(--on-accent);
+    transition: color 0.25s ease 0.28s;
+  }
+
+  .prod .btn-mini:hover,
+  .prod .btn-mini:focus-visible,
+  .prod .btn-mini:hover .btn-text,
+  .prod .btn-mini:focus-visible .btn-text {
+    color: var(--prod-btn-fg, #fff);
     transition: color 0.25s ease 0.28s;
   }
 
