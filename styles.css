@@ -80,6 +80,9 @@
   --btn-paint-duration: 0.38s;
   --btn-paint-exit:     0.26s;
   --btn-paint-ease:     cubic-bezier(0.4, 0, 0.2, 1);
+  --btn-wave-width:     118%;
+  --btn-wave-height:    220%;
+  --btn-wave-arc-y:     100%;
   --select-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230A2E23' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
 
   --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
@@ -400,20 +403,34 @@ html.js [data-reveal].in {
 .btn-full { width: 100%; border-radius: var(--r-md); }
 .magnetic { will-change: transform; }
 
-/* Cortina WhatsApp — ::before sube desde abajo (translateY) */
+/* Ola WhatsApp — domo arqueado que sube desde abajo */
 .btn::before,
 .nc-cta::before,
 .theme-toggle::before {
   content: "";
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
+  left: 50%;
+  bottom: 0;
+  width: var(--btn-wave-width);
+  height: var(--btn-wave-height);
+  border-radius: 50% 50% 0 0 / 50% var(--btn-wave-arc-y) 0 0;
   background-color: var(--btn-hover-bg);
-  transform: translateY(100%);
+  transform: translateX(-50%) translateY(100%);
   transition: transform var(--btn-paint-exit) var(--btn-paint-ease);
   z-index: 0;
   pointer-events: none;
   will-change: transform;
+}
+
+.btn-full::before {
+  --btn-wave-width: 108%;
+  --btn-wave-arc-y: 72%;
+}
+
+.theme-toggle::before {
+  --btn-wave-width: 132%;
+  --btn-wave-height: 132%;
+  border-radius: 50%;
 }
 
 /* Hover / focus teclado — solo puntero fino (desktop) */
@@ -424,7 +441,7 @@ html.js [data-reveal].in {
   .nc-cta:focus-visible::before,
   .theme-toggle:hover::before,
   .theme-toggle:focus-visible::before {
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
     transition: transform var(--btn-paint-duration) var(--btn-paint-ease);
   }
 
@@ -483,7 +500,7 @@ html.js [data-reveal].in {
 
   .float-wa:hover::after,
   .float-wa:focus-visible::after {
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
     transition: transform var(--btn-paint-duration) var(--btn-paint-ease);
   }
 
@@ -2749,10 +2766,13 @@ a.info-link:hover { transform: translateX(4px); }
 .float-wa::after {
   content: "";
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
+  left: 50%;
+  bottom: 0;
+  width: 132%;
+  height: 132%;
+  border-radius: 50%;
   background-color: var(--btn-hover-bg);
-  transform: translateY(100%);
+  transform: translateX(-50%) translateY(100%);
   transition: transform var(--btn-paint-exit) var(--btn-paint-ease);
   z-index: 1;
   pointer-events: none;
