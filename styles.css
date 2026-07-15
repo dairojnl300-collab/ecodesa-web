@@ -76,7 +76,7 @@
   --step-ping:      rgba(12, 138, 95, 0.35);
   --kp-pulse:       rgba(12, 138, 95, 0.4);
   --btn-hover-bg:       #0a0a0a;
-  --btn-hover-bg-mini:  var(--emerald);
+  --btn-hover-bg-mini:  #0a0a0a;
   --btn-hover-fg:       #f5f5f5;
   --btn-paint-duration: 1.35s;
   --btn-paint-exit:     0.82s;
@@ -429,23 +429,14 @@ html.js [data-reveal].in {
   color: var(--on-inverse);
 }
 
-.btn-mini::before {
-  background-color: var(--btn-hover-bg-mini);
-}
-
-/* Tienda — botones con acento de tarjeta (--fc) */
+/* Tienda — botones con acento de tarjeta (--fc); ola negra universal vía .btn::before */
 .prod .btn-mini {
   --prod-btn-accent: var(--fc);
   --prod-btn-surface: var(--prod-btn-accent);
-  --prod-btn-wave: color-mix(in srgb, var(--prod-btn-accent) 52%, #000);
   --prod-btn-fg: #fff;
   background: var(--prod-btn-surface);
   color: var(--prod-btn-fg);
   box-shadow: 0 8px 20px -12px color-mix(in srgb, var(--prod-btn-accent) 58%, transparent);
-}
-
-.prod .btn-mini::before {
-  background-color: var(--prod-btn-wave);
 }
 
 /* WCAG AA: fondo mínimamente más oscuro donde el acento no alcanza 4.5:1 con blanco */
@@ -458,7 +449,6 @@ html.js [data-reveal].in {
 .prod[style*="#B8860B"] .btn-mini {
   --prod-btn-surface: var(--prod-btn-accent);
   --prod-btn-fg: #1a1408;
-  --prod-btn-wave: color-mix(in srgb, var(--prod-btn-accent) 42%, #000);
 }
 
 .btn-hue {
@@ -470,7 +460,7 @@ html.js [data-reveal].in {
 .btn-full { width: 100%; border-radius: var(--r-md); }
 .magnetic { will-change: transform; }
 
-/* Ola negra — elipse ancha que emerge desde el centro de la base */
+/* Ola negra universal — elipse ancha que emerge desde el centro de la base */
 .btn::before,
 .nc-cta::before,
 .theme-toggle::before {
@@ -484,6 +474,13 @@ html.js [data-reveal].in {
   z-index: 0;
   pointer-events: none;
   will-change: clip-path;
+}
+
+/* Ola perceptible sobre fondos ya oscuros (modo oscuro / btn-mini oscuro) */
+[data-theme="dark"] .btn::before,
+[data-theme="dark"] .nc-cta::before,
+[data-theme="dark"] .theme-toggle::before {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .btn-full::before {
@@ -539,21 +536,10 @@ html.js [data-reveal].in {
   }
 
   .btn-mini:hover,
-  .btn-mini:focus-visible {
-    color: var(--on-accent);
-  }
-
+  .btn-mini:focus-visible,
   .btn-mini:hover .btn-text,
   .btn-mini:focus-visible .btn-text {
-    color: var(--on-accent);
-    transition: color 0.25s ease 0.28s;
-  }
-
-  .prod .btn-mini:hover,
-  .prod .btn-mini:focus-visible,
-  .prod .btn-mini:hover .btn-text,
-  .prod .btn-mini:focus-visible .btn-text {
-    color: var(--prod-btn-fg, #fff);
+    color: var(--btn-hover-fg);
     transition: color 0.25s ease 0.28s;
   }
 
@@ -562,6 +548,8 @@ html.js [data-reveal].in {
   .nc-cta:hover .btn-chevron,
   .nc-cta:focus-visible .btn-chevron {
     opacity: 1;
+    color: inherit;
+    border-color: currentColor;
   }
 
   .theme-toggle:hover,
