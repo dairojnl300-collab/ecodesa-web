@@ -43,10 +43,26 @@
     ]
   };
 
-  const CONSTELLATION_COLORS = {
-    light: { node: [12, 138, 95], line: [12, 138, 95], accent: [53, 201, 172] },
-    dark:  { node: [0, 230, 118], line: [105, 240, 174], accent: [0, 230, 118] }
+  const CONSTELLATION_PALETTES = {
+    light: {
+      nodes: [[12, 138, 95], [53, 201, 172], [14, 134, 199]],
+      line:  [12, 138, 95],
+      pulse: [53, 201, 172],
+      glow:  [53, 201, 172]
+    },
+    dark: {
+      nodes: [[0, 230, 118], [105, 240, 174], [77, 208, 225]],
+      line:  [105, 240, 174],
+      pulse: [0, 230, 118],
+      glow:  [77, 208, 225]
+    }
   };
+
+  const CONST_LAYER = [
+    { speed: 0.42, rBase: 1.1, rVar: 0.7, alpha: 0.26, glow: 5 },
+    { speed: 0.72, rBase: 2.1, rVar: 1.0, alpha: 0.5,  glow: 10 },
+    { speed: 1.12, rBase: 3.0, rVar: 1.3, alpha: 0.76, glow: 16 }
+  ];
 
   function initThemeToggle() {
     const btn = $("#themeToggle");
@@ -441,7 +457,7 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
-     CONSTELACIÓN — Nosotros, desktop, red de expertise
+     CONSTELACIÓN — Nosotros, dimensional layering + red viva
   ═══════════════════════════════════════════════════════════ */
   function initConstellation() {
     if (!matchMedia("(min-width: 768px)").matches) return;
@@ -453,13 +469,17 @@
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const NODE_COUNT      = 18;
-    const LINK_DIST       = 150;
-    const LINK_MAX_ALPHA  = 0.3;
-    const isStatic        = reduced;
-    const paletteFor      = () => CONSTELLATION_COLORS[getTheme()] || CONSTELLATION_COLORS.light;
+    const NODE_COUNT     = 28;
+    const LINK_DIST      = 210;
+    const LINK_MAX_ALPHA = 0.5;
+    const MAGNET_RADIUS  = 100;
+    const isStatic       = reduced;
+    const hasMagnet      = finePtr && !isStatic;
+    const rgba           = (rgb, a) => `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${a})`;
+    const paletteFor     = () => CONSTELLATION_PALETTES[getTheme()] || CONSTELLATION_PALETTES.light;
 
-    let w = 0, h = 0, dpr = 1, nodes = [], visible = true, frameSkip = 0;
+    let w = 0, h = 0, dpr = 1, nodes = [], pulses = [], visible = true;
+    let mx = -9999, my = -9999, nextPulseAt = 0, frameSkip = 0;
 
     const resize = () => {
       const rect = section.getBoundingClientRect();
@@ -473,61 +493,186 @@
 
     const spawn = () => {
       const W = w / dpr, H = h / dpr;
-      nodes = Array.from({ length: NODE_COUNT }, () => ({
-        x: Math.random() * W * 0.88 + W * 0.06,
-        y: Math.random() * H * 0.88 + H * 0.06,
-        vx: isStatic ? 0 : (Math.random() - 0.5) * 0.1,
-        vy: isStatic ? 0 : (Math.random() - 0.5) * 0.1,
-        baseR: 2 + Math.random() * 1.2,
-        phase: Math.random() * Math.PI * 2,
-        pulseHz: 0.002 + Math.random() * 0.0012
-      }));
+      const pal = paletteFor();
+      nodes = Array.from({ length: NODE_COUNT }, (_, i) => {
+        const layer = i % 3;
+        const L = CONST_LAYER[layer];
+        const color = pal.nodes[i % pal.nodes.length];
+        return {
+          layer,
+          ax: Math.random() * W * 0.86 + W * 0.07,
+          ay: Math.random() * H * 0.86 + H * 0.07,
+          x: 0, y: 0,
+          color,
+          glowColor: pal.glow,
+          seed:  Math.random() * Math.PI * 2,
+          seed2: Math.random() * Math.PI * 2,
+          seed3: Math.random() * Math.PI * 2,
+          f1: 0.28 + Math.random() * 0.22,
+          f2: 0.42 + Math.random() * 0.28,
+          f3: 0.35 + Math.random() * 0.2,
+          f4: 0.55 + Math.random() * 0.25,
+          a1: 14 + Math.random() * 22,
+          a2: 8  + Math.random() * 14,
+          rBase: L.rBase + Math.random() * L.rVar,
+          alpha: L.alpha,
+          glow: L.glow,
+          speed: L.speed,
+          phase: Math.random() * Math.PI * 2,
+          pulseHz: 0.0018 + Math.random() * 0.001
+        };
+      });
+      pulses = [];
+      nextPulseAt = performance.now() + 3200 + Math.random() * 1800;
     };
 
-    const drawLinks = (pal) => {
+    const nodePos = (n, now, W, H) => {
+      if (isStatic) {
+        n.x = n.ax;
+        n.y = n.ay;
+        return;
+      }
+      const t = now * 0.001;
+      const s = n.speed;
+      n.x = n.ax
+        + Math.sin(t * n.f1 + n.seed)  * n.a1 * s
+        + Math.sin(t * n.f2 + n.seed2) * n.a2 * s * 0.65;
+      n.y = n.ay
+        + Math.cos(t * n.f3 + n.seed3) * n.a1 * s * 0.82
+        + Math.sin(t * n.f4 + n.seed)  * n.a2 * s * 0.55;
+      n.x = clamp(n.x, 12, W - 12);
+      n.y = clamp(n.y, 12, H - 12);
+
+      if (hasMagnet) {
+        const dx = mx - n.x, dy = my - n.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < MAGNET_RADIUS && dist > 1) {
+          const pull = (1 - dist / MAGNET_RADIUS) * 0.42 * n.speed;
+          n.x += (dx / dist) * pull;
+          n.y += (dy / dist) * pull;
+        }
+      }
+    };
+
+    const collectLinks = () => {
+      const links = [];
       const maxSq = LINK_DIST * LINK_DIST;
       for (let i = 0; i < nodes.length; i++) {
         const a = nodes[i];
         for (let j = i + 1; j < nodes.length; j++) {
           const b = nodes[j];
-          const dx = b.x - a.x;
-          const dy = b.y - a.y;
+          const dx = b.x - a.x, dy = b.y - a.y;
           if (Math.abs(dx) > LINK_DIST || Math.abs(dy) > LINK_DIST) continue;
           const distSq = dx * dx + dy * dy;
           if (distSq > maxSq) continue;
-          const dist = Math.sqrt(distSq);
-          const alpha = LINK_MAX_ALPHA * (1 - dist / LINK_DIST);
-          ctx.globalAlpha = alpha;
-          ctx.strokeStyle = `rgba(${pal.line[0]}, ${pal.line[1]}, ${pal.line[2]}, 1)`;
-          ctx.lineWidth = 0.75;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
+          links.push({ i, j, dist: Math.sqrt(distSq) });
         }
       }
+      return links;
     };
 
-    const drawNodes = (pal, now) => {
-      nodes.forEach(n => {
-        let r = n.baseR;
-        let alpha = 0.48;
+    const drawLinks = (links, pal) => {
+      links.forEach(({ i, j, dist }) => {
+        const a = nodes[i], b = nodes[j];
+        const proximity = 1 - dist / LINK_DIST;
+        const alpha = LINK_MAX_ALPHA * proximity;
+        const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+        const [lr, lg, lb] = pal.line;
+        grad.addColorStop(0,   `rgba(${lr},${lg},${lb},0)`);
+        grad.addColorStop(0.5, `rgba(${lr},${lg},${lb},${alpha})`);
+        grad.addColorStop(1,   `rgba(${lr},${lg},${lb},0)`);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 0.5 + proximity * 1.0;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      });
+    };
+
+    const drawNodes = (now) => {
+      const sorted = nodes.slice().sort((a, b) => a.layer - b.layer);
+      sorted.forEach(n => {
+        let r = n.rBase;
+        let alpha = n.alpha;
+        let glow = n.glow;
         if (!isStatic) {
-          r = clamp(n.baseR + Math.sin(now * n.pulseHz + n.phase) * 1, 2, 4);
-          alpha = 0.42 + Math.sin(now * n.pulseHz * 1.15 + n.phase) * 0.14;
+          r = clamp(n.rBase + Math.sin(now * n.pulseHz + n.phase) * (n.layer + 0.6), 1.5, 5.5);
+          alpha = n.alpha + Math.sin(now * n.pulseHz * 1.1 + n.phase) * 0.12;
+        }
+        if (hasMagnet) {
+          const dist = Math.hypot(mx - n.x, my - n.y);
+          if (dist < MAGNET_RADIUS) {
+            const boost = (1 - dist / MAGNET_RADIUS) * 0.35;
+            alpha = clamp(alpha + boost, 0, 1);
+            glow += boost * 12;
+            r += boost * 1.2;
+          }
         }
         ctx.globalAlpha = alpha;
-        ctx.fillStyle = `rgba(${pal.accent[0]}, ${pal.accent[1]}, ${pal.accent[2]}, 1)`;
+        if (n.layer >= 1 || glow > 8) {
+          ctx.shadowBlur = glow;
+          ctx.shadowColor = rgba(n.glowColor, 0.55);
+        }
+        ctx.fillStyle = rgba(n.color, 1);
         ctx.beginPath();
         ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
         ctx.fill();
-        ctx.globalAlpha = alpha * 0.65;
-        ctx.fillStyle = `rgba(${pal.node[0]}, ${pal.node[1]}, ${pal.node[2]}, 1)`;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, r * 0.55, 0, Math.PI * 2);
-        ctx.fill();
+        if (n.layer === 2) {
+          ctx.globalAlpha = alpha * 0.85;
+          ctx.shadowBlur = glow * 0.45;
+          ctx.fillStyle = rgba([255, 255, 255], 0.35);
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, r * 0.38, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
       });
-      ctx.globalAlpha = 1;
+    };
+
+    const spawnPulse = (links) => {
+      if (!links.length || pulses.length >= 2) return;
+      const link = links[Math.floor(Math.random() * links.length)];
+      const flip = Math.random() > 0.5;
+      pulses.push({
+        from: flip ? link.i : link.j,
+        to:   flip ? link.j : link.i,
+        t: 0,
+        speed: 0.006 + Math.random() * 0.005,
+        trail: []
+      });
+    };
+
+    const drawPulses = (pal, now) => {
+      if (isStatic) return;
+      pulses = pulses.filter(p => p.t <= 1.05);
+      pulses.forEach(p => {
+        const a = nodes[p.from], b = nodes[p.to];
+        if (!a || !b) return;
+        p.t += p.speed;
+        const px = lerp(a.x, b.x, p.t);
+        const py = lerp(a.y, b.y, p.t);
+        p.trail.push({ x: px, y: py, life: 1 });
+        if (p.trail.length > 10) p.trail.shift();
+        p.trail.forEach((pt, idx) => {
+          const fade = (idx + 1) / p.trail.length;
+          ctx.globalAlpha = fade * 0.35;
+          ctx.fillStyle = rgba(pal.pulse, fade * 0.5);
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, 1.2 + fade, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        ctx.globalAlpha = 0.9;
+        ctx.shadowBlur = 14;
+        ctx.shadowColor = rgba(pal.pulse, 0.8);
+        ctx.fillStyle = rgba(pal.pulse, 1);
+        ctx.beginPath();
+        ctx.arc(px, py, 2.8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
+      });
     };
 
     const draw = (now = 0) => {
@@ -535,17 +680,16 @@
       const pal = paletteFor();
       ctx.clearRect(0, 0, W, H);
 
-      if (!isStatic) {
-        nodes.forEach(n => {
-          n.x += n.vx;
-          n.y += n.vy;
-          if (n.x < 10 || n.x > W - 10) { n.vx *= -1; n.x = clamp(n.x, 10, W - 10); }
-          if (n.y < 10 || n.y > H - 10) { n.vy *= -1; n.y = clamp(n.y, 10, H - 10); }
-        });
-      }
+      nodes.forEach(n => nodePos(n, now, W, H));
+      const links = collectLinks();
+      drawLinks(links, pal);
+      drawNodes(now);
+      drawPulses(pal, now);
 
-      drawLinks(pal);
-      drawNodes(pal, now);
+      if (!isStatic && now >= nextPulseAt) {
+        spawnPulse(links);
+        nextPulseAt = now + 3000 + Math.random() * 2000;
+      }
     };
 
     resize();
@@ -553,7 +697,23 @@
     draw(0);
 
     addEventListener("resize", () => { resize(); spawn(); draw(performance.now()); }, { passive: true });
-    window.addEventListener("ecodesa-theme-change", () => draw(isStatic ? 0 : performance.now()));
+    window.addEventListener("ecodesa-theme-change", () => {
+      const pal = paletteFor();
+      nodes.forEach((n, i) => {
+        n.color = pal.nodes[i % pal.nodes.length];
+        n.glowColor = pal.glow;
+      });
+      draw(isStatic ? 0 : performance.now());
+    });
+
+    if (hasMagnet) {
+      section.addEventListener("mousemove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mx = e.clientX - rect.left;
+        my = e.clientY - rect.top;
+      }, { passive: true });
+      section.addEventListener("mouseleave", () => { mx = -9999; my = -9999; });
+    }
 
     if (isStatic) return;
 
