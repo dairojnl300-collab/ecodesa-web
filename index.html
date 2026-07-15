@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
 
-  <link rel="stylesheet" href="styles.css?v=20260714s">
+  <link rel="stylesheet" href="styles.css?v=20260714t">
 </head>
 <body>
 
@@ -968,7 +968,13 @@
       </div>
     </section>
 
-    <!-- ═══════════ 06 · CONTACTO ═══════════ -->
+    <!-- ═══════════ 06 · CONTACTO + CIERRE AURORA ═══════════ -->
+    <div class="close-zone" id="closeAuroraZone">
+      <div class="close-aurora" aria-hidden="true">
+        <span class="hero-aurora-blob close-aurora-blob close-aurora-blob--1"></span>
+        <span class="hero-aurora-blob close-aurora-blob close-aurora-blob--2"></span>
+      </div>
+
     <section class="sec contacto band" id="contacto" aria-labelledby="contacto-title">
       <div class="container">
         <div class="sec-head">
@@ -1048,9 +1054,7 @@
       </div>
     </section>
 
-  </main>
-
-  <!-- ═══════════ FOOTER ═══════════ -->
+  <!-- ═══════════ FOOTER (dentro del cierre aurora) ═══════════ -->
   <footer class="footer" aria-label="Pie de página ECODESA">
     <div class="foot-marquee" aria-hidden="true">
       <div class="foot-marquee-track">
@@ -1117,6 +1121,10 @@
     </div>
   </footer>
 
+    </div><!-- /.close-zone -->
+
+  </main>
+
   <!-- WhatsApp flotante -->
   <a class="float-wa" href="https://wa.me/573013653273" target="_blank" rel="noopener noreferrer" aria-label="Contactar ECODESA por WhatsApp">
     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1129,6 +1137,17 @@
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/motion@12/dist/motion.js"></script>
+  <script>
+    (function () {
+      var zone = document.getElementById("closeAuroraZone");
+      if (!zone) return;
+      function syncPause() {
+        zone.classList.toggle("close-aurora--paused", document.hidden);
+      }
+      document.addEventListener("visibilitychange", syncPause);
+      syncPause();
+    })();
+  </script>
   <script defer src="main.js?v=20260714s"></script>
 
 </body>

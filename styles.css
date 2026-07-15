@@ -2163,12 +2163,69 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
 }
 
 /* =============================================================
-   14. CONTACTO
+   14. CONTACTO + CIERRE AURORA
    ============================================================= */
+.close-zone {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: linear-gradient(180deg, var(--wash-a) 0%, #0a3024 58%, #07271D 100%);
+}
+.close-aurora {
+  position: absolute;
+  inset: -10%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.close-aurora-blob {
+  mix-blend-mode: screen;
+  filter: blur(80px);
+}
+.close-aurora-blob--1 {
+  width: 54%;
+  height: 50%;
+  top: 12%;
+  left: 8%;
+  background: radial-gradient(circle at 50% 45%, rgba(14, 134, 199, 0.48) 0%, rgba(77, 208, 225, 0.28) 50%, transparent 75%);
+  animation: auroraFlow3 22s ease-in-out infinite, closeAuroraBreathe1 18s ease-in-out infinite;
+}
+.close-aurora-blob--2 {
+  width: 50%;
+  height: 46%;
+  bottom: 6%;
+  right: -2%;
+  filter: blur(90px);
+  background: radial-gradient(circle at 48% 52%, rgba(11, 91, 102, 0.42) 0%, rgba(14, 134, 199, 0.26) 46%, transparent 72%);
+  animation: auroraFlow4 24s ease-in-out infinite, closeAuroraBreathe2 20s ease-in-out infinite;
+  animation-delay: 0s, -3s;
+}
+[data-theme="dark"] .close-aurora-blob--1 {
+  background: radial-gradient(circle at 50% 45%, rgba(0, 150, 199, 0.4) 0%, rgba(77, 208, 225, 0.22) 50%, transparent 75%);
+}
+[data-theme="dark"] .close-aurora-blob--2 {
+  background: radial-gradient(circle at 48% 52%, rgba(0, 120, 180, 0.36) 0%, rgba(77, 208, 225, 0.18) 46%, transparent 72%);
+}
+[data-theme="dark"] .close-aurora-blob {
+  mix-blend-mode: lighten;
+}
+.close-zone .contacto,
+.close-zone .footer {
+  position: relative;
+  z-index: 1;
+}
+.close-zone .container {
+  position: relative;
+  z-index: 1;
+}
+.close-aurora--paused .close-aurora-blob {
+  animation-play-state: paused;
+}
+
 .contacto {
   background:
-    radial-gradient(60% 50% at 90% 90%, rgba(53, 201, 172, 0.12) 0%, transparent 60%),
-    linear-gradient(180deg, var(--wash-a) 0%, var(--contact-gradient-end) 100%);
+    radial-gradient(60% 50% at 90% 90%, rgba(53, 201, 172, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, transparent 0%, rgba(7, 39, 29, 0.12) 100%);
 }
 
 .cont-grid {
@@ -2387,10 +2444,10 @@ a.info-link:hover { transform: translateX(4px); }
    ============================================================= */
 .footer {
   position: relative;
-  background: #07271D;
-  color: rgba(255, 255, 255, 0.72);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
   overflow: clip;
-  margin-top: clamp(2rem, 4vw, 3.5rem);
+  margin-top: 0;
 }
 
 .foot-marquee {
@@ -2469,7 +2526,7 @@ a.info-link:hover { transform: translateX(4px); }
 .foot-col ul { display: flex; flex-direction: column; gap: 0.55rem; }
 .foot-col a, .foot-col span {
   font-size: 0.86rem;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(255, 255, 255, 0.68);
   transition: color 0.25s;
 }
 .foot-col a:hover { color: var(--aqua); }
@@ -2483,7 +2540,7 @@ a.info-link:hover { transform: translateX(4px); }
   font-family: var(--mono);
   font-size: 0.62rem;
   letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 @media (min-width: 720px)  { .foot-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -2551,6 +2608,7 @@ a.info-link:hover { transform: translateX(4px); }
   .bio-leaf,
   .aurora-mesh,
   .hero-aurora-blob,
+  .close-aurora-blob,
   .hud-scan,
   .hydro-ripple,
   .hydro-flow,
@@ -2573,6 +2631,11 @@ a.info-link:hover { transform: translateX(4px); }
   .hero-aurora-blob {
     will-change: auto;
     opacity: 0.55;
+  }
+
+  .close-aurora-blob {
+    will-change: auto;
+    opacity: 0.2;
   }
 
   .tienda-scan { display: none !important; }
@@ -2908,13 +2971,16 @@ p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-s
     radial-gradient(45% 38% at 6% 92%, rgba(255, 194, 75, 0.08) 0%, transparent 60%),
     linear-gradient(180deg, var(--tienda-bg-start) 0%, var(--tienda-bg-end) 100%);
 }
+[data-theme="dark"] .close-zone {
+  background: linear-gradient(180deg, var(--wash-a) 0%, #061a10 58%, #041209 100%);
+}
 [data-theme="dark"] .contacto {
   background:
-    radial-gradient(60% 50% at 90% 90%, rgba(0, 230, 118, 0.08) 0%, transparent 60%),
-    linear-gradient(180deg, var(--wash-a) 0%, var(--contact-gradient-end) 100%);
+    radial-gradient(60% 50% at 90% 90%, rgba(0, 230, 118, 0.06) 0%, transparent 60%),
+    linear-gradient(180deg, transparent 0%, rgba(4, 18, 9, 0.18) 100%);
 }
 [data-theme="dark"] .footer {
-  background: #041209;
+  background: transparent;
 }
 [data-theme="dark"] .foot-marquee-track {
   -webkit-text-stroke: 1.2px rgba(0, 230, 118, 0.28);
@@ -3081,6 +3147,14 @@ html.js .nc-grid.is-grown .nc-card .nc-list li{
 @keyframes auroraBreathe4 {
   0%, 100% { opacity: 0.5; }
   50%      { opacity: 0.76; }
+}
+@keyframes closeAuroraBreathe1 {
+  0%, 100% { opacity: 0.15; }
+  50%      { opacity: 0.25; }
+}
+@keyframes closeAuroraBreathe2 {
+  0%, 100% { opacity: 0.17; }
+  50%      { opacity: 0.23; }
 }
 @keyframes hudScan {
   0%   { transform: translate3d(0, -110%, 0); opacity: 0; }
