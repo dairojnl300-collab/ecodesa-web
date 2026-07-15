@@ -1316,6 +1316,21 @@ html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
   text-transform: uppercase;
   margin-bottom: 1.4rem;
 }
+.ficha-band-logo {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  object-position: center;
+  /* Icono verde → blanco nítido sobre verde oscuro (modo claro) */
+  filter: brightness(0) invert(1);
+  opacity: 0.96;
+}
+[data-theme="dark"] .ficha-band-logo {
+  /* Icono verde → tinta oscura sobre verde neón (modo oscuro) */
+  filter: brightness(0) saturate(100%);
+  opacity: 0.94;
+}
 .ficha-topo {
   position: absolute;
   top: -20px; right: -70px;
