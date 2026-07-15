@@ -77,8 +77,8 @@
   --kp-pulse:       rgba(12, 138, 95, 0.4);
   --btn-hover-bg:       #0a0a0a;
   --btn-hover-fg:       #f5f5f5;
-  --btn-paint-duration: 0.38s;
-  --btn-paint-exit:     0.26s;
+  --btn-paint-duration: 0.9s;
+  --btn-paint-exit:     0.55s;
   --btn-paint-ease:     cubic-bezier(0.4, 0, 0.2, 1);
   --btn-wave-width:     118%;
   --btn-wave-height:    220%;
@@ -452,7 +452,7 @@ html.js [data-reveal].in {
   .nc-cta:hover .btn-text,
   .nc-cta:focus-visible .btn-text {
     color: var(--btn-hover-fg);
-    transition: color 0.15s ease 0.08s;
+    transition: color 0.2s ease 0.18s;
   }
 
   .btn-solid:hover,
@@ -474,7 +474,7 @@ html.js [data-reveal].in {
   .btn-line:hover .btn-text,
   .btn-line:focus-visible .btn-text {
     color: var(--btn-hover-fg);
-    transition: color 0.15s ease 0.1s;
+    transition: color 0.2s ease 0.22s;
   }
 
   .btn-mini:hover,
@@ -485,7 +485,7 @@ html.js [data-reveal].in {
   .btn-mini:hover .btn-text,
   .btn-mini:focus-visible .btn-text {
     color: var(--btn-hover-fg);
-    transition: color 0.15s ease 0.08s;
+    transition: color 0.2s ease 0.18s;
   }
 
   .theme-toggle:hover,
