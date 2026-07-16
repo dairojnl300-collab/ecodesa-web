@@ -790,7 +790,7 @@
     }
 
     const script = document.createElement("script");
-    script.src = "lib/constellation-3d.js?v=vendor3d3";
+    script.src = "lib/constellation-3d.js?v=vendor3d4";
     script.async = true;
     script.onload = boot3d;
     script.onerror = fallback;
