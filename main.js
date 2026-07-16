@@ -483,14 +483,9 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
-     CONSTELACIÓN — Nosotros, dimensional layering + red viva
+     CONSTELACIÓN — Nosotros · Three.js 3D con fallback canvas 2D
   ═══════════════════════════════════════════════════════════ */
-  function initConstellation() {
-    if (!matchMedia("(min-width: 768px)").matches) return;
-
-    const canvas  = $("#constellationCanvas");
-    const section = $("#nosotros");
-    if (!canvas || !section) return;
+  function runConstellation2D(canvas, section) {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -765,6 +760,41 @@
       requestAnimationFrame(frame);
     };
     requestAnimationFrame(frame);
+  }
+
+  function initConstellation() {
+    if (!matchMedia("(min-width: 768px)").matches) return;
+
+    const canvas  = $("#constellationCanvas");
+    const section = $("#nosotros");
+    if (!canvas || !section) return;
+
+    const fallback = () => runConstellation2D(canvas, section);
+
+    if (reduced) {
+      fallback();
+      return;
+    }
+
+    const boot3d = () => {
+      if (window.EcodesaConstellation3D) {
+        window.EcodesaConstellation3D.start(canvas, section, fallback);
+      } else {
+        fallback();
+      }
+    };
+
+    if (window.EcodesaConstellation3D) {
+      boot3d();
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "lib/constellation-3d.js?v=vendor3d1";
+    script.async = true;
+    script.onload = boot3d;
+    script.onerror = fallback;
+    document.head.appendChild(script);
   }
 
   /* ═══════════════════════════════════════════════════════════

@@ -1407,6 +1407,7 @@ html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
   pointer-events: none;
   z-index: 0;
   opacity: 1;
+  background: transparent;
 }
 @media (min-width: 768px) {
   .nos-constellation { display: block; }
