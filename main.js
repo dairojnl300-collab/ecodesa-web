@@ -1580,7 +1580,7 @@
       parts.push("*Tel%C3%A9fono%3A* " + encodeURIComponent(d.telefono));
       if (d.servicio) parts.push("*Servicio%3A* " + encodeURIComponent(d.servicio));
       parts.push("*Mensaje%3A* " + encodeURIComponent(d.mensaje));
-      window.open("https://wa.me/573013653273?text=" + parts.join("%0A"), "_blank", "noopener,noreferrer");
+      window.open("https://wa.me/573246886824?text=" + parts.join("%0A"), "_blank", "noopener,noreferrer");
     };
 
     form.addEventListener("submit", async (e) => {
