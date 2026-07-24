@@ -2223,6 +2223,19 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16), 0 0 0 1px color-mix(in srgb, var(--emerald) 55%, transparent);
 }
 
+.sol-badge {
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  background: color-mix(in srgb, var(--emerald) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--emerald) 28%, transparent);
+  border-radius: 8px;
+  padding: 0.3rem 0.7rem;
+}
 .sol-title {
   font-family: var(--display);
   font-size: 1.3rem;
@@ -2230,7 +2243,6 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   letter-spacing: -0.01em;
   color: var(--ink);
 }
-.sol-sub { font-size: 0.92rem; color: var(--ink-55); margin-top: -0.5rem; }
 .sol-price {
   font-family: var(--mono);
   font-size: 1.4rem;
@@ -2240,14 +2252,14 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
 .sol-price em { font-style: normal; font-size: 0.65rem; color: var(--ink-40); letter-spacing: 0.08em; }
 .sol-desc { font-size: 0.92rem; color: var(--ink-70); line-height: 1.6; }
 
-.sol-normativa, .sol-features, .sol-includes {
+.sol-features, .sol-includes {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   font-size: 0.86rem;
   color: var(--ink-70);
 }
-.sol-normativa li, .sol-features li {
+.sol-features li {
   padding-block: 0.15rem;
   padding-inline: 1.9rem 0.4rem;
   margin-inline: -0.4rem;
@@ -2255,11 +2267,11 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   border-radius: 6px;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease-out;
 }
-.sol-features li:hover, .sol-normativa li:hover {
+.sol-features li:hover {
   transform: translateX(4px);
   background: color-mix(in srgb, var(--emerald) 8%, transparent);
 }
-.sol-normativa li::before, .sol-features li::before {
+.sol-features li::before {
   content: "";
   position: absolute;
   left: 0.4rem; top: 0.35em;
@@ -2268,7 +2280,7 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   background: color-mix(in srgb, var(--emerald) 16%, transparent);
   border: 1px solid color-mix(in srgb, var(--emerald) 45%, transparent);
 }
-.sol-normativa li::after, .sol-features li::after {
+.sol-features li::after {
   content: "✓";
   position: absolute;
   left: 0.62rem; top: -0.05em;
@@ -2277,7 +2289,7 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   color: var(--emerald);
   transform-origin: center;
 }
-html.js .sol-normativa li.in::after, html.js .sol-features li.in::after {
+html.js .sol-features li.in::after {
   animation: solCheckPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   animation-delay: var(--rd, 0s);
 }
@@ -2286,7 +2298,6 @@ html.js .sol-normativa li.in::after, html.js .sol-features li.in::after {
   70%  { transform: rotate(12deg) scale(1.2); opacity: 1; }
   100% { transform: rotate(0deg) scale(1); opacity: 1; }
 }
-.sol-note { font-size: 0.8rem; color: var(--ink-40); font-style: italic; }
 
 .sol-includes-label {
   font-family: var(--mono);
@@ -2305,13 +2316,14 @@ html.js .sol-normativa li.in::after, html.js .sol-features li.in::after {
   color: var(--emerald);
 }
 
-.sol-card .btn { margin-top: auto; align-self: flex-start; }
-
-.sol-card [data-open-quote] {
+.sol-card .btn {
+  margin-top: auto;
+  align-self: flex-start;
   box-shadow: 0 0 0 0 color-mix(in srgb, var(--emerald) 60%, transparent);
   transition: box-shadow 0.3s ease-out, transform 0.2s ease-out;
 }
-.sol-card [data-open-quote]:hover {
+.sol-card .btn:hover {
+  transform: translateY(-2px);
   box-shadow: 0 0 22px 2px color-mix(in srgb, var(--emerald) 55%, transparent);
 }
 
