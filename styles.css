@@ -5,6 +5,8 @@
    Display: Bricolage Grotesque · Body: Instrument Sans · Datos: IBM Plex Mono
    ============================================================= */
 
+[hidden] { display: none !important; }
+
 /* =============================================================
    1. TOKENS
    ============================================================= */
@@ -2071,7 +2073,6 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   transform: translateY(-6px);
   box-shadow: var(--shadow-deep);
 }
-.prod[hidden] { display: none; }
 .prod--featured {
   box-shadow: 0 0 0 4px rgba(255, 194, 75, 0.25), var(--shadow-lum);
 }
