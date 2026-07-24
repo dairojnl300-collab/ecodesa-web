@@ -2184,6 +2184,101 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
 @media (min-width: 1024px) { .tienda-grid { grid-template-columns: repeat(3, 1fr); } }
 
 /* =============================================================
+   12b. SOLUCIONES A MEDIDA — plan PSB + herramientas IA
+   ============================================================= */
+.soluciones-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 900px) { .soluciones-grid { grid-template-columns: 1fr 1fr; align-items: stretch; } }
+
+.sol-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--emerald);
+  border-radius: var(--r-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+.sol-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-deep); }
+
+.sol-card--ia {
+  border: 2px solid var(--emerald);
+  box-shadow: var(--shadow-lum);
+}
+
+.sol-title {
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 720;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.sol-sub { font-size: 0.92rem; color: var(--ink-55); margin-top: -0.5rem; }
+.sol-price {
+  font-family: var(--mono);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--emerald);
+}
+.sol-price em { font-style: normal; font-size: 0.65rem; color: var(--ink-40); letter-spacing: 0.08em; }
+.sol-desc { font-size: 0.92rem; color: var(--ink-70); line-height: 1.6; }
+
+.sol-normativa, .sol-features, .sol-includes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.86rem;
+  color: var(--ink-70);
+}
+.sol-normativa li, .sol-features li {
+  padding-left: 1.5rem;
+  position: relative;
+}
+.sol-normativa li::before, .sol-features li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.35em;
+  width: 14px; height: 14px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--emerald) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--emerald) 45%, transparent);
+}
+.sol-normativa li::after, .sol-features li::after {
+  content: "✓";
+  position: absolute;
+  left: 2px; top: -0.05em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--emerald);
+}
+.sol-note { font-size: 0.8rem; color: var(--ink-40); font-style: italic; }
+
+.sol-includes-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  margin-top: 0.25rem;
+}
+.sol-includes li { padding-left: 1rem; position: relative; }
+.sol-includes li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--emerald);
+}
+
+.sol-card .btn { margin-top: auto; align-self: flex-start; }
+
+/* =============================================================
    13. PROCESO — scrollytelling con secuencia
    ============================================================= */
 .proceso {

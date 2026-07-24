@@ -1622,6 +1622,27 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
+     ATAJOS DE COTIZACIÓN — botones "data-open-quote" → formulario
+  ═══════════════════════════════════════════════════════════ */
+  function initQuoteShortcuts() {
+    const buttons = $$("[data-open-quote]");
+    const form = $("#contactoForm");
+    if (!buttons.length || !form) return;
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const value = btn.dataset.openQuote;
+        const servicio = form.servicio;
+        if (servicio && value && $$("option", servicio).some((o) => o.value === value)) {
+          servicio.value = value;
+        }
+        form.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (form.nombre) setTimeout(() => form.nombre.focus(), 450);
+      });
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════
      CLOSE MESH — Contacto/Footer, red 3D con colapso suave
   ═══════════════════════════════════════════════════════════ */
   function initCloseMesh() {
@@ -1955,6 +1976,7 @@
     safe(initPlano,            "plano");
     safe(initMagnetic,         "magnetic");
     safe(initContactForm,      "form");
+    safe(initQuoteShortcuts,   "quoteShortcuts");
 
     if (hasGSAP()) {
       addEventListener("load", () => ScrollTrigger.refresh());
