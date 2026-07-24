@@ -1567,11 +1567,26 @@
     const status = $("#formStatus");
     const submitBtn = $("#contactoSubmit");
 
+    let hideT;
     const setStatus = (kind, msg) => {
       if (!status) return;
+      clearTimeout(hideT);
       status.className = "form-status " + (kind === "ok" ? "is-ok" : "is-err");
       status.textContent = msg;
+      hideT = setTimeout(() => { status.className = "form-status"; }, 3200);
     };
+
+    if (submitBtn) {
+      submitBtn.addEventListener("click", (e) => {
+        const rect = submitBtn.getBoundingClientRect();
+        const ripple = document.createElement("span");
+        ripple.className = "btn-ripple";
+        ripple.style.left = (e.clientX - rect.left) + "px";
+        ripple.style.top  = (e.clientY - rect.top) + "px";
+        submitBtn.appendChild(ripple);
+        ripple.addEventListener("animationend", () => ripple.remove());
+      });
+    }
 
     const waCompose = (d) => {
       const parts = ["Hola ECODESA%2C me comunico desde el sitio web.%0A"];
