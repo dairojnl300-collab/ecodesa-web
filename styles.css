@@ -2867,7 +2867,7 @@ a.info-link:hover { transform: translateX(4px); }
   color: rgba(255, 255, 255, 0.75);
 }
 .info-static { border-bottom: 0; }
-.badge-cardique {
+.badge-compliance {
   position: relative;
   align-self: flex-start;
   margin-top: 1rem;
