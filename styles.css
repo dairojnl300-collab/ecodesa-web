@@ -1631,6 +1631,61 @@ html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
   .nos-grid { grid-template-columns: 1.05fr 0.95fr; gap: 4.5rem; align-items: center; }
 }
 
+/* Misión / Visión / Valores — 3 columnas */
+.mvv-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+}
+@media (min-width: 900px) { .mvv-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.mvv-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--emerald);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease-out, border-color 0.3s ease-out;
+}
+@media (min-width: 1024px) { .mvv-card { padding: 32px; } }
+.mvv-card:hover {
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14);
+  border-left-color: var(--emerald-2);
+}
+
+.mvv-title {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 720;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+.mvv-desc { font-size: 1rem; color: var(--ink-70); line-height: 1.7; }
+
+.mvv-values { display: flex; flex-direction: column; gap: 0.7rem; }
+.mvv-values li {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  padding-left: 1.5rem;
+  position: relative;
+}
+.mvv-values li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--emerald);
+  font-weight: 700;
+}
+.mvv-values li span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 450;
+  color: var(--ink-40);
+}
+
 /* =============================================================
    10. SERVICIOS — banda de color + recorrido horizontal
    ============================================================= */
