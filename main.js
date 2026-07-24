@@ -1637,6 +1637,31 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
+     ACORDEÓN — Misión / Visión / Valores (ficha técnica)
+  ═══════════════════════════════════════════════════════════ */
+  function initMvvAccordion() {
+    const items = $$("[data-acc]");
+    if (!items.length) return;
+
+    items.forEach((item) => {
+      const head = $(".acc-head", item);
+      if (!head) return;
+      head.addEventListener("click", () => {
+        const willOpen = !item.classList.contains("is-open");
+        items.forEach((other) => {
+          other.classList.remove("is-open");
+          const otherHead = $(".acc-head", other);
+          if (otherHead) otherHead.setAttribute("aria-expanded", "false");
+        });
+        if (willOpen) {
+          item.classList.add("is-open");
+          head.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════
      ATAJOS DE COTIZACIÓN — botones "data-open-quote" → formulario
   ═══════════════════════════════════════════════════════════ */
   function initQuoteShortcuts() {
@@ -1992,6 +2017,7 @@
     safe(initMagnetic,         "magnetic");
     safe(initContactForm,      "form");
     safe(initQuoteShortcuts,   "quoteShortcuts");
+    safe(initMvvAccordion,     "mvvAccordion");
 
     if (hasGSAP()) {
       addEventListener("load", () => ScrollTrigger.refresh());
