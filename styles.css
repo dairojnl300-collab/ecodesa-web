@@ -2364,6 +2364,14 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   color: var(--ink-70);
 }
 .sol-spec p strong { color: var(--ink); }
+.sol-spec ul {
+  margin-top: 0.4rem;
+  padding-left: 1.1rem;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--ink-70);
+}
+.sol-spec ul li { list-style: disc; }
 
 .sol-features, .sol-includes {
   display: flex;
