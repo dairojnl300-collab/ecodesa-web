@@ -3865,6 +3865,95 @@ html.js .nc-grid.is-grown .nc-card .nc-list li{
 .servicios-ambient .bio-pollen--2 { top: 55%; left: 82%; }
 .servicios-ambient .bio-pollen--3 { top: 78%; left: 22%; }
 
+/* ── 02 Servicios — fondo de orbes 3D (full-height, scroll-reactive) ──
+   JS (initServiciosAmbient) escribe --serv-scroll [0,1] en .serv-ambient-epic
+   y traslada .serv-orbfield para el parallax; todo lo demás es CSS puro. */
+.serv-ambient-epic {
+  --serv-scroll: 0;
+  opacity: calc(0.7 + var(--serv-scroll) * 0.3);
+  filter: blur(calc(var(--serv-scroll) * 1.5px));
+}
+.serv-orbfield {
+  position: absolute;
+  inset: -10% -4%;
+  will-change: transform;
+}
+.serv-orb {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+/* .serv-orb = wrapper posicionado; JS escribe su transform (parallax por
+   depth). .serv-orb-core lleva la animación CSS (drift/morph) — separarlos
+   evita que JS y @keyframes peleen por la misma propiedad transform. */
+.serv-orb-core {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  animation: servOrbDrift 12s ease-in-out infinite alternate, servOrbMorph 9s ease-in-out infinite;
+}
+.serv-orb-core::before,
+.serv-orb-core::after {
+  content: "";
+  position: absolute;
+  inset: -30px;
+  border-radius: inherit;
+  filter: blur(52px);
+}
+.serv-orb-core::before {
+  background: radial-gradient(circle at 32% 28%, var(--emerald) 0%, transparent 66%);
+  box-shadow:
+    0 0 60px 12px color-mix(in srgb, var(--emerald) 38%, transparent),
+    0 0 120px 34px color-mix(in srgb, var(--aqua) 24%, transparent);
+  animation: servGlowA 8s ease-in-out infinite;
+}
+.serv-orb-core::after {
+  background: radial-gradient(circle at 68% 72%, var(--emerald-2) 0%, transparent 64%);
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  animation: servGlowB 11s ease-in-out infinite reverse;
+}
+.serv-orb--1 { width: 120px; height: 120px; top: -6%; left: 10%; }
+.serv-orb--2 { width: 90px;  height: 90px;  top: 60%; left: 80%; }
+.serv-orb--3 { width: 100px; height: 100px; top: 26%; left: 90%; }
+.serv-orb--4 { width: 64px;  height: 64px;  top: 84%; left: 4%;  }
+.serv-orb--2 .serv-orb-core { animation-delay: -3s; }
+.serv-orb--3 .serv-orb-core { animation-delay: -6s; }
+.serv-orb--4 .serv-orb-core { animation-delay: -9s; }
+
+@keyframes servOrbDrift {
+  from { transform: translate3d(0, -20px, 0) scale(1); }
+  to   { transform: translate3d(0, 20px, 0) scale(1.08); }
+}
+@keyframes servOrbMorph {
+  0%, 100% { border-radius: 50%; }
+  50%      { border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%; }
+}
+@keyframes servGlowA {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 0.85; }
+}
+@keyframes servGlowB {
+  0%, 100% { opacity: 0.32; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(1.14); }
+}
+
+[data-theme="dark"] .serv-orb-core::before {
+  box-shadow:
+    0 0 70px 16px rgba(0, 230, 118, 0.3),
+    0 0 130px 38px rgba(105, 240, 174, 0.18);
+}
+[data-theme="dark"] .serv-orb-core::after {
+  background: radial-gradient(circle at 68% 72%, #0f5132 0%, transparent 64%);
+  opacity: 0.42;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .serv-orb-core, .serv-orb-core::before, .serv-orb-core::after { animation: none !important; }
+  .serv-ambient-epic { --serv-scroll: 0 !important; filter: none !important; }
+  .serv-orb { transform: none !important; }
+}
+
 /* Hojas flotantes (Forestal) */
 .bio-leaf {
   position: absolute;

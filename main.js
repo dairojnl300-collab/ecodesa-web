@@ -1137,6 +1137,59 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
+     SERVICIOS — fondo de orbes 3D, scroll-reactive + parallax
+     --serv-scroll (0-1) alimenta opacity/blur en CSS; cada orbe
+     traslada según su data-depth (capas de profundidad).
+  ═══════════════════════════════════════════════════════════ */
+  function initServiciosAmbient() {
+    if (reduced) return;
+
+    const section = $(".servicios");
+    const ambient = $("#servAmbient");
+    const orbs = ambient ? $$(".serv-orb", ambient) : [];
+    if (!section || !ambient || !orbs.length) return;
+
+    const depths = orbs.map(el => parseFloat(el.dataset.depth) || 0.2);
+    const TRAVEL = 90;
+    let ticking = false;
+
+    const apply = () => {
+      ticking = false;
+      const rect = section.getBoundingClientRect();
+      const winH = innerHeight;
+      const progress = clamp((winH - rect.top) / (winH + rect.height), 0, 1);
+      const centered = (progress - 0.5) * 2;
+      ambient.style.setProperty("--serv-scroll", progress.toFixed(3));
+      orbs.forEach((el, i) => {
+        const y = centered * TRAVEL * depths[i];
+        el.style.transform = "translate3d(0," + y.toFixed(1) + "px,0)";
+      });
+    };
+
+    const onScroll = () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(apply); }
+    };
+
+    const setActive = (active) => {
+      orbs.forEach(el => { el.style.willChange = active ? "transform" : "auto"; });
+      if (active) apply();
+    };
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => setActive(e.isIntersecting), {
+        root: null, threshold: 0, rootMargin: "20% 0px 20% 0px"
+      }).observe(section);
+    } else {
+      setActive(true);
+    }
+
+    if (lenis) lenis.on("scroll", onScroll);
+    else addEventListener("scroll", onScroll, { passive: true });
+
+    apply();
+  }
+
+  /* ═══════════════════════════════════════════════════════════
      PARALLAX — topo de la ficha (GSAP); hero usa depth layers
   ═══════════════════════════════════════════════════════════ */
   function initParallax() {
@@ -2012,6 +2065,7 @@
     safe(initNcCardTilt,       "ncTilt");
     safe(initCounters,         "counters");
     safe(initServicios,        "servicios");
+    safe(initServiciosAmbient, "serviciosAmbient");
     safe(initParallax,         "parallax");
     safe(initPlano,            "plano");
     safe(initMagnetic,         "magnetic");
