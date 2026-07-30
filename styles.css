@@ -2286,6 +2286,7 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   overflow: hidden;
   z-index: 0;
   pointer-events: none;
+  perspective: 800px;
 }
 .sol-star {
   position: absolute;
@@ -2294,14 +2295,20 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
-  background: var(--emerald);
+  background: radial-gradient(circle at 30% 30%,
+    color-mix(in srgb, var(--emerald) 25%, white) 0%,
+    var(--emerald) 45%,
+    color-mix(in srgb, var(--emerald) 35%, var(--surface)) 100%);
   opacity: 0.15;
   animation:
     solTwinkle var(--dur) ease-in-out var(--delay) infinite,
     solDrift var(--ddur) ease-in-out var(--ddelay) infinite alternate;
 }
 [data-theme="dark"] .sol-star {
-  background: var(--ink);
+  background: radial-gradient(circle at 30% 30%,
+    var(--ink) 0%,
+    var(--emerald) 45%,
+    color-mix(in srgb, var(--emerald) 30%, var(--surface)) 100%);
   box-shadow: 0 0 4px 1px color-mix(in srgb, var(--emerald) 45%, transparent);
 }
 @keyframes solTwinkle {
@@ -2316,6 +2323,54 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
 @keyframes solDrift {
   0%   { transform: translate(0, 0); }
   100% { transform: translate(var(--dx), var(--dy)); }
+}
+
+/* Profundidad 3D — solo esferas grandes (~10%): evita jank con 40-60 partículas */
+.sol-star--lg {
+  background: none;
+  box-shadow: none;
+  opacity: 1;
+  transform-style: preserve-3d;
+  animation: solDrift3d var(--ddur) ease-in-out var(--ddelay) infinite alternate;
+}
+.sol-star--lg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%,
+    color-mix(in srgb, var(--emerald) 25%, white) 0%,
+    var(--emerald) 45%,
+    color-mix(in srgb, var(--emerald) 35%, var(--surface)) 100%);
+  opacity: 0.15;
+  animation:
+    solTwinkle var(--dur) ease-in-out var(--delay) infinite,
+    solSpin var(--rdur, 18s) ease-in-out infinite;
+}
+[data-theme="dark"] .sol-star--lg::before {
+  background: radial-gradient(circle at 30% 30%,
+    var(--ink) 0%,
+    var(--emerald) 45%,
+    color-mix(in srgb, var(--emerald) 30%, var(--surface)) 100%);
+  box-shadow: 0 0 4px 1px color-mix(in srgb, var(--emerald) 45%, transparent);
+  animation-name: solTwinkleDark, solSpin;
+}
+@keyframes solDrift3d {
+  0%   { transform: translate3d(0, 0, var(--z, 0px)); }
+  100% { transform: translate3d(var(--dx), var(--dy), var(--z, 0px)); }
+}
+@keyframes solSpin {
+  0%   { transform: rotateX(-12deg) rotateY(-16deg); }
+  50%  { transform: rotateX(12deg) rotateY(16deg); }
+  100% { transform: rotateX(-12deg) rotateY(-16deg); }
+}
+@media (max-width: 479px) {
+  .sol-star--lg {
+    animation: solDrift var(--ddur) ease-in-out var(--ddelay) infinite alternate;
+    transform-style: flat;
+  }
+  .sol-star--lg::before { animation-name: solTwinkle, none; }
+  [data-theme="dark"] .sol-star--lg::before { animation-name: solTwinkleDark, none; }
 }
 @media (max-width: 479px) {
   .sol-star:nth-child(n+18) { display: none; }
@@ -3279,6 +3334,7 @@ a.info-link:hover { transform: translateX(4px); }
   .sol-card { rotate: none !important; }
   .sol-card::before { display: none !important; }
   .sol-star { animation: none !important; opacity: 0.3 !important; transform: none !important; }
+  .sol-star--lg::before { animation: none !important; opacity: 0.3 !important; transform: none !important; }
 
   .hero-particles { display: none !important; }
 
