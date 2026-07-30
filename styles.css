@@ -2296,7 +2296,9 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   border-radius: 50%;
   background: var(--emerald);
   opacity: 0.15;
-  animation: solTwinkle var(--dur) ease-in-out var(--delay) infinite;
+  animation:
+    solTwinkle var(--dur) ease-in-out var(--delay) infinite,
+    solDrift var(--ddur) ease-in-out var(--ddelay) infinite alternate;
 }
 [data-theme="dark"] .sol-star {
   background: var(--ink);
@@ -2306,13 +2308,17 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   0%, 100% { opacity: 0.15; }
   50% { opacity: 0.4; }
 }
-[data-theme="dark"] .sol-star { animation-name: solTwinkleDark; }
+[data-theme="dark"] .sol-star { animation-name: solTwinkleDark, solDrift; }
 @keyframes solTwinkleDark {
   0%, 100% { opacity: 0.2; }
   50% { opacity: 0.8; }
 }
+@keyframes solDrift {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(var(--dx), var(--dy)); }
+}
 @media (max-width: 479px) {
-  .sol-star:nth-child(n+10) { display: none; }
+  .sol-star:nth-child(n+18) { display: none; }
 }
 
 .soluciones-grid {
@@ -3272,7 +3278,7 @@ a.info-link:hover { transform: translateX(4px); }
   .sector:hover, .prod:hover, .stat:hover, .sol-card:hover { transform: none; }
   .sol-card { rotate: none !important; }
   .sol-card::before { display: none !important; }
-  .sol-star { animation: none !important; opacity: 0.3 !important; }
+  .sol-star { animation: none !important; opacity: 0.3 !important; transform: none !important; }
 
   .hero-particles { display: none !important; }
 
