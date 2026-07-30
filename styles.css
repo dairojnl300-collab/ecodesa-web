@@ -2280,111 +2280,51 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
    ============================================================= */
 .soluciones { position: relative; }
 
-.sol-stars {
+.sol-rain {
   position: absolute;
   inset: 0;
   overflow: hidden;
   z-index: 0;
   pointer-events: none;
-  perspective: 800px;
 }
-.sol-star {
+.rain-drop {
   position: absolute;
-  top: var(--y);
+  top: 0;
   left: var(--x);
-  width: var(--size);
-  height: var(--size);
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%,
-    color-mix(in srgb, var(--emerald) 25%, white) 0%,
-    var(--emerald) 45%,
-    color-mix(in srgb, var(--emerald) 35%, var(--surface)) 100%);
-  opacity: 0.15;
-  animation:
-    solTwinkle var(--dur) ease-in-out var(--delay) infinite,
-    solDrift var(--ddur) ease-in-out var(--ddelay) infinite alternate,
-    solGlow 2.6s ease-in-out infinite;
+  width: var(--w);
+  height: var(--h);
+  border-radius: 50% 50% 0 0 / 60% 60% 0 0;
+  background: linear-gradient(to bottom, var(--emerald), transparent);
+  opacity: 0.5;
+  animation: rainFall var(--dur) linear var(--delay) infinite;
 }
-[data-theme="dark"] .sol-star {
-  background: radial-gradient(circle at 30% 30%,
-    var(--ink) 0%,
-    var(--emerald) 45%,
-    color-mix(in srgb, var(--emerald) 30%, var(--surface)) 100%);
-  animation-name: solTwinkleDark, solDrift, solGlowDark;
+[data-theme="dark"] .rain-drop {
+  background: linear-gradient(to bottom, var(--ink), transparent);
+  opacity: 0.7;
 }
-@keyframes solTwinkle {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.4; }
+@keyframes rainFall {
+  0%   { transform: translateY(-20px); }
+  100% { transform: translateY(calc(100% + 30px)); }
 }
-@keyframes solTwinkleDark {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.8; }
-}
-@keyframes solDrift {
-  0%   { transform: translate(0, 0); }
-  33%  { transform: translate(var(--mx), var(--my)); }
-  66%  { transform: translate(var(--dx), calc(var(--dy) * 0.5)); }
-  100% { transform: translate(var(--dx), var(--dy)); }
-}
-@keyframes solGlow {
-  0%, 100% { box-shadow: 0 0 15px 1px color-mix(in srgb, var(--emerald) 45%, transparent), 0 0 30px 3px color-mix(in srgb, var(--emerald) 20%, transparent); }
-  50%      { box-shadow: 0 0 35px 3px color-mix(in srgb, var(--emerald) 70%, transparent), 0 0 55px 6px color-mix(in srgb, var(--emerald) 35%, transparent); }
-}
-@keyframes solGlowDark {
-  0%, 100% { box-shadow: 0 0 15px 2px color-mix(in srgb, var(--emerald) 60%, transparent), 0 0 30px 4px color-mix(in srgb, var(--emerald) 30%, transparent); }
-  50%      { box-shadow: 0 0 35px 4px color-mix(in srgb, var(--emerald) 95%, transparent), 0 0 55px 10px color-mix(in srgb, var(--emerald) 55%, transparent); }
-}
-
-/* Esferas medianas/grandes (>=7px, ~40%): profundidad 3D + rotación completa */
-.sol-star--3d {
-  background: none;
-  box-shadow: none;
-  opacity: 1;
-  transform-style: preserve-3d;
-  animation: solDrift3d var(--ddur) ease-in-out var(--ddelay) infinite alternate;
-}
-.sol-star--3d::before {
-  content: "";
+.rain-splash {
   position: absolute;
-  inset: 0;
+  left: var(--x);
+  bottom: -4px;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%,
-    color-mix(in srgb, var(--emerald) 25%, white) 0%,
-    var(--emerald) 45%,
-    color-mix(in srgb, var(--emerald) 35%, var(--surface)) 100%);
-  opacity: 0.15;
-  animation:
-    solTwinkle var(--dur) ease-in-out var(--delay) infinite,
-    solSpin var(--rdur, 12s) linear infinite,
-    solGlow 2.6s ease-in-out infinite;
+  border: 1px solid var(--emerald);
+  opacity: 0;
+  animation: rainSplash var(--dur) linear var(--delay) infinite;
 }
-[data-theme="dark"] .sol-star--3d::before {
-  background: radial-gradient(circle at 30% 30%,
-    var(--ink) 0%,
-    var(--emerald) 45%,
-    color-mix(in srgb, var(--emerald) 30%, var(--surface)) 100%);
-  animation-name: solTwinkleDark, solSpin, solGlowDark;
-}
-@keyframes solDrift3d {
-  0%   { transform: translate3d(0, 0, var(--z, 0px)); }
-  33%  { transform: translate3d(var(--mx), var(--my), var(--z, 0px)); }
-  66%  { transform: translate3d(var(--dx), calc(var(--dy) * 0.5), var(--z, 0px)); }
-  100% { transform: translate3d(var(--dx), var(--dy), var(--z, 0px)); }
-}
-@keyframes solSpin {
-  0%   { transform: rotateX(0deg) rotateY(0deg); }
-  100% { transform: rotateX(360deg) rotateY(360deg); }
+@keyframes rainSplash {
+  0%, 85% { transform: scale(0); opacity: 0; }
+  90%     { transform: scale(1); opacity: 0.6; }
+  100%    { transform: scale(2.2); opacity: 0; }
 }
 @media (max-width: 479px) {
-  .sol-star--3d {
-    animation: solDrift var(--ddur) ease-in-out var(--ddelay) infinite alternate;
-    transform-style: flat;
-  }
-  .sol-star--3d::before { animation-name: solTwinkle, none, solGlow; }
-  [data-theme="dark"] .sol-star--3d::before { animation-name: solTwinkleDark, none, solGlowDark; }
-}
-@media (max-width: 479px) {
-  .sol-star:nth-child(n+18) { display: none; }
+  .sol-rain > *:nth-child(n+22) { display: none; }
 }
 
 .soluciones-grid {
@@ -3344,8 +3284,8 @@ a.info-link:hover { transform: translateX(4px); }
   .sector:hover, .prod:hover, .stat:hover, .sol-card:hover { transform: none; }
   .sol-card { rotate: none !important; }
   .sol-card::before { display: none !important; }
-  .sol-star { animation: none !important; opacity: 0.3 !important; transform: none !important; }
-  .sol-star--3d::before { animation: none !important; opacity: 0.3 !important; transform: none !important; }
+  .rain-drop { animation: none !important; opacity: 0.3 !important; transform: translateY(0) !important; }
+  .rain-splash { display: none !important; }
 
   .hero-particles { display: none !important; }
 
