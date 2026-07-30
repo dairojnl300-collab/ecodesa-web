@@ -2278,6 +2278,43 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
 /* =============================================================
    12b. SOLUCIONES A MEDIDA — plan PSB + herramientas IA
    ============================================================= */
+.soluciones { position: relative; }
+
+.sol-stars {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+.sol-star {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--emerald);
+  opacity: 0.15;
+  animation: solTwinkle var(--dur) ease-in-out var(--delay) infinite;
+}
+[data-theme="dark"] .sol-star {
+  background: var(--ink);
+  box-shadow: 0 0 4px 1px color-mix(in srgb, var(--emerald) 45%, transparent);
+}
+@keyframes solTwinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.4; }
+}
+[data-theme="dark"] .sol-star { animation-name: solTwinkleDark; }
+@keyframes solTwinkleDark {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+@media (max-width: 479px) {
+  .sol-star:nth-child(n+10) { display: none; }
+}
+
 .soluciones-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -3235,6 +3272,7 @@ a.info-link:hover { transform: translateX(4px); }
   .sector:hover, .prod:hover, .stat:hover, .sol-card:hover { transform: none; }
   .sol-card { rotate: none !important; }
   .sol-card::before { display: none !important; }
+  .sol-star { animation: none !important; opacity: 0.3 !important; }
 
   .hero-particles { display: none !important; }
 
