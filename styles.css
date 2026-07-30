@@ -3081,16 +3081,19 @@ a.info-link:hover { transform: translateX(4px); }
   position: fixed;
   bottom: 1.4rem; right: 1.4rem;
   z-index: 800;
-  width: 54px; height: 54px;
+  width: 56px; height: 56px;
   border-radius: 50%;
   background-color: #25D366;
   box-shadow: 0 10px 28px -8px rgba(37, 211, 102, 0.6);
-  overflow: hidden;
   isolation: isolate;
   cursor: pointer;
   transition: transform 0.3s var(--ease-out);
 }
-.float-wa::before {
+@media (min-width: 768px) {
+  .float-wa { width: 64px; height: 64px; }
+}
+.float-wa::before,
+.float-wa-ring2 {
   content: "";
   position: absolute;
   inset: 0;
@@ -3100,6 +3103,7 @@ a.info-link:hover { transform: translateX(4px); }
   z-index: 2;
   pointer-events: none;
 }
+.float-wa-ring2 { animation-delay: 1.4s; }
 .float-wa::after {
   content: "";
   position: absolute;
@@ -3114,7 +3118,7 @@ a.info-link:hover { transform: translateX(4px); }
 }
 @keyframes waPing {
   0%   { transform: scale(1);    opacity: 1; }
-  75%, 100% { transform: scale(1.55); opacity: 0; }
+  75%, 100% { transform: scale(1.8); opacity: 0; }
 }
 .float-wa svg {
   position: relative;
@@ -3148,6 +3152,7 @@ a.info-link:hover { transform: translateX(4px); }
   .tienda-scan,
   .tienda-terminal,
   .float-wa::before,
+  .float-wa-ring2,
   .kp-dot,
   .step-ico,
   #frameCounter::after,
