@@ -2288,6 +2288,9 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
 
 .sol-card {
   position: relative;
+  overflow: hidden;
+  --mx: 50%;
+  --my: 40%;
   background: linear-gradient(165deg, color-mix(in srgb, var(--emerald) 5%, var(--surface)) 0%, var(--surface) 55%);
   border: 1px solid var(--line);
   border-left: 4px solid var(--emerald);
@@ -2299,6 +2302,16 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }
+.sol-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(220px circle at var(--mx) var(--my), color-mix(in srgb, var(--emerald) 22%, transparent), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+  pointer-events: none;
+}
+.sol-card:hover::before { opacity: 1; }
 .sol-card:hover {
   transform: scale(1.05);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
@@ -3214,7 +3227,9 @@ a.info-link:hover { transform: translateX(4px); }
     background: none;
   }
 
-  .sector:hover, .prod:hover, .stat:hover { transform: none; }
+  .sector:hover, .prod:hover, .stat:hover, .sol-card:hover { transform: none; }
+  .sol-card { rotate: none !important; }
+  .sol-card::before { display: none !important; }
 
   .hero-particles { display: none !important; }
 

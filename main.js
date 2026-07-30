@@ -903,6 +903,62 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
+     SOLUCIONES A MEDIDA — abanico al scroll + glow magnético
+     Usa `rotate` (no `transform`) para no chocar con
+     .sol-card:hover{transform:scale(1.05)}
+  ═══════════════════════════════════════════════════════════ */
+  function initSolucionesFan() {
+    if (!hasGSAP() || reduced) return;
+    const cards = $$(".soluciones-grid .sol-card");
+    if (!cards.length) return;
+
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 768px)", () => {
+      gsap.set(cards, { rotate: (i) => (i % 2 === 0 ? -5 : 5) });
+    });
+    mm.add("(max-width: 767px)", () => {
+      gsap.set(cards, { rotate: (i) => (i % 2 === 0 ? -3 : 3) });
+    });
+
+    ScrollTrigger.batch(cards, {
+      start: "top 90%",
+      once: true,
+      onEnter: (batch) => gsap.to(batch, { rotate: 0, duration: 0.8, ease: "power3.out", stagger: 0.12 })
+    });
+
+    /* Red de seguridad: si ScrollTrigger no dispara, no dejar el rotate colgado */
+    setTimeout(() => gsap.set(cards, { rotate: 0 }), 6000);
+  }
+
+  function initSolucionesMagnetic() {
+    if (!hasGSAP() || reduced || !finePtr) return;
+    const cards = $$(".soluciones-grid .sol-card");
+    if (!cards.length) return;
+
+    cards.forEach((card) => {
+      const pos = { mx: 50, my: 40 };
+      const setX = gsap.quickTo(pos, "mx", {
+        duration: 0.4, ease: "power3",
+        onUpdate: () => card.style.setProperty("--mx", pos.mx + "%")
+      });
+      const setY = gsap.quickTo(pos, "my", {
+        duration: 0.4, ease: "power3",
+        onUpdate: () => card.style.setProperty("--my", pos.my + "%")
+      });
+
+      card.addEventListener("pointermove", (e) => {
+        const r = card.getBoundingClientRect();
+        setX(clamp(((e.clientX - r.left) / r.width) * 100, 0, 100));
+        setY(clamp(((e.clientY - r.top) / r.height) * 100, 0, 100));
+      });
+      card.addEventListener("pointerleave", () => {
+        setX(50);
+        setY(40);
+      });
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════
      CONTADORES
   ═══════════════════════════════════════════════════════════ */
   function initCounters() {
@@ -2063,6 +2119,8 @@
     safe(initServiceCardGrow,  "serviceGrow");
     safe(initNcCardGrow,       "ncGrow");
     safe(initNcCardTilt,       "ncTilt");
+    safe(initSolucionesFan,       "solucionesFan");
+    safe(initSolucionesMagnetic,  "solucionesMagnetic");
     safe(initCounters,         "counters");
     safe(initServicios,        "servicios");
     safe(initServiciosAmbient, "serviciosAmbient");
