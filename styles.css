@@ -3351,7 +3351,8 @@ html.js .serv-card.service-card.is-grown .sc-list li {
 }
 
 .brand-logo{height:48px;width:auto}.hero-logo{max-width:240px;width:100%;margin:0 auto 2rem}.footer-logo{height:60px;width:auto}
-p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-sub):not(.serv-hint):not(.nc-desc){text-align:justify;text-justify:inter-word;hyphens:auto}
+p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-sub):not(.serv-hint):not(.nc-desc):not(.sol-desc):not(.sol-includes-label):not(.tienda-sub):not(.step-desc):not(.foot-tagline):not(.form-status):not(.proceso-sub):not(.hero-sub):not(.hero-kicker):not(.mvv-heading):not(.normas-title):not(.serv-title){text-align:justify;text-justify:inter-word;hyphens:auto}
+.sol-desc,.sol-includes-label,.tienda-sub,.step-desc,.foot-tagline,.form-status,.proceso-sub,.hero-sub,.hero-kicker,.mvv-heading,.serv-title{text-align:left}
 
 .nc-grid{
   display:flex;flex-wrap:wrap;gap:32px;
