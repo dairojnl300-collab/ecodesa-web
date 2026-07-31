@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Gracias por tu compra! — ECODESA</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#00e676">
+
+  <link rel="icon" type="image/svg+xml" href="assets/logo/ecodesa-favicon.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/logo/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo/favicon-16.png">
+  <link rel="shortcut icon" href="assets/logo/favicon.ico">
+
+  <script>document.documentElement.classList.replace('no-js','js')</script>
+  <script>
+    (function () {
+      var k = 'ecodesa-theme';
+      var stored = localStorage.getItem(k);
+      var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
+
+  <link rel="stylesheet" href="styles.css?v=20260725a">
+  <style>
+    .thanks-wrap{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:clamp(1.25rem,4vw,2.5rem);}
+    .thanks-card{max-width:560px;width:100%;background:var(--bg-card);border:1px solid var(--line);border-radius:28px;padding:clamp(2rem,5vw,3rem);text-align:center;}
+    .thanks-icon{width:56px;height:56px;margin:0 auto 1.5rem;color:var(--accent);}
+    .thanks-card h1{font-family:var(--display);font-size:clamp(1.5rem,4vw,2rem);margin-bottom:.75rem;}
+    .thanks-card p{color:var(--muted);line-height:1.6;margin-bottom:1.75rem;}
+    .thanks-actions{display:flex;flex-direction:column;gap:.75rem;}
+    .thanks-support{margin-top:1.75rem;font-size:.9rem;color:var(--muted);}
+    .thanks-support a{color:var(--accent-2);}
+  </style>
+</head>
+<body>
+  <main class="thanks-wrap">
+    <div class="thanks-card">
+      <svg class="thanks-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M8 12.5l2.5 2.5L16 9.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h1>¡Pago confirmado!</h1>
+      <p>Gracias por tu compra. Tu Plan de Saneamiento Básico (PSB) v2.0 está listo para descargar.</p>
+      <div class="thanks-actions">
+        <a class="btn btn-solid magnetic" href="downloads/plan-saneamiento-basico-psb.docx" download><span class="btn-text">Descargar documento PSB</span></a>
+      </div>
+      <p class="thanks-support">¿No se descargó o tienes dudas? Escríbenos por <a href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20realic%C3%A9%20el%20pago%20del%20PSB%20y%20necesito%20el%20documento" target="_blank" rel="noopener">WhatsApp</a>, con el comprobante de pago a la mano.</p>
+    </div>
+  </main>
+</body>
+</html>
