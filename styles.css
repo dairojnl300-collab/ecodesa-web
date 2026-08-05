@@ -1946,6 +1946,22 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
 }
 .sc-cta { align-self: flex-start; font-size: 0.84rem; padding: 0.68rem 1.35rem; }
 
+.sc-actions { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.sc-share-li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  color: var(--ink-70);
+  flex-shrink: 0;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.sc-share-li:hover { color: var(--hue, #0A66C2); border-color: var(--hue, #0A66C2); transform: translateY(-2px); }
+
 .serv-hint {
   margin-top: 1.6rem;
   text-align: center;
@@ -3087,6 +3103,18 @@ a.info-link:hover { transform: translateX(4px); }
   transition: color 0.25s;
 }
 .foot-wa:hover { color: var(--on-inverse); }
+.foot-li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--aqua);
+  transition: color 0.25s;
+  margin-top: 0.6rem;
+}
+.foot-li:hover { color: var(--on-inverse); }
 
 .foot-col h4 {
   font-family: var(--mono);
