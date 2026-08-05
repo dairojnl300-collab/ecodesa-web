@@ -94,7 +94,10 @@
     const btn = $("#themeToggle");
     if (!btn) return;
 
-    const systemTheme = () => matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    const systemTheme = () => {
+      const hour = new Date().getHours();
+      return hour >= 6 && hour < 18 ? "light" : "dark";
+    };
 
     const syncUi = (theme) => {
       const dark = theme === "dark";

@@ -71,7 +71,8 @@
     (function () {
       var k = 'ecodesa-theme';
       var stored = localStorage.getItem(k);
-      var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var hour = new Date().getHours();
+      var theme = stored || (hour >= 6 && hour < 18 ? 'light' : 'dark');
       document.documentElement.setAttribute('data-theme', theme);
     })();
   </script>
