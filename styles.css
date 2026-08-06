@@ -2347,6 +2347,7 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
 }
 @media (min-width: 768px)  { .soluciones-grid { grid-template-columns: 1fr 1fr; align-items: stretch; } }
 @media (min-width: 1024px) { .sol-card { padding: 32px; } }
+.soluciones-grid:has(> .sol-card:only-child) { grid-template-columns: 1fr; }
 
 .sol-card {
   position: relative;
@@ -2378,14 +2379,6 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   transform: scale(1.05);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
   z-index: 2;
-}
-
-.sol-card--ia {
-  border-left-width: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 0 0 1px color-mix(in srgb, var(--emerald) 35%, transparent);
-}
-.sol-card--ia:hover {
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16), 0 0 0 1px color-mix(in srgb, var(--emerald) 55%, transparent);
 }
 
 .sol-badge {
