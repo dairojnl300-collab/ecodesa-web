@@ -1424,6 +1424,22 @@
     draw(0);
 
     addEventListener("resize", () => { resize(); spawn(); draw(performance.now()); }, { passive: true });
+
+    /* El resize por window no cubre cambios de layout que no disparan un
+       evento de resize global (font-swap, carga tardía de contenido,
+       ajuste del pin-spacer de GSAP en el modo horizontal-scroll) — sin
+       esto el canvas quedaba con tamaño obsoleto y dejaba un corte visible
+       en el borde de la sección. ResizeObserver reacciona al box real de
+       layout de la sección (ignora los transform:scale de las tarjetas
+       activas, que son solo de pintura y no disparan reflow). */
+    if ("ResizeObserver" in window) {
+      let firstRO = true;
+      new ResizeObserver(() => {
+        if (firstRO) { firstRO = false; return; }
+        resize(); spawn(); draw(performance.now());
+      }).observe(section);
+    }
+
     window.addEventListener("ecodesa-theme-change", () => {
       const pal = paletteFor();
       nodes.forEach((n, i) => { n.color = pal.nodes[i % pal.nodes.length]; });

@@ -1,5 +1,77 @@
 # Revisión visual — Valentina
 
+## Sesión 2026-08-07b — Fix: gap del canvas de constelación en `#servicios`
+
+**Rama:** `fix/servicios-constellation-gap` (creada desde `main`, no se commiteó ni se hizo push)
+**Encargo:** Corregir un corte/separación visual donde el canvas `#servConstellation` (fondo de red de partículas de `#servicios`) no cubría completamente el contenedor del carrusel.
+**Estado:** COMPLETA — causa raíz confirmada empíricamente, fix aplicado y verificado en los 3 breakpoints solicitados.
+
+### Causa raíz
+
+`initServiciosConstellation()` en `main.js` dimensiona el `<canvas>` con una función `resize()` (`main.js:1295-1303`) que mide `section.getBoundingClientRect()` y fija `canvas.width/height` (buffer) + `canvas.style.width/height` (CSS) a ese valor. Esa función solo se reejecutaba en dos casos (`main.js:1422-1426`, antes del fix): la llamada inicial en el arranque, y el listener `addEventListener("resize", ...)` atado al evento global `resize` de `window`.
+
+El problema: `.servicios` puede cambiar de alto por razones que **no disparan un evento `resize` de `window`** — swap de web fonts, carga tardía de contenido, o el reajuste del `pin-spacer` que GSAP ScrollTrigger crea para el modo horizontal-scroll de escritorio (`main.js:1064-1098`, activo con `min-width:960px`). Cuando eso ocurre, el canvas se queda con el tamaño de buffer/CSS congelado del último `resize()` mientras `.servicios`, `#servAmbient` y `.serv-viewport` sí crecen, dejando expuesto el fondo plano de la sección sin red de nodos — exactamente el "corte" reportado.
+
+**Reproducción controlada (antes del fix):** en una vista de 768px (modo scroll nativo, sin GSAP pin) se infló artificialmente el alto de `.serv-hint` en 300px vía JS, sin disparar ningún evento de `resize`:
+```
+before: { sec: {h: 1004}, cv: {h: 1004} }   // canvas sincronizado
+after:  { sec: {h: 1304}, cv: {h: 1004} }   // sección creció, canvas se quedó atrás → gap de 300px
+```
+Esto confirma la causa: el mecanismo de resincronización del canvas dependía únicamente de `window resize`, sin observar el contenedor real.
+
+Verifiqué previamente, y descarté como causa, las hipótesis del diagnóstico original: mismatch de posicionamiento CSS (`.servicios-ambient`/`.serv-constellation-canvas` con `position:absolute; inset:0`, sin padding/border en `.servicios` — los rects de `.servicios`, `#servAmbient` y `#servConstellation` coincidían exactamente en carga limpia), y mismatch de buffer dpr (`Math.round(rect.width*dpr)` con `ctx.setTransform(dpr,...)` es correcto, sin desalineación visible). El problema real no era estático, era de **resincronización ante cambios de layout no atados a `window resize`**.
+
+### Fix aplicado
+
+**Archivo:** `C:\Users\DAIRON NARVAEZ\Escritorio\ecodesa-web\main.js`, dentro de `initServiciosConstellation()`, inmediatamente después del listener de `resize` existente (antes de la línea que ahora es ~1427).
+
+Añadí un `ResizeObserver` sobre `section` (`.servicios`) que reejecuta `resize(); spawn(); draw()` cuando el **box real de layout** de la sección cambia, sin depender de que `window` dispare `resize`:
+
+```js
+addEventListener("resize", () => { resize(); spawn(); draw(performance.now()); }, { passive: true });
+
+/* El resize por window no cubre cambios de layout que no disparan un
+   evento de resize global (font-swap, carga tardía de contenido,
+   ajuste del pin-spacer de GSAP en el modo horizontal-scroll) — sin
+   esto el canvas quedaba con tamaño obsoleto y dejaba un corte visible
+   en el borde de la sección. ResizeObserver reacciona al box real de
+   layout de la sección (ignora los transform:scale de las tarjetas
+   activas, que son solo de pintura y no disparan reflow). */
+if ("ResizeObserver" in window) {
+  let firstRO = true;
+  new ResizeObserver(() => {
+    if (firstRO) { firstRO = false; return; }
+    resize(); spawn(); draw(performance.now());
+  }).observe(section);
+}
+```
+
+**Por qué `ResizeObserver` y no, p. ej., un `MutationObserver` o polling:** `ResizeObserver` observa el *border-box* real de layout — no se dispara con los `transform:scale` que `cardFx()` aplica a las tarjetas activas durante el scroll del carrusel (transform es solo de composición/pintura, no genera reflow), así que no hay riesgo de respawns excesivos de nodos durante la animación normal del carrusel. Solo reacciona cuando `.servicios` realmente cambia de tamaño.
+
+**Guard `firstRO`:** `ResizeObserver` invoca su callback una vez de forma asíncrona apenas se llama `.observe()`, con el tamaño ya vigente (redundante con la llamada `resize()` explícita que ya corre en la inicialización, `main.js:1422-1424`). El guard evita un respawn de nodos innecesario justo al cargar la página.
+
+**No se tocó:** la lógica de partículas/enlaces/pulsos, el listener de `window resize` existente (se mantiene como fallback), la paleta de colores, ni ningún otro archivo. Cambio de una sola función, ~14 líneas añadidas.
+
+### Verificación con evidencia real (Chrome, `claude-in-chrome`, conectado sin problemas esta sesión)
+
+Metodología: dado que `resize_window` en este equipo no baja del tamaño nativo de la ventana (~1536×639, ver memoria de sesiones previas), usé la técnica de iframe same-origin (`document.write` con `<iframe src="http://localhost:8765/" style="width:NNNpx">`) para emular cada breakpoint exacto, más `getBoundingClientRect()` comparado entre `.servicios`, `#servAmbient` y `#servConstellation` en cada caso, además de screenshots/zooms de los 4 bordes.
+
+| Breakpoint | Modo carrusel | Rects `sec`/`amb`/`cv` | Evidencia visual |
+|---|---|---|---|
+| **~375px** (iframe 375×1200) | Nativo (scroll-snap, `js-hscroll` ausente) | Idénticos: `{top:0,left:10,right:350,bottom:1200}` en los tres | Screenshot superior: red de nodos hasta el borde superior/izquierdo/derecho. Zoom del borde inferior (y:580-639): nodos visibles detrás de "DESLIZA PARA RECORRER LAS 6 ÁREAS", sin corte. |
+| **~768px** (iframe 768×1100) | Nativo (sin pin GSAP; breakpoint intermedio entre mobile y `min-width:960px`) | Idénticos: `{top:0,left:12,right:741,bottom:1100}` | Screenshot superior: red hasta las 4 esquinas. Zoom del borde inferior (y:550-639): línea de conexión y nodos justo en el borde redondeado de la tarjeta, sin gap. Repetí este breakpoint tras el fix con el mismo test de inflado artificial (+300px sin evento resize) y el canvas **sí se resincronizó**: `after: {sec:{h:1304}, cv:{h:1304}}`, `fixed:true`. |
+| **~1440px** (iframe 1440×960) | GSAP pin (`js-hscroll` activo, `min-width:960px`) | Idénticos: `{top:0,left:23,right:1448,bottom:960}`, incluyendo la zona de `.serv-hint` (`{top:809,bottom:826}`, dentro del rango del canvas) | Screenshot + zoom de esquina superior-derecha (dots/líneas hasta el borde). Screenshot con scroll adicional dentro del pin mostrando la banda inferior de la sección (debajo de las tarjetas 04/05): red de nodos visible hasta el borde inferior, sin corte. |
+
+En los tres breakpoints, antes y después del fix, `.servicios`, `#servAmbient` y `#servConstellation` midieron **exactamente el mismo rect** en carga limpia (sin el fix ya se comprobó que el problema no era estático sino de resincronización — ver reproducción controlada arriba). Después del fix, la reproducción controlada en 768px confirma que el `ResizeObserver` corrige el caso que antes fallaba.
+
+**No verificado en esta sesión:** navegadores distintos de Chrome (Safari/Firefox), y el caso específico de swap de web fonts en una red lenta real (en localhost los fonts ya estaban cacheados en cada prueba). El fix cubre la causa estructural (falta de un observer de layout), por lo que debería resolver también esos casos, pero no hay evidencia visual directa de ellos.
+
+### Pendiente de Camila
+
+Ninguna dependencia funcional — el cambio es puramente de sincronización visual de un canvas decorativo (`aria-hidden="true"`, `pointer-events:none`), no toca navegación, datos, formularios ni lógica de negocio. Si se audita, alcance sugerido: solo `#servicios` en `index.html`, confirmando que el carrusel (scroll horizontal en escritorio, scroll-snap nativo en móvil) sigue funcionando igual que antes del fix — el `ResizeObserver` no interviene en esa lógica.
+
+---
+
 **Fecha:** 2026-08-07
 **Rama:** `redesign/visual-identidad-verde`
 **Encargo:** Rediseño visual con verde ECODESA `#5BA832` como acento principal, aplicado directamente al código (no solo auditoría).
