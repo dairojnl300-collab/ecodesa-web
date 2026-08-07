@@ -90,6 +90,23 @@
     { speed: 1.12, rBase: 12, rVar: 2.0, alpha: 0.92, glow: 30 }
   ];
 
+  /* Paleta de la red de Servicios — verde de marca #5BA832 y sus
+     variantes vigentes (--emerald/--emerald-2/--aqua), NO la paleta
+     mint/cian de la constelación de Nosotros. RGB en vez de hex para
+     evitar parseo en cada frame de dibujo. */
+  const SERV_CONST_PALETTES = {
+    light: {
+      nodes: [[61, 122, 32], [46, 92, 23], [134, 191, 62], [91, 168, 50]], // emerald, emerald-2, aqua, brand-green
+      line:  [91, 168, 50],
+      pulse: [134, 191, 62]
+    },
+    dark: {
+      nodes: [[91, 168, 50], [134, 209, 74], [134, 191, 62]], // emerald(=brand-green), emerald-2/aqua, aqua-alt
+      line:  [91, 168, 50],
+      pulse: [134, 209, 74]
+    }
+  };
+
   function initThemeToggle() {
     const btn = $("#themeToggle");
     if (!btn) return;
@@ -1249,6 +1266,202 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
+     RED DE SERVICIOS — Canvas 2D, campo de nodos de ancho completo
+     detrás del carrusel de #servicios. Mismo patrón que
+     runConstellation2D (Nosotros), pero sin islas: un solo campo
+     disperso, verde de marca (SERV_CONST_PALETTES), sin Three.js.
+  ═══════════════════════════════════════════════════════════ */
+  function initServiciosConstellation() {
+    const canvas  = $("#servConstellation");
+    const section = $(".servicios");
+    if (!canvas || !section) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const isStatic  = reduced;
+    const rgb2      = (rgb, a) => "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + a + ")";
+    const paletteFor = () => SERV_CONST_PALETTES[getTheme()] || SERV_CONST_PALETTES.light;
+
+    const LINK_DIST  = 150;
+    const LINK_ALPHA = [0.05, 0.32];
+
+    let w = 0, h = 0, dpr = 1, nodes = [], links = [], pulses = [], visible = true;
+    let mx = -9999, my = -9999, nextPulseAt = 0, frameSkip = 0;
+
+    const mobile   = () => matchMedia("(max-width: 767px)").matches;
+    const finePtrNow = finePtr && !isStatic;
+
+    const resize = () => {
+      const rect = section.getBoundingClientRect();
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      w = canvas.width  = Math.round(rect.width  * dpr);
+      h = canvas.height = Math.round(rect.height * dpr);
+      canvas.style.width  = rect.width  + "px";
+      canvas.style.height = rect.height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const spawn = () => {
+      const W = w / dpr, H = h / dpr;
+      const density = mobile() ? 9000 : 15000;
+      const count = clamp(Math.round((W * H) / density), 14, 40);
+      const pal = paletteFor();
+      nodes = Array.from({ length: count }, (_, i) => ({
+        ax: Math.random() * W,
+        ay: Math.random() * H,
+        x: 0, y: 0,
+        r: 1.6 + Math.random() * 2.2,
+        color: pal.nodes[i % pal.nodes.length],
+        seed:  Math.random() * Math.PI * 2,
+        seed2: Math.random() * Math.PI * 2,
+        f1: 0.05 + Math.random() * 0.06,
+        f2: 0.04 + Math.random() * 0.05,
+        amp: 10 + Math.random() * 14,
+        pulseHz: 0.0009 + Math.random() * 0.0007,
+        phase: Math.random() * Math.PI * 2
+      }));
+      pulses = [];
+      nextPulseAt = performance.now() + 2200 + Math.random() * 1800;
+    };
+
+    const nodePos = (n, now) => {
+      if (isStatic) { n.x = n.ax; n.y = n.ay; return; }
+      const t = now * 0.001;
+      n.x = n.ax + Math.sin(t * n.f1 + n.seed)  * n.amp;
+      n.y = n.ay + Math.cos(t * n.f2 + n.seed2) * n.amp * 0.7;
+      if (finePtrNow) {
+        const dx = mx - n.x, dy = my - n.y, dist = Math.hypot(dx, dy);
+        const R = 130;
+        if (dist < R && dist > 1) {
+          const pull = (1 - dist / R) * 0.4;
+          n.x += (dx / dist) * pull;
+          n.y += (dy / dist) * pull;
+        }
+      }
+    };
+
+    const collectLinks = () => {
+      const out = [];
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+        for (let j = i + 1; j < nodes.length; j++) {
+          const b = nodes[j];
+          const dx = b.x - a.x, dy = b.y - a.y;
+          if (Math.abs(dx) > LINK_DIST || Math.abs(dy) > LINK_DIST) continue;
+          const dist = Math.hypot(dx, dy);
+          if (dist > LINK_DIST) continue;
+          const proximity = 1 - dist / LINK_DIST;
+          out.push({ i, j, alpha: lerp(LINK_ALPHA[0], LINK_ALPHA[1], proximity) });
+        }
+      }
+      return out;
+    };
+
+    const draw = (now = 0) => {
+      const W = w / dpr, H = h / dpr;
+      const pal = paletteFor();
+      ctx.clearRect(0, 0, W, H);
+
+      nodes.forEach(n => nodePos(n, now));
+      links = collectLinks();
+
+      links.forEach(({ i, j, alpha }) => {
+        const a = nodes[i], b = nodes[j];
+        ctx.strokeStyle = rgb2(pal.line, alpha);
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      });
+
+      nodes.forEach(n => {
+        let r = n.r, alpha = 0.55;
+        if (!isStatic) {
+          r = n.r + Math.sin(now * n.pulseHz + n.phase) * 0.6;
+          alpha = 0.42 + Math.sin(now * n.pulseHz * 1.2 + n.phase) * 0.18;
+        }
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = rgb2(n.color, 1);
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, Math.max(1, r), 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+
+      if (!isStatic) {
+        pulses = pulses.filter(p => p.t <= 1.05);
+        pulses.forEach(p => {
+          const a = nodes[p.from], b = nodes[p.to];
+          if (!a || !b) return;
+          p.t += p.speed;
+          const px = lerp(a.x, b.x, p.t), py = lerp(a.y, b.y, p.t);
+          ctx.globalAlpha = 0.85;
+          ctx.fillStyle = rgb2(pal.pulse, 1);
+          ctx.beginPath();
+          ctx.arc(px, py, 2.4, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+
+        if (now >= nextPulseAt && links.length) {
+          const link = links[Math.floor(Math.random() * links.length)];
+          const flip = Math.random() > 0.5;
+          pulses.push({
+            from: flip ? link.i : link.j,
+            to:   flip ? link.j : link.i,
+            t: 0,
+            speed: 0.01 + Math.random() * 0.006
+          });
+          nextPulseAt = now + 2200 + Math.random() * 1800;
+        }
+      }
+    };
+
+    resize();
+    spawn();
+    draw(0);
+
+    addEventListener("resize", () => { resize(); spawn(); draw(performance.now()); }, { passive: true });
+    window.addEventListener("ecodesa-theme-change", () => {
+      const pal = paletteFor();
+      nodes.forEach((n, i) => { n.color = pal.nodes[i % pal.nodes.length]; });
+      draw(isStatic ? 0 : performance.now());
+    });
+
+    if (finePtrNow) {
+      section.addEventListener("pointermove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mx = e.clientX - rect.left;
+        my = e.clientY - rect.top;
+      }, { passive: true });
+      section.addEventListener("pointerleave", () => { mx = -9999; my = -9999; });
+    }
+
+    if (isStatic) return;
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0 })
+        .observe(section);
+    }
+
+    const throttleFrames = lowEnd || mobile();
+    const frame = (now) => {
+      if (!document.hidden && visible) {
+        if (throttleFrames) {
+          frameSkip = (frameSkip + 1) % 2;
+          if (frameSkip === 0) draw(now);
+        } else {
+          draw(now);
+        }
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
      PARALLAX — topo de la ficha (GSAP); hero usa depth layers
   ═══════════════════════════════════════════════════════════ */
   function initParallax() {
@@ -1276,23 +1489,23 @@
       return {
         ink: "rgba(232, 245, 233, ",
         inkStroke: "rgba(0, 230, 118, ",
-        emerald: "#0C8A5F",
+        emerald: "#3D7A20",
         aqua: "#3ECFB2",
         azure: "#0E86C8",
         waterFill: "rgba(62, 207, 178, ",
         hatch: "rgba(14, 134, 200, 0.5)",
-        cota: "#69f0ae"
+        cota: "#86D14A"
       };
     }
     return {
       ink: "rgba(6, 46, 36, ",
       inkStroke: "rgba(6, 46, 36, ",
-      emerald: "#0C8A5F",
+      emerald: "#3D7A20",
       aqua: "#3ECFB2",
       azure: "#0E86C8",
       waterFill: "rgba(62, 207, 178, ",
       hatch: "rgba(14, 134, 200, 0.5)",
-      cota: "#0C8A5F"
+      cota: "#3D7A20"
     };
   }
 
@@ -2127,6 +2340,7 @@
     safe(initCounters,         "counters");
     safe(initServicios,        "servicios");
     safe(initServiciosAmbient, "serviciosAmbient");
+    safe(initServiciosConstellation, "serviciosConstellation");
     safe(initParallax,         "parallax");
     safe(initPlano,            "plano");
     safe(initMagnetic,         "magnetic");
