@@ -743,6 +743,19 @@
     draw(0);
 
     addEventListener("resize", () => { resize(); spawn(); draw(performance.now()); }, { passive: true });
+
+    /* Mismo fix que servConstellation: el resize por window no cubre
+       cambios de layout de la sección (font-swap, contenido tardío) y
+       dejaba un corte visible en el borde. ResizeObserver reacciona al
+       box real de la sección. */
+    if ("ResizeObserver" in window) {
+      let firstRO = true;
+      new ResizeObserver(() => {
+        if (firstRO) { firstRO = false; return; }
+        resize(); spawn(); draw(performance.now());
+      }).observe(section);
+    }
+
     window.addEventListener("ecodesa-theme-change", () => {
       const pal = paletteFor();
       nodes.forEach((n, i) => {
