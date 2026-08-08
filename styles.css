@@ -1822,12 +1822,14 @@ html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
 
 .serv-track {
   display: flex;
-  align-items: flex-start; /* cada card mantiene su propio alto al expandir
-                               sub-servicios — sin esto, align-items:stretch
-                               (valor inicial) igualaría el alto de TODAS
-                               las cards a la más alta del track. Ancho no
-                               se toca: flex-direction es row, esto solo
-                               afecta el eje transversal (alto). */
+  align-items: stretch; /* las 6 cards toman la altura de la más alta del
+                            track — con los sub-servicios siempre visibles
+                            (sin expand/collapse) el alto de cada card
+                            depende 100% de su cantidad de sub-ítems, así
+                            que se necesita un piso uniforme sin hardcodear
+                            un número que se desactualice con el contenido.
+                            Ancho no se toca: flex-direction es row, esto
+                            solo afecta el eje transversal (alto). */
   gap: 12px;
   width: max-content;
   padding-inline: var(--gutter);
@@ -1840,19 +1842,33 @@ html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
 .serv-card {
   --hue: var(--emerald);
   position: relative;
-  flex: 0 0 min(88vw, 1060px);
+  /* Ancho fijo de 1060px SOLO a ≥960px (ver @media más abajo), que es donde
+     GSAP activa el pin horizontal (initServicios, main.js). Por debajo de
+     ese breakpoint no hay pin: el ancho se topa a min(88vw, 1060px) para
+     que la card nunca exceda el viewport y todas midan lo mismo (el
+     scroll-snap-align: center del carrusel depende de ese ancho uniforme).
+     No usar "width: auto" aquí: con flex-basis auto resuelve a max-content
+     — .serv-track es width: max-content — y las cards se desbordan.
+     El alto sí queda en auto porque el contenido va sin compactar y una
+     caja fija dejaba los sub-servicios recortados en móvil.
+     "min-width: 0" se mantiene aquí para anular el mínimo automático de
+     todo flex item (min-width:auto), y flex-basis queda en "auto" para
+     que sea "width" quien mande. */
+  flex: 0 0 auto;
+  width: min(88vw, 1060px);
+  min-width: 0;
   scroll-snap-align: center;
   background: var(--surface);
   border: 1px solid var(--line);
   border-top: 5px solid var(--hue);
   border-bottom: 5px solid var(--hue);
-  border-radius: var(--r-xl);
+  border-radius: 26px;
   padding: clamp(1.1rem, 2vw, 1.75rem);
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.1rem;
-  min-height: auto;
   height: auto;
+  box-sizing: border-box;
   box-shadow: var(--shadow-lum);
   overflow: visible;
   will-change: transform, opacity;
@@ -2009,12 +2025,108 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
   .servicios {
     padding-block: calc(var(--nav-h) + 1rem) 1.75rem;
   }
-  .serv-card { grid-template-columns: 0.42fr 0.58fr; gap: 2.5rem; align-items: start; }
+  /* Compactado para el pin GSAP horizontal (initServicios, main.js): a
+     ≥960px la sección se fija (position:fixed) mientras dura el scroll
+     horizontal, así que el scroll vertical de la página no puede usarse
+     para revelar contenido que sobre por debajo del viewport. El padding
+     y los tamaños de .sc-head/.sc-list de aquí en adelante bajan el
+     presupuesto vertical de la card más alta sin tocar el tamaño de
+     fuente de los sub-servicios ni el mecanismo de pin en sí. */
+  /* Ancho fijo de la card: solo aquí, donde el pin horizontal está
+     activo y el carrusel avanza de card en card. "width" (no solo
+     flex-basis) porque flex-shrink:0 no evita que un item crezca más
+     allá de su base cuando su min-content lo supera (pasaba con las
+     cards 05/06); junto al "min-width: 0" de la regla base ninguna de
+     las 6 cards queda más ancha que las demás.
+     El alto NO se fija en ningún breakpoint: hereda el "height: auto"
+     de la regla base para que el contenido nunca quede recortado. El
+     presupuesto vertical bajo el pin lo controla el max-height de
+     .sc-list (ver más abajo), no un alto fijo de la card. */
+  .serv-card {
+    grid-template-columns: 0.42fr 0.58fr;
+    gap: 2rem;
+    align-items: start;
+    width: 1060px;
+    padding: 28px;
+  }
   .servicios.js-hscroll .serv-hint { visibility: hidden; }
   .serv-track { gap: 24px; }
-}
-@media (min-width: 1100px) {
-  .sc-list { grid-template-columns: 1fr 1fr; column-gap: 1.65rem; }
+
+  /* .sc-head: mismo contenido en las 6 cards (no depende del número de
+     sub-servicios), reducirlo baja el piso de altura sin afectar a la
+     card con más sub-ítems, que es la que realmente empuja el máximo.
+     Ronda 2 de compactado (objetivo ~280px de alto total en la card de
+     Hidrología, la más alta vía stretch): .sc-head es el cuello de
+     botella real (269px vs 249px de .sc-body antes de este cambio), así
+     que se compacta primero y de forma más agresiva — número/ícono más
+     pequeños, título más corto, descripción a 2 líneas (antes 3) vía
+     line-clamp y badge más compacto. */
+  .sc-head { gap: 0.3rem; }
+  .sc-idx { font-size: clamp(1.6rem, 2.6vw, 2.1rem); line-height: 0.9; }
+  .sc-icon { width: 34px; height: 34px; }
+  .sc-icon svg { width: 20px; height: 20px; }
+  .sc-title { font-size: clamp(1.3rem, 2.2vw, 1.8rem); line-height: 1.05; }
+  .sc-desc {
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  /* Selector compuesto (no ".count-badge" a secas): la regla base de
+     .count-badge vive más abajo en este archivo (§16c, sin scope de
+     media query) y comparte especificidad con una clase simple, así
+     que por orden de aparición ganaría sobre este override. Además
+     ".serv-card .count-badge" evita tocar el badge de .nc-card
+     (negocios comerciales), fuera de alcance de este cambio. */
+  .serv-card .count-badge { padding: 0.2rem 0.55rem; font-size: 0.64rem; }
+
+  /* .sc-list a 2 columnas desde el mismo breakpoint donde arranca el pin
+     (antes arrancaba en 1100px): entre 960-1099px el pin ya estaba
+     activo pero la lista seguía en 1 columna (hasta 11 filas en la card
+     de Hidrología) — el peor caso real de recorte. Alinear el
+     breakpoint de la lista con el del pin lo elimina por completo. */
+  .sc-list { grid-template-columns: 1fr 1fr; column-gap: 1.5rem; }
+
+  /* Cada fila de sub-servicio: .sc-list li conservaba el padding del
+     diseño anterior con ✓ decorativo (ya no existe), que se sumaba al
+     padding + min-height:44px de .sub-select y duplicaba espacio
+     vertical. Con 11 sub-ítems en la card de Hidrología (la más alta)
+     este ahorro por fila es el que más pesa en el total. min-height se
+     mantiene por encima del piso de accesibilidad WCAG 2.5.8 (24px); el
+     objetivo clicable real es el <label> completo (.sub-select-input
+     cubre el 100% de su área), no el checkbox visual de 16px. */
+  .sc-list li.sc-sub { padding: 0; }
+  .sc-list .sub-select {
+    min-height: 32px;
+    padding: 0.15rem 0 0.15rem 1.4rem;
+  }
+
+  /* Red de seguridad responsiva: la lista de sub-servicios es la única
+     parte de la card cuyo alto crece con el contenido (número de
+     sub-ítems), así que es la que se limita — no toda la card — para no
+     recortar nunca .sc-head (contenido fijo) ni el CTA de .sc-actions.
+     Si el contenido compactado no cabe en el viewport disponible, la
+     lista se vuelve scrolleable dentro de ese límite en vez de quedar
+     inalcanzable por el pin horizontal (el bug original). min() combina
+     un tope fijo (~7 filas, protege contra sub-servicios agregados a
+     futuro) con un tope relativo al alto de viewport (protege pantallas
+     bajas); 100svh se usa por ser más confiable que 100vh en navegadores
+     con barras de UI dinámicas, con fallback a 100vh si no hay soporte.
+     Ronda 2: con .sc-head ya compactado a ~189px, .sc-body (lista +
+     gap + acciones) pasa a ser el nuevo límite de facto si no se
+     recorta también — se baja el tope fijo de 240px a 180px y el
+     offset de 443 a 500 para acompañar el nuevo objetivo (~280px de
+     alto total). La card de Hidrología (11 subs → 6 filas a 2
+     columnas) ya dependía de scroll interno antes de este cambio; con
+     el tope más bajo el scroll es algo más notorio, pero el contenido
+     completo sigue accesible (nunca se recorta sin overflow). */
+  .sc-list {
+    max-height: min(180px, calc(100vh - 500px));
+    max-height: min(180px, calc(100svh - 500px));
+    overflow-y: auto;
+  }
+  .sc-body { gap: 0.55rem; }
 }
 
 /* =============================================================
@@ -3405,72 +3517,39 @@ a.info-link:hover { transform: translateX(4px); }
 }
 
 /* =============================================================
-   16c. SUB-SERVICIOS EXPANDIBLES (cards colapsables)
-   Botón expandir/colapsar + checkbox individual por sub-servicio.
-   El checkbox de área (16b) actúa como "seleccionar todos" —
-   lógica padre/hijo en initQuoteSelector() (main.js).
-   Ancho de .serv-card / .serv-track NO se toca: la expansión solo
-   cambia grid-template-rows (alto), nunca width — así el pin GSAP
-   horizontal de #servicios (dist() = track.scrollWidth - innerWidth)
-   queda intacto.
+   16c. SUB-SERVICIOS — siempre visibles (sin expandir/colapsar)
+   Los sub-servicios de cada card quedan visibles permanentemente;
+   el checkbox de área (16b) sigue actuando como "seleccionar
+   todos" — lógica padre/hijo en initQuoteSelector() (main.js).
+   .sc-collapse/.nc-collapse ya no colapsan: se dejan como wrapper
+   de altura automática (sin grid-template-rows 0fr/1fr ni inert),
+   así que no afectan el ancho de .serv-card/.serv-track y el pin
+   GSAP horizontal de #servicios sigue intacto.
    ============================================================= */
-.sc-expand-toggle,
-.nc-expand-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  min-height: 44px;
-  padding: 0.2rem 0.3rem 0.2rem 0;
-  margin: 0;
-  background: none;
-  border: none;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 650;
-  letter-spacing: 0.03em;
-  color: var(--hue, var(--nc-accent-card, var(--emerald)));
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-.sc-expand-toggle:hover,
-.nc-expand-toggle:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.sc-expand-toggle:focus-visible,
-.nc-expand-toggle:focus-visible {
-  outline: 2px solid var(--hue, var(--nc-accent-card, var(--emerald)));
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-.sc-expand-icon,
-.nc-expand-icon {
-  width: 11px;
-  height: 8px;
-  flex-shrink: 0;
-  transition: transform 0.25s ease;
-}
-.sc-expand-toggle[aria-expanded="true"] .sc-expand-icon,
-.nc-expand-toggle[aria-expanded="true"] .nc-expand-icon {
-  transform: rotate(180deg);
-}
-
-/* Truco grid-template-rows 0fr→1fr: anima el alto sin medir scrollHeight
-   por JS y sin afectar el ancho del padre en ningún momento. */
 .sc-collapse,
 .nc-collapse {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.35s ease;
-}
-.sc-collapse.is-expanded,
-.nc-collapse.is-expanded {
-  grid-template-rows: 1fr;
+  display: block;
 }
 .sc-collapse-inner,
 .nc-collapse-inner {
-  overflow: hidden;
-  min-height: 0;
+  overflow: visible;
+}
+
+/* Badge contador "X de N" por card — mismo lenguaje visual que
+   .sub-select-box (color por --hue / --nc-accent-card de cada card). */
+.count-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  color: var(--hue, var(--nc-accent-card, var(--emerald)));
+  background: color-mix(in srgb, var(--hue, var(--nc-accent-card, var(--emerald))) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--hue, var(--nc-accent-card, var(--emerald))) 30%, transparent);
 }
 
 /* Checkbox por sub-servicio — mismo lenguaje visual que el ✓ decorativo
@@ -3629,10 +3708,6 @@ a.info-link:hover { transform: translateX(4px); }
   .svc-select-box,
   .svc-select-check,
   .svc-select-dash,
-  .sc-collapse,
-  .nc-collapse,
-  .sc-expand-icon,
-  .nc-expand-icon,
   .sub-select-box,
   .sub-select-check {
     transition: none !important;

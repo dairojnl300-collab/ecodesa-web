@@ -958,8 +958,17 @@
        indeterminate. Agrupación por data-parent-id (no closest() —
        cada sub vive dentro de .sc-collapse/.nc-collapse, no directo
        bajo la card, así que el id explícito es más simple y robusto). */
-    const groups = new Map(); // areaId -> { area, subs: [] }
-    areaInputs.forEach((area) => groups.set(area.id, { area, subs: [] }));
+    const groups = new Map(); // areaId -> { area, subs: [], badge, cta, ctaDefaultHref }
+    areaInputs.forEach((area) => {
+      const badge = document.querySelector('[data-count-badge="' + area.id + '"]');
+      /* CTA individual de la card (sc-cta/nc-cta): guardamos su href
+         genérico original como fallback antes de empezar a reescribirlo
+         dinámicamente según los sub-ítems marcados. */
+      const card = area.closest(".serv-card, .nc-card");
+      const cta = card ? card.querySelector(".sc-cta, .nc-cta") : null;
+      const ctaDefaultHref = cta ? cta.getAttribute("href") : null;
+      groups.set(area.id, { area, subs: [], badge, cta, ctaDefaultHref });
+    });
     subInputs.forEach((sub) => {
       const g = groups.get(sub.dataset.parentId);
       if (g) g.subs.push(sub);
@@ -968,6 +977,39 @@
     const setCardSelected = (input, on) => {
       const card = input.closest(".serv-card, .nc-card");
       if (card) card.classList.toggle("is-quote-selected", on);
+    };
+
+    /* Badge "X de N" por card — se actualiza con el mismo checkedCount/
+       total que ya se calcula al sincronizar el área con sus sub-ítems,
+       sin duplicar el conteo en otro lugar. */
+    const updateBadge = (g) => {
+      if (!g.badge) return;
+      const total = g.subs.length;
+      const checkedCount = g.subs.filter((s) => s.checked).length;
+      g.badge.textContent = checkedCount + " de " + total;
+    };
+
+    /* CTA individual por card: si el visitante marca sub-servicios de
+       UNA sola área y usa el botón "Cotizar este servicio" de esa
+       misma card (en vez del botón flotante, que solo aparece con 2+
+       áreas), el mensaje de WhatsApp debe reflejar lo que marcó — no
+       el texto genérico fijo del href original. Mismo patrón de
+       construcción de mensaje que sync(), pero scopeado a un grupo. */
+    const updateCta = (g) => {
+      if (!g.cta) return;
+      const checked = g.subs.filter((s) => s.checked);
+      if (!checked.length) {
+        /* Sin selección: se conserva el href genérico original tal
+           cual estaba en el HTML, el botón sigue funcionando igual
+           que antes de este fix. */
+        if (g.ctaDefaultHref != null) g.cta.setAttribute("href", g.ctaDefaultHref);
+        return;
+      }
+      const msg =
+        "Hola ECODESA, quiero cotizar los siguientes servicios de " +
+        g.area.dataset.quoteTitle + ":\n" +
+        checked.map((s) => "- " + s.dataset.quoteTitle).join("\n");
+      g.cta.setAttribute("href", "https://wa.me/573246886824?text=" + encodeURIComponent(msg));
     };
 
     /* Recalcula el estado del área a partir de sus sub-checkboxes. */
@@ -986,6 +1028,8 @@
         g.area.indeterminate = true;
       }
       setCardSelected(g.area, checkedCount > 0);
+      updateBadge(g);
+      updateCta(g);
     };
 
     /* Mensaje de WhatsApp agrupado por área: si el área está 100%
@@ -1016,9 +1060,12 @@
 
       const n = selectedAreas;
       countEl.textContent = String(n);
-      bar.classList.toggle("is-visible", n > 0);
-      bar.setAttribute("aria-disabled", n > 0 ? "false" : "true");
-      bar.tabIndex = n > 0 ? 0 : -1;
+      /* El botón flotante solo tiene sentido cuando se está combinando
+         más de un área en una sola cotización — con 1 sola área el CTA
+         individual de esa card (sc-cta/nc-cta) ya cubre el caso. */
+      bar.classList.toggle("is-visible", n > 1);
+      bar.setAttribute("aria-disabled", n > 1 ? "false" : "true");
+      bar.tabIndex = n > 1 ? 0 : -1;
 
       if (n > 0) {
         const msg = "Hola ECODESA, quiero cotizar los siguientes servicios:\n" + lines.join("\n");
@@ -1029,10 +1076,14 @@
     };
 
     groups.forEach((g) => {
+      updateBadge(g); /* estado inicial "0 de N" (o el que traiga el DOM al cargar) */
+      updateCta(g); /* estado inicial del CTA individual (fallback = href original) */
       g.area.addEventListener("change", () => {
         g.area.indeterminate = false;
         g.subs.forEach((s) => { s.checked = g.area.checked; });
         setCardSelected(g.area, g.area.checked);
+        updateBadge(g);
+        updateCta(g);
         sync();
       });
       g.subs.forEach((sub) => {
@@ -1049,44 +1100,6 @@
     });
 
     sync();
-  }
-
-  /* ═══════════════════════════════════════════════════════════
-     SUB-SERVICIOS — expandir/colapsar por card (16c.)
-     Alterna .is-expanded en el contenedor .sc-collapse/.nc-collapse
-     (grid-template-rows 0fr↔1fr en CSS, sin medir scrollHeight).
-     Solo cambia ALTURA — nunca toca el ancho de .serv-card/#servTrack,
-     así que el pin horizontal GSAP de #servicios no se ve afectado.
-     Tras el toggle se pide un refresh a ScrollTrigger (si existe) para
-     que el pin-spacer recalcule su alto visual con invalidateOnRefresh;
-     dist() (ancho) no cambia, así que el recorrido horizontal es el
-     mismo antes y después de expandir cualquier card.
-  ═══════════════════════════════════════════════════════════ */
-  function initExpandCollapse() {
-    const toggles = $$(".sc-expand-toggle, .nc-expand-toggle");
-    if (!toggles.length) return;
-
-    toggles.forEach((btn) => {
-      const targetId = btn.getAttribute("aria-controls");
-      const target = targetId && document.getElementById(targetId);
-      const label = $(".sc-expand-label, .nc-expand-label", btn);
-      if (!target) return;
-
-      target.inert = true; /* colapsado por defecto: sin foco/tab en checkboxes ocultos */
-
-      btn.addEventListener("click", () => {
-        const willExpand = btn.getAttribute("aria-expanded") !== "true";
-        btn.setAttribute("aria-expanded", String(willExpand));
-        target.classList.toggle("is-expanded", willExpand);
-        target.inert = !willExpand;
-        if (label) {
-          label.textContent = willExpand ? label.dataset.collapseText : label.dataset.expandText;
-        }
-        if (hasGSAP()) {
-          requestAnimationFrame(() => ScrollTrigger.refresh());
-        }
-      });
-    });
   }
 
   /* ═══════════════════════════════════════════════════════════
@@ -2519,7 +2532,6 @@
     safe(initNcCardGrow,       "ncGrow");
     safe(initNcCardTilt,       "ncTilt");
     safe(initQuoteSelector,    "quoteSelector");
-    safe(initExpandCollapse,  "expandCollapse");
     safe(initSolucionesFan,       "solucionesFan");
     safe(initSolucionesMagnetic,  "solucionesMagnetic");
     safe(initCounters,         "counters");
