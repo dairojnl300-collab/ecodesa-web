@@ -1860,6 +1860,7 @@ html.js .serv-card.service-card {
   transition:
     opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
     transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-delay: calc(var(--sc-i, 0) * 120ms);
 }
 html.js .serv-card.service-card.is-grown {
   opacity: 1;
@@ -3224,6 +3225,155 @@ a.info-link:hover { transform: translateX(4px); }
 }
 
 /* =============================================================
+   16b. COTIZADOR MULTI-SELECCIÓN
+   Checkbox accesible por card (#servicios + #negocios-comerciales)
+   + botón flotante único que arma el mensaje de WhatsApp.
+   Reutiliza --hue (serv-card) / --nc-accent-card (nc-card) — sin
+   paleta nueva.
+   ============================================================= */
+.svc-select {
+  position: absolute;
+  top: -16px;
+  right: 18px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0 0.75rem 0 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--hue, var(--nc-accent-card, var(--emerald))) 12%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--hue, var(--nc-accent-card, var(--emerald))) 32%, transparent);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.svc-select:hover {
+  border-color: color-mix(in srgb, var(--hue, var(--nc-accent-card, var(--emerald))) 55%, transparent);
+}
+.nc-select {
+  top: -16px;
+  right: 24px;
+  background: color-mix(in srgb, var(--nc-accent-card, var(--nc-accent)) 16%, var(--nc-bg-card, #1a2b1c));
+}
+.svc-select-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.svc-select-box {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  display: grid;
+  place-content: center;
+  border: 1.5px solid color-mix(in srgb, var(--hue, var(--nc-accent-card, var(--emerald))) 60%, transparent);
+  background: transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.svc-select-check {
+  width: 12px;
+  height: 9px;
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.svc-select-input:checked ~ .svc-select-box {
+  background: var(--hue, var(--nc-accent-card, var(--emerald)));
+  border-color: var(--hue, var(--nc-accent-card, var(--emerald)));
+  transform: scale(1.08);
+}
+.svc-select-input:checked ~ .svc-select-box .svc-select-check {
+  opacity: 1;
+  transform: scale(1);
+}
+.svc-select-input:focus-visible ~ .svc-select-box {
+  outline: 2px solid var(--hue, var(--nc-accent-card, var(--emerald)));
+  outline-offset: 2px;
+}
+.svc-select-text {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-70);
+  white-space: nowrap;
+}
+.nc-select .svc-select-text { color: var(--nc-cream-2, #c8e6c9); }
+
+/* Refuerzo visual en la card cuando está marcada — no solo color */
+.serv-card.is-quote-selected {
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--hue) 60%, transparent),
+    var(--shadow-lum);
+}
+.nc-card.is-quote-selected {
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--nc-accent-card, var(--nc-accent)) 65%, transparent),
+    var(--nc-elev-3, var(--shadow-lum));
+}
+
+/* Botón flotante único — recolecta selección de ambas secciones */
+.quote-bar {
+  position: fixed;
+  left: 1.4rem;
+  bottom: 1.4rem;
+  z-index: 850;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.3rem 0.85rem 1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--emerald), var(--aqua));
+  color: var(--on-accent);
+  font-family: var(--sans);
+  font-weight: 650;
+  font-size: 0.86rem;
+  text-decoration: none;
+  box-shadow: var(--shadow-deep);
+  opacity: 0;
+  transform: translateY(140%);
+  pointer-events: none;
+  transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.28s ease;
+  max-width: calc(100vw - 2.8rem);
+}
+.quote-bar.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.quote-bar-count {
+  display: inline-grid;
+  place-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+  font-size: 0.76rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.quote-bar-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.quote-bar .btn-chevron { flex-shrink: 0; }
+
+@media (max-width: 420px) {
+  .quote-bar-text { max-width: 44vw; }
+}
+
+/* =============================================================
    17. MOVIMIENTO REDUCIDO
    ============================================================= */
 @media (prefers-reduced-motion: reduce) {
@@ -3298,6 +3448,12 @@ a.info-link:hover { transform: translateX(4px); }
   .nc-cta::before,
   .theme-toggle::before,
   .float-wa::after {
+    transition: none !important;
+  }
+
+  .quote-bar,
+  .svc-select-box,
+  .svc-select-check {
     transition: none !important;
   }
 

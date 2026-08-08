@@ -936,6 +936,56 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
+     COTIZADOR MULTI-SELECCIÓN — checkboxes en #servicios y
+     #negocios-comerciales (12 cards) alimentan un único botón
+     flotante que arma un mensaje de WhatsApp con lo marcado.
+     Estado: Set de ids de checkbox — sin framework, sin drama.
+  ═══════════════════════════════════════════════════════════ */
+  function initQuoteSelector() {
+    const inputs  = $$(".svc-select-input");
+    const bar     = $("#quoteBar");
+    const countEl = $("#quoteBarCount");
+    if (!inputs.length || !bar || !countEl) return;
+
+    const selected = new Set();
+
+    const sync = () => {
+      const n = selected.size;
+      countEl.textContent = String(n);
+      bar.classList.toggle("is-visible", n > 0);
+      bar.setAttribute("aria-disabled", n > 0 ? "false" : "true");
+      bar.tabIndex = n > 0 ? 0 : -1;
+
+      if (n > 0) {
+        const lines = inputs
+          .filter((i) => selected.has(i.id))
+          .map((i) => "• " + i.dataset.quoteTitle)
+          .join("\n");
+        const msg = "Hola ECODESA, quiero cotizar los siguientes servicios:\n" + lines;
+        bar.href = "https://wa.me/573246886824?text=" + encodeURIComponent(msg);
+      } else {
+        bar.href = "#";
+      }
+    };
+
+    inputs.forEach((input) => {
+      input.addEventListener("change", () => {
+        if (input.checked) selected.add(input.id); else selected.delete(input.id);
+        const card = input.closest(".serv-card, .nc-card");
+        if (card) card.classList.toggle("is-quote-selected", input.checked);
+        sync();
+      });
+    });
+
+    bar.addEventListener("click", (e) => {
+      if (bar.getAttribute("aria-disabled") === "true") { e.preventDefault(); return; }
+      gtag("event", "click", { event_category: "engagement", event_label: "whatsapp_quote_multi_click", value: 1 });
+    });
+
+    sync();
+  }
+
+  /* ═══════════════════════════════════════════════════════════
      SOLUCIONES A MEDIDA — abanico al scroll + glow magnético
      Usa `rotate` (no `transform`) para no chocar con
      .sol-card:hover{transform:scale(1.05)}
@@ -2364,6 +2414,7 @@
     safe(initServiceCardGrow,  "serviceGrow");
     safe(initNcCardGrow,       "ncGrow");
     safe(initNcCardTilt,       "ncTilt");
+    safe(initQuoteSelector,    "quoteSelector");
     safe(initSolucionesFan,       "solucionesFan");
     safe(initSolucionesMagnetic,  "solucionesMagnetic");
     safe(initCounters,         "counters");
