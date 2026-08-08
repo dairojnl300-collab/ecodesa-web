@@ -2047,6 +2047,7 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
     gap: 2rem;
     align-items: start;
     width: 1060px;
+    height: 400px;
     padding: 28px;
   }
   .servicios.js-hscroll .serv-hint { visibility: hidden; }
@@ -2122,8 +2123,8 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
      el tope más bajo el scroll es algo más notorio, pero el contenido
      completo sigue accesible (nunca se recorta sin overflow). */
   .sc-list {
-    max-height: min(180px, calc(100vh - 500px));
-    max-height: min(180px, calc(100svh - 500px));
+    max-height: min(260px, calc(100vh - 380px));
+    max-height: min(260px, calc(100svh - 380px));
     overflow-y: auto;
   }
   .sc-body { gap: 0.55rem; }
