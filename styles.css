@@ -2062,10 +2062,20 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
      que se compacta primero y de forma más agresiva — número/ícono más
      pequeños, título más corto, descripción a 2 líneas (antes 3) vía
      line-clamp y badge más compacto. */
-  .sc-head { gap: 0.3rem; }
-  .sc-idx { font-size: clamp(1.6rem, 2.6vw, 2.1rem); line-height: 0.9; }
-  .sc-icon { width: 34px; height: 34px; }
-  .sc-icon svg { width: 20px; height: 20px; }
+  .sc-head { gap: 0.45rem; }
+  .sc-idx {
+    font-size: clamp(2.9rem, 4.4vw, 3.6rem);
+    line-height: 0.9;
+    color: color-mix(in srgb, var(--hue) 50%, transparent);
+    text-shadow: 0 0 18px color-mix(in srgb, var(--hue) 24%, transparent);
+  }
+  .sc-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    box-shadow: 0 10px 24px -16px color-mix(in srgb, var(--hue) 80%, transparent);
+  }
+  .sc-icon svg { width: 42px; height: 42px; }
   .sc-title { font-size: clamp(1.3rem, 2.2vw, 1.8rem); line-height: 1.05; }
   .sc-desc {
     line-height: 1.3;
