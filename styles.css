@@ -2070,18 +2070,19 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
      line-clamp y badge más compacto. */
   .sc-head { gap: 0.45rem; }
   .sc-idx {
-    font-size: clamp(2.9rem, 4.4vw, 3.6rem);
+    font-size: clamp(3.25rem, 5vw, 4.25rem);
     line-height: 0.9;
     color: color-mix(in srgb, var(--hue) 50%, transparent);
     text-shadow: 0 0 18px color-mix(in srgb, var(--hue) 24%, transparent);
   }
   .sc-icon {
-    width: 72px;
-    height: 72px;
+    width: 84px;
+    height: 84px;
+    flex: 0 0 84px;
     border-radius: 18px;
     box-shadow: 0 10px 24px -16px color-mix(in srgb, var(--hue) 80%, transparent);
   }
-  .sc-icon svg { width: 42px; height: 42px; }
+  .sc-icon svg { width: 48px; height: 48px; }
   .sc-title { font-size: clamp(1.3rem, 2.2vw, 1.8rem); line-height: 1.05; }
   .sc-desc {
     line-height: 1.3;
@@ -2089,6 +2090,12 @@ html.no-js .icon-path { stroke-dashoffset: 0; }
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
+  }
+  /* Las áreas 05 y 06 necesitan una tercera línea para completar su
+     propuesta de valor; la altura de la card mantiene espacio suficiente. */
+  .serv-card[data-serv-theme="forestal"] .sc-desc,
+  .serv-card[data-serv-theme="ia"] .sc-desc {
+    -webkit-line-clamp: 3;
   }
   /* Selector compuesto (no ".count-badge" a secas): la regla base de
      .count-badge vive más abajo en este archivo (§16c, sin scope de
@@ -3467,6 +3474,14 @@ a.info-link:hover { transform: translateX(4px); }
   white-space: nowrap;
 }
 .nc-select .svc-select-text { color: var(--nc-cream-2, #c8e6c9); }
+
+@media (max-width: 959px) {
+  .serv-card .svc-select {
+    top: 12px;
+    right: 12px;
+    max-width: calc(100% - 24px);
+  }
+}
 
 /* Refuerzo visual en la card cuando está marcada — no solo color */
 .serv-card.is-quote-selected {
