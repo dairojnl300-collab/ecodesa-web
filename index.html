@@ -417,7 +417,7 @@
           <article class="serv-card service-card is-active" style="--hue:#3D7A20;--sc-i:0" data-serv-theme="ambiental" aria-label="Área 01: Gestión Ambiental">
             <label class="svc-select" for="q-serv-ambiental">
               <input type="checkbox" id="q-serv-ambiental" class="svc-select-input" data-quote-title="Gestión Ambiental">
-              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="svc-select-dash" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M2 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
               <span class="svc-select-text">Seleccionar<span class="sr-only"> Gestión Ambiental para cotización</span></span>
             </label>
             <div class="serv-card-ambient serv-card-ambient--ambiental" aria-hidden="true">
@@ -455,17 +455,25 @@
               <p class="sc-desc">Acompañamiento integral en el cumplimiento de requerimientos ambientales bajo la normativa vigente.</p>
             </div>
             <div class="sc-body">
-              <ul class="sc-list" role="list">
-                <li>Análisis de requerimientos ambientales</li>
-                <li>Estudios de Impacto Ambiental (EIA)</li>
-                <li>Licencias ambientales y PMA</li>
-                <li>Permisos de vertimiento, cauce y emisiones</li>
-                <li>Informes técnicos ambientales</li>
-                <li>Trámite PIN RCD</li>
-                <li>Departamento de Gestión Ambiental</li>
-                <li>Eventos y publicidad exterior visual</li>
-                <li>Interventoría ambiental de PMA</li>
-              </ul>
+              <button type="button" class="sc-expand-toggle" aria-expanded="false" aria-controls="sc-sub-ambiental">
+                <span class="sc-expand-label" data-expand-text="Ver los 9 sub-servicios" data-collapse-text="Ocultar sub-servicios">Ver los 9 sub-servicios</span>
+                <svg class="sc-expand-icon" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="sc-collapse" id="sc-sub-ambiental">
+                <div class="sc-collapse-inner">
+                  <ul class="sc-list" role="list">
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ambiental-1"><input type="checkbox" id="q-sub-ambiental-1" class="sub-select-input" data-quote-title="Análisis de requerimientos ambientales" data-parent-id="q-serv-ambiental"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Análisis de requerimientos ambientales</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ambiental-2"><input type="checkbox" id="q-sub-ambiental-2" class="sub-select-input" data-quote-title="Estudios de Impacto Ambiental (EIA)" data-parent-id="q-serv-ambiental"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Estudios de Impacto Ambiental (EIA)</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ambiental-3"><input type="checkbox" id="q-sub-ambiental-3" class="sub-select-input" data-quote-title="Licencias ambientales y PMA" data-parent-id="q-serv-ambiental"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Licencias ambientales y PMA</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ambiental-4"><input type="checkbox" id="q-sub-ambiental-4" class="sub-select-input" data-quote-title="Permisos de vertimiento, cauce y emisiones" data-parent-id="q-serv-ambiental"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Permisos de vertimiento, cauce y emisiones</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ambiental-5"><input type="checkbox" id="q-sub-ambiental-5" class="sub-select-input" data-quote-title="Informes técnicos ambientales" data-parent-id="q-serv-ambiental"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Informes técnicos ambientales</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ambiental-6"><input type="checkbox" id="q-sub-ambiental-6" class="sub-select-input" data-quote-title="Trámite PIN RCD" data-parent-id="q-serv-ambiental"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Trámite PIN RCD</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ambiental-7"><input type="checkbox" id="q-sub-ambiental-7" class="sub-select-input" data-quote-title="Departamento de Gestión Ambiental" data-parent-id="q-serv-ambiental"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Departamento de Gestión Ambiental</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ambiental-8"><input type="checkbox" id="q-sub-ambiental-8" class="sub-select-input" data-quote-title="Eventos y publicidad exterior visual" data-parent-id="q-serv-ambiental"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Eventos y publicidad exterior visual</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ambiental-9"><input type="checkbox" id="q-sub-ambiental-9" class="sub-select-input" data-quote-title="Interventoría ambiental de PMA" data-parent-id="q-serv-ambiental"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Interventoría ambiental de PMA</span></label></li>
+                  </ul>
+                </div>
+              </div>
               <div class="sc-actions">
                 <a class="sc-cta btn btn-hue" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Gesti%C3%B3n%20Ambiental." onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'whatsapp_contact_click', value: 1});" target="_blank" rel="noopener"><span class="btn-text">Cotizar este servicio <span class="btn-chevron" aria-hidden="true"><svg class="btn-chevron__icon" viewBox="0 0 8 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
                 <a class="sc-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fecodesa.co%2F%3Futm_source%3Dlinkedin%26utm_medium%3Dsocial%26utm_campaign%3Decodesa%26utm_content%3Dambiental%23servicios" onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'linkedin_share_click', value: 1});" target="_blank" rel="noopener" aria-label="Compartir Gestión Ambiental en LinkedIn" title="Compartir en LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
@@ -476,7 +484,7 @@
           <article class="serv-card service-card" style="--hue:#0E86C8;--sc-i:1" data-serv-theme="hidrologia" aria-label="Área 02: Hidrología y Saneamiento">
             <label class="svc-select" for="q-serv-hidrologia">
               <input type="checkbox" id="q-serv-hidrologia" class="svc-select-input" data-quote-title="Hidrología y Saneamiento">
-              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="svc-select-dash" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M2 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
               <span class="svc-select-text">Seleccionar<span class="sr-only"> Hidrología y Saneamiento para cotización</span></span>
             </label>
             <div class="serv-card-ambient" aria-hidden="true">
@@ -505,19 +513,27 @@
               <p class="sc-desc">Diseño, diagnóstico y gestión de sistemas de tratamiento de agua, residuos y saneamiento ambiental.</p>
             </div>
             <div class="sc-body">
-              <ul class="sc-list" role="list">
-                <li>Diseño e interventoría de PTAP y PTAR</li>
-                <li>Sistemas pluviales y de riego</li>
-                <li>Captación de aguas subterráneas y superficiales</li>
-                <li>Diagnóstico de captación y vertimientos</li>
-                <li>Diseño de sistemas de flujo de aguas</li>
-                <li>Planes de acueducto y alcantarillado</li>
-                <li>Caracterización de aguas</li>
-                <li>PMA de residuos sólidos e industriales</li>
-                <li>Plan de manejo de RCD</li>
-                <li>Almacenamiento temporal de residuos</li>
-                <li>Retiro y disposición final</li>
-              </ul>
+              <button type="button" class="sc-expand-toggle" aria-expanded="false" aria-controls="sc-sub-hidrologia">
+                <span class="sc-expand-label" data-expand-text="Ver los 11 sub-servicios" data-collapse-text="Ocultar sub-servicios">Ver los 11 sub-servicios</span>
+                <svg class="sc-expand-icon" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="sc-collapse" id="sc-sub-hidrologia">
+                <div class="sc-collapse-inner">
+                  <ul class="sc-list" role="list">
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-hidrologia-1"><input type="checkbox" id="q-sub-hidrologia-1" class="sub-select-input" data-quote-title="Diseño e interventoría de PTAP y PTAR" data-parent-id="q-serv-hidrologia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Diseño e interventoría de PTAP y PTAR</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-hidrologia-2"><input type="checkbox" id="q-sub-hidrologia-2" class="sub-select-input" data-quote-title="Sistemas pluviales y de riego" data-parent-id="q-serv-hidrologia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Sistemas pluviales y de riego</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-hidrologia-3"><input type="checkbox" id="q-sub-hidrologia-3" class="sub-select-input" data-quote-title="Captación de aguas subterráneas y superficiales" data-parent-id="q-serv-hidrologia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Captación de aguas subterráneas y superficiales</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-hidrologia-4"><input type="checkbox" id="q-sub-hidrologia-4" class="sub-select-input" data-quote-title="Diagnóstico de captación y vertimientos" data-parent-id="q-serv-hidrologia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Diagnóstico de captación y vertimientos</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-hidrologia-5"><input type="checkbox" id="q-sub-hidrologia-5" class="sub-select-input" data-quote-title="Diseño de sistemas de flujo de aguas" data-parent-id="q-serv-hidrologia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Diseño de sistemas de flujo de aguas</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-hidrologia-6"><input type="checkbox" id="q-sub-hidrologia-6" class="sub-select-input" data-quote-title="Planes de acueducto y alcantarillado" data-parent-id="q-serv-hidrologia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Planes de acueducto y alcantarillado</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-hidrologia-7"><input type="checkbox" id="q-sub-hidrologia-7" class="sub-select-input" data-quote-title="Caracterización de aguas" data-parent-id="q-serv-hidrologia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Caracterización de aguas</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-hidrologia-8"><input type="checkbox" id="q-sub-hidrologia-8" class="sub-select-input" data-quote-title="PMA de residuos sólidos e industriales" data-parent-id="q-serv-hidrologia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">PMA de residuos sólidos e industriales</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-hidrologia-9"><input type="checkbox" id="q-sub-hidrologia-9" class="sub-select-input" data-quote-title="Plan de manejo de RCD" data-parent-id="q-serv-hidrologia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Plan de manejo de RCD</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-hidrologia-10"><input type="checkbox" id="q-sub-hidrologia-10" class="sub-select-input" data-quote-title="Almacenamiento temporal de residuos" data-parent-id="q-serv-hidrologia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Almacenamiento temporal de residuos</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-hidrologia-11"><input type="checkbox" id="q-sub-hidrologia-11" class="sub-select-input" data-quote-title="Retiro y disposición final" data-parent-id="q-serv-hidrologia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Retiro y disposición final</span></label></li>
+                  </ul>
+                </div>
+              </div>
               <div class="sc-actions">
                 <a class="sc-cta btn btn-hue" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Hidrolog%C3%ADa%20y%20Saneamiento." onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'whatsapp_contact_click', value: 1});" target="_blank" rel="noopener"><span class="btn-text">Cotizar este servicio <span class="btn-chevron" aria-hidden="true"><svg class="btn-chevron__icon" viewBox="0 0 8 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
                 <a class="sc-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fecodesa.co%2F%3Futm_source%3Dlinkedin%26utm_medium%3Dsocial%26utm_campaign%3Decodesa%26utm_content%3Dhidrologia%23servicios" onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'linkedin_share_click', value: 1});" target="_blank" rel="noopener" aria-label="Compartir Hidrología y Saneamiento en LinkedIn" title="Compartir en LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
@@ -528,7 +544,7 @@
           <article class="serv-card service-card" style="--hue:#DF8A00;--sc-i:2" data-serv-theme="sst" aria-label="Área 03: Seguridad Química y SG-SST">
             <label class="svc-select" for="q-serv-sst">
               <input type="checkbox" id="q-serv-sst" class="svc-select-input" data-quote-title="Seguridad Química y SG-SST">
-              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="svc-select-dash" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M2 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
               <span class="svc-select-text">Seleccionar<span class="sr-only"> Seguridad Química y SG-SST para cotización</span></span>
             </label>
             <div class="serv-card-ambient serv-card-ambient--sst" aria-hidden="true">
@@ -580,18 +596,26 @@
               <p class="sc-desc">Sistemas de gestión de la seguridad y salud en el trabajo, riesgo químico y certificaciones internacionales.</p>
             </div>
             <div class="sc-body">
-              <ul class="sc-list" role="list">
-                <li>Programas de seguridad química</li>
-                <li>SGA — Resolución 773/2021</li>
-                <li>Auditorías de riesgo químico</li>
-                <li>ISO 14001:2015</li>
-                <li>ISO 45001:2018</li>
-                <li>Planes de saneamiento básico</li>
-                <li>Inocuidad alimentaria HACCP</li>
-                <li>Global GAP</li>
-                <li>Estándares ASC · MSC</li>
-                <li>Sistemas de bioseguridad</li>
-              </ul>
+              <button type="button" class="sc-expand-toggle" aria-expanded="false" aria-controls="sc-sub-sst">
+                <span class="sc-expand-label" data-expand-text="Ver los 10 sub-servicios" data-collapse-text="Ocultar sub-servicios">Ver los 10 sub-servicios</span>
+                <svg class="sc-expand-icon" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="sc-collapse" id="sc-sub-sst">
+                <div class="sc-collapse-inner">
+                  <ul class="sc-list" role="list">
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-sst-1"><input type="checkbox" id="q-sub-sst-1" class="sub-select-input" data-quote-title="Programas de seguridad química" data-parent-id="q-serv-sst"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Programas de seguridad química</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-sst-2"><input type="checkbox" id="q-sub-sst-2" class="sub-select-input" data-quote-title="SGA — Resolución 773/2021" data-parent-id="q-serv-sst"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">SGA — Resolución 773/2021</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-sst-3"><input type="checkbox" id="q-sub-sst-3" class="sub-select-input" data-quote-title="Auditorías de riesgo químico" data-parent-id="q-serv-sst"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Auditorías de riesgo químico</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-sst-4"><input type="checkbox" id="q-sub-sst-4" class="sub-select-input" data-quote-title="ISO 14001:2015" data-parent-id="q-serv-sst"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">ISO 14001:2015</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-sst-5"><input type="checkbox" id="q-sub-sst-5" class="sub-select-input" data-quote-title="ISO 45001:2018" data-parent-id="q-serv-sst"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">ISO 45001:2018</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-sst-6"><input type="checkbox" id="q-sub-sst-6" class="sub-select-input" data-quote-title="Planes de saneamiento básico" data-parent-id="q-serv-sst"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Planes de saneamiento básico</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-sst-7"><input type="checkbox" id="q-sub-sst-7" class="sub-select-input" data-quote-title="Inocuidad alimentaria HACCP" data-parent-id="q-serv-sst"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Inocuidad alimentaria HACCP</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-sst-8"><input type="checkbox" id="q-sub-sst-8" class="sub-select-input" data-quote-title="Global GAP" data-parent-id="q-serv-sst"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Global GAP</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-sst-9"><input type="checkbox" id="q-sub-sst-9" class="sub-select-input" data-quote-title="Estándares ASC · MSC" data-parent-id="q-serv-sst"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Estándares ASC · MSC</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-sst-10"><input type="checkbox" id="q-sub-sst-10" class="sub-select-input" data-quote-title="Sistemas de bioseguridad" data-parent-id="q-serv-sst"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Sistemas de bioseguridad</span></label></li>
+                  </ul>
+                </div>
+              </div>
               <div class="sc-actions">
                 <a class="sc-cta btn btn-hue" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Seguridad%20Qu%C3%ADmica%20y%20SG-SST." onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'whatsapp_contact_click', value: 1});" target="_blank" rel="noopener"><span class="btn-text">Cotizar este servicio <span class="btn-chevron" aria-hidden="true"><svg class="btn-chevron__icon" viewBox="0 0 8 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
                 <a class="sc-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fecodesa.co%2F%3Futm_source%3Dlinkedin%26utm_medium%3Dsocial%26utm_campaign%3Decodesa%26utm_content%3Dsst%23servicios" onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'linkedin_share_click', value: 1});" target="_blank" rel="noopener" aria-label="Compartir Seguridad Química y SG-SST en LinkedIn" title="Compartir en LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
@@ -602,7 +626,7 @@
           <article class="serv-card service-card" style="--hue:#E0523C;--sc-i:3" data-serv-theme="riesgo" aria-label="Área 04: Gestión del Riesgo y Desastres">
             <label class="svc-select" for="q-serv-riesgo">
               <input type="checkbox" id="q-serv-riesgo" class="svc-select-input" data-quote-title="Gestión del Riesgo y Desastres">
-              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="svc-select-dash" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M2 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
               <span class="svc-select-text">Seleccionar<span class="sr-only"> Gestión del Riesgo y Desastres para cotización</span></span>
             </label>
             <div class="serv-card-ambient serv-card-ambient--riesgo" aria-hidden="true">
@@ -671,13 +695,21 @@
               <p class="sc-desc">Elaboración de planes, análisis de vulnerabilidad territorial y trámites ante entidades de gestión del riesgo.</p>
             </div>
             <div class="sc-body">
-              <ul class="sc-list" role="list">
-                <li>Informes técnicos de gestión del riesgo</li>
-                <li>Trámites ante entidades públicas</li>
-                <li>Planes de emergencia y contingencia</li>
-                <li>Análisis de vulnerabilidad territorial</li>
-                <li>Gestión ante entidades de riesgo y desastres</li>
-              </ul>
+              <button type="button" class="sc-expand-toggle" aria-expanded="false" aria-controls="sc-sub-riesgo">
+                <span class="sc-expand-label" data-expand-text="Ver los 5 sub-servicios" data-collapse-text="Ocultar sub-servicios">Ver los 5 sub-servicios</span>
+                <svg class="sc-expand-icon" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="sc-collapse" id="sc-sub-riesgo">
+                <div class="sc-collapse-inner">
+                  <ul class="sc-list" role="list">
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-riesgo-1"><input type="checkbox" id="q-sub-riesgo-1" class="sub-select-input" data-quote-title="Informes técnicos de gestión del riesgo" data-parent-id="q-serv-riesgo"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Informes técnicos de gestión del riesgo</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-riesgo-2"><input type="checkbox" id="q-sub-riesgo-2" class="sub-select-input" data-quote-title="Trámites ante entidades públicas" data-parent-id="q-serv-riesgo"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Trámites ante entidades públicas</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-riesgo-3"><input type="checkbox" id="q-sub-riesgo-3" class="sub-select-input" data-quote-title="Planes de emergencia y contingencia" data-parent-id="q-serv-riesgo"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Planes de emergencia y contingencia</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-riesgo-4"><input type="checkbox" id="q-sub-riesgo-4" class="sub-select-input" data-quote-title="Análisis de vulnerabilidad territorial" data-parent-id="q-serv-riesgo"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Análisis de vulnerabilidad territorial</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-riesgo-5"><input type="checkbox" id="q-sub-riesgo-5" class="sub-select-input" data-quote-title="Gestión ante entidades de riesgo y desastres" data-parent-id="q-serv-riesgo"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Gestión ante entidades de riesgo y desastres</span></label></li>
+                  </ul>
+                </div>
+              </div>
               <div class="sc-actions">
                 <a class="sc-cta btn btn-hue" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Gesti%C3%B3n%20del%20Riesgo%20y%20Desastres." onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'whatsapp_contact_click', value: 1});" target="_blank" rel="noopener"><span class="btn-text">Cotizar este servicio <span class="btn-chevron" aria-hidden="true"><svg class="btn-chevron__icon" viewBox="0 0 8 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
                 <a class="sc-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fecodesa.co%2F%3Futm_source%3Dlinkedin%26utm_medium%3Dsocial%26utm_campaign%3Decodesa%26utm_content%3Driesgo%23servicios" onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'linkedin_share_click', value: 1});" target="_blank" rel="noopener" aria-label="Compartir Gestión del Riesgo y Desastres en LinkedIn" title="Compartir en LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
@@ -688,7 +720,7 @@
           <article class="serv-card service-card" style="--hue:#0F766E;--sc-i:4" data-serv-theme="forestal" aria-label="Área 05: Forestal y Biodiversidad">
             <label class="svc-select" for="q-serv-forestal">
               <input type="checkbox" id="q-serv-forestal" class="svc-select-input" data-quote-title="Forestal y Biodiversidad">
-              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="svc-select-dash" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M2 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
               <span class="svc-select-text">Seleccionar<span class="sr-only"> Forestal y Biodiversidad para cotización</span></span>
             </label>
             <div class="serv-card-ambient serv-card-ambient--forestal" aria-hidden="true">
@@ -748,16 +780,24 @@
               <p class="sc-desc">Gestión integral de recursos forestales, flora, fauna y monitoreo ambiental para proyectos productivos y de conservación.</p>
             </div>
             <div class="sc-body">
-              <ul class="sc-list" role="list">
-                <li>Inventarios forestales</li>
-                <li>Tala, poda y aprovechamiento forestal</li>
-                <li>Reforestación y compensación ambiental</li>
-                <li>Gestión de fauna y flora</li>
-                <li>Monitoreo de emisiones y calidad de aire</li>
-                <li>Educación ambiental</li>
-                <li>Siembra de árboles frutales</li>
-                <li>Diseño de jardines y ornamentación</li>
-              </ul>
+              <button type="button" class="sc-expand-toggle" aria-expanded="false" aria-controls="sc-sub-forestal">
+                <span class="sc-expand-label" data-expand-text="Ver los 8 sub-servicios" data-collapse-text="Ocultar sub-servicios">Ver los 8 sub-servicios</span>
+                <svg class="sc-expand-icon" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="sc-collapse" id="sc-sub-forestal">
+                <div class="sc-collapse-inner">
+                  <ul class="sc-list" role="list">
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-forestal-1"><input type="checkbox" id="q-sub-forestal-1" class="sub-select-input" data-quote-title="Inventarios forestales" data-parent-id="q-serv-forestal"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Inventarios forestales</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-forestal-2"><input type="checkbox" id="q-sub-forestal-2" class="sub-select-input" data-quote-title="Tala, poda y aprovechamiento forestal" data-parent-id="q-serv-forestal"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Tala, poda y aprovechamiento forestal</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-forestal-3"><input type="checkbox" id="q-sub-forestal-3" class="sub-select-input" data-quote-title="Reforestación y compensación ambiental" data-parent-id="q-serv-forestal"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Reforestación y compensación ambiental</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-forestal-4"><input type="checkbox" id="q-sub-forestal-4" class="sub-select-input" data-quote-title="Gestión de fauna y flora" data-parent-id="q-serv-forestal"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Gestión de fauna y flora</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-forestal-5"><input type="checkbox" id="q-sub-forestal-5" class="sub-select-input" data-quote-title="Monitoreo de emisiones y calidad de aire" data-parent-id="q-serv-forestal"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Monitoreo de emisiones y calidad de aire</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-forestal-6"><input type="checkbox" id="q-sub-forestal-6" class="sub-select-input" data-quote-title="Educación ambiental" data-parent-id="q-serv-forestal"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Educación ambiental</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-forestal-7"><input type="checkbox" id="q-sub-forestal-7" class="sub-select-input" data-quote-title="Siembra de árboles frutales" data-parent-id="q-serv-forestal"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Siembra de árboles frutales</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-forestal-8"><input type="checkbox" id="q-sub-forestal-8" class="sub-select-input" data-quote-title="Diseño de jardines y ornamentación" data-parent-id="q-serv-forestal"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Diseño de jardines y ornamentación</span></label></li>
+                  </ul>
+                </div>
+              </div>
               <div class="sc-actions">
                 <a class="sc-cta btn btn-hue" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20me%20interesa%20el%20servicio%20de%20Forestal%20y%20Biodiversidad." onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'whatsapp_contact_click', value: 1});" target="_blank" rel="noopener"><span class="btn-text">Cotizar este servicio <span class="btn-chevron" aria-hidden="true"><svg class="btn-chevron__icon" viewBox="0 0 8 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
                 <a class="sc-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fecodesa.co%2F%3Futm_source%3Dlinkedin%26utm_medium%3Dsocial%26utm_campaign%3Decodesa%26utm_content%3Dforestal%23servicios" onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'linkedin_share_click', value: 1});" target="_blank" rel="noopener" aria-label="Compartir Forestal y Biodiversidad en LinkedIn" title="Compartir en LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
@@ -768,7 +808,7 @@
           <article class="serv-card service-card" style="--hue:#7C4DFF;--sc-i:5" data-serv-theme="ia" aria-label="Área 06: Automatización con IA">
             <label class="svc-select" for="q-serv-ia">
               <input type="checkbox" id="q-serv-ia" class="svc-select-input" data-quote-title="Automatización con IA">
-              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="svc-select-dash" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M2 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
               <span class="svc-select-text">Seleccionar<span class="sr-only"> Automatización con IA para cotización</span></span>
             </label>
             <svg class="sc-mark" viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="M20 20H40V40H20V20Z" stroke="currentColor" stroke-width="1.4"/><path d="M26 20V13M34 20V13M26 40V47M34 40V47M20 26H13M20 34H13M40 26H47M40 34H47M30 30L24 24M30 30L36 24M30 30L30 36" stroke="currentColor" stroke-width="1.4"/></svg>
@@ -790,13 +830,21 @@
               <p class="sc-desc">Diseñamos y automatizamos las herramientas digitales que tu operación necesita, desde la web hasta los reportes.</p>
             </div>
             <div class="sc-body">
-              <ul class="sc-list" role="list">
-                <li>Creación de páginas web desde cero con SEO optimizado</li>
-                <li>Aplicaciones móviles nativas y offline-first según tu necesidad</li>
-                <li>Automatización de procesos con IA</li>
-                <li>Herramientas digitales personalizadas para consultoría</li>
-                <li>Integración de datos y reportes automáticos</li>
-              </ul>
+              <button type="button" class="sc-expand-toggle" aria-expanded="false" aria-controls="sc-sub-ia">
+                <span class="sc-expand-label" data-expand-text="Ver los 5 sub-servicios" data-collapse-text="Ocultar sub-servicios">Ver los 5 sub-servicios</span>
+                <svg class="sc-expand-icon" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="sc-collapse" id="sc-sub-ia">
+                <div class="sc-collapse-inner">
+                  <ul class="sc-list" role="list">
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ia-1"><input type="checkbox" id="q-sub-ia-1" class="sub-select-input" data-quote-title="Creación de páginas web desde cero con SEO optimizado" data-parent-id="q-serv-ia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Creación de páginas web desde cero con SEO optimizado</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ia-2"><input type="checkbox" id="q-sub-ia-2" class="sub-select-input" data-quote-title="Aplicaciones móviles nativas y offline-first según tu necesidad" data-parent-id="q-serv-ia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Aplicaciones móviles nativas y offline-first según tu necesidad</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ia-3"><input type="checkbox" id="q-sub-ia-3" class="sub-select-input" data-quote-title="Automatización de procesos con IA" data-parent-id="q-serv-ia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Automatización de procesos con IA</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ia-4"><input type="checkbox" id="q-sub-ia-4" class="sub-select-input" data-quote-title="Herramientas digitales personalizadas para consultoría" data-parent-id="q-serv-ia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Herramientas digitales personalizadas para consultoría</span></label></li>
+                    <li class="sc-sub"><label class="sub-select" for="q-sub-ia-5"><input type="checkbox" id="q-sub-ia-5" class="sub-select-input" data-quote-title="Integración de datos y reportes automáticos" data-parent-id="q-serv-ia"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Integración de datos y reportes automáticos</span></label></li>
+                  </ul>
+                </div>
+              </div>
               <div class="sc-actions">
                 <a class="sc-cta btn btn-hue" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20quiero%20cotizar%20una%20herramienta%20digital%20personalizada." onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'whatsapp_contact_click', value: 1});" target="_blank" rel="noopener"><span class="btn-text">Cotizar herramienta personalizada <span class="btn-chevron" aria-hidden="true"><svg class="btn-chevron__icon" viewBox="0 0 8 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
                 <a class="sc-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fecodesa.co%2F%3Futm_source%3Dlinkedin%26utm_medium%3Dsocial%26utm_campaign%3Decodesa%26utm_content%3Dia%23servicios" onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'linkedin_share_click', value: 1});" target="_blank" rel="noopener" aria-label="Compartir Automatización con IA en LinkedIn" title="Compartir en LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
@@ -830,114 +878,162 @@
           <div class="nc-card" style="--nc-i:0;--nc-accent-card:#27A566">
             <label class="svc-select nc-select" for="q-nc-1">
               <input type="checkbox" id="q-nc-1" class="svc-select-input" data-quote-title="Gestión Ambiental para Negocios Comerciales">
-              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="svc-select-dash" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M2 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
               <span class="svc-select-text">Seleccionar<span class="sr-only"> Gestión Ambiental para Negocios Comerciales para cotización</span></span>
             </label>
             <span class="nc-num" aria-hidden="true">01</span>
             <div class="nc-body">
             <h3 class="nc-title">Gestión Ambiental para Negocios Comerciales</h3>
             <p class="nc-desc">Cumplimiento ambiental integral y gestión sostenible de residuos.</p>
-            <ul class="nc-list">
-              <li>ISO 14001:2015</li>
-              <li>Gestión de ACU</li>
-              <li>Residuos sólidos</li>
-              <li>Permisos ambientales</li>
-            </ul>
+            <button type="button" class="nc-expand-toggle" aria-expanded="false" aria-controls="nc-sub-1">
+              <span class="nc-expand-label" data-expand-text="Ver los 4 sub-servicios" data-collapse-text="Ocultar sub-servicios">Ver los 4 sub-servicios</span>
+              <svg class="nc-expand-icon" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="nc-collapse" id="nc-sub-1">
+              <div class="nc-collapse-inner">
+                <ul class="nc-list">
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc1-1"><input type="checkbox" id="q-sub-nc1-1" class="sub-select-input" data-quote-title="ISO 14001:2015" data-parent-id="q-nc-1"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">ISO 14001:2015</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc1-2"><input type="checkbox" id="q-sub-nc1-2" class="sub-select-input" data-quote-title="Gestión de ACU" data-parent-id="q-nc-1"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Gestión de ACU</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc1-3"><input type="checkbox" id="q-sub-nc1-3" class="sub-select-input" data-quote-title="Residuos sólidos" data-parent-id="q-nc-1"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Residuos sólidos</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc1-4"><input type="checkbox" id="q-sub-nc1-4" class="sub-select-input" data-quote-title="Permisos ambientales" data-parent-id="q-nc-1"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Permisos ambientales</span></label></li>
+                </ul>
+              </div>
+            </div>
             <a class="nc-cta" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20quiero%20informaci%C3%B3n%20sobre%20Gesti%C3%B3n%20Ambiental" onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'whatsapp_contact_click', value: 1});" target="_blank" rel="noopener"><span class="btn-text">Cotizar este servicio <span class="btn-chevron" aria-hidden="true"><svg class="btn-chevron__icon" viewBox="0 0 8 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
             </div>
           </div>
           <div class="nc-card" style="--nc-i:1;--nc-accent-card:#D85A30">
             <label class="svc-select nc-select" for="q-nc-2">
               <input type="checkbox" id="q-nc-2" class="svc-select-input" data-quote-title="Gestión en Salud y Seguridad en el Trabajo">
-              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="svc-select-dash" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M2 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
               <span class="svc-select-text">Seleccionar<span class="sr-only"> Gestión en Salud y Seguridad en el Trabajo para cotización</span></span>
             </label>
             <span class="nc-num" aria-hidden="true">02</span>
             <div class="nc-body">
             <h3 class="nc-title">Gestión en Salud y Seguridad en el Trabajo</h3>
             <p class="nc-desc">Protección integral de colaboradores y cumplimiento normativo SST.</p>
-            <ul class="nc-list">
-              <li>Sistema SG-SST</li>
-              <li>Evaluación de riesgos</li>
-              <li>Planes de emergencia</li>
-              <li>Capacitación laboral</li>
-            </ul>
+            <button type="button" class="nc-expand-toggle" aria-expanded="false" aria-controls="nc-sub-2">
+              <span class="nc-expand-label" data-expand-text="Ver los 4 sub-servicios" data-collapse-text="Ocultar sub-servicios">Ver los 4 sub-servicios</span>
+              <svg class="nc-expand-icon" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="nc-collapse" id="nc-sub-2">
+              <div class="nc-collapse-inner">
+                <ul class="nc-list">
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc2-1"><input type="checkbox" id="q-sub-nc2-1" class="sub-select-input" data-quote-title="Sistema SG-SST" data-parent-id="q-nc-2"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Sistema SG-SST</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc2-2"><input type="checkbox" id="q-sub-nc2-2" class="sub-select-input" data-quote-title="Evaluación de riesgos" data-parent-id="q-nc-2"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Evaluación de riesgos</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc2-3"><input type="checkbox" id="q-sub-nc2-3" class="sub-select-input" data-quote-title="Planes de emergencia" data-parent-id="q-nc-2"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Planes de emergencia</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc2-4"><input type="checkbox" id="q-sub-nc2-4" class="sub-select-input" data-quote-title="Capacitación laboral" data-parent-id="q-nc-2"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Capacitación laboral</span></label></li>
+                </ul>
+              </div>
+            </div>
             <a class="nc-cta" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20quiero%20informaci%C3%B3n%20sobre%20SST" onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'whatsapp_contact_click', value: 1});" target="_blank" rel="noopener"><span class="btn-text">Cotizar este servicio <span class="btn-chevron" aria-hidden="true"><svg class="btn-chevron__icon" viewBox="0 0 8 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
             </div>
           </div>
           <div class="nc-card" style="--nc-i:2;--nc-accent-card:#1E8A8A">
             <label class="svc-select nc-select" for="q-nc-3">
               <input type="checkbox" id="q-nc-3" class="svc-select-input" data-quote-title="Gestión Saneamiento Básico">
-              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="svc-select-dash" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M2 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
               <span class="svc-select-text">Seleccionar<span class="sr-only"> Gestión Saneamiento Básico para cotización</span></span>
             </label>
             <span class="nc-num" aria-hidden="true">03</span>
             <div class="nc-body">
             <h3 class="nc-title">Gestión Saneamiento Básico</h3>
             <p class="nc-desc">Control de plagas, agua potable e higiene en instalaciones.</p>
-            <ul class="nc-list">
-              <li>Control de plagas</li>
-              <li>Abastecimiento agua</li>
-              <li>Limpieza y desinfección</li>
-              <li>Plan PSB completo</li>
-            </ul>
+            <button type="button" class="nc-expand-toggle" aria-expanded="false" aria-controls="nc-sub-3">
+              <span class="nc-expand-label" data-expand-text="Ver los 4 sub-servicios" data-collapse-text="Ocultar sub-servicios">Ver los 4 sub-servicios</span>
+              <svg class="nc-expand-icon" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="nc-collapse" id="nc-sub-3">
+              <div class="nc-collapse-inner">
+                <ul class="nc-list">
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc3-1"><input type="checkbox" id="q-sub-nc3-1" class="sub-select-input" data-quote-title="Control de plagas" data-parent-id="q-nc-3"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Control de plagas</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc3-2"><input type="checkbox" id="q-sub-nc3-2" class="sub-select-input" data-quote-title="Abastecimiento agua" data-parent-id="q-nc-3"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Abastecimiento agua</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc3-3"><input type="checkbox" id="q-sub-nc3-3" class="sub-select-input" data-quote-title="Limpieza y desinfección" data-parent-id="q-nc-3"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Limpieza y desinfección</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc3-4"><input type="checkbox" id="q-sub-nc3-4" class="sub-select-input" data-quote-title="Plan PSB completo" data-parent-id="q-nc-3"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Plan PSB completo</span></label></li>
+                </ul>
+              </div>
+            </div>
             <a class="nc-cta" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20quiero%20informaci%C3%B3n%20sobre%20Saneamiento" onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'whatsapp_contact_click', value: 1});" target="_blank" rel="noopener"><span class="btn-text">Cotizar este servicio <span class="btn-chevron" aria-hidden="true"><svg class="btn-chevron__icon" viewBox="0 0 8 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
             </div>
           </div>
           <div class="nc-card" style="--nc-i:3;--nc-accent-card:#C9822E">
             <label class="svc-select nc-select" for="q-nc-4">
               <input type="checkbox" id="q-nc-4" class="svc-select-input" data-quote-title="Buenas Prácticas de Manufacturas e Inocuidad">
-              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="svc-select-dash" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M2 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
               <span class="svc-select-text">Seleccionar<span class="sr-only"> Buenas Prácticas de Manufacturas e Inocuidad para cotización</span></span>
             </label>
             <span class="nc-num" aria-hidden="true">04</span>
             <div class="nc-body">
             <h3 class="nc-title">Buenas Prácticas de Manufacturas e Inocuidad</h3>
             <p class="nc-desc">Garantía de alimentos seguros y cumplimiento de normativa.</p>
-            <ul class="nc-list">
-              <li>Manual BPM</li>
-              <li>Plan inocuidad</li>
-              <li>Sistema HACCP</li>
-              <li>Monitoreo superficies</li>
-            </ul>
+            <button type="button" class="nc-expand-toggle" aria-expanded="false" aria-controls="nc-sub-4">
+              <span class="nc-expand-label" data-expand-text="Ver los 4 sub-servicios" data-collapse-text="Ocultar sub-servicios">Ver los 4 sub-servicios</span>
+              <svg class="nc-expand-icon" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="nc-collapse" id="nc-sub-4">
+              <div class="nc-collapse-inner">
+                <ul class="nc-list">
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc4-1"><input type="checkbox" id="q-sub-nc4-1" class="sub-select-input" data-quote-title="Manual BPM" data-parent-id="q-nc-4"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Manual BPM</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc4-2"><input type="checkbox" id="q-sub-nc4-2" class="sub-select-input" data-quote-title="Plan inocuidad" data-parent-id="q-nc-4"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Plan inocuidad</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc4-3"><input type="checkbox" id="q-sub-nc4-3" class="sub-select-input" data-quote-title="Sistema HACCP" data-parent-id="q-nc-4"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Sistema HACCP</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc4-4"><input type="checkbox" id="q-sub-nc4-4" class="sub-select-input" data-quote-title="Monitoreo superficies" data-parent-id="q-nc-4"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Monitoreo superficies</span></label></li>
+                </ul>
+              </div>
+            </div>
             <a class="nc-cta" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20quiero%20informaci%C3%B3n%20sobre%20BPM%20e%20Inocuidad" onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'whatsapp_contact_click', value: 1});" target="_blank" rel="noopener"><span class="btn-text">Cotizar este servicio <span class="btn-chevron" aria-hidden="true"><svg class="btn-chevron__icon" viewBox="0 0 8 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
             </div>
           </div>
           <div class="nc-card" style="--nc-i:4;--nc-accent-card:#8A7FE0">
             <label class="svc-select nc-select" for="q-nc-5">
               <input type="checkbox" id="q-nc-5" class="svc-select-input" data-quote-title="Planes de Gestión del Riesgo">
-              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="svc-select-dash" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M2 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
               <span class="svc-select-text">Seleccionar<span class="sr-only"> Planes de Gestión del Riesgo para cotización</span></span>
             </label>
             <span class="nc-num" aria-hidden="true">05</span>
             <div class="nc-body">
             <h3 class="nc-title">Planes de Gestión del Riesgo</h3>
             <p class="nc-desc">Identificación y mitigación de riesgos operacionales.</p>
-            <ul class="nc-list">
-              <li>Análisis de peligros</li>
-              <li>Mapeo de riesgos</li>
-              <li>Medidas preventivas</li>
-              <li>Monitoreo continuo</li>
-            </ul>
+            <button type="button" class="nc-expand-toggle" aria-expanded="false" aria-controls="nc-sub-5">
+              <span class="nc-expand-label" data-expand-text="Ver los 4 sub-servicios" data-collapse-text="Ocultar sub-servicios">Ver los 4 sub-servicios</span>
+              <svg class="nc-expand-icon" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="nc-collapse" id="nc-sub-5">
+              <div class="nc-collapse-inner">
+                <ul class="nc-list">
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc5-1"><input type="checkbox" id="q-sub-nc5-1" class="sub-select-input" data-quote-title="Análisis de peligros" data-parent-id="q-nc-5"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Análisis de peligros</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc5-2"><input type="checkbox" id="q-sub-nc5-2" class="sub-select-input" data-quote-title="Mapeo de riesgos" data-parent-id="q-nc-5"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Mapeo de riesgos</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc5-3"><input type="checkbox" id="q-sub-nc5-3" class="sub-select-input" data-quote-title="Medidas preventivas" data-parent-id="q-nc-5"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Medidas preventivas</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc5-4"><input type="checkbox" id="q-sub-nc5-4" class="sub-select-input" data-quote-title="Monitoreo continuo" data-parent-id="q-nc-5"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Monitoreo continuo</span></label></li>
+                </ul>
+              </div>
+            </div>
             <a class="nc-cta" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20quiero%20informaci%C3%B3n%20sobre%20Gesti%C3%B3n%20del%20Riesgo" onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'whatsapp_contact_click', value: 1});" target="_blank" rel="noopener"><span class="btn-text">Cotizar este servicio <span class="btn-chevron" aria-hidden="true"><svg class="btn-chevron__icon" viewBox="0 0 8 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
             </div>
           </div>
           <div class="nc-card" style="--nc-i:5;--nc-accent-card:#E85D6B">
             <label class="svc-select nc-select" for="q-nc-6">
               <input type="checkbox" id="q-nc-6" class="svc-select-input" data-quote-title="Planes de Emergencia y Contingencias">
-              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-select-box" aria-hidden="true"><svg class="svc-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="svc-select-dash" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M2 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
               <span class="svc-select-text">Seleccionar<span class="sr-only"> Planes de Emergencia y Contingencias para cotización</span></span>
             </label>
             <span class="nc-num" aria-hidden="true">06</span>
             <div class="nc-body">
             <h3 class="nc-title">Planes de Emergencia y Contingencias</h3>
             <p class="nc-desc">Respuesta rápida y efectiva ante situaciones de emergencia.</p>
-            <ul class="nc-list">
-              <li>Rutas de evacuación</li>
-              <li>Señalización emergencia</li>
-              <li>Protocolos de respuesta</li>
-              <li>Simulacros y brigadas</li>
-            </ul>
+            <button type="button" class="nc-expand-toggle" aria-expanded="false" aria-controls="nc-sub-6">
+              <span class="nc-expand-label" data-expand-text="Ver los 4 sub-servicios" data-collapse-text="Ocultar sub-servicios">Ver los 4 sub-servicios</span>
+              <svg class="nc-expand-icon" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="nc-collapse" id="nc-sub-6">
+              <div class="nc-collapse-inner">
+                <ul class="nc-list">
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc6-1"><input type="checkbox" id="q-sub-nc6-1" class="sub-select-input" data-quote-title="Rutas de evacuación" data-parent-id="q-nc-6"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Rutas de evacuación</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc6-2"><input type="checkbox" id="q-sub-nc6-2" class="sub-select-input" data-quote-title="Señalización emergencia" data-parent-id="q-nc-6"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Señalización emergencia</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc6-3"><input type="checkbox" id="q-sub-nc6-3" class="sub-select-input" data-quote-title="Protocolos de respuesta" data-parent-id="q-nc-6"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Protocolos de respuesta</span></label></li>
+                  <li class="nc-sub"><label class="sub-select" for="q-sub-nc6-4"><input type="checkbox" id="q-sub-nc6-4" class="sub-select-input" data-quote-title="Simulacros y brigadas" data-parent-id="q-nc-6"><span class="sub-select-box" aria-hidden="true"><svg class="sub-select-check" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1.5 6.2L5.6 10 14.5 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sub-select-text">Simulacros y brigadas</span></label></li>
+                </ul>
+              </div>
+            </div>
             <a class="nc-cta" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20quiero%20informaci%C3%B3n%20sobre%20Planes%20de%20Emergencia" onclick="gtag('event', 'click', {event_category: 'engagement', event_label: 'whatsapp_contact_click', value: 1});" target="_blank" rel="noopener"><span class="btn-text">Cotizar este servicio <span class="btn-chevron" aria-hidden="true"><svg class="btn-chevron__icon" viewBox="0 0 8 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
             </div>
           </div>

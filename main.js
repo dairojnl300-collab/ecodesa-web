@@ -937,43 +937,109 @@
 
   /* ═══════════════════════════════════════════════════════════
      COTIZADOR MULTI-SELECCIÓN — checkboxes en #servicios y
-     #negocios-comerciales (12 cards) alimentan un único botón
-     flotante que arma un mensaje de WhatsApp con lo marcado.
-     Estado: Set de ids de checkbox — sin framework, sin drama.
+     #negocios-comerciales (12 cards, cada una con N sub-servicios)
+     alimentan un único botón flotante que arma un mensaje de
+     WhatsApp con lo marcado. Patrón padre/hijo (área ↔ sub-ítems).
+     Estado: un Map areaId → {area, subs[]} construido leyendo el
+     DOM una vez — sin framework, sin duplicar el estado real
+     (.checked de cada input sigue siendo la única fuente de verdad).
   ═══════════════════════════════════════════════════════════ */
   function initQuoteSelector() {
-    const inputs  = $$(".svc-select-input");
-    const bar     = $("#quoteBar");
-    const countEl = $("#quoteBarCount");
-    if (!inputs.length || !bar || !countEl) return;
+    const areaInputs = $$(".svc-select-input");
+    const subInputs  = $$(".sub-select-input");
+    const bar        = $("#quoteBar");
+    const countEl    = $("#quoteBarCount");
+    if (!areaInputs.length || !bar || !countEl) return;
 
-    const selected = new Set();
+    /* Patrón padre/hijo estándar: el checkbox de ÁREA marca/desmarca
+       todos sus sub-servicios; marcar sub-ítems sueltos deja el área
+       en :indeterminate (propiedad DOM nativa); si quedan todos los
+       sub-ítems marcados a mano, el área pasa a checked sin quedar
+       indeterminate. Agrupación por data-parent-id (no closest() —
+       cada sub vive dentro de .sc-collapse/.nc-collapse, no directo
+       bajo la card, así que el id explícito es más simple y robusto). */
+    const groups = new Map(); // areaId -> { area, subs: [] }
+    areaInputs.forEach((area) => groups.set(area.id, { area, subs: [] }));
+    subInputs.forEach((sub) => {
+      const g = groups.get(sub.dataset.parentId);
+      if (g) g.subs.push(sub);
+    });
 
+    const setCardSelected = (input, on) => {
+      const card = input.closest(".serv-card, .nc-card");
+      if (card) card.classList.toggle("is-quote-selected", on);
+    };
+
+    /* Recalcula el estado del área a partir de sus sub-checkboxes. */
+    const syncAreaFromSubs = (g) => {
+      const total = g.subs.length;
+      if (!total) return;
+      const checkedCount = g.subs.filter((s) => s.checked).length;
+      if (checkedCount === 0) {
+        g.area.checked = false;
+        g.area.indeterminate = false;
+      } else if (checkedCount === total) {
+        g.area.checked = true;
+        g.area.indeterminate = false;
+      } else {
+        g.area.checked = false;
+        g.area.indeterminate = true;
+      }
+      setCardSelected(g.area, checkedCount > 0);
+    };
+
+    /* Mensaje de WhatsApp agrupado por área: si el área está 100%
+       seleccionada se lista solo su nombre (mensaje corto); si es
+       selección parcial se listan los sub-ítems marcados debajo del
+       nombre del área, con sangría simple — texto plano, sin formato
+       adicional (criterio simple, coherente con los CTA individuales
+       ya existentes). El contador del botón flotante cuenta ÁREAS con
+       alguna selección (completa o parcial), no sub-ítems sueltos,
+       para no saturar el badge con números de 2 dígitos.  */
     const sync = () => {
-      const n = selected.size;
+      const lines = [];
+      let selectedAreas = 0;
+
+      groups.forEach((g) => {
+        const checked = g.subs.filter((s) => s.checked);
+        if (!checked.length) return;
+        selectedAreas++;
+        if (checked.length === g.subs.length) {
+          lines.push("• " + g.area.dataset.quoteTitle);
+        } else {
+          lines.push(
+            "• " + g.area.dataset.quoteTitle + ":\n" +
+            checked.map((s) => "   - " + s.dataset.quoteTitle).join("\n")
+          );
+        }
+      });
+
+      const n = selectedAreas;
       countEl.textContent = String(n);
       bar.classList.toggle("is-visible", n > 0);
       bar.setAttribute("aria-disabled", n > 0 ? "false" : "true");
       bar.tabIndex = n > 0 ? 0 : -1;
 
       if (n > 0) {
-        const lines = inputs
-          .filter((i) => selected.has(i.id))
-          .map((i) => "• " + i.dataset.quoteTitle)
-          .join("\n");
-        const msg = "Hola ECODESA, quiero cotizar los siguientes servicios:\n" + lines;
+        const msg = "Hola ECODESA, quiero cotizar los siguientes servicios:\n" + lines.join("\n");
         bar.href = "https://wa.me/573246886824?text=" + encodeURIComponent(msg);
       } else {
         bar.href = "#";
       }
     };
 
-    inputs.forEach((input) => {
-      input.addEventListener("change", () => {
-        if (input.checked) selected.add(input.id); else selected.delete(input.id);
-        const card = input.closest(".serv-card, .nc-card");
-        if (card) card.classList.toggle("is-quote-selected", input.checked);
+    groups.forEach((g) => {
+      g.area.addEventListener("change", () => {
+        g.area.indeterminate = false;
+        g.subs.forEach((s) => { s.checked = g.area.checked; });
+        setCardSelected(g.area, g.area.checked);
         sync();
+      });
+      g.subs.forEach((sub) => {
+        sub.addEventListener("change", () => {
+          syncAreaFromSubs(g);
+          sync();
+        });
       });
     });
 
@@ -983,6 +1049,44 @@
     });
 
     sync();
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     SUB-SERVICIOS — expandir/colapsar por card (16c.)
+     Alterna .is-expanded en el contenedor .sc-collapse/.nc-collapse
+     (grid-template-rows 0fr↔1fr en CSS, sin medir scrollHeight).
+     Solo cambia ALTURA — nunca toca el ancho de .serv-card/#servTrack,
+     así que el pin horizontal GSAP de #servicios no se ve afectado.
+     Tras el toggle se pide un refresh a ScrollTrigger (si existe) para
+     que el pin-spacer recalcule su alto visual con invalidateOnRefresh;
+     dist() (ancho) no cambia, así que el recorrido horizontal es el
+     mismo antes y después de expandir cualquier card.
+  ═══════════════════════════════════════════════════════════ */
+  function initExpandCollapse() {
+    const toggles = $$(".sc-expand-toggle, .nc-expand-toggle");
+    if (!toggles.length) return;
+
+    toggles.forEach((btn) => {
+      const targetId = btn.getAttribute("aria-controls");
+      const target = targetId && document.getElementById(targetId);
+      const label = $(".sc-expand-label, .nc-expand-label", btn);
+      if (!target) return;
+
+      target.inert = true; /* colapsado por defecto: sin foco/tab en checkboxes ocultos */
+
+      btn.addEventListener("click", () => {
+        const willExpand = btn.getAttribute("aria-expanded") !== "true";
+        btn.setAttribute("aria-expanded", String(willExpand));
+        target.classList.toggle("is-expanded", willExpand);
+        target.inert = !willExpand;
+        if (label) {
+          label.textContent = willExpand ? label.dataset.collapseText : label.dataset.expandText;
+        }
+        if (hasGSAP()) {
+          requestAnimationFrame(() => ScrollTrigger.refresh());
+        }
+      });
+    });
   }
 
   /* ═══════════════════════════════════════════════════════════
@@ -2415,6 +2519,7 @@
     safe(initNcCardGrow,       "ncGrow");
     safe(initNcCardTilt,       "ncTilt");
     safe(initQuoteSelector,    "quoteSelector");
+    safe(initExpandCollapse,  "expandCollapse");
     safe(initSolucionesFan,       "solucionesFan");
     safe(initSolucionesMagnetic,  "solucionesMagnetic");
     safe(initCounters,         "counters");
