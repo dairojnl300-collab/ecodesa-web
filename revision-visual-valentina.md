@@ -1,5 +1,104 @@
 # Revisión visual — Valentina
 
+## Sesión 2026-08-08 — Cotizador multi-selección (#servicios + #negocios-comerciales)
+
+**Rama:** `feature/cotizador-checkboxes` (creada desde `main` en `7d92c66`)
+**Commit local:** `ab5ea7a` — sin push.
+**Encargo:** implementación directa (no auditoría de una entrega de Carlos) de
+checkboxes accesibles en las 12 cards de ambas secciones + botón flotante
+único "Cotizar servicios seleccionados" con deep-link a WhatsApp, más
+refuerzo de la animación en escalera de `#servicios`.
+**Estado:** PARCIAL — implementación completa y verificada con interacción
+real en Chrome en el breakpoint crítico (desktop, ≥960px, zona del pin-scroll
+GSAP); 768px y 375px no se pudieron verificar visualmente en esta sesión por
+una limitación de la herramienta `resize_window` (ver detalle abajo).
+
+### Estado por requerimiento
+1. **Checkbox accesible en las 12 cards** — Hecho. `<label>` real envolviendo
+   `<input type="checkbox">` nativo (foco/teclado nativos), nombre accesible
+   "Seleccionar {título de la card}" (texto visible + `sr-only`), ligado por
+   `for`/`id`. Confirmado en Chrome: 12 `.svc-select-input` presentes, click
+   real vía referencia de accesibilidad togglea `checked` y dispara `change`.
+2. **Botón único "Cotizar servicios seleccionados"** — Hecho.
+   `main.js:initQuoteSelector()` mantiene un `Set` de ids marcados (sin
+   framework de estado, por instrucción de `ponytail`), arma
+   `https://wa.me/573246886824?text=...` con los títulos reales — verificado
+   leyendo el `href` generado tras marcar 2 checkboxes: incluía ambos títulos
+   correctamente codificados. Oculto/deshabilitado en 0 selecciones
+   (`aria-disabled="true"`, `tabindex="-1"`, `pointer-events:none`), visible
+   y habilitado desde 1 (confirmado con 1, 2 y 3 selecciones simultáneas).
+3. **Animación escalera reforzada en `#servicios`** — Hecho. `--sc-i` (0–5)
+   añadido a cada `.serv-card` + `transition-delay: calc(var(--sc-i,0) *
+   120ms)` en la regla de grow-in existente — mismo cadenciado de 120ms/ítem
+   que ya usaba `--nc-i` en Negocios Comerciales. Sigue gateado por
+   `reduced` vía el bloque `@media (prefers-reduced-motion: reduce)`
+   existente (que ya cubría `.serv-card.service-card` con `transition:none
+   !important`).
+4. **Diseño premium coherente** — Hecho. El chip de selección reutiliza
+   `var(--hue)` (servicios) / `var(--nc-accent-card)` (negocios) vía
+   `color-mix()`, sin paleta nueva; check icon es SVG inline (no emoji);
+   el botón flotante reutiliza el gradiente `--emerald→--aqua` y
+   `--shadow-deep` ya existentes.
+
+### Hallazgos corregidos durante la implementación
+- **[V0] Chip de selección tapaba título/lista de la card** — posición
+  inicial `top:14px/20px` colisionaba con el título de la nc-card 01 y el
+  primer ítem del checklist derecho de las serv-card (visto en captura real
+  a 1440px). Corregido reposicionando el chip como insignia que asoma sobre
+  el borde superior (`top:-16px`), fuera del área de contenido — verificado
+  sin overlap en las 12 cards tras el cambio.
+- **[V1] Objetivo táctil del chip en 40px** — subido a `min-height:44px`
+  (regla no negociable de touch target).
+
+### Cambios implementados
+- **Archivos:** `index.html` (12 bloques `<label class="svc-select">` + markup
+  de `#quoteBar` junto al WhatsApp flotante existente + `--sc-i:0..5` inline
+  en cada `.serv-card`), `styles.css` (~150 líneas nuevas: `.svc-select`,
+  `.nc-select`, estados de check, `.is-quote-selected`, `.quote-bar`,
+  entradas en el bloque de reduced-motion), `main.js`
+  (`initQuoteSelector()`, registrada en `boot()`). Total: 3 archivos,
+  +280/-6 líneas (`git diff --stat`).
+- **Movimiento:** transiciones de check y del botón flotante usan solo
+  `transform`/`opacity` (200–320ms), con `transition:none !important` bajo
+  `prefers-reduced-motion: reduce`, igual que el resto del sistema.
+
+### Validación real en Chrome
+- **Desktop (~1536×639 real, ventana pedida en 1440×900 — representa el
+  breakpoint crítico ≥960px de GSAP):** `ScrollTrigger` del pin de
+  `#servicios` verificado con scroll de rueda real — progreso avanzó de
+  0.375 a 0.563 con `pin:true` intacto y las cards con checkbox visibles.
+  3 checkboxes marcados en `#servicios` (Ambiental/Hidrología/SST) y 2 en
+  `#negocios-comerciales`, botón flotante mostrando el conteo correcto y
+  colores por card sin overlap. Sin errores de consola.
+- **768px y 375px — NO verificados visualmente.** `resize_window` del MCP
+  de `claude-in-chrome` no cambió el viewport real en esta sesión: se probó
+  768×1024, 800×1000 y 390×844 (en dos tabs distintas, una tras cerrar y
+  recrear el grupo) y `window.innerWidth` siguió reportando ~1536 en todos
+  los casos. Es la misma limitación de la herramienta ya documentada en la
+  sesión de 2026-08-07 (`resize_window` no bajaba de ~502px entonces; en
+  esta sesión ni eso). La revisión de código confirma que el mecanismo
+  responsive subyacente no se alteró: `#servicios` sigue con scroll-snap
+  nativo (no GSAP) por debajo de `min-width:960px`
+  (`main.js:initServicios()`), `.nc-card` pasa a `flex:0 0 100%` en
+  `@media (max-width:720px)`, y `.quote-bar` tiene
+  `max-width:calc(100vw - 2.8rem)` + `text-overflow:ellipsis` como red de
+  seguridad en pantallas angostas — pero esto **no sustituye** una
+  verificación visual real.
+
+### Pendiente de Camila / próxima sesión
+- Confirmar visualmente 768px y 375px (reintentar `resize_window`, o usar
+  DevTools device toolbar / la técnica de iframe same-origin documentada en
+  la sesión de 2026-08-07 más abajo en este mismo archivo).
+- Auditoría funcional de `initQuoteSelector()`: construcción del mensaje de
+  WhatsApp, estado disabled/enabled del botón, y confirmar en dispositivo
+  táctil real que el tap en el checkbox no interfiere con el pin-scroll en
+  la zona de transición GSAP↔nativo (768–959px).
+- Los CTAs individuales "Cotizar este servicio" no se tocaron — confirmar
+  que siguen funcionando igual que antes (no debería haber regresión, son
+  aditivos).
+
+---
+
 ## Sesión 2026-08-07b — Fix: gap del canvas de constelación en `#servicios`
 
 **Rama:** `fix/servicios-constellation-gap` (creada desde `main`, no se commiteó ni se hizo push)
