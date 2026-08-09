@@ -4209,6 +4209,16 @@ html.js .nc-grid.is-grown .nc-card .nc-list li{
   }
 }
 
+/* En móvil el selector comercial queda dentro de su tarjeta y reserva
+   espacio antes del título, evitando el recorte y cualquier solapamiento. */
+@media (max-width:959px){
+  .nc-card > .nc-select{
+    top:12px;
+    right:12px;
+  }
+  .nc-card{ padding-top:68px; }
+}
+
 /* =============================================================
    19. AMBIENTES BIÓFILICOS — Organic / Nature / Aurora / HUD
    Fondos decorativos por temática · claro + oscuro · GPU-safe
