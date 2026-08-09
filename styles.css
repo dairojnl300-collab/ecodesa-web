@@ -1315,13 +1315,14 @@ html.js .scrollcue {
 }
 @media (max-width: 520px) {
   .hero-grid { gap: 2.75rem; padding-block: 2rem 5.5rem; }
-  /* Tope mínimo SIN CAMBIAR (2.45rem, igual que antes): verificado en vivo
-     que subirlo a 2.55rem hace wrap "operar con control." a 320px de ancho
-     (iPhone SE y similares) — a esa medida el margen ya era de apenas ~3px
-     con el valor original, sin espacio para crecer. Tope máximo sí sube
-     (3.15rem→3.35rem, +6%): cerca del borde superior del breakpoint
-     (~480-520px) hay más ancho disponible y no wrappea (verificado). */
-  .hero-title { font-size: clamp(2.45rem, 10.8vw, 3.35rem); line-height: 0.96; letter-spacing: -0.045em; margin: 1.3rem 0 1.4rem; }
+  /* Título más imponente (a pedido de Valentina): coeficiente vw 10.8→12.5
+     y tope máximo 3.35rem→3.75rem (+12%). Tope mínimo SIN CAMBIAR (2.45rem):
+     ya verificado que subirlo wrappea "operar con control." a 320px de ancho.
+     El resto del rango sí tenía margen de sobra: verificado con getClientRects()
+     (detección de wrap real, no solo overflow) en 15 anchos de 320 a 519px —
+     sin wrap en ninguno, incluso probando hasta 13vw/3.9rem antes de asentarse
+     en el valor final. */
+  .hero-title { font-size: clamp(2.45rem, 12.5vw, 3.75rem); line-height: 0.96; letter-spacing: -0.045em; margin: 1.3rem 0 1.4rem; }
   .hero-actions { display: grid; }
   .hero-actions .btn { justify-content: center; width: 100%; }
   .hero-visual { min-height: 500px; }
