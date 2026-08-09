@@ -3848,8 +3848,8 @@ p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-s
 
 .nc-grid{
   display:flex;flex-wrap:wrap;gap:32px;
-  align-items:flex-start; /* cada nc-card conserva su alto propio al
-                              expandir sub-servicios (ver .serv-track) */
+  align-items:stretch; /* las tarjetas de cada fila comparten la altura
+                          de la más alta, sin recortar su contenido */
   overflow:visible;
   padding-block:36px;
   perspective:1000px;
@@ -4068,7 +4068,7 @@ p:not(.prod-desc):not(.prod-format):not(.sc-desc):not(.stat-label):not(.sector-s
   z-index:3;
 }
 .nc-section--dimensional .nc-grid.is-grown .nc-card:nth-child(even){
-  margin-top:1.15rem;
+  margin-top:0;
   z-index:2;
 }
 [data-theme="dark"] .nc-section--dimensional .nc-card::after{
