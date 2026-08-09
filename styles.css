@@ -1003,12 +1003,13 @@ html.js [data-reveal].in {
 }
 
 .hero-title {
-  font-size: clamp(3.1rem, 9vw, 7.4rem);
-  font-weight: 800;
-  line-height: 0.97;
-  letter-spacing: -0.034em;
-  margin: 1.5rem 0 1.4rem;
-  max-width: 12ch;
+  font-size: clamp(3.2rem, 6.4vw, 5.55rem);
+  font-weight: 850;
+  line-height: 0.91;
+  letter-spacing: -0.048em;
+  margin: 1.4rem 0 1.5rem;
+  max-width: 13ch;
+  text-wrap: balance;
 }
 .hero-title .mask {
   display: block;
@@ -1018,13 +1019,8 @@ html.js [data-reveal].in {
 }
 .hero-title .line { display: inline-block; }
 
-/* Hero curtain reveal — clip-path GPU sweep on load */
+/* El contenido del hero debe permanecer disponible aunque la carga de JS sea lenta. */
 html.js .hero-title {
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 1.2s cubic-bezier(0.65, 0, 0.35, 1);
-  will-change: clip-path;
-}
-html.js .hero-title.in {
   clip-path: inset(0 0 0 0);
 }
 
@@ -1048,8 +1044,23 @@ html.js .hero-title.in {
   color: var(--ink-70);
   max-width: 44ch;
   margin-bottom: 2.2rem;
+  overflow-wrap: break-word;
+  text-align: justify;
+  hyphens: auto;
 }
 .hero-sub strong { color: var(--emerald-2); font-weight: 650; }
+
+.hero-trust-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: -0.55rem 0 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-70);
+}
 
 .hero-actions {
   display: flex;
@@ -1058,42 +1069,34 @@ html.js .hero-title.in {
   margin-bottom: 1.8rem;
 }
 
-.hero-proof {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem 1.5rem;
-}
-.hero-proof li {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  font-weight: 500;
+.hero-wa-support {
+  margin: 0;
   color: var(--ink-70);
+  font-size: 0.9rem;
 }
-.hero-proof svg { color: var(--emerald); flex-shrink: 0; }
+.hero-wa-support a {
+  color: var(--emerald-2);
+  font-weight: 650;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+  text-underline-offset: 0.2em;
+}
+.hero-wa-support a:hover { color: var(--emerald); }
 
 /* Entrada del hero */
 html.js .hero-kicker,
 html.js .hero-sub,
 html.js .hero-actions,
-html.js .hero-proof,
+html.js .hero-trust-line,
+html.js .hero-wa-support,
 html.js .hero-visual,
 html.js .scrollcue {
-  opacity: 0;
-  transition: opacity 0.9s var(--ease-soft);
+  opacity: 1;
 }
-html.js body.is-loaded .hero-kicker  { opacity: 1; transition-delay: 0.15s; }
-html.js body.is-loaded .hero-sub     { opacity: 1; transition-delay: 0.5s; }
-html.js body.is-loaded .hero-actions { opacity: 1; transition-delay: 0.65s; }
-html.js body.is-loaded .hero-proof   { opacity: 1; transition-delay: 0.8s; }
-html.js body.is-loaded .hero-visual  { opacity: 1; transition-delay: 0.55s; }
-html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
 
-/* — Visual: tarjeta de licencia + chips + compás — */
+/* — Visual: ruta de acompañamiento técnico — */
 .hero-visual {
   position: relative;
-  min-height: 500px;
+  min-height: 470px;
 }
 .hero-deco {
   position: absolute;
@@ -1111,151 +1114,58 @@ html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
 }
 @keyframes decoSpin { to { transform: rotate(360deg); } }
 
-.hv-card {
+.hero-route-card {
   position: absolute;
-  top: 16%; left: 8%;
-  width: min(400px, 88%);
   z-index: 2;
-}
-.hv-card .hv-float {
-  display: block;
+  top: 50%;
+  left: 50%;
+  width: min(430px, 94%);
+  transform: translate(-50%, -50%);
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-deep);
-  padding: 1.4rem 1.5rem;
-  animation: chipFloat 12s ease-in-out infinite;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
 }
-.hvc-head {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 0.85rem;
-}
-.hvc-ico {
-  width: 44px; height: 44px;
-  border-radius: 13px;
-  display: grid;
-  place-content: center;
-  background: var(--tint-ui);
-  color: var(--emerald);
-}
-.hvc-titles strong {
-  display: block;
-  font-family: var(--display);
-  font-weight: 720;
-  font-size: 1rem;
-  letter-spacing: -0.01em;
-}
-.hvc-titles em {
-  display: block;
-  font-style: normal;
+.hero-control-card { width: min(520px, 96%); }
+.hero-route-kicker {
+  margin: 0 0 1.25rem;
   font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.08em;
-  color: var(--ink-55);
-  margin-top: 0.2rem;
-}
-.hvc-status {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--on-accent);
-  background: var(--emerald);
-  border-radius: 999px;
-  padding: 0.35rem 0.7rem;
+  color: var(--emerald-2);
 }
-.hvc-rows {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  margin: 1.2rem 0 1.3rem;
-}
-.hvc-rows span {
+.custody-constellation {
   display: block;
-  height: 9px;
-  width: var(--w, 80%);
-  border-radius: 99px;
-  background: linear-gradient(90deg, var(--shimmer-a), var(--shimmer-b), var(--shimmer-a));
-  background-size: 200% 100%;
-  animation: shimmer 3.6s linear infinite;
+  width: 100%;
+  height: auto;
+  overflow: visible;
 }
-.hvc-rows span:nth-child(2) { animation-delay: 0.5s; }
-.hvc-rows span:nth-child(3) { animation-delay: 1s; }
-.hvc-rows span:nth-child(4) { animation-delay: 1.5s; }
-@keyframes shimmer {
-  from { background-position: 120% 0; }
-  to   { background-position: -80% 0; }
+.custody-constellation--mobile { display: none; }
+.custody-network path {
+  stroke: rgba(91, 168, 50, 0.28);
+  stroke-width: 1.1;
+  stroke-linecap: round;
 }
-.hvc-foot {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
+.custody-network circle { fill: #5BA832; opacity: 0.5; }
+.custody-symbol {
+  opacity: 1;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.79) !important;
+  transition: none;
 }
-.hvc-seal {
-  width: 84px;
-  color: var(--emerald);
-  transform: rotate(-10deg);
-}
-.hvc-sign { width: 110px; color: var(--ink-55); }
-
-.hv-chip {
-  position: absolute;
-  z-index: 3;
-  will-change: transform;
-}
-.hv-chip-a { top: 2%; right: 2%; }
-.hv-chip-b { bottom: 10%; left: 0; }
-.hv-chip .hv-float {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  box-shadow: var(--shadow-lum);
-  padding: 0.75rem 1.05rem;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: var(--ink);
-  animation: chipFloat 10s ease-in-out infinite;
-}
-.hv-chip-b .hv-float { animation-delay: -5s; }
-.hv-chip em {
-  display: block;
-  font-style: normal;
-  font-family: var(--mono);
-  font-weight: 400;
-  font-size: 0.58rem;
-  color: var(--ink-55);
-  margin-top: 0.15rem;
-  letter-spacing: 0.04em;
-}
-.hv-chip svg { color: var(--emerald); flex-shrink: 0; }
-.hv-bar {
-  width: 52px;
-  height: 4px;
-  border-radius: 99px;
-  background: var(--line);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.hv-bar span {
-  display: block;
-  height: 100%;
-  width: 86%;
-  border-radius: 99px;
-  background: linear-gradient(90deg, var(--emerald), var(--aqua));
-}
-@keyframes chipFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-10px); }
-}
+.custody-halo { fill: #5BA832; stroke: #3D7A20; stroke-width: 2.2; }
+.custody-halo--human { fill: #5BA832; stroke: #2D621A; }
+.custody-icon { fill: none; stroke: #0A2E23; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+.custody-detail { fill: none; stroke: rgba(10, 46, 35, 0.78); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.custody-mini-node { fill: #E8F5E9; stroke: #0A2E23; stroke-width: 1.3; }
+.custody-check { fill: none; stroke: #0A2E23; stroke-width: 3.7; stroke-linecap: round; stroke-linejoin: round; }
+.custody-pulse { fill: none; stroke: #5BA832; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 8 20; opacity: 0.72; animation: custodyPulse 2.4s linear infinite; }
+@keyframes custodyPulse { to { stroke-dashoffset: -56; } }
+.custody-label { fill: var(--ink); font-family: var(--mono); font-size: 13px; font-weight: 650; letter-spacing: 0.02em; }
 
 .scrollcue {
   position: absolute;
@@ -1297,15 +1207,24 @@ html.js body.is-loaded .scrollcue    { opacity: 1; transition-delay: 1.5s; }
 
 @media (min-width: 1100px) {
   .hero-grid { grid-template-columns: 1.02fr 0.98fr; }
+  .hero-control-card { left: 47%; }
 }
 @media (max-width: 1099px) {
-  .hero-visual { min-height: 460px; max-width: 560px; margin-inline: auto; width: 100%; }
+  .hero-visual { min-height: 440px; max-width: 560px; margin-inline: auto; width: 100%; }
   .hero-deco { left: 50%; }
 }
 @media (max-width: 520px) {
-  .hero-visual { min-height: 400px; }
-  .hv-card { left: 0; width: 100%; }
-  .hv-chip-a { right: -4px; }
+  .hero-grid { gap: 2.75rem; padding-block: 2rem 5.5rem; }
+  .hero-title { font-size: clamp(2.45rem, 10.8vw, 3.15rem); line-height: 0.94; letter-spacing: -0.045em; }
+  .hero-actions { display: grid; }
+  .hero-actions .btn { justify-content: center; width: 100%; }
+  .hero-visual { min-height: 500px; }
+  .hero-route-card { width: 100%; }
+  .hero-control-card { padding: 1.1rem; }
+  .custody-constellation--wide { display: none; }
+  .custody-constellation--mobile { display: block; }
+  .custody-label { font-size: 14px; }
+  .hero-trust-line { align-items: flex-start; line-height: 1.5; }
 }
 
 /* =============================================================
@@ -3668,9 +3587,6 @@ a.info-link:hover { transform: translateX(4px); }
   .foot-marquee-track,
   .sr-spin,
   .hd-spin,
-  .hv-card .hv-float,
-  .hv-chip .hv-float,
-  .hvc-rows span,
   .orb-field,
   .orb,
   .orb::after,
@@ -3698,6 +3614,7 @@ a.info-link:hover { transform: translateX(4px); }
   .hud-scan,
   .hydro-ripple,
   .hydro-flow,
+  .custody-pulse,
   .nc-bio-blob,
   .nc-pollen,
   .ambient-bulb,
@@ -3754,8 +3671,10 @@ a.info-link:hover { transform: translateX(4px); }
   html.js .hero-kicker,
   html.js .hero-sub,
   html.js .hero-actions,
-  html.js .hero-proof,
+  html.js .hero-trust-line,
+  html.js .hero-wa-support,
   html.js .hero-visual,
+  html.js .custody-symbol,
   html.js .scrollcue,
   html.js .hero-depth-layer {
     opacity: 1 !important;
@@ -3763,6 +3682,8 @@ a.info-link:hover { transform: translateX(4px); }
     clip-path: inset(0 0 0 0) !important;
     transition: none !important;
   }
+
+  .custody-symbol { transform: scale(0.79) !important; }
 
   .grad-text {
     -webkit-text-fill-color: currentColor;
