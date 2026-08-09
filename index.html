@@ -195,43 +195,89 @@
 
           <div class="hero-route-card hero-control-card">
             <p class="hero-route-kicker">Control de cumplimiento</p>
-            <p class="sr-only">Información organizada, IA aplicada y validación técnica humana.</p>
+            <p class="sr-only">Información organizada, IA aplicada y validación de procesos.</p>
             <svg class="custody-constellation custody-constellation--wide" viewBox="0 0 560 410" fill="none" aria-hidden="true" focusable="false">
+              <defs>
+                <radialGradient id="custodyHaloGrad" cx="32%" cy="28%" r="78%">
+                  <stop offset="0%" stop-color="#A7E86B"/>
+                  <stop offset="48%" stop-color="#5BA832"/>
+                  <stop offset="100%" stop-color="#2E5C17"/>
+                </radialGradient>
+                <filter id="custodyHaloShadow" x="-60%" y="-60%" width="220%" height="220%">
+                  <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0A2E23" flood-opacity="0.32"/>
+                </filter>
+              </defs>
               <g class="custody-network">
                 <path d="M108 120C164 92 214 128 280 188S397 233 458 286"/>
                 <path d="M108 120c12 54 63 70 104 80m68-12c11-49 65-54 104-22m74 120c-13-45-64-52-94-36"/>
                 <circle cx="160" cy="110" r="3"/><circle cx="213" cy="153" r="3"/><circle cx="350" cy="219" r="3"/><circle cx="402" cy="246" r="3"/>
               </g>
-              <path class="custody-pulse" d="M108 120C164 92 214 128 280 188"/>
               <g class="custody-symbol custody-symbol--drop">
                 <circle class="custody-halo" cx="108" cy="120" r="45"/>
-                <path class="custody-icon" d="M108 84c-14 19-24 31-24 44a24 24 0 0 0 48 0c0-13-10-25-24-44Z"/>
-                <path class="custody-detail" d="M98 130c3 6 9 9 15 9"/>
+                <circle class="custody-halo-shine" cx="108" cy="120" r="43" pathLength="100"/>
+                <path class="custody-icon" d="M92 98L116 98L124 106L124 142L92 142Z"/>
+                <path class="custody-detail" d="M116 98L116 106L124 106M100 117L117 117M100 124L117 124M100 131L110 131"/>
               </g>
               <g class="custody-symbol custody-symbol--leaf">
+                <circle class="custody-pulse" cx="280" cy="188" r="58"/>
                 <circle class="custody-halo" cx="280" cy="188" r="49"/>
-                <path class="custody-icon" d="M250 205c2-37 25-58 61-62-2 38-24 61-61 62Z"/>
-                <path class="custody-detail" d="m252 204 47-47m-27 26 24 1m-37 13 2 23"/>
-                <circle class="custody-mini-node" cx="299" cy="157" r="4"/><circle class="custody-mini-node" cx="272" cy="183" r="4"/><circle class="custody-mini-node" cx="261" cy="204" r="4"/>
+                <circle class="custody-halo-shine" cx="280" cy="188" r="47" pathLength="100"/>
+                <path class="custody-icon" d="M270 174L290 174L294 178L294 198L290 202L270 202L266 198L266 178Z"/>
+                <path class="custody-detail" d="M280 174L280 166M294 188L302 188M280 202L280 210"/>
+                <circle class="custody-mini-node" cx="280" cy="166" r="4"/><circle class="custody-mini-node" cx="302" cy="188" r="4"/><circle class="custody-mini-node" cx="280" cy="210" r="4"/>
               </g>
               <g class="custody-symbol custody-symbol--shield">
                 <circle class="custody-halo custody-halo--human" cx="458" cy="286" r="47"/>
-                <path class="custody-icon" d="M458 250c14 10 25 11 31 11v24c0 20-13 34-31 42-18-8-31-22-31-42v-24c6 0 17-1 31-11Z"/>
+                <circle class="custody-halo-shine" cx="458" cy="286" r="45" pathLength="100"/>
+                <path class="custody-icon" d="M438 276C438 262 447 252 458 252C469 252 478 262 478 276Q458 282 438 276Z"/>
+                <path class="custody-detail" d="M443 278L473 278"/>
                 <path class="custody-check" d="m444 287 10 10 19-21"/>
               </g>
               <g class="custody-labels">
                 <text x="108" y="192" class="custody-label" text-anchor="middle">Información</text><text x="108" y="210" class="custody-label" text-anchor="middle">organizada</text>
                 <text x="280" y="266" class="custody-label" text-anchor="middle">IA aplicada</text>
-                <text x="458" y="330" class="custody-label" text-anchor="middle">Validación técnica</text><text x="458" y="348" class="custody-label" text-anchor="middle">humana</text>
+                <text x="458" y="361" class="custody-label" text-anchor="middle">Validación de</text><text x="458" y="379" class="custody-label" text-anchor="middle">procesos</text>
+              </g>
+            </svg>
+            <svg class="custody-constellation custody-constellation--tablet" viewBox="0 0 420 380" fill="none" aria-hidden="true" focusable="false">
+              <g class="custody-network">
+                <path d="M210 90C160 160 130 210 100 290C180 330 240 330 320 290"/>
+                <path d="M210 90C260 160 300 210 320 290"/>
+                <circle cx="140" cy="190" r="3"/><circle cx="280" cy="190" r="3"/><circle cx="210" cy="322" r="3"/>
+              </g>
+              <g class="custody-symbol custody-symbol--drop">
+                <circle class="custody-halo" cx="210" cy="90" r="44"/>
+                <circle class="custody-halo-shine" cx="210" cy="90" r="42" pathLength="100"/>
+                <path class="custody-icon" d="M194 68L218 68L226 76L226 112L194 112Z"/>
+                <path class="custody-detail" d="M218 68L218 76L226 76M202 87L219 87M202 94L219 94M202 101L212 101"/>
+              </g>
+              <g class="custody-symbol custody-symbol--leaf">
+                <circle class="custody-pulse" cx="100" cy="290" r="55"/>
+                <circle class="custody-halo" cx="100" cy="290" r="46"/>
+                <circle class="custody-halo-shine" cx="100" cy="290" r="44" pathLength="100"/>
+                <path class="custody-icon" d="M90 276L110 276L114 280L114 300L110 304L90 304L86 300L86 280Z"/>
+                <path class="custody-detail" d="M100 276L100 268M114 290L122 290M100 304L100 312"/>
+                <circle class="custody-mini-node" cx="100" cy="268" r="4"/><circle class="custody-mini-node" cx="122" cy="290" r="4"/><circle class="custody-mini-node" cx="100" cy="312" r="4"/>
+              </g>
+              <g class="custody-symbol custody-symbol--shield">
+                <circle class="custody-halo custody-halo--human" cx="320" cy="290" r="44"/>
+                <circle class="custody-halo-shine" cx="320" cy="290" r="42" pathLength="100"/>
+                <path class="custody-icon" d="M300 280C300 266 309 256 320 256C331 256 340 266 340 280Q320 286 300 280Z"/>
+                <path class="custody-detail" d="M305 282L335 282"/>
+                <path class="custody-check" d="m306 291 10 10 19-21"/>
+              </g>
+              <g class="custody-labels">
+                <text x="210" y="152" class="custody-label" text-anchor="middle">Información</text><text x="210" y="170" class="custody-label" text-anchor="middle">organizada</text>
+                <text x="100" y="352" class="custody-label" text-anchor="middle">IA aplicada</text>
+                <text x="320" y="352" class="custody-label" text-anchor="middle">Validación de</text><text x="320" y="370" class="custody-label" text-anchor="middle">procesos</text>
               </g>
             </svg>
             <svg class="custody-constellation custody-constellation--mobile" viewBox="0 0 360 500" fill="none" aria-hidden="true" focusable="false">
               <g class="custody-network"><path d="M180 88c-40 78 40 104 0 164s38 87 0 145"/><circle cx="180" cy="163" r="3"/><circle cx="180" cy="321" r="3"/></g>
-              <path class="custody-pulse" d="M180 88c-40 78 40 104 0 164"/>
-              <g class="custody-symbol custody-symbol--drop"><circle class="custody-halo" cx="180" cy="88" r="38"/><path class="custody-icon" d="M180 58c-12 16-20 26-20 37a20 20 0 0 0 40 0c0-11-8-21-20-37Z"/><path class="custody-detail" d="M172 97c2 5 7 7 12 7"/></g>
-              <g class="custody-symbol custody-symbol--leaf"><circle class="custody-halo" cx="180" cy="252" r="42"/><path class="custody-icon" d="M154 267c2-31 21-49 52-52-2 32-20 51-52 52Z"/><path class="custody-detail" d="m155 266 40-40m-23 22 20 1m-32 11 2 19"/><circle class="custody-mini-node" cx="195" cy="226" r="3.5"/><circle class="custody-mini-node" cx="172" cy="248" r="3.5"/></g>
-              <g class="custody-symbol custody-symbol--shield"><circle class="custody-halo custody-halo--human" cx="180" cy="410" r="40"/><path class="custody-icon" d="M180 380c12 8 21 9 27 9v21c0 17-11 29-27 36-16-7-27-19-27-36v-21c6 0 15-1 27-9Z"/><path class="custody-check" d="m168 411 8 8 16-18"/></g>
-              <g class="custody-labels"><text x="180" y="145" class="custody-label" text-anchor="middle">Información organizada</text><text x="180" y="316" class="custody-label" text-anchor="middle">IA aplicada</text><text x="180" y="478" class="custody-label" text-anchor="middle">Validación técnica humana</text></g>
+              <g class="custody-symbol custody-symbol--drop"><circle class="custody-halo" cx="180" cy="88" r="38"/><circle class="custody-halo-shine" cx="180" cy="88" r="36" pathLength="100"/><path class="custody-icon" d="M167 70L187 70L193 76L193 106L167 106Z"/><path class="custody-detail" d="M187 70L187 76L193 76M173 85L188 85M173 91L188 91M173 97L182 97"/></g>
+              <g class="custody-symbol custody-symbol--leaf"><circle class="custody-pulse" cx="180" cy="252" r="50"/><circle class="custody-halo" cx="180" cy="252" r="42"/><circle class="custody-halo-shine" cx="180" cy="252" r="40" pathLength="100"/><path class="custody-icon" d="M171 240L189 240L192 243L192 261L189 264L171 264L168 261L168 243Z"/><path class="custody-detail" d="M180 240L180 233M192 252L199 252"/><circle class="custody-mini-node" cx="180" cy="233" r="3.5"/><circle class="custody-mini-node" cx="199" cy="252" r="3.5"/></g>
+              <g class="custody-symbol custody-symbol--shield"><circle class="custody-halo custody-halo--human" cx="180" cy="410" r="40"/><circle class="custody-halo-shine" cx="180" cy="410" r="38" pathLength="100"/><path class="custody-icon" d="M160 413C160 398 169 388 180 388C191 388 200 398 200 413Q180 419 160 413Z"/><path class="custody-detail" d="M180 388L180 402"/><path class="custody-check" d="m168 411 8 8 16-18"/></g>
+              <g class="custody-labels"><text x="180" y="145" class="custody-label" text-anchor="middle">Información organizada</text><text x="180" y="316" class="custody-label" text-anchor="middle">IA aplicada</text><text x="180" y="478" class="custody-label" text-anchor="middle">Validación de procesos</text></g>
             </svg>
           </div>
         </div>
