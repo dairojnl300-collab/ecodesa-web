@@ -366,9 +366,6 @@
     const uFade  = gl.getUniformLocation(prog, "uFade");
     const uDark  = gl.getUniformLocation(prog, "uDark");
     let shaderDark = getTheme() === "dark" ? 1 : 0;
-    window.addEventListener("ecodesa-theme-change", (e) => {
-      shaderDark = e.detail.theme === "dark" ? 1 : 0;
-    });
 
     /* Calidad adaptativa: arranca en 1.25x y baja la resolución de
        render si el frame medio supera ~22ms — el scroll manda, 60fps. */
@@ -422,6 +419,15 @@
        para prefers-reduced-motion (mismo patrón, sin cambiar el markup
        ni el CSS del hero). */
     const staticShader = reduced || isMobileViewport();
+
+    /* En móvil el shader se pinta una sola vez para no competir con el
+       scroll. Al cambiar de tema, el uniforme por sí solo no se ve hasta
+       otro frame (que no existe en ese modo), dejando una paleta mezclada.
+       Se repinta exactamente un frame y se mantiene el ahorro de batería. */
+    window.addEventListener("ecodesa-theme-change", (e) => {
+      shaderDark = e.detail.theme === "dark" ? 1 : 0;
+      if (staticShader) frame(performance.now());
+    });
 
     const t0 = performance.now();
     function frame(now) {
