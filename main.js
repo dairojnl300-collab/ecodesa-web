@@ -16,6 +16,11 @@
   const reduced  = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePtr  = matchMedia("(hover: hover) and (pointer: fine)").matches;
   const lowEnd   = (navigator.hardwareConcurrency || 4) <= 4;
+  /* Viewport móvil real (no solo low-end): usado para pausar o
+     simplificar los canvases decorativos que compiten por el hilo
+     principal con el scroll en móvil, en cualquier gama de hardware —
+     ver initShader/initParticles/initCloseMesh/initTiendaHud. */
+  const isMobileViewport = () => matchMedia("(max-width: 767px)").matches;
   const hasGSAP  = () => !!(window.gsap && window.ScrollTrigger);
   const hasLenis = () => typeof window.Lenis === "function";
   const hasMotion= () => !!(window.Motion && window.Motion.animate);
@@ -411,6 +416,13 @@
       new IntersectionObserver((es) => { visible = es[0].isIntersecting; }).observe(canvas);
     }
 
+    /* En móvil el shader de fondo compite por el hilo principal/GPU con
+       el scroll (Lenis + ScrollTrigger) y los otros canvases — se
+       dibuja un frame estático y se omite el loop, igual que ya se hace
+       para prefers-reduced-motion (mismo patrón, sin cambiar el markup
+       ni el CSS del hero). */
+    const staticShader = reduced || isMobileViewport();
+
     const t0 = performance.now();
     function frame(now) {
       if (visible && !document.hidden) {
@@ -424,10 +436,10 @@
         gl.uniform1f(uDark, shaderDark);
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       }
-      if (!reduced) requestAnimationFrame(frame);
+      if (!staticShader) requestAnimationFrame(frame);
     }
 
-    if (reduced) {
+    if (staticShader) {
       gl.uniform2f(uRes, canvas.width, canvas.height);
       gl.uniform1f(uT, 8.0);
       gl.uniform2f(uMouse, 0.6, 0.6);
@@ -444,7 +456,12 @@
   ═══════════════════════════════════════════════════════════ */
   function initParticles() {
     if (reduced) return;
-    if (lowEnd && matchMedia("(max-width: 767px)").matches) return;
+    /* Decorativo: en móvil compite por el hilo principal con el resto de
+       canvases (cáusticas, constelaciones) durante el scroll — se omite
+       en cualquier gama, no solo low-end (antes solo se excluía si
+       hardwareConcurrency<=4, dejando corriendo el loop en móviles de
+       gama media/alta). */
+    if (isMobileViewport()) return;
 
     const canvas = $("#particlesCanvas");
     const hero   = $("#hero");
@@ -453,7 +470,7 @@
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const mobile = matchMedia("(max-width: 767px)").matches;
+    const mobile = isMobileViewport();
     const COUNT  = lowEnd ? 12 : (mobile ? 14 : 25);
     const paletteFor = () => PARTICLE_PALETTES[getTheme()] || PARTICLE_PALETTES.light;
 
@@ -2234,7 +2251,11 @@
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const COUNT         = 22;
+    /* Sin guard móvil previo: este canvas corría a calidad completa
+       (shadowBlur + gradientes por enlace) en cualquier viewport — uno
+       de los 6 loops que competían por el hilo principal en móvil. */
+    const mobileNow      = isMobileViewport();
+    const COUNT          = mobileNow ? 12 : 22;
     const LINK_DIST     = 130;
     const CYCLE_MS      = 18000;
     const PERSPECTIVE   = 800;
@@ -2333,14 +2354,21 @@
     };
 
     const drawLinks = (pos, links, pal) => {
+      const [lr, lg, lb] = pal.line;
       links.forEach(({ i, j, proximity, alpha }) => {
         const a = pos[i], b = pos[j];
-        const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
-        const [lr, lg, lb] = pal.line;
-        grad.addColorStop(0,   rgba([lr, lg, lb], alpha * 0.45));
-        grad.addColorStop(0.5, rgba([lr, lg, lb], alpha));
-        grad.addColorStop(1,   rgba([lr, lg, lb], alpha * 0.45));
-        ctx.strokeStyle = grad;
+        if (mobileNow) {
+          /* Sin gradiente en móvil: ctx.createLinearGradient() por cada
+             enlace, cada frame, es el costo evitable más alto de este
+             draw — color sólido, mismo alpha medio del gradiente. */
+          ctx.strokeStyle = rgba([lr, lg, lb], alpha);
+        } else {
+          const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+          grad.addColorStop(0,   rgba([lr, lg, lb], alpha * 0.45));
+          grad.addColorStop(0.5, rgba([lr, lg, lb], alpha));
+          grad.addColorStop(1,   rgba([lr, lg, lb], alpha * 0.45));
+          ctx.strokeStyle = grad;
+        }
         ctx.lineWidth = 0.55 + proximity * 0.75;
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
@@ -2353,19 +2381,23 @@
       pos.slice().sort((a, b) => a.layer - b.layer).forEach(p => {
         const glow = p.glow * p.blurFactor;
         ctx.globalAlpha = p.alpha;
-        ctx.shadowBlur = glow;
-        ctx.shadowColor = rgba(p.glowColor, 0.88);
+        /* shadowBlur es el otro costo evitable alto en Canvas2D — se omite
+           en móvil (nodos siguen visibles con relleno sólido, sin glow). */
+        if (!mobileNow) {
+          ctx.shadowBlur = glow;
+          ctx.shadowColor = rgba(p.glowColor, 0.88);
+        }
         ctx.fillStyle = rgba(p.color, 1);
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
         ctx.globalAlpha = p.alpha * 0.88;
-        ctx.shadowBlur = glow * 0.42;
+        if (!mobileNow) ctx.shadowBlur = glow * 0.42;
         ctx.fillStyle = rgba([255, 255, 255], p.layer === 2 ? 0.52 : 0.28);
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r * 0.34, 0, Math.PI * 2);
         ctx.fill();
-        ctx.shadowBlur = 0;
+        if (!mobileNow) ctx.shadowBlur = 0;
         ctx.globalAlpha = 1;
       });
     };
@@ -2418,7 +2450,16 @@
     if (isStatic) return;
 
     const frame = (now) => {
-      if (!document.hidden && visible) draw(now);
+      if (!document.hidden && visible) {
+        if (mobileNow) {
+          /* dibuja 1 de cada 2 frames en móvil, mismo patrón que
+             initServiciosConstellation/runConstellation2D. */
+          frameSkip = (frameSkip + 1) % 2;
+          if (frameSkip === 0) draw(now);
+        } else {
+          draw(now);
+        }
+      }
       requestAnimationFrame(frame);
     };
     requestAnimationFrame(frame);
@@ -2449,7 +2490,8 @@
       { l: 0.02, t: 0.45 }, { l: 0.94, t: 0.52 }
     ];
 
-    let visible = true, travel = 700, termTimer = 0;
+    let visible = true, travel = 700, termTimer = 0, frameSkip = 0;
+    const mobileNow = isMobileViewport();
 
     const easeInOut = (t) => t < 0.5
       ? 2 * t * t
@@ -2512,6 +2554,13 @@
     }
 
     const frame = (now) => {
+      /* Cada iteración fuerza 2 layout reads (getBoundingClientRect) —
+         en móvil se muestrea 1 de cada 3 frames: el "hit" es solo un
+         resaltado visual, no necesita precisión de 60fps. */
+      if (mobileNow) {
+        frameSkip = (frameSkip + 1) % 3;
+        if (frameSkip !== 0) { requestAnimationFrame(frame); return; }
+      }
       if (!document.hidden && visible && card) {
         const secRect  = section.getBoundingClientRect();
         const cardRect = card.getBoundingClientRect();

@@ -1372,12 +1372,16 @@ html.js .scrollcue.is-hidden {
   .custody-label { font-size: 14px; }
   .hero-trust-line { align-items: flex-start; line-height: 1.5; }
   /* El hero supera un viewport en móvil. Se fija la señal en una esquina
-     segura y el observador existente la oculta al abandonar #hero. */
+     segura y el observador existente la oculta al abandonar #hero.
+     Esquina INFERIOR IZQUIERDA (no derecha): verificado en producción
+     que .float-wa (WhatsApp, fixed bottom:1.4rem;right:1.4rem, z-index
+     mayor) ocupa exactamente esa esquina y tapaba por completo la
+     cápsula ahí — quedaba en el DOM, visible:visible, pero cubierta. */
   .scrollcue {
     position: fixed;
-    right: var(--gutter);
+    left: var(--gutter);
     bottom: max(1rem, env(safe-area-inset-bottom, 0px));
-    left: auto;
+    right: auto;
     transform: none;
     z-index: 4;
     pointer-events: none;
@@ -5081,4 +5085,34 @@ html.js .nc-grid.is-grown .nc-card .nc-list li{
 .serv-card-ambient,
 .servicios-ambient {
   mix-blend-mode: normal;
+}
+
+/* =============================================================
+   19. RENDIMIENTO MÓVIL — COSTO DE PAINT (P0)
+   backdrop-filter fuerza recompositar toda la región detrás del
+   elemento en cada frame de scroll/scroll-timeline — de los 3 usos
+   del sitio, el de .nav.is-scrolled es el más caro (position:fixed,
+   siempre en pantalla mientras se hace scroll). Se desactiva en
+   móvil (fuera de hero/.normas-title/.scrollcue) y se compensa con
+   un fondo algo más opaco para conservar la legibilidad del efecto
+   "vidrio esmerilado" sin el costo de recomposición por frame.
+   ============================================================= */
+@media (max-width: 767px) {
+  .nav.is-scrolled {
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  [data-theme="dark"] .nav.is-scrolled {
+    background: rgba(6, 13, 7, 0.96);
+  }
+  .cont-form {
+    background: color-mix(in srgb, var(--surface) 96%, transparent);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .nc-section--dimensional .nc-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
