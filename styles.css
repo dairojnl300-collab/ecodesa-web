@@ -1341,6 +1341,17 @@ html.js .scrollcue.is-hidden {
   .custody-constellation--tablet { display: block; }
 }
 @media (max-width: 520px) {
+  .nav-inner { gap: 0.5rem; }
+
+  :root,
+  [data-theme] {
+    --theme-transition: none;
+  }
+
+  .scrollcue {
+    display: none !important;
+  }
+
   .hero-grid { gap: 2.75rem; padding-block: 2rem 5.5rem; }
   /* Título más imponente (a pedido de Valentina): coeficiente vw 10.8→12.5
      y tope máximo 3.35rem→3.75rem (+12%). Tope mínimo SIN CAMBIAR (2.45rem):
