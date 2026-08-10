@@ -1206,8 +1206,21 @@ html.js .scrollcue {
   opacity: 1;
   transform-box: fill-box;
   transform-origin: center;
-  transform: scale(0.79) !important;
+  transform: scale(0.79);
   transition: none;
+  /* Flotación propia de cada ícono (a pedido de José/Valentina), además de
+     la flotación de la tarjeta completa (heroCardFloat). El scale(0.79) va
+     dentro del propio keyframe porque una animación normal no puede pisar
+     el transform:scale(0.79) !important que forzaba el estado de reposo
+     (ver el duplicado en @media prefers-reduced-motion más abajo). */
+  animation: symbolFloat 3.4s ease-in-out infinite;
+}
+.custody-symbol--drop   { animation-delay: 0s; }
+.custody-symbol--leaf   { animation-delay: 0.55s; }
+.custody-symbol--shield { animation-delay: 1.1s; }
+@keyframes symbolFloat {
+  0%, 100% { transform: scale(0.79) translateY(0); }
+  50%      { transform: scale(0.79) translateY(-4px); }
 }
 @keyframes custodyFlow { to { stroke-dashoffset: -48; } }
 /* Halo con gradiente radial (efecto de esfera/badge) + sombra suave — los
@@ -1277,7 +1290,14 @@ html.js .scrollcue {
 }
 .scrollcue-track {
   width: 22px; height: 36px;
-  border: 1.5px solid var(--scroll-border);
+  /* El borde solo (28% opacidad) se perdía contra el fondo cargado del hero
+     (gradientes, blobs, SVG deco). Se agrega un relleno tenue + blur, mismo
+     patrón que .kicker-pill/.hero-route-card, para que la cápsula se lea
+     como forma completa en vez de un trazo suelto. */
+  background: color-mix(in srgb, var(--emerald) 10%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1.5px solid color-mix(in srgb, var(--scroll-border) 70%, var(--emerald) 30%);
   border-radius: 99px;
   display: flex;
   justify-content: center;
@@ -4617,6 +4637,7 @@ html.js .nc-grid.is-grown .nc-card .nc-list li{
   .serv-ambient-epic { --serv-scroll: 0 !important; filter: none !important; }
   .serv-orb { transform: none !important; }
   .hero-route-card { animation: none !important; }
+  .custody-symbol { animation: none !important; }
 }
 
 /* Hojas flotantes (Forestal) */
