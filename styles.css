@@ -1362,13 +1362,35 @@ html.js .scrollcue.is-hidden {
   .hero-trust-line { align-items: flex-start; line-height: 1.5; }
   /* La tarjeta "Control de cumplimiento" apilada debajo del copy hace que
      .hero mida ~1.8x el viewport en móvil (min-height:100svh es un mínimo,
-     no un máximo). .scrollcue con bottom:1.8rem quedaba anclado al fondo
-     de ESE contenedor alto, cientos de px por debajo del pliegue inicial
-     — invisible/recortada por el borde del viewport en el primer render.
-     Se fija al viewport real para que sea visible desde el primer render;
-     se oculta (.is-hidden, initScrollCue en main.js) al salir del hero. */
+     no un máximo). .scrollcue con bottom:1.8rem (position:absolute, su
+     comportamiento en desktop) quedaba anclado al fondo de ESE contenedor
+     alto, cientos de px por debajo del pliegue inicial — invisible en el
+     primer render.
+
+     FIX (regresión reportada sobre el intento anterior, commit 0907496):
+     ese intento usaba position:fixed para anclarla al viewport real, con
+     initScrollCue (main.js) ocultándola por opacidad vía IntersectionObserver
+     al salir de #hero. En dispositivo real, la cápsula "viajaba" con el
+     contenido durante scroll táctil/rueda en vez de quedar fija — patrón
+     consistente con el bug conocido de WebKit/iOS donde position:fixed +
+     backdrop-filter pierde sincronía con el compositor en scroll real (no
+     reproducible con scrollTo() instantáneo, que es como se había
+     "verificado" antes; sí reproducible en dispositivo/motor real).
+
+     position:sticky es la primitiva correcta para "queda fija SOLO dentro
+     de su contenedor": por especificación no puede flotar fuera de los
+     límites de su containing block (aquí, #hero, vía flex-wrap más abajo
+     — #hero pasa a envolver a .scrollcue en su propia línea, debajo de
+     .hero-grid), se libera sola y sin salto al llegar al borde de #hero
+     sin depender de ningún cálculo JS, y no usa el mismo camino de
+     compositor de WebKit que dispara el bug de position:fixed. El
+     centrado (left:50% + transform:translateX(-50%) en la regla base)
+     se mantiene: sticky resuelve el % de "left" contra el containing
+     block igual que absolute, solo que sumado a su posición estática
+     (que aquí es x:0, al no haber padding-inline en #hero). */
+  .hero { flex-wrap: wrap; }
   .scrollcue {
-    position: fixed;
+    position: sticky;
     bottom: calc(1.8rem + env(safe-area-inset-bottom, 0px));
   }
   /* Al fijarse sobre el viewport, la cápsula queda sobre texto real (la

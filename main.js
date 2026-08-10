@@ -235,10 +235,14 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
-     SCROLLCUE — en móvil .scrollcue pasa a position:fixed (ver
-     styles.css) porque el hero mide más que un viewport; esto la
-     oculta al salir del hero para que no quede flotando sobre el
-     resto de la página.
+     SCROLLCUE — en móvil .scrollcue pasa a position:sticky dentro
+     de #hero (ver styles.css) porque el hero mide más que un
+     viewport; sticky ya la libera sola al llegar al borde de #hero
+     (no puede flotar fuera de sus límites por spec). Este observer
+     solo añade un fundido de opacidad (.is-hidden) justo antes de
+     ese borde, para que la salida sea un fade en vez de un corte
+     seco — no es el mecanismo que evita que flote sobre el resto
+     de la página (eso ya lo garantiza sticky).
   ═══════════════════════════════════════════════════════════ */
   function initScrollCue() {
     const cue = $(".scrollcue");
