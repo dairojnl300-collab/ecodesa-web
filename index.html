@@ -196,7 +196,11 @@
           <div class="hero-route-card hero-control-card">
             <p class="hero-route-kicker">Control de cumplimiento</p>
             <p class="sr-only">Información organizada, IA aplicada y validación de procesos.</p>
-            <svg class="custody-constellation custody-constellation--wide" viewBox="0 0 560 410" fill="none" aria-hidden="true" focusable="false">
+            <!-- Defs compartidos por los 3 SVG (wide/tablet/mobile): viven en un SVG
+                 propio que SIEMPRE se renderiza (nunca display:none), porque un
+                 gradiente/filtro definido dentro de un <svg> oculto por breakpoint
+                 deja de poder usarse como paint server por los otros SVG -->
+            <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
               <defs>
                 <radialGradient id="custodyHaloGrad" cx="32%" cy="28%" r="78%">
                   <stop offset="0%" stop-color="#A7E86B"/>
@@ -207,6 +211,8 @@
                   <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0A2E23" flood-opacity="0.32"/>
                 </filter>
               </defs>
+            </svg>
+            <svg class="custody-constellation custody-constellation--wide" viewBox="0 0 560 410" fill="none" aria-hidden="true" focusable="false">
               <g class="custody-network">
                 <path d="M108 120C164 92 214 128 280 188S397 233 458 286"/>
                 <path d="M108 120c12 54 63 70 104 80m68-12c11-49 65-54 104-22m74 120c-13-45-64-52-94-36"/>

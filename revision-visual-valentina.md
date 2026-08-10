@@ -310,3 +310,84 @@ Se evaluaron las 5 opciones del encargo:
 - **FPS bajo CPU throttling real de DevTools:** no verificado con el método exacto pedido — requiere que alguien lo confirme directamente en Chrome DevTools local (Performance panel o Rendering → CPU throttling 4x + device toolbar a 375px), algo que esta sesión no pudo hacer por la limitación de herramientas descrita arriba, no por falta de intento.
 - La lectura de ~3 FPS en pestaña aislada nueva queda registrada pero no explicada con confianza — no la tomo como referencia de rendimiento real, solo como dato anómalo a ignorar salvo que se reproduzca deliberadamente.
 - No se probó orientación landscape ni tablet para esta animación específica (fuera del alcance pedido en este encargo, que pedía específicamente 375px).
+
+## Sesión 2026-08-09 — Verificación independiente: halo verde ausente en íconos de "Control de cumplimiento" (mobile/tablet)
+
+**Rama:** `feature/hero-marcela-v1` (worktree en
+`.worktrees\hero-marcela-v1`), sirviendo `index.html` vía servidor estático
+local en `http://localhost:8791/index.html`.
+**Encargo:** validación visual independiente de un fix ya aplicado (no
+commiteado) por otro agente en `index.html:196-217` — un `<radialGradient
+id="custodyHaloGrad">` y `<filter id="custodyHaloShadow">` que vivían dentro
+del `<defs>` del SVG `.custody-constellation--wide` (oculto por
+`display:none` en tablet/mobile) se movieron a un `<svg width="0" height="0"
+style="position:absolute">` dedicado que se renderiza siempre, para que los
+otros dos SVG (`--tablet`, `--mobile`) puedan seguir resolviendo
+`url(#custodyHaloGrad)`/`url(#custodyHaloShadow)` como paint-server aunque
+el SVG `--wide` esté oculto.
+**Estado:** COMPLETA — verificado con evidencia visual real e inspección de
+DOM en los 3 breakpoints pedidos.
+
+### Limitación de entorno reconfirmada por tercera vez
+
+`resize_window` (herramienta `claude-in-chrome`) reportó éxito al pedir
+375×812 y 400×850, pero `window.innerWidth` tras la llamada seguía fijo en
+1536 (el tamaño de pantalla física de esta máquina) — mismo problema ya
+documentado en las dos sesiones anteriores de este archivo. Confirmado con
+`javascript_tool` leyendo `innerWidth`/`outerWidth`/`screen.width` (los tres
+iguales a 1536), así que no es un artefacto de zoom de captura sino que el
+viewport real de la pestaña no cambió.
+
+**Método usado en su lugar (más preciso que el iframe de la sesión
+anterior):** en vez de simular el breakpoint dentro de la misma pestaña, se
+lanzó una instancia headless independiente del Chrome del sistema
+(`C:\Program Files\Google\Chrome\Application\chrome.exe`) vía
+`puppeteer-core` (ya presente en `node_modules` del repo raíz, sin instalar
+nada nuevo), con `page.setViewport()` fijando el viewport real del proceso
+de renderizado a 375, 768 y 1440px (`deviceScaleFactor: 2`), navegando a la
+misma URL que sirve el fix. Esto da un viewport CSS genuino (no una
+aproximación), a diferencia del truco de iframe usado la sesión anterior.
+Script en el scratchpad de esta sesión (no en el repo).
+
+### Hallazgos
+
+**[V2] Verificación visual del fix — sin hallazgos bloqueantes**
+- **Ubicación:** `.hero-control-card` / `.custody-constellation--{wide,tablet,mobile}`, `index.html:196-288`
+- **Evidencia e impacto:** en los 3 breakpoints, `getComputedStyle` confirma
+  que el SVG de constelación correcto está activo por breakpoint
+  (`--mobile` a 375px, `--tablet` a 768px, `--wide` a 1440px) y que los 3
+  `.custody-halo` de cada uno resuelven `fill: url("#custodyHaloGrad")` y
+  `filter: url("#custodyHaloShadow")` sin caer a `none`. Las capturas de
+  pantalla (Chrome headless real, no simulación) muestran los 3 íconos con
+  su halo verde degradado completo, glifo interior nítido (documento /
+  engranaje IA / velocímetro-escudo), sombra sutil y etiqueta legible en los
+  tres tamaños. No se observó el bug original (trazo flotando sin relleno).
+- **Intervención:** ninguna — solo validación del fix ya aplicado.
+- **Verificación:** capturas guardadas en el scratchpad de esta sesión:
+  `halo-375w.png`, `halo-768w.png`, `halo-1440w.png` (recorte de
+  `.hero-control-card` con `element.screenshot()`, no captura de pantalla
+  completa).
+
+**[V2] Contraste de texto sobre la tarjeta — aceptable, medido de forma aproximada**
+- **Ubicación:** `.hero-route-kicker` ("CONTROL DE CUMPLIMIENTO") y `.custody-label` dentro de `.hero-control-card`
+- **Evidencia e impacto:** el fondo real de la tarjeta se pinta por capas
+  (gradientes de ancestros), así que `getComputedStyle` en `.hero-control-card`
+  devuelve `background-color: rgba(0,0,0,0)` — no hay un color sólido único
+  contra el cual calcular la razón de contraste con precisión. Usando negro
+  puro como aproximación conservadora del fondo oscuro visible en las
+  capturas: kicker `rgb(134,209,74)` ≈ 11.2:1, labels `rgb(232,245,233)` ≈
+  18.7:1 — ambos muy por encima de 4.5:1 incluso con el margen de error de
+  la aproximación. No es un hallazgo, se registra el método para
+  transparencia.
+- **Intervención:** ninguna requerida.
+- **Verificación:** script de contraste en el scratchpad de esta sesión.
+
+**Sin regresión detectada** en jerarquía visual, alineación de las 3 tarjetas-nodo, ni en las líneas/puntos de conexión (`.custody-network`) en ningún breakpoint. `prefers-reduced-motion` sigue cubriendo `.custody-pulse` y `.custody-network path` (`styles.css:3690-3726`, sin tocar). No se probaron los estados hover/focus de la tarjeta porque no es interactiva (solo decorativa, `aria-hidden` en los SVG).
+
+### Pendiente
+- No se verificó con el DevTools real del usuario (mismo límite de entorno
+  que en la sesión anterior); la evidencia aquí viene de una instancia
+  headless independiente del Chrome del sistema, que es una fuente de
+  verdad distinta pero igualmente real (viewport CSS genuino, no simulado).
+- No se probó orientación landscape en mobile/tablet para esta tarjeta
+  específica (fuera del alcance pedido).
