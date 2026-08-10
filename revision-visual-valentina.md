@@ -391,3 +391,113 @@ Script en el scratchpad de esta sesión (no en el repo).
   verdad distinta pero igualmente real (viewport CSS genuino, no simulado).
 - No se probó orientación landscape en mobile/tablet para esta tarjeta
   específica (fuera del alcance pedido).
+
+## Sesión 2026-08-09 — Verificación fix cápsula "DESPLAZA" (scroll cue) en móvil
+
+**Rama:** `feature/hero-marcela-v1` (worktree). **Encargo:** verificar el fix
+de Carlos para el bug crítico reportado por mí en esta misma rama — la
+cápsula "DESPLAZA" del hero quedaba recortada/invisible en el primer render
+en móvil porque `.scrollcue` era `position:absolute` anclado al fondo de
+`.hero`, y `.hero` mide ~1.5–1.8× la altura del viewport en móvil (apilado
+kicker+título+descripción+2 CTAs+tarjeta "Control de cumplimiento").
+**Fix revisado (sin commitear, `main.js` +16/-0, `styles.css` +31/-0):**
+`.scrollcue` pasa a `position:fixed` solo en `@media (max-width:520px)`,
+más un `IntersectionObserver` (`initScrollCue`, `main.js`) que la oculta al
+salir del hero, más un fondo+blur propio en `.scrollcue-label` para que no
+quede ilegible sobre `.hero-trust-line`.
+
+**Método:** `resize_window` de `claude-in-chrome` sigue sin reflejar el
+viewport real en esta máquina ([[feedback_resize_window_broken]] — no se
+reintentó, la limitación es confirmada y estable). Se usó **puppeteer-core**
+headless (Chrome del sistema) apuntado a `http://localhost:8793/index.html`
+(servidor estático del worktree, confirmado con `curl` → 200), con
+`page.setViewport()` para viewport CSS genuino y `getBoundingClientRect()`
+para medir posición real en vez de inferir de una captura.
+
+### Veredicto: **APROBADO con 1 hallazgo menor (V2) no bloqueante**
+
+El bug crítico reportado (cápsula recortada/invisible en la primera carga)
+está **resuelto y verificado**. Hay un hallazgo nuevo y aislado (overlap
+cosmético en un tamaño de viewport específico) que no bloquea el fix
+principal — ver detalle abajo.
+
+### 1. Cápsula visible completa en el primer render (sin scroll previo)
+- **Evidencia:** `scrollY=0`, `getBoundingClientRect()` de `.scrollcue` vs
+  `window.innerHeight`, en **9 tamaños reales de dispositivo** (no solo
+  375/390 pedidos): iPhone SE (375×667), iPhone 8/X/11 Pro/12 mini
+  (375×812 — el tamaño reportado originalmente con el bug), iPhone 12–14
+  (390×844), iPhone 14 Pro (393×852), iPhone 11/XR (414×896), Pixel 7
+  (412×915), Galaxy S8/S20/S22 (360×740, 360×800), Android chico
+  (360×640). **`cueFullyVisible: true` en los 9**, tema oscuro y claro.
+  Antes del fix, en 375×812 la cápsula estaba a `top≈1414px` contra un
+  `innerHeight` de 812px (ver reporte de Carlos); ahora `top≈715–862px`,
+  siempre dentro de los límites del viewport.
+- **Capturas:** `scrollcue_375x812_dark_top.png`,
+  `scrollcue_375x812_light_top.png`, `scrollcue_390x844_dark_top.png`,
+  `scrollcue_390x844_light_top.png` (scratchpad de esta sesión) — cápsula
+  completa (track + punto animado + label "DESPLAZA") visible sin recorte
+  en ambos anchos y temas, sin necesidad de scroll.
+- **Intervención:** ninguna — fix de Carlos confirmado correcto.
+
+### 2. Ocultamiento al salir del hero
+- **Evidencia:** en 375×812 dark, `window.scrollTo(0, 2200)` (pasado el
+  hero) → `.scrollcue` queda con `opacity:0` y clase `.is-hidden`
+  confirmada. No flota sobre el resto de la página.
+
+### [V2] Overlap cosmético entre el label "DESPLAZA" y `.hero-trust-line` en un tamaño específico (375×812)
+- **Ubicación:** `styles.css:1370-1386` (`@media max-width:520px`),
+  `.scrollcue`/`.scrollcue-label` vs `.hero-trust-line`.
+- **Evidencia e impacto:** en **375×812 exactamente** (iPhone 8/X/11
+  Pro/12 mini — tamaño de referencia real y común), el rect del label
+  "DESPLAZA" (`top≈759, bottom≈783`) se solapa verticalmente con el rect de
+  `.hero-trust-line` (`top≈771, bottom≈804`, el texto "Criterio, validación
+  y responsabilidad de profesionales técnicos."). El label en sí sigue
+  legible (tiene su propio fondo+blur, fix de Carlos), pero la píldora
+  tapa parcialmente la palabra "responsabilidad" del texto de confianza
+  detrás — confirmado visualmente en capturas recortadas
+  `zoom_cue_dark.png` / `zoom_cue_light.png` (más notorio en tema claro,
+  fondo blanco opaco que corta la palabra en seco). **Probado en los otros
+  8 tamaños de la lista de arriba: no ocurre en ninguno** (390×844,
+  393×852, 414×896, 412×915, 360×740/800/640, 375×667) — es específico de
+  la combinación de altura de viewport (~812px) con la posición de flujo
+  del `.hero-trust-line` en ese ancho. No es una regresión del fix (el fix
+  ya redujo el impacto poniendo fondo al label; el remanente es que ese
+  fondo, al ser una píldora angosta, no cubre toda la línea de texto detrás).
+- **Intervención:** ninguna aplicada — fuera del alcance de esta
+  verificación (se pidió revisar el fix ya hecho, no iterar sobre él). Sugerencia
+  para una próxima pasada: en vez de una píldora angosta pegada al label,
+  usar un scrim más ancho detrás de todo `.scrollcue` (cubriendo también el
+  `.hero-trust-line` cuando coincide), o desplazar `.hero-trust-line`
+  ligeramente hacia arriba en ese rango de altura para que no compita con
+  la zona reservada a la cápsula fija.
+- **Verificación:** `sweep_overlap.js` (scratchpad), 9 viewports,
+  `labelOverlapsTrust` calculado por intersección de rects.
+
+### 3. Sin regresión en tablet (768×1024) y desktop (1440×900)
+- **Evidencia:** `.scrollcue` mantiene `position:absolute` en ambos
+  (media query nueva es `≤520px` únicamente, sin tocar), igual que antes
+  del fix. En ambos casos `fullyInViewport:false` porque `.scrollcue`
+  sigue anclada al fondo de un `.hero` más alto que el viewport
+  (1316px vs 1024px en tablet; 989px vs 900px en desktop) — **este es el
+  mismo comportamiento pre-existente, no un cambio de esta sesión ni del
+  fix de Carlos** (fuera del alcance del bug reportado, que era
+  específicamente móvil). Confirmado en tema oscuro y claro, sin
+  diferencias entre temas.
+
+### Nota fuera de alcance (no bloqueante)
+`.scrollcue-label` usa `color: var(--ink-40)` (~0.42 de alpha) — un token
+de "quiet label" ya existente en el sitio *antes* de esta sesión (la regla
+vive fuera del media query nuevo, `styles.css:1322`). No es parte del diff
+de Carlos. Se menciona solo como observación de contraste bajo en un
+elemento decorativo (scroll hint), no como hallazgo de este fix.
+
+### Archivos
+- `main.js` (+16), `styles.css` (+31) — sin commitear, revisados vía `git
+  diff --stat`.
+
+### Pendiente de Camila
+- Ninguna dependencia funcional: el fix es puramente posicional/CSS + un
+  `IntersectionObserver` de solo-lectura (no toca lógica de negocio,
+  formularios ni navegación). Si se decide commitear, las rutas a incluir
+  en su revisión son únicamente `main.js` e `index.html`/`styles.css` del
+  hero — sin efectos esperados fuera de esa sección.

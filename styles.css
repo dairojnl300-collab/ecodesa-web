@@ -1321,6 +1321,13 @@ html.js .scrollcue {
   text-transform: uppercase;
   color: var(--ink-40);
 }
+/* Oculta la cápsula una vez el usuario sale del hero (clase alternada por
+   IntersectionObserver en initScrollCue, main.js). Prefijo html.js para
+   igualar/superar la especificidad de "html.js .scrollcue { opacity:1 }". */
+html.js .scrollcue.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
 
 @media (min-width: 1100px) {
   .hero-grid { grid-template-columns: 1.02fr 0.98fr; }
@@ -1353,6 +1360,30 @@ html.js .scrollcue {
   .custody-constellation--mobile { display: block; }
   .custody-label { font-size: 14px; }
   .hero-trust-line { align-items: flex-start; line-height: 1.5; }
+  /* La tarjeta "Control de cumplimiento" apilada debajo del copy hace que
+     .hero mida ~1.8x el viewport en móvil (min-height:100svh es un mínimo,
+     no un máximo). .scrollcue con bottom:1.8rem quedaba anclado al fondo
+     de ESE contenedor alto, cientos de px por debajo del pliegue inicial
+     — invisible/recortada por el borde del viewport en el primer render.
+     Se fija al viewport real para que sea visible desde el primer render;
+     se oculta (.is-hidden, initScrollCue en main.js) al salir del hero. */
+  .scrollcue {
+    position: fixed;
+    bottom: calc(1.8rem + env(safe-area-inset-bottom, 0px));
+  }
+  /* Al fijarse sobre el viewport, la cápsula queda sobre texto real (la
+     hero-trust-line) en vez de sobre el fondo vacío del hero como en
+     desktop/tablet. El track ya tenía relleno+blur; el label ("DESPLAZA")
+     no, así que se leía superpuesto e ilegible contra ese texto — se le
+     agrega su propio fondo+blur para que quede como una píldora aparte. */
+  .scrollcue-label {
+    background: color-mix(in srgb, var(--surface) 85%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    border: 1px solid color-mix(in srgb, var(--scroll-border) 60%, transparent);
+  }
 }
 
 /* =============================================================

@@ -235,6 +235,21 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
+     SCROLLCUE — en móvil .scrollcue pasa a position:fixed (ver
+     styles.css) porque el hero mide más que un viewport; esto la
+     oculta al salir del hero para que no quede flotando sobre el
+     resto de la página.
+  ═══════════════════════════════════════════════════════════ */
+  function initScrollCue() {
+    const cue = $(".scrollcue");
+    const hero = $("#hero");
+    if (!cue || !hero || !("IntersectionObserver" in window)) return;
+    new IntersectionObserver(([e]) => {
+      cue.classList.toggle("is-hidden", !e.isIntersecting);
+    }, { threshold: 0 }).observe(hero);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
      BARRA DE PROGRESO — fallback JS cuando no hay scroll-timeline
   ═══════════════════════════════════════════════════════════ */
   function initProgressFallback() {
@@ -2521,6 +2536,7 @@
     safe(initLenis,            "lenis");
     safe(initNav,              "nav");
     safe(initHeroIntro,        "heroIntro");
+    safe(initScrollCue,        "scrollCue");
     safe(initProgressFallback, "progress");
     safe(initShader,           "shader");
     safe(initParticles,        "particles");
