@@ -1406,6 +1406,46 @@ html.js .scrollcue.is-hidden {
     border-radius: 99px;
     border: 1px solid color-mix(in srgb, var(--scroll-border) 60%, transparent);
   }
+  /* Hallazgo V2 de la sesión anterior (verificado con sweep de 9 viewports):
+     en 375×812 exactamente, el rect de .scrollcue-label solapaba
+     verticalmente el rect de .hero-trust-line — la píldora angosta del
+     label no cubría todo el ancho de la palabra "responsabilidad" detrás,
+     cortándola a la mitad. La altura efectiva del viewport en Safari real
+     además cambia dinámicamente cuando la barra de herramientas se
+     retrae/expande durante el scroll táctil, así que el punto exacto de
+     colisión no es un caso aislado de un solo tamaño de pantalla: puede
+     recurrir en cualquier dispositivo según cuánto haya colapsado la UI
+     del navegador en ese instante.
+     Fix robusto: un scrim de ancho completo (100vw) detrás de todo
+     .scrollcue (track + punto + label), en vez de que cada hijo cargue su
+     propio fondo angosto. Al cubrir todo el ancho del viewport, cualquier
+     texto que llegue a coincidir verticalmente con la cápsula queda
+     completamente oculto (nunca cortado a la mitad de una palabra),
+     independientemente de en qué X caiga ese texto.
+     El backdrop-filter se coloca en este pseudo-elemento ::before
+     (posicionado absolute, un descendiente, no en .scrollcue mismo que es
+     el elemento sticky) siguiendo la recomendación documentada para el bug
+     de compositor de WebKit en fixed/sticky + backdrop-filter: mantener el
+     filtro fuera del elemento posicionado en sí y sobre una capa hija. */
+  .scrollcue::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -0.6rem;
+    bottom: -0.6rem;
+    width: 100vw;
+    transform: translateX(-50%);
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--surface) 82%, transparent) 0%,
+      color-mix(in srgb, var(--surface) 82%, transparent) 65%,
+      transparent 100%
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    pointer-events: none;
+    z-index: -1;
+  }
 }
 
 /* =============================================================
@@ -1422,7 +1462,12 @@ html.js .scrollcue.is-hidden {
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ink-55);
+  /* --ink-55 (contraste ~3.9:1 sobre --white en tema claro) no alcanza
+     4.5:1 AA para texto normal a este tamaño (11px, no califica como
+     "texto grande"). --ink-70 da ~6.4:1 en claro y ~6.2:1 en oscuro —
+     mismo token de tinta que ya usa el resto del sistema, sin introducir
+     un color nuevo. */
+  color: var(--ink-70);
   margin-bottom: 2.4rem;
   padding-inline: var(--gutter);
 }
@@ -1492,9 +1537,37 @@ html.js .scrollcue.is-hidden {
   font-size: 0.56rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--ink-55);
+  /* Mismo ajuste de contraste que .normas-title (ver comentario ahí). */
+  color: var(--ink-70);
   text-align: center;
   line-height: 1.55;
+}
+
+/* Sin ningún @media que tocara .normas/.seal* antes de este cambio: la
+   sección heredaba exactamente los mismos tamaños en 375px que en
+   1440px. A 0.56rem (~9px) .seal-name y el sufijo ISO (.seal-ring b i)
+   eran el texto más pequeño de todo el sitio — por debajo del resto de
+   "labels" mono del sistema, que en ningún otro sitio bajan de ~0.62rem.
+   Se sube ambos a ese piso ya establecido en vez de inventar una escala
+   nueva. .normas-title también se agranda un paso y se reduce su tracking
+   (0.2em→0.14em): a 0.68rem con tracking tan ancho, la oración completa
+   ("Trabajamos bajo los estándares y la normativa vigente") se lee
+   estirada y aumenta el número de líneas en 375–390px sin necesidad. */
+@media (max-width: 520px) {
+  .normas-title {
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+  .seal-ring b i {
+    font-size: 0.62rem;
+  }
+  .seal-name {
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+  }
 }
 
 /* =============================================================

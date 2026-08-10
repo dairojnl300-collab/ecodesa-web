@@ -501,3 +501,209 @@ elemento decorativo (scroll hint), no como hallazgo de este fix.
   formularios ni navegación). Si se decide commitear, las rutas a incluir
   en su revisión son únicamente `main.js` e `index.html`/`styles.css` del
   hero — sin efectos esperados fuera de esa sección.
+
+---
+
+## Sesión 2026-08-10 — Cierre cápsula "DESPLAZA" (V2 pendiente) + tipografía móvil de `.normas`
+
+**Rama:** `feature/hero-marcela-v1` (worktree), servidor estático local en
+`http://localhost:8795/index.html`. **Encargo:** (1) investigar en la web
+`position:sticky` vs. alternativas antes de tocar código, y cerrar de forma
+robusta el hallazgo V2 (overlap `.scrollcue-label`/`.hero-trust-line` en
+375×812) que quedó documentado sin corregir en la sesión anterior; (2)
+evaluar y corregir la presentación móvil de `.normas` (sellos ISO/HACCP/etc,
+sin ningún `@media` propio hasta ahora). Esta vez con implementación directa
+de código, no solo auditoría.
+
+### 1. Investigación previa (resumen, con fuentes)
+
+- **El bug real de la v2 (`position:fixed` + `backdrop-filter` "viajando"
+  con el contenido) es un problema de compositor de WebKit/iOS conocido y
+  documentado**: la recomendación encontrada es "no pongas
+  `background-color`/`backdrop-filter` directamente en el elemento
+  fixed/sticky; ponlo en un descendiente" — [Safari 26 and the Strange Case
+  of Fixed Overlays](https://www.edoardolunardi.dev/blog/safari-26-and-the-strange-case-of-fixed-overlays),
+  [iOS 26 Safari fixed/sticky misplacement](https://pratikpathak.com/fix-ios-26-safari-web-layouts-are-breaking-due-to-fixed-sticky-position-elements-getting-misplaced/).
+  El fix ya vigente (commit previo) ya cumple esto: el `backdrop-filter`
+  vive en `.scrollcue-track`/`.scrollcue-label` (hijos), nunca en
+  `.scrollcue` (el elemento `sticky` en sí) — confirmado que no hace falta
+  moverlo.
+- **`position:sticky` sí tiene un bug residual conocido y documentado en
+  Safari** (distinto y mucho más leve que el de `fixed`): con
+  `bottom:X`, el elemento no sigue a la barra de herramientas cuando esta
+  se retrae durante el scroll — se queda "atascado" en la altura donde
+  estaba la barra, dejando un hueco transitorio, en vez de viajar con el
+  contenido como hacía `fixed` — [Apple Developer Forums, thread
+  801028](https://developer.apple.com/forums/thread/801028) (reportado en
+  iOS 26, sin fix oficial de Apple a la fecha). Es un bug real y sin
+  workaround de CSS, pero de impacto muchísimo menor (hueco cosmético
+  transitorio) que el de `fixed` (elemento fuera de sitio sobre el
+  contenido) — no se puede corregir desde el código, se documenta como
+  limitación conocida y aceptada.
+- **Gotcha de `position:sticky` dentro de contenedores flex/con overflow
+  en ancestros — verificado que NO aplica aquí**: `sticky` se rompe si
+  algún ancestro tiene `overflow` distinto de `visible` (se vuelve sticky
+  respecto a ese ancestro, no al viewport) — [Getting stuck: all the ways
+  position:sticky can fail](https://polypane.app/blog/getting-stuck-all-the-ways-position-sticky-can-fail/).
+  Se confirmó en `styles.css`: `html`/`body` usan **`overflow-x: clip`**
+  (no `hidden`) — precisamente el valor que evita este problema sin
+  romper `sticky` ([confirmado por
+  terluinwebdesign.nl](https://www.terluinwebdesign.nl/en/blog/position-sticky-not-working-try-overflow-clip-not-overflow-hidden/):
+  `overflow:hidden` en el body rompe `sticky` en todo el sitio;
+  `overflow:clip` no, porque no crea scroll container). `.hero` tiene
+  `overflow: visible` explícito. No hay ningún ancestro entre `.scrollcue`
+  y el viewport con `overflow:hidden/auto/scroll`. También se verificó el
+  gotcha de "stretch en flex sin alto" (`align-items:stretch` por
+  defecto puede dejar al sticky sin margen para moverse) — no aplica: el
+  `flex-wrap:wrap` ya existente hace que `.scrollcue` ocupe su propia
+  línea flex, con altura propia (no estirada).
+- **CSS Scroll-driven Animations (`animation-timeline: view()`)**:
+  investigado como alternativa "más moderna" al `IntersectionObserver`
+  actual para el fundido de salida. Soporte ya amplio en 2026 (Safari 18+,
+  Chrome/Edge 115+, Firefox 132+ —
+  [Chrome for Developers](https://developer.chrome.com/docs/css-ui/scroll-driven-animations),
+  [WebKit blog](https://webkit.org/blog/17101/a-guide-to-scroll-driven-animations-with-just-css/)),
+  pero **no es un sustituto de `position:sticky`**: solo controla progreso
+  de animación según scroll/visibilidad, no puede "anclar" un elemento
+  dentro de su contenedor sin JS ni otra primitiva de posicionamiento. Se
+  descarta como reemplazo del problema de fondo (anclaje), y no se
+  justifica cambiarlo por el mecanismo de fundido actual (el
+  `IntersectionObserver` ya funciona, verificado, y no tiene ningún bug
+  reportado) — cambiarlo sería dependencia nueva sin problema que resuelva.
+
+**Veredicto de la investigación: `position:sticky` es la primitiva
+correcta y ya estaba bien elegida.** No se revierte ni se sustituye por
+otra alternativa. Lo único que faltaba era cerrar el hallazgo V2 (overlap
+visual), no el mecanismo de anclaje en sí.
+
+### 2. Fix aplicado — Encargo 1 (cierre del hallazgo V2)
+
+**Causa por qué el hallazgo no era "solo un caso aislado de 375×812"**: la
+librería de investigación (arriba) confirma que la altura efectiva del
+viewport en Safari cambia dinámicamente según la barra de herramientas se
+retrae/expande durante el scroll real — así que el punto exacto donde
+`.scrollcue-label` coincide verticalmente con `.hero-trust-line` no es fijo
+a un solo tamaño de pantalla estático, puede recurrir en cualquier
+dispositivo según cuánto haya colapsado la UI del navegador en ese
+instante. Un fix que dependiera de "mover un elemento X px para que no
+choquen en 812px" habría sido frágil.
+
+**Fix robusto elegido**: en vez de que el label cargue su propio fondo
+angosto (que solo cubre el ancho del texto "DESPLAZA"), se añadió un
+`::before` en `.scrollcue` con:
+- `width: 100vw` centrado (`left:50%; transform:translateX(-50%)`) —
+  cubre TODO el ancho del viewport detrás de la cápsula, no solo el ancho
+  del label. Así, sin importar en qué X caiga el texto detrás
+  (`.hero-trust-line` u otro), o si el punto de colisión se mueve por el
+  bug de altura dinámica de Safari, siempre queda completamente oculto —
+  nunca cortado a la mitad de una palabra.
+- Gradiente vertical (no un bloque opaco parejo) para que se lea como un
+  velo suave, no una barra dura.
+- `backdrop-filter` en este pseudo-elemento (un descendiente absolute),
+  **no en `.scrollcue` mismo** — seguí la recomendación encontrada en la
+  investigación (punto 1) para el bug de compositor de WebKit.
+- `pointer-events:none` y `z-index:-1` para no interferir con el toque ni
+  taparse a sí mismo detrás de track/dot/label.
+- Confirmado que `overflow-x:clip` en `html`/`body` (ya existente)
+  absorbe el `width:100vw` sin generar scroll horizontal — verificado con
+  `document.documentElement.scrollWidth === innerWidth` en 320/375/390px
+  (script de scratchpad, sin cambios).
+
+**Archivo:** `styles.css`, dentro del mismo bloque `@media (max-width:
+520px)` que ya traía el fix de `sticky` (sin tocar nada fuera de ese
+bloque ni fuera de `.scrollcue*`).
+
+### 3. Fix aplicado — Encargo 2 (`.normas` en móvil)
+
+Confirmado el diagnóstico del encargo: no existía ningún `@media` sobre
+`.normas`/`.seal*` antes de este cambio — mismos tamaños en 375px que en
+1440px.
+
+- **Hallazgo de contraste no pedido explícitamente pero descubierto al
+  auditar legibilidad**: `.normas-title` y `.seal-name` usaban
+  `--ink-55` (alpha 0.58) sobre `--white`. Calculado el contraste WCAG:
+  **≈3.88:1 en tema claro — por debajo de 4.5:1 AA** (no califica como
+  "texto grande" a 11px/9px, peso 500). Se cambió a `--ink-70` (mismo
+  token del sistema, sin inventar color nuevo): **≈6.41:1 en claro,
+  ≈6.22:1 en oscuro** — ambos superan AA con margen. `--emerald-2` (sufijo
+  ISO en `.seal-ring b i`) ya daba ≈7.89:1, sin cambios ahí.
+- **`.seal-name` y el sufijo ISO a 0.56rem (~9px) eran el texto más
+  pequeño de todo `styles.css`** (confirmado con grep de todos los
+  `font-size` del archivo) — por debajo del piso de ~0.62rem que usan el
+  resto de los "labels" mono pequeños del sistema en otras secciones. Se
+  subieron a ese piso ya establecido (`.seal-name` a 0.64rem, sufijo ISO a
+  0.62rem) en vez de inventar una escala nueva.
+- **`.normas-title`** subido un paso (0.68rem→0.74rem) y con
+  `letter-spacing` reducido (0.2em→0.14em) solo en móvil: a 0.68rem con
+  tracking tan ancho, la oración completa se leía estirada y aumentaba
+  innecesariamente el número de líneas en 375–390px.
+- Todo dentro de un nuevo `@media (max-width: 520px)` (mismo breakpoint
+  que ya usa el resto del hero/sistema para móvil), sin tocar
+  `.seal-ring`, tamaños de anillo, gap del marquee ni la animación (que ya
+  estaba correctamente cubierta por `prefers-reduced-motion: reduce`,
+  verificado sin cambios).
+
+### 4. Validación real (Chrome headless vía puppeteer-core — `resize_window` sigue sin reflejar el viewport real en esta máquina, [[feedback_resize_window_broken]])
+
+Viewports **375×812** y **390×844**, temas **claro y oscuro**, con
+`page.setViewport()` (viewport CSS genuino) contra
+`http://localhost:8795/index.html`.
+
+**Cápsula "DESPLAZA":**
+- `position: sticky` confirmado por `getComputedStyle` en ambos
+  viewports.
+- Visible completa en el primer render sin scroll (`fullyInViewport:
+  true` en los 4 casos).
+- **Scroll real simulado con `page.mouse.wheel()`** (no `scrollTo()`
+  instantáneo — la sesión anterior ya había señalado que ese método no
+  reproduce el bug real): 25 eventos de rueda, midiendo
+  `getBoundingClientRect().top` cada 5 eventos. **`top` idéntico en las 6
+  muestras** en los 4 casos (375/390 × claro/oscuro) — cero drift, la
+  cápsula no "viaja" con el contenido.
+- Al salir del hero (scroll continuado): `opacity:0`, clase `.is-hidden`
+  confirmada en los 4 casos — sigue ocultándose bien.
+- **Overlap visual en 375×812**: geométricamente el rect del label sigue
+  coincidiendo con `.hero-trust-line` (`labelOverlapsTrustGeometry:
+  true`, esperado — no se movió ningún elemento). Pero visualmente, con
+  el nuevo scrim de 100vw, el texto detrás queda atenuado/desenfocado de
+  forma pareja en vez de cortado a la mitad de una palabra — confirmado
+  en capturas (`hero_bottom_375x812_dark.png`,
+  `hero_bottom_375x812_light.png`, scratchpad de esta sesión). En 390×844
+  no hay overlap geométrico en absoluto (`labelOverlapsTrustGeometry:
+  false`) — cápsula y línea de confianza con espacio limpio entre ambas
+  (`cue_390x844_dark.png`).
+
+**`.normas` en móvil:**
+- Capturas limpias de la sección completa en los 4 casos
+  (`normas3_375x812_{dark,light}.png`, `normas3_390x844_{dark,light}.png`,
+  scratchpad de esta sesión, offset manual bajo el nav fijo de 73px para
+  que el título no quedara tapado por el header). Título en 2 líneas
+  legible, sellos con nombre claramente más grandes y con mejor contraste
+  que antes, sin desbordamiento horizontal, spacing entre sellos sin
+  sentirse apretado.
+- `getComputedStyle` confirma los valores aplicados: `.normas-title`
+  11.84px / `rgba(…, 0.74)` (antes 10.88px / alpha 0.58); `.seal-name`
+  10.24px / mismo color (antes 8.96px); sufijo ISO 9.92px (antes 8.96px).
+- Sin overflow horizontal en 320/375/390px
+  (`document.documentElement.scrollWidth === innerWidth` en los 3, script
+  de scratchpad).
+
+### 5. Archivos
+
+- `styles.css` — único archivo tocado. Bloque `.scrollcue::before` dentro
+  de `@media (max-width:520px)` (Encargo 1); `.normas-title`/`.seal-name`
+  color a `--ink-70` (aplica a todos los breakpoints, fix de contraste);
+  nuevo `@media (max-width:520px)` para `.normas-title`/`.seal-ring b
+  i`/`.seal-name` (Encargo 2). Sin cambios en `index.html` ni `main.js`.
+  Sin commitear.
+
+### Pendiente de Camila
+- Ninguna dependencia funcional en ninguno de los dos encargos — cambios
+  puramente CSS (posicionamiento, color, tamaño de fuente), sin tocar
+  lógica, datos, navegación ni formularios. Si se audita, alcance
+  sugerido: `.scrollcue*` y `.normas`/`.seal*` en `styles.css` únicamente,
+  confirmando que ningún otro selector quedó huérfano.
+- **No verificado en Safari/iOS real** (mismo límite de entorno que
+  sesiones anteriores) — la investigación web y el scroll real simulado
+  en Chrome dan alta confianza, pero el bug residual de `sticky` +
+  retracción de toolbar (sección 1) solo es reproducible en Safari real.
