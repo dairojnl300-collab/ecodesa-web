@@ -1,5 +1,26 @@
 # Revisión visual — Valentina
 
+## Sesión 2026-08-10 — Ajustes Chrome 375px (hero + normas)
+
+**Alcance:** solo `styles.css`; sin cambios de copy, CTAs, constelación,
+HTML ni JavaScript.
+
+- La cápsula `DESPLAZA` usa `position: fixed` exclusivamente hasta 520px,
+  anclada al borde inferior seguro (`env(safe-area-inset-bottom)`) y sin
+  capturar toques. El observador existente conserva su ocultamiento al salir
+  del hero.
+- `.normas-title` pasa de 11.84px a 13px en 375px, con peso 600, interlineado
+  1.55 y tracking 0.09em. Conserva `--ink-70` (AA) y renderiza en dos líneas
+  sin corte ni overflow.
+- Validación visual localhost:8765: 375×812 con scroll real, la cápsula
+  permanece en el viewport, no se cruza con CTAs y se oculta fuera del hero;
+  1440×900 conserva las reglas de escritorio (`position:absolute`). Sin
+  overflow horizontal.
+
+**Derivación a Camila:** revisar en Chrome móvil la cápsula durante un
+scroll táctil prolongado y confirmar contraste de `.normas-title` en ambos
+temas.
+
 ## Sesión 2026-08-08 — Cotizador multi-selección (#servicios + #negocios-comerciales)
 
 **Rama:** `feature/cotizador-checkboxes` (creada desde `main` en `7d92c66`)

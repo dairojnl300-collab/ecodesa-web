@@ -1360,38 +1360,16 @@ html.js .scrollcue.is-hidden {
   .custody-constellation--mobile { display: block; }
   .custody-label { font-size: 14px; }
   .hero-trust-line { align-items: flex-start; line-height: 1.5; }
-  /* La tarjeta "Control de cumplimiento" apilada debajo del copy hace que
-     .hero mida ~1.8x el viewport en móvil (min-height:100svh es un mínimo,
-     no un máximo). .scrollcue con bottom:1.8rem (position:absolute, su
-     comportamiento en desktop) quedaba anclado al fondo de ESE contenedor
-     alto, cientos de px por debajo del pliegue inicial — invisible en el
-     primer render.
-
-     FIX (regresión reportada sobre el intento anterior, commit 0907496):
-     ese intento usaba position:fixed para anclarla al viewport real, con
-     initScrollCue (main.js) ocultándola por opacidad vía IntersectionObserver
-     al salir de #hero. En dispositivo real, la cápsula "viajaba" con el
-     contenido durante scroll táctil/rueda en vez de quedar fija — patrón
-     consistente con el bug conocido de WebKit/iOS donde position:fixed +
-     backdrop-filter pierde sincronía con el compositor en scroll real (no
-     reproducible con scrollTo() instantáneo, que es como se había
-     "verificado" antes; sí reproducible en dispositivo/motor real).
-
-     position:sticky es la primitiva correcta para "queda fija SOLO dentro
-     de su contenedor": por especificación no puede flotar fuera de los
-     límites de su containing block (aquí, #hero, vía flex-wrap más abajo
-     — #hero pasa a envolver a .scrollcue en su propia línea, debajo de
-     .hero-grid), se libera sola y sin salto al llegar al borde de #hero
-     sin depender de ningún cálculo JS, y no usa el mismo camino de
-     compositor de WebKit que dispara el bug de position:fixed. El
-     centrado (left:50% + transform:translateX(-50%) en la regla base)
-     se mantiene: sticky resuelve el % de "left" contra el containing
-     block igual que absolute, solo que sumado a su posición estática
-     (que aquí es x:0, al no haber padding-inline en #hero). */
-  .hero { flex-wrap: wrap; }
+  /* El hero supera un viewport en móvil. Se fija la señal en una esquina
+     segura y el observador existente la oculta al abandonar #hero. */
   .scrollcue {
-    position: sticky;
-    bottom: calc(1.8rem + env(safe-area-inset-bottom, 0px));
+    position: fixed;
+    right: var(--gutter);
+    bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+    left: auto;
+    transform: none;
+    z-index: 4;
+    pointer-events: none;
   }
   /* Al fijarse sobre el viewport, la cápsula queda sobre texto real (la
      hero-trust-line) en vez de sobre el fondo vacío del hero como en
@@ -1405,46 +1383,6 @@ html.js .scrollcue.is-hidden {
     padding: 0.2rem 0.6rem;
     border-radius: 99px;
     border: 1px solid color-mix(in srgb, var(--scroll-border) 60%, transparent);
-  }
-  /* Hallazgo V2 de la sesión anterior (verificado con sweep de 9 viewports):
-     en 375×812 exactamente, el rect de .scrollcue-label solapaba
-     verticalmente el rect de .hero-trust-line — la píldora angosta del
-     label no cubría todo el ancho de la palabra "responsabilidad" detrás,
-     cortándola a la mitad. La altura efectiva del viewport en Safari real
-     además cambia dinámicamente cuando la barra de herramientas se
-     retrae/expande durante el scroll táctil, así que el punto exacto de
-     colisión no es un caso aislado de un solo tamaño de pantalla: puede
-     recurrir en cualquier dispositivo según cuánto haya colapsado la UI
-     del navegador en ese instante.
-     Fix robusto: un scrim de ancho completo (100vw) detrás de todo
-     .scrollcue (track + punto + label), en vez de que cada hijo cargue su
-     propio fondo angosto. Al cubrir todo el ancho del viewport, cualquier
-     texto que llegue a coincidir verticalmente con la cápsula queda
-     completamente oculto (nunca cortado a la mitad de una palabra),
-     independientemente de en qué X caiga ese texto.
-     El backdrop-filter se coloca en este pseudo-elemento ::before
-     (posicionado absolute, un descendiente, no en .scrollcue mismo que es
-     el elemento sticky) siguiendo la recomendación documentada para el bug
-     de compositor de WebKit en fixed/sticky + backdrop-filter: mantener el
-     filtro fuera del elemento posicionado en sí y sobre una capa hija. */
-  .scrollcue::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: -0.6rem;
-    bottom: -0.6rem;
-    width: 100vw;
-    transform: translateX(-50%);
-    background: linear-gradient(
-      to top,
-      color-mix(in srgb, var(--surface) 82%, transparent) 0%,
-      color-mix(in srgb, var(--surface) 82%, transparent) 65%,
-      transparent 100%
-    );
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    pointer-events: none;
-    z-index: -1;
   }
 }
 
@@ -1555,9 +1493,10 @@ html.js .scrollcue.is-hidden {
    estirada y aumenta el número de líneas en 375–390px sin necesidad. */
 @media (max-width: 520px) {
   .normas-title {
-    font-size: 0.74rem;
-    letter-spacing: 0.14em;
-    line-height: 1.5;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    line-height: 1.55;
     margin-bottom: 2rem;
   }
   .seal-ring b i {
