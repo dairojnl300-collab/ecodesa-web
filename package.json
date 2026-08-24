@@ -1,0 +1,10 @@
+{
+  "name": "ecodesa-ingenieria-sas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sitio web ECODESA — consultoría ambiental, Cartagena de Indias",
+  "dependencies": {
+    "@vercel/postgres": "^0.10.0"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "hero": {
+    "src": "assets/img/hero.jpg",
+    "title": "Carara_2019 12 24_1623",
+    "creator": "HBarrison",
+    "creator_url": "https://www.flickr.com/photos/10299779@N03",
+    "license": "by-nc-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/10299779@N03/49380891082",
+    "source": "flickr"
+  },
+  "nosotros": {
+    "src": "assets/img/nosotros.jpg",
+    "title": "Seasonal colors across New York State",
+    "creator": "NASA Goddard Photo and Video",
+    "creator_url": "https://www.flickr.com/photos/24662369@N07",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/24662369@N07/48804551287",
+    "source": "nasa"
+  },
+  "tienda": {
+    "src": "assets/img/tienda.jpg",
+    "title": "Gold-dust Day Gecko licking water from Kaffir Lime leaf - Phelsuma laticauda on Citrus hystrix",
+    "creator": "zsispeo",
+    "creator_url": "https://www.flickr.com/photos/14486836@N06",
+    "license": "by-nc-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/14486836@N06/36603661041",
+    "source": "flickr"
+  },
+  "proceso": {
+    "src": "assets/img/proceso.jpg",
+    "title": "20180923-RD-PJK-0878_TONED",
+    "creator": "USDAgov",
+    "creator_url": "https://www.flickr.com/photos/41284017@N08",
+    "license": "pdm",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/41284017@N08/44154142724",
+    "source": "flickr"
+  }
+}
