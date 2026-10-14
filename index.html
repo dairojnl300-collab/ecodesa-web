@@ -59,7 +59,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600&display=swap">
   <link rel="preload" as="image" href="assets/v2/sec-restaurantes.webp" fetchpriority="high">
-  <link rel="stylesheet" href="v2.css?v=20261014j">
+  <link rel="stylesheet" href="v2.css?v=20261014k">
 </head>
 <body>
   <a class="skip" href="#main">Saltar al contenido</a>
@@ -420,12 +420,19 @@
           <span class="pill">07 · Proceso</span>
           <h2 id="proc-t">Cuatro pasos y <em>listo.</em></h2>
         </header>
-        <ol class="steps">
-          <li data-rv><span class="n">01</span><h3>Diagnóstico</h3><p>Visitamos o revisamos en línea y te decimos qué te falta.</p></li>
-          <li data-rv><span class="n">02</span><h3>Plan</h3><p>Propuesta clara, con alcance, tiempos y costo.</p></li>
-          <li data-rv><span class="n">03</span><h3>Implementación</h3><p>Documentos, capacitaciones y ajustes en tu operación.</p></li>
-          <li data-rv><span class="n">04</span><h3>Acompañamiento</h3><p>Seguimiento y soporte cuando llega la visita de la autoridad.</p></li>
-        </ol>
+        <div class="route" id="route">
+          <svg class="route-svg" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+            <path class="route-bg" d="M0 110 C 80 110 100 60 150 60 C 260 60 340 110 450 110 C 560 110 640 60 750 60 C 860 60 940 110 1050 110 C 1110 110 1150 80 1200 80"/>
+            <path class="route-line" id="routeLine" d="M0 110 C 80 110 100 60 150 60 C 260 60 340 110 450 110 C 560 110 640 60 750 60 C 860 60 940 110 1050 110 C 1110 110 1150 80 1200 80"/>
+          </svg>
+          <span class="route-car" id="routeCar" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>
+          <ol class="steps">
+          <li class="stop" style="--x:12.5%"><span class="pin"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span><div class="stop-card"><span class="n">01</span><h3>Diagnóstico</h3><p>Visitamos o revisamos en línea y te decimos qué te falta.</p></div></li>
+          <li class="stop" style="--x:37.5%"><span class="pin"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span><div class="stop-card"><span class="n">02</span><h3>Plan</h3><p>Propuesta clara, con alcance, tiempos y costo.</p></div></li>
+          <li class="stop" style="--x:62.5%"><span class="pin"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></span><div class="stop-card"><span class="n">03</span><h3>Implementación</h3><p>Documentos, capacitaciones y ajustes en tu operación.</p></div></li>
+          <li class="stop" style="--x:87.5%"><span class="pin"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><div class="stop-card"><span class="n">04</span><h3>Acompañamiento</h3><p>Seguimiento y soporte cuando llega la visita de la autoridad.</p></div></li>
+          </ol>
+        </div>
       </div>
     </section>
 
@@ -497,6 +504,6 @@
 
   <script src="lib/gsap.min.js" defer></script>
   <script src="lib/ScrollTrigger.min.js" defer></script>
-  <script src="v2.js?v=20261014h" defer></script>
+  <script src="v2.js?v=20261014k" defer></script>
 </body>
 </html>

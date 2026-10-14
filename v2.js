@@ -130,6 +130,34 @@
     gsap.to("#heroCopy", { y: 60, ease: "none", scrollTrigger: st });
   });
 
+  /* proceso: ruta que se dibuja con el scroll */
+  var route = document.getElementById("route");
+  if (route) {
+    var line = document.getElementById("routeLine"), car = document.getElementById("routeCar"), svg = route.querySelector(".route-svg");
+    var stops = route.querySelectorAll(".stop"), L = line.getTotalLength();
+    line.style.strokeDasharray = L; line.style.strokeDashoffset = L;
+    var upd = function () {
+      var r = route.getBoundingClientRect(), vh = innerHeight;
+      var p = reduce ? 1 : Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.6)));
+      route.style.setProperty("--p", p.toFixed(3));
+      line.style.strokeDashoffset = (L * (1 - p)).toFixed(1);
+      var vertical = getComputedStyle(svg).display === "none";
+      if (!vertical) {
+        var pt = line.getPointAtLength(L * p), sr = svg.getBoundingClientRect(), rr = route.getBoundingClientRect();
+        car.style.left = (sr.left - rr.left + pt.x / 1200 * sr.width) + "px";
+        car.style.top = (sr.top - rr.top + pt.y / 160 * sr.height) + "px";
+        car.style.opacity = p > 0.01 && p < 0.995 ? 1 : 0;
+        [[150, 60], [450, 110], [750, 60], [1050, 110]].forEach(function (q, i) {
+          var pin = stops[i].querySelector(".pin");
+          pin.style.left = (sr.left - rr.left + q[0] / 1200 * sr.width) + "px";
+          pin.style.top = (sr.top - rr.top + q[1] / 160 * sr.height) + "px";
+        });
+      }
+      stops.forEach(function (s, i) { s.classList.toggle("on", p >= (vertical ? i / stops.length + 0.05 : 0.125 + 0.25 * i - 0.03)); });
+    };
+    window.addEventListener("scroll", upd, { passive: true }); window.addEventListener("resize", upd); upd();
+  }
+
   /* video tracking */
   var v = document.getElementById("promo");
   if (v) v.addEventListener("play", function () { track("video_play"); }, { once: true });
