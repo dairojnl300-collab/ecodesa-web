@@ -130,30 +130,51 @@
     gsap.to("#heroCopy", { y: 60, ease: "none", scrollTrigger: st });
   });
 
-  /* proceso: ruta que se dibuja con el scroll */
+  /* proceso: ruta tipo mapa con bucles que se dibuja con el scroll */
   var route = document.getElementById("route");
   if (route) {
     var line = document.getElementById("routeLine"), car = document.getElementById("routeCar"), svg = route.querySelector(".route-svg");
-    var stops = route.querySelectorAll(".stop"), L = line.getTotalLength();
+    var stops = route.querySelectorAll(".stop"), L = line.getTotalLength(), VW = 1200, VH = 240;
+    var C = [[150, 130], [450, 110], [750, 130], [1050, 110]], R = 56;
     line.style.strokeDasharray = L; line.style.strokeDashoffset = L;
+    /* longitud donde termina el bucle de cada parada (segunda pasada por el punto inferior) */
+    var loopEnd = C.map(function (c) {
+      var hits = [];
+      for (var s = 0; s <= L; s += 2) {
+        var q = line.getPointAtLength(s);
+        if (Math.abs(q.x - c[0]) < 3 && Math.abs(q.y - (c[1] + R)) < 3) { if (!hits.length || s - hits[hits.length - 1] > 50) hits.push(s); }
+      }
+      return hits.length ? hits[hits.length - 1] : 0;
+    });
+    /* flechas antes de cada parada y al final */
+    var NS = "http://www.w3.org/2000/svg", g = document.getElementById("routeArrows"), arrows = [];
+    loopEnd.map(function (e) { return e - 2 * Math.PI * R - 34; }).concat([L - 6]).forEach(function (s) {
+      var a = line.getPointAtLength(s - 4), b = line.getPointAtLength(s + 4);
+      var ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI, m = line.getPointAtLength(s);
+      var el = document.createElementNS(NS, "path");
+      el.setAttribute("d", "M-9 -8 L2 0 L-9 8"); el.setAttribute("class", "arw");
+      el.setAttribute("transform", "translate(" + m.x + " " + m.y + ") rotate(" + ang + ")");
+      g.appendChild(el); arrows.push([s, el]);
+    });
+    var goal = document.getElementById("routeGoal");
     var upd = function () {
       var r = route.getBoundingClientRect(), vh = innerHeight;
-      var p = reduce ? 1 : Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.6)));
+      var p = reduce ? 1 : Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (vh * 0.75)));
+      var d = L * p;
       route.style.setProperty("--p", p.toFixed(3));
-      line.style.strokeDashoffset = (L * (1 - p)).toFixed(1);
+      line.style.strokeDashoffset = (L - d).toFixed(1);
       var vertical = getComputedStyle(svg).display === "none";
       if (!vertical) {
-        var pt = line.getPointAtLength(L * p), sr = svg.getBoundingClientRect(), rr = route.getBoundingClientRect();
-        car.style.left = (sr.left - rr.left + pt.x / 1200 * sr.width) + "px";
-        car.style.top = (sr.top - rr.top + pt.y / 160 * sr.height) + "px";
-        car.style.opacity = p > 0.01 && p < 0.995 ? 1 : 0;
-        [[150, 60], [450, 110], [750, 60], [1050, 110]].forEach(function (q, i) {
-          var pin = stops[i].querySelector(".pin");
-          pin.style.left = (sr.left - rr.left + q[0] / 1200 * sr.width) + "px";
-          pin.style.top = (sr.top - rr.top + q[1] / 160 * sr.height) + "px";
-        });
+        var sr = svg.getBoundingClientRect(), rr = route.getBoundingClientRect(), k = sr.width / VW;
+        var X = function (x) { return sr.left - rr.left + x * k + "px"; }, Y = function (y) { return sr.top - rr.top + y * k + "px"; };
+        var pt = line.getPointAtLength(d);
+        car.style.left = X(pt.x); car.style.top = Y(pt.y);
+        car.style.opacity = p > 0.01 && p < 0.985 ? 1 : 0;
+        C.forEach(function (c, i) { var pin = stops[i].querySelector(".pin"); pin.style.left = X(c[0]); pin.style.top = Y(c[1]); });
+        arrows.forEach(function (a) { a[1].classList.toggle("on", d >= a[0]); });
+        goal.classList.toggle("on", p >= 0.99);
       }
-      stops.forEach(function (s, i) { s.classList.toggle("on", p >= (vertical ? i / stops.length + 0.05 : 0.125 + 0.25 * i - 0.03)); });
+      stops.forEach(function (s, i) { s.classList.toggle("on", vertical ? p >= i / stops.length + 0.05 : d >= loopEnd[i] - 2 * Math.PI * R * 0.5); });
     };
     window.addEventListener("scroll", upd, { passive: true }); window.addEventListener("resize", upd); upd();
   }
