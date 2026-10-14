@@ -91,6 +91,26 @@ a{color:inherit}
 .hpause:hover{background:rgba(255,255,255,.22)}
 @keyframes bar{to{width:100%}}
 
+
+/* hero: cabe completo en una pantalla de PC (100% zoom, laptops 1366–1920) */
+@media (min-width:1101px){
+  .hero{height:100svh;min-height:560px;padding-top:clamp(78px,11vh,160px);padding-bottom:clamp(18px,3.5vh,48px);grid-template-rows:auto 1fr auto}
+  .hero-word img{width:min(100%,max(48%,calc((100svh - 470px) * 5.5)))}
+  .hero-copy{align-self:end}
+  .hero-kicker{font-size:clamp(12px,1.9vh,15px);margin-bottom:clamp(6px,1.2vh,12px)}
+  .hero-lead{font-size:clamp(18px,min(2vw,3.7vh),30px)}
+  .hero-btns{margin-top:clamp(14px,3vh,28px)}
+  .hero-btns .btn-lg{padding:clamp(12px,2vh,17px) clamp(22px,2.4vw,30px);font-size:clamp(16px,2.3vh,18px)}
+  .hero-tabs{margin-top:clamp(14px,3.6vh,40px)}
+  .glass{padding:clamp(16px,2.8vh,28px) clamp(20px,2.2vw,32px)}
+  .glass-h{font-size:clamp(24px,4vh,34px)}
+  .glass-sub{margin:clamp(4px,.8vh,8px) 0 clamp(6px,1.2vh,12px)}
+  .glass li{font-size:clamp(15px,2.3vh,19px);padding:clamp(6px,1.25vh,11px) 0}
+  .glass li:before{width:clamp(24px,3.5vh,30px);height:clamp(24px,3.5vh,30px)}
+  .glass-foot{margin-top:clamp(8px,1.4vh,14px)}
+}
+.hero-lead{hyphens:manual;-webkit-hyphens:manual}
+
 /* strip */
 .strip{background:var(--g);color:#fff;overflow:hidden;padding:16px 0}
 .strip-track{display:flex;width:max-content;animation:mq 40s linear infinite}
