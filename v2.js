@@ -15,7 +15,11 @@
 
   /* nav */
   var nav = document.getElementById("nav");
-  var onScroll = function () { nav.classList.toggle("is-solid", window.scrollY > 40); };
+  var pf = document.getElementById("progressFill"), noTL = !(window.CSS && CSS.supports("animation-timeline: scroll()"));
+  var onScroll = function () {
+    nav.classList.toggle("is-solid", window.scrollY > 32);
+    if (noTL && pf) { var h = document.documentElement.scrollHeight - innerHeight; pf.style.setProperty("--p", h > 0 ? (scrollY / h).toFixed(4) : 0); }
+  };
   window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
   var burger = document.getElementById("navBurger"), links = document.getElementById("navLinks");
   burger.addEventListener("click", function () {
