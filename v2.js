@@ -22,15 +22,31 @@
   };
   window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
   var burger = document.getElementById("navBurger"), links = document.getElementById("navLinks");
-  burger.addEventListener("click", function () {
-    var open = burger.getAttribute("aria-expanded") !== "true";
-    burger.setAttribute("aria-expanded", open); links.classList.toggle("is-open", open);
+  var menuItems = links.querySelectorAll(".menu-list a"), pic = document.getElementById("menuPic");
+  var setMenu = function (open) {
+    burger.setAttribute("aria-expanded", open);
+    burger.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    burger.querySelector("em").textContent = open ? "Cerrar" : "Menú";
+    links.classList.toggle("is-open", open);
     document.body.style.overflow = open ? "hidden" : "";
+    menuItems.forEach(function (a) { a.tabIndex = open ? 0 : -1; });
+    if (open) { setTimeout(function () { menuItems[0].focus({ preventScroll: true }); }, 450); track("menu_open"); }
+  };
+  menuItems.forEach(function (a) { a.tabIndex = -1; });
+  burger.addEventListener("click", function () { setMenu(burger.getAttribute("aria-expanded") !== "true"); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && links.classList.contains("is-open")) { setMenu(false); burger.focus(); }
   });
-  links.querySelectorAll("a").forEach(function (a) {
-    a.addEventListener("click", function () {
-      burger.setAttribute("aria-expanded", "false"); links.classList.remove("is-open"); document.body.style.overflow = "";
-    });
+  links.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
+  var swapTo = function (src) {
+    if (!pic || pic.getAttribute("src") === src) return;
+    pic.classList.add("swap");
+    setTimeout(function () { pic.src = src; pic.classList.remove("swap"); }, 200);
+  };
+  menuItems.forEach(function (a) {
+    var s = a.getAttribute("data-img");
+    a.addEventListener("mouseenter", function () { swapTo(s); });
+    a.addEventListener("focus", function () { swapTo(s); });
   });
 
   /* tema día / noche */
