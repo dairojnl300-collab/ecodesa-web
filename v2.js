@@ -134,8 +134,8 @@
   var route = document.getElementById("route");
   if (route) {
     var line = document.getElementById("routeLine"), car = document.getElementById("routeCar"), svg = route.querySelector(".route-svg");
-    var stops = route.querySelectorAll(".stop"), L = line.getTotalLength(), VW = 1200, VH = 240;
-    var C = [[150, 130], [450, 110], [750, 130], [1050, 110]], R = 56;
+    var stops = route.querySelectorAll(".stop"), L = line.getTotalLength(), VW = 1200, VH = 600;
+    var C = [[150, 300], [450, 300], [750, 300], [1050, 300]], R = 56;
     line.style.strokeDasharray = L; line.style.strokeDashoffset = L;
     /* longitud donde termina el bucle de cada parada (segunda pasada por el punto inferior) */
     var loopEnd = C.map(function (c) {
@@ -170,9 +170,18 @@
         var pt = line.getPointAtLength(d);
         car.style.left = X(pt.x); car.style.top = Y(pt.y);
         car.style.opacity = p > 0.01 && p < 0.985 ? 1 : 0;
-        C.forEach(function (c, i) { var pin = stops[i].querySelector(".pin"); pin.style.left = X(c[0]); pin.style.top = Y(c[1]); });
+        C.forEach(function (c, i) {
+          var pin = stops[i].querySelector(".pin"), card = stops[i].querySelector(".stop-card");
+          pin.style.left = X(c[0]); pin.style.top = Y(c[1]);
+          var w = card.offsetWidth, h = card.offsetHeight, gap = (R + 34) * k;
+          card.style.left = (sr.left - rr.left + c[0] * k - w / 2) + "px";
+          card.style.top = (i % 2 === 0 ? sr.top - rr.top + c[1] * k - gap - h : sr.top - rr.top + c[1] * k + gap) + "px";
+          card.style.setProperty("--stem", Math.max(0, gap - 9 - 36) + "px");
+        });
         arrows.forEach(function (a) { a[1].classList.toggle("on", d >= a[0]); });
         goal.classList.toggle("on", p >= 0.99);
+      } else {
+        stops.forEach(function (s) { var cd = s.querySelector(".stop-card"); cd.style.left = ""; cd.style.top = ""; });
       }
       stops.forEach(function (s, i) { s.classList.toggle("on", vertical ? p >= i / stops.length + 0.05 : d >= loopEnd[i] - 2 * Math.PI * R * 0.5); });
     };
