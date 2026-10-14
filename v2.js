@@ -112,7 +112,6 @@
     gsap.to("#heroWord", { y: 220, opacity: .25, ease: "none", scrollTrigger: st });
     gsap.to("#heroCard", { y: -90, ease: "none", scrollTrigger: st });
     gsap.to("#heroCopy", { y: 60, ease: "none", scrollTrigger: st });
-    gsap.from(".gal figure", { x: 120, stagger: .06, ease: "none", scrollTrigger: { trigger: ".gal", start: "top bottom", end: "bottom center", scrub: true } });
   });
 
   /* video tracking */
