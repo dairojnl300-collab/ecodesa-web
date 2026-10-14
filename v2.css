@@ -36,7 +36,7 @@ a{color:inherit}
 .nav-word{width:120px;height:auto;opacity:0;transform:translateX(-8px);transition:.35s}
 .nav-word--c{position:absolute;left:62px;top:50%;margin-top:-12px;width:132px;max-width:none}
 .nav.is-solid .nav-word--c{opacity:1;transform:none}
-.nav.is-solid .nav-ico img{filter:none}
+
 .nav.is-solid .nav-burger span{background:var(--ink)}
 @media (min-width:861px){.nav.is-solid .nav-links a{color:var(--ink2)}.nav.is-solid .nav-links a:hover{color:var(--ink)}}
 .progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:70;pointer-events:none}
@@ -46,7 +46,6 @@ a{color:inherit}
 .nav-links a{color:#fff;text-decoration:none;font:600 16px var(--fh);opacity:.92;position:relative}
 .nav-links a:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--g2);transform:scaleX(0);transition:transform .3s}
 .nav-links a:hover:after{transform:scaleX(1)}
-.nav-cta{padding:11px 22px}
 .nav-burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative}
 .nav-burger span{position:absolute;left:10px;right:10px;height:2px;background:#fff;transition:.3s}
 .nav-burger span:first-child{top:17px}.nav-burger span:last-child{top:26px}
@@ -200,6 +199,17 @@ h2 em{font-style:normal;color:var(--g)}
 /* fab */
 .fab{position:fixed;right:20px;bottom:20px;z-index:60;width:62px;height:62px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.3);transition:transform .3s}
 .fab:hover{transform:scale(1.08)}
+.fab svg{position:relative;z-index:1}
+.ripple{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(37,211,102,.7);background:radial-gradient(circle,rgba(37,211,102,.25),rgba(37,211,102,0) 70%);animation:wave 3.2s cubic-bezier(.2,.6,.3,1) infinite;pointer-events:none}
+.ripple.r2{animation-delay:1.07s}.ripple.r3{animation-delay:2.13s}
+@keyframes wave{0%{transform:scale(1);opacity:.9;border-width:3px}70%{opacity:.25}100%{transform:scale(2.6);opacity:0;border-width:1px}}
+/* logo que respira */
+.nav-ico img{animation:breathe 4.2s ease-in-out infinite;transform-origin:center}
+@keyframes breathe{0%,100%{transform:scale(1);filter:drop-shadow(0 2px 8px rgba(0,0,0,.45)) drop-shadow(0 0 0 rgba(143,209,79,0))}50%{transform:scale(1.12);filter:drop-shadow(0 2px 8px rgba(0,0,0,.45)) drop-shadow(0 0 12px rgba(143,209,79,.75))}}
+.nav.is-solid .nav-ico img{animation-name:breatheSolid}
+@keyframes breatheSolid{0%,100%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(118,184,42,0))}50%{transform:scale(1.12);filter:drop-shadow(0 0 10px rgba(118,184,42,.55))}}
+/* textos largos justificados */
+.sec-lead,.hero-lead,.mvv-i p,.prod p,.steps p,.dig-list span,.foot-grid p{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
 
 
 /* catálogo */
@@ -293,7 +303,6 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
   .nav-links.is-open{opacity:1;visibility:visible;pointer-events:auto}
   .nav-links a{font-size:26px}
   .nav-burger{display:block;z-index:2}
-  .nav-cta{display:none}
 }
 @media (max-width:640px){
   body{font-size:16px}
