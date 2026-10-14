@@ -59,7 +59,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600&display=swap">
   <link rel="preload" as="image" href="assets/v2/sec-restaurantes.webp" fetchpriority="high">
-  <link rel="stylesheet" href="v2.css?v=20261014n">
+  <link rel="stylesheet" href="v2.css?v=20261014o">
 </head>
 <body>
   <a class="skip" href="#main">Saltar al contenido</a>
@@ -368,14 +368,64 @@
           <span class="pill pill-dark">04 · Para todos los sectores</span>
           <h2 id="dig-t">Tu negocio también <em>se ve</em> en internet.</h2>
           <p class="sec-lead">Hacemos crecer tu negocio con herramientas digitales: desde tu página web hasta reportes automáticos de cumplimiento.</p>
+          <ul class="dig-list" id="digTabs"><li><button type="button" class="dtab on" data-i="0" aria-pressed="true"><strong>Páginas web</strong><span>Rápidas, con SEO y listas para vender por WhatsApp.</span><i aria-hidden="true"></i></button></li><li><button type="button" class="dtab" data-i="1" aria-pressed="false"><strong>Aplicaciones</strong><span>Apps a la medida, también sin conexión.</span><i aria-hidden="true"></i></button></li><li><button type="button" class="dtab" data-i="2" aria-pressed="false"><strong>Publicidad y marketing digital</strong><span>Campañas y contenido para negocios comerciales.</span><i aria-hidden="true"></i></button></li><li><button type="button" class="dtab" data-i="3" aria-pressed="false"><strong>Automatización con IA</strong><span>Reportes, indicadores y procesos automatizados.</span><i aria-hidden="true"></i></button></li></ul>
           <a class="btn btn-green btn-lg" data-wa="Hola ECODESA, quiero cotizar una página web / app / marketing digital." href="https://wa.me/573246886824">Cotizar mi proyecto digital</a>
         </div>
-        <ul class="dig-list">
-          <li data-rv><strong>Páginas web</strong><span>Rápidas, con SEO y listas para vender por WhatsApp.</span></li>
-          <li data-rv><strong>Aplicaciones</strong><span>Apps a la medida, también sin conexión.</span></li>
-          <li data-rv><strong>Publicidad y marketing digital</strong><span>Campañas y contenido para negocios comerciales.</span></li>
-          <li data-rv><strong>Automatización con IA</strong><span>Reportes, indicadores y procesos automatizados.</span></li>
-        </ul>
+        <div class="stage" id="stage" data-rv aria-hidden="true">
+          <div class="laptop">
+            <div class="lap-screen">
+              <div class="bar"><i></i><i></i><i></i><span id="lapUrl">sazondelmar.co</span></div>
+              <div class="scr on" data-url="sazondelmar.co">
+                <div class="w-scroll">
+                  <div class="w-hero" style="background-image:url(assets/v2/demo-plato.webp)"><b>Sazón del Mar</b><small>Cocina caribeña frente al mar</small><em>Reservar por WhatsApp</em></div>
+                  <div class="w-cards"><div><span style="background-image:url(assets/v2/demo-plato.webp)"></span>Pescado frito</div><div><span style="background-image:url(assets/v2/sec-restaurantes.webp)"></span>Cazuela</div><div><span style="background-image:url(assets/v2/sec-hoteles.webp)"></span>Terraza</div></div>
+                  <div class="w-strip">★★★★★ &nbsp;Pedidos y reservas en línea</div>
+                </div>
+              </div>
+              <div class="scr" data-url="app.inspecciones.co">
+                <div class="a-head">Inspecciones <span>Hoy</span></div>
+                <div class="a-row"><b>Cocina</b><em class="ok">Cumple</em></div>
+                <div class="a-row"><b>Bodega de alimentos</b><em class="ok">Cumple</em></div>
+                <div class="a-row"><b>Trampa de grasas</b><em class="wa">Pendiente</em></div>
+                <div class="a-row"><b>Control de plagas</b><em class="ok">Cumple</em></div>
+                <div class="a-row"><b>Agua potable</b><em class="ok">Cumple</em></div>
+              </div>
+              <div class="scr" data-url="campañas · sazón del mar">
+                <div class="m-grid">
+                  <div class="m-post" style="background-image:url(assets/v2/demo-plato.webp)"><span>Viernes de pescado frito</span></div>
+                  <div class="m-side"><b>Campaña activa</b><div class="m-bars"><i style="--h:40%"></i><i style="--h:55%"></i><i style="--h:48%"></i><i style="--h:70%"></i><i style="--h:85%"></i><i style="--h:78%"></i><i style="--h:95%"></i></div><small>Alcance semanal</small></div>
+                </div>
+              </div>
+              <div class="scr" data-url="panel de cumplimiento">
+                <div class="i-kpis"><div><b>✓</b>Plagas</div><div><b>✓</b>Agua</div><div><b>✓</b>Limpieza</div><div class="pend"><b>!</b>Fumigación</div></div>
+                <div class="i-chart"><i style="--h:35%"></i><i style="--h:50%"></i><i style="--h:62%"></i><i style="--h:58%"></i><i style="--h:74%"></i><i style="--h:83%"></i><i style="--h:90%"></i><i style="--h:96%"></i></div>
+                <div class="i-foot">Reporte mensual generado automáticamente ✓</div>
+              </div>
+            </div>
+            <div class="lap-base"></div>
+          </div>
+          <div class="phone">
+            <div class="ph-screen">
+              <div class="scr on">
+                <div class="p-img" style="background-image:url(assets/v2/demo-plato.webp)"></div>
+                <div class="p-body"><b>Sazón del Mar</b><small>Cocina caribeña</small><em>Reservar</em></div>
+              </div>
+              <div class="scr">
+                <div class="p-ring"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.9"/><circle class="v" cx="18" cy="18" r="15.9"/></svg><b>Cocina</b></div>
+                <ul class="p-check"><li>Superficies limpias</li><li>Temperatura nevera</li><li>Manipuladores con gorro</li><li>Registro de plagas</li></ul>
+              </div>
+              <div class="scr">
+                <div class="s-head"><i></i><b>sazondelmar</b></div>
+                <div class="s-img" style="background-image:url(assets/v2/demo-plato.webp)"><span class="heart">♥</span></div>
+                <div class="s-txt">♥ ✉ ↗<br><b>sazondelmar</b> Viernes de pescado frito. Reserva por WhatsApp.</div>
+              </div>
+              <div class="scr">
+                <div class="n-list"><div><b>Reporte listo</b>Informe mensual de cumplimiento</div><div><b>Recordatorio</b>Fumigación vence pronto</div><div><b>Nuevo registro</b>Inspección de cocina guardada</div></div>
+              </div>
+            </div>
+          </div>
+          <span class="ejemplo">Ejemplo ilustrativo</span>
+        </div>
       </div>
     </section>
 
@@ -506,6 +556,6 @@
 
   <script src="lib/gsap.min.js" defer></script>
   <script src="lib/ScrollTrigger.min.js" defer></script>
-  <script src="v2.js?v=20261014n" defer></script>
+  <script src="v2.js?v=20261014o" defer></script>
 </body>
 </html>
