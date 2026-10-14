@@ -31,13 +31,12 @@ a{color:inherit}
 .nav.is-solid{padding-block:10px}
 .nav.is-solid:before{opacity:1}
 .nav-brand{position:relative;display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
-.nav-ico{width:48px;height:48px;border-radius:50%;background:#fff;display:grid;place-items:center}
-.nav-ico img{width:34px;height:auto}
+.nav-ico{width:48px;height:48px;display:grid;place-items:center;background:transparent}
+.nav-ico img{width:44px;height:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.45));transition:filter .35s}
 .nav-word{width:120px;height:auto;opacity:0;transform:translateX(-8px);transition:.35s}
 .nav-word--c{position:absolute;left:62px;top:50%;margin-top:-12px;width:132px;max-width:none}
 .nav.is-solid .nav-word--c{opacity:1;transform:none}
-.nav-ico{transition:box-shadow .35s}
-.nav.is-solid .nav-ico{box-shadow:0 0 0 1px #e3e9df}
+.nav.is-solid .nav-ico img{filter:none}
 .nav.is-solid .nav-burger span{background:var(--ink)}
 @media (min-width:861px){.nav.is-solid .nav-links a{color:var(--ink2)}.nav.is-solid .nav-links a:hover{color:var(--ink)}}
 .progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:70;pointer-events:none}
