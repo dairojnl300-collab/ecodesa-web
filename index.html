@@ -11,7 +11,7 @@
     gtag('config', 'G-NZR1GJPMJD');
   </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZR1GJPMJD"></script>
-  <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__v2)document.documentElement.classList.remove('js')},3500)</script>
+  <script>(function(){var t;try{t=localStorage.getItem('ecodesa-theme')}catch(e){}if(!t){var hr=new Date().getHours();t=hr>=6&&hr<18?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})();document.documentElement.classList.add('js');setTimeout(function(){if(!window.__v2)document.documentElement.classList.remove('js')},3500)</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ECODESA — Gestión ambiental, SG-SST y saneamiento en Cartagena</title>
@@ -59,7 +59,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600&display=swap">
   <link rel="preload" as="image" href="assets/v2/sec-restaurantes.webp" fetchpriority="high">
-  <link rel="stylesheet" href="v2.css?v=20261014c">
+  <link rel="stylesheet" href="v2.css?v=20261014d">
 </head>
 <body>
   <a class="skip" href="#main">Saltar al contenido</a>
@@ -73,11 +73,17 @@
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Principal">
       <a href="#sectores">Sectores</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Nosotros</a>
       <a href="#digital">Digital e IA</a>
       <a href="#campo">En campo</a>
       <a href="#proceso">Proceso</a>
       <a href="#contacto">Contacto</a>
     </nav>
+    <button class="theme" id="themeBtn" type="button" aria-label="Cambiar a modo noche" title="Día / noche">
+      <svg class="i-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
     <a class="btn btn-green nav-cta" data-wa="Hola ECODESA, quiero una cotización." href="https://wa.me/573246886824">WhatsApp</a>
     <button class="nav-burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
   </header>
@@ -258,12 +264,98 @@
       </div>
     </section>
 
+    <!-- ═══════════ TODOS LOS SERVICIOS ═══════════ -->
+    <section class="sec catalogo" id="servicios" aria-labelledby="cat-t">
+      <div class="wrap">
+        <header class="sec-head" data-rv>
+          <span class="pill">02 · Todos los servicios</span>
+          <h2 id="cat-t">Seis áreas, <em>un solo responsable.</em></h2>
+          <p class="sec-lead">¿Buscas algo puntual? Aquí está el catálogo completo.</p>
+        </header>
+        <div class="areas">
+          <details class="area" data-rv open>
+            <summary><span class="area-n">01</span><span class="area-t"><b>Gestión ambiental</b><small>Permisos, estudios y seguimiento ante la autoridad ambiental competente.</small></span><span class="area-c">11</span></summary>
+            <ul><li>Análisis de requerimientos ambientales</li><li>Estudios de Impacto Ambiental (EIA)</li><li>Licencias ambientales y PMA</li><li>Permisos de vertimiento, cauce y emisiones</li><li>Informes técnicos ambientales</li><li>Trámite PIN RCD</li><li>Departamento de Gestión Ambiental</li><li>Eventos y publicidad exterior visual</li><li>Interventoría ambiental de PMA</li><li>Sistema de Gestión Ambiental ISO 14001</li><li>Gestión de aceite de cocina usado (ACU)</li></ul>
+            <a class="area-cta" data-wa="Hola ECODESA, me interesa el área de Gestión ambiental." href="https://wa.me/573246886824">Cotizar gestión ambiental →</a>
+          </details>
+          <details class="area" data-rv>
+            <summary><span class="area-n">02</span><span class="area-t"><b>Agua, residuos y saneamiento</b><small>Diseño, diagnóstico y gestión de agua, vertimientos y residuos.</small></span><span class="area-c">11</span></summary>
+            <ul><li>Diseño e interventoría de PTAP y PTAR</li><li>Sistemas pluviales y de riego</li><li>Captación de aguas subterráneas y superficiales</li><li>Diagnóstico de captación y vertimientos</li><li>Diseño de sistemas de flujo de aguas</li><li>Planes de acueducto y alcantarillado</li><li>Caracterización de aguas</li><li>PMA de residuos sólidos e industriales</li><li>Plan de manejo de RCD</li><li>Almacenamiento temporal de residuos</li><li>Retiro y disposición final</li></ul>
+            <a class="area-cta" data-wa="Hola ECODESA, me interesa el área de Agua, residuos y saneamiento." href="https://wa.me/573246886824">Cotizar agua, residuos y saneamiento →</a>
+          </details>
+          <details class="area" data-rv>
+            <summary><span class="area-n">03</span><span class="area-t"><b>SG-SST y seguridad química</b><small>Seguridad y salud en el trabajo, riesgo químico y certificaciones.</small></span><span class="area-c">9</span></summary>
+            <ul><li>Sistema de Gestión de Seguridad y Salud en el Trabajo</li><li>Identificación de peligros y evaluación de riesgos</li><li>Capacitación en seguridad laboral</li><li>Comité de seguridad e indicadores de gestión</li><li>Programas de seguridad química</li><li>Sistema Globalmente Armonizado (SGA)</li><li>Auditorías de riesgo químico</li><li>ISO 45001</li><li>Sistemas de bioseguridad</li></ul>
+            <a class="area-cta" data-wa="Hola ECODESA, me interesa el área de SG-SST y seguridad química." href="https://wa.me/573246886824">Cotizar sg-sst y seguridad química →</a>
+          </details>
+          <details class="area" data-rv>
+            <summary><span class="area-n">04</span><span class="area-t"><b>Saneamiento básico, BPM e inocuidad</b><small>Para restaurantes, hoteles y manipuladores de alimentos.</small></span><span class="area-c">11</span></summary>
+            <ul><li>Plan de saneamiento básico</li><li>Control de plagas y roedores</li><li>Programa de agua potable</li><li>Programa de limpieza y desinfección</li><li>Prácticas de higiene y protección personal</li><li>Manual de buenas prácticas de manufactura</li><li>Plan de inocuidad de alimentos</li><li>Análisis de peligros y puntos críticos (HACCP)</li><li>Monitoreo de superficies y frotis de uñas</li><li>Control en manipulación y almacenamiento de alimentos</li><li>Global G.A.P. y estándares ASC · MSC</li></ul>
+            <a class="area-cta" data-wa="Hola ECODESA, me interesa el área de Saneamiento básico, BPM e inocuidad." href="https://wa.me/573246886824">Cotizar saneamiento básico, bpm e inocuidad →</a>
+          </details>
+          <details class="area" data-rv>
+            <summary><span class="area-n">05</span><span class="area-t"><b>Gestión del riesgo de desastres</b><small>Planes, análisis y trámites de gestión del riesgo.</small></span><span class="area-c">5</span></summary>
+            <ul><li>Plan de gestión del riesgo de desastres</li><li>Planes de emergencia y contingencia</li><li>Informes técnicos de gestión del riesgo</li><li>Análisis de vulnerabilidad territorial</li><li>Trámites ante la autoridad competente</li></ul>
+            <a class="area-cta" data-wa="Hola ECODESA, me interesa el área de Gestión del riesgo de desastres." href="https://wa.me/573246886824">Cotizar gestión del riesgo de desastres →</a>
+          </details>
+          <details class="area" data-rv>
+            <summary><span class="area-n">06</span><span class="area-t"><b>Forestal y biodiversidad</b><small>Recursos forestales, flora, fauna y monitoreo ambiental.</small></span><span class="area-c">8</span></summary>
+            <ul><li>Inventarios forestales</li><li>Tala, poda y aprovechamiento forestal</li><li>Reforestación y compensación ambiental</li><li>Gestión de fauna y flora</li><li>Monitoreo de emisiones y calidad de aire</li><li>Educación ambiental</li><li>Siembra de árboles frutales</li><li>Diseño de jardines y ornamentación</li></ul>
+            <a class="area-cta" data-wa="Hola ECODESA, me interesa el área de Forestal y biodiversidad." href="https://wa.me/573246886824">Cotizar forestal y biodiversidad →</a>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ NOSOTROS ═══════════ -->
+    <section class="sec nosotros" id="nosotros" aria-labelledby="nos-t">
+      <div class="wrap nos-grid">
+        <div data-rv>
+          <span class="pill">03 · Nosotros</span>
+          <h2 id="nos-t">Una firma técnica que conoce la norma y <em>entrega a tiempo.</em></h2>
+          <p class="sec-lead">Somos ECODESA, firma de consultoría fundada en Cartagena de Indias, especializada en gestión ambiental, saneamiento básico, SG-SST y gestión del riesgo de desastres. Usamos inteligencia artificial en nuestros procesos para impulsar la productividad y el cumplimiento normativo de nuestros clientes, con rigor técnico y entrega puntual.</p>
+          <div class="stats">
+            <div><b>Profesionales</b><span>con amplia trayectoria</span></div>
+            <div><b>20+</b><span>clientes asesorados</span></div>
+            <div><b>6</b><span>sectores atendidos</span></div>
+          </div>
+        </div>
+        <div class="mvv" data-rv>
+          <p class="mvv-h">Misión, visión y valores</p>
+          <details class="mvv-i" name="mvv" open>
+            <summary>Misión</summary>
+            <p>Resolvemos lo que la norma exige, sin rodeos: permisos ambientales, agua y saneamiento, seguridad química y SG-SST, gestión del riesgo y manejo forestal. Un mismo equipo cubre todas las áreas, así el cliente no coordina varias consultoras para un solo expediente.</p>
+          </details>
+          <details class="mvv-i" name="mvv">
+            <summary>Visión</summary>
+            <p>Para 2032, ECODESA Ingeniería SAS será una empresa reconocida nacionalmente por liderar la transformación digital del cumplimiento ambiental y la gestión de riesgos, convirtiendo regulaciones complejas en procesos ágiles, precisos y rentables que permitan a las organizaciones anticipar amenazas ambientales y ocupacionales antes de que impacten sus operaciones, comunidades y sostenibilidad.</p>
+          </details>
+          <details class="mvv-i" name="mvv">
+            <summary>Valores</summary>
+            <ul class="vals">
+              <li><b>Excelencia técnica</b>normas internacionales</li>
+              <li><b>Sostenibilidad integral</b>ambiental y ocupacional</li>
+              <li><b>Transformación digital</b>IA y análisis predictivo</li>
+              <li><b>Integridad profesional</b>transparencia normativa</li>
+              <li><b>Anticipación</b>prevención de riesgos</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+      <div class="seals" aria-label="Estándares con los que trabajamos">
+        <div class="seals-track">
+          <span class="seal"><b>ISO<i>14001</i></b>Gestión ambiental</span><span class="seal"><b>ISO<i>45001</i></b>Seguridad y salud</span><span class="seal"><b>HACCP</b>Inocuidad alimentaria</span><span class="seal"><b>G.A.P.</b>GlobalG.A.P.</span><span class="seal"><b>MSC·ASC</b>Cadena de custodia</span><span class="seal"><b>SGA</b>Seguridad química</span>
+          <span class="seal" aria-hidden="true"><b>ISO<i>14001</i></b>Gestión ambiental</span><span class="seal" aria-hidden="true"><b>ISO<i>45001</i></b>Seguridad y salud</span><span class="seal" aria-hidden="true"><b>HACCP</b>Inocuidad alimentaria</span><span class="seal" aria-hidden="true"><b>G.A.P.</b>GlobalG.A.P.</span><span class="seal" aria-hidden="true"><b>MSC·ASC</b>Cadena de custodia</span><span class="seal" aria-hidden="true"><b>SGA</b>Seguridad química</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══════════ DIGITAL E IA ═══════════ -->
     <section class="sec digital" id="digital" aria-labelledby="dig-t">
       <div class="dig-glow" aria-hidden="true"></div>
       <div class="wrap dig-grid">
         <div data-rv>
-          <span class="pill pill-dark">02 · Para todos los sectores</span>
+          <span class="pill pill-dark">04 · Para todos los sectores</span>
           <h2 id="dig-t">Tu negocio también <em>se ve</em> en internet.</h2>
           <p class="sec-lead">Hacemos crecer tu negocio con herramientas digitales: desde tu página web hasta reportes automáticos de cumplimiento.</p>
           <a class="btn btn-green btn-lg" data-wa="Hola ECODESA, quiero cotizar una página web / app / marketing digital." href="https://wa.me/573246886824">Cotizar mi proyecto digital</a>
@@ -281,7 +373,7 @@
     <section class="sec video" aria-labelledby="vid-t">
       <div class="wrap">
         <header class="sec-head center" data-rv>
-          <span class="pill">03 · En 75 segundos</span>
+          <span class="pill">05 · En 75 segundos</span>
           <h2 id="vid-t">Así <em>trabajamos.</em></h2>
         </header>
         <div class="vbox" data-rv>
@@ -294,7 +386,7 @@
     <section class="sec campo" id="campo" aria-labelledby="campo-t">
       <div class="wrap">
         <header class="sec-head" data-rv>
-          <span class="pill">04 · En campo</span>
+          <span class="pill">06 · En campo</span>
           <h2 id="campo-t">Profesionales donde está <em>tu operación.</em></h2>
           <p class="sec-lead">Profesionales con amplia trayectoria que visitan, miden, documentan y te acompañan en cada etapa.</p>
         </header>
@@ -315,7 +407,7 @@
     <section class="sec proceso" id="proceso" aria-labelledby="proc-t">
       <div class="wrap">
         <header class="sec-head" data-rv>
-          <span class="pill">05 · Proceso</span>
+          <span class="pill">07 · Proceso</span>
           <h2 id="proc-t">Cuatro pasos y <em>listo.</em></h2>
         </header>
         <ol class="steps">
@@ -331,7 +423,7 @@
     <section class="sec contacto" id="contacto" aria-labelledby="cont-t">
       <div class="wrap cgrid">
         <div data-rv>
-          <span class="pill pill-dark">06 · Contacto</span>
+          <span class="pill pill-dark">08 · Contacto</span>
           <h2 id="cont-t">Hablemos de <em>tu negocio.</em></h2>
           <p class="sec-lead">Respuesta por WhatsApp. Atención virtual o presencial.</p>
           <ul class="cinfo">
@@ -376,6 +468,9 @@
       <nav aria-label="Sectores">
         <a href="#sectores">Restaurantes</a><a href="#sectores">Hoteles</a><a href="#sectores">Comercio</a><a href="#sectores">Industria</a><a href="#sectores">Puertos</a><a href="#sectores">Construcción</a>
       </nav>
+      <nav aria-label="Empresa">
+        <a href="#servicios">Servicios</a><a href="#nosotros">Nosotros</a><a href="#digital">Digital e IA</a><a href="#tienda">Plantilla PSB</a>
+      </nav>
       <nav aria-label="Contacto">
         <a data-wa="Hola ECODESA" href="https://wa.me/573246886824">WhatsApp</a>
         <a href="mailto:ecodesaingenieria@outlook.es">Correo</a>
@@ -391,6 +486,6 @@
 
   <script src="lib/gsap.min.js" defer></script>
   <script src="lib/ScrollTrigger.min.js" defer></script>
-  <script src="v2.js?v=20261014b" defer></script>
+  <script src="v2.js?v=20261014d" defer></script>
 </body>
 </html>

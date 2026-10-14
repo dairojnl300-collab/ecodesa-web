@@ -33,6 +33,20 @@
     });
   });
 
+  /* tema día / noche */
+  var tb = document.getElementById("themeBtn"), root = document.documentElement;
+  var syncTheme = function () {
+    var dark = root.getAttribute("data-theme") === "dark";
+    tb.setAttribute("aria-label", dark ? "Cambiar a modo día" : "Cambiar a modo noche");
+  };
+  tb.addEventListener("click", function () {
+    var t = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", t);
+    try { localStorage.setItem("ecodesa-theme", t); } catch (e) {}
+    syncTheme(); track("theme_toggle_" + t);
+  });
+  syncTheme();
+
   /* hero sector slideshow */
   var SEC = [
     ["Restaurantes", ["Plan de saneamiento básico", "Buenas prácticas (BPM)", "Gestión de aceite de cocina usado", "Control de plagas y limpieza"]],
