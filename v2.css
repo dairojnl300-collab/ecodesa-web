@@ -353,6 +353,17 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
 :root:not([data-theme=dark]) .foot nav a:hover{color:var(--gd)}
 :root:not([data-theme=dark]) .foot-grid img{content:url(assets/v2/wordmark.svg)}
 
+:root:not([data-theme=dark]) .nav-links{background:radial-gradient(1200px 600px at 85% 10%,rgba(118,184,42,.18),transparent 60%),#f6f8f3}
+:root:not([data-theme=dark]) .menu-list a{color:var(--ink);border-bottom-color:var(--line)}
+:root:not([data-theme=dark]) .menu-list a:hover,:root:not([data-theme=dark]) .menu-list a:focus-visible{color:var(--g)}
+:root:not([data-theme=dark]) .mi-n,:root:not([data-theme=dark]) .mi-a{color:var(--gd)}
+:root:not([data-theme=dark]) .mi-t small{color:var(--ink2)}
+:root:not([data-theme=dark]) .menu-pic{box-shadow:0 30px 60px rgba(15,36,22,.18)}
+:root:not([data-theme=dark]) .menu-contact p{color:var(--gd)}
+:root:not([data-theme=dark]) .menu-contact a{color:var(--ink2)}
+:root:not([data-theme=dark]) .menu-contact a:hover{color:var(--gd)}
+:root:not([data-theme=dark]) .nav-burger[aria-expanded=true]{color:var(--ink)!important;border-color:var(--line)!important;background:#fff!important}
+:root:not([data-theme=dark]) body:has(.nav-links.is-open) .theme{color:var(--ink);border-color:var(--line);background:#fff}
 /* reveal */
 .js [data-rv]{opacity:0;transform:translateY(40px)}
 .js [data-rv].is-in{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
