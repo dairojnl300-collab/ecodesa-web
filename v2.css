@@ -838,3 +838,24 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
 @media (max-width:640px){.laptop{left:10%;width:80%}.phone{width:23%}.tablet{width:33%}}
 .stage .ejemplo{bottom:-34px;left:0}
 .stage{margin-bottom:26px}
+
+/* ===== composición profesional: base común, sin giros, sombra de apoyo ===== */
+.stage{aspect-ratio:1.28}
+.stage:after{content:"";position:absolute;left:4%;right:4%;bottom:-1.5%;height:7%;background:radial-gradient(ellipse at center,rgba(8,30,14,.28),rgba(8,30,14,0) 70%);filter:blur(6px);z-index:0;pointer-events:none}
+.laptop{left:14%;top:2%;width:72%;z-index:1}
+.tablet{left:0;bottom:0;width:27%;z-index:3;animation:devfloat 8s ease-in-out infinite}
+.phone{right:0;bottom:0;width:17.5%;z-index:3;animation:devfloat 7s ease-in-out -2s infinite}
+@keyframes devfloat{50%{transform:translateY(-6px)}}
+.stage .ejemplo{bottom:-38px;left:0}
+@media (max-width:640px){
+  .stage{aspect-ratio:1.02;order:4}
+  .laptop{left:6%;width:88%;top:0}
+  .tablet{width:33%}
+  .phone{width:20%}
+}
+.stage{aspect-ratio:1.2}
+.laptop{top:0;width:70%;left:15%}
+@media (max-width:640px){.stage{aspect-ratio:1.02}}
+.stage{aspect-ratio:1.42}
+.laptop{width:76%;left:12%}
+@media (max-width:640px){.stage{aspect-ratio:1.02}.laptop{width:88%;left:6%}}
