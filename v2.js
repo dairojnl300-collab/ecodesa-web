@@ -188,6 +188,38 @@
     window.addEventListener("scroll", upd, { passive: true }); window.addEventListener("resize", upd); upd();
   }
 
+  /* digital: pestañas que cambian las pantallas de ejemplo */
+  var dtabs = document.querySelectorAll(".dtab"), stage = document.getElementById("stage");
+  if (dtabs.length && stage) {
+    var lapS = stage.querySelectorAll(".lap-screen .scr"), phS = stage.querySelectorAll(".ph-screen .scr"), url = document.getElementById("lapUrl");
+    var dsec = document.getElementById("digital"), dcur = 0, dt, DD = 4500, hold = false;
+    document.documentElement.style.setProperty("--dd", DD / 1000 + "s");
+    var dshow = function (i) {
+      dcur = i;
+      dtabs.forEach(function (t, k) { t.classList.toggle("on", k === i); t.setAttribute("aria-pressed", k === i); var b = t.querySelector("i"); b.style.animation = "none"; void b.offsetWidth; b.style.animation = ""; });
+      lapS.forEach(function (s, k) { s.classList.toggle("on", k === i); });
+      phS.forEach(function (s, k) { s.classList.toggle("on", k === i); });
+      url.textContent = lapS[i].getAttribute("data-url");
+      clearTimeout(dt); if (!reduce && !hold) dt = setTimeout(function () { dshow((dcur + 1) % dtabs.length); }, DD);
+    };
+    dtabs.forEach(function (t, k) {
+      t.addEventListener("click", function () { dshow(k); track("digital_tab_" + k); });
+      t.addEventListener("mouseenter", function () { if (k !== dcur) dshow(k); });
+    });
+    dsec.addEventListener("mouseenter", function () { hold = true; dsec.classList.add("paused"); clearTimeout(dt); });
+    dsec.addEventListener("mouseleave", function () { hold = false; dsec.classList.remove("paused"); dshow(dcur); });
+    dshow(0);
+  }
+
+  /* vitrina: duplicar piezas para carrusel infinito */
+  var adrow = document.getElementById("adrow");
+  if (adrow) {
+    Array.prototype.slice.call(adrow.children).forEach(function (n) {
+      var c = n.cloneNode(true); c.removeAttribute("data-rv"); c.classList.add("is-in"); c.setAttribute("aria-hidden", "true"); adrow.appendChild(c);
+    });
+    if (reduce) adrow.style.animation = "none";
+  }
+
   /* video tracking */
   var v = document.getElementById("promo");
   if (v) v.addEventListener("play", function () { track("video_play"); }, { once: true });
