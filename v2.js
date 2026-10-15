@@ -190,7 +190,7 @@
   /* digital: pestañas que cambian las pantallas de ejemplo */
   var dtabs = document.querySelectorAll(".dtab"), stage = document.getElementById("stage");
   if (dtabs.length && stage) {
-    var lapS = stage.querySelectorAll(".lap-screen .scr"), phS = stage.querySelectorAll(".ph-screen .scr"), url = document.getElementById("lapUrl");
+    var lapS = stage.querySelectorAll(".lap-screen .scr"), phS = stage.querySelectorAll(".ph-screen .scr"), tbS = stage.querySelectorAll(".tab-screen .scr"), url = document.getElementById("lapUrl");
     var dsec = document.getElementById("digital"), ddesc = document.getElementById("digDesc"), dcur = 0, dt, DD = 4500, hold = false, inView = !("IntersectionObserver" in window);
     document.documentElement.style.setProperty("--dd", DD / 1000 + "s");
     var dshow = function (i) {
@@ -198,6 +198,7 @@
       dtabs.forEach(function (t, k) { t.classList.toggle("on", k === i); t.setAttribute("aria-pressed", k === i); var b = t.querySelector("i"); b.style.animation = "none"; void b.offsetWidth; b.style.animation = ""; });
       lapS.forEach(function (s, k) { s.classList.toggle("on", k === i); });
       phS.forEach(function (s, k) { s.classList.toggle("on", k === i); });
+      tbS.forEach(function (s, k) { s.classList.toggle("on", k === i); });
       url.textContent = lapS[i].getAttribute("data-url");
       if (ddesc) ddesc.textContent = dtabs[i].querySelector("span").textContent;
       clearTimeout(dt); if (!reduce && !hold && inView) dt = setTimeout(function () { dshow((dcur + 1) % dtabs.length); }, DD);
