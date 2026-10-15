@@ -53,19 +53,20 @@
     apply(a, ads, true);
   }
 
-  var box, banner, panel, swA, swP, live, opener = null, decided = !!read();
+  var box, veil, banner, panel, swA, swP, live, opener = null, decided = !!read();
 
   function el(t, c, h) { var n = document.createElement(t); if (c) n.className = c; if (h) n.innerHTML = h; return n; }
 
   function build() {
     box = el("div", "ck-root");
+    veil = el("div", "ck-veil"); veil.setAttribute("aria-hidden", "true"); veil.hidden = true; box.appendChild(veil);
     banner = el("div", "ck ck-banner");
-    banner.setAttribute("role", "dialog"); banner.setAttribute("aria-modal", "false"); banner.setAttribute("aria-label", "Aviso de cookies"); banner.tabIndex = -1; banner.hidden = true;
+    banner.setAttribute("role", "dialog"); banner.setAttribute("aria-modal", "true"); banner.setAttribute("aria-label", "Aviso de cookies"); banner.tabIndex = -1; banner.hidden = true;
     banner.innerHTML =
       '<p>Usamos cookies técnicas para que el sitio funcione. Solo si usted lo acepta, cargamos cookies de analítica y publicidad de Google para medir y mejorar nuestro sitio y mostrarle anuncios de ECODESA. Esto puede implicar tratamiento de datos por Google fuera de Colombia, incluidos EE. UU. Más información en la <a href="/cookies/">Política de Cookies</a>.</p>' +
       '<div class="ck-btns"><button type="button" class="ck-b ck-main" data-a="all">Aceptar todas</button><button type="button" class="ck-b ck-main" data-a="none">Rechazar</button><button type="button" class="ck-b ck-alt ck-conf" data-a="conf" aria-haspopup="dialog">Configurar</button></div>';
     panel = el("div", "ck ck-panel");
-    panel.setAttribute("role", "dialog"); panel.setAttribute("aria-modal", "false"); panel.setAttribute("aria-labelledby", "ckT"); panel.hidden = true;
+    panel.setAttribute("role", "dialog"); panel.setAttribute("aria-modal", "true"); panel.setAttribute("aria-labelledby", "ckT"); panel.hidden = true;
     panel.innerHTML =
       '<h2 id="ckT" tabindex="-1">Configurar cookies</h2>' +
       '<p class="ck-intro">Elija qué cookies permite. Puede cambiar su decisión en cualquier momento desde «Configurar cookies», en el pie de página.</p>' +
@@ -88,12 +89,28 @@
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && !panel.hidden) closePanel();
+      if (e.key === "Tab") {
+        var d = !panel.hidden ? panel : (!banner.hidden ? banner : null);
+        if (!d) return;
+        var f = d.querySelectorAll("a[href],button,input,[tabindex]:not([tabindex='-1'])");
+        if (!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if (!d.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+        else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
     });
+  }
+
+  function sync() {
+    var on = !banner.hidden || !panel.hidden;
+    veil.hidden = !on;
+    document.documentElement.classList.toggle("ck-lock", on);
   }
 
   function decide(a, ads) {
     save(a, ads); decided = true;
-    banner.hidden = true; panel.hidden = true;
+    banner.hidden = true; panel.hidden = true; sync();
     live.textContent = "Preferencias de cookies guardadas.";
     if (opener && document.body.contains(opener)) { try { opener.focus(); } catch (e) {} }
     opener = null;
@@ -103,13 +120,13 @@
     var c = read();
     swA.checked = !!(c && c.analytics); swP.checked = !!(c && c.ads);
     if (from) opener = from;
-    banner.hidden = true; panel.hidden = false;
+    banner.hidden = true; panel.hidden = false; sync();
     var t = panel.querySelector("#ckT"); t.focus();
   }
 
   function closePanel() {
-    panel.hidden = true;
-    if (!decided) { banner.hidden = false; var b = banner.querySelector('[data-a="conf"]'); if (b) b.focus(); }
+    panel.hidden = true; sync();
+    if (!decided) { banner.hidden = false; sync(); var b = banner.querySelector('[data-a="conf"]'); if (b) b.focus(); }
     else if (opener && document.body.contains(opener)) { try { opener.focus(); } catch (e) {} }
     opener = null;
   }
@@ -118,7 +135,7 @@
     build();
     var c0 = read();
     if (c0) apply(c0.analytics, c0.ads); /* decision previa: carga Google solo si acepto */
-    if (!decided) { banner.hidden = false; try { banner.focus({ preventScroll: true }); } catch (e) {} }
+    if (!decided) { banner.hidden = false; sync(); try { banner.focus({ preventScroll: true }); } catch (e) {} }
     document.addEventListener("click", function (e) {
       var o = e.target.closest("[data-consent-open]");
       if (!o) return;

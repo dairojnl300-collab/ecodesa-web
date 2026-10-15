@@ -45,3 +45,13 @@
 
 /* textos largos justificados */
 .ck-intro,.ck-note,.ck-cat p,.ck-b-txt,#ckBanner p,.ck-banner p{text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto}
+
+/* ===== aviso centrado con fondo desenfocado ===== */
+.ck-veil{position:fixed;inset:0;z-index:199;background:rgba(10,22,14,.38);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
+.ck-veil[hidden]{display:none}
+html.ck-lock{overflow:hidden}
+.ck{left:50%;top:50%;bottom:auto;width:min(600px,calc(100% - 32px));max-height:calc(100svh - 32px);overflow:auto;transform:translate(-50%,-50%);padding:24px 26px}
+@media (prefers-reduced-motion:no-preference){.ck:not([hidden]){animation:ckc .28s ease-out}@keyframes ckc{from{opacity:0;transform:translate(-50%,-46%) scale(.97)}to{opacity:1;transform:translate(-50%,-50%)}}}
+@media (max-width:640px){
+  .ck{left:50%;right:auto;top:50%;bottom:auto;width:calc(100% - 28px);border-radius:18px;border-width:1px;padding:18px 16px;max-height:calc(100svh - 28px);font-size:13.5px}
+}
