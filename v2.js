@@ -159,7 +159,7 @@
     var goal = document.getElementById("routeGoal");
     var upd = function () {
       var r = route.getBoundingClientRect(), vh = innerHeight;
-      var p = reduce ? 1 : Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (vh * 1.6)));
+      var p = reduce ? 1 : Math.min(1, Math.max(0, (vh * 0.5 - r.top) / (vh * 0.5)));
       var d = L * p;
       route.style.setProperty("--p", p.toFixed(3));
       line.style.strokeDashoffset = (L - d).toFixed(1);
