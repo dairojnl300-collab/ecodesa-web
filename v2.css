@@ -910,3 +910,9 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
 .laptop,.monitor,.tablet,.phone{z-index:2}
 .laptop{z-index:3}.tablet,.phone{z-index:4}
 .stage .ejemplo{z-index:6;color:#f7ecd8;text-shadow:0 1px 6px rgba(40,22,8,.6);bottom:-6px!important;left:14px!important;font-size:.66rem}
+/* ===== inclinación diagonal ===== */
+.tablet{transform-origin:50% 100%;transform:rotate(-9deg) translateX(3%)}
+.phone{transform-origin:50% 100%;transform:rotate(8deg)}
+@media (min-width:641px){.tablet{left:1%;bottom:4%}.phone{left:60%;bottom:2.5%}}
+@media (max-width:640px){.tablet{transform:rotate(-8deg) translateX(4%)}.phone{transform:rotate(7deg)}}
+@media (max-width:640px){.phone{transform:translateX(-8%) rotate(7deg)}}
