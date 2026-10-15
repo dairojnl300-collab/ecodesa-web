@@ -696,6 +696,27 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
   .cform{padding:22px}
   .fab{width:56px;height:56px;right:14px;bottom:14px}
 }
+/* hero móvil: la portada completa cabe en una sola pantalla */
+@media (max-width:640px){
+  .hero{height:100svh;min-height:560px;padding:calc(66px + env(safe-area-inset-top,0px)) 16px 78px;grid-template-rows:auto 1fr auto auto;row-gap:10px}
+  .hero-word img{width:64%}
+  .hero-copy{align-self:center}
+  .hero-kicker{font-size:11px;letter-spacing:.12em;margin-bottom:6px}
+  .hero-lead{font-size:clamp(14px,2.3svh,17px);line-height:1.35}
+  .hero-btns{flex-wrap:nowrap;gap:10px;margin-top:clamp(10px,2svh,16px)}
+  .hero-btns .btn,.hero-btns .btn-lg{flex:1 1 0;min-width:0;padding:12px 8px;font-size:clamp(13px,1.9svh,15px);text-align:center;white-space:normal;line-height:1.15}
+  .glass{padding:12px 16px;border-radius:20px}
+  .glass-h{font-size:clamp(19px,3svh,24px);gap:10px}
+  .dot{width:10px;height:10px;box-shadow:0 0 0 4px rgba(143,209,79,.3)}
+  .glass-sub{font-size:10.5px;margin:3px 0 4px}
+  .glass li{font-size:clamp(12.5px,1.9svh,14.5px);padding:clamp(4px,.9svh,7px) 0;gap:10px}
+  .glass li:before{width:20px;height:20px;font-size:11px}
+  .glass-foot{margin-top:6px;font-size:12px}
+  .hero-tabs{margin-top:0}
+  .htab{flex:1 1 auto;font-size:9.5px;letter-spacing:.03em;white-space:nowrap}
+  .htab i{margin-bottom:8px}
+  .hpause{width:32px;height:32px}
+}
 @media (prefers-reduced-motion:reduce){
   *,*:before,*:after{animation:none!important;transition:none!important}
   .js [data-rv]{opacity:1;transform:none}
