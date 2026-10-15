@@ -236,12 +236,21 @@
 
   /* contact form → WhatsApp (sitio estático, sin backend) */
   var f = document.getElementById("cform"), st = document.getElementById("fstatus");
+  var cauth = document.getElementById("cauth");
+  if (cauth) cauth.addEventListener("change", function () { if (cauth.checked) { cauth.removeAttribute("aria-invalid"); if (st.classList.contains("err")) { st.className = "fstatus"; st.textContent = ""; } } });
   if (f) f.addEventListener("submit", function (e) {
     e.preventDefault();
     if (!f.reportValidity()) return;
     var d = { nombre: f.nombre.value.trim(), empresa: f.empresa.value.trim(), telefono: f.telefono.value.trim(), servicio: f.servicio.value, mensaje: f.mensaje.value.trim(), website: f.website.value };
     if (d.website) return; /* honeypot */
-    var t = "Hola ECODESA, soy " + d.nombre + (d.empresa ? " (" + d.empresa + ")" : "") + ".\nSector: " + (d.servicio || "—") + "\nTeléfono: " + d.telefono + "\n" + d.mensaje;
+    var au = document.getElementById("cauth");
+    if (au && !au.checked) {
+      au.setAttribute("aria-invalid", "true");
+      st.className = "fstatus err"; st.textContent = "Para enviar su solicitud debe autorizar el tratamiento de sus datos personales.";
+      au.focus(); st.scrollIntoView({ block: "nearest" }); track("form_sin_autorizacion");
+      return;
+    }
+    var t = "Hola ECODESA, soy " + d.nombre + (d.empresa ? " (" + d.empresa + ")" : "") + ".\nSector: " + (d.servicio || "—") + "\nTeléfono: " + d.telefono + "\n" + d.mensaje + "\nAutorizo el tratamiento de mis datos personales (Política de Datos v1.0, 15/10/2026).";
     window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(t), "_blank", "noopener");
     st.className = "fstatus ok"; st.textContent = "Abrimos WhatsApp con tu solicitud lista para enviar.";
     track("form_whatsapp_submit");

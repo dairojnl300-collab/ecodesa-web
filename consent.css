@@ -1,0 +1,43 @@
+/* Banner y panel de cookies — ECODESA v1.0 */
+.ck{position:fixed;z-index:200;left:20px;bottom:20px;width:min(760px,calc(100% - 40px));background:var(--card,#fff);color:var(--ink,#0f2416);border:1px solid var(--line,#e3e9df);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.28);font:400 14.5px/1.5 var(--fb,system-ui,sans-serif);padding:18px 20px;max-height:calc(100svh - 40px);overflow-y:auto;overscroll-behavior:contain}
+.ck[hidden]{display:none}
+.ck p{margin:0}
+.ck a{color:var(--gd,#2E6B1F);text-decoration:underline;text-underline-offset:2px}
+.ck-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.ck-b{min-height:44px;padding:0 20px;border-radius:40px;border:2px solid var(--g,#76B82A);font:800 15px var(--fh,system-ui,sans-serif);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1.1}
+.ck-main{background:var(--g,#76B82A);color:#0f2416;flex:1 1 150px}
+.ck-main:hover{background:var(--g2,#8fd14f)}
+.ck-alt{background:transparent;color:var(--ink,#0f2416);border-color:var(--ink2,#3d4b43);flex:1 1 150px}
+.ck-alt:hover{background:var(--chip,#e8f2dc)}
+.ck button:focus-visible,.ck input:focus-visible,.ck a:focus-visible{outline:3px solid var(--ink,#0f2416);outline-offset:2px;box-shadow:0 0 0 5px var(--g2,#8fd14f)}
+[data-theme=dark] .ck button:focus-visible,[data-theme=dark] .ck input:focus-visible,[data-theme=dark] .ck a:focus-visible{outline-color:#fff}
+.ck h2{font:800 20px/1.2 var(--fh,system-ui,sans-serif);margin:0 0 6px}
+.ck h2:focus{outline:none}
+.ck-intro{color:var(--ink2,#3d4b43);margin-bottom:12px}
+.ck-cat{border-top:1px solid var(--line,#e3e9df);padding:12px 0;display:grid;grid-template-columns:1fr auto;gap:4px 14px;align-items:start}
+.ck-cat h3{font:700 15px var(--fh,system-ui,sans-serif);margin:0}
+.ck-cat p{grid-column:1;color:var(--ink2,#3d4b43);font-size:14px}
+.ck-cat .ck-ctl{grid-column:2;grid-row:1 / span 2;align-self:center}
+.ck-always{font:700 13px var(--fh,system-ui,sans-serif);color:var(--gd,#2E6B1F);background:var(--chip,#e8f2dc);padding:6px 10px;border-radius:20px;white-space:nowrap}
+.ck-sw{position:relative;display:inline-block;width:52px;height:44px}
+.ck-sw input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer;z-index:2}
+.ck-sw span{position:absolute;left:0;top:50%;width:52px;height:28px;margin-top:-14px;border-radius:14px;background:#5f6d64;transition:background .2s}
+.ck-sw span:after{content:"";position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .2s}
+.ck-sw input:checked+span{background:#2E6B1F}
+.ck-sw input:checked+span:after{transform:translateX(24px)}
+.ck-sw input:focus-visible+span{outline:3px solid var(--ink,#0f2416);outline-offset:3px;box-shadow:0 0 0 6px var(--g2,#8fd14f)}
+[data-theme=dark] .ck-sw span{background:#7b8a80}
+[data-theme=dark] .ck-sw input:checked+span{background:#4f9a2e}
+[data-theme=dark] .ck-sw input:focus-visible+span{outline-color:#fff}
+.ck-note{font-size:13.5px;color:var(--ink2,#3d4b43);margin-top:4px}
+.ck-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:no-preference){.ck:not([hidden]){animation:ckin .3s ease-out}@keyframes ckin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
+@media (prefers-reduced-motion:reduce){.ck-sw span,.ck-sw span:after{transition:none}}
+@media (max-width:640px){
+  .ck{left:0;right:0;bottom:0;width:100%;border-radius:16px 16px 0 0;border-width:1px 0 0;padding:12px 14px calc(12px + env(safe-area-inset-bottom));font-size:13px;line-height:1.4;max-height:88svh}
+  .ck-btns{gap:8px;margin-top:10px}
+  .ck-b{padding:0 10px;font-size:14px;flex:1 1 40%}
+  .ck-btns .ck-conf{flex:1 1 100%}
+  .ck h2{font-size:18px}
+  .ck-panel .ck-b{flex:1 1 100%}
+}
