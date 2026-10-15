@@ -4,13 +4,21 @@
   window.__v2 = true;
   var WA = "573246886824";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* Conversion de Google Ads: clic a WhatsApp / envio del formulario. Solo con publicidad aceptada. */
+  var ADS_WA = ""; /* pegar aqui "AW-18359649271/ETIQUETA" de la conversion creada en Google Ads */
+  var adsConv = function () {
+    try {
+      var c = JSON.parse(localStorage.getItem("ecodesa-consent") || "null");
+      if (ADS_WA && c && c.ads === true && window.ecodesaGoogleLoaded && typeof gtag === "function") gtag("event", "conversion", { send_to: ADS_WA });
+    } catch (e) {}
+  };
   var track = function (label) { if (window.ecodesaGoogleLoaded && typeof gtag === "function") gtag("event", "click", { event_category: "engagement", event_label: label, value: 1 }); };
 
   /* WhatsApp links with prefilled text */
   document.querySelectorAll("[data-wa]").forEach(function (a) {
     a.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(a.getAttribute("data-wa"));
     a.target = "_blank"; a.rel = "noopener";
-    a.addEventListener("click", function () { track("whatsapp_contact_click"); });
+    a.addEventListener("click", function () { track("whatsapp_contact_click"); adsConv(); });
   });
 
   /* nav */
@@ -251,6 +259,6 @@
     var t = "Hola ECODESA, soy " + d.nombre + (d.empresa ? " (" + d.empresa + ")" : "") + ".\nSector: " + (d.servicio || "—") + "\nTeléfono: " + d.telefono + "\n" + d.mensaje + "\nAutorizo el tratamiento de mis datos personales para responder mi solicitud y cotizar (Política de Datos v1.1, 15/10/2026).\nInformación comercial: " + (mk && mk.checked ? "SÍ" : "NO");
     window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(t), "_blank", "noopener");
     st.className = "fstatus ok"; st.textContent = "Abrimos WhatsApp con tu solicitud lista para enviar.";
-    track("form_whatsapp_submit");
+    track("form_whatsapp_submit"); adsConv();
   });
 })();
