@@ -155,11 +155,10 @@
       g.appendChild(el); arrows.push([s, el]);
     });
     var goal = document.getElementById("routeGoal");
-    var upd = function () {
+    var rTgt = 0, rCur = 0, rRaf = 0;
+    var draw = function (p) {
       var r = route.getBoundingClientRect(), vh = innerHeight;
       var vertical = getComputedStyle(svg).display === "none";
-      /* escritorio: ventana de scroll fija; móvil: el avance sigue la altura real de la lista */
-      var p = reduce ? 1 : Math.min(1, Math.max(0, vertical ? (vh * 0.65 - r.top) / Math.max(1, r.height) : (vh * 0.5 - r.top) / (vh * 0.5)));
       var d = L * p;
       route.style.setProperty("--p", p.toFixed(3));
       line.style.strokeDashoffset = (L - d).toFixed(1);
@@ -184,7 +183,22 @@
       }
       stops.forEach(function (s, i) { s.classList.toggle("on", vertical ? p >= i / stops.length + 0.05 : d >= loopEnd[i] - 2 * Math.PI * R * 0.5); });
     };
-    window.addEventListener("scroll", upd, { passive: true }); window.addEventListener("resize", upd); upd();
+    /* avance lento: el recorrido necesita casi un alto de pantalla de scroll y se suaviza con inercia */
+    var rTarget = function () {
+      var r = route.getBoundingClientRect(), vh = innerHeight;
+      var vertical = getComputedStyle(svg).display === "none";
+      if (reduce) return 1;
+      return Math.min(1, Math.max(0, vertical ? (vh * 0.7 - r.top) / Math.max(1, r.height * 1.15) : (vh * 0.68 - r.top) / (vh * 1.05)));
+    };
+    var rTick = function () {
+      rRaf = 0;
+      var diff = rTgt - rCur;
+      if (reduce || Math.abs(diff) < 0.0008) rCur = rTgt; else rCur += diff * 0.045;
+      draw(rCur);
+      if (rCur !== rTgt) rRaf = requestAnimationFrame(rTick);
+    };
+    var upd = function () { rTgt = rTarget(); if (!rRaf) rRaf = requestAnimationFrame(rTick); };
+    window.addEventListener("scroll", upd, { passive: true }); window.addEventListener("resize", upd); rTgt = rTarget(); rCur = rTgt; draw(rCur);
   }
 
   /* digital: pestañas que cambian las pantallas de ejemplo */
