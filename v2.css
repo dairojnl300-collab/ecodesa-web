@@ -874,3 +874,15 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
 .phone{transform:rotate(8deg) translateX(-4%);right:1%;bottom:2%;box-shadow:0 22px 22px -12px rgba(0,0,0,.65),0 8px 12px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.3)}
 .stage:after{background:radial-gradient(ellipse at center,rgba(0,0,0,.35),rgba(0,0,0,0) 66%);filter:blur(8px)}
 @media (max-width:640px){.tablet{transform:rotate(-8deg) translateX(4%)}.phone{transform:translateX(-8%) rotate(7deg)}}
+/* ===== flotabilidad visible ===== */
+.tablet{--b:rotate(-9deg) translateX(3%)}
+.phone{--b:rotate(8deg) translateX(-4%)}
+@media (max-width:640px){.tablet{--b:rotate(-8deg) translateX(4%)}.phone{--b:translateX(-8%) rotate(7deg)}}
+@keyframes flT{0%,100%{transform:translateY(0) var(--b)}50%{transform:translateY(-18px) var(--b)}}
+@keyframes flL{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes flS{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.86);opacity:.6}}
+.tablet{animation:flT 5.5s ease-in-out infinite}
+.phone{animation:flT 4.6s ease-in-out -1.8s infinite}
+.laptop{animation:flL 6.5s ease-in-out -.8s infinite}
+.stage:after{animation:flS 5.5s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.tablet,.phone,.laptop,.stage:after{animation:none}}
