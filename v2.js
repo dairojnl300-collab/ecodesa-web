@@ -97,8 +97,6 @@
     pBtn.textContent = paused ? "▶" : "❚❚";
     if (paused) clearTimeout(timer); else show(cur);
   });
-  var buy = document.getElementById("buyPsb");
-  if (buy) buy.addEventListener("click", function () { track("psb_buy_click"); });
   show(0);
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) clearTimeout(timer); else if (!paused) show(cur);
