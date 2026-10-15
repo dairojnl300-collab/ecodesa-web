@@ -211,6 +211,15 @@
     dshow(0);
   }
 
+  /* vitrina: duplicar piezas para carrusel infinito */
+  var adrow = document.getElementById("adrow");
+  if (adrow) {
+    Array.prototype.slice.call(adrow.children).forEach(function (n) {
+      var c = n.cloneNode(true); c.removeAttribute("data-rv"); c.classList.add("is-in"); c.setAttribute("aria-hidden", "true"); adrow.appendChild(c);
+    });
+    if (reduce) adrow.style.animation = "none";
+  }
+
   /* video tracking */
   var v = document.getElementById("promo");
   if (v) v.addEventListener("play", function () { track("video_play"); }, { once: true });

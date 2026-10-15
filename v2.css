@@ -500,11 +500,21 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
 .vit-head h3{font:900 clamp(28px,3.6vw,46px)/1.05 var(--fh);letter-spacing:-.02em}
 .vit-head h3 em{font-style:normal;color:var(--g)}
 .vit-head p{max-width:420px;color:rgba(255,255,255,.75)}
-.adrow{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.adwrap{overflow:hidden;margin:0 -16px;padding:14px 16px 24px;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.adrow{display:flex;gap:18px;width:max-content;animation:adscroll 48s linear infinite}
+.adwrap:hover .adrow{animation-play-state:paused}
+@keyframes adscroll{to{transform:translateX(calc(-50% - 9px))}}
+.adrow .adcard{width:clamp(220px,20vw,300px);flex:none}
+.bt figcaption b{font-style:italic;font-weight:900;letter-spacing:-.02em;transform-origin:left}
+.bt figcaption b i{font-style:italic;font-weight:600}
+.w5 figcaption{top:9%}.w5 figcaption b{color:#fff}
+.w6 figcaption{top:9%}.w6 figcaption b{color:#fff}
+.w7 figcaption{top:7%;text-align:center}.w7 figcaption b{color:#fff;font-size:clamp(34px,3.4vw,52px)}
+.w8 figcaption{top:auto;bottom:22%}.w8 figcaption b{color:#fff}
 .adcard{position:relative;margin:0;aspect-ratio:9/16;border-radius:22px;overflow:hidden;background:#111;box-shadow:0 30px 60px rgba(0,0,0,.3);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
 .adcard:hover{transform:translateY(-10px) rotate(-.6deg);box-shadow:0 40px 80px rgba(0,0,0,.4)}
 .ad-img{position:absolute;inset:0;background:center/cover;transform:scale(1.08);animation:adkb 12s ease-in-out infinite alternate}
-.adcard:nth-child(2) .ad-img{animation-delay:-3s}.adcard:nth-child(3) .ad-img{animation-delay:-6s}.adcard:nth-child(4) .ad-img{animation-delay:-9s}
+.adcard:nth-child(2n) .ad-img{animation-delay:-3s}.adcard:nth-child(3) .ad-img{animation-delay:-6s}.adcard:nth-child(4) .ad-img{animation-delay:-9s}
 @keyframes adkb{to{transform:scale(1.2) translateY(-2%)}}
 .adcard:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 30%,transparent 62%,rgba(0,0,0,.55))}
 .ad-ui{position:absolute;inset:12px 12px auto;z-index:2;display:grid;gap:8px}
@@ -525,7 +535,7 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
 .vit-note{margin-top:16px;font-size:13px;color:rgba(255,255,255,.55)}
 :root:not([data-theme=dark]) .vit-head p{color:var(--ink2)}
 :root:not([data-theme=dark]) .vit-note{color:var(--ink2)}
-@media (max-width:900px){.vit-head{flex-direction:column;align-items:flex-start}.adrow{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:62vw;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px}.adcard{scroll-snap-align:start}}
+@media (max-width:900px){.vit-head{flex-direction:column;align-items:flex-start}.adrow .adcard{width:60vw}.adrow{animation-duration:36s}}
 
 /* reveal */
 .js [data-rv]{opacity:0;transform:translateY(40px)}
