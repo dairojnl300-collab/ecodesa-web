@@ -250,9 +250,7 @@
       au.focus(); st.scrollIntoView({ block: "nearest" }); track("form_sin_autorizacion");
       return;
     }
-    var t = "Hola ECODESA, soy " + d.nombre + (d.empresa ? " (" + d.empresa + ")" : "") + ".\nSector: " + (d.servicio || "—") + "\nTeléfono: " + d.telefono + "\n" + d.mensaje + "
-Autorizo el tratamiento de mis datos personales para responder mi solicitud y cotizar (Política de Datos v1.1, 15/10/2026).
-Información comercial: " + (mk && mk.checked ? "SÍ" : "NO");
+    var t = "Hola ECODESA, soy " + d.nombre + (d.empresa ? " (" + d.empresa + ")" : "") + ".\nSector: " + (d.servicio || "—") + "\nTeléfono: " + d.telefono + "\n" + d.mensaje + "\nAutorizo el tratamiento de mis datos personales para responder mi solicitud y cotizar (Política de Datos v1.1, 15/10/2026).\nInformación comercial: " + (mk && mk.checked ? "SÍ" : "NO");
     window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(t), "_blank", "noopener");
     st.className = "fstatus ok"; st.textContent = "Abrimos WhatsApp con tu solicitud lista para enviar.";
     track("form_whatsapp_submit");
