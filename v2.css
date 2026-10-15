@@ -859,3 +859,6 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
 .stage{aspect-ratio:1.42}
 .laptop{width:76%;left:12%}
 @media (max-width:640px){.stage{aspect-ratio:1.02}.laptop{width:88%;left:6%}}
+.stage{aspect-ratio:1.32}
+.laptop{width:70%;left:15%}
+@media (max-width:640px){.stage{aspect-ratio:1.02}.laptop{width:88%;left:6%}}
