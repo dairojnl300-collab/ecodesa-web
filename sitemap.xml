@@ -7,13 +7,13 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://ecodesa.co/datos</loc>
+    <loc>https://ecodesa.co/datos/</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://ecodesa.co/cookies</loc>
+    <loc>https://ecodesa.co/cookies/</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

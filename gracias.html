@@ -1,26 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" class="no-js">
 <head>
-  <!-- Google tag (gtag.js) + Consent Mode v2 -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
-    try{var c=JSON.parse(localStorage.getItem('ecodesa-consent')||'null');if(c&&c.v==='1.0'){gtag('consent','update',{analytics_storage:c.analytics?'granted':'denied',ad_storage:c.ads?'granted':'denied',ad_user_data:c.ads?'granted':'denied',ad_personalization:c.ads?'granted':'denied'});}}catch(e){}
-    gtag('js', new Date());
-    gtag('config', 'AW-18359649271');
-    gtag('config', 'G-NZR1GJPMJD');
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18359649271"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZR1GJPMJD"></script>
-  <script>
-    gtag('event', 'conversion', {
-        'send_to': 'AW-18359649271/mpqnCMLk7docEPeHyLJE',
-        'value': 1.0,
-        'currency': 'COP',
-        'transaction_id': ''
-    });
-  </script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>¡Gracias por tu compra! — ECODESA</title>
@@ -43,9 +24,7 @@
     })();
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
+  <link rel="stylesheet" href="/assets/fonts/fonts-old.css">
 
   <link rel="stylesheet" href="styles.css?v=20260725a">
   <style>
@@ -58,7 +37,7 @@
     .thanks-support{margin-top:1.75rem;font-size:.9rem;color:var(--muted);}
     .thanks-support a{color:var(--accent-2);}
   </style>
-  <link rel="stylesheet" href="consent.css?v=20261015a">
+  <link rel="stylesheet" href="consent.css?v=20261015b">
 </head>
 <body>
   <main class="thanks-wrap">
@@ -67,15 +46,25 @@
         <circle cx="12" cy="12" r="10"/>
         <path d="M8 12.5l2.5 2.5L16 9.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <h1>¡Pago confirmado!</h1>
-      <p>Gracias por tu compra. Tu Plan de Saneamiento Básico (PSB) v2.0 está listo para descargar.</p>
+      <h1>¡Gracias por tu compra!</h1>
+      <p>Recibirás el enlace de descarga de tu Plan de Saneamiento Básico (PSB) v2.0 de forma privada. Escríbenos por WhatsApp con tu comprobante de pago y te lo enviamos.</p>
       <div class="thanks-actions">
-        <a class="btn btn-solid magnetic" href="downloads/plan-saneamiento-basico-psb.docx" download><span class="btn-text">Descargar documento PSB</span></a>
+        <a class="btn btn-solid magnetic" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20realic%C3%A9%20el%20pago%20del%20PSB%20y%20necesito%20el%20enlace%20de%20descarga" target="_blank" rel="noopener"><span class="btn-text">Pedir mi enlace por WhatsApp</span></a>
       </div>
-      <p class="thanks-support">¿No se descargó o tienes dudas? Escríbenos por <a href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20realic%C3%A9%20el%20pago%20del%20PSB%20y%20necesito%20el%20documento" target="_blank" rel="noopener">WhatsApp</a>, con el comprobante de pago a la mano.</p>
+      <p class="thanks-support">¿Tienes dudas? Escríbenos por <a href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20realic%C3%A9%20el%20pago%20del%20PSB%20y%20necesito%20el%20documento" target="_blank" rel="noopener">WhatsApp</a>, con el comprobante de pago a la mano.</p>
     </div>
   </main>
-  <p class="thanks-legal" style="text-align:center;padding:0 1rem 1.5rem;font-size:.85rem"><a href="/datos">Política de datos</a> · <a href="/cookies">Política de cookies</a> · <button type="button" class="linkbtn" data-consent-open>Configurar cookies</button></p>
-  <script src="consent.js?v=20261015a" defer></script>
+  <p class="thanks-legal" style="text-align:center;padding:0 1rem 1.5rem;font-size:.85rem"><a href="/datos/">Política de datos</a> · <a href="/cookies/">Política de cookies</a> · <button type="button" class="linkbtn" data-consent-open>Configurar cookies</button></p>
+  <script src="/consent.js?v=20261015b" defer></script>
+  <script>
+    /* Conversion de Ads: solo con ad_storage concedido; una vez por sesion */
+    (function(){
+      function fire(){
+        try{ if(sessionStorage.getItem('ecodesa-conv')) return; sessionStorage.setItem('ecodesa-conv','1'); }catch(e){}
+        gtag('event','conversion',{send_to:'AW-18359649271/mpqnCMLk7docEPeHyLJE',value:1.0,currency:'COP',transaction_id:''});
+      }
+      document.addEventListener('DOMContentLoaded',function(){ window.ecodesaConsent && window.ecodesaConsent.onAds(fire); });
+    })();
+  </script>
 </body>
 </html>

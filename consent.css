@@ -41,3 +41,4 @@
   .ck h2{font-size:18px}
   .ck-panel .ck-b{flex:1 1 100%}
 }
+.ck-banner:focus{outline:2px solid #2E6B1F;outline-offset:2px}.ck-banner:focus:not(:focus-visible){outline:none}
