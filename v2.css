@@ -338,8 +338,8 @@ h2 em{font-style:normal;color:var(--g)}
 @media (max-width:1100px){
   .route-svg,.route-car{display:none}
   .route{padding-left:44px}
-  .route:before{content:"";position:absolute;left:31px;top:0;bottom:0;width:4px;border-radius:4px;background:repeating-linear-gradient(var(--line) 0 4px,transparent 4px 14px)}
-  .route:after{content:"";position:absolute;left:31px;top:0;width:4px;height:calc(var(--p,0) * 100%);border-radius:4px;background:var(--g)}
+  .route:before{content:"";position:absolute;left:31px;top:0;bottom:0;width:4px;background:repeating-linear-gradient(var(--line) 0 18px,transparent 18px 30px)}
+  .route:after{content:"";position:absolute;left:31px;top:0;width:4px;height:calc(var(--p,0) * 100%);background:repeating-linear-gradient(var(--g) 0 18px,transparent 18px 30px);filter:drop-shadow(0 4px 8px rgba(118,184,42,.35))}
   .steps{position:relative;inset:auto;display:grid;grid-template-columns:1fr!important;margin-top:0;gap:26px}
   .stop{flex-direction:row;align-items:flex-start;gap:18px;margin-left:-44px}
   .route .pin{position:relative;margin:0;flex:none;left:auto!important;top:auto!important}

@@ -159,11 +159,12 @@
     var goal = document.getElementById("routeGoal");
     var upd = function () {
       var r = route.getBoundingClientRect(), vh = innerHeight;
-      var p = reduce ? 1 : Math.min(1, Math.max(0, (vh * 0.5 - r.top) / (vh * 0.5)));
+      var vertical = getComputedStyle(svg).display === "none";
+      /* escritorio: ventana de scroll fija; móvil: el avance sigue la altura real de la lista */
+      var p = reduce ? 1 : Math.min(1, Math.max(0, vertical ? (vh * 0.65 - r.top) / Math.max(1, r.height) : (vh * 0.5 - r.top) / (vh * 0.5)));
       var d = L * p;
       route.style.setProperty("--p", p.toFixed(3));
       line.style.strokeDashoffset = (L - d).toFixed(1);
-      var vertical = getComputedStyle(svg).display === "none";
       if (!vertical) {
         var sr = svg.getBoundingClientRect(), rr = route.getBoundingClientRect(), k = sr.width / VW;
         var X = function (x) { return sr.left - rr.left + x * k + "px"; }, Y = function (y) { return sr.top - rr.top + y * k + "px"; };
