@@ -366,6 +366,7 @@ h2 em{font-style:normal;color:var(--g)}
 .cform .chk{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start;font:400 13.5px/1.45 var(--fb);color:var(--ink2);cursor:pointer}
 .cform .chk input{width:24px;height:24px;margin:0;padding:0;accent-color:#2E6B1F;cursor:pointer}
 .cform .chk input[aria-invalid=true]{outline:3px solid #b42318;outline-offset:2px}
+.cform .chk .req{font-weight:600;color:var(--ink)}
 .cform .chk a{color:var(--gd);text-underline-offset:2px}
 .fnote{font-size:13px;color:var(--ink2);line-height:1.4}
 [data-theme=dark] .fstatus.err{color:#fdba74}

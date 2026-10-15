@@ -1,3 +1,13 @@
 ._*
 .DS_Store
 .worktrees/
+
+# Internos / de pago: no publicar (Pages sirve la raiz)
+/CLAUDE.md
+/revision-visual-*.md
+/entrega-*.md
+/auditoria-*.md
+/downloads/
+/templates/
+/.claude/
+*.docx

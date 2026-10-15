@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
-    try{var c=JSON.parse(localStorage.getItem('ecodesa-consent')||'null');if(c&&c.v==='1.0'){gtag('consent','update',{analytics_storage:c.analytics?'granted':'denied',ad_storage:c.ads?'granted':'denied',ad_user_data:c.ads?'granted':'denied',ad_personalization:c.ads?'granted':'denied'});}}catch(e){}
-    gtag('js', new Date());
-    gtag('config', 'AW-18359649271');
-    gtag('config', 'G-NZR1GJPMJD');
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18359649271"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZR1GJPMJD"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});</script>
   <script>(function(){var t;try{t=localStorage.getItem('ecodesa-theme')}catch(e){}if(!t){var hr=new Date().getHours();t=hr>=6&&hr<18?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})();document.documentElement.classList.add('js');setTimeout(function(){if(!window.__v2)document.documentElement.classList.remove('js')},3500)</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +20,7 @@
   <meta property="og:image" content="https://ecodesa.co/assets/v2/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="ECODESA — Ecología Desarrollo e Ingeniería S.A.S">
+  <meta property="og:image:alt" content="ECODESA INGENIERÍA S.A.S.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://ecodesa.co/assets/v2/og-image.jpg">
 
@@ -39,7 +28,7 @@
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "ECODESA — Ecología Desarrollo e Ingeniería S.A.S",
+    "name": "ECODESA INGENIERÍA S.A.S.",
     "alternateName": "ECODESA",
     "description": "Gestión ambiental, SG-SST, saneamiento básico, BPM y gestión del riesgo de desastres para restaurantes, hoteles, comercio, industria, puertos y construcción.",
     "url": "https://ecodesa.co/",
@@ -57,12 +46,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png">
   <link rel="shortcut icon" href="assets/logo/favicon.ico">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600&display=swap">
+  <link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="preload" as="image" href="assets/v2/sec-restaurantes.webp" fetchpriority="high">
-  <link rel="stylesheet" href="v2.css?v=20261015a">
-  <link rel="stylesheet" href="consent.css?v=20261015a">
+  <link rel="stylesheet" href="v2.css?v=20261015c">
+  <link rel="stylesheet" href="consent.css?v=20261015c">
 </head>
 <body>
   <a class="skip" href="#main">Saltar al contenido</a>
@@ -341,7 +329,7 @@
           </details>
           <details class="mvv-i" name="mvv">
             <summary>Visión</summary>
-            <p>Para 2032, ECODESA Ingeniería SAS será una empresa reconocida nacionalmente por liderar la transformación digital del cumplimiento ambiental y la gestión de riesgos, convirtiendo regulaciones complejas en procesos ágiles, precisos y rentables que permitan a las organizaciones anticipar amenazas ambientales y ocupacionales antes de que impacten sus operaciones, comunidades y sostenibilidad.</p>
+            <p>Para 2032, ECODESA INGENIERÍA S.A.S. será una empresa reconocida nacionalmente por liderar la transformación digital del cumplimiento ambiental y la gestión de riesgos, convirtiendo regulaciones complejas en procesos ágiles, precisos y rentables que permitan a las organizaciones anticipar amenazas ambientales y ocupacionales antes de que impacten sus operaciones, comunidades y sostenibilidad.</p>
           </details>
           <details class="mvv-i" name="mvv">
             <summary>Valores</summary>
@@ -575,7 +563,8 @@
           </label>
           <label>Mensaje *<textarea name="mensaje" required rows="4" placeholder="¿Qué necesitas?"></textarea></label>
           <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <label class="chk" for="cauth"><input type="checkbox" id="cauth" name="autoriza" aria-required="true" aria-describedby="fstatus"><span>Autorizo a ECODESA INGENIERÍA S.A.S. a tratar mis datos personales para responder mi solicitud, cotizar y contactarme sobre sus servicios, y a enviarme información de sus servicios (puedo darme de baja cuando quiera), según la <a href="/datos" target="_blank" rel="noopener">Política de Tratamiento de Datos</a>. Entiendo que, al enviar, se abrirá WhatsApp con mi mensaje ya armado y que este sitio no guarda esos datos en un servidor propio.</span></label>
+          <label class="chk" for="cauth"><input type="checkbox" id="cauth" name="autoriza" aria-required="true" aria-describedby="fstatus"><span>Autorizo a ECODESA INGENIERÍA S.A.S. a tratar mis datos personales (nombre, empresa, teléfono, sector y mensaje) para <b>responder mi solicitud, cotizar y contactarme por esta solicitud</b>, según la <a href="/datos/" target="_blank" rel="noopener">Política de Tratamiento de Datos</a>. Entiendo que, al enviar, se abrirá WhatsApp con mi mensaje ya armado, y que este sitio no guarda esos datos en un servidor propio. <b class="req">(Obligatorio)</b></span></label>
+          <label class="chk" for="cmkt"><input type="checkbox" id="cmkt" name="comercial"><span>Quiero recibir información comercial y novedades de los servicios de ECODESA INGENIERÍA S.A.S. Puedo darme de baja cuando quiera escribiendo "BAJA" por el mismo chat o a ecodesaingenieria@outlook.es. <b class="req">(Opcional)</b></span></label>
           <button class="btn btn-green btn-lg" type="submit">Enviar solicitud</button>
           <p class="fnote">Responsable: ECODESA INGENIERÍA S.A.S. Puede ejercer sus derechos únicamente en ecodesaingenieria@outlook.es.</p>
           <p class="fstatus" id="fstatus" role="status" aria-live="polite"></p>
@@ -588,7 +577,7 @@
     <div class="wrap foot-grid">
       <div>
         <img src="assets/v2/wordmark-white.svg" alt="ECODESA" width="180" height="33">
-        <p>Ecología Desarrollo e Ingeniería S.A.S.<br>Fundada en Cartagena de Indias.</p>
+        <p>ECODESA INGENIERÍA S.A.S.<br>Fundada en Cartagena de Indias.</p>
       </div>
       <nav aria-label="Sectores">
         <a href="#sectores">Restaurantes</a><a href="#sectores">Hoteles</a><a href="#sectores">Comercio</a><a href="#sectores">Industria</a><a href="#sectores">Puertos</a><a href="#sectores">Construcción</a>
@@ -605,7 +594,7 @@
     <div class="wrap foot-c">
       <p>© 2026 ECODESA INGENIERÍA S.A.S. · NIT 901821530-3 · Cartagena de Indias, Colombia</p>
       <p>Consultas y reclamos de datos personales: <a href="mailto:ecodesaingenieria@outlook.es">ecodesaingenieria@outlook.es</a></p>
-      <nav class="foot-legal" aria-label="Legal"><a href="/datos">Política de datos</a><a href="/cookies">Política de cookies</a><button type="button" class="linkbtn" data-consent-open>Configurar cookies</button></nav>
+      <nav class="foot-legal" aria-label="Legal"><a href="/datos/">Política de datos</a><a href="/cookies/">Política de cookies</a><button type="button" class="linkbtn" data-consent-open>Configurar cookies</button></nav>
     </div>
   </footer>
 
@@ -616,7 +605,7 @@
 
   <script src="lib/gsap.min.js" defer></script>
   <script src="lib/ScrollTrigger.min.js" defer></script>
-  <script src="v2.js?v=20261015a" defer></script>
-  <script src="consent.js?v=20261015a" defer></script>
+  <script src="v2.js?v=20261015c" defer></script>
+  <script src="consent.js?v=20261015c" defer></script>
 </body>
 </html>
