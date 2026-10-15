@@ -190,19 +190,13 @@
   /* digital: pestañas que cambian las pantallas de ejemplo */
   var dtabs = document.querySelectorAll(".dtab"), stage = document.getElementById("stage");
   if (dtabs.length && stage) {
-    (function () {
-      var lap = stage.querySelector(".lap-screen"), body = stage.querySelector(".mon-body");
-      if (lap && body) { var m = lap.cloneNode(true); m.classList.add("mon-screen"); var u = m.querySelector("#lapUrl"); if (u) { u.removeAttribute("id"); u.className = "monUrl"; } body.appendChild(m); }
-    })();
-    var monS = stage.querySelectorAll(".mon-screen .scr"), lapS = stage.querySelectorAll(".laptop .lap-screen .scr"), phS = stage.querySelectorAll(".ph-screen .scr"), tbS = stage.querySelectorAll(".tab-screen .scr"), url = document.getElementById("lapUrl");
+    var lapS = stage.querySelectorAll(".lap-screen .scr"), phS = stage.querySelectorAll(".ph-screen .scr"), tbS = stage.querySelectorAll(".tab-screen .scr"), url = document.getElementById("lapUrl");
     var dsec = document.getElementById("digital"), ddesc = document.getElementById("digDesc"), dcur = 0, dt, DD = 4500, hold = false, inView = !("IntersectionObserver" in window);
     document.documentElement.style.setProperty("--dd", DD / 1000 + "s");
     var dshow = function (i) {
       dcur = i;
       dtabs.forEach(function (t, k) { t.classList.toggle("on", k === i); t.setAttribute("aria-pressed", k === i); var b = t.querySelector("i"); b.style.animation = "none"; void b.offsetWidth; b.style.animation = ""; });
       lapS.forEach(function (s, k) { s.classList.toggle("on", k === i); });
-      monS.forEach(function (s, k) { s.classList.toggle("on", k === i); });
-      var mu = stage.querySelector(".monUrl"); if (mu) mu.textContent = lapS[i].getAttribute("data-url");
       phS.forEach(function (s, k) { s.classList.toggle("on", k === i); });
       tbS.forEach(function (s, k) { s.classList.toggle("on", k === i); });
       url.textContent = lapS[i].getAttribute("data-url");
