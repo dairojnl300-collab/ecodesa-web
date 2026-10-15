@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="es" class="no-js">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18359649271"></script>
+  <!-- Google tag (gtag.js) + Consent Mode v2 -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
+    try{var c=JSON.parse(localStorage.getItem('ecodesa-consent')||'null');if(c&&c.v==='1.0'){gtag('consent','update',{analytics_storage:c.analytics?'granted':'denied',ad_storage:c.ads?'granted':'denied',ad_user_data:c.ads?'granted':'denied',ad_personalization:c.ads?'granted':'denied'});}}catch(e){}
     gtag('js', new Date());
     gtag('config', 'AW-18359649271');
-  </script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZR1GJPMJD"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
     gtag('config', 'G-NZR1GJPMJD');
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18359649271"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZR1GJPMJD"></script>
   <script>
     gtag('event', 'conversion', {
         'send_to': 'AW-18359649271/mpqnCMLk7docEPeHyLJE',
@@ -62,6 +58,7 @@
     .thanks-support{margin-top:1.75rem;font-size:.9rem;color:var(--muted);}
     .thanks-support a{color:var(--accent-2);}
   </style>
+  <link rel="stylesheet" href="consent.css?v=20261015a">
 </head>
 <body>
   <main class="thanks-wrap">
@@ -78,5 +75,7 @@
       <p class="thanks-support">¿No se descargó o tienes dudas? Escríbenos por <a href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20realic%C3%A9%20el%20pago%20del%20PSB%20y%20necesito%20el%20documento" target="_blank" rel="noopener">WhatsApp</a>, con el comprobante de pago a la mano.</p>
     </div>
   </main>
+  <p class="thanks-legal" style="text-align:center;padding:0 1rem 1.5rem;font-size:.85rem"><a href="/datos">Política de datos</a> · <a href="/cookies">Política de cookies</a> · <button type="button" class="linkbtn" data-consent-open>Configurar cookies</button></p>
+  <script src="consent.js?v=20261015a" defer></script>
 </body>
 </html>

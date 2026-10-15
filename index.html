@@ -2,14 +2,16 @@
 <html lang="es">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18359649271"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
+    try{var c=JSON.parse(localStorage.getItem('ecodesa-consent')||'null');if(c&&c.v==='1.0'){gtag('consent','update',{analytics_storage:c.analytics?'granted':'denied',ad_storage:c.ads?'granted':'denied',ad_user_data:c.ads?'granted':'denied',ad_personalization:c.ads?'granted':'denied'});}}catch(e){}
     gtag('js', new Date());
     gtag('config', 'AW-18359649271');
     gtag('config', 'G-NZR1GJPMJD');
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18359649271"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZR1GJPMJD"></script>
   <script>(function(){var t;try{t=localStorage.getItem('ecodesa-theme')}catch(e){}if(!t){var hr=new Date().getHours();t=hr>=6&&hr<18?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})();document.documentElement.classList.add('js');setTimeout(function(){if(!window.__v2)document.documentElement.classList.remove('js')},3500)</script>
   <meta charset="UTF-8">
@@ -59,7 +61,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600&display=swap">
   <link rel="preload" as="image" href="assets/v2/sec-restaurantes.webp" fetchpriority="high">
-  <link rel="stylesheet" href="v2.css?v=20261014u">
+  <link rel="stylesheet" href="v2.css?v=20261015a">
+  <link rel="stylesheet" href="consent.css?v=20261015a">
 </head>
 <body>
   <a class="skip" href="#main">Saltar al contenido</a>
@@ -572,7 +575,9 @@
           </label>
           <label>Mensaje *<textarea name="mensaje" required rows="4" placeholder="¿Qué necesitas?"></textarea></label>
           <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label class="chk" for="cauth"><input type="checkbox" id="cauth" name="autoriza" aria-required="true" aria-describedby="fstatus"><span>Autorizo a ECODESA INGENIERÍA S.A.S. a tratar mis datos personales para responder mi solicitud, cotizar y contactarme sobre sus servicios, y a enviarme información de sus servicios (puedo darme de baja cuando quiera), según la <a href="/datos" target="_blank" rel="noopener">Política de Tratamiento de Datos</a>. Entiendo que, al enviar, se abrirá WhatsApp con mi mensaje ya armado y que este sitio no guarda esos datos en un servidor propio.</span></label>
           <button class="btn btn-green btn-lg" type="submit">Enviar solicitud</button>
+          <p class="fnote">Responsable: ECODESA INGENIERÍA S.A.S. Puede ejercer sus derechos únicamente en ecodesaingenieria@outlook.es.</p>
           <p class="fstatus" id="fstatus" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -597,7 +602,11 @@
         <a href="https://instagram.com/ecodesa_ingenieria_sas" target="_blank" rel="noopener">Instagram</a>
       </nav>
     </div>
-    <p class="wrap foot-c">© 2026 Ecología Desarrollo e Ingeniería S.A.S. Todos los derechos reservados.</p>
+    <div class="wrap foot-c">
+      <p>© 2026 ECODESA INGENIERÍA S.A.S. · NIT 901821530-3 · Cartagena de Indias, Colombia</p>
+      <p>Consultas y reclamos de datos personales: <a href="mailto:ecodesaingenieria@outlook.es">ecodesaingenieria@outlook.es</a></p>
+      <nav class="foot-legal" aria-label="Legal"><a href="/datos">Política de datos</a><a href="/cookies">Política de cookies</a><button type="button" class="linkbtn" data-consent-open>Configurar cookies</button></nav>
+    </div>
   </footer>
 
   <a class="fab" data-wa="Hola ECODESA, quiero una cotización." href="https://wa.me/573246886824" aria-label="Escríbenos por WhatsApp">
@@ -607,6 +616,7 @@
 
   <script src="lib/gsap.min.js" defer></script>
   <script src="lib/ScrollTrigger.min.js" defer></script>
-  <script src="v2.js?v=20261014q" defer></script>
+  <script src="v2.js?v=20261015a" defer></script>
+  <script src="consent.js?v=20261015a" defer></script>
 </body>
 </html>
