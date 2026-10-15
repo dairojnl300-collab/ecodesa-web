@@ -780,3 +780,7 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
   .foot nav a{padding:3px 0}
 }
 :root[data-theme=dark] .foot-c .foot-legal a,:root[data-theme=dark] .foot-c .foot-legal .linkbtn{color:rgba(255,255,255,.9)}
+
+/* textos largos justificados */
+.cform .chk span,.cform .fnote,.fnote,.seals-note,.img-note,.vit-note,.also,.foot-c>p,.dig-desc,.sec-lead,.hero-lead,.mvv-i p,.prod p,.steps p,.foot-grid p,.ped p,.cform>p{text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto}
+.seals-note{text-align:justify}
