@@ -193,7 +193,7 @@
   var dtabs = document.querySelectorAll(".dtab"), stage = document.getElementById("stage");
   if (dtabs.length && stage) {
     var lapS = stage.querySelectorAll(".lap-screen .scr"), phS = stage.querySelectorAll(".ph-screen .scr"), url = document.getElementById("lapUrl");
-    var dsec = document.getElementById("digital"), dcur = 0, dt, DD = 4500, hold = false;
+    var dsec = document.getElementById("digital"), ddesc = document.getElementById("digDesc"), dcur = 0, dt, DD = 4500, hold = false, inView = !("IntersectionObserver" in window);
     document.documentElement.style.setProperty("--dd", DD / 1000 + "s");
     var dshow = function (i) {
       dcur = i;
@@ -201,7 +201,8 @@
       lapS.forEach(function (s, k) { s.classList.toggle("on", k === i); });
       phS.forEach(function (s, k) { s.classList.toggle("on", k === i); });
       url.textContent = lapS[i].getAttribute("data-url");
-      clearTimeout(dt); if (!reduce && !hold) dt = setTimeout(function () { dshow((dcur + 1) % dtabs.length); }, DD);
+      if (ddesc) ddesc.textContent = dtabs[i].querySelector("span").textContent;
+      clearTimeout(dt); if (!reduce && !hold && inView) dt = setTimeout(function () { dshow((dcur + 1) % dtabs.length); }, DD);
     };
     dtabs.forEach(function (t, k) {
       t.addEventListener("click", function () { dshow(k); track("digital_tab_" + k); });
@@ -210,6 +211,14 @@
     dsec.addEventListener("mouseenter", function () { hold = true; dsec.classList.add("paused"); clearTimeout(dt); });
     dsec.addEventListener("mouseleave", function () { hold = false; dsec.classList.remove("paused"); dshow(dcur); });
     dshow(0);
+    /* la animación arranca (desde la primera opción) cuando el panel entra en pantalla y se detiene al salir */
+    if ("IntersectionObserver" in window) {
+      var dseen = false;
+      new IntersectionObserver(function (es) {
+        inView = es[0].isIntersecting;
+        if (inView) { dshow(dseen ? dcur : 0); dseen = true; } else clearTimeout(dt);
+      }, { threshold: 0.6 }).observe(stage);
+    }
   }
 
   /* vitrina: duplicar piezas para carrusel infinito */
