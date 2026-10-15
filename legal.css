@@ -35,3 +35,8 @@ body.legal{font-size:17px;line-height:1.65}
 .lfoot nav a,.lfoot .linkbtn{display:inline-flex;align-items:center;min-height:44px}
 .linkbtn{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .lfoot .linkbtn{color:#c7f08a}
+
+/* textos largos justificados */
+.prose p,.prose li,.prose blockquote,.lfoot p{text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto}
+.prose .tscroll td,.prose .tscroll th{text-align:left;hyphens:manual}
+@media (max-width:640px){.prose{font-size:16px;line-height:1.6}.prose li,.prose p{overflow-wrap:break-word}}

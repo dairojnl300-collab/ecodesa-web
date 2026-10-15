@@ -42,3 +42,6 @@
   .ck-panel .ck-b{flex:1 1 100%}
 }
 .ck-banner:focus{outline:2px solid #2E6B1F;outline-offset:2px}.ck-banner:focus:not(:focus-visible){outline:none}
+
+/* textos largos justificados */
+.ck-intro,.ck-note,.ck-cat p,.ck-b-txt,#ckBanner p,.ck-banner p{text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto}
