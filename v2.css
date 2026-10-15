@@ -862,3 +862,19 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
 .stage{aspect-ratio:1.32}
 .laptop{width:70%;left:15%}
 @media (max-width:640px){.stage{aspect-ratio:1.02}.laptop{width:88%;left:6%}}
+/* ===== set de dispositivos tipo estudio (escritorio) ===== */
+.monitor{display:none}
+@media (min-width:641px){
+.stage{aspect-ratio:1.55;margin-bottom:34px}
+.stage:after{left:0;right:0;bottom:0;height:9%;background:radial-gradient(ellipse at center,rgba(8,30,14,.3),rgba(8,30,14,0) 68%)}
+.monitor{display:block;position:absolute;left:55%;top:2%;width:45%;z-index:1}
+.mon-body .lap-screen{border:9px solid #15181a;border-radius:12px;box-shadow:0 30px 60px rgba(0,0,0,.28);aspect-ratio:16/10}
+.mon-neck{width:13%;aspect-ratio:1/.8;margin:-1px auto 0;background:linear-gradient(90deg,#8a918a,#d7dcd5 45%,#8a918a);clip-path:polygon(18% 0,82% 0,100% 100%,0 100%)}
+.mon-foot{width:34%;height:7px;margin:0 auto;border-radius:50%/100%;background:linear-gradient(#cfd4ce,#7f867f);box-shadow:0 8px 14px rgba(0,0,0,.25)}
+.laptop{left:10%;top:auto;bottom:6%;width:47%;z-index:2}
+.tablet{left:0;bottom:3%;width:15%;z-index:3}
+.phone{left:50%;right:auto;bottom:1.5%;width:8.6%;z-index:4}
+.stage .ejemplo{bottom:-44px}
+}
+@media (min-width:641px){.laptop{left:15%;width:46%}.monitor{left:54%;width:46%;top:4%}.tablet{width:14%}.phone{left:52%}}
+@media (min-width:641px){.phone{left:58%}}
