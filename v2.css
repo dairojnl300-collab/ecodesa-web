@@ -862,3 +862,27 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
 .stage{aspect-ratio:1.32}
 .laptop{width:70%;left:15%}
 @media (max-width:640px){.stage{aspect-ratio:1.02}.laptop{width:88%;left:6%}}
+
+/* ===== realismo + diagonal (sin escena: usa el fondo día/noche del sitio) ===== */
+.lap-screen:after,.tab-screen:after,.phone .ph-screen:after{content:"";position:absolute;inset:0;z-index:9;pointer-events:none;background:linear-gradient(118deg,rgba(255,255,255,.17) 0%,rgba(255,255,255,.05) 28%,rgba(255,255,255,0) 44%,rgba(255,255,255,0) 70%,rgba(255,255,255,.07) 100%)}
+.lap-screen{border-color:#0d0f0e;box-shadow:0 0 0 1px #3a403b,0 30px 60px rgba(0,0,0,.35)}
+.laptop:before{content:"";position:absolute;left:50%;top:1.1%;width:.7%;aspect-ratio:1;border-radius:50%;background:#262c28;box-shadow:inset 0 0 0 1px #3d4540;transform:translateX(-50%);z-index:5}
+.lap-base{position:relative;height:0;padding-bottom:1.9%;margin:0 -7%;border-radius:0 0 6% 6%/0 0 100% 100%;background:linear-gradient(180deg,#e3e6e1 0,#c4c9c2 40%,#8f968e 100%);box-shadow:0 1px 0 #6b726a inset,0 22px 30px -8px rgba(0,0,0,.45)}
+.lap-base:before{content:"";position:absolute;left:50%;top:0;width:17%;height:46%;transform:translateX(-50%);border-radius:0 0 12px 12px;background:linear-gradient(#9aa199,#bfc5bd);box-shadow:inset 0 -1px 0 rgba(0,0,0,.18)}
+.tablet,.phone{animation:none;transform-origin:50% 100%}
+.tablet{transform:rotate(-9deg) translateX(3%);left:1%;bottom:3%;box-shadow:0 26px 26px -14px rgba(0,0,0,.6),0 8px 14px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.5)}
+.phone{transform:rotate(8deg) translateX(-4%);right:1%;bottom:2%;box-shadow:0 22px 22px -12px rgba(0,0,0,.65),0 8px 12px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.3)}
+.stage:after{background:radial-gradient(ellipse at center,rgba(0,0,0,.35),rgba(0,0,0,0) 66%);filter:blur(8px)}
+@media (max-width:640px){.tablet{transform:rotate(-8deg) translateX(4%)}.phone{transform:translateX(-8%) rotate(7deg)}}
+/* ===== flotabilidad visible ===== */
+.tablet{--b:rotate(-9deg) translateX(3%)}
+.phone{--b:rotate(8deg) translateX(-4%)}
+@media (max-width:640px){.tablet{--b:rotate(-8deg) translateX(4%)}.phone{--b:translateX(-8%) rotate(7deg)}}
+@keyframes flT{0%,100%{transform:translateY(0) var(--b)}50%{transform:translateY(-18px) var(--b)}}
+@keyframes flL{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes flS{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.86);opacity:.6}}
+.tablet{animation:flT 5.5s ease-in-out infinite}
+.phone{animation:flT 4.6s ease-in-out -1.8s infinite}
+.laptop{animation:flL 6.5s ease-in-out -.8s infinite}
+.stage:after{animation:flS 5.5s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.tablet,.phone,.laptop,.stage:after{animation:none}}
