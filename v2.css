@@ -907,3 +907,6 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
 .vtx b{font:800 17px/1.2 var(--fh)}
 .vtx small{font-size:14px;color:var(--ink2)}
 @media (max-width:760px){.vlist{grid-template-columns:1fr}.vitem{flex-direction:row;align-items:center}.vth{flex:0 0 42%}}
+.vintro{max-width:680px;margin:14px auto 0;color:var(--ink2);text-align:center}
+.vcta{max-width:1080px;margin:26px auto 0;display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;justify-content:center;text-align:center}
+.vcta span{font:700 18px/1.3 var(--fh);color:var(--ink)}
