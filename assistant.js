@@ -20,9 +20,9 @@
 
   function build() {
     var btn = el("button", "as-btn"); btn.type = "button"; btn.setAttribute("aria-label", "Abrir asistente de ECODESA"); btn.setAttribute("aria-expanded", "false"); btn.setAttribute("aria-controls", "asPanel");
-    btn.innerHTML = '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.5-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg><span class="as-btn-t">Asistente</span>';
+    btn.innerHTML = '<img class="as-av" src="assets/v2/robot-head-128.webp" srcset="assets/v2/robot-head-128.webp 1x, assets/v2/robot-head-256.webp 2x" width="56" height="56" alt=""><span class="as-btn-t">¿Te ayudo?</span>';
     var panel = el("section", "as-panel"); panel.id = "asPanel"; panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Asistente de ECODESA"); panel.hidden = true;
-    var head = el("header", "as-head"); head.appendChild(el("b", "", "Asistente ECODESA"));
+    var head = el("header", "as-head"); var hav = el("img", "as-hav"); hav.src = "assets/v2/robot-head-128.webp"; hav.width = 44; hav.height = 44; hav.alt = ""; head.appendChild(hav); var ht = el("div", "as-ht"); ht.appendChild(el("b", "", "Asistente ECODESA")); ht.appendChild(el("small", "", "Ambiente, SST y saneamiento")); head.appendChild(ht);
     var close = el("button", "as-x"); close.type = "button"; close.setAttribute("aria-label", "Cerrar asistente"); close.textContent = "×"; head.appendChild(close);
     var body = el("div", "as-body"); body.setAttribute("aria-live", "polite");
     var foot = el("p", "as-foot", "Información orientativa. El alcance y el valor los acuerdas por escrito con un asesor. No escribas datos personales aquí.");
