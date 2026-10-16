@@ -29,6 +29,17 @@
     var fl = el("a", "", "Política de datos"); fl.href = "/datos/"; fl.target = "_blank"; fl.rel = "noopener"; foot.appendChild(fl); foot.appendChild(document.createTextNode("."));
     panel.appendChild(head); panel.appendChild(body); panel.appendChild(foot);
     document.body.appendChild(btn); document.body.appendChild(panel);
+    var hi = el("div", "as-hi"); hi.hidden = true;
+    var hit = el("button", "as-hi-t", "Hola, me llamo Ethan. ¿Te ayudo?"); hit.type = "button";
+    var hix = el("button", "as-hi-x", "\u00d7"); hix.type = "button"; hix.setAttribute("aria-label", "Cerrar saludo");
+    hi.appendChild(hit); hi.appendChild(hix); document.body.appendChild(hi);
+    function hideHi(save) { hi.hidden = true; if (save) { try { sessionStorage.setItem("ecodesa-as-hi", "1"); } catch (e) {} } }
+    var seen = false; try { seen = sessionStorage.getItem("ecodesa-as-hi") === "1"; } catch (e) {}
+    if (!seen) {
+      setTimeout(function () { if (panel.hidden) { hi.hidden = false; setTimeout(function () { hideHi(true); }, 10000); } }, 4000);
+    }
+    hix.addEventListener("click", function () { hideHi(true); });
+    hit.addEventListener("click", function () { hideHi(true); btn.click(); });
 
     var q = [], busy = false;
     function run() { if (busy || !q.length) return; busy = true; q.shift()(function () { busy = false; run(); }); }
@@ -81,7 +92,7 @@
       });
     }
     var started = false;
-    function open() { panel.hidden = false; btn.setAttribute("aria-expanded", "true"); btn.classList.add("on"); if (!started) { started = true; menu(true); track("asistente_abierto"); } close.focus(); }
+    function open() { hideHi(true); panel.hidden = false; btn.setAttribute("aria-expanded", "true"); btn.classList.add("on"); if (!started) { started = true; menu(true); track("asistente_abierto"); } close.focus(); }
     function shut() { panel.hidden = true; btn.setAttribute("aria-expanded", "false"); btn.classList.remove("on"); btn.focus(); }
     btn.addEventListener("click", function () { panel.hidden ? open() : shut(); });
     close.addEventListener("click", shut);
