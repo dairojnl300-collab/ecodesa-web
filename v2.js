@@ -184,12 +184,12 @@
       stops.forEach(function (s, i) { s.classList.toggle("on", vertical ? p >= i / stops.length + 0.05 : d >= loopEnd[i] - 2 * Math.PI * R * 0.5); });
     };
     /* avance lento: el recorrido necesita casi un alto de pantalla de scroll y se suaviza con inercia */
-    var track = document.getElementById("routeTrack"), PIN_T = 96, pinned = false;
+    var rTrack = document.getElementById("routeTrack"), PIN_T = 96, pinned = false;
     var layout = function () {
       var vh = innerHeight, vertical = getComputedStyle(svg).display === "none";
       pinned = !vertical && !reduce && route.offsetHeight + PIN_T + 24 <= vh;
       route.classList.toggle("is-pinned", pinned);
-      track.style.height = pinned ? Math.round(route.offsetHeight + vh * 0.95) + "px" : "";
+      rTrack.style.height = pinned ? Math.round(route.offsetHeight + vh * 0.95) + "px" : "";
     };
     /* avance lento: el recorrido se fija en pantalla mientras se dibuja, así se ven los cuatro pasos */
     var rTarget = function () {
@@ -198,7 +198,7 @@
       if (reduce) return 1;
       if (vertical) return Math.min(1, Math.max(0, (vh * 0.7 - r.top) / Math.max(1, r.height * 1.15)));
       if (pinned) {
-        var t = track.getBoundingClientRect();
+        var t = rTrack.getBoundingClientRect();
         return Math.min(1, Math.max(0, (PIN_T - t.top) / Math.max(1, t.height - route.offsetHeight)));
       }
       var end = Math.min(0, vh - r.height - 20);
