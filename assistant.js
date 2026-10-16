@@ -4,6 +4,17 @@
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   var track = function (l) { try { if (window.ecodesaGoogleLoaded && typeof gtag === "function") gtag("event", "click", { event_category: "asistente", event_label: l, value: 1 }); } catch (e) {} };
   var CERT = "Los certificados y conceptos los emite cada autoridad según sus lineamientos. Nosotros te preparamos y te acompañamos para cumplirlos.";
+  var VER = {
+    "Sanidad": "INVIMA y las entidades territoriales de salud",
+    "Seguridad contra incendios": "Cuerpo de Bomberos",
+    "Seguridad y salud en el trabajo": "Ministerio del Trabajo, con apoyo de las ARL",
+    "Uso del suelo y apertura": "Alcaldía y autoridad de planeación local",
+    "Publicidad y espacio público": "Alcaldía",
+    "Gestión del riesgo": "Unidad Nacional para la Gestión del Riesgo de Desastres y consejos territoriales",
+    "Seguridad química": "Ministerio del Trabajo",
+    "Ambiental": "Autoridad ambiental competente",
+    "Protección de datos": "Superintendencia de Industria y Comercio"
+  };
   var S = [
     { id: "restaurantes", n: "Restaurantes", req: [{"a": "Sanidad", "items": ["Plan de saneamiento escrito, buenas prácticas de manufactura y capacitación anual de manipuladores (Resolución 2674 de 2013).", "Lavado y desinfección de los tanques de agua al menos cada seis meses (Decreto 1575 de 2007)."]}, {"a": "Seguridad contra incendios", "items": ["Concepto técnico sobre rutas de evacuación y señalización, extintores e instalación eléctrica (Ley 1575 de 2012, art. 42)."]}, {"a": "Seguridad y salud en el trabajo", "items": ["SG-SST y plan de prevención y respuesta ante emergencias (Decreto 1072 de 2015; Resolución 0312 de 2019)."]}, {"a": "Uso del suelo y apertura", "items": ["Cumplir el uso del suelo, tener matrícula mercantil y comunicar la apertura a la autoridad de planeación local (Ley 232 de 1995)."]}], hac: ["Plan de saneamiento básico y control de plagas", "Programa de agua potable, limpieza y desinfección", "Manual de BPM", "Gestión de aceite de cocina usado", "SG-SST y planes de emergencia", "Análisis de laboratorio gestionados con laboratorios aliados"], plan: "Suscripción mensual.", wa: "Hola ECODESA, tengo un restaurante y me interesa la suscripción mensual.", cert: 1 },
     { id: "hoteles", n: "Hoteles y turismo", req: [{"a": "Sanidad", "items": ["Plan de saneamiento escrito y buenas prácticas en la cocina, con capacitación anual de manipuladores (Resolución 2674 de 2013).", "Lavado y desinfección de los tanques de agua al menos cada seis meses en establecimientos como hoteles (Decreto 1575 de 2007)."]}, {"a": "Seguridad contra incendios", "items": ["Concepto técnico sobre rutas de evacuación y señalización, extintores e instalación eléctrica (Ley 1575 de 2012, art. 42)."]}, {"a": "Seguridad y salud en el trabajo", "items": ["SG-SST y plan de prevención y respuesta ante emergencias (Decreto 1072 de 2015; Resolución 0312 de 2019). Incluye simulacro anual."]}, {"a": "Uso del suelo y apertura", "items": ["Cumplir el uso del suelo, tener matrícula mercantil y comunicar la apertura a la autoridad de planeación local (Ley 232 de 1995)."]}], hac: ["Saneamiento básico, agua potable y planes de emergencia", "SG-SST y capacitación", "Gestión de análisis con laboratorios aliados", "Todo reunido en un paquete anual"], plan: "Paquete anual.", wa: "Hola ECODESA, tengo un hotel y me interesa el paquete anual.", cert: 1 },
@@ -58,7 +69,7 @@
     function fill(b, t) {
       if (typeof t === "string") { b.textContent = t; return; }
       b.appendChild(el("strong", "as-h", t.h));
-      if (t.groups) { t.groups.forEach(function (g) { b.appendChild(el("span", "as-sub", g.a)); var u = el("ul", "as-ul"); g.items.forEach(function (x) { u.appendChild(el("li", "", x)); }); b.appendChild(u); }); }
+      if (t.groups) { t.groups.forEach(function (g) { b.appendChild(el("span", "as-sub", g.a)); if (VER[g.a]) b.appendChild(el("span", "as-ver", "Verifica: " + VER[g.a])); var u = el("ul", "as-ul"); g.items.forEach(function (x) { u.appendChild(el("li", "", x)); }); b.appendChild(u); }); }
       else { var ul = el("ul", "as-ul"); t.items.forEach(function (x) { ul.appendChild(el("li", "", x)); }); b.appendChild(ul); }
       if (t.f) b.appendChild(el("span", "as-f", t.f));
     }
@@ -104,7 +115,7 @@
       step(function () {
         if (s.txt) { say(s.txt); }
         else {
-          say({ h: "Según la normativa, las autoridades pueden solicitarte:", groups: s.req, f: "Aplica según tu actividad y tamaño. ECODESA es una firma privada: no emite certificados ni representa a ninguna autoridad. Un asesor te confirma qué aplica a tu caso." });
+          say({ h: "Según la normativa, las autoridades pueden solicitarte:", groups: s.req, f: "Aplica según tu actividad y tamaño. ECODESA es una firma privada: no representa a estas autoridades ni emite sus certificados o conceptos. Un asesor te confirma qué aplica a tu caso." });
           say({ h: "Si nos contratas, te acompañamos con:", items: s.hac, f: s.plan ? "Modalidad: " + s.plan.replace(/\.$/, "") + "." : "" });
           if (s.cert) say(CERT);
         }
