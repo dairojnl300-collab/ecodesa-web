@@ -30,19 +30,36 @@
     panel.appendChild(head); panel.appendChild(body); panel.appendChild(foot);
     document.body.appendChild(btn); document.body.appendChild(panel);
 
-    function say(t, delay) { var b = el("div", "as-m bot", t); body.appendChild(b); return b; }
-    function pick(t) { body.appendChild(el("div", "as-m me", t)); }
-    function opts(list) {
-      var w = el("div", "as-opts");
-      list.forEach(function (o) {
-        var e = o.href ? el("a", "as-o as-wa", o.t) : el("button", "as-o", o.t);
-        if (o.href) { e.href = o.href; e.target = "_blank"; e.rel = "noopener"; e.addEventListener("click", function () { track("asistente_asesor_" + (o.id || "")); }); }
-        else { e.type = "button"; e.addEventListener("click", function () { w.remove(); o.fn(); }); }
-        w.appendChild(e);
+    var q = [], busy = false;
+    function run() { if (busy || !q.length) return; busy = true; q.shift()(function () { busy = false; run(); }); }
+    function toEnd() { body.scrollTop = body.scrollHeight; }
+    function say(t) {
+      q.push(function (done) {
+        var b = el("div", "as-m bot");
+        if (reduce) { b.textContent = t; body.appendChild(b); toEnd(); done(); return; }
+        b.classList.add("typing"); b.setAttribute("aria-hidden", "true");
+        b.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(b); toEnd();
+        setTimeout(function () {
+          b.classList.remove("typing"); b.removeAttribute("aria-hidden"); b.textContent = t; toEnd(); done();
+        }, Math.min(1500, 600 + t.length * 11));
       });
-      body.appendChild(w); body.scrollTop = body.scrollHeight;
+      run();
     }
-    function step(fn) { if (reduce) fn(); else setTimeout(fn, 380); }
+    function pick(t) { body.appendChild(el("div", "as-m me", t)); toEnd(); }
+    function opts(list) {
+      q.push(function (done) {
+        var w = el("div", "as-opts");
+        list.forEach(function (o) {
+          var e = o.href ? el("a", "as-o as-wa", o.t) : el("button", "as-o", o.t);
+          if (o.href) { e.href = o.href; e.target = "_blank"; e.rel = "noopener"; e.addEventListener("click", function () { track("asistente_asesor_" + (o.id || "")); }); }
+          else { e.type = "button"; e.addEventListener("click", function () { w.remove(); o.fn(); }); }
+          w.appendChild(e);
+        });
+        body.appendChild(w); toEnd(); done();
+      });
+      run();
+    }
+    function step(fn) { fn(); }
     function menu(first) {
       if (first) { say("Hola, soy Ethan, el asistente de ECODESA. Somos una firma fundada en Cartagena de Indias. Te ayudamos a cumplir lo que exigen las autoridades en gestión ambiental, SG-SST, saneamiento y gestión del riesgo, en Cartagena y a nivel nacional."); }
       step(function () {
