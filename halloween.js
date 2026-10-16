@@ -51,7 +51,7 @@
 
     function geo() {
       var hr = hero.getBoundingClientRect(), ir = img.getBoundingClientRect();
-      var S = Math.max(44, Math.min(112, ir.width * 0.075));
+      var S = Math.max(40, Math.min(96, ir.width * 0.065));
       return { ox: ir.left - hr.left, oy: ir.top - hr.top, w: ir.width, h: ir.height, S: S };
     }
     function pt(g, i) {
@@ -61,11 +61,11 @@
     }
 
     function run() {
-      var dir = 1, state = "wait", t0 = performance.now(), idx = 0, pos = { x: 0, y: -80 }, ang = 0, last = t0;
-      function place(g, x, y, rot) {
+      var gait = 0, wasMoving = false, dir = 1, state = "wait", t0 = performance.now(), idx = 0, pos = { x: 0, y: -80 }, ang = 0, last = t0;
+      function place(g, x, y, rot, bob) {
         sp.style.setProperty("--S", g.S + "px");
-        body.style.transform = "translate(" + (x - g.S / 2) + "px," + (y - g.S * 0.9) + "px) rotate(" + rot + "deg)";
-        thread.style.left = x + "px"; thread.style.height = Math.max(0, y - g.S * 0.55) + "px";
+        body.style.transform = "translate(" + (x - g.S / 2) + "px," + (y - g.S * 0.72 + (bob || 0)) + "px) rotate(" + rot + "deg)";
+        thread.style.left = x + "px"; thread.style.height = Math.max(0, y - g.S * 0.5) + "px";
       }
       function frame(now) {
         requestAnimationFrame(frame);
@@ -83,20 +83,24 @@
           pos.x = pt(g, idx).x + Math.sin(now / 420) * 2.5;
           pos.y += Math.max(70, Math.min(150, (target - pos.y) * 0.8 + 60)) * dt;
           place(g, pos.x, pos.y, Math.sin(now / 380) * 5);
-          if (pos.y >= target - 1) { state = "walk"; sp.classList.remove("hang"); sp.classList.add("walk"); thread.style.opacity = 0; }
+          if (pos.y >= target - 1) { state = "walk"; gait = 0; wasMoving = true; sp.classList.remove("hang", "idle"); sp.classList.add("walk"); thread.style.opacity = 0; }
         } else if (state === "walk") {
-          var speed = g.w * 0.085; /* px/s */
+          /* andar a ratos: avanza, se detiene un instante, vuelve a avanzar */
+          gait += dt;
+          var cyc = gait % 1.9, moving = cyc < 1.35;
+          if (moving !== wasMoving) { wasMoving = moving; sp.classList.toggle("walk", moving); sp.classList.toggle("idle", !moving); }
+          var speed = moving ? g.w * 0.1 * (0.6 + 0.4 * Math.sin(Math.PI * cyc / 1.35)) : 0;
           var p = pt(g, idx), n = pt(g, idx + dir * 2);
           var step = speed * dt, d = Math.hypot(n.x - p.x, n.y - p.y) || 1;
-          idx += dir * Math.max(0.4, 2 * step / d);
+          idx += dir * 2 * step / d;
           idx = Math.max(0, Math.min(cont.length - 1, idx));
-          var i0 = Math.floor(idx), f = idx - i0, a = pt(g, i0), b = pt(g, i0 + 1);
-          pos = { x: a.x + (b.x - a.x) * f, y: a.y + (b.y - a.y) * f };
-          var q1 = pt(g, Math.round(idx) - 8), q2 = pt(g, Math.round(idx) + 8);
+          var q = pt(g, idx);
+          pos = { x: q.x, y: q.y };
+          var q1 = pt(g, idx - 14), q2 = pt(g, idx + 14);
           var tgt = Math.atan2(q2.y - q1.y, q2.x - q1.x) * 180 / Math.PI;
-          tgt = Math.max(-24, Math.min(24, tgt)); ang += (tgt - ang) * Math.min(1, dt * 6);
-          place(g, pos.x, pos.y, ang * 0.9);
-          if ((dir === 1 && idx >= cont.length - 1.5) || (dir === -1 && idx <= 1.5)) { state = "up"; sp.classList.remove("walk"); sp.classList.add("hang"); thread.style.opacity = 1; }
+          tgt = Math.max(-28, Math.min(28, tgt)); ang += (tgt - ang) * Math.min(1, dt * 5);
+          place(g, pos.x, pos.y, ang, moving ? Math.sin(now / 55) * 0.8 : 0);
+          if ((dir === 1 && idx >= cont.length - 1.5) || (dir === -1 && idx <= 1.5)) { state = "up"; sp.classList.remove("walk", "idle"); sp.classList.add("hang"); thread.style.opacity = 1; }
         } else if (state === "up") {
           pos.y -= 190 * dt; ang += (0 - ang) * Math.min(1, dt * 6);
           place(g, pos.x + Math.sin(now / 300) * 2, pos.y, ang);
