@@ -5,13 +5,13 @@
   var track = function (l) { try { if (window.ecodesaGoogleLoaded && typeof gtag === "function") gtag("event", "click", { event_category: "asistente", event_label: l, value: 1 }); } catch (e) {} };
   var CERT = "Los certificados y conceptos los emite cada autoridad según sus lineamientos. Nosotros te preparamos y te acompañamos para cumplirlos.";
   var S = [
-    { id: "restaurantes", n: "Restaurantes", rev: "Saneamiento básico (plagas, agua potable, limpieza y desinfección), manipulación de alimentos, manejo de aceite usado y trampa de grasas, SG-SST, plan de emergencias y extintores.", hac: "Plan de saneamiento básico, control de plagas, programa de agua potable, limpieza y desinfección, manual de BPM, gestión de aceite de cocina usado, SG-SST y planes de emergencia. Los análisis de laboratorio los gestionamos con laboratorios aliados.", plan: "Suscripción mensual.", wa: "Hola ECODESA, tengo un restaurante y me interesa la suscripción mensual.", cert: 1 },
-    { id: "hoteles", n: "Hoteles y turismo", rev: "Lo de cocinas, más agua potable y lavado de tanques, plan de emergencias con brigadas y simulacros, SG-SST y manejo de residuos.", hac: "Reunimos saneamiento básico, agua potable, planes de emergencia y SG-SST en un solo paquete anual, con capacitación y gestión de análisis con laboratorios aliados.", plan: "Paquete anual.", wa: "Hola ECODESA, tengo un hotel y me interesa el paquete anual.", cert: 1 },
-    { id: "comercio", n: "Comercio y locales", rev: "Plan de emergencias y señalización, extintores, SG-SST con estándares mínimos, control de plagas y permiso de publicidad exterior visual.", hac: "Plan de emergencias, control de plagas, SG-SST y trámite de publicidad exterior visual para abrir o renovar tu local.", plan: "Kit de apertura.", wa: "Hola ECODESA, tengo un local comercial y me interesa el kit de apertura.", cert: 1 },
-    { id: "industria", n: "Industria", rev: "SG-SST completo, seguridad química (hojas de seguridad y etiquetado), permisos ambientales por vertimientos, emisiones y residuos, y plan de emergencias.", hac: "SG-SST, programas de seguridad química y SGA, auditorías de riesgo químico, permisos de vertimiento y emisiones, Plan de Manejo Ambiental de residuos y acompañamiento en ISO 45001.", plan: "Auditoría de brechas.", wa: "Hola ECODESA, somos una industria y nos interesa una auditoría de brechas.", cert: 1 },
-    { id: "puertos", n: "Puertos y logística", rev: "Plan de contingencia y gestión del riesgo, manejo de residuos y vertimientos, SG-SST con trabajos de alto riesgo (alturas y espacios confinados) y permisos ambientales.", hac: "Plan de gestión del riesgo, planes de emergencia y contingencia, SG-SST, Plan de Manejo Ambiental de residuos y permisos de vertimiento.", wa: "Hola ECODESA, somos del sector portuario/logístico y queremos cotizar.", cert: 1 },
-    { id: "construccion", n: "Construcción", rev: "SG-SST de obra y trabajo en alturas, manejo de residuos de construcción y demolición, permisos ambientales y plan de emergencias.", hac: "SG-SST, plan de manejo de RCD, trámite PIN RCD y licencias y permisos ambientales.", wa: "Hola ECODESA, tengo una obra y quiero cotizar.", cert: 1 },
-    { id: "digital", n: "Digital e IA", rev: "Política de tratamiento de datos personales, aviso de privacidad y cookies.", hac: "Páginas web, apps, marketing digital y automatización con IA, con los avisos y políticas que la normativa de datos exige.", wa: "Hola ECODESA, quiero cotizar una página web / app / marketing digital." },
+    { id: "restaurantes", n: "Restaurantes", rev: ["Saneamiento básico: plagas, agua potable, limpieza y desinfección", "Manipulación de alimentos", "Manejo de aceite usado y trampa de grasas", "SG-SST", "Plan de emergencias y extintores"], hac: ["Plan de saneamiento básico y control de plagas", "Programa de agua potable, limpieza y desinfección", "Manual de BPM", "Gestión de aceite de cocina usado", "SG-SST y planes de emergencia", "Análisis de laboratorio gestionados con laboratorios aliados"], plan: "Suscripción mensual.", wa: "Hola ECODESA, tengo un restaurante y me interesa la suscripción mensual.", cert: 1 },
+    { id: "hoteles", n: "Hoteles y turismo", rev: ["Saneamiento de cocinas", "Agua potable y lavado de tanques", "Plan de emergencias con brigadas y simulacros", "SG-SST", "Manejo de residuos"], hac: ["Saneamiento básico, agua potable y planes de emergencia", "SG-SST y capacitación", "Gestión de análisis con laboratorios aliados", "Todo reunido en un paquete anual"], plan: "Paquete anual.", wa: "Hola ECODESA, tengo un hotel y me interesa el paquete anual.", cert: 1 },
+    { id: "comercio", n: "Comercio y locales", rev: ["Plan de emergencias y señalización", "Extintores", "SG-SST con estándares mínimos", "Control de plagas", "Permiso de publicidad exterior visual"], hac: ["Plan de emergencias", "Control de plagas", "SG-SST", "Trámite de publicidad exterior visual"], plan: "Kit de apertura.", wa: "Hola ECODESA, tengo un local comercial y me interesa el kit de apertura.", cert: 1 },
+    { id: "industria", n: "Industria", rev: ["SG-SST completo", "Seguridad química: hojas de seguridad y etiquetado", "Permisos ambientales: vertimientos, emisiones y residuos", "Plan de emergencias"], hac: ["SG-SST", "Programas de seguridad química y SGA", "Auditorías de riesgo químico", "Permisos de vertimiento y emisiones", "Plan de Manejo Ambiental de residuos", "Acompañamiento en ISO 45001"], plan: "Auditoría de brechas.", wa: "Hola ECODESA, somos una industria y nos interesa una auditoría de brechas.", cert: 1 },
+    { id: "puertos", n: "Puertos y logística", rev: ["Plan de contingencia y gestión del riesgo", "Manejo de residuos y vertimientos", "SG-SST con trabajos de alto riesgo: alturas y espacios confinados", "Permisos ambientales"], hac: ["Plan de gestión del riesgo", "Planes de emergencia y contingencia", "SG-SST", "Plan de Manejo Ambiental de residuos", "Permisos de vertimiento"], wa: "Hola ECODESA, somos del sector portuario/logístico y queremos cotizar.", cert: 1 },
+    { id: "construccion", n: "Construcción", rev: ["SG-SST de obra y trabajo en alturas", "Manejo de residuos de construcción y demolición", "Permisos ambientales", "Plan de emergencias"], hac: ["SG-SST", "Plan de manejo de RCD y trámite PIN RCD", "Licencias y permisos ambientales"], wa: "Hola ECODESA, tengo una obra y quiero cotizar.", cert: 1 },
+    { id: "digital", n: "Digital e IA", rev: ["Política de tratamiento de datos personales", "Aviso de privacidad", "Política de cookies"], hac: ["Páginas web y apps", "Marketing digital", "Automatización con IA", "Con los avisos y políticas que la normativa de datos exige"], wa: "Hola ECODESA, quiero cotizar una página web / app / marketing digital." },
     { id: "iso", n: "Auditoría ISO", txt: "Realizamos auditorías internas de ISO 9001, ISO 14001 e ISO 45001 y te acompañamos a implementarlas. La certificación la otorga un organismo certificador externo.", wa: "Hola ECODESA, me interesa una auditoría interna ISO (9001, 14001 o 45001)." }
   ];
   var link = function (t) { return "https://wa.me/" + WA + "?text=" + encodeURIComponent(t); };
@@ -55,15 +55,23 @@
     var q = [], busy = false;
     function run() { if (busy || !q.length) return; busy = true; q.shift()(function () { busy = false; run(); }); }
     function toEnd() { body.scrollTop = body.scrollHeight; }
+    function fill(b, t) {
+      if (typeof t === "string") { b.textContent = t; return; }
+      b.appendChild(el("strong", "as-h", t.h));
+      var ul = el("ul", "as-ul"); t.items.forEach(function (x) { ul.appendChild(el("li", "", x)); }); b.appendChild(ul);
+      if (t.f) b.appendChild(el("span", "as-f", t.f));
+    }
     function say(t) {
+      var len = typeof t === "string" ? t.length : t.h.length + t.items.join("").length;
       q.push(function (done) {
         var b = el("div", "as-m bot");
-        if (reduce) { b.textContent = t; body.appendChild(b); toEnd(); done(); return; }
-        b.classList.add("typing"); b.setAttribute("aria-hidden", "true"); face(lookNext(), Math.min(1500, 600 + t.length * 11));
+        if (reduce) { fill(b, t); body.appendChild(b); toEnd(); done(); return; }
+        var d = Math.min(1500, 600 + len * 8);
+        b.classList.add("typing"); b.setAttribute("aria-hidden", "true"); face(lookNext(), d);
         b.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(b); toEnd();
         setTimeout(function () {
-          b.classList.remove("typing"); b.removeAttribute("aria-hidden"); b.textContent = t; toEnd(); done();
-        }, Math.min(1500, 600 + t.length * 11));
+          b.classList.remove("typing"); b.removeAttribute("aria-hidden"); b.textContent = ""; fill(b, t); toEnd(); done();
+        }, d);
       });
       run();
     }
@@ -95,8 +103,8 @@
       step(function () {
         if (s.txt) { say(s.txt); }
         else {
-          say("Lo que suelen revisar las autoridades: " + s.rev);
-          say("Lo que hacemos: " + s.hac + (s.plan ? " Plan: " + s.plan : ""));
+          say({ h: "Lo que las autoridades suelen solicitar:", items: s.rev });
+          say({ h: "Si nos contratas, te acompañamos con:", items: s.hac, f: s.plan ? "Modalidad: " + s.plan.replace(/\.$/, "") + "." : "" });
           if (s.cert) say(CERT);
         }
         opts([{ t: "Hablar con un asesor", id: s.id, href: link(s.wa) }, { t: "Ver otro sector", fn: function () { menu(false); } }]);
