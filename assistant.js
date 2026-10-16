@@ -11,7 +11,7 @@
     { id: "industria", n: "Industria", rev: "SG-SST completo, seguridad química (hojas de seguridad y etiquetado), permisos ambientales por vertimientos, emisiones y residuos, y plan de emergencias.", hac: "Auditoría de brechas, SG-SST, seguridad química, permisos ambientales y acompañamiento para implementar ISO 45001.", plan: "Auditoría de brechas.", wa: "Hola ECODESA, somos una industria y nos interesa una auditoría de brechas.", cert: 1 },
     { id: "puertos", n: "Puertos y logística", rev: "Plan de contingencia y gestión del riesgo, manejo de residuos y vertimientos, SG-SST con trabajos de alto riesgo (alturas y espacios confinados) y permisos ambientales.", hac: "Gestión del riesgo, planes de emergencia, SG-SST y gestión ambiental para tu operación.", wa: "Hola ECODESA, somos del sector portuario/logístico y queremos cotizar.", cert: 1 },
     { id: "construccion", n: "Construcción", rev: "SG-SST de obra y trabajo en alturas, manejo de residuos de construcción y demolición, permisos ambientales y plan de emergencias.", hac: "SG-SST de obra, plan de manejo de residuos de construcción y acompañamiento en los trámites ambientales.", wa: "Hola ECODESA, tengo una obra y quiero cotizar.", cert: 1 },
-    { id: "digital", n: "Digital e IA", rev: "Política de tratamiento de datos personales, aviso de privacidad y cookies.", hac: "Páginas web, apps, marketing digital y automatización con IA, con esos requisitos incluidos.", wa: "Hola ECODESA, quiero cotizar una página web / app / marketing digital." },
+    { id: "digital", n: "Digital e IA", rev: "Política de tratamiento de datos personales, aviso de privacidad y cookies.", hac: "Páginas web, apps, marketing digital y automatización con IA, con los avisos y políticas que la normativa de datos exige.", wa: "Hola ECODESA, quiero cotizar una página web / app / marketing digital." },
     { id: "iso", n: "Auditoría ISO", txt: "Realizamos auditorías internas de ISO 9001, ISO 14001 e ISO 45001 y te acompañamos a implementarlas. La certificación la otorga un organismo certificador externo.", wa: "Hola ECODESA, me interesa una auditoría interna ISO (9001, 14001 o 45001)." }
   ];
   var link = function (t) { return "https://wa.me/" + WA + "?text=" + encodeURIComponent(t); };
@@ -25,7 +25,8 @@
     var head = el("header", "as-head"); var hav = el("img", "as-hav"); hav.src = "assets/v2/robot-anim-128.webp"; hav.width = 44; hav.height = 44; hav.alt = ""; head.appendChild(hav); var ht = el("div", "as-ht"); ht.appendChild(el("b", "", "Ethan")); ht.appendChild(el("small", "", "Asistente de ECODESA · Ambiente y SST")); head.appendChild(ht);
     var close = el("button", "as-x"); close.type = "button"; close.setAttribute("aria-label", "Cerrar asistente"); close.textContent = "×"; head.appendChild(close);
     var body = el("div", "as-body"); body.setAttribute("aria-live", "polite");
-    var foot = el("p", "as-foot", "Información orientativa. El alcance y el valor los acuerdas por escrito con un asesor. No escribas datos personales aquí.");
+    var foot = el("p", "as-foot", "Información orientativa, no constituye oferta ni asesoría legal. El alcance, valor y condiciones se acuerdan por escrito con un asesor. No escribas datos personales en este chat. Al continuar por WhatsApp aplica nuestra ");
+    var fl = el("a", "", "Política de datos"); fl.href = "/datos/"; fl.target = "_blank"; fl.rel = "noopener"; foot.appendChild(fl); foot.appendChild(document.createTextNode("."));
     panel.appendChild(head); panel.appendChild(body); panel.appendChild(foot);
     document.body.appendChild(btn); document.body.appendChild(panel);
 

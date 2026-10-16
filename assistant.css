@@ -58,3 +58,4 @@
 .as-hav{transform-origin:50% 90%;animation:asFloat 3.6s ease-in-out infinite}
 .as-btn:hover .as-av{animation:asFloat 1.4s ease-in-out infinite,asHi 1.6s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.as-av,.as-hav,.as-btn:hover .as-av{animation:none}}
+.as-foot a{color:inherit;text-decoration:underline}
