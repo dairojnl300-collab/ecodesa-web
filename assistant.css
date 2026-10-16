@@ -95,3 +95,7 @@
 .as-btn.sleep .as-av,.as-head.sleep .as-hav{animation:none;filter:saturate(.8) drop-shadow(0 6px 8px rgba(0,0,0,.35))}
 @media (prefers-reduced-motion:reduce){.as-zz i{animation:none;opacity:.9}.as-zz i:nth-child(2){left:9px;top:-8px}.as-zz i:nth-child(3){left:20px;top:-18px}.as-av{transition:none}}
 @media (max-width:760px){.as-btn.sleep>.as-zz{left:46px;top:-12px}}
+
+.as-hav.pop{animation:asFloat 3.6s ease-in-out infinite,asPop .8s ease-in-out 1}
+@keyframes asPop{0%,100%{rotate:0deg;scale:1}15%{rotate:-12deg;scale:1.1}30%{rotate:10deg;scale:1.1}45%{rotate:-8deg}60%{rotate:6deg}80%{rotate:0deg;scale:1}}
+@media (prefers-reduced-motion:reduce){.as-hav.pop{animation:none}}

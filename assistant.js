@@ -59,7 +59,7 @@
       q.push(function (done) {
         var b = el("div", "as-m bot");
         if (reduce) { b.textContent = t; body.appendChild(b); toEnd(); done(); return; }
-        b.classList.add("typing"); b.setAttribute("aria-hidden", "true");
+        b.classList.add("typing"); b.setAttribute("aria-hidden", "true"); face(lookNext(), Math.min(1500, 600 + t.length * 11));
         b.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(b); toEnd();
         setTimeout(function () {
           b.classList.remove("typing"); b.removeAttribute("aria-hidden"); b.textContent = t; toEnd(); done();
@@ -67,7 +67,7 @@
       });
       run();
     }
-    function pick(t) { body.appendChild(el("div", "as-m me", t)); toEnd(); }
+    function pick(t) { body.appendChild(el("div", "as-m me", t)); toEnd(); face("happy", 1400); }
     function opts(list) {
       q.push(function (done) {
         var w = el("div", "as-opts");
@@ -112,6 +112,7 @@
     function face(n, ms, lean) {
       if (sleeping) return;
       clearTimeout(faceT); setFace(n); if (lean && !reduce) av.classList.add("lean");
+      if (!reduce) { hav.classList.remove("pop"); void hav.offsetWidth; hav.classList.add("pop"); }
       faceT = setTimeout(function () { if (!sleeping) restoreFace(); }, ms || 1800);
     }
     function snooze(on) {
@@ -120,6 +121,9 @@
       if (on) setFace("sleep"); else restoreFace();
     }
     setTimeout(function () { CARAS.forEach(function (n) { var i = new Image(); i.src = "assets/v2/robot-" + n + ".webp"; }); }, 2500);
+    var lk = 0; function lookNext() { lk = 1 - lk; return lk ? "look-l" : "look-r"; }
+    var tapN = 0; hav.style.cursor = "pointer";
+    hav.addEventListener("click", function () { var t = ["happy", "wink", "wide", "look-r", "happy"]; sleeping && snooze(false); face(t[tapN++ % t.length], 1800); });
     function randomFace() {
       rndT = setTimeout(function () {
         if (!document.hidden && !sleeping && !reduce) {
@@ -127,7 +131,7 @@
           face(n, n === "wide" ? 2400 : 1700, n === "wide" && panel.hidden);
         }
         randomFace();
-      }, 6500 + Math.random() * 5500);
+      }, panel.hidden ? 6500 + Math.random() * 5500 : 3500 + Math.random() * 3000);
     }
     if (!reduce) randomFace();
 
