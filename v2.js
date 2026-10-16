@@ -259,7 +259,20 @@
 
   /* video tracking */
   var v = document.getElementById("promo");
-  if (v) v.addEventListener("play", function () { track("video_play"); }, { once: true });
+  if (v) {
+    var vplayed = {};
+    v.addEventListener("play", function () { var k = v.getAttribute("src"); if (!vplayed[k]) { vplayed[k] = 1; track("video_play"); } });
+    var vitems = document.querySelectorAll(".vitem");
+    vitems.forEach(function (b) {
+      b.addEventListener("click", function () {
+        if (v.getAttribute("src") === b.getAttribute("data-src")) { v.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" }); if (v.paused) v.play().catch(function () {}); return; }
+        vitems.forEach(function (x) { var on = x === b; x.classList.toggle("on", on); x.setAttribute("aria-pressed", on); });
+        v.pause(); v.setAttribute("poster", b.getAttribute("data-poster")); v.setAttribute("src", b.getAttribute("data-src")); v.load();
+        v.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
+        v.play().catch(function () {});
+      });
+    });
+  }
 
   /* contact form → WhatsApp (sitio estático, sin backend) */
   var f = document.getElementById("cform"), st = document.getElementById("fstatus");

@@ -893,3 +893,17 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
 /* recorrido fijo en pantalla mientras avanza (escritorio) */
 .route-track{position:relative}
 @media (min-width:1101px){.route.is-pinned{position:sticky;top:96px}}
+/* lista de videos */
+.vlist{max-width:1080px;margin:18px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.vitem{display:flex;flex-direction:column;gap:10px;text-align:left;padding:10px;border-radius:18px;background:var(--card);border:2px solid var(--line);color:var(--ink);cursor:pointer;font:inherit;transition:border-color .25s,transform .25s,box-shadow .25s}
+.vitem:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(15,36,22,.12)}
+.vitem.on{border-color:var(--g);box-shadow:0 0 0 3px rgba(118,184,42,.25)}
+.vitem:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.vth{position:relative;display:block;aspect-ratio:16/9;border-radius:12px;background:#000 center/cover no-repeat;overflow:hidden}
+.vth i{position:absolute;inset:0;display:grid;place-items:center;font-style:normal;color:#fff;font-size:22px;background:rgba(10,22,11,.28);transition:background .25s}
+.vitem:hover .vth i{background:rgba(10,22,11,.1)}
+.vitem.on .vth i{background:rgba(118,184,42,.35)}
+.vtx{display:flex;flex-direction:column;gap:2px;padding:0 4px 4px}
+.vtx b{font:800 17px/1.2 var(--fh)}
+.vtx small{font-size:14px;color:var(--ink2)}
+@media (max-width:760px){.vlist{grid-template-columns:1fr}.vitem{flex-direction:row;align-items:center}.vth{flex:0 0 42%}}
