@@ -96,3 +96,14 @@ html.hw .hw-wide .hw-pks-f{bottom:0;opacity:.9}
 @media (prefers-reduced-motion:reduce){.hw-hs,.hw-gs{animation:none}}
 html.hw .hw-wide .hw-hs{filter:drop-shadow(0 0 6px rgba(255,138,46,.8)) drop-shadow(0 0 2px rgba(255,255,255,.5))}
 html.hw .hw-wide .hw-hs .hw-thread2{background:rgba(255,255,255,.45)}
+
+/* botón calabaza (junto a día/noche) */
+.hw-btn{position:relative;z-index:3;display:inline-flex;align-items:center;gap:8px;height:44px;min-width:44px;padding:0 10px;margin-right:8px;border-radius:999px;border:1.5px solid rgba(255,138,46,.7);background:rgba(255,122,24,.14);color:#ffb070;cursor:pointer;font:700 12px/1 inherit;letter-spacing:.02em;transition:background .3s,transform .2s}
+.hw-btn svg{width:30px;height:30px;flex:none;filter:drop-shadow(0 0 8px rgba(255,138,46,.9)) drop-shadow(0 0 16px rgba(255,138,46,.5));animation:hwglow 2.4s ease-in-out infinite alternate}
+.hw-btn:hover{background:rgba(255,122,24,.28);transform:translateY(-1px)}
+.hw-btn[aria-pressed="false"]{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.1)}
+.hw-btn[aria-pressed="false"] svg{filter:grayscale(.85) brightness(.9);animation:none;opacity:.8}
+.hw-btn-t{display:none;white-space:nowrap}
+@media (min-width:1101px){.hw-btn-t{display:inline;padding-right:4px}}
+.nav.is-solid .hw-btn{color:#c4500a;background:rgba(255,122,24,.12)}
+@media (prefers-reduced-motion:reduce){.hw-btn svg{animation:none}}

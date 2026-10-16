@@ -1,10 +1,28 @@
-/* Edición Halloween: activa del 15-oct al 2-nov de cada año. ?halloween=1 fuerza, ?halloween=0 apaga. */
+/* Edición Halloween: temporada del 15-oct al 2-nov. ?halloween=1 fuerza, ?halloween=0 apaga. El cliente decide con el botón calabaza. */
 (function () {
   try {
     var q = new URLSearchParams(location.search).get("halloween"), d = new Date(), m = d.getMonth(), day = d.getDate();
-    var on = (m === 9 && day >= 15) || (m === 10 && day <= 2);
-    if (q === "1") on = true; if (q === "0") on = false;
-    if (on) document.documentElement.classList.add("hw");
+    var season = (m === 9 && day >= 15) || (m === 10 && day <= 2) || q === "1";
+    if (q === "0") season = false;
+    var off = false; try { off = localStorage.getItem("ecodesa-hw") === "off"; } catch (e) {}
+    var on = season && (q === "1" || !off), root = document.documentElement;
+    if (on) root.classList.add("hw");
+    if (!season) return;
+    function mount() {
+      var t = document.getElementById("themeBtn"); if (!t || document.getElementById("hwBtn")) return;
+      var b = document.createElement("button");
+      b.type = "button"; b.id = "hwBtn"; b.className = "hw-btn"; b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.setAttribute("aria-label", on ? "Quitar edición Halloween" : "Activar edición Halloween"); b.title = "Edición Halloween";
+      b.innerHTML = '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 11c-1-4-3-6-6-7 1 3 2 5 3 7z" fill="#4f8a2a"/><ellipse cx="24" cy="28" rx="19" ry="15" fill="#ff7a18"/><ellipse cx="14" cy="28" rx="7" ry="14" fill="#f06a08"/><ellipse cx="34" cy="28" rx="7" ry="14" fill="#f06a08"/><ellipse cx="24" cy="28" rx="6" ry="15" fill="#ff8a2e"/><path d="M13 24l5 3-5 1zM35 24l-5 3 5 1zM20 33l4-2 4 2-1 2-3-1-3 1z" fill="#2a1200"/></svg><span class="hw-btn-t">Edición Halloween</span>';
+      b.addEventListener("click", function () {
+        var next = !root.classList.contains("hw");
+        try { localStorage.setItem("ecodesa-hw", next ? "on" : "off"); } catch (e) {}
+        var u = new URL(location.href); u.searchParams.delete("halloween");
+        if (next) { location.href = u.toString(); } else { location.href = u.toString(); }
+      });
+      t.parentNode.insertBefore(b, t);
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mount); else mount();
   } catch (e) {}
 })();
 
