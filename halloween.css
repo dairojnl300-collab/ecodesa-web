@@ -158,3 +158,16 @@ html.hw .hw-wide .gs-m{opacity:.5;left:58%;top:8%}
 .hw-sky .hw-fog{background:radial-gradient(ellipse 20% 55% at 10% 50%,rgba(235,240,250,.6),transparent 70%),radial-gradient(ellipse 24% 60% at 38% 60%,rgba(235,240,250,.52),transparent 70%),radial-gradient(ellipse 22% 55% at 66% 50%,rgba(235,240,250,.58),transparent 70%),radial-gradient(ellipse 20% 60% at 92% 60%,rgba(235,240,250,.5),transparent 70%)}
 html.hw .hw-fs{filter:blur(10px);opacity:1}
 .hw-cl.c1{animation-delay:-26s}.hw-cl.c2{animation-delay:-52s}.hw-cl.c3{animation-delay:-60s}
+@media (max-width:480px){html.hw .nav-word{width:92px}.hw-btn{height:36px;min-width:36px;margin-left:auto;margin-right:6px}.hw-btn svg{width:24px;height:24px}html.hw .nav .theme{width:40px;height:40px}}
+/* sin nubes; neblina leve y natural */
+.hw-cl{display:none!important}
+.hw-sky .hw-fog{opacity:.55}
+.hw-sky .f2{opacity:.35}
+html.hw .hw-fs{opacity:.7}
+/* móvil: botón calabaza sin apretar el logotipo */
+@media (max-width:480px){
+  .hw-btn{height:34px;min-width:34px;width:34px;padding:0;margin-right:2px;justify-content:center;border-width:1.5px}
+  .hw-btn svg{width:22px;height:22px}
+  html.hw .nav-word{width:88px;height:auto}
+  html.hw .nav-brand{gap:6px}
+}

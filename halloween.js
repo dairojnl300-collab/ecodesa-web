@@ -204,7 +204,7 @@
     var hl2 = document.querySelector(".hero .hw-layer");
     if (hl2) {
       var sky = document.createElement("div"); sky.className = "hw-sky";
-      sky.innerHTML = '<i class="hw-cl c1">' + cloud(260, 0.7) + '</i><i class="hw-cl c2">' + cloud(190, 0.55) + '</i><i class="hw-cl c3">' + cloud(320, 0.45) + '</i><i class="hw-fog f1"></i><i class="hw-fog f2"></i>';
+      sky.innerHTML = '<i class="hw-fog f1"></i><i class="hw-fog f2"></i>';
       hl2.insertBefore(sky, hl2.firstChild);
     }
     var secs = document.querySelectorAll("main .sec:not(.hw-sec), .foot");
