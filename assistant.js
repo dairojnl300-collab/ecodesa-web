@@ -30,16 +30,27 @@
     panel.appendChild(head); panel.appendChild(body); panel.appendChild(foot);
     document.body.appendChild(btn); document.body.appendChild(panel);
     var hi = el("div", "as-hi"); hi.hidden = true;
-    var hit = el("button", "as-hi-t", "Hola, me llamo Ethan. ¿Te ayudo?"); hit.type = "button";
     var hix = el("button", "as-hi-x", "\u00d7"); hix.type = "button"; hix.setAttribute("aria-label", "Cerrar saludo");
-    hi.appendChild(hit); hi.appendChild(hix); document.body.appendChild(hi);
-    function hideHi(save) { hi.hidden = true; if (save) { try { sessionStorage.setItem("ecodesa-as-hi", "1"); } catch (e) {} } }
-    var seen = false; try { seen = sessionStorage.getItem("ecodesa-as-hi") === "1"; } catch (e) {}
-    if (!seen) {
-      setTimeout(function () { if (panel.hidden) { hi.hidden = false; setTimeout(function () { hideHi(true); }, 10000); } }, 4000);
+    hi.appendChild(hix); document.body.appendChild(hi);
+    var hiOff = false, hiT = [];
+    function hideHi() { hiOff = true; hiT.forEach(clearTimeout); hi.hidden = true; }
+    function hiBubble(txt, last, done) {
+      var b = el("button", "as-hb typing"); b.type = "button"; b.innerHTML = "<i></i><i></i><i></i>";
+      if (last) b.classList.add("last");
+      b.addEventListener("click", function () { hideHi(); if (panel.hidden) btn.click(); });
+      hi.insertBefore(b, hix); hi.hidden = false;
+      hiT.push(setTimeout(function () { if (hiOff) return; b.classList.remove("typing"); b.textContent = txt; if (done) done(); }, reduce ? 0 : 900));
     }
-    hix.addEventListener("click", function () { hideHi(true); });
-    hit.addEventListener("click", function () { hideHi(true); btn.click(); });
+    hiT.push(setTimeout(function () {
+      if (hiOff || !panel.hidden) return;
+      hiBubble("Hola, soy Ethan.", false, function () {
+        hiT.push(setTimeout(function () {
+          if (hiOff) return;
+          hiBubble("\u00bfEn qu\u00e9 te puedo ayudar?", true, function () { hiT.push(setTimeout(hideHi, 14000)); });
+        }, 900));
+      });
+    }, 3000));
+    hix.addEventListener("click", hideHi);
 
     var q = [], busy = false;
     function run() { if (busy || !q.length) return; busy = true; q.shift()(function () { busy = false; run(); }); }
@@ -147,7 +158,7 @@
     ["pointerdown", "keydown", "touchstart", "wheel"].forEach(function (ev) { panel.addEventListener(ev, bump, { passive: true }); });
 
     function open() {
-      hideHi(true); panel.hidden = false; btn.setAttribute("aria-expanded", "true"); btn.classList.add("on");
+      hideHi(); panel.hidden = false; btn.setAttribute("aria-expanded", "true"); btn.classList.add("on");
       if (!started) { started = true; menu(true); track("asistente_abierto"); face("happy", 2400); }
       bump(); close.focus();
     }
