@@ -5,13 +5,13 @@
   var track = function (l) { try { if (window.ecodesaGoogleLoaded && typeof gtag === "function") gtag("event", "click", { event_category: "asistente", event_label: l, value: 1 }); } catch (e) {} };
   var CERT = "Los certificados y conceptos los emite cada autoridad según sus lineamientos. Nosotros te preparamos y te acompañamos para cumplirlos.";
   var VER = {
-    "Sanidad": "INVIMA y las entidades territoriales de salud",
+    "Sanidad": "Entidades territoriales de salud",
     "Seguridad contra incendios": "Cuerpo de Bomberos",
     "Seguridad y salud en el trabajo": "Ministerio del Trabajo, con apoyo de las ARL",
     "Uso del suelo y apertura": "Alcaldía y autoridad de planeación local",
     "Publicidad y espacio público": "Alcaldía",
-    "Gestión del riesgo": "Unidad Nacional para la Gestión del Riesgo de Desastres y consejos territoriales",
-    "Seguridad química": "Ministerio del Trabajo",
+    "Gestión del riesgo": "Consejo territorial de gestión del riesgo",
+    "Seguridad química": "Autoridades competentes según la sustancia y la actividad",
     "Ambiental": "Autoridad ambiental competente",
     "Protección de datos": "Superintendencia de Industria y Comercio"
   };
@@ -115,7 +115,7 @@
       step(function () {
         if (s.txt) { say(s.txt); }
         else {
-          say({ h: "Según la normativa, las autoridades pueden solicitarte:", groups: s.req, f: "Aplica según tu actividad y tamaño. ECODESA es una firma privada: no representa a estas autoridades ni emite sus certificados o conceptos. Un asesor te confirma qué aplica a tu caso." });
+          say({ h: "Según la normativa, las autoridades pueden solicitarte:", groups: s.req, f: "Aplica según tu actividad y tamaño. ECODESA es una firma privada: no representa a estas autoridades ni emite sus certificados o conceptos. La mención de una autoridad es informativa y no implica aval ni relación con ella. Un asesor te confirma qué aplica a tu caso." });
           say({ h: "Si nos contratas, te acompañamos con:", items: s.hac, f: s.plan ? "Modalidad: " + s.plan.replace(/\.$/, "") + "." : "" });
           if (s.cert) say(CERT);
         }
