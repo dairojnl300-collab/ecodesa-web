@@ -76,3 +76,19 @@
 @keyframes asHiIn{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.as-hi{animation:none}}
 @media print{.as-hi{display:none}}
+
+/* Caras de Ethan */
+.as-av{transition:scale 1s cubic-bezier(.3,.7,.3,1)}
+.as-av.lean{scale:1.38;transform-origin:50% 100%}
+.as-head{position:relative}
+.as-zz{position:absolute;pointer-events:none;display:none;font:800 17px var(--fh,system-ui);color:var(--g2,#8fd16a)}
+.as-zz i{position:absolute;font-style:normal;opacity:0;animation:asZ 2.6s ease-in-out infinite}
+.as-zz i:nth-child(2){animation-delay:.8s;font-size:20px}
+.as-zz i:nth-child(3){animation-delay:1.6s;font-size:24px}
+.as-btn.sleep>.as-zz{display:block;left:52px;top:-4px;color:var(--gd,#3d7a1f)}
+[data-theme=dark] .as-btn.sleep>.as-zz{color:var(--g2,#8fd16a)}
+.as-head.sleep>.as-zz{display:block;left:50px;top:2px;color:#bfeaa0}
+@keyframes asZ{0%{opacity:0;transform:translate(0,8px) scale(.7)}25%{opacity:1}100%{opacity:0;transform:translate(14px,-18px) scale(1.15)}}
+.as-btn.sleep .as-av,.as-head.sleep .as-hav{animation:none;filter:saturate(.8) drop-shadow(0 6px 8px rgba(0,0,0,.35))}
+@media (prefers-reduced-motion:reduce){.as-zz i{animation:none;opacity:.9}.as-zz i:nth-child(2){left:9px;top:-8px}.as-zz i:nth-child(3){left:20px;top:-18px}.as-av{transition:none}}
+@media (max-width:760px){.as-btn.sleep>.as-zz{left:46px;top:-12px}}
