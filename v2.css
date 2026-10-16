@@ -910,3 +910,15 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
 .vintro{max-width:680px;margin:14px auto 0;color:var(--ink2);text-align:center}
 .vcta{max-width:1080px;margin:26px auto 0;display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;justify-content:center;text-align:center}
 .vcta span{font:700 18px/1.3 var(--fh);color:var(--ink)}
+
+/* compactación: un botón por bloque y sectores en carrusel móvil */
+.cat-cta{margin-top:28px;text-align:center}
+@media (max-width:760px){
+  .sgrid{display:flex;grid-template-columns:none;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .sgrid::-webkit-scrollbar{display:none}
+  .sgrid .scard{flex:0 0 84%;scroll-snap-align:center}
+  .scard-body{padding:18px 20px 22px}
+  .scard h3{font-size:22px;margin-bottom:10px}
+  .scard li{font-size:15px;padding:6px 0 6px 28px}
+  .scard li:before{top:8px}
+}
