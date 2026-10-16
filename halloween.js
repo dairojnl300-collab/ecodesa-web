@@ -112,3 +112,25 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();
+
+/* Decoración en toda la página: telarañas, arañas colgantes, fantasmas y calabazas por sección */
+(function () {
+  function go() {
+    var root = document.documentElement;
+    if (!root.classList.contains("hw")) return;
+    var web = document.querySelector(".hw-web-l"), hang = document.querySelector(".hw-hang.h1"),
+        ghost = document.querySelector(".hw-ghost.g1"), pks = document.querySelector(".hw-pks");
+    var secs = document.querySelectorAll("main .sec:not(.hw-sec), .foot");
+    Array.prototype.forEach.call(secs, function (s, i) {
+      var L = document.createElement("div"); L.className = "hw-wide"; L.setAttribute("aria-hidden", "true");
+      var right = i % 2 === 0;
+      if (web) { var w = web.cloneNode(true); w.className = "hw-web " + (right ? "hw-web-r" : "hw-web-l"); L.appendChild(w); }
+      if (hang) { var h = hang.cloneNode(true); h.className = "hw-hang hw-hs " + (right ? "hs-r" : "hs-l"); h.style.animationDelay = (-i * 1.3) + "s"; L.appendChild(h); }
+      if (ghost && i % 2 === 1) { var g = ghost.cloneNode(true); g.className = "hw-ghost hw-gs " + (right ? "gs-l" : "gs-r"); g.style.animationDelay = (-i) + "s"; L.appendChild(g); }
+      if (s.classList.contains("foot") && pks) { var p = pks.cloneNode(true); p.classList.add("hw-pks-f"); L.appendChild(p); }
+      s.style.position = s.style.position || "relative";
+      s.insertBefore(L, s.firstChild);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go();
+})();
