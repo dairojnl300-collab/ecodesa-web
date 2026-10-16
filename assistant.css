@@ -106,3 +106,7 @@
 .as-m .as-ul li::before{content:"";position:absolute;left:3px;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--g)}
 .as-m .as-f{display:block;margin-top:8px;font-weight:700;color:var(--gd,#3d7a1f)}
 [data-theme=dark] .as-m .as-f,html.hw .as-m .as-f{color:var(--g2,#8fd16a)}
+
+.as-m .as-sub{display:block;margin-top:10px;font-weight:800;font-size:.92em;letter-spacing:.01em;color:var(--gd,#3d7a1f)}
+[data-theme=dark] .as-m .as-sub,html.hw .as-m .as-sub{color:var(--g2,#8fd16a)}
+.as-m .as-h+.as-sub{margin-top:2px}
