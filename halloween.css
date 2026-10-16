@@ -79,23 +79,46 @@ html.hw .hw-spider{display:block}
 /* ===== edición en toda la página ===== */
 .hw-wide{display:none}
 html.hw .hw-wide{display:block;position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-html.hw .hw-wide .hw-web{top:0;width:min(16vw,190px);color:rgba(255,255,255,.2)}
-html:not([data-theme="dark"]) .hw-wide .hw-web{color:rgba(40,20,60,.22)}
-@media (prefers-color-scheme:dark){html:not([data-theme="light"]) .hw-wide .hw-web{color:rgba(255,255,255,.2)}}
-html[data-theme="dark"] .hw-wide .hw-web{color:rgba(255,255,255,.2)}
-html.hw .hw-wide .hw-hs{top:0;height:clamp(60px,9vw,120px);width:clamp(26px,3vw,38px)}
-html.hw .hw-wide .hs-r{left:auto;right:17%}
-html.hw .hw-wide .hs-l{left:17%}
-html.hw .hw-wide .hw-gs{top:14%;width:clamp(34px,3.6vw,52px);opacity:.55}
-html.hw .hw-wide .gs-l{left:5%;right:auto}
-html.hw .hw-wide .gs-r{right:5%;left:auto}
 html.hw main .sec>.wrap,html.hw main .sec>.container,html.hw .foot>*:not(.hw-wide){position:relative;z-index:1}
-html.hw .hw-wide .hw-pks-f{bottom:0;opacity:.9}
 .foot{position:relative}
-@media (max-width:760px){html.hw .hw-wide .hw-web{width:24vw}html.hw .hw-wide .hw-gs{display:none}html.hw .hw-wide .hs-l,html.hw .hw-wide .hs-r{left:auto;right:6%}}
-@media (prefers-reduced-motion:reduce){.hw-hs,.hw-gs{animation:none}}
-html.hw .hw-wide .hw-hs{filter:drop-shadow(0 0 6px rgba(255,138,46,.8)) drop-shadow(0 0 2px rgba(255,255,255,.5))}
-html.hw .hw-wide .hw-hs .hw-thread2{background:rgba(255,255,255,.45)}
+/* telaraña real + araña colgando de ella (siempre visibles) */
+html.hw .hw-corner{position:absolute;top:0;width:clamp(150px,19vw,240px);aspect-ratio:1}
+html.hw .hw-corner.cl{left:0}html.hw .hw-corner.cr{right:0}
+html.hw .hw-corner .hw-web{position:absolute;inset:0;width:100%;aspect-ratio:auto;top:0;left:0;right:auto;transform:none;color:rgba(255,255,255,.78);filter:drop-shadow(0 0 3px rgba(190,215,255,.7))}
+html.hw .hw-corner.cr .hw-web{transform:none}
+html:not([data-theme="dark"]) .hw-corner .hw-web{color:rgba(60,35,90,.7);filter:drop-shadow(0 0 2px rgba(255,255,255,.8))}
+.hw-corner .hw-web svg{width:100%;height:100%;display:block}
+/* la araña cuelga de la hebra exterior de la telaraña */
+html.hw .hw-corner .hw-hs{position:absolute;top:72%;left:auto;width:clamp(36px,4.2vw,54px);height:var(--len,100px);transform-origin:50% 0;animation:hwswing 4.6s ease-in-out infinite}
+html.hw .hw-corner.cl .hw-hs{left:30%}html.hw .hw-corner.cr .hw-hs{right:30%}
+html.hw .hw-hs .hw-thread2{background:rgba(255,255,255,.9);width:1.8px;box-shadow:0 0 4px rgba(190,215,255,.9);animation:hwdrop 7s ease-in-out infinite}
+html.hw .hw-hs .hw-sp2{animation:hwbob 7s ease-in-out infinite;filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 9px rgba(255,138,46,.95))}
+@keyframes hwdrop{0%,100%{bottom:46%}50%{bottom:30px}}
+@keyframes hwbob{0%,100%{transform:translateY(-46%) translateY(0)}50%{transform:translateY(0)}}
+/* fantasmas: siempre en movimiento, en móvil y web */
+html.hw .hw-wide .hw-gs{top:16%;width:clamp(44px,4.6vw,66px);opacity:.78;filter:drop-shadow(0 0 16px rgba(255,255,255,.65));animation:hwghost2 7s ease-in-out infinite}
+html.hw .hw-wide .gs-l{left:6%;right:auto}html.hw .hw-wide .gs-r{right:6%;left:auto}html.hw .hw-wide .gs-m{left:48%;top:62%;width:clamp(34px,3.4vw,50px);opacity:.6}
+@keyframes hwghost2{0%,100%{transform:translate(0,0) rotate(-6deg);opacity:.5}30%{transform:translate(26px,-22px) rotate(5deg);opacity:.85}60%{transform:translate(-18px,-38px) rotate(-4deg);opacity:.8}}
+html.hw .hero .hw-ghost.g1{animation:hwghost2 7s ease-in-out infinite;opacity:.85}
+/* neblina */
+html.hw .hw-fs{position:absolute;left:-30%;right:-30%;bottom:-6%;height:38%;background:radial-gradient(ellipse 22% 55% at 12% 60%,rgba(215,225,240,.34),transparent 70%),radial-gradient(ellipse 26% 60% at 40% 70%,rgba(215,225,240,.3),transparent 70%),radial-gradient(ellipse 24% 55% at 68% 55%,rgba(215,225,240,.32),transparent 70%),radial-gradient(ellipse 22% 60% at 92% 70%,rgba(215,225,240,.28),transparent 70%);filter:blur(12px);animation:hwfog 28s ease-in-out infinite alternate}
+@keyframes hwfog{from{transform:translateX(-6%)}to{transform:translateX(8%)}}
+html.hw .hw-wide .hw-pks-f{bottom:0;opacity:.9}
+/* cielo del hero: nubes y neblina */
+.hw-sky{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hw-cl{position:absolute;display:block;color:#3b2d5c;left:-40%;animation:hwcloud 60s linear infinite}
+.hw-cl svg{display:block;height:auto;filter:blur(1.5px)}
+.hw-cl.c1{top:6%;animation-duration:70s}
+.hw-cl.c2{top:24%;color:#4a3a70;animation-duration:95s;animation-delay:-40s}
+.hw-cl.c3{top:12%;color:#2e2350;animation-duration:120s;animation-delay:-75s}
+@keyframes hwcloud{from{transform:translateX(0)}to{transform:translateX(220vw)}}
+.hw-sky .hw-fog{position:absolute;left:-30%;right:-30%;display:block;height:34%;filter:blur(16px);background:radial-gradient(ellipse 20% 55% at 10% 50%,rgba(225,232,245,.42),transparent 70%),radial-gradient(ellipse 24% 60% at 38% 60%,rgba(225,232,245,.36),transparent 70%),radial-gradient(ellipse 22% 55% at 66% 50%,rgba(225,232,245,.4),transparent 70%),radial-gradient(ellipse 20% 60% at 92% 60%,rgba(225,232,245,.34),transparent 70%)}
+.hw-sky .f1{bottom:-4%;animation:hwfog 26s ease-in-out infinite alternate}
+.hw-sky .f2{bottom:14%;height:26%;opacity:.7;animation:hwfog 38s ease-in-out infinite alternate-reverse}
+/* telarañas del hero más visibles */
+html.hw .hero .hw-web{color:rgba(255,255,255,.8);filter:drop-shadow(0 0 3px rgba(190,215,255,.7));width:min(24vw,300px)}
+@media (max-width:760px){html.hw .hw-corner{width:34vw}html.hw .hero .hw-web{width:34vw}html.hw .hw-wide .hw-gs{display:block}html.hw .hero .hw-ghost.g1{display:block;right:6%;top:52%}.hw-cl.c3{display:none}}
+@media (prefers-reduced-motion:reduce){.hw-hs,.hw-gs,.hw-cl,.hw-fog,.hw-fs{animation:none}}
 
 /* botón calabaza (junto a día/noche) */
 .hw-btn{position:relative;z-index:3;display:inline-flex;align-items:center;gap:8px;height:44px;min-width:44px;padding:0 10px;margin-right:8px;border-radius:999px;border:1.5px solid rgba(255,138,46,.7);background:rgba(255,122,24,.14);color:#ffb070;cursor:pointer;font:700 12px/1 inherit;letter-spacing:.02em;transition:background .3s,transform .2s}
@@ -107,3 +130,31 @@ html.hw .hw-wide .hw-hs .hw-thread2{background:rgba(255,255,255,.45)}
 @media (min-width:1101px){.hw-btn-t{display:inline;padding-right:4px}}
 .nav.is-solid .hw-btn{color:#c4500a;background:rgba(255,122,24,.12)}
 @media (prefers-reduced-motion:reduce){.hw-btn svg{animation:none}}
+
+/* ===== v7: telarañas reales, arañas y fantasmas siempre visibles (web y celular) ===== */
+html.hw .hw-web{color:rgba(255,255,255,.62);filter:drop-shadow(0 0 3px rgba(255,255,255,.35))}
+html.hw .hw-wide .hw-web{width:min(24vw,280px);color:rgba(255,255,255,.6);filter:drop-shadow(0 0 3px rgba(255,255,255,.35))}
+html.hw:not([data-theme="dark"]) .hw-web,html.hw:not([data-theme="dark"]) .hw-wide .hw-web{color:rgba(30,14,52,.7);filter:drop-shadow(0 0 2px rgba(255,255,255,.6))}
+html.hw .hw-wide{z-index:3}
+html.hw .hw-wide .hw-hs{width:clamp(34px,4vw,52px);height:clamp(90px,12vw,170px);filter:drop-shadow(0 0 7px rgba(255,138,46,.95)) drop-shadow(0 0 2px rgba(255,255,255,.7))}
+html.hw .hw-wide .hs-r{right:9%}html.hw .hw-wide .hs-l{left:9%}
+html.hw .hw-wide .hw-gs{width:clamp(44px,5vw,70px);opacity:.88;top:18%;animation:hwdrift 7s ease-in-out infinite}
+@keyframes hwdrift{0%,100%{transform:translate(0,0) rotate(-5deg)}25%{transform:translate(22px,-26px) rotate(4deg)}50%{transform:translate(-6px,-42px) rotate(-3deg)}75%{transform:translate(-24px,-18px) rotate(6deg)}}
+html.hw .hw-ghost.g1{animation-duration:5.5s}
+@media (max-width:760px){
+  html.hw .hw-wide .hw-web{width:34vw}
+  html.hw .hw-wide .hw-gs{display:block;width:46px}
+  html.hw .hw-wide .gs-l{left:6%}html.hw .hw-wide .gs-r{right:6%}
+  html.hw .hw-wide .hw-hs{height:clamp(80px,22vw,120px);width:34px}
+  html.hw .hw-wide .hs-l{left:9%;right:auto}html.hw .hw-wide .hs-r{right:9%;left:auto}
+  html.hw .hw-ghost.g1{display:block;right:8%;top:50%;width:46px}
+}
+html.hw .hero-word{z-index:3}
+html.hw .hw-wide .gs-m{opacity:.5;left:58%;top:8%}
+@media (max-width:480px){.hw-btn{height:38px;min-width:38px;padding:0 6px;margin-right:4px}.hw-btn svg{width:26px;height:26px}html.hw .nav-word{width:104px;height:auto}}
+.hw-cl{color:#7a6aa8}
+.hw-cl.c1{top:-2%}.hw-cl.c2{top:-4%;color:#8d7cba}.hw-cl.c3{top:1%;color:#6a5b98}
+.hw-cl svg{opacity:.85!important}
+.hw-sky .hw-fog{background:radial-gradient(ellipse 20% 55% at 10% 50%,rgba(235,240,250,.6),transparent 70%),radial-gradient(ellipse 24% 60% at 38% 60%,rgba(235,240,250,.52),transparent 70%),radial-gradient(ellipse 22% 55% at 66% 50%,rgba(235,240,250,.58),transparent 70%),radial-gradient(ellipse 20% 60% at 92% 60%,rgba(235,240,250,.5),transparent 70%)}
+html.hw .hw-fs{filter:blur(10px);opacity:1}
+.hw-cl.c1{animation-delay:-26s}.hw-cl.c2{animation-delay:-52s}.hw-cl.c3{animation-delay:-60s}

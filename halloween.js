@@ -138,20 +138,94 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();
 
-/* Decoración en toda la página: telarañas, arañas colgantes, fantasmas y calabazas por sección */
+
+/* Telaraña realista: radios + hilos de captura con caída (catenaria) + gotas de rocío */
 (function () {
+  function webSVG() {
+    var N = 7, R = 150, rad = [], i, k, s = "";
+    for (i = 0; i <= N; i++) { var a = (i / N) * Math.PI / 2 + (i % 2 ? 0.012 : -0.01) * (i && i < N ? 1 : 0); rad.push([Math.cos(a), Math.sin(a)]); }
+    s += '<g fill="none" stroke="currentColor" stroke-linecap="round">';
+    s += '<g stroke-width="1.5">'; for (i = 0; i <= N; i++) s += '<path d="M0 0L' + (rad[i][0] * R).toFixed(1) + " " + (rad[i][1] * R).toFixed(1) + '"/>'; s += "</g>";
+    s += '<g stroke-width="1">';
+    var rings = [16, 28, 41, 55, 70, 86, 103, 121, 140];
+    for (k = 0; k < rings.length; k++) {
+      var r = rings[k] * (1 + ((k * 7) % 5) * 0.01);
+      for (i = 0; i < N; i++) {
+        var x1 = rad[i][0] * r, y1 = rad[i][1] * r, x2 = rad[i + 1][0] * r, y2 = rad[i + 1][1] * r;
+        var mx = (x1 + x2) / 2, my = (y1 + y2) / 2, sag = 0.3 + 0.02 * k;
+        s += '<path d="M' + x1.toFixed(1) + " " + y1.toFixed(1) + "Q" + (mx * (1 - sag * 0.5)).toFixed(1) + " " + (my * (1 - sag * 0.5)).toFixed(1) + " " + x2.toFixed(1) + " " + y2.toFixed(1) + '"/>';
+      }
+    }
+    s += "</g></g>";
+    s += '<g fill="currentColor" opacity=".9">';
+    [[0.31,70],[0.62,86],[0.18,103],[0.8,55],[0.45,121],[0.7,28]].forEach(function (d) { var a = d[0] * Math.PI / 2; s += '<circle cx="' + (Math.cos(a) * d[1] * 0.97).toFixed(1) + '" cy="' + (Math.sin(a) * d[1] * 0.97).toFixed(1) + '" r="1.7"/>'; });
+    s += "</g>";
+    return '<svg viewBox="0 0 150 150" aria-hidden="true">' + s + "</svg>";
+  }
+  function apply() {
+    if (!document.documentElement.classList.contains("hw")) return;
+    var svg = webSVG();
+    Array.prototype.forEach.call(document.querySelectorAll(".hw-web"), function (w) { w.innerHTML = svg; });
+  }
+  window.__hwWeb = apply;
+})();
+
+/* Decoración en toda la página: telarañas realistas con araña bajando, fantasmas, nubes y neblina */
+(function () {
+  function webSVG(mir) {
+    var R = 170, n = 8, rings = [20, 38, 58, 80, 104, 130, 156], d = "", rad = "", dew = "";
+    var ang = []; for (var k = 0; k <= n; k++) ang.push((Math.PI / 2) * k / n);
+    ang.forEach(function (a, k) {
+      var jit = 1 - (k % 3 === 1 ? 0.07 : 0);
+      rad += "M0 0 L" + (R * jit * Math.cos(a)).toFixed(1) + " " + (R * jit * Math.sin(a)).toFixed(1);
+    });
+    rings.forEach(function (r, ri) {
+      for (var k = 0; k < n; k++) {
+        var a1 = ang[k], a2 = ang[k + 1], am = (a1 + a2) / 2, sag = r * (0.86 + 0.02 * ((k + ri) % 3));
+        var x1 = r * Math.cos(a1), y1 = r * Math.sin(a1), x2 = r * Math.cos(a2), y2 = r * Math.sin(a2);
+        d += "M" + x1.toFixed(1) + " " + y1.toFixed(1) + " Q" + (sag * Math.cos(am)).toFixed(1) + " " + (sag * Math.sin(am)).toFixed(1) + " " + x2.toFixed(1) + " " + y2.toFixed(1);
+        if ((k + ri) % 4 === 0) dew += '<circle cx="' + (x2).toFixed(1) + '" cy="' + (y2).toFixed(1) + '" r="1.7"/>';
+      }
+    });
+    return '<svg viewBox="0 0 170 170" aria-hidden="true"' + (mir ? ' style="transform:scaleX(-1)"' : "") + '><g fill="none" stroke="currentColor" stroke-linecap="round"><path stroke-width="1.5" d="' + rad + '"/><path stroke-width="0.9" d="' + d + '"/></g><g fill="currentColor" opacity=".95">' + dew + "</g></svg>";
+  }
+  function cloud(w, op) {
+    return '<svg viewBox="0 0 220 80" width="' + w + '" aria-hidden="true" style="opacity:' + op + '"><g fill="currentColor"><ellipse cx="60" cy="56" rx="54" ry="20"/><ellipse cx="110" cy="46" rx="50" ry="26"/><ellipse cx="150" cy="56" rx="56" ry="20"/><ellipse cx="90" cy="34" rx="30" ry="22"/><ellipse cx="130" cy="32" rx="26" ry="18"/></g></svg>';
+  }
   function go() {
     var root = document.documentElement;
     if (!root.classList.contains("hw")) return;
-    var web = document.querySelector(".hw-web-l"), hang = document.querySelector(".hw-hang.h1"),
-        ghost = document.querySelector(".hw-ghost.g1"), pks = document.querySelector(".hw-pks");
+    var hang = document.querySelector(".hw-hang.h1"), ghost = document.querySelector(".hw-ghost.g1");
+    var pks = document.querySelector(".hw-pks");
+    /* telarañas del hero: más reales */
+    Array.prototype.forEach.call(document.querySelectorAll(".hero .hw-web"), function (w) { w.innerHTML = webSVG(w.classList.contains("hw-web-r") ? false : false); });
+    var hl = document.querySelector(".hero .hw-web-r"); if (hl) hl.innerHTML = webSVG(false);
+    /* nubes y neblina en el hero */
+    var hl2 = document.querySelector(".hero .hw-layer");
+    if (hl2) {
+      var sky = document.createElement("div"); sky.className = "hw-sky";
+      sky.innerHTML = '<i class="hw-cl c1">' + cloud(260, 0.7) + '</i><i class="hw-cl c2">' + cloud(190, 0.55) + '</i><i class="hw-cl c3">' + cloud(320, 0.45) + '</i><i class="hw-fog f1"></i><i class="hw-fog f2"></i>';
+      hl2.insertBefore(sky, hl2.firstChild);
+    }
     var secs = document.querySelectorAll("main .sec:not(.hw-sec), .foot");
     Array.prototype.forEach.call(secs, function (s, i) {
       var L = document.createElement("div"); L.className = "hw-wide"; L.setAttribute("aria-hidden", "true");
       var right = i % 2 === 0;
-      if (web) { var w = web.cloneNode(true); w.className = "hw-web " + (right ? "hw-web-r" : "hw-web-l"); L.appendChild(w); }
-      if (hang) { var h = hang.cloneNode(true); h.className = "hw-hang hw-hs " + (right ? "hs-r" : "hs-l"); h.style.animationDelay = (-i * 1.3) + "s"; L.appendChild(h); }
-      if (ghost && i % 2 === 1) { var g = ghost.cloneNode(true); g.className = "hw-ghost hw-gs " + (right ? "gs-l" : "gs-r"); g.style.animationDelay = (-i) + "s"; L.appendChild(g); }
+      /* telaraña + araña que baja desde ella */
+      var c = document.createElement("div"); c.className = "hw-corner " + (right ? "cr" : "cl");
+      c.innerHTML = '<i class="hw-web">' + webSVG(right) + "</i>";
+      if (hang) {
+        var h = hang.cloneNode(true); h.className = "hw-hang hw-hs"; h.style.animationDelay = (-i * 1.1) + "s";
+        h.style.setProperty("--len", (70 + (i % 3) * 38) + "px");
+        h.querySelector(".hw-thread2").style.animationDelay = (-i * 0.9) + "s";
+        c.appendChild(h);
+      }
+      L.appendChild(c);
+      if (ghost) {
+        var g = ghost.cloneNode(true); g.className = "hw-ghost hw-gs " + (right ? "gs-l" : "gs-r"); g.style.animationDelay = (-i * 1.7) + "s"; L.appendChild(g);
+        if (i % 2 === 0) { var g2 = ghost.cloneNode(true); g2.className = "hw-ghost hw-gs gs-m"; g2.style.animationDelay = (-i * 0.8 - 2) + "s"; L.appendChild(g2); }
+      }
+      var f = document.createElement("i"); f.className = "hw-fog hw-fs"; L.appendChild(f);
       if (s.classList.contains("foot") && pks) { var p = pks.cloneNode(true); p.classList.add("hw-pks-f"); L.appendChild(p); }
       s.style.position = s.style.position || "relative";
       s.insertBefore(L, s.firstChild);
