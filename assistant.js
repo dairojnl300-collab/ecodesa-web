@@ -15,14 +15,24 @@
     "Ambiental": "Autoridad ambiental competente",
     "Protección de datos": "Superintendencia de Industria y Comercio"
   };
+  var SAN = ["Plan de saneamiento escrito con limpieza y desinfección, manejo de residuos sólidos y líquidos, control integral de plagas y agua potable (Resolución 2674 de 2013, art. 26).", "Certificado médico de aptitud de cada manipulador de alimentos y plan de capacitación (Resolución 2674 de 2013, arts. 11 a 13).", "Control de temperaturas y prevención de la contaminación cruzada en la preparación (Resolución 2674 de 2013, arts. 16 y 18).", "Lavado y desinfección de los tanques de agua al menos cada seis meses (Decreto 1575 de 2007).", "En la visita se califican 6 aspectos: instalaciones, saneamiento, manipuladores, equipos, almacenamiento y alimentos. Con menos de 60 puntos el concepto es desfavorable (acta de inspección sanitaria con enfoque de riesgo)."];
+  var INC = ["Concepto técnico sobre seguridad humana y protección contra incendios (Ley 1575 de 2012, art. 42).", "Extintores portátiles según el riesgo, diseñados con NTC 2885 y NFPA 10 (NSR-10, J.4.3).", "Rutas de evacuación, salidas y señalización acordes con la carga de ocupación (NSR-10, Título K).", "Cortes de gas y electricidad de fácil acceso e instalaciones eléctricas conforme al RETIE (NSR-10, J.2.2).", "Brigada de emergencias capacitada en evacuación, fuego incipiente, uso de extintores y primeros auxilios (Decreto 1072 de 2015; Resolución 256 de 2014)."];
+  var ACU = ["Inscribirse como generador de aceite de cocina usado, entregarlo solo a gestores inscritos, capacitar al personal, conservar las constancias del gestor y reportar cada año en los primeros 15 días de enero (Resolución 316 de 2018, art. 9).", "No verter el aceite de cocina usado al alcantarillado, a fuentes de agua ni al suelo (Resolución 316 de 2018, art. 13)."];
+  var SST = {
+    "1 a 10": "SG-SST con 7 estándares mínimos, para empresas de hasta 10 trabajadores en riesgo I, II o III (Resolución 0312 de 2019).",
+    "11 a 50": "SG-SST con 21 estándares mínimos, para empresas de 11 a 50 trabajadores en riesgo I, II o III (Resolución 0312 de 2019).",
+    "Más de 50": "SG-SST con 60 estándares mínimos, para empresas de más de 50 trabajadores o en riesgo IV o V (Resolución 0312 de 2019)."
+  };
+  var EMER = "Plan de prevención, preparación y respuesta ante emergencias, con simulacro al menos una vez al año (Decreto 1072 de 2015, art. 2.2.4.6.25).";
+  var ALTO = ["industria", "puertos", "construccion"];
   var S = [
-    { id: "restaurantes", n: "Restaurantes", req: [{"a": "Sanidad", "items": ["Plan de saneamiento escrito, buenas prácticas de manufactura y capacitación anual de manipuladores (Resolución 2674 de 2013).", "Lavado y desinfección de los tanques de agua al menos cada seis meses (Decreto 1575 de 2007)."]}, {"a": "Seguridad contra incendios", "items": ["Concepto técnico sobre rutas de evacuación y señalización, extintores e instalación eléctrica (Ley 1575 de 2012, art. 42)."]}, {"a": "Seguridad y salud en el trabajo", "items": ["SG-SST y plan de prevención y respuesta ante emergencias (Decreto 1072 de 2015; Resolución 0312 de 2019)."]}, {"a": "Uso del suelo y apertura", "items": ["Cumplir el uso del suelo, tener matrícula mercantil y comunicar la apertura a la autoridad de planeación local (Ley 232 de 1995)."]}, {"a": "Ambiental", "items": ["Inscribirse como generador de aceite de cocina usado, entregarlo solo a gestores inscritos, capacitar al personal, conservar las constancias del gestor y reportar cada año en los primeros 15 días de enero (Resolución 316 de 2018, art. 9).", "No verter el aceite de cocina usado al alcantarillado, a fuentes de agua ni al suelo (Resolución 316 de 2018, art. 13)."]}], hac: ["Plan de saneamiento básico y control de plagas", "Programa de agua potable, limpieza y desinfección", "Manual de BPM", "Gestión de aceite de cocina usado", "SG-SST y planes de emergencia", "Análisis de laboratorio gestionados con laboratorios aliados"], plan: "Suscripción mensual.", wa: "Hola ECODESA, tengo un restaurante y me interesa la suscripción mensual.", cert: 1 },
-    { id: "hoteles", n: "Hoteles y turismo", req: [{"a": "Sanidad", "items": ["Plan de saneamiento escrito y buenas prácticas en la cocina, con capacitación anual de manipuladores (Resolución 2674 de 2013).", "Lavado y desinfección de los tanques de agua al menos cada seis meses en establecimientos como hoteles (Decreto 1575 de 2007)."]}, {"a": "Seguridad contra incendios", "items": ["Concepto técnico sobre rutas de evacuación y señalización, extintores e instalación eléctrica (Ley 1575 de 2012, art. 42)."]}, {"a": "Seguridad y salud en el trabajo", "items": ["SG-SST y plan de prevención y respuesta ante emergencias (Decreto 1072 de 2015; Resolución 0312 de 2019). Incluye simulacro anual."]}, {"a": "Uso del suelo y apertura", "items": ["Cumplir el uso del suelo, tener matrícula mercantil y comunicar la apertura a la autoridad de planeación local (Ley 232 de 1995)."]}], hac: ["Saneamiento básico, agua potable y planes de emergencia", "SG-SST y capacitación", "Gestión de análisis con laboratorios aliados", "Todo reunido en un paquete anual"], plan: "Paquete anual.", wa: "Hola ECODESA, tengo un hotel y me interesa el paquete anual.", cert: 1 },
-    { id: "comercio", n: "Comercio y locales", req: [{"a": "Seguridad contra incendios", "items": ["Concepto técnico sobre rutas de evacuación y señalización, extintores e instalación eléctrica (Ley 1575 de 2012, art. 42)."]}, {"a": "Seguridad y salud en el trabajo", "items": ["SG-SST y plan de prevención y respuesta ante emergencias (Decreto 1072 de 2015; Resolución 0312 de 2019)."]}, {"a": "Uso del suelo y apertura", "items": ["Cumplir el uso del suelo, tener matrícula mercantil y comunicar la apertura a la autoridad de planeación local (Ley 232 de 1995)."]}, {"a": "Publicidad y espacio público", "items": ["Registrar el aviso o publicidad exterior visual ante la autoridad local dentro de los 3 días hábiles siguientes a su colocación (Ley 140 de 1994)."]}], hac: ["Plan de emergencias", "Control de plagas", "SG-SST", "Registro de la publicidad exterior visual"], plan: "Kit de apertura.", wa: "Hola ECODESA, tengo un local comercial y me interesa el kit de apertura.", cert: 1 },
-    { id: "industria", n: "Industria", req: [{"a": "Seguridad y salud en el trabajo", "items": ["SG-SST con estándares mínimos y plan de emergencias (Decreto 1072 de 2015; Resolución 0312 de 2019)."]}, {"a": "Seguridad química", "items": ["Etiquetas y fichas de datos de seguridad en español, inventario de químicos, capacitación anual y no trasvasar sin etiqueta (Resolución 773 de 2021)."]}, {"a": "Gestión del riesgo", "items": ["Plan de gestión del riesgo de desastres para actividades industriales (Decreto 2157 de 2017)."]}, {"a": "Ambiental", "items": ["Los permisos ambientales que la normativa exija según la actividad (vertimientos, emisiones, residuos)."]}], hac: ["SG-SST", "Programas de seguridad química y SGA", "Auditorías de riesgo químico", "Permisos de vertimiento y emisiones", "Plan de Manejo Ambiental de residuos", "Acompañamiento en ISO 45001"], plan: "Auditoría de brechas.", wa: "Hola ECODESA, somos una industria y nos interesa una auditoría de brechas.", cert: 1 },
-    { id: "puertos", n: "Puertos y logística", req: [{"a": "Gestión del riesgo", "items": ["Plan de gestión del riesgo de desastres para el transporte y almacenamiento de carga (Decreto 2157 de 2017)."]}, {"a": "Seguridad y salud en el trabajo", "items": ["Programa de prevención de caídas, coordinador, certificados y permiso de trabajo en alturas (Resolución 4272 de 2021).", "SG-SST y plan de emergencias (Decreto 1072 de 2015; Resolución 0312 de 2019)."]}, {"a": "Ambiental", "items": ["Los permisos ambientales que la normativa exija según la actividad (vertimientos, residuos)."]}], hac: ["Plan de gestión del riesgo", "Planes de emergencia y contingencia", "SG-SST", "Plan de Manejo Ambiental de residuos", "Permisos de vertimiento"], wa: "Hola ECODESA, somos del sector portuario/logístico y queremos cotizar.", cert: 1 },
-    { id: "construccion", n: "Construcción", req: [{"a": "Seguridad y salud en el trabajo", "items": ["Programa de prevención de caídas, coordinador, certificados y permiso de trabajo en alturas (Resolución 4272 de 2021).", "SG-SST y plan de emergencias (Decreto 1072 de 2015; Resolución 0312 de 2019)."]}, {"a": "Ambiental", "items": ["Los grandes generadores de residuos de construcción y demolición presentan su programa de manejo 30 días antes de iniciar y reportan cada trimestre (Resolución 1257 de 2021)."]}, {"a": "Gestión del riesgo", "items": ["Plan de gestión del riesgo de desastres para obras civiles mayores (Decreto 2157 de 2017)."]}], hac: ["SG-SST", "Plan de manejo de RCD y trámite PIN RCD", "Licencias y permisos ambientales"], wa: "Hola ECODESA, tengo una obra y quiero cotizar.", cert: 1 },
-    { id: "digital", n: "Digital e IA", req: [{"a": "Protección de datos", "items": ["Autorización previa e informada del titular, política de tratamiento de datos y atención de sus derechos (Ley 1581 de 2012)."]}], hac: ["Páginas web y apps", "Marketing digital", "Automatización con IA", "Con los avisos y políticas que la normativa de datos exige"], wa: "Hola ECODESA, quiero cotizar una página web / app / marketing digital." },
+    { id: "restaurantes", n: "Restaurantes", u: "tu restaurante", acu: 1, req: [{"a": "Sanidad", "items": SAN}, {"a": "Seguridad contra incendios", "items": INC}, {"a": "Seguridad y salud en el trabajo", "items": []}, {"a": "Uso del suelo y apertura", "items": ["Cumplir el uso del suelo, tener matrícula mercantil y comunicar la apertura a la autoridad de planeación local (Ley 232 de 1995)."]}], hac: ["Plan de saneamiento básico y control de plagas", "Programa de agua potable, limpieza y desinfección", "Manual de BPM", "Gestión de aceite de cocina usado", "SG-SST y planes de emergencia", "Análisis de laboratorio gestionados con laboratorios aliados"], plan: "Suscripción mensual.", wa: "Hola ECODESA, tengo un restaurante y me interesa la suscripción mensual.", cert: 1 },
+    { id: "hoteles", n: "Hoteles y turismo", u: "tu hotel", acu: 1, req: [{"a": "Sanidad", "items": SAN}, {"a": "Seguridad contra incendios", "items": INC}, {"a": "Seguridad y salud en el trabajo", "items": []}, {"a": "Uso del suelo y apertura", "items": ["Cumplir el uso del suelo, tener matrícula mercantil y comunicar la apertura a la autoridad de planeación local (Ley 232 de 1995)."]}], hac: ["Saneamiento básico, agua potable y planes de emergencia", "SG-SST y capacitación", "Gestión de análisis con laboratorios aliados", "Todo reunido en un paquete anual"], plan: "Paquete anual.", wa: "Hola ECODESA, tengo un hotel y me interesa el paquete anual.", cert: 1 },
+    { id: "comercio", u: "tu local", n: "Comercio y locales", req: [{"a": "Seguridad contra incendios", "items": INC}, {"a": "Seguridad y salud en el trabajo", "items": []}, {"a": "Uso del suelo y apertura", "items": ["Cumplir el uso del suelo, tener matrícula mercantil y comunicar la apertura a la autoridad de planeación local (Ley 232 de 1995)."]}, {"a": "Publicidad y espacio público", "items": ["Registrar el aviso o publicidad exterior visual ante la autoridad local dentro de los 3 días hábiles siguientes a su colocación (Ley 140 de 1994)."]}], hac: ["Plan de emergencias", "Control de plagas", "SG-SST", "Registro de la publicidad exterior visual"], plan: "Kit de apertura.", wa: "Hola ECODESA, tengo un local comercial y me interesa el kit de apertura.", cert: 1 },
+    { id: "industria", u: "tu empresa", n: "Industria", req: [{"a": "Seguridad y salud en el trabajo", "items": []}, {"a": "Seguridad química", "items": ["Etiquetas y fichas de datos de seguridad en español, inventario de químicos, capacitación anual y no trasvasar sin etiqueta (Resolución 773 de 2021)."]}, {"a": "Gestión del riesgo", "items": ["Plan de gestión del riesgo de desastres para actividades industriales (Decreto 2157 de 2017)."]}, {"a": "Ambiental", "items": ["Los permisos ambientales que la normativa exija según la actividad (vertimientos, emisiones, residuos)."]}], hac: ["SG-SST", "Programas de seguridad química y SGA", "Auditorías de riesgo químico", "Permisos de vertimiento y emisiones", "Plan de Manejo Ambiental de residuos", "Acompañamiento en ISO 45001"], plan: "Auditoría de brechas.", wa: "Hola ECODESA, somos una industria y nos interesa una auditoría de brechas.", cert: 1 },
+    { id: "puertos", u: "tu operación", n: "Puertos y logística", req: [{"a": "Gestión del riesgo", "items": ["Plan de gestión del riesgo de desastres para el transporte y almacenamiento de carga (Decreto 2157 de 2017)."]}, {"a": "Seguridad y salud en el trabajo", "items": ["Programa de prevención de caídas, coordinador, certificados y permiso de trabajo en alturas (Resolución 4272 de 2021)."]}, {"a": "Ambiental", "items": ["Los permisos ambientales que la normativa exija según la actividad (vertimientos, residuos)."]}], hac: ["Plan de gestión del riesgo", "Planes de emergencia y contingencia", "SG-SST", "Plan de Manejo Ambiental de residuos", "Permisos de vertimiento"], wa: "Hola ECODESA, somos del sector portuario/logístico y queremos cotizar.", cert: 1 },
+    { id: "construccion", u: "tu obra", n: "Construcción", req: [{"a": "Seguridad y salud en el trabajo", "items": ["Programa de prevención de caídas, coordinador, certificados y permiso de trabajo en alturas (Resolución 4272 de 2021)."]}, {"a": "Ambiental", "items": ["Los grandes generadores de residuos de construcción y demolición presentan su programa de manejo 30 días antes de iniciar y reportan cada trimestre (Resolución 1257 de 2021)."]}, {"a": "Gestión del riesgo", "items": ["Plan de gestión del riesgo de desastres para obras civiles mayores (Decreto 2157 de 2017)."]}], hac: ["SG-SST", "Plan de manejo de RCD y trámite PIN RCD", "Licencias y permisos ambientales"], wa: "Hola ECODESA, tengo una obra y quiero cotizar.", cert: 1 },
+    { id: "digital", u: "tu proyecto", n: "Digital e IA", req: [{"a": "Protección de datos", "items": ["Autorización previa e informada del titular, política de tratamiento de datos y atención de sus derechos (Ley 1581 de 2012)."]}], hac: ["Páginas web y apps", "Marketing digital", "Automatización con IA", "Con los avisos y políticas que la normativa de datos exige"], wa: "Hola ECODESA, quiero cotizar una página web / app / marketing digital." },
     { id: "iso", n: "Auditoría ISO", txt: "Las normas ISO son voluntarias: sirven para demostrar cumplimiento y mejora continua. Realizamos auditorías internas de ISO 9001, ISO 14001 e ISO 45001 y te acompañamos a implementarlas. La certificación la otorga un organismo certificador externo.", wa: "Hola ECODESA, me interesa una auditoría interna ISO (9001, 14001 o 45001)." }
   ];
   var link = function (t) { return "https://wa.me/" + WA + "?text=" + encodeURIComponent(t); };
@@ -111,16 +121,79 @@
         opts(l);
       });
     }
+    var DISC = "Aplica según tu actividad y tamaño. ECODESA es una firma privada: no representa a estas autoridades ni emite sus certificados o conceptos. La mención de una autoridad es informativa y no implica aval ni relación con ella. Un asesor te confirma qué aplica a tu caso.";
+    function groupsFor(s, c) {
+      var out = [];
+      (s.req || []).forEach(function (g) {
+        var it = g.items.slice();
+        if (g.a === "Seguridad y salud en el trabajo") {
+          var l = SST[c.size] || "SG-SST con los estándares mínimos que correspondan a tu número de trabajadores y nivel de riesgo (Resolución 0312 de 2019).";
+          if (c.size && c.size !== "Más de 50" && ALTO.indexOf(s.id) > -1) l += " Si tu actividad es de riesgo IV o V, aplican los 60 estándares.";
+          it.unshift(l, EMER);
+        }
+        out.push({ a: g.a, items: it });
+      });
+      if (s.acu && c.acu) out.push({ a: "Ambiental", items: ACU });
+      return out;
+    }
+    function waText(s, c) {
+      var t = s.wa;
+      if (c.size) t += " Trabajadores: " + c.size + ".";
+      if (c.tema) t += " Me interesa: " + c.tema + ".";
+      return t;
+    }
     function show(s) {
       step(function () {
-        if (s.txt) { say(s.txt); }
-        else {
-          say({ h: "Según la normativa, las autoridades pueden solicitarte:", groups: s.req, f: "Aplica según tu actividad y tamaño. ECODESA es una firma privada: no representa a estas autoridades ni emite sus certificados o conceptos. La mención de una autoridad es informativa y no implica aval ni relación con ella. Un asesor te confirma qué aplica a tu caso." });
-          say({ h: "Si nos contratas, te acompañamos con:", items: s.hac, f: s.plan ? "Modalidad: " + s.plan.replace(/\.$/, "") + "." : "" });
-          if (s.cert) say(CERT);
-        }
-        opts([{ t: "Hablar con un asesor", id: s.id, href: link(s.wa) }, { t: "Ver otro sector", fn: function () { menu(false); } }]);
+        if (s.txt) { say(s.txt); opts([{ t: "Hablar con un asesor", id: s.id, href: link(s.wa) }, { t: "Ver otro sector", fn: function () { menu(false); } }]); return; }
+        say("Perfecto. ¿Qué te gustaría saber sobre " + s.u + "?");
+        opts([
+          { t: "La normativa que aplica a mi negocio", fn: function () { pick("La normativa que aplica a mi negocio"); track("asistente_norma_" + s.id); norma(s); } },
+          { t: "Cómo me ayuda ECODESA", fn: function () { pick("Cómo me ayuda ECODESA"); ayuda(s, {}); } },
+          { t: "Hablar con un asesor", id: s.id, href: link(s.wa) }
+        ]);
       });
+    }
+    function norma(s) {
+      var c = {};
+      var hasSST = (s.req || []).some(function (g) { return g.a === "Seguridad y salud en el trabajo"; });
+      function q1() {
+        if (!hasSST) return q2();
+        say("Para darte una respuesta a tu medida: ¿cuántas personas trabajan en " + s.u + "?");
+        opts(["1 a 10", "11 a 50", "Más de 50"].map(function (x) { return { t: x, fn: function () { pick(x); c.size = x; q2(); } }; }));
+      }
+      function q2() {
+        if (!s.acu) return q3();
+        say("¿En " + s.u + " se usa aceite para freír o cocinar?");
+        opts([{ t: "Sí", fn: function () { pick("Sí"); c.acu = 1; q3(); } }, { t: "No", fn: function () { pick("No"); q3(); } }]);
+      }
+      function q3() {
+        var gs = groupsFor(s, c);
+        if (gs.length < 2) return res(s, c, gs);
+        say("¿Qué tema quieres revisar?");
+        var l = gs.map(function (g) { return { t: g.a, fn: function () { pick(g.a); c.tema = g.a; track("asistente_tema_" + s.id); res(s, c, [g], q3); } }; });
+        l.push({ t: "Todos los temas", fn: function () { pick("Todos los temas"); c.tema = "todos los temas"; res(s, c, gs, q3); } });
+        opts(l);
+      }
+      q1();
+    }
+    function res(s, c, gs, again) {
+      var who = s.u + (c.size ? ", con " + c.size.toLowerCase() + " trabajadores" : "");
+      say({ h: "Para " + who + ", según la normativa las autoridades pueden solicitarte:", groups: gs, f: DISC });
+      var l = [];
+      if (again) l.push({ t: "Ver otro tema", fn: function () { pick("Ver otro tema"); again(); } });
+      l.push({ t: "Cómo me ayuda ECODESA", fn: function () { pick("Cómo me ayuda ECODESA"); ayuda(s, c); } });
+      l.push({ t: "Hablar con un asesor", id: s.id, href: link(waText(s, c)) });
+      l.push({ t: "Ver otro sector", fn: function () { pick("Ver otro sector"); menu(false); } });
+      opts(l);
+    }
+    function ayuda(s, c) {
+      say({ h: "Si nos contratas, te acompañamos con:", items: s.hac, f: s.plan ? "Modalidad: " + s.plan.replace(/\.$/, "") + "." : "" });
+      if (s.cert) say(CERT);
+      opts([
+        { t: "Hablar con un asesor", id: s.id, href: link(waText(s, c)) },
+        { t: "Ver la normativa", fn: function () { pick("Ver la normativa"); norma(s); } },
+        { t: "Ver otro sector", fn: function () { pick("Ver otro sector"); menu(false); } }
+      ]);
     }
     var started = false;
     var av = btn.querySelector(".as-av");
