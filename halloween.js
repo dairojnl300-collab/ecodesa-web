@@ -6,7 +6,13 @@
     if (q === "0") season = false;
     var off = false; try { off = localStorage.getItem("ecodesa-hw") === "off"; } catch (e) {}
     var on = season && (q === "1" || !off), root = document.documentElement;
-    if (on) root.classList.add("hw");
+    function setTheme(t) { root.setAttribute("data-theme", t); try { localStorage.setItem("ecodesa-theme", t); } catch (e) {} }
+    if (on) {
+      root.classList.add("hw");
+      /* primera vez en temporada: versión noche; después se respeta lo que elija el cliente */
+      var seen = false; try { seen = localStorage.getItem("ecodesa-hw-seen") === "1"; localStorage.setItem("ecodesa-hw-seen", "1"); } catch (e) {}
+      if (!seen) setTheme("dark");
+    }
     if (!season) return;
     function mount() {
       var t = document.getElementById("themeBtn"); if (!t || document.getElementById("hwBtn")) return;
@@ -16,7 +22,8 @@
       b.innerHTML = '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 11c-1-4-3-6-6-7 1 3 2 5 3 7z" fill="#4f8a2a"/><ellipse cx="24" cy="28" rx="19" ry="15" fill="#ff7a18"/><ellipse cx="14" cy="28" rx="7" ry="14" fill="#f06a08"/><ellipse cx="34" cy="28" rx="7" ry="14" fill="#f06a08"/><ellipse cx="24" cy="28" rx="6" ry="15" fill="#ff8a2e"/><path d="M13 24l5 3-5 1zM35 24l-5 3 5 1zM20 33l4-2 4 2-1 2-3-1-3 1z" fill="#2a1200"/></svg><span class="hw-btn-t">Edición Halloween</span>';
       b.addEventListener("click", function () {
         var next = !root.classList.contains("hw");
-        try { localStorage.setItem("ecodesa-hw", next ? "on" : "off"); } catch (e) {}
+        try { localStorage.setItem("ecodesa-hw", next ? "on" : "off"); localStorage.setItem("ecodesa-hw-seen", "1"); } catch (e) {}
+        setTheme(next ? "dark" : "light");
         var u = new URL(location.href); u.searchParams.delete("halloween");
         if (next) { location.href = u.toString(); } else { location.href = u.toString(); }
       });
