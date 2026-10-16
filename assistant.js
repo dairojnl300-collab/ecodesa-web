@@ -29,20 +29,48 @@
     var fl = el("a", "", "Política de datos"); fl.href = "/datos/"; fl.target = "_blank"; fl.rel = "noopener"; foot.appendChild(fl); foot.appendChild(document.createTextNode("."));
     panel.appendChild(head); panel.appendChild(body); panel.appendChild(foot);
     document.body.appendChild(btn); document.body.appendChild(panel);
-
-    function say(t, delay) { var b = el("div", "as-m bot", t); body.appendChild(b); return b; }
-    function pick(t) { body.appendChild(el("div", "as-m me", t)); }
-    function opts(list) {
-      var w = el("div", "as-opts");
-      list.forEach(function (o) {
-        var e = o.href ? el("a", "as-o as-wa", o.t) : el("button", "as-o", o.t);
-        if (o.href) { e.href = o.href; e.target = "_blank"; e.rel = "noopener"; e.addEventListener("click", function () { track("asistente_asesor_" + (o.id || "")); }); }
-        else { e.type = "button"; e.addEventListener("click", function () { w.remove(); o.fn(); }); }
-        w.appendChild(e);
-      });
-      body.appendChild(w); body.scrollTop = body.scrollHeight;
+    var hi = el("div", "as-hi"); hi.hidden = true;
+    var hit = el("button", "as-hi-t", "Hola, me llamo Ethan. ¿Te ayudo?"); hit.type = "button";
+    var hix = el("button", "as-hi-x", "\u00d7"); hix.type = "button"; hix.setAttribute("aria-label", "Cerrar saludo");
+    hi.appendChild(hit); hi.appendChild(hix); document.body.appendChild(hi);
+    function hideHi(save) { hi.hidden = true; if (save) { try { sessionStorage.setItem("ecodesa-as-hi", "1"); } catch (e) {} } }
+    var seen = false; try { seen = sessionStorage.getItem("ecodesa-as-hi") === "1"; } catch (e) {}
+    if (!seen) {
+      setTimeout(function () { if (panel.hidden) { hi.hidden = false; setTimeout(function () { hideHi(true); }, 10000); } }, 4000);
     }
-    function step(fn) { if (reduce) fn(); else setTimeout(fn, 380); }
+    hix.addEventListener("click", function () { hideHi(true); });
+    hit.addEventListener("click", function () { hideHi(true); btn.click(); });
+
+    var q = [], busy = false;
+    function run() { if (busy || !q.length) return; busy = true; q.shift()(function () { busy = false; run(); }); }
+    function toEnd() { body.scrollTop = body.scrollHeight; }
+    function say(t) {
+      q.push(function (done) {
+        var b = el("div", "as-m bot");
+        if (reduce) { b.textContent = t; body.appendChild(b); toEnd(); done(); return; }
+        b.classList.add("typing"); b.setAttribute("aria-hidden", "true");
+        b.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(b); toEnd();
+        setTimeout(function () {
+          b.classList.remove("typing"); b.removeAttribute("aria-hidden"); b.textContent = t; toEnd(); done();
+        }, Math.min(1500, 600 + t.length * 11));
+      });
+      run();
+    }
+    function pick(t) { body.appendChild(el("div", "as-m me", t)); toEnd(); }
+    function opts(list) {
+      q.push(function (done) {
+        var w = el("div", "as-opts");
+        list.forEach(function (o) {
+          var e = o.href ? el("a", "as-o as-wa", o.t) : el("button", "as-o", o.t);
+          if (o.href) { e.href = o.href; e.target = "_blank"; e.rel = "noopener"; e.addEventListener("click", function () { track("asistente_asesor_" + (o.id || "")); }); }
+          else { e.type = "button"; e.addEventListener("click", function () { w.remove(); o.fn(); }); }
+          w.appendChild(e);
+        });
+        body.appendChild(w); toEnd(); done();
+      });
+      run();
+    }
+    function step(fn) { fn(); }
     function menu(first) {
       if (first) { say("Hola, soy Ethan, el asistente de ECODESA. Somos una firma fundada en Cartagena de Indias. Te ayudamos a cumplir lo que exigen las autoridades en gestión ambiental, SG-SST, saneamiento y gestión del riesgo, en Cartagena y a nivel nacional."); }
       step(function () {
@@ -64,7 +92,7 @@
       });
     }
     var started = false;
-    function open() { panel.hidden = false; btn.setAttribute("aria-expanded", "true"); btn.classList.add("on"); if (!started) { started = true; menu(true); track("asistente_abierto"); } close.focus(); }
+    function open() { hideHi(true); panel.hidden = false; btn.setAttribute("aria-expanded", "true"); btn.classList.add("on"); if (!started) { started = true; menu(true); track("asistente_abierto"); } close.focus(); }
     function shut() { panel.hidden = true; btn.setAttribute("aria-expanded", "false"); btn.classList.remove("on"); btn.focus(); }
     btn.addEventListener("click", function () { panel.hidden ? open() : shut(); });
     close.addEventListener("click", shut);
