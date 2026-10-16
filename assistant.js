@@ -26,20 +26,21 @@
   var AUTO = "Autoevaluación anual de estándares mínimos y plan de mejoramiento (Resolución 0312 de 2019, arts. 27 y 28).";
   var EMER = "Plan de prevención, preparación y respuesta ante emergencias, con simulacro al menos una vez al año (Decreto 1072 de 2015, art. 2.2.4.6.25).";
   var HT = {
-    "Sanidad": ["Plan de saneamiento básico: plagas, agua potable, limpieza y desinfección", "Manual de buenas prácticas de manufactura y prácticas de higiene", "Monitoreo de superficies y frotis de uñas", "Análisis de laboratorio gestionados con laboratorios aliados"],
-    "Seguridad contra incendios": ["Plan de emergencias y contingencia", "Señalización y rutas de evacuación", "Brigadas de emergencia", "Simulacros"],
-    "Seguridad y salud en el trabajo": ["SG-SST con estándares mínimos", "Identificación de peligros y evaluación de riesgos", "Capacitación en seguridad laboral", "Comité de seguridad e indicadores de gestión", "Plan de emergencias y simulacros"],
+    "Sanidad": ["Plan de saneamiento básico: limpieza y desinfección, residuos, control de plagas y agua potable", "Manual de BPM y plan de capacitación de manipuladores", "Análisis de laboratorio gestionados con laboratorios aliados", "Revisión previa de los aspectos que califica la visita sanitaria"],
+    "Seguridad contra incendios": ["Plan de emergencias y contingencia", "Revisión de extintores, rutas de evacuación y señalización", "Organización de la brigada de emergencias y su plan de capacitación", "Simulacros"],
+    "Seguridad y salud en el trabajo": ["Diseño e implementación del SG-SST", "Autoevaluación de estándares mínimos y plan de mejoramiento", "Plan de prevención, preparación y respuesta ante emergencias", "Simulacro anual"],
+    "Uso del suelo y apertura": ["Revisión de los requisitos de apertura (Ley 232 de 1995)", "Acompañamiento en la consulta de uso del suelo"],
     "Publicidad y espacio público": ["Registro de la publicidad exterior visual"],
-    "Gestión del riesgo": ["Plan de gestión del riesgo de desastres", "Planes de emergencia y contingencia", "Informes técnicos de gestión del riesgo", "Simulacros"],
-    "Seguridad química": ["Programas de seguridad química", "Sistema Globalmente Armonizado (SGA)", "Auditorías de riesgo químico"],
+    "Gestión del riesgo": ["Plan de gestión del riesgo de desastres", "Planes de emergencia y contingencia", "Simulacros"],
+    "Seguridad química": ["Programas de seguridad química y SGA", "Auditorías de riesgo químico"],
     "Protección de datos": ["Avisos y política de tratamiento de datos en tu web o app"]
   };
   var HA = {
-    restaurantes: ["Gestión de aceite de cocina usado y trampa de grasas", "Plan de saneamiento básico con manejo de residuos"],
-    hoteles: ["Gestión de aceite de cocina usado y trampa de grasas", "Plan de saneamiento básico con manejo de residuos"],
-    industria: ["Permisos de vertimiento y emisiones", "Caracterización de aguas", "Plan de Manejo Ambiental de residuos sólidos e industriales"],
-    puertos: ["Plan de Manejo Ambiental de residuos", "Permisos de vertimiento", "Planes de emergencia y atención de derrames"],
-    construccion: ["Plan de manejo ambiental de obra", "Manejo de RCD y trámite PIN RCD", "Licencias y permisos ambientales"]
+    restaurantes: ["Gestión del aceite de cocina usado: inscripción como generador, entrega a gestor inscrito y reporte anual", "Capacitación del personal en el manejo del aceite usado"],
+    hoteles: ["Gestión del aceite de cocina usado: inscripción como generador, entrega a gestor inscrito y reporte anual", "Capacitación del personal en el manejo del aceite usado"],
+    industria: ["Permisos de vertimiento y emisiones", "Plan de Manejo Ambiental de residuos"],
+    puertos: ["Plan de Manejo Ambiental de residuos", "Permisos de vertimiento"],
+    construccion: ["Plan de manejo de RCD y trámite PIN RCD", "Licencias y permisos ambientales"]
   };
   var ALTO = ["industria", "puertos", "construccion"];
   var S = [
@@ -207,7 +208,6 @@
     function ayuda(s, c) {
       var t = c.tema && c.tema !== "todos los temas" ? c.tema : "";
       var it = t ? (t === "Ambiental" ? HA[s.id] : HT[t]) : null;
-      if (t && !it) say("En " + t.toLowerCase() + ", este trámite lo realiza directamente tu negocio. No es un servicio de ECODESA, pero un asesor te orienta sobre los pasos.");
       if (it) say({ h: "En " + (t === "Ambiental" ? "gestión ambiental" : t.toLowerCase()) + ", te acompañamos con:", items: it, f: s.plan ? "Modalidad: " + s.plan.replace(/\.$/, "") + "." : "" });
       else say({ h: "Si nos contratas, te acompañamos con:", items: s.hac, f: s.plan ? "Modalidad: " + s.plan.replace(/\.$/, "") + "." : "" });
       if (s.cert) say(CERT);
