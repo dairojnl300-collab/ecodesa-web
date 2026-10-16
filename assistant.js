@@ -20,9 +20,9 @@
 
   function build() {
     var btn = el("button", "as-btn"); btn.type = "button"; btn.setAttribute("aria-label", "Hablar con Ethan, asistente de ECODESA"); btn.setAttribute("aria-expanded", "false"); btn.setAttribute("aria-controls", "asPanel");
-    btn.innerHTML = '<img class="as-av" src="assets/v2/robot-anim-128.webp" srcset="assets/v2/robot-anim-128.webp 1x, assets/v2/robot-anim-256.webp 2x" width="56" height="56" alt=""><span class="as-btn-t">Habla con Ethan</span>';
+    btn.innerHTML = '<img class="as-av" src="assets/v2/robot-anim-128.webp" srcset="assets/v2/robot-anim-128.webp 1x, assets/v2/robot-anim-256.webp 2x" width="56" height="56" alt=""><span class="as-zz" aria-hidden="true"><i>z</i><i>z</i><i>Z</i></span><span class="as-btn-t">Habla con Ethan</span>';
     var panel = el("section", "as-panel"); panel.id = "asPanel"; panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Ethan, asistente de ECODESA"); panel.hidden = true;
-    var head = el("header", "as-head"); var hav = el("img", "as-hav"); hav.src = "assets/v2/robot-anim-128.webp"; hav.width = 44; hav.height = 44; hav.alt = ""; head.appendChild(hav); var ht = el("div", "as-ht"); ht.appendChild(el("b", "", "Ethan")); ht.appendChild(el("small", "", "Asistente de ECODESA · Ambiente y SST")); head.appendChild(ht);
+    var head = el("header", "as-head"); var hav = el("img", "as-hav"); hav.src = "assets/v2/robot-anim-128.webp"; hav.width = 44; hav.height = 44; hav.alt = ""; head.appendChild(hav); var hzz = el("span", "as-zz"); hzz.setAttribute("aria-hidden", "true"); hzz.innerHTML = "<i>z</i><i>z</i><i>Z</i>"; head.appendChild(hzz); var ht = el("div", "as-ht"); ht.appendChild(el("b", "", "Ethan")); ht.appendChild(el("small", "", "Asistente de ECODESA · Ambiente y SST")); head.appendChild(ht);
     var close = el("button", "as-x"); close.type = "button"; close.setAttribute("aria-label", "Cerrar asistente"); close.textContent = "×"; head.appendChild(close);
     var body = el("div", "as-body"); body.setAttribute("aria-live", "polite");
     var foot = el("p", "as-foot", "Información orientativa, no constituye oferta ni asesoría legal. El alcance, valor y condiciones se acuerdan por escrito con un asesor. No escribas datos personales en este chat. Al continuar por WhatsApp aplica nuestra ");
@@ -62,7 +62,7 @@
         var w = el("div", "as-opts");
         list.forEach(function (o) {
           var e = o.href ? el("a", "as-o as-wa", o.t) : el("button", "as-o", o.t);
-          if (o.href) { e.href = o.href; e.target = "_blank"; e.rel = "noopener"; e.addEventListener("click", function () { track("asistente_asesor_" + (o.id || "")); }); }
+          if (o.href) { e.href = o.href; e.target = "_blank"; e.rel = "noopener"; e.addEventListener("click", function () { track("asistente_asesor_" + (o.id || "")); face("happy", 3500); }); }
           else { e.type = "button"; e.addEventListener("click", function () { w.remove(); o.fn(); }); }
           w.appendChild(e);
         });
@@ -92,10 +92,70 @@
       });
     }
     var started = false;
-    function open() { hideHi(true); panel.hidden = false; btn.setAttribute("aria-expanded", "true"); btn.classList.add("on"); if (!started) { started = true; menu(true); track("asistente_abierto"); } close.focus(); }
-    function shut() { panel.hidden = true; btn.setAttribute("aria-expanded", "false"); btn.classList.remove("on"); btn.focus(); }
+    var av = btn.querySelector(".as-av");
+    var ANIM = "assets/v2/robot-anim-128.webp", ANIM_SET = "assets/v2/robot-anim-128.webp 1x, assets/v2/robot-anim-256.webp 2x";
+    var CARAS = ["look-l", "look-r", "wide", "happy", "wink", "sleep"];
+    var faceT = null, sleeping = false, asked = false, sleepT = 0, askT = 0, wipeT = 0, rndT = 0;
+    function setFace(n) { var u = "assets/v2/robot-" + n + ".webp"; av.srcset = ""; av.src = u; hav.src = u; }
+    function restoreFace() { av.srcset = ANIM_SET; av.src = ANIM; hav.removeAttribute("srcset"); hav.src = ANIM; av.classList.remove("lean"); }
+    function face(n, ms, lean) {
+      if (sleeping) return;
+      clearTimeout(faceT); setFace(n); if (lean && !reduce) av.classList.add("lean");
+      faceT = setTimeout(function () { if (!sleeping) restoreFace(); }, ms || 1800);
+    }
+    function snooze(on) {
+      sleeping = on; clearTimeout(faceT);
+      btn.classList.toggle("sleep", on); head.classList.toggle("sleep", on);
+      if (on) setFace("sleep"); else restoreFace();
+    }
+    setTimeout(function () { CARAS.forEach(function (n) { var i = new Image(); i.src = "assets/v2/robot-" + n + ".webp"; }); }, 2500);
+    function randomFace() {
+      rndT = setTimeout(function () {
+        if (!document.hidden && !sleeping && !reduce) {
+          var n = ["look-l", "look-r", "wide", "wink", "look-r", "look-l"][Math.floor(Math.random() * 6)];
+          face(n, n === "wide" ? 2400 : 1700, n === "wide" && panel.hidden);
+        }
+        randomFace();
+      }, 6500 + Math.random() * 5500);
+    }
+    if (!reduce) randomFace();
+
+    var TT = window.ecodesaAsistenteT || {}; var T_SLEEP = TT.sleep || 60000, T_ASK = TT.ask || 300000, T_WIPE = TT.wipe || 120000;
+    function stopTimers() { clearTimeout(sleepT); clearTimeout(askT); clearTimeout(wipeT); }
+    function bump() {
+      if (asked) return;
+      stopTimers();
+      if (sleeping) { snooze(false); face("wide", 1200); }
+      if (panel.hidden || !started) return;
+      sleepT = setTimeout(function () { snooze(true); }, T_SLEEP);
+      askT = setTimeout(ask, T_ASK);
+    }
+    function ask() {
+      asked = true; snooze(false); face("wide", 2200);
+      say("¿Sigues ahí? ¿Te puedo ayudar en otra cosa?");
+      opts([
+        { t: "Sí, sigo aquí", fn: function () { answered(); pick("Sí, sigo aquí"); face("happy", 2200); say("¡Perfecto! Sigo aquí para ayudarte."); menu(false); } },
+        { t: "No, gracias", fn: function () { answered(); pick("No, gracias"); face("happy", 2600); say("Gracias por visitarnos. Aquí estaré cuando me necesites."); q.push(function (done) { setTimeout(function () { wipe(); done(); }, 2500); }); run(); } }
+      ]);
+      wipeT = setTimeout(wipe, T_WIPE);
+    }
+    function answered() { asked = false; clearTimeout(wipeT); bump(); }
+    function wipe() {
+      stopTimers(); asked = false; q = []; busy = false; body.textContent = ""; started = false; snooze(false);
+      shut(true);
+    }
+    ["pointerdown", "keydown", "touchstart", "wheel"].forEach(function (ev) { panel.addEventListener(ev, bump, { passive: true }); });
+
+    function open() {
+      hideHi(true); panel.hidden = false; btn.setAttribute("aria-expanded", "true"); btn.classList.add("on");
+      if (!started) { started = true; menu(true); track("asistente_abierto"); face("happy", 2400); }
+      bump(); close.focus();
+    }
+    function shut(nofocus) {
+      panel.hidden = true; btn.setAttribute("aria-expanded", "false"); btn.classList.remove("on"); stopTimers(); if (!asked) snooze(false); if (nofocus !== true) btn.focus();
+    }
     btn.addEventListener("click", function () { panel.hidden ? open() : shut(); });
-    close.addEventListener("click", shut);
+    close.addEventListener("click", function () { shut(); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) shut(); });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build); else build();
