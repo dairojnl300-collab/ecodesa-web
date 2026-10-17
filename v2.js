@@ -3,6 +3,9 @@
   "use strict";
   window.__v2 = true;
   var WA = "573246886824";
+  /* CRM leads: apagado hasta que Sofia apruebe texto de autorizacion y politica (finalidad: guardar datos). */
+  var LEADS_ON = false, AVISO_V = "pendiente-sofia";
+  var SB_URL = "https://isncjtomlvxyvcaohcpx.supabase.co", SB_KEY = "sb_publishable_SWknGu_-WzXjE1mQUXPdfQ_bIbTaDWO";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var track = function (label) { if (window.ecodesaGoogleLoaded && typeof gtag === "function") gtag("event", "click", { event_category: "engagement", event_label: label, value: 1 }); };
 
@@ -290,6 +293,16 @@
       st.className = "fstatus err"; st.textContent = "Para enviar su solicitud debe autorizar el tratamiento de sus datos personales.";
       au.focus(); st.scrollIntoView({ block: "nearest" }); track("form_sin_autorizacion");
       return;
+    }
+    if (LEADS_ON) {
+      try {
+        fetch(SB_URL + "/rest/v1/web_leads", { method: "POST", keepalive: true,
+          headers: { "Content-Type": "application/json", apikey: SB_KEY, Authorization: "Bearer " + SB_KEY, Prefer: "return=minimal" },
+          body: JSON.stringify({ nombre: d.nombre, empresa: d.empresa || null, telefono: d.telefono, sector: d.servicio || null, mensaje: d.mensaje,
+            origen: (window.__ethanOrigen ? "ethan" : "formulario"), tema_ethan: window.__ethanTema || null,
+            consentimiento: true, consentimiento_comercial: !!(mk && mk.checked), version_aviso: AVISO_V })
+        }).catch(function () {});
+      } catch (x) {}
     }
     var t = "Hola ECODESA, soy " + d.nombre + (d.empresa ? " (" + d.empresa + ")" : "") + ".\nSector: " + (d.servicio || "—") + "\nTeléfono: " + d.telefono + "\n" + d.mensaje + "\nAutorizo el tratamiento de mis datos personales para responder mi solicitud y cotizar (Política de Datos v1.1, 15/10/2026).\nInformación comercial: " + (mk && mk.checked ? "SÍ" : "NO");
     window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(t), "_blank", "noopener");
