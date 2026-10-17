@@ -139,11 +139,16 @@
       run();
     }
     function step(fn) { fn(); }
+    var vueltas = 0;
     function menu(first) {
+      var ayudaAsesor = false;
+      if (!first) { vueltas += 1; ayudaAsesor = vueltas >= 2; }
       if (first) { say("Hola, soy Ethan, el asistente de ECODESA, firma fundada en Cartagena de Indias. Te ayudamos a cumplir la normativa a nivel nacional y a crecer con servicios digitales y marketing digital."); }
       step(function () {
-        say("¿Qué tipo de negocio tienes?");
+        if (ayudaAsesor) say("¿No ves tu caso? Un Profesional de nuestro equipo lo revisa contigo por WhatsApp.");
+        else say("¿Qué tipo de negocio tienes?");
         var l = S.filter(function (s) { return s.id !== "digital" && s.id !== "iso"; }).map(function (s) { return { t: s.n, fn: function () { pick(s.n); track("asistente_" + s.id); show(s); } }; });
+        if (ayudaAsesor) l.unshift({ t: "Hablar con un asesor", id: "menu", href: link("Hola ECODESA, tengo una consulta.") });
         l.push({ t: "Otra consulta", fn: function () { pick("Otra consulta"); step(function () { say("Eso lo revisa un Profesional de nuestro equipo. Cuéntanos por WhatsApp."); opts([{ t: "Hablar con un asesor", id: "otra", href: link("Hola ECODESA, tengo una consulta.") }, { t: "Volver al menú", fn: function () { menu(false); } }]); }); } });
         opts(l);
       });
@@ -218,10 +223,10 @@
     function res(s, c, gs, again) {
       var who = s.u + (c.size ? ", con " + c.size.toLowerCase() + " trabajadores" : "");
       say({ h: "Para " + who + ", según la normativa las autoridades pueden solicitarte:", groups: gs, f: DISC });
-      var l = [];
+      say("Siguiente paso: un Profesional de nuestro equipo revisa tu caso y confirma qué aplica en tu negocio. Verifica siempre la normativa vigente.");
+      var l = [{ t: "Hablar con un asesor", id: s.id, href: link(waText(s, c)) }];
       if (again) l.push({ t: "Ver otro tema", fn: function () { pick("Ver otro tema"); again(); } });
       l.push({ t: "Cómo me ayuda ECODESA", fn: function () { pick("Cómo me ayuda ECODESA"); ayuda(s, c); } });
-      l.push({ t: "Hablar con un asesor", id: s.id, href: link(waText(s, c)) });
       l.push({ t: "Ver otro sector", fn: function () { pick("Ver otro sector"); menu(false); } });
       opts(l);
     }
@@ -244,6 +249,7 @@
       else if (todos(s)) say({ h: "Si nos contratas, te acompañamos con:", groups: todos(s), noVer: 1, f: s.plan ? "Modalidad: " + s.plan.replace(/\.$/, "") + "." : "" });
       else say({ h: "Si nos contratas, te acompañamos con:", items: s.hac, f: s.plan ? "Modalidad: " + s.plan.replace(/\.$/, "") + "." : "" });
       if (s.cert) say(CERT);
+      say("Siguiente paso: cuéntanos tu caso y un Profesional de nuestro equipo te orienta sobre el alcance y las condiciones.");
       var l = [{ t: "Hablar con un asesor", id: s.id, href: link(waText(s, c)) }];
       if (c.again) l.push({ t: "Ver otro tema", fn: function () { pick("Ver otro tema"); c.again(); } });
       else l.push({ t: "Ver la normativa", fn: function () { pick("Ver la normativa"); norma(s); } });
