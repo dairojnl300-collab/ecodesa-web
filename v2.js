@@ -75,8 +75,9 @@
   var slides = document.querySelectorAll("#heroBg .slide"), tabs = document.querySelectorAll(".htab");
   var gTitle = document.getElementById("gTitle"), gList = document.getElementById("gList");
   document.documentElement.style.setProperty("--d", D / 1000 + "s");
+  function load(k) { var s = slides[k]; if (s && s.dataset.bg) { s.style.backgroundImage = "url(" + s.dataset.bg + ")"; s.removeAttribute("data-bg"); } }
   function show(i) {
-    cur = i;
+    cur = i; load(i); load((i + 1) % slides.length);
     slides.forEach(function (s, k) { s.classList.toggle("is-on", k === i); });
     tabs.forEach(function (t, k) {
       t.classList.toggle("is-on", k === i); t.classList.toggle("is-done", k < i);
