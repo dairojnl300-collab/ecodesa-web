@@ -138,7 +138,7 @@
     }
     function step(fn) { fn(); }
     function menu(first) {
-      if (first) { say("Hola, soy Ethan, el asistente de ECODESA. Somos una firma fundada en Cartagena de Indias. Te ayudamos a cumplir lo que exigen las autoridades en gestión ambiental, SG-SST, saneamiento y gestión del riesgo, en Cartagena y a nivel nacional."); }
+      if (first) { say("Hola, soy Ethan, el asistente de ECODESA, firma fundada en Cartagena de Indias. Te ayudamos a cumplir la normativa a nivel nacional y a crecer con servicios digitales y marketing digital."); }
       step(function () {
         say("¿Qué tipo de negocio tienes?");
         var l = S.map(function (s) { return { t: s.n, fn: function () { pick(s.n); track("asistente_" + s.id); show(s); } }; });
