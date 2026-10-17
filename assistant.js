@@ -104,7 +104,7 @@
     function fill(b, t) {
       if (typeof t === "string") { b.textContent = t; return; }
       b.appendChild(el("strong", "as-h", t.h));
-      if (t.groups) { t.groups.forEach(function (g) { b.appendChild(el("span", "as-sub", g.a)); if (VER[g.a]) b.appendChild(el("span", "as-ver", "Verifica: " + VER[g.a])); if (g.nota) b.appendChild(el("span", "as-nota", g.nota)); var u = el("ul", "as-ul"); g.items.forEach(function (x) { u.appendChild(el("li", "", x)); }); b.appendChild(u); }); }
+      if (t.groups) { t.groups.forEach(function (g) { b.appendChild(el("span", "as-sub", g.a)); if (VER[g.a] && !t.noVer) b.appendChild(el("span", "as-ver", "Verifica: " + VER[g.a])); if (g.nota) b.appendChild(el("span", "as-nota", g.nota)); var u = el("ul", "as-ul"); g.items.forEach(function (x) { u.appendChild(el("li", "", x)); }); b.appendChild(u); }); }
       else { var ul = el("ul", "as-ul"); t.items.forEach(function (x) { ul.appendChild(el("li", "", x)); }); b.appendChild(ul); }
       if (t.f) b.appendChild(el("span", "as-f", t.f));
     }
@@ -212,10 +212,21 @@
       l.push({ t: "Ver otro sector", fn: function () { pick("Ver otro sector"); menu(false); } });
       opts(l);
     }
+    function todos(s) {
+      if (!s.req || s.id === "digital") return null;
+      var out = [], seen = {};
+      s.req.forEach(function (g) {
+        var l = g.a === "Ambiental" ? HA[s.id] : HT[g.a];
+        if (l && l.length) { out.push({ a: g.a === "Ambiental" ? "Gestión ambiental" : g.a, items: l }); }
+      });
+      if (!s.req.some(function (g) { return g.a === "Ambiental"; }) && HA[s.id]) out.push({ a: "Gestión ambiental", items: HA[s.id] });
+      return out;
+    }
     function ayuda(s, c) {
       var t = c.tema && c.tema !== "todos los temas" ? c.tema : "";
       var it = t ? (t === "Ambiental" ? HA[s.id] : HT[t]) : null;
       if (it) say({ h: "En " + (t === "Ambiental" ? "gestión ambiental" : t === "Forestal" ? "gestión forestal" : t.toLowerCase()) + ", te acompañamos con:", items: it, f: s.plan ? "Modalidad: " + s.plan.replace(/\.$/, "") + "." : "" });
+      else if (todos(s)) say({ h: "Si nos contratas, te acompañamos con:", groups: todos(s), noVer: 1, f: s.plan ? "Modalidad: " + s.plan.replace(/\.$/, "") + "." : "" });
       else say({ h: "Si nos contratas, te acompañamos con:", items: s.hac, f: s.plan ? "Modalidad: " + s.plan.replace(/\.$/, "") + "." : "" });
       if (s.cert) say(CERT);
       var l = [{ t: "Hablar con un asesor", id: s.id, href: link(waText(s, c)) }];
