@@ -21,9 +21,9 @@
   var INC = ["Concepto técnico sobre seguridad humana y protección contra incendios (Ley 1575 de 2012, art. 42).", "Extintores portátiles según el riesgo, diseñados con NTC 2885 y NFPA 10 (NSR-10, J.4.3).", "Rutas de evacuación, salidas y señalización acordes con la carga de ocupación (NSR-10, Título K).", "Cortes de gas y electricidad de fácil acceso e instalaciones eléctricas conforme al RETIE (NSR-10, J.2.2).", "Brigada de emergencias capacitada en evacuación, fuego incipiente, uso de extintores y primeros auxilios, con al menos el 20 % del personal y reentrenamiento anual (Decreto 1072 de 2015; Resolución 256 de 2014, arts. 5 y 16)."];
   var ACU = ["Inscribirse como generador de aceite de cocina usado, entregarlo solo a gestores inscritos, capacitar al personal, conservar las constancias del gestor y reportar cada año en los primeros 15 días de enero (Resolución 316 de 2018, art. 9).", "No verter el aceite de cocina usado al alcantarillado, a fuentes de agua ni al suelo (Resolución 316 de 2018, art. 13)."];
   var SST = {
-    "1 a 10": "SG-SST con 7 estándares mínimos, para empresas de hasta 10 trabajadores en riesgo I, II o III (Resolución 0312 de 2019).",
-    "11 a 50": "SG-SST con 21 estándares mínimos, para empresas de 11 a 50 trabajadores en riesgo I, II o III (Resolución 0312 de 2019).",
-    "Más de 50": "SG-SST con 60 estándares mínimos, para empresas de más de 50 trabajadores o en riesgo IV o V (Resolución 0312 de 2019)."
+    "1 a 10": "SG-SST con 7 estándares mínimos si tienes hasta 10 trabajadores en riesgo I, II o III, o con 60 si tu actividad es de riesgo IV o V (Resolución 0312 de 2019).",
+    "11 a 50": "SG-SST con 21 estándares mínimos si tienes entre 11 y 50 trabajadores en riesgo I, II o III, o con 60 si tu actividad es de riesgo IV o V (Resolución 0312 de 2019).",
+    "Más de 50": "SG-SST con 60 estándares mínimos si tienes más de 50 trabajadores, o si tu actividad es de riesgo IV o V (Resolución 0312 de 2019)."
   };
   var AUTO = "Autoevaluación anual de estándares mínimos y plan de mejoramiento (Resolución 0312 de 2019, arts. 27 y 28).";
   var EMER = "Plan de prevención, preparación y respuesta ante emergencias, con simulacro al menos una vez al año (Decreto 1072 de 2015, art. 2.2.4.6.25).";
@@ -46,7 +46,7 @@
     puertos: ["Concesión de aguas", "Permisos de vertimiento y emisiones", "Permiso de ocupación de cauce", "Caracterización y toma de muestras de agua, suelo, ruido y aire", "Plan de gestión integral de residuos peligrosos", "Licencias ambientales y Planes de Manejo Ambiental (PMA)", "Manejo de residuos de embarcaciones en puerto"],
     construccion: ["Plan de manejo de RCD y trámite PIN RCD", "Plan de manejo ambiental de obra"].concat(["Concesión de aguas", "Permisos de vertimiento y emisiones", "Permiso de ocupación de cauce", "Caracterización y toma de muestras de agua, suelo, ruido y aire", "Plan de gestión integral de residuos peligrosos", "Licencias ambientales y Planes de Manejo Ambiental (PMA)"])
   };
-  var AMB = ["Concesión de aguas si captas agua de una fuente superficial o subterránea (Decreto 1076 de 2015, art. 2.2.3.2.7.1).", "Permiso de vertimientos si descargas aguas residuales a aguas superficiales, marinas o al suelo, sin conexión al alcantarillado público (Decreto 1076 de 2015, art. 2.2.3.3.5.1), cumpliendo los parámetros de la Resolución 631 de 2015.", "Permiso de emisión atmosférica para las fuentes fijas que lo requieran (Decreto 1076 de 2015, art. 2.2.5.1.7.2).", "Permiso de ocupación de cauce para obras en cauces o depósitos de agua (Decreto 1076 de 2015, art. 2.2.3.2.12.1).", "Plan de gestión integral de residuos peligrosos, entrega a gestores autorizados e inscripción como generador desde 10 kg al mes (Decreto 1076 de 2015, arts. 2.2.6.1.3.1 y 2.2.6.1.6.2; Resolución 1362 de 2007).", "Licencia ambiental para los proyectos, obras o actividades que la normativa lista (Decreto 1076 de 2015, arts. 2.2.2.3.2.2 y 2.2.2.3.2.3)."];
+  var AMB = ["Concesión de aguas si captas agua de una fuente superficial o subterránea (Decreto 1076 de 2015, art. 2.2.3.2.7.1).", "Permiso de vertimientos si descargas aguas residuales a aguas superficiales, marinas o al suelo, sin conexión al alcantarillado público, y cumplir los parámetros de vertimiento (Decreto 1076 de 2015, art. 2.2.3.3.5.1; Resolución 631 de 2015).", "Permiso de emisión atmosférica para las fuentes fijas que lo requieran (Decreto 1076 de 2015, art. 2.2.5.1.7.2).", "Permiso de ocupación de cauce para obras en cauces o depósitos de agua (Decreto 1076 de 2015, art. 2.2.3.2.12.1).", "Plan de gestión integral de residuos peligrosos, entrega a gestores autorizados e inscripción como generador desde 10 kg al mes (Decreto 1076 de 2015, arts. 2.2.6.1.3.1 y 2.2.6.1.6.2; Resolución 1362 de 2007).", "Licencia ambiental para los proyectos, obras o actividades que la normativa lista (Decreto 1076 de 2015, arts. 2.2.2.3.2.2 y 2.2.2.3.2.3)."];
   var FOR = ["Autorización para talar o podar árboles aislados en zona urbana que causen daños a suelos, canales, vías o edificaciones (Decreto 1076 de 2015, art. 2.2.1.1.9.3).", "Autorización para talar, trasplantar o reubicar árboles aislados por obras públicas o privadas, con reposición de especies (Decreto 1076 de 2015, art. 2.2.1.1.9.4).", "Permiso o autorización de aprovechamiento forestal de bosques naturales o flora silvestre (Decreto 1076 de 2015, art. 2.2.1.1.7.1)."];
   var PUB = ["Información clara, veraz y suficiente en la publicidad de tus productos o servicios, sin publicidad engañosa (Ley 1480 de 2011, arts. 23 y 30).", "Autorización del titular para usar sus datos en bases de contacto y envíos comerciales (Ley 1581 de 2012)."];
   var ALTO = ["industria", "puertos", "construccion"];
@@ -153,12 +153,11 @@
         var it = g.items.slice();
         if (g.a === "Seguridad y salud en el trabajo") {
           var l = SST[c.size] || "SG-SST con los estándares mínimos que correspondan a tu número de trabajadores y nivel de riesgo (Resolución 0312 de 2019).";
-          if (c.size && c.size !== "Más de 50" && ALTO.indexOf(s.id) > -1) l += " Si tu actividad es de riesgo IV o V, aplican los 60 estándares.";
           it.unshift(l, AUTO, EMER);
         }
         out.push({ a: g.a, nota: g.nota, items: it });
       });
-      if (s.acu && c.acu) out.push({ a: "Ambiental", items: ACU });
+      if (s.acu && c.acu) { var fi = out.findIndex(function (g) { return g.a === "Forestal"; }); var ag = { a: "Ambiental", items: ACU }; if (fi > -1) out.splice(fi, 0, ag); else out.push(ag); }
       return out;
     }
     function waText(s, c) {
