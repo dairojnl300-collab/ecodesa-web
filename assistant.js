@@ -50,6 +50,7 @@
   var FOR = ["Autorización para talar o podar árboles aislados en zona urbana que causen daños a suelos, canales, vías o edificaciones (Decreto 1076 de 2015, art. 2.2.1.1.9.3).", "Autorización para talar, trasplantar o reubicar árboles aislados por obras públicas o privadas, con reposición de especies (Decreto 1076 de 2015, art. 2.2.1.1.9.4).", "Permiso o autorización de aprovechamiento forestal de bosques naturales o flora silvestre (Decreto 1076 de 2015, art. 2.2.1.1.7.1)."];
   var PUB = ["Información clara, veraz y suficiente en la publicidad de tus productos o servicios, sin publicidad engañosa (Ley 1480 de 2011, arts. 23 y 30).", "Autorización del titular para usar sus datos en bases de contacto y envíos comerciales (Ley 1581 de 2012)."];
   var ISOH = ["Diseño e implementación del sistema de gestión integral ISO 9001, ISO 14001 e ISO 45001", "Auditorías internas ISO 9001, 14001 y 45001", "Preparación para la auditoría de certificación"];
+  var MKT = ["Páginas web y apps a la medida", "Marketing digital y gestión de redes sociales", "SEO y posicionamiento web", "Campañas de pauta digital", "Tableros Power BI para tus indicadores", "Automatización con IA"];
   var ALTO = ["industria", "puertos", "construccion"];
   var S = [
     { id: "restaurantes", n: "Restaurantes", u: "tu restaurante", acu: 1, req: [{"a": "Sanidad", "items": SAN}, {"a": "Seguridad contra incendios", "nota": "La inspección revisa, con referencia en la NSR-10:", "items": INC}, {"a": "Seguridad y salud en el trabajo", "items": []}, {"a": "Uso del suelo y apertura", "items": ["Cumplir el uso del suelo, tener matrícula mercantil y comunicar la apertura a la autoridad de planeación local (Ley 232 de 1995).", "Si hay música en público, comprobantes de pago de derechos de autor (Ley 232 de 1995, art. 2, lit. c)."]}], hac: ["Plan de saneamiento básico y control de plagas", "Programa de agua potable, limpieza y desinfección", "Manual de BPM", "Gestión de aceite de cocina usado", "SG-SST y planes de emergencia", "Análisis de laboratorio gestionados con laboratorios aliados"], plan: "Suscripción mensual.", wa: "Hola ECODESA, tengo un restaurante y me interesa la suscripción mensual.", cert: 1 },
@@ -174,9 +175,21 @@
         opts([
           { t: "La normativa que aplica a mi negocio", fn: function () { pick("La normativa que aplica a mi negocio"); track("asistente_norma_" + s.id); norma(s); } },
           { t: "Cómo me ayuda ECODESA", fn: function () { pick("Cómo me ayuda ECODESA"); ayuda(s, {}); } },
+          { t: "Conocer nuestros nuevos servicios", fn: function () { pick("Conocer nuestros nuevos servicios"); nuevos(s); } },
           { t: "Hablar con un asesor", id: s.id, href: link(s.wa) }
         ]);
       });
+    }
+    function nuevos(s) {
+      var g = [];
+      if (s.id !== "digital") g.push({ a: "Marketing y servicios digitales", items: MKT });
+      g.push({ a: "Sistemas de gestión ISO", items: ISOH });
+      say({ h: "Nuevos servicios para " + s.u + ":", groups: g, noVer: 1, f: "Las normas ISO son voluntarias y la certificación la otorga un organismo certificador externo." });
+      opts([
+        { t: "Hablar con un asesor", id: s.id, href: link("Hola ECODESA, me interesan los servicios de marketing digital y sistemas de gestión integral ISO para " + s.u + ".") },
+        { t: "Ver la normativa", fn: function () { pick("Ver la normativa"); norma(s); } },
+        { t: "Ver otro sector", fn: function () { pick("Ver otro sector"); menu(false); } }
+      ]);
     }
     function norma(s) {
       var c = {};
@@ -220,6 +233,7 @@
         if (l && l.length) { out.push({ a: g.a === "Ambiental" ? "Gestión ambiental" : g.a, items: l }); }
       });
       if (!s.req.some(function (g) { return g.a === "Ambiental"; }) && HA[s.id]) out.push({ a: "Gestión ambiental", items: HA[s.id] });
+      out.push({ a: "Marketing y servicios digitales", items: MKT });
       out.push({ a: "Sistemas de gestión ISO", items: ISOH });
       return out;
     }
