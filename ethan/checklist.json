@@ -6,7 +6,11 @@
    "p": "¿Su establecimiento está inscrito ante la autoridad ambiental competente?",
    "soporte": "Constancia de inscripción",
    "valida": "Mateo",
-   "norma": "Res. 316/2018, arts. 3, 5, 9a"
+   "norma": "Res. 316/2018, arts. 3, 5, 9a",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, arts. 3, 5 y 9a: inscripción de generadores comerciales."
+   }
   },
   {
    "id": "R2",
@@ -14,23 +18,35 @@
    "p": "¿La inscripción tiene el volumen mensual de aceite usado actualizado?",
    "soporte": "Registro actualizado",
    "valida": "Mateo",
-   "norma": "Res. 316/2018, art. 9a"
+   "norma": "Res. 316/2018, art. 9a",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, art. 9a: registro con cantidad promedio en kg/mes."
+   }
   },
   {
    "id": "R3",
    "area": "Ambiental",
-   "p": "¿Cómo almacena el aceite de cocina usado?",
+   "p": "¿Guarda el aceite de cocina usado en envase plástico sellado y separado de residuos peligrosos?",
    "soporte": "Foto del envase sellado y separado",
    "valida": "Mateo, Ricardo",
-   "norma": "Res. 316/2018, arts. 8b, 13b"
+   "norma": "Res. 316/2018, arts. 8b, 13b",
+   "revision": {
+    "estado": "parcial",
+    "nota": "Res. 316/2018, arts. 8b y 13b: el texto habla de envase sellado para generadores domiciliarios y de no mezclar con peligrosos. Para comerciales no lo precisa; ajustar."
+   }
   },
   {
    "id": "R4",
    "area": "Ambiental",
-   "p": "¿Quién recibe el aceite de cocina usado?",
+   "p": "¿Entrega el aceite de cocina usado a un gestor inscrito ante la autoridad ambiental competente?",
    "soporte": "Contrato o constancia del gestor inscrito",
    "valida": "Mateo, Sofía",
-   "norma": "Res. 316/2018, art. 9b"
+   "norma": "Res. 316/2018, art. 9b",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, art. 9b: entrega a gestor inscrito."
+   }
   },
   {
    "id": "R5",
@@ -38,7 +54,11 @@
    "p": "¿Conserva constancias de esa entrega?",
    "soporte": "Constancias archivadas",
    "valida": "Mateo",
-   "norma": "Res. 316/2018, art. 9d"
+   "norma": "Res. 316/2018, art. 9d",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, art. 9d: constancias del gestor."
+   }
   },
   {
    "id": "R6",
@@ -46,7 +66,11 @@
    "p": "¿Su personal ha recibido capacitación sobre manejo de aceite usado?",
    "soporte": "Registro de capacitación",
    "valida": "Mateo",
-   "norma": "Res. 316/2018, art. 9c"
+   "norma": "Res. 316/2018, art. 9c",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, art. 9c: capacitación del personal."
+   }
   },
   {
    "id": "R7",
@@ -54,15 +78,23 @@
    "p": "¿Presentó el reporte anual de aceite usado?",
    "soporte": "Reporte presentado",
    "valida": "Mateo",
-   "norma": "Res. 316/2018, art. 9d"
+   "norma": "Res. 316/2018, art. 9d",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, art. 9d: reporte anual en enero."
+   }
   },
   {
    "id": "R8",
    "area": "Ambiental",
-   "p": "¿Qué ocurre con el aceite cuando no se usa?",
+   "p": "¿Evita verter el aceite de cocina usado a desagües, fuentes de agua o suelo?",
    "soporte": "Registro de disposición",
    "valida": "Mateo",
-   "norma": "Res. 316/2018, art. 13a"
+   "norma": "Res. 316/2018, art. 13a",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, art. 13a: prohibición de verter ACU."
+   }
   },
   {
    "id": "R9",
@@ -70,7 +102,11 @@
    "p": "¿Tiene reporte de manejo de lodos de la trampa de grasas?",
    "soporte": "Reporte del gestor",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "R10",
@@ -78,7 +114,11 @@
    "p": "¿Tiene caracterización de aguas residuales por laboratorio acreditado ante ONAC?",
    "soporte": "Informe de laboratorio",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "R11",
@@ -86,7 +126,11 @@
    "p": "¿Tiene permiso o registro de vertimiento vigente?",
    "soporte": "Acto administrativo vigente",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "R12",
@@ -94,7 +138,11 @@
    "p": "¿Tiene plan de emergencia y brigada?",
    "soporte": "Plan y soporte de brigada",
    "valida": "Ricardo, Andrés",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "R13",
@@ -102,7 +150,11 @@
    "p": "¿Tiene matriz de peligros del personal?",
    "soporte": "Matriz vigente",
    "valida": "Ricardo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "R14",
@@ -110,7 +162,11 @@
    "p": "¿Tiene rutas de evacuación y extintores señalizados?",
    "soporte": "Registro de extintores y plano",
    "valida": "Andrés",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "R15",
@@ -118,7 +174,11 @@
    "p": "¿Tiene contrato con los proveedores de gestión de residuos?",
    "soporte": "Contrato firmado",
    "valida": "Sofía",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "B1",
@@ -126,7 +186,11 @@
    "p": "¿Tiene plan de limpieza y desinfección documentado?",
    "soporte": "Plan y registros",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "B2",
@@ -134,7 +198,11 @@
    "p": "¿Tiene control de plagas con empresa autorizada?",
    "soporte": "Contrato y certificado",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "B3",
@@ -142,7 +210,11 @@
    "p": "¿Tiene análisis de calidad del agua de uso?",
    "soporte": "Informe de laboratorio acreditado ante ONAC",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "B4",
@@ -150,7 +222,11 @@
    "p": "¿Su personal manipulador ha recibido capacitación en inocuidad?",
    "soporte": "Registro de capacitación",
    "valida": "Ricardo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "B5",
@@ -158,7 +234,11 @@
    "p": "¿Tiene contratos con proveedores de servicios de limpieza y plagas?",
    "soporte": "Contratos",
    "valida": "Sofía",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   }
  ],
  "hoteles": [
@@ -168,7 +248,11 @@
    "p": "¿Tiene sistema de tratamiento de aguas residuales?",
    "soporte": "Diseño y operación",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "H2",
@@ -176,7 +260,11 @@
    "p": "¿Separa residuos sólidos en la fuente?",
    "soporte": "Registro de separación",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "H3",
@@ -184,7 +272,11 @@
    "p": "¿Tiene caracterización de vertimientos por laboratorio acreditado ante ONAC?",
    "soporte": "Informe",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "H4",
@@ -192,7 +284,11 @@
    "p": "¿Tiene programa de seguridad para personal y huéspedes?",
    "soporte": "Programa vigente",
    "valida": "Ricardo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "H5",
@@ -200,7 +296,11 @@
    "p": "¿Tiene plan de emergencia con simulacros?",
    "soporte": "Plan y acta de simulacro",
    "valida": "Andrés",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "H6",
@@ -208,7 +308,11 @@
    "p": "¿Tiene contratos con proveedores de servicios de residuos o mantenimiento?",
    "soporte": "Contratos",
    "valida": "Sofía",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "B1",
@@ -216,7 +320,11 @@
    "p": "¿Tiene plan de limpieza y desinfección documentado?",
    "soporte": "Plan y registros",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "B2",
@@ -224,7 +332,11 @@
    "p": "¿Tiene control de plagas con empresa autorizada?",
    "soporte": "Contrato y certificado",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "B3",
@@ -232,7 +344,11 @@
    "p": "¿Tiene análisis de calidad del agua de uso?",
    "soporte": "Informe de laboratorio acreditado ante ONAC",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "B4",
@@ -240,7 +356,11 @@
    "p": "¿Su personal manipulador ha recibido capacitación en inocuidad?",
    "soporte": "Registro de capacitación",
    "valida": "Ricardo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "B5",
@@ -248,7 +368,11 @@
    "p": "¿Tiene contratos con proveedores de servicios de limpieza y plagas?",
    "soporte": "Contratos",
    "valida": "Sofía",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   }
  ],
  "comercio": [
@@ -258,7 +382,11 @@
    "p": "¿Separa residuos aprovechables y peligrosos?",
    "soporte": "Registro de separación",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "C2",
@@ -266,7 +394,11 @@
    "p": "¿Tiene gestor para pilas, bombillas y residuos peligrosos?",
    "soporte": "Contrato y certificados",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "C3",
@@ -274,7 +406,11 @@
    "p": "¿Tiene plan de evacuación para el público?",
    "soporte": "Plan y señalización",
    "valida": "Andrés",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "C4",
@@ -282,7 +418,11 @@
    "p": "¿Tiene plan de emergencia y simulacros?",
    "soporte": "Plan y acta",
    "valida": "Andrés",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "C5",
@@ -290,7 +430,11 @@
    "p": "¿Tiene contratos con proveedores de residuos?",
    "soporte": "Contratos",
    "valida": "Sofía",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   }
  ],
  "clinica": [
@@ -300,7 +444,11 @@
    "p": "¿Tiene gestor autorizado para residuos hospitalarios?",
    "soporte": "Contrato y certificados",
    "valida": "Mateo",
-   "norma": "Por verificar (PGIRH)"
+   "norma": "Por verificar (PGIRH)",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "L2",
@@ -308,7 +456,11 @@
    "p": "¿Tiene plan de gestión integral de residuos hospitalarios?",
    "soporte": "Plan vigente",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "L3",
@@ -316,7 +468,11 @@
    "p": "¿Tiene matriz de riesgo biológico y esquema de vacunación?",
    "soporte": "Matriz y registros",
    "valida": "Ricardo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "L4",
@@ -324,7 +480,11 @@
    "p": "¿Tiene plan de emergencia y evacuación?",
    "soporte": "Plan y simulacro",
    "valida": "Andrés",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "L5",
@@ -332,7 +492,11 @@
    "p": "¿Tiene contratos con gestores de residuos?",
    "soporte": "Contratos",
    "valida": "Sofía",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   }
  ],
  "estacion": [
@@ -342,7 +506,11 @@
    "p": "¿Tiene control de derrames y revisión de tanques?",
    "soporte": "Registro de inspección",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "E2",
@@ -350,7 +518,11 @@
    "p": "¿Tiene plan de manejo de suelos y aguas?",
    "soporte": "Plan vigente",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "E3",
@@ -358,7 +530,11 @@
    "p": "¿Tiene plan de atención de emergencias por fuga o incendio?",
    "soporte": "Plan y simulacro",
    "valida": "Ricardo, Andrés",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "E4",
@@ -366,7 +542,11 @@
    "p": "¿Tiene evaluación de riesgo tecnológico?",
    "soporte": "Análisis vigente",
    "valida": "Andrés",
-   "norma": "Por verificar (PGRDEPP si aplica)"
+   "norma": "Por verificar (PGRDEPP si aplica)",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "E5",
@@ -374,7 +554,11 @@
    "p": "¿Tiene contratos con proveedores de mantenimiento de tanques?",
    "soporte": "Contratos",
    "valida": "Sofía",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   }
  ],
  "industria": [
@@ -384,7 +568,11 @@
    "p": "¿Genera residuos peligrosos (aceites, solventes, baterías)?",
    "soporte": "Gestor y registro",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "NSR-10 J.2.3.1: acceso para bomberos."
+   }
   },
   {
    "id": "I2",
@@ -392,7 +580,11 @@
    "p": "¿Tiene permiso de vertimiento o de emisiones vigente?",
    "soporte": "Acto administrativo",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "NSR-10 J.2.4.5: hidrante a no más de 100 m."
+   }
   },
   {
    "id": "I3",
@@ -400,7 +592,11 @@
    "p": "¿Tiene matriz de riesgos y permisos de trabajo en altura o caliente?",
    "soporte": "Matriz y permisos",
    "valida": "Ricardo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "NSR-10 J.2.2.1: dispositivos de corte de gas y electricidad."
+   }
   },
   {
    "id": "I4",
@@ -408,7 +604,11 @@
    "p": "¿Almacena sustancias químicas o combustibles?",
    "soporte": "Inventario y medidas",
    "valida": "Andrés",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "NSR-10 J.4.3.2.3: extintores portátiles (grupo C)."
+   }
   },
   {
    "id": "I5",
@@ -416,7 +616,11 @@
    "p": "¿Tiene contratistas con obligaciones SST?",
    "soporte": "Contratos",
    "valida": "Sofía",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "NSR-10 J.4.3.2.2: tomas fijas y mangueras (grupo C)."
+   }
   }
  ],
  "construccion": [
@@ -426,7 +630,11 @@
    "p": "¿Tiene plan de manejo ambiental de la obra?",
    "soporte": "Plan aprobado",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "O2",
@@ -434,7 +642,11 @@
    "p": "¿Tiene plan de manejo de tránsito si afecta vías?",
    "soporte": "Plan aprobado",
    "valida": "Mateo, Sofía",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "O3",
@@ -442,7 +654,11 @@
    "p": "¿Tiene SG-SST para obra y contratistas?",
    "soporte": "Programa vigente",
    "valida": "Ricardo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "O4",
@@ -450,7 +666,11 @@
    "p": "¿Tiene plan de emergencia de obra?",
    "soporte": "Plan y simulacro",
    "valida": "Andrés",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "O5",
@@ -458,7 +678,11 @@
    "p": "¿Tiene contratos con subcontratistas con obligaciones ambientales y SST?",
    "soporte": "Contratos",
    "valida": "Sofía",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "F1",
@@ -466,7 +690,11 @@
    "p": "¿Requiere o tiene permiso para aprovechar árboles en su predio?",
    "soporte": "Acto administrativo vigente",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "F2",
@@ -474,7 +702,11 @@
    "p": "¿Tiene inventario forestal del predio?",
    "soporte": "Inventario firmado",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "F3",
@@ -482,7 +714,11 @@
    "p": "¿Tiene plan de compensación o restauración cuando aplica?",
    "soporte": "Plan aprobado",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "F4",
@@ -490,7 +726,11 @@
    "p": "¿Identificó especies protegidas en el área del proyecto?",
    "soporte": "Estudio de biodiversidad",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "F5",
@@ -498,7 +738,11 @@
    "p": "¿Tiene contratos con proveedores de tala o compensación?",
    "soporte": "Contratos",
    "valida": "Sofía",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   }
  ],
  "eventos": [
@@ -508,7 +752,11 @@
    "p": "¿Tiene plan de emergencia y contingencia para el evento?",
    "soporte": "Plan aprobado",
    "valida": "Andrés",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "V2",
@@ -516,7 +764,11 @@
    "p": "¿Tiene puntos de atención médica y rutas de evacuación?",
    "soporte": "Plano y contrato",
    "valida": "Andrés",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "V3",
@@ -524,7 +776,11 @@
    "p": "¿Tiene personal de seguridad y brigada?",
    "soporte": "Listado y capacitación",
    "valida": "Ricardo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "V4",
@@ -532,7 +788,11 @@
    "p": "¿Tiene plan de manejo de residuos del evento?",
    "soporte": "Plan y gestor",
    "valida": "Mateo",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   },
   {
    "id": "V5",
@@ -540,7 +800,11 @@
    "p": "¿Tiene contratos con proveedores de seguridad y ambulancia?",
    "soporte": "Contratos",
    "valida": "Sofía",
-   "norma": "Por verificar"
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
   }
  ]
 }
