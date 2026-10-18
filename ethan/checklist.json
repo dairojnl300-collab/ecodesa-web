@@ -15,8 +15,8 @@
   {
    "id": "R2",
    "area": "Ambiental",
-   "p": "¿La inscripción tiene el volumen mensual de aceite usado actualizado?",
-   "soporte": "Registro actualizado",
+   "p": "¿La inscripción tiene el volumen mensual de aceite usado en promedio?",
+   "soporte": "Registro actualizado y soportes de volumen",
    "valida": "Mateo",
    "norma": "Res. 316/2018, art. 9a",
    "revision": {
@@ -27,8 +27,8 @@
   {
    "id": "R3",
    "area": "Ambiental",
-   "p": "¿Guarda el aceite de cocina usado en envase plástico sellado y separado de residuos peligrosos?",
-   "soporte": "Foto del envase sellado y separado",
+   "p": "¿Guarda el aceite de cocina usado en envases sellados, rotulados y con un almacenamiento adecuado?",
+   "soporte": "Fotos del envase sellado, rotulado y del almacenamiento",
    "valida": "Mateo, Ricardo",
    "norma": "Res. 316/2018, arts. 8b, 13b",
    "revision": {
@@ -39,7 +39,7 @@
   {
    "id": "R4",
    "area": "Ambiental",
-   "p": "¿Entrega el aceite de cocina usado a un gestor inscrito ante la autoridad ambiental competente?",
+   "p": "¿Entrega el aceite de cocina usado a un gestor inscrito y autorizado ante la autoridad ambiental competente?",
    "soporte": "Contrato o constancia del gestor inscrito",
    "valida": "Mateo, Sofía",
    "norma": "Res. 316/2018, art. 9b",
@@ -51,8 +51,8 @@
   {
    "id": "R5",
    "area": "Ambiental",
-   "p": "¿Conserva constancias de esa entrega?",
-   "soporte": "Constancias archivadas",
+   "p": "¿Conserva los soportes y certificados de cada entrega de aceite usado?",
+   "soporte": "Soportes y certificados de entrega archivados",
    "valida": "Mateo",
    "norma": "Res. 316/2018, art. 9d",
    "revision": {
@@ -63,8 +63,8 @@
   {
    "id": "R6",
    "area": "Ambiental",
-   "p": "¿Su personal ha recibido capacitación sobre manejo de aceite usado?",
-   "soporte": "Registro de capacitación",
+   "p": "¿Su personal ha recibido capacitación en manejo de aceite usado, residuos sólidos, trampas de grasa y plásticos de un solo uso?",
+   "soporte": "Registro de capacitación con temas y asistentes",
    "valida": "Mateo",
    "norma": "Res. 316/2018, art. 9c",
    "revision": {
@@ -75,7 +75,7 @@
   {
    "id": "R7",
    "area": "Ambiental",
-   "p": "¿Presentó el reporte anual de aceite usado?",
+   "p": "¿Presentó el reporte de aceite usado según la vigencia correspondiente?",
    "soporte": "Reporte presentado",
    "valida": "Mateo",
    "norma": "Res. 316/2018, art. 9d",
@@ -99,8 +99,33 @@
   {
    "id": "R9",
    "area": "Ambiental",
-   "p": "¿Tiene reporte de manejo de lodos de la trampa de grasas?",
-   "soporte": "Reporte del gestor",
+   "p": "¿Tiene soportes y certificado de disposición de los lodos de la trampa de grasas emitidos por un gestor autorizado?",
+   "soporte": "Reporte y certificado de disposición del gestor",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "R16",
+   "area": "Ambiental",
+   "p": "¿Ha presentado el reporte de la cantidad de lodos generados según la vigencia publicada por la autoridad ambiental competente?",
+   "soporte": "Reporte radicado de generación de lodos",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "DESC1",
+   "area": "Ambiental",
+   "p": "¿Descarga aguas residuales al alcantarillado o a un cuerpo de agua?",
+   "soporte": "Permiso o registro de vertimiento vigente, o constancia de descarga a alcantarillado",
+   "noAplica": true,
    "valida": "Mateo",
    "norma": "Por verificar",
    "revision": {
@@ -121,20 +146,8 @@
    }
   },
   {
-   "id": "R11",
-   "area": "Ambiental",
-   "p": "¿Tiene permiso o registro de vertimiento vigente?",
-   "soporte": "Acto administrativo vigente",
-   "valida": "Mateo",
-   "norma": "Por verificar",
-   "revision": {
-    "estado": "sin_fuente",
-    "nota": "Sin texto de norma en la conversación; por verificar."
-   }
-  },
-  {
    "id": "R12",
-   "area": "SST",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene plan de emergencia y brigada?",
    "soporte": "Plan y soporte de brigada",
    "valida": "Ricardo, Andrés",
@@ -146,7 +159,7 @@
   },
   {
    "id": "R13",
-   "area": "SST",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene matriz de peligros del personal?",
    "soporte": "Matriz vigente",
    "valida": "Ricardo",
@@ -158,7 +171,7 @@
   },
   {
    "id": "R14",
-   "area": "GRD",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene rutas de evacuación y extintores señalizados?",
    "soporte": "Registro de extintores y plano",
    "valida": "Andrés",
@@ -206,10 +219,46 @@
   },
   {
    "id": "B4",
-   "area": "SST",
+   "area": "Sanitario",
    "p": "¿Su personal manipulador ha recibido capacitación en inocuidad?",
    "soporte": "Registro de capacitación",
    "valida": "Ricardo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "SAN1",
+   "area": "Sanitario",
+   "p": "¿Está inscrito ante la autoridad sanitaria competente?",
+   "soporte": "Constancia de inscripción sanitaria",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "SAN2",
+   "area": "Sanitario",
+   "p": "¿Tiene plan de saneamiento básico con sus cuatro programas: agua potable, limpieza y desinfección, control de plagas y manejo de residuos sólidos?",
+   "soporte": "Plan de saneamiento básico vigente y registros de sus programas",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "BOM1",
+   "area": "SST y gestión del riesgo",
+   "p": "¿Su personal ha recibido capacitación en primeros auxilios y manejo de extintores?",
+   "soporte": "Registro de capacitación con temas y asistentes",
+   "valida": "Andrés",
    "norma": "Por verificar",
    "revision": {
     "estado": "sin_fuente",
@@ -230,7 +279,7 @@
   },
   {
    "id": "NSR1",
-   "area": "Gestión del riesgo",
+   "area": "SST y gestión del riesgo",
    "p": "¿El inmueble tiene acceso para vehículos de bomberos por su fachada?",
    "soporte": "Plano y registro fotográfico",
    "valida": "Andrés",
@@ -242,7 +291,7 @@
   },
   {
    "id": "NSR2",
-   "area": "Gestión del riesgo",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene hidrante a menos de 100 metros del acceso?",
    "soporte": "Plano de hidrantes",
    "valida": "Andrés",
@@ -254,7 +303,7 @@
   },
   {
    "id": "NSR3",
-   "area": "Gestión del riesgo",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene dispositivos para cortar gas y electricidad en un lugar accesible?",
    "soporte": "Foto y señalización",
    "valida": "Andrés, Ricardo",
@@ -266,7 +315,7 @@
   },
   {
    "id": "NSR4",
-   "area": "Gestión del riesgo",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene extintores portátiles en la cantidad y ubicación requeridas?",
    "soporte": "Registro de recarga y ubicación",
    "valida": "Andrés",
@@ -278,7 +327,7 @@
   },
   {
    "id": "NSR5",
-   "area": "Gestión del riesgo",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene tomas fijas para bomberos y mangueras de extinción?",
    "soporte": "Plano y prueba de presión",
    "valida": "Andrés",
@@ -290,7 +339,7 @@
   },
   {
    "id": "NSR6",
-   "area": "Gestión del riesgo",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene sistema de detección temprana de incendios?",
    "soporte": "Certificado de instalación",
    "valida": "Andrés",
@@ -298,66 +347,6 @@
    "revision": {
     "estado": "texto_verificado",
     "nota": "Texto consultado en la conversación; vigencia por confirmar."
-   }
-  },
-  {
-   "id": "VER1",
-   "area": "Ambiental",
-   "p": "¿Tiene sistema de tratamiento de aguas residuales?",
-   "soporte": "Diseño y operación",
-   "valida": "Mateo",
-   "norma": "Decreto 1076 de 2015 (vertimientos)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER4",
-   "area": "Ambiental",
-   "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
-   "soporte": "Cadena de custodia",
-   "valida": "Mateo",
-   "norma": "Procedimiento de toma de muestra del informe",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER5",
-   "area": "Ambiental",
-   "p": "¿El informe incluye pH, temperatura, DBO5, DQO, grasas y aceites, sólidos y nutrientes?",
-   "soporte": "Lista de parámetros del informe",
-   "valida": "Mateo",
-   "norma": "Decreto 1076 de 2015 (parámetros de vertimiento)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER6",
-   "area": "Ambiental",
-   "p": "¿Tiene registro de tasa retributiva por vertimientos?",
-   "soporte": "Declaración o registro",
-   "valida": "Sofía",
-   "norma": "Decreto 2667 de 2012 (tasa retributiva)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER7",
-   "area": "Ambiental",
-   "p": "¿Realiza caracterizaciones periódicas de sus aguas residuales?",
-   "soporte": "Historial de informes",
-   "valida": "Mateo",
-   "norma": "Decreto 1076 de 2015 (monitoreo periódico)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
    }
   },
   {
