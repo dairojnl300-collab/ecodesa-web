@@ -282,40 +282,56 @@
     }
     function diagnostico(s) {
       cargarChecklist(function (d) {
-        var items = d && d[s.id];
-        if (!items || !items.length) {
+        var todos = d && d[s.id];
+        if (!todos || !todos.length) {
           say("Estamos preparando el diagnóstico de tu sector. Un Profesional de ECODESA te acompaña por WhatsApp.");
           opts([{ t: "Hablar con un asesor", id: s.id, href: link(s.wa) }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
           return;
         }
+        var PUB = "Publicidad exterior";
+        var items = todos.filter(function (i) { return i.area !== PUB; });
+        var avi = todos.filter(function (i) { return i.area === PUB; });
         var areas = [];
         items.forEach(function (i) { if (areas.indexOf(i.area) < 0) areas.push(i.area); });
-        if (areas.length < 2) return preguntar(items);
+        if (!items.length) return preguntar(avi, cierreFinal);
+        if (areas.length < 2) return preguntar(items, ofrecerPub);
         say("¿Qué tema quieres revisar?");
-        var l = areas.map(function (a) { return { t: a, fn: function () { pick(a); preguntar(items.filter(function (i) { return i.area === a; })); } }; });
-        l.push({ t: "Todos los temas", fn: function () { pick("Todos los temas"); preguntar(items); } });
+        var l = areas.map(function (a) { return { t: a, fn: function () { pick(a); preguntar(items.filter(function (i) { return i.area === a; }), ofrecerPub); } }; });
+        l.push({ t: "Todos los temas", fn: function () { pick("Todos los temas"); preguntar(items, ofrecerPub); } });
         opts(l);
-        function preguntar(items) {
-        say("Responde sí o no. Son " + items.length + " preguntas sobre " + s.u + ".");
-        var yes = 0;
-        function fin() {
-          var pct = Math.round(yes / items.length * 100);
-          var nivel = pct >= 80 ? "Cumplimiento declarado alto" : pct >= 50 ? "Cumplimiento declarado parcial" : "Cumplimiento declarado bajo";
-          say("Resultado: " + pct + " %. " + nivel + ". Es una estimación según tus respuestas; un Profesional la valida.");
+        function ofrecerPub(pct) {
+          if (!avi.length) return cierreFinal(pct);
+          say("¿Quieres hacer el diagnóstico con publicidad exterior?");
           opts([
-            { t: "Validar mi cumplimiento con un profesional", id: s.id, href: link("Hola ECODESA, hice el diagnóstico inicial de " + s.u + " con " + pct + " % declarado. Quiero validarlo.") },
+            { t: "Sí", fn: function () { pick("Sí"); preguntar(avi, function (pct2) { cierreFinal(pct, pct2); }); } },
+            { t: "No", fn: function () { pick("No"); cierreFinal(pct); } }
+          ]);
+        }
+        function cierreFinal(pct, pctPub) {
+          if (pctPub !== undefined) say("Publicidad exterior: " + pctPub + " %.");
+          opts([
+            { t: "Validar mi cumplimiento con un profesional", id: s.id, href: link("Hola ECODESA, hice el diagnóstico inicial de " + s.u + " con " + (pct || 0) + " % declarado" + (pctPub !== undefined ? " y " + pctPub + " % en publicidad exterior" : "") + ". Quiero validarlo.") },
             { t: "Volver al menú principal", fn: function () { menu(false); } }
           ]);
         }
-        function ask(i) {
-          if (i >= items.length) return fin();
-          say(items[i].p);
-          opts([
-            { t: "Sí", fn: function () { pick("Sí"); yes += 1; soporte(items[i], true, function () { ask(i + 1); }); } },
-            { t: "No", fn: function () { pick("No"); soporte(items[i], false, function () { ask(i + 1); }); } }
-          ]);
-        }
-        ask(0);
+        function preguntar(list, siguiente) {
+          say("Responde sí o no. Son " + list.length + " preguntas sobre " + s.u + ".");
+          var yes = 0;
+          function fin() {
+            var pct = list.length ? Math.round(yes / list.length * 100) : 0;
+            var nivel = pct >= 80 ? "Cumplimiento declarado alto" : pct >= 50 ? "Cumplimiento declarado parcial" : "Cumplimiento declarado bajo";
+            say("Resultado: " + pct + " %. " + nivel + ". Es una estimación según tus respuestas; un Profesional la valida.");
+            siguiente(pct);
+          }
+          function ask(i) {
+            if (i >= list.length) return fin();
+            say(list[i].p);
+            opts([
+              { t: "Sí", fn: function () { pick("Sí"); yes += 1; soporte(list[i], true, function () { ask(i + 1); }); } },
+              { t: "No", fn: function () { pick("No"); soporte(list[i], false, function () { ask(i + 1); }); } }
+            ]);
+          }
+          ask(0);
         }
       });
     }
