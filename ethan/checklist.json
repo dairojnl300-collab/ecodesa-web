@@ -15,8 +15,8 @@
   {
    "id": "R2",
    "area": "Ambiental",
-   "p": "¿La inscripción tiene el volumen mensual de aceite usado actualizado?",
-   "soporte": "Registro actualizado",
+   "p": "¿La inscripción tiene el volumen mensual de aceite usado actualizado, con soportes?",
+   "soporte": "Registro actualizado y soportes de volumen",
    "valida": "Mateo",
    "norma": "Res. 316/2018, art. 9a",
    "revision": {
@@ -39,8 +39,8 @@
   {
    "id": "R4",
    "area": "Ambiental",
-   "p": "¿Entrega el aceite de cocina usado a un gestor inscrito ante la autoridad ambiental competente?",
-   "soporte": "Contrato o constancia del gestor inscrito",
+   "p": "¿Entrega el aceite de cocina usado a un gestor inscrito ante la autoridad ambiental competente, con certificado de disposición?",
+   "soporte": "Contrato del gestor inscrito y certificado de disposición",
    "valida": "Mateo, Sofía",
    "norma": "Res. 316/2018, art. 9b",
    "revision": {
@@ -51,8 +51,8 @@
   {
    "id": "R5",
    "area": "Ambiental",
-   "p": "¿Conserva constancias de esa entrega?",
-   "soporte": "Constancias archivadas",
+   "p": "¿Conserva los soportes y certificados de cada entrega de aceite usado?",
+   "soporte": "Soportes y certificados de entrega archivados",
    "valida": "Mateo",
    "norma": "Res. 316/2018, art. 9d",
    "revision": {
@@ -63,8 +63,8 @@
   {
    "id": "R6",
    "area": "Ambiental",
-   "p": "¿Su personal ha recibido capacitación sobre manejo de aceite usado?",
-   "soporte": "Registro de capacitación",
+   "p": "¿Su personal ha recibido capacitación en manejo de aceite usado, residuos sólidos, trampas de grasa y plásticos de un solo uso?",
+   "soporte": "Registro de capacitación con temas y asistentes",
    "valida": "Mateo",
    "norma": "Res. 316/2018, art. 9c",
    "revision": {
@@ -99,8 +99,8 @@
   {
    "id": "R9",
    "area": "Ambiental",
-   "p": "¿Tiene reporte de manejo de lodos de la trampa de grasas?",
-   "soporte": "Reporte del gestor",
+   "p": "¿Tiene soportes y certificado de disposición de los lodos de la trampa de grasas emitidos por un gestor autorizado?",
+   "soporte": "Reporte y certificado de disposición del gestor",
    "valida": "Mateo",
    "norma": "Por verificar",
    "revision": {
