@@ -286,6 +286,14 @@
           opts([{ t: "Hablar con un asesor", id: s.id, href: link(s.wa) }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
           return;
         }
+        var areas = [];
+        items.forEach(function (i) { if (areas.indexOf(i.area) < 0) areas.push(i.area); });
+        if (areas.length < 2) return preguntar(items);
+        say("¿Qué tema quieres revisar?");
+        var l = areas.map(function (a) { return { t: a, fn: function () { pick(a); preguntar(items.filter(function (i) { return i.area === a; })); } }; });
+        l.push({ t: "Todos los temas", fn: function () { pick("Todos los temas"); preguntar(items); } });
+        opts(l);
+        function preguntar(items) {
         say("Responde sí o no. Son " + items.length + " preguntas sobre " + s.u + ".");
         var yes = 0;
         function fin() {
@@ -306,6 +314,7 @@
           ]);
         }
         ask(0);
+        }
       });
     }
     function norma(s) {
