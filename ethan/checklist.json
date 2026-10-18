@@ -570,8 +570,8 @@
    "valida": "Mateo",
    "norma": "Por verificar",
    "revision": {
-    "estado": "texto_verificado",
-    "nota": "NSR-10 J.2.3.1: acceso para bomberos."
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
    }
   },
   {
@@ -582,8 +582,8 @@
    "valida": "Mateo",
    "norma": "Por verificar",
    "revision": {
-    "estado": "texto_verificado",
-    "nota": "NSR-10 J.2.4.5: hidrante a no más de 100 m."
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
    }
   },
   {
@@ -594,8 +594,8 @@
    "valida": "Ricardo",
    "norma": "Por verificar",
    "revision": {
-    "estado": "texto_verificado",
-    "nota": "NSR-10 J.2.2.1: dispositivos de corte de gas y electricidad."
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
    }
   },
   {
@@ -606,8 +606,8 @@
    "valida": "Andrés",
    "norma": "Por verificar",
    "revision": {
-    "estado": "texto_verificado",
-    "nota": "NSR-10 J.4.3.2.3: extintores portátiles (grupo C)."
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
    }
   },
   {
@@ -618,8 +618,8 @@
    "valida": "Sofía",
    "norma": "Por verificar",
    "revision": {
-    "estado": "texto_verificado",
-    "nota": "NSR-10 J.4.3.2.2: tomas fijas y mangueras (grupo C)."
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
    }
   }
  ],
