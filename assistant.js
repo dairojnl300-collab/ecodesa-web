@@ -325,6 +325,7 @@
               if (!g) { g = { a: a, items: [] }; grupos.push(g); }
               g.items.push(r);
             });
+            t += "\n\n*Temas revisados:* " + grupos.map(function (g) { return g.a; }).join(", ") + ".";
             var n = 0;
             grupos.forEach(function (g) {
               t += "\n\n*" + g.a + "*";
