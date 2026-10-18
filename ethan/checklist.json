@@ -592,30 +592,6 @@
    }
   },
   {
-   "id": "VER4",
-   "area": "Ambiental",
-   "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
-   "soporte": "Cadena de custodia",
-   "valida": "Mateo",
-   "norma": "Procedimiento de toma de muestra del informe",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER5",
-   "area": "Ambiental",
-   "p": "¿El informe incluye pH, temperatura, DBO5, DQO, grasas y aceites, sólidos y nutrientes?",
-   "soporte": "Lista de parámetros del informe",
-   "valida": "Mateo",
-   "norma": "Decreto 1076 de 2015 (parámetros de vertimiento)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
    "id": "VER6",
    "area": "Ambiental",
    "p": "¿Tiene registro de tasa retributiva por vertimientos?",
@@ -968,30 +944,6 @@
    }
   },
   {
-   "id": "VER4",
-   "area": "Ambiental",
-   "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
-   "soporte": "Cadena de custodia",
-   "valida": "Mateo",
-   "norma": "Procedimiento de toma de muestra del informe",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER5",
-   "area": "Ambiental",
-   "p": "¿El informe incluye pH, temperatura, DBO5, DQO, grasas y aceites, sólidos y nutrientes?",
-   "soporte": "Lista de parámetros del informe",
-   "valida": "Mateo",
-   "norma": "Decreto 1076 de 2015 (parámetros de vertimiento)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
    "id": "VER6",
    "area": "Ambiental",
    "p": "¿Tiene registro de tasa retributiva por vertimientos?",
@@ -1210,30 +1162,6 @@
    }
   },
   {
-   "id": "VER4",
-   "area": "Ambiental",
-   "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
-   "soporte": "Cadena de custodia",
-   "valida": "Mateo",
-   "norma": "Procedimiento de toma de muestra del informe",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER5",
-   "area": "Ambiental",
-   "p": "¿El informe incluye pH, temperatura, DBO5, DQO, grasas y aceites, sólidos y nutrientes?",
-   "soporte": "Lista de parámetros del informe",
-   "valida": "Mateo",
-   "norma": "Decreto 1076 de 2015 (parámetros de vertimiento)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
    "id": "VER6",
    "area": "Ambiental",
    "p": "¿Tiene registro de tasa retributiva por vertimientos?",
@@ -1449,30 +1377,6 @@
    "revision": {
     "estado": "sin_fuente",
     "nota": "Sin texto de norma en la conversación; por verificar."
-   }
-  },
-  {
-   "id": "VER4",
-   "area": "Ambiental",
-   "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
-   "soporte": "Cadena de custodia",
-   "valida": "Mateo",
-   "norma": "Procedimiento de toma de muestra del informe",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER5",
-   "area": "Ambiental",
-   "p": "¿El informe incluye pH, temperatura, DBO5, DQO, grasas y aceites, sólidos y nutrientes?",
-   "soporte": "Lista de parámetros del informe",
-   "valida": "Mateo",
-   "norma": "Decreto 1076 de 2015 (parámetros de vertimiento)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
    }
   },
   {
