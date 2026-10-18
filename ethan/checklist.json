@@ -217,6 +217,30 @@
    }
   },
   {
+   "id": "SAN1",
+   "area": "Sanitario",
+   "p": "¿Está inscrito ante la autoridad sanitaria competente?",
+   "soporte": "Constancia de inscripción sanitaria",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "SAN2",
+   "area": "Sanitario",
+   "p": "¿Tiene plan de saneamiento básico con sus cuatro programas: agua potable, limpieza y desinfección, control de plagas y manejo de residuos sólidos?",
+   "soporte": "Plan de saneamiento básico vigente y registros de sus programas",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
    "id": "BOM1",
    "area": "SST y gestión del riesgo",
    "p": "¿Su personal ha recibido capacitaciones dictadas por el Cuerpo de Bomberos?",
