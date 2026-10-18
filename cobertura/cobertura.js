@@ -13,10 +13,41 @@
   var zoneCard = document.getElementById("zones-card");
   var zoneList = document.getElementById("zone-list");
   var mapNotice = document.getElementById("map-notice");
+  var empty = document.getElementById("empty");
   var layers = {};
   var active = null;
 
   function setStatus(t) { status.textContent = t; }
+
+  function animateCount(el) {
+    var to = Number(el.getAttribute("data-to")) || 0;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) { el.textContent = to; return; }
+    var start = null;
+    function step(t) {
+      if (start === null) start = t;
+      var p = Math.min((t - start) / 900, 1);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var totalServicios = ZONAS.reduce(function (n, z) { return n + z.servicios.length; }, 0);
+  var totalLoc = Object.keys(ZONAS.reduce(function (o, z) { o[z.loc] = 1; return o; }, {})).length;
+  document.getElementById("n-ucg").setAttribute("data-to", ZONAS.length);
+  document.getElementById("n-loc").setAttribute("data-to", totalLoc);
+  document.getElementById("n-srv").setAttribute("data-to", totalServicios);
+
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 }) : null;
+  document.querySelectorAll(".reveal").forEach(function (el) {
+    if (io) io.observe(el); else el.classList.add("in");
+  });
+  document.querySelectorAll(".stat b").forEach(animateCount);
 
   var map = L.map("map", { zoomControl: true, attributionControl: true }).setView([10.41, -75.50], 12);
   L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
@@ -39,6 +70,7 @@
       var button = document.createElement("button");
       button.className = "zone";
       button.type = "button";
+      button.setAttribute("aria-pressed", "false");
       var copy = document.createElement("span");
       copy.className = "zone-copy";
       var title = document.createElement("span");
@@ -72,8 +104,27 @@
     document.getElementById("cc").href = "https://wa.me/573246886824?text=" +
       encodeURIComponent("Hola, estoy en UCG " + z.id + " (" + z.loc + "). Quiero información de servicios ambientales.");
     card.hidden = false;
+    empty.hidden = true;
+    Array.prototype.forEach.call(zoneList.querySelectorAll(".zone"), function (b, i) {
+      b.setAttribute("aria-pressed", String(ZONAS[i] === z));
+    });
     Object.keys(layers).forEach(function (k) {
       layers[k].setStyle({ weight: k == z.id ? 3 : 1.5, fillOpacity: k == z.id ? 0.35 : 0.15 });
+    });
+    if (window.matchMedia && window.matchMedia("(max-width: 819px)").matches) {
+      card.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function clearSelection() {
+    card.hidden = true;
+    empty.hidden = false;
+    active = null;
+    Array.prototype.forEach.call(zoneList.querySelectorAll(".zone"), function (b) {
+      b.setAttribute("aria-pressed", "false");
+    });
+    Object.keys(layers).forEach(function (k) {
+      layers[k].setStyle({ weight: 1.5, fillOpacity: 0.15 });
     });
   }
 
@@ -111,8 +162,12 @@
 
   document.getElementById("reset").addEventListener("click", function () {
     map.setView([10.41, -75.50], 12);
-    card.hidden = true;
-    active = null;
+    clearSelection();
     setStatus("");
+  });
+
+  document.getElementById("close").addEventListener("click", clearSelection);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && active) clearSelection();
   });
 })();

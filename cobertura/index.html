@@ -8,76 +8,141 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://ecodesa.co/cobertura/">
   <meta name="theme-color" content="#0d1a0e">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..900&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <style>
-    :root { --bg:#f4f7f5; --surface:#fff; --fg:#14201b; --muted:#5b6b63; --line:#d5e0da; --accent:#1f7a57; --accent-ink:#fff; --chip:#e6efe9; --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif; --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif; color-scheme: light; }
-    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0e1713; --surface:#16221d; --fg:#e7f1ec; --muted:#9fb3a8; --line:#2a3d34; --accent:#4fd19c; --accent-ink:#0e1713; --chip:#1d2d26; color-scheme: dark; } }
-    :root[data-theme="dark"] { --bg:#0e1713; --surface:#16221d; --fg:#e7f1ec; --muted:#9fb3a8; --line:#2a3d34; --accent:#4fd19c; --accent-ink:#0e1713; --chip:#1d2d26; color-scheme: dark; }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; }
-    body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.5; padding: 20px max(16px, env(safe-area-inset-left,0px)) 32px max(16px, env(safe-area-inset-right,0px)); }
-    .wrap { max-width: 720px; margin: 0 auto; min-width: 0; }
-    h1 { font-family: var(--display); font-size: 24px; line-height: 1.2; margin: 0 0 8px; text-wrap: balance; }
-    .lede { color: var(--muted); margin: 0 0 14px; }
-    .map-box { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); height: 60vh; min-height: 340px; background: #0b1410; }
-    .map-box .leaflet-container { width: 100%; height: 100%; font-family: var(--body); }
-    .map-notice { position: absolute; z-index: 500; left: 12px; right: 12px; bottom: 12px; padding: 8px 10px; border-radius: 10px; background: rgba(0,0,0,.72); color: #fff; font-size: 12px; }
-    .tools { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 0; }
-    .btn { appearance: none; font: inherit; font-weight: 600; font-size: 14px; min-height: 42px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
-    .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-    .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-    .status { font-size: 13px; color: var(--muted); margin-top: 8px; min-height: 1.2em; }
-    .card { margin-top: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
-    .card[hidden] { display: none !important; }
-    .card h2 { font-family: var(--display); font-size: 20px; margin: 0; }
-    .card .loc { font-size: 13px; color: var(--muted); margin-top: 2px; }
-    .card .barrios { font-size: 13px; color: var(--muted); margin-top: 8px; }
-    .zone-list { display: grid; gap: 8px; margin-top: 12px; }
-    .zone { appearance: none; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--fg); text-align: left; font: inherit; cursor: pointer; }
-    .zone:hover { border-color: var(--accent); }
-    .zone:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    :root {
+      --g: #76B82A; --g2: #8fd14f; --g3: #c7f08a; --gd: #2E6B1F;
+      --ink: #0f2416; --ink2: #3d4b43; --bg: #f6f8f3; --card: #ffffff; --line: #e3e9df;
+      --chip: #e8f2dc; --dark: #0d1a0e; --r: 22px;
+      --fh: "Archivo", system-ui, sans-serif; --fb: "Instrument Sans", system-ui, sans-serif;
+      --ease: cubic-bezier(.2,.7,.2,1);
+    }
+    [data-theme="dark"] { --ink: #e8f0e6; --ink2: #a9b8ad; --bg: #0a140b; --card: #122014; --line: #223524; --chip: rgba(143,209,79,.14); --gd: #9fd86a; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font: 400 16px/1.55 var(--fb); color: var(--ink); background: var(--bg); overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+    a { color: inherit; }
+
+    /* Hero */
+    .hero { background: var(--dark); color: #fff; padding: 56px max(20px, env(safe-area-inset-left,0px)) 40px max(20px, env(safe-area-inset-right,0px)); position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; top: -120px; right: -120px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(118,184,42,.35), transparent 65%); pointer-events: none; animation: drift 14s ease-in-out infinite alternate; }
+    @keyframes drift { to { transform: translate(-40px, 30px); } }
+    .wrap { max-width: 880px; margin: 0 auto; position: relative; }
+    .eyebrow { font: 700 13px var(--fh); letter-spacing: .08em; text-transform: uppercase; color: var(--g2); }
+    .hero h1 { font: 800 clamp(32px, 6vw, 56px)/1.02 var(--fh); letter-spacing: -.02em; margin-top: 10px; max-width: 16ch; text-wrap: balance; }
+    .hero h1 em { font-style: normal; color: var(--g2); }
+    .hero .lede { color: #c4d6c8; margin-top: 14px; max-width: 52ch; }
+    .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .stat { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 12px 16px; min-width: 120px; }
+    .stat b { display: block; font: 800 28px/1 var(--fh); color: var(--g3); font-variant-numeric: tabular-nums; }
+    .stat span { font-size: 13px; color: #c4d6c8; }
+
+    /* Layout */
+    main { max-width: 880px; margin: 0 auto; padding: 28px max(16px, env(safe-area-inset-left,0px)) 40px max(16px, env(safe-area-inset-right,0px)); }
+    .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+    @media (min-width: 820px) { .grid { grid-template-columns: 1.25fr 1fr; align-items: start; } }
+
+    .panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; box-shadow: 0 10px 30px -18px rgba(15,36,22,.35); min-width: 0; }
+    .map-box { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); height: 56vh; min-height: 340px; background: #0b1410; }
+    .map-box .leaflet-container { width: 100%; height: 100%; font-family: var(--fb); }
+    .map-notice { position: absolute; z-index: 500; left: 12px; right: 12px; bottom: 12px; padding: 8px 12px; border-radius: 12px; background: rgba(0,0,0,.72); color: #fff; font-size: 12px; backdrop-filter: blur(6px); }
+    .map-tools { display: flex; gap: 8px; margin-top: 12px; align-items: center; flex-wrap: wrap; }
+    .status { font-size: 13px; color: var(--ink2); margin-left: auto; min-height: 1.2em; }
+
+    .btn { appearance: none; font: 800 15px var(--fh); min-height: 44px; padding: 0 18px; border-radius: 40px; border: 2px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; transition: transform .25s var(--ease), background .25s, border-color .25s, box-shadow .25s; }
+    .btn:hover { transform: translateY(-2px); border-color: var(--g); }
+    .btn:active { transform: scale(.97); }
+    .btn.primary { background: var(--g); border-color: var(--g); color: var(--dark); box-shadow: 0 8px 22px -10px rgba(118,184,42,.7); }
+    .btn.primary:hover { background: var(--g2); }
+    .btn:focus-visible, .zone:focus-visible, .cta:focus-visible, .close:focus-visible { outline: 3px solid var(--g); outline-offset: 3px; }
+
+    .panel-title { font: 800 22px/1.15 var(--fh); letter-spacing: -.01em; }
+    .panel-sub { color: var(--ink2); font-size: 14px; margin-top: 4px; }
+    .zone-list { display: grid; gap: 8px; margin-top: 14px; }
+    .zone { appearance: none; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border: 2px solid var(--line); border-radius: 16px; background: var(--card); color: var(--ink); text-align: left; font: inherit; cursor: pointer; transition: transform .25s var(--ease), border-color .25s, background .25s; }
+    .zone:hover { transform: translateX(4px); border-color: var(--g); }
+    .zone[aria-pressed="true"] { border-color: var(--g); background: var(--chip); }
     .zone-copy { min-width: 0; }
-    .zone-title, .zone-loc { display: block; }
-    .zone-title { font-weight: 700; }
-    .zone-loc { color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
-    .zone-tag { flex: none; color: var(--muted); font-size: 12px; white-space: nowrap; }
-    .services { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
-    .services li { display: flex; gap: 10px; padding: 10px 12px; background: var(--chip); border-radius: 10px; }
-    .services li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 7px; flex: none; }
-    .cta { display: flex; align-items: center; justify-content: center; margin-top: 14px; min-height: 48px; border-radius: 12px; background: var(--accent); color: var(--accent-ink); font-weight: 600; text-decoration: none; }
-    .note { font-size: 12px; color: var(--muted); margin-top: 12px; }
-    .ucg-label { background: rgba(0,0,0,.6); color: #fff; border: 0; border-radius: 6px; font: 600 12px var(--body); padding: 3px 6px; white-space: nowrap; }
-    .leaflet-tooltip.ucg-label { background: rgba(0,0,0,.6); color: #fff; border: 0; box-shadow: none; }
+    .zone-title { display: block; font: 800 16px var(--fh); }
+    .zone-loc { display: block; color: var(--ink2); font-size: 13px; overflow-wrap: anywhere; }
+    .zone-tag { flex: none; font-size: 12px; font-weight: 600; color: var(--gd); background: var(--chip); padding: 4px 10px; border-radius: 40px; white-space: nowrap; }
+
+    .detail { position: relative; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .detail[hidden] { display: none !important; }
+    .detail-empty { color: var(--ink2); margin-top: 16px; font-size: 15px; }
+    .detail-empty[hidden] { display: none !important; }
+    .close { position: absolute; top: 12px; right: 0; appearance: none; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--line); background: var(--card); color: var(--ink); font: 700 18px var(--fh); cursor: pointer; }
+    .detail h2 { font: 800 26px/1.1 var(--fh); padding-right: 48px; }
+    .detail .loc { font-size: 14px; color: var(--ink2); margin-top: 4px; }
+    .detail .barrios { font-size: 13px; color: var(--ink2); margin-top: 10px; }
+    .services { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+    .services li { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; background: var(--chip); border-radius: 14px; font-size: 15px; animation: rise .45s var(--ease) both; }
+    .services li:nth-child(2) { animation-delay: .05s; }
+    .services li:nth-child(3) { animation-delay: .1s; }
+    .services li:nth-child(4) { animation-delay: .15s; }
+    .services li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--g); margin-top: 8px; flex: none; }
+    @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .cta { display: flex; align-items: center; justify-content: center; margin-top: 16px; min-height: 52px; border-radius: 40px; background: var(--g); color: var(--dark); font: 800 16px var(--fh); text-decoration: none; transition: transform .25s var(--ease), background .25s; }
+    .cta:hover { transform: translateY(-2px); background: var(--g2); }
+    .note { font-size: 12px; color: var(--ink2); margin-top: 18px; }
+    .ucg-label { background: rgba(0,0,0,.65); color: #fff; border: 0; border-radius: 8px; font: 700 12px var(--fh); padding: 3px 7px; white-space: nowrap; box-shadow: none; }
+    .leaflet-tooltip.ucg-label::before { display: none; }
+
+    /* Reveal al hacer scroll */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
   </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>¿Dónde está tu establecimiento?</h1>
-  <p class="lede">Toca una zona de Cartagena en el mapa satelital para ver los servicios que aplican allí.</p>
-
-  <div class="map-box"><div id="map" role="application" aria-label="Mapa satelital de cobertura por UCG"></div><div class="map-notice" id="map-notice" hidden></div></div>
-
-  <div class="tools">
-    <button class="btn primary" id="reset" type="button">Ver toda la ciudad</button>
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Cobertura · Cartagena de Indias</p>
+    <h1>¿Dónde está tu <em>establecimiento</em>?</h1>
+    <p class="lede">Toca una zona en el mapa satelital y mira qué servicios de ECODESA aplican allí.</p>
+    <div class="stats" aria-label="Resumen de cobertura">
+      <div class="stat"><b id="n-ucg" data-to="6">0</b><span>Unidades comunales (UCG)</span></div>
+      <div class="stat"><b id="n-loc" data-to="3">0</b><span>Localidades</span></div>
+      <div class="stat"><b id="n-srv" data-to="22">0</b><span>Servicios por zona</span></div>
+    </div>
   </div>
-  <p class="status" id="status" aria-live="polite"></p>
+</header>
 
-  <section class="card" id="zones-card" aria-labelledby="zones-title">
-    <h2 id="zones-title">Zonas de cobertura</h2>
-    <p class="loc">Selecciona una zona para consultar los servicios disponibles.</p>
-    <div class="zone-list" id="zone-list" role="list"></div>
-  </section>
+<main>
+  <div class="grid">
+    <section class="panel reveal" aria-label="Mapa de cobertura">
+      <div class="map-box"><div id="map" role="application" aria-label="Mapa satelital de cobertura por UCG"></div><div class="map-notice" id="map-notice" hidden></div></div>
+      <div class="map-tools">
+        <button class="btn primary" id="reset" type="button">Ver toda la ciudad</button>
+        <p class="status" id="status" aria-live="polite"></p>
+      </div>
+    </section>
 
-  <section class="card" id="card" hidden aria-live="polite">
-    <h2 id="ct"></h2>
-    <p class="loc" id="cl"></p>
-    <p class="barrios" id="cb"></p>
-    <ul class="services" id="cs"></ul>
-    <a class="cta" id="cc" href="https://wa.me/573246886824" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-  </section>
+    <section class="panel reveal" id="zones-card" aria-labelledby="zones-title">
+      <h2 class="panel-title" id="zones-title">Zonas de cobertura</h2>
+      <p class="panel-sub">Elige una zona para ver sus servicios.</p>
+      <div class="zone-list" id="zone-list" role="list"></div>
+
+      <p class="detail-empty" id="empty">Aquí aparecerán los servicios de tu zona.</p>
+      <div class="detail" id="card" hidden aria-live="polite">
+        <button class="close" id="close" type="button" aria-label="Cerrar detalle">×</button>
+        <h2 id="ct"></h2>
+        <p class="loc" id="cl"></p>
+        <p class="barrios" id="cb"></p>
+        <ul class="services" id="cs"></ul>
+        <a class="cta" id="cc" href="https://wa.me/573246886824" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      </div>
+    </section>
+  </div>
 
   <p class="note">Servicios de ejemplo por zona. Se confirman con el equipo antes de cotizar. Imágenes: Esri World Imagery.</p>
-</div>
+</main>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 <script src="cobertura.js" defer></script>
