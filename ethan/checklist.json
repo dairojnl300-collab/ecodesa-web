@@ -205,18 +205,6 @@
    }
   },
   {
-   "id": "B3",
-   "area": "Sanitario",
-   "p": "¿Tiene análisis de calidad del agua de uso?",
-   "soporte": "Informe de laboratorio acreditado ante ONAC",
-   "valida": "Mateo",
-   "norma": "Por verificar",
-   "revision": {
-    "estado": "sin_fuente",
-    "nota": "Sin texto de norma en la conversación; por verificar."
-   }
-  },
-  {
    "id": "B4",
    "area": "SST",
    "p": "¿Su personal manipulador ha recibido capacitación en inocuidad?",
@@ -319,30 +307,6 @@
    "soporte": "Diseño y operación",
    "valida": "Mateo",
    "norma": "Decreto 1076 de 2015 (vertimientos)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER2",
-   "area": "Ambiental",
-   "p": "¿Tiene caracterización de aguas residuales a la entrada y a la salida del sistema?",
-   "soporte": "Informe de laboratorio",
-   "valida": "Mateo",
-   "norma": "Decreto 1076 de 2015 (caracterización de vertimientos)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER3",
-   "area": "Ambiental",
-   "p": "¿El laboratorio tiene acreditación con alcance para los parámetros analizados?",
-   "soporte": "Certificado de acreditación",
-   "valida": "Mateo",
-   "norma": "NTC-ISO/IEC 17025 y acreditación IDEAM u ONAC",
    "revision": {
     "estado": "citado",
     "nota": "Citado en documento de referencia; texto no revisado."
@@ -531,18 +495,6 @@
    }
   },
   {
-   "id": "B3",
-   "area": "Sanitario",
-   "p": "¿Tiene análisis de calidad del agua de uso?",
-   "soporte": "Informe de laboratorio acreditado ante ONAC",
-   "valida": "Mateo",
-   "norma": "Por verificar",
-   "revision": {
-    "estado": "sin_fuente",
-    "nota": "Sin texto de norma en la conversación; por verificar."
-   }
-  },
-  {
    "id": "B4",
    "area": "SST",
    "p": "¿Su personal manipulador ha recibido capacitación en inocuidad?",
@@ -645,30 +597,6 @@
    "soporte": "Diseño y operación",
    "valida": "Mateo",
    "norma": "Decreto 1076 de 2015 (vertimientos)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER2",
-   "area": "Ambiental",
-   "p": "¿Tiene caracterización de aguas residuales a la entrada y a la salida del sistema?",
-   "soporte": "Informe de laboratorio",
-   "valida": "Mateo",
-   "norma": "Decreto 1076 de 2015 (caracterización de vertimientos)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER3",
-   "area": "Ambiental",
-   "p": "¿El laboratorio tiene acreditación con alcance para los parámetros analizados?",
-   "soporte": "Certificado de acreditación",
-   "valida": "Mateo",
-   "norma": "NTC-ISO/IEC 17025 y acreditación IDEAM u ONAC",
    "revision": {
     "estado": "citado",
     "nota": "Citado en documento de referencia; texto no revisado."
@@ -1039,30 +967,6 @@
    }
   },
   {
-   "id": "VER2",
-   "area": "Ambiental",
-   "p": "¿Tiene caracterización de aguas residuales a la entrada y a la salida del sistema?",
-   "soporte": "Informe de laboratorio",
-   "valida": "Mateo",
-   "norma": "Decreto 1076 de 2015 (caracterización de vertimientos)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER3",
-   "area": "Ambiental",
-   "p": "¿El laboratorio tiene acreditación con alcance para los parámetros analizados?",
-   "soporte": "Certificado de acreditación",
-   "valida": "Mateo",
-   "norma": "NTC-ISO/IEC 17025 y acreditación IDEAM u ONAC",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
    "id": "VER4",
    "area": "Ambiental",
    "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
@@ -1293,30 +1197,6 @@
    }
   },
   {
-   "id": "VER2",
-   "area": "Ambiental",
-   "p": "¿Tiene caracterización de aguas residuales a la entrada y a la salida del sistema?",
-   "soporte": "Informe de laboratorio",
-   "valida": "Mateo",
-   "norma": "Decreto 1076 de 2015 (caracterización de vertimientos)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER3",
-   "area": "Ambiental",
-   "p": "¿El laboratorio tiene acreditación con alcance para los parámetros analizados?",
-   "soporte": "Certificado de acreditación",
-   "valida": "Mateo",
-   "norma": "NTC-ISO/IEC 17025 y acreditación IDEAM u ONAC",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
    "id": "VER4",
    "area": "Ambiental",
    "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
@@ -1541,30 +1421,6 @@
    "soporte": "Diseño y operación",
    "valida": "Mateo",
    "norma": "Decreto 1076 de 2015 (vertimientos)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER2",
-   "area": "Ambiental",
-   "p": "¿Tiene caracterización de aguas residuales a la entrada y a la salida del sistema?",
-   "soporte": "Informe de laboratorio",
-   "valida": "Mateo",
-   "norma": "Decreto 1076 de 2015 (caracterización de vertimientos)",
-   "revision": {
-    "estado": "citado",
-    "nota": "Citado en documento de referencia; texto no revisado."
-   }
-  },
-  {
-   "id": "VER3",
-   "area": "Ambiental",
-   "p": "¿El laboratorio tiene acreditación con alcance para los parámetros analizados?",
-   "soporte": "Certificado de acreditación",
-   "valida": "Mateo",
-   "norma": "NTC-ISO/IEC 17025 y acreditación IDEAM u ONAC",
    "revision": {
     "estado": "citado",
     "nota": "Citado en documento de referencia; texto no revisado."
