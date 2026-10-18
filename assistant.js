@@ -126,6 +126,9 @@
     }
     function pick(t) { body.appendChild(el("div", "as-m me", t)); toEnd(); face("happy", 1400); }
     function opts(list) {
+      var tieneVolver = list.some(function (o) { return /^Volver/.test(o.t); });
+      var esMenu = list.some(function (o) { return o.t === "Otra consulta"; });
+      if (!tieneVolver && !esMenu) list = list.concat([{ t: "Volver al menú principal", fn: function () { menu(false); } }]);
       q.push(function (done) {
         var w = el("div", "as-opts");
         list.forEach(function (o) {
@@ -202,7 +205,7 @@
     function preguntarCiudad() {
       say("¿En qué ciudad está tu negocio?");
       opts([
-        { t: "Cartagena", fn: function () { pick("Cartagena"); CIUDAD = "cartagena"; step(function () { mostrarSectores(false); }); } },
+        { t: "Cartagena", fn: function () { pick("Cartagena"); CIUDAD = "cartagena"; track("asistente_localidad"); pedirBarrio(function () { mostrarSectores(false); }); } },
         { t: "Otra ciudad", fn: function () { pick("Otra ciudad"); CIUDAD = "otra"; step(function () { say("La ubicación por localidad y UCG solo aplica a Cartagena. Igual te orientamos en cualquier sector."); mostrarSectores(false); }); } }
       ]);
     }
@@ -211,7 +214,6 @@
       else say("¿Qué tipo de negocio tienes?");
       var l = S.filter(function (s) { return s.id !== "digital" && s.id !== "iso"; }).map(function (s) { return { t: s.n, fn: function () { pick(s.n); track("asistente_" + s.id); show(s); } }; });
       if (ayudaAsesor) l.unshift({ t: "Hablar con un asesor", id: "menu", href: link("Hola ECODESA, tengo una consulta.") });
-      if (CIUDAD === "cartagena") l.push({ t: "Conocer mi localidad y UCG", fn: function () { pick("Conocer mi localidad y UCG"); track("asistente_localidad"); pedirBarrio(null); } });
       l.push({ t: "Otra consulta", fn: function () { pick("Otra consulta"); step(function () { say("Eso lo revisa un Profesional de nuestro equipo. Cuéntanos por WhatsApp."); opts([{ t: "Hablar con un asesor", id: "otra", href: link("Hola ECODESA, tengo una consulta.") }, { t: "Volver al menú", fn: function () { menu(false); } }]); }); } });
       opts(l);
     }
@@ -294,17 +296,12 @@
         l.push({ t: "Todos los temas", fn: function () { pick("Todos los temas"); preguntar(items); } });
         opts(l);
         function preguntar(items) {
-        say("Responde sí, no o no aplica. Son " + items.length + " preguntas sobre " + s.u + ".");
-        var yes = 0, aplica = 0;
+        say("Responde sí o no. Son " + items.length + " preguntas sobre " + s.u + ".");
+        var yes = 0;
         function fin() {
-          if (!aplica) {
-            say("Ninguna de las preguntas aplica a tu caso. Un Profesional de ECODESA confirma tu situación.");
-            opts([{ t: "Hablar con un asesor", id: s.id, href: link(s.wa) }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
-            return;
-          }
-          var pct = Math.round(yes / aplica * 100);
+          var pct = Math.round(yes / items.length * 100);
           var nivel = pct >= 80 ? "Cumplimiento declarado alto" : pct >= 50 ? "Cumplimiento declarado parcial" : "Cumplimiento declarado bajo";
-          say("Resultado: " + pct + " % sobre " + aplica + " preguntas que aplican. " + nivel + ". Es una estimación según tus respuestas; un Profesional la valida.");
+          say("Resultado: " + pct + " %. " + nivel + ". Es una estimación según tus respuestas; un Profesional la valida.");
           opts([
             { t: "Validar mi cumplimiento con un profesional", id: s.id, href: link("Hola ECODESA, hice el diagnóstico inicial de " + s.u + " con " + pct + " % declarado. Quiero validarlo.") },
             { t: "Volver al menú principal", fn: function () { menu(false); } }
@@ -314,9 +311,8 @@
           if (i >= items.length) return fin();
           say(items[i].p);
           opts([
-            { t: "Sí", fn: function () { pick("Sí"); aplica += 1; yes += 1; soporte(items[i], true, function () { ask(i + 1); }); } },
-            { t: "No", fn: function () { pick("No"); aplica += 1; soporte(items[i], false, function () { ask(i + 1); }); } },
-            { t: "No aplica", fn: function () { pick("No aplica"); say("Registrado como no aplicable a tu actividad. No cuenta en el resultado."); ask(i + 1); } }
+            { t: "Sí", fn: function () { pick("Sí"); yes += 1; soporte(items[i], true, function () { ask(i + 1); }); } },
+            { t: "No", fn: function () { pick("No"); soporte(items[i], false, function () { ask(i + 1); }); } }
           ]);
         }
         ask(0);
