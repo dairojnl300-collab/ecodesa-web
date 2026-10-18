@@ -21,6 +21,7 @@
     .lede { color: var(--muted); margin: 0 0 14px; }
     .map-box { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); height: 60vh; min-height: 340px; background: #0b1410; }
     .map-box .leaflet-container { width: 100%; height: 100%; font-family: var(--body); }
+    .map-notice { position: absolute; z-index: 500; left: 12px; right: 12px; bottom: 12px; padding: 8px 10px; border-radius: 10px; background: rgba(0,0,0,.72); color: #fff; font-size: 12px; }
     .tools { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 0; }
     .btn { appearance: none; font: inherit; font-weight: 600; font-size: 14px; min-height: 42px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
     .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
@@ -31,6 +32,15 @@
     .card h2 { font-family: var(--display); font-size: 20px; margin: 0; }
     .card .loc { font-size: 13px; color: var(--muted); margin-top: 2px; }
     .card .barrios { font-size: 13px; color: var(--muted); margin-top: 8px; }
+    .zone-list { display: grid; gap: 8px; margin-top: 12px; }
+    .zone { appearance: none; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--fg); text-align: left; font: inherit; cursor: pointer; }
+    .zone:hover { border-color: var(--accent); }
+    .zone:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .zone-copy { min-width: 0; }
+    .zone-title, .zone-loc { display: block; }
+    .zone-title { font-weight: 700; }
+    .zone-loc { color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+    .zone-tag { flex: none; color: var(--muted); font-size: 12px; white-space: nowrap; }
     .services { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
     .services li { display: flex; gap: 10px; padding: 10px 12px; background: var(--chip); border-radius: 10px; }
     .services li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 7px; flex: none; }
@@ -45,12 +55,18 @@
   <h1>¿Dónde está tu establecimiento?</h1>
   <p class="lede">Toca una zona de Cartagena en el mapa satelital para ver los servicios que aplican allí.</p>
 
-  <div class="map-box"><div id="map" role="application" aria-label="Mapa satelital de cobertura por UCG"></div></div>
+  <div class="map-box"><div id="map" role="application" aria-label="Mapa satelital de cobertura por UCG"></div><div class="map-notice" id="map-notice" hidden></div></div>
 
   <div class="tools">
     <button class="btn primary" id="reset" type="button">Ver toda la ciudad</button>
   </div>
   <p class="status" id="status" aria-live="polite"></p>
+
+  <section class="card" id="zones-card" aria-labelledby="zones-title">
+    <h2 id="zones-title">Zonas de cobertura</h2>
+    <p class="loc">Selecciona una zona para consultar los servicios disponibles.</p>
+    <div class="zone-list" id="zone-list" role="list"></div>
+  </section>
 
   <section class="card" id="card" hidden aria-live="polite">
     <h2 id="ct"></h2>
