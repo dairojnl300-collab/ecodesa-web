@@ -340,9 +340,9 @@
         }
         function marcaResp(v) {
           v = String(v);
-          if (/^s[ií]$/i.test(v)) return "✔ Sí";
+          if (/^s[ií]$/i.test(v)) return "✓ Sí";
           if (/^no sé$/i.test(v)) return "? No sé";
-          if (/^no$/i.test(v)) return "✘ No";
+          if (/^no$/i.test(v)) return "✗ No";
           if (/no aplica/i.test(v)) return "– No aplica";
           return "✎ " + v.replace(/^Detalle:\s*/i, "");
         }
@@ -367,7 +367,7 @@
             var n = 0;
             grupos.forEach(function (g) {
               t += "\n" + linea + "\n*" + g.a.toUpperCase() + "*";
-              g.items.forEach(function (r) { n += 1; t += "\n" + n + ". " + r.p + "\n    " + marcaResp(r.r); });
+              g.items.forEach(function (r) { n += 1; t += "\n" + n + ". " + r.p + "\n\u2800\u2800\u2800" + marcaResp(r.r); });
             });
           }
           return t;
