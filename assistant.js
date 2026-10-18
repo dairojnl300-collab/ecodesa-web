@@ -203,11 +203,38 @@
         mostrarSectores(ayudaAsesor);
       });
     }
+    var UBICACION = null;
+    function elegirCiudad(nombre, esCartagena) {
+      UBICACION = nombre;
+      if (esCartagena) {
+        CIUDAD = "cartagena"; track("asistente_localidad");
+        pedirBarrio(function () { mostrarSectores(false); });
+        return;
+      }
+      CIUDAD = "otra";
+      step(function () { say("La ubicación por localidad y UCG solo aplica a Cartagena. Igual te orientamos en cualquier sector."); mostrarSectores(false); });
+    }
+    function escribirCiudad() {
+      var w = el("form", "as-opts as-form");
+      var inp = el("input", "as-in"); inp.type = "text"; inp.maxLength = 60; inp.placeholder = "Ej.: Soledad, Turbaco, Bolívar"; inp.setAttribute("aria-label", "Municipio, ciudad o corregimiento");
+      var go = el("button", "as-o", "Enviar"); go.type = "submit";
+      w.appendChild(inp); w.appendChild(go); body.appendChild(w); toEnd();
+      w.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var v = inp.value.trim();
+        if (!v) return;
+        w.remove(); pick(v);
+        var esCart = /cartagena/i.test(v);
+        elegirCiudad(v, esCart);
+      });
+    }
     function preguntarCiudad() {
-      say("¿En qué ciudad está tu negocio?");
+      say("¿Desde dónde nos escribes? Elige tu ciudad o escribe tu municipio, ciudad o corregimiento.");
       opts([
-        { t: "Cartagena", fn: function () { pick("Cartagena"); CIUDAD = "cartagena"; track("asistente_localidad"); pedirBarrio(function () { mostrarSectores(false); }); } },
-        { t: "Otra ciudad", fn: function () { pick("Otra ciudad"); CIUDAD = "otra"; step(function () { say("La ubicación por localidad y UCG solo aplica a Cartagena. Igual te orientamos en cualquier sector."); mostrarSectores(false); }); } }
+        { t: "Cartagena", fn: function () { pick("Cartagena"); elegirCiudad("Cartagena", true); } },
+        { t: "Barranquilla", fn: function () { pick("Barranquilla"); elegirCiudad("Barranquilla", false); } },
+        { t: "Bogotá", fn: function () { pick("Bogotá"); elegirCiudad("Bogotá", false); } },
+        { t: "Escribir", fn: function () { pick("Escribir"); escribirCiudad(); } }
       ]);
     }
     function mostrarSectores(ayudaAsesor) {
@@ -234,6 +261,7 @@
     }
     function waText(s, c) {
       var t = s.wa;
+      if (UBICACION) t += " Ubicación: " + UBICACION + ".";
       if (c.size) t += " Trabajadores: " + c.size + ".";
       if (c.tema) t += " Me interesa: " + c.tema + ".";
       return t;
@@ -313,6 +341,7 @@
         function mensajeValidar(pct, pctPub) {
           var sector = s.u.replace(/^tu /, "");
           var t = "*Hola ECODESA*\n";
+          if (UBICACION) t += "*Ubicación:* " + UBICACION + "\n";
           t += "Hice el diagnóstico inicial de mi " + sector + " con un *" + (pct || 0) + " % de cumplimiento*";
           if (pctPub !== undefined) t += " y *" + pctPub + " % en publicidad exterior*";
           t += ".\nQuiero validarlo.";
