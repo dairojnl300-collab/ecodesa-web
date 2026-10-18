@@ -338,13 +338,23 @@
             { t: "No", fn: function () { pick("No"); cierreFinal(pct); } }
           ]);
         }
+        function marcaResp(v) {
+          v = String(v);
+          if (/^s[ií]$/i.test(v)) return "✔ Sí";
+          if (/^no sé$/i.test(v)) return "? No sé";
+          if (/^no$/i.test(v)) return "✘ No";
+          if (/no aplica/i.test(v)) return "– No aplica";
+          return "✎ " + v.replace(/^Detalle:\s*/i, "");
+        }
         function mensajeValidar(pct, pctPub) {
           var sector = s.u.replace(/^tu /, "");
+          var linea = "━━━━━━━━━━━━━━";
           var t = "*Hola ECODESA*\n";
           if (UBICACION) t += "*Ubicación:* " + UBICACION + "\n";
-          t += "Hice el diagnóstico inicial de mi " + sector + " con un *" + (pct || 0) + " % de cumplimiento*";
-          if (pctPub !== undefined) t += " y *" + pctPub + " % en publicidad exterior*";
-          t += ".\nQuiero validarlo.";
+          t += "*Sector:* " + sector + "\n";
+          t += "*Cumplimiento:* " + (pct || 0) + " %";
+          if (pctPub !== undefined) t += "\n*Publicidad exterior:* " + pctPub + " %";
+          t += "\n\nQuiero validar mi diagnóstico.";
           if (RES.length) {
             var grupos = [];
             RES.forEach(function (r) {
@@ -354,11 +364,10 @@
               if (!g) { g = { a: a, items: [] }; grupos.push(g); }
               g.items.push(r);
             });
-            t += "\n\n*Temas revisados:* " + grupos.map(function (g) { return g.a; }).join(", ") + ".";
             var n = 0;
             grupos.forEach(function (g) {
-              t += "\n\n*" + g.a + "*";
-              g.items.forEach(function (r) { n += 1; t += "\n" + n + ". " + r.p + "\n   → " + r.r; });
+              t += "\n" + linea + "\n*" + g.a.toUpperCase() + "*";
+              g.items.forEach(function (r) { n += 1; t += "\n" + n + ". " + r.p + "\n    " + marcaResp(r.r); });
             });
           }
           return t;
