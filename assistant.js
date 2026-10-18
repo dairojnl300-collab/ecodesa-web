@@ -126,6 +126,9 @@
     }
     function pick(t) { body.appendChild(el("div", "as-m me", t)); toEnd(); face("happy", 1400); }
     function opts(list) {
+      var tieneVolver = list.some(function (o) { return /^Volver/.test(o.t); });
+      var esMenu = list.some(function (o) { return o.t === "Otra consulta"; });
+      if (!tieneVolver && !esMenu) list = list.concat([{ t: "Volver al menú principal", fn: function () { menu(false); } }]);
       q.push(function (done) {
         var w = el("div", "as-opts");
         list.forEach(function (o) {
