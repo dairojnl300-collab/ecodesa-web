@@ -1,0 +1,1950 @@
+{
+ "restaurantes": [
+  {
+   "id": "R1",
+   "area": "Ambiental",
+   "p": "¿Su establecimiento está inscrito ante la autoridad ambiental competente?",
+   "soporte": "Constancia de inscripción",
+   "valida": "Mateo",
+   "norma": "Res. 316/2018, arts. 3, 5, 9a",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, arts. 3, 5 y 9a: inscripción de generadores comerciales."
+   }
+  },
+  {
+   "id": "R2",
+   "area": "Ambiental",
+   "p": "¿La inscripción tiene el volumen mensual de aceite usado actualizado?",
+   "soporte": "Registro actualizado",
+   "valida": "Mateo",
+   "norma": "Res. 316/2018, art. 9a",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, art. 9a: registro con cantidad promedio en kg/mes."
+   }
+  },
+  {
+   "id": "R3",
+   "area": "Ambiental",
+   "p": "¿Guarda el aceite de cocina usado en envase plástico sellado y separado de residuos peligrosos?",
+   "soporte": "Foto del envase sellado y separado",
+   "valida": "Mateo, Ricardo",
+   "norma": "Res. 316/2018, arts. 8b, 13b",
+   "revision": {
+    "estado": "parcial",
+    "nota": "Res. 316/2018, arts. 8b y 13b: el texto habla de envase sellado para generadores domiciliarios y de no mezclar con peligrosos. Para comerciales no lo precisa; ajustar."
+   }
+  },
+  {
+   "id": "R4",
+   "area": "Ambiental",
+   "p": "¿Entrega el aceite de cocina usado a un gestor inscrito ante la autoridad ambiental competente?",
+   "soporte": "Contrato o constancia del gestor inscrito",
+   "valida": "Mateo, Sofía",
+   "norma": "Res. 316/2018, art. 9b",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, art. 9b: entrega a gestor inscrito."
+   }
+  },
+  {
+   "id": "R5",
+   "area": "Ambiental",
+   "p": "¿Conserva constancias de esa entrega?",
+   "soporte": "Constancias archivadas",
+   "valida": "Mateo",
+   "norma": "Res. 316/2018, art. 9d",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, art. 9d: constancias del gestor."
+   }
+  },
+  {
+   "id": "R6",
+   "area": "Ambiental",
+   "p": "¿Su personal ha recibido capacitación sobre manejo de aceite usado?",
+   "soporte": "Registro de capacitación",
+   "valida": "Mateo",
+   "norma": "Res. 316/2018, art. 9c",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, art. 9c: capacitación del personal."
+   }
+  },
+  {
+   "id": "R7",
+   "area": "Ambiental",
+   "p": "¿Presentó el reporte anual de aceite usado?",
+   "soporte": "Reporte presentado",
+   "valida": "Mateo",
+   "norma": "Res. 316/2018, art. 9d",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, art. 9d: reporte anual en enero."
+   }
+  },
+  {
+   "id": "R8",
+   "area": "Ambiental",
+   "p": "¿Evita verter el aceite de cocina usado a desagües, fuentes de agua o suelo?",
+   "soporte": "Registro de disposición",
+   "valida": "Mateo",
+   "norma": "Res. 316/2018, art. 13a",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Res. 316/2018, art. 13a: prohibición de verter ACU."
+   }
+  },
+  {
+   "id": "R9",
+   "area": "Ambiental",
+   "p": "¿Tiene reporte de manejo de lodos de la trampa de grasas?",
+   "soporte": "Reporte del gestor",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "R10",
+   "area": "Ambiental",
+   "p": "¿Tiene caracterización de aguas residuales por laboratorio acreditado ante ONAC?",
+   "soporte": "Informe de laboratorio",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "R11",
+   "area": "Ambiental",
+   "p": "¿Tiene permiso o registro de vertimiento vigente?",
+   "soporte": "Acto administrativo vigente",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "R12",
+   "area": "SST",
+   "p": "¿Tiene plan de emergencia y brigada?",
+   "soporte": "Plan y soporte de brigada",
+   "valida": "Ricardo, Andrés",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "R13",
+   "area": "SST",
+   "p": "¿Tiene matriz de peligros del personal?",
+   "soporte": "Matriz vigente",
+   "valida": "Ricardo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "R14",
+   "area": "GRD",
+   "p": "¿Tiene rutas de evacuación y extintores señalizados?",
+   "soporte": "Registro de extintores y plano",
+   "valida": "Andrés",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "R15",
+   "area": "Legal",
+   "p": "¿Tiene contrato con los proveedores de gestión de residuos?",
+   "soporte": "Contrato firmado",
+   "valida": "Sofía",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "B1",
+   "area": "Sanitario",
+   "p": "¿Tiene plan de limpieza y desinfección documentado?",
+   "soporte": "Plan y registros",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "B2",
+   "area": "Sanitario",
+   "p": "¿Tiene control de plagas con empresa autorizada?",
+   "soporte": "Contrato y certificado",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "B3",
+   "area": "Sanitario",
+   "p": "¿Tiene análisis de calidad del agua de uso?",
+   "soporte": "Informe de laboratorio acreditado ante ONAC",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "B4",
+   "area": "SST",
+   "p": "¿Su personal manipulador ha recibido capacitación en inocuidad?",
+   "soporte": "Registro de capacitación",
+   "valida": "Ricardo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "B5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de servicios de limpieza y plagas?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "NSR1",
+   "area": "Gestión del riesgo",
+   "p": "¿El inmueble tiene acceso para vehículos de bomberos por su fachada?",
+   "soporte": "Plano y registro fotográfico",
+   "valida": "Andrés",
+   "norma": "J.2.3.1 de NSR-10 (acceso para el Cuerpo de Bomberos)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR2",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene hidrante a menos de 100 metros del acceso?",
+   "soporte": "Plano de hidrantes",
+   "valida": "Andrés",
+   "norma": "J.2.4.5 de NSR-10 (hidrante a no más de 100 m)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR3",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene dispositivos para cortar gas y electricidad en un lugar accesible?",
+   "soporte": "Foto y señalización",
+   "valida": "Andrés, Ricardo",
+   "norma": "J.2.2.1 de NSR-10 (dispositivos de corte)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR4",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene extintores portátiles en la cantidad y ubicación requeridas?",
+   "soporte": "Registro de recarga y ubicación",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.3 de NSR-10 (extintores portátiles)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR5",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene tomas fijas para bomberos y mangueras de extinción?",
+   "soporte": "Plano y prueba de presión",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.2 de NSR-10 (tomas fijas y mangueras)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR6",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene sistema de detección temprana de incendios?",
+   "soporte": "Certificado de instalación",
+   "valida": "Andrés",
+   "norma": "J.4.2.2 y tabla J.4.2-1 de NSR-10 (detección temprana)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "VER1",
+   "area": "Ambiental",
+   "p": "¿Tiene sistema de tratamiento de aguas residuales?",
+   "soporte": "Diseño y operación",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (vertimientos)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER2",
+   "area": "Ambiental",
+   "p": "¿Tiene caracterización de aguas residuales a la entrada y a la salida del sistema?",
+   "soporte": "Informe de laboratorio",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (caracterización de vertimientos)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER3",
+   "area": "Ambiental",
+   "p": "¿El laboratorio tiene acreditación con alcance para los parámetros analizados?",
+   "soporte": "Certificado de acreditación",
+   "valida": "Mateo",
+   "norma": "NTC-ISO/IEC 17025 y acreditación IDEAM u ONAC",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER4",
+   "area": "Ambiental",
+   "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
+   "soporte": "Cadena de custodia",
+   "valida": "Mateo",
+   "norma": "Procedimiento de toma de muestra del informe",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER5",
+   "area": "Ambiental",
+   "p": "¿El informe incluye pH, temperatura, DBO5, DQO, grasas y aceites, sólidos y nutrientes?",
+   "soporte": "Lista de parámetros del informe",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (parámetros de vertimiento)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER6",
+   "area": "Ambiental",
+   "p": "¿Tiene registro de tasa retributiva por vertimientos?",
+   "soporte": "Declaración o registro",
+   "valida": "Sofía",
+   "norma": "Decreto 2667 de 2012 (tasa retributiva)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER7",
+   "area": "Ambiental",
+   "p": "¿Realiza caracterizaciones periódicas de sus aguas residuales?",
+   "soporte": "Historial de informes",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (monitoreo periódico)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "AVI1",
+   "area": "Ambiental",
+   "p": "¿Tiene avisos, vallas o elementos publicitarios fuera de la fachada?",
+   "soporte": "Registro fotográfico",
+   "valida": "Sofía",
+   "norma": "Acuerdo 174 de 2025, art. 6 (avisos) y art. 10 (vallas); artículo de definición por verificar",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Vigente desde su sanción. Artículo de definición pendiente de confirmar."
+   }
+  },
+  {
+   "id": "AVI2",
+   "area": "Ambiental",
+   "p": "Si tiene vallas o avisos separados de la fachada, ¿están registrados ante la autoridad competente?",
+   "soporte": "Constancia de registro",
+   "valida": "Sofía",
+   "norma": "Acuerdo 174 de 2025, art. 36 (registro antes de colocar la publicidad)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Vigente desde su sanción."
+   }
+  },
+  {
+   "id": "AVI3",
+   "area": "Ambiental",
+   "p": "¿El aviso ocupa como máximo el 30 % del área de la fachada?",
+   "soporte": "Medición de fachada",
+   "valida": "Sofía",
+   "norma": "Acuerdo 174 de 2025, art. 6.2 (avisos no superan el 30 % del área de la fachada)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Vigente desde su sanción."
+   }
+  }
+ ],
+ "hoteles": [
+  {
+   "id": "H1",
+   "area": "Ambiental",
+   "p": "¿Tiene sistema de tratamiento de aguas residuales?",
+   "soporte": "Diseño y operación",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "H2",
+   "area": "Ambiental",
+   "p": "¿Separa residuos sólidos en la fuente?",
+   "soporte": "Registro de separación",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "H3",
+   "area": "Ambiental",
+   "p": "¿Tiene caracterización de vertimientos por laboratorio acreditado ante ONAC?",
+   "soporte": "Informe",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "H4",
+   "area": "SST",
+   "p": "¿Tiene programa de seguridad para personal y huéspedes?",
+   "soporte": "Programa vigente",
+   "valida": "Ricardo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "H5",
+   "area": "GRD",
+   "p": "¿Tiene plan de emergencia con simulacros?",
+   "soporte": "Plan y acta de simulacro",
+   "valida": "Andrés",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "H6",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de servicios de residuos o mantenimiento?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "B1",
+   "area": "Sanitario",
+   "p": "¿Tiene plan de limpieza y desinfección documentado?",
+   "soporte": "Plan y registros",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "B2",
+   "area": "Sanitario",
+   "p": "¿Tiene control de plagas con empresa autorizada?",
+   "soporte": "Contrato y certificado",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "B3",
+   "area": "Sanitario",
+   "p": "¿Tiene análisis de calidad del agua de uso?",
+   "soporte": "Informe de laboratorio acreditado ante ONAC",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "B4",
+   "area": "SST",
+   "p": "¿Su personal manipulador ha recibido capacitación en inocuidad?",
+   "soporte": "Registro de capacitación",
+   "valida": "Ricardo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "B5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de servicios de limpieza y plagas?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "NSR1",
+   "area": "Gestión del riesgo",
+   "p": "¿El inmueble tiene acceso para vehículos de bomberos por su fachada?",
+   "soporte": "Plano y registro fotográfico",
+   "valida": "Andrés",
+   "norma": "J.2.3.1 de NSR-10 (acceso para el Cuerpo de Bomberos)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR2",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene hidrante a menos de 100 metros del acceso?",
+   "soporte": "Plano de hidrantes",
+   "valida": "Andrés",
+   "norma": "J.2.4.5 de NSR-10 (hidrante a no más de 100 m)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR3",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene dispositivos para cortar gas y electricidad en un lugar accesible?",
+   "soporte": "Foto y señalización",
+   "valida": "Andrés, Ricardo",
+   "norma": "J.2.2.1 de NSR-10 (dispositivos de corte)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR4",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene extintores portátiles en la cantidad y ubicación requeridas?",
+   "soporte": "Registro de recarga y ubicación",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.3 de NSR-10 (extintores portátiles)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR5",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene tomas fijas para bomberos y mangueras de extinción?",
+   "soporte": "Plano y prueba de presión",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.2 de NSR-10 (tomas fijas y mangueras)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR6",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene sistema de detección temprana de incendios?",
+   "soporte": "Certificado de instalación",
+   "valida": "Andrés",
+   "norma": "J.4.2.2 y tabla J.4.2-1 de NSR-10 (detección temprana)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "VER1",
+   "area": "Ambiental",
+   "p": "¿Tiene sistema de tratamiento de aguas residuales?",
+   "soporte": "Diseño y operación",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (vertimientos)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER2",
+   "area": "Ambiental",
+   "p": "¿Tiene caracterización de aguas residuales a la entrada y a la salida del sistema?",
+   "soporte": "Informe de laboratorio",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (caracterización de vertimientos)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER3",
+   "area": "Ambiental",
+   "p": "¿El laboratorio tiene acreditación con alcance para los parámetros analizados?",
+   "soporte": "Certificado de acreditación",
+   "valida": "Mateo",
+   "norma": "NTC-ISO/IEC 17025 y acreditación IDEAM u ONAC",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER4",
+   "area": "Ambiental",
+   "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
+   "soporte": "Cadena de custodia",
+   "valida": "Mateo",
+   "norma": "Procedimiento de toma de muestra del informe",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER5",
+   "area": "Ambiental",
+   "p": "¿El informe incluye pH, temperatura, DBO5, DQO, grasas y aceites, sólidos y nutrientes?",
+   "soporte": "Lista de parámetros del informe",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (parámetros de vertimiento)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER6",
+   "area": "Ambiental",
+   "p": "¿Tiene registro de tasa retributiva por vertimientos?",
+   "soporte": "Declaración o registro",
+   "valida": "Sofía",
+   "norma": "Decreto 2667 de 2012 (tasa retributiva)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER7",
+   "area": "Ambiental",
+   "p": "¿Realiza caracterizaciones periódicas de sus aguas residuales?",
+   "soporte": "Historial de informes",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (monitoreo periódico)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  }
+ ],
+ "comercio": [
+  {
+   "id": "C1",
+   "area": "Ambiental",
+   "p": "¿Separa residuos aprovechables y peligrosos?",
+   "soporte": "Registro de separación",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "C2",
+   "area": "Ambiental",
+   "p": "¿Tiene gestor para pilas, bombillas y residuos peligrosos?",
+   "soporte": "Contrato y certificados",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "C3",
+   "area": "SST",
+   "p": "¿Tiene plan de evacuación para el público?",
+   "soporte": "Plan y señalización",
+   "valida": "Andrés",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "C4",
+   "area": "GRD",
+   "p": "¿Tiene plan de emergencia y simulacros?",
+   "soporte": "Plan y acta",
+   "valida": "Andrés",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "C5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de residuos?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "NSR1",
+   "area": "Gestión del riesgo",
+   "p": "¿El inmueble tiene acceso para vehículos de bomberos por su fachada?",
+   "soporte": "Plano y registro fotográfico",
+   "valida": "Andrés",
+   "norma": "J.2.3.1 de NSR-10 (acceso para el Cuerpo de Bomberos)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR2",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene hidrante a menos de 100 metros del acceso?",
+   "soporte": "Plano de hidrantes",
+   "valida": "Andrés",
+   "norma": "J.2.4.5 de NSR-10 (hidrante a no más de 100 m)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR3",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene dispositivos para cortar gas y electricidad en un lugar accesible?",
+   "soporte": "Foto y señalización",
+   "valida": "Andrés, Ricardo",
+   "norma": "J.2.2.1 de NSR-10 (dispositivos de corte)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR4",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene extintores portátiles en la cantidad y ubicación requeridas?",
+   "soporte": "Registro de recarga y ubicación",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.3 de NSR-10 (extintores portátiles)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR5",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene tomas fijas para bomberos y mangueras de extinción?",
+   "soporte": "Plano y prueba de presión",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.2 de NSR-10 (tomas fijas y mangueras)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR6",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene sistema de detección temprana de incendios?",
+   "soporte": "Certificado de instalación",
+   "valida": "Andrés",
+   "norma": "J.4.2.2 y tabla J.4.2-1 de NSR-10 (detección temprana)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "AVI1",
+   "area": "Ambiental",
+   "p": "¿Tiene avisos, vallas o elementos publicitarios fuera de la fachada?",
+   "soporte": "Registro fotográfico",
+   "valida": "Sofía",
+   "norma": "Acuerdo 174 de 2025, art. 6 (avisos) y art. 10 (vallas); artículo de definición por verificar",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Vigente desde su sanción. Artículo de definición pendiente de confirmar."
+   }
+  },
+  {
+   "id": "AVI2",
+   "area": "Ambiental",
+   "p": "Si tiene vallas o avisos separados de la fachada, ¿están registrados ante la autoridad competente?",
+   "soporte": "Constancia de registro",
+   "valida": "Sofía",
+   "norma": "Acuerdo 174 de 2025, art. 36 (registro antes de colocar la publicidad)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Vigente desde su sanción."
+   }
+  },
+  {
+   "id": "AVI3",
+   "area": "Ambiental",
+   "p": "¿El aviso ocupa como máximo el 30 % del área de la fachada?",
+   "soporte": "Medición de fachada",
+   "valida": "Sofía",
+   "norma": "Acuerdo 174 de 2025, art. 6.2 (avisos no superan el 30 % del área de la fachada)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Vigente desde su sanción."
+   }
+  }
+ ],
+ "clinica": [
+  {
+   "id": "L1",
+   "area": "Ambiental",
+   "p": "¿Tiene gestor autorizado para residuos hospitalarios?",
+   "soporte": "Contrato y certificados",
+   "valida": "Mateo",
+   "norma": "Por verificar (PGIRH)",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "L2",
+   "area": "Ambiental",
+   "p": "¿Tiene plan de gestión integral de residuos hospitalarios?",
+   "soporte": "Plan vigente",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "L3",
+   "area": "SST",
+   "p": "¿Tiene matriz de riesgo biológico y esquema de vacunación?",
+   "soporte": "Matriz y registros",
+   "valida": "Ricardo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "L4",
+   "area": "GRD",
+   "p": "¿Tiene plan de emergencia y evacuación?",
+   "soporte": "Plan y simulacro",
+   "valida": "Andrés",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "L5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con gestores de residuos?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "NSR1",
+   "area": "Gestión del riesgo",
+   "p": "¿El inmueble tiene acceso para vehículos de bomberos por su fachada?",
+   "soporte": "Plano y registro fotográfico",
+   "valida": "Andrés",
+   "norma": "J.2.3.1 de NSR-10 (acceso para el Cuerpo de Bomberos)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR2",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene hidrante a menos de 100 metros del acceso?",
+   "soporte": "Plano de hidrantes",
+   "valida": "Andrés",
+   "norma": "J.2.4.5 de NSR-10 (hidrante a no más de 100 m)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR3",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene dispositivos para cortar gas y electricidad en un lugar accesible?",
+   "soporte": "Foto y señalización",
+   "valida": "Andrés, Ricardo",
+   "norma": "J.2.2.1 de NSR-10 (dispositivos de corte)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR4",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene extintores portátiles en la cantidad y ubicación requeridas?",
+   "soporte": "Registro de recarga y ubicación",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.3 de NSR-10 (extintores portátiles)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR5",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene tomas fijas para bomberos y mangueras de extinción?",
+   "soporte": "Plano y prueba de presión",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.2 de NSR-10 (tomas fijas y mangueras)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR6",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene sistema de detección temprana de incendios?",
+   "soporte": "Certificado de instalación",
+   "valida": "Andrés",
+   "norma": "J.4.2.2 y tabla J.4.2-1 de NSR-10 (detección temprana)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "VER1",
+   "area": "Ambiental",
+   "p": "¿Tiene sistema de tratamiento de aguas residuales?",
+   "soporte": "Diseño y operación",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (vertimientos)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER2",
+   "area": "Ambiental",
+   "p": "¿Tiene caracterización de aguas residuales a la entrada y a la salida del sistema?",
+   "soporte": "Informe de laboratorio",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (caracterización de vertimientos)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER3",
+   "area": "Ambiental",
+   "p": "¿El laboratorio tiene acreditación con alcance para los parámetros analizados?",
+   "soporte": "Certificado de acreditación",
+   "valida": "Mateo",
+   "norma": "NTC-ISO/IEC 17025 y acreditación IDEAM u ONAC",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER4",
+   "area": "Ambiental",
+   "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
+   "soporte": "Cadena de custodia",
+   "valida": "Mateo",
+   "norma": "Procedimiento de toma de muestra del informe",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER5",
+   "area": "Ambiental",
+   "p": "¿El informe incluye pH, temperatura, DBO5, DQO, grasas y aceites, sólidos y nutrientes?",
+   "soporte": "Lista de parámetros del informe",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (parámetros de vertimiento)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER6",
+   "area": "Ambiental",
+   "p": "¿Tiene registro de tasa retributiva por vertimientos?",
+   "soporte": "Declaración o registro",
+   "valida": "Sofía",
+   "norma": "Decreto 2667 de 2012 (tasa retributiva)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER7",
+   "area": "Ambiental",
+   "p": "¿Realiza caracterizaciones periódicas de sus aguas residuales?",
+   "soporte": "Historial de informes",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (monitoreo periódico)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "AVI1",
+   "area": "Ambiental",
+   "p": "¿Tiene avisos, vallas o elementos publicitarios fuera de la fachada?",
+   "soporte": "Registro fotográfico",
+   "valida": "Sofía",
+   "norma": "Acuerdo 174 de 2025, art. 6 (avisos) y art. 10 (vallas); artículo de definición por verificar",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Vigente desde su sanción. Artículo de definición pendiente de confirmar."
+   }
+  },
+  {
+   "id": "AVI2",
+   "area": "Ambiental",
+   "p": "Si tiene vallas o avisos separados de la fachada, ¿están registrados ante la autoridad competente?",
+   "soporte": "Constancia de registro",
+   "valida": "Sofía",
+   "norma": "Acuerdo 174 de 2025, art. 36 (registro antes de colocar la publicidad)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Vigente desde su sanción."
+   }
+  },
+  {
+   "id": "AVI3",
+   "area": "Ambiental",
+   "p": "¿El aviso ocupa como máximo el 30 % del área de la fachada?",
+   "soporte": "Medición de fachada",
+   "valida": "Sofía",
+   "norma": "Acuerdo 174 de 2025, art. 6.2 (avisos no superan el 30 % del área de la fachada)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Vigente desde su sanción."
+   }
+  }
+ ],
+ "estacion": [
+  {
+   "id": "E1",
+   "area": "Ambiental",
+   "p": "¿Tiene control de derrames y revisión de tanques?",
+   "soporte": "Registro de inspección",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "E2",
+   "area": "Ambiental",
+   "p": "¿Tiene plan de manejo de suelos y aguas?",
+   "soporte": "Plan vigente",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "E3",
+   "area": "SST",
+   "p": "¿Tiene plan de atención de emergencias por fuga o incendio?",
+   "soporte": "Plan y simulacro",
+   "valida": "Ricardo, Andrés",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "E4",
+   "area": "GRD",
+   "p": "¿Tiene evaluación de riesgo tecnológico?",
+   "soporte": "Análisis vigente",
+   "valida": "Andrés",
+   "norma": "Por verificar (PGRDEPP si aplica)",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "E5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de mantenimiento de tanques?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "NSR1",
+   "area": "Gestión del riesgo",
+   "p": "¿El inmueble tiene acceso para vehículos de bomberos por su fachada?",
+   "soporte": "Plano y registro fotográfico",
+   "valida": "Andrés",
+   "norma": "J.2.3.1 de NSR-10 (acceso para el Cuerpo de Bomberos)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR2",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene hidrante a menos de 100 metros del acceso?",
+   "soporte": "Plano de hidrantes",
+   "valida": "Andrés",
+   "norma": "J.2.4.5 de NSR-10 (hidrante a no más de 100 m)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR3",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene dispositivos para cortar gas y electricidad en un lugar accesible?",
+   "soporte": "Foto y señalización",
+   "valida": "Andrés, Ricardo",
+   "norma": "J.2.2.1 de NSR-10 (dispositivos de corte)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR4",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene extintores portátiles en la cantidad y ubicación requeridas?",
+   "soporte": "Registro de recarga y ubicación",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.3 de NSR-10 (extintores portátiles)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR5",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene tomas fijas para bomberos y mangueras de extinción?",
+   "soporte": "Plano y prueba de presión",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.2 de NSR-10 (tomas fijas y mangueras)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR6",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene sistema de detección temprana de incendios?",
+   "soporte": "Certificado de instalación",
+   "valida": "Andrés",
+   "norma": "J.4.2.2 y tabla J.4.2-1 de NSR-10 (detección temprana)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "VER1",
+   "area": "Ambiental",
+   "p": "¿Tiene sistema de tratamiento de aguas residuales?",
+   "soporte": "Diseño y operación",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (vertimientos)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER2",
+   "area": "Ambiental",
+   "p": "¿Tiene caracterización de aguas residuales a la entrada y a la salida del sistema?",
+   "soporte": "Informe de laboratorio",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (caracterización de vertimientos)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER3",
+   "area": "Ambiental",
+   "p": "¿El laboratorio tiene acreditación con alcance para los parámetros analizados?",
+   "soporte": "Certificado de acreditación",
+   "valida": "Mateo",
+   "norma": "NTC-ISO/IEC 17025 y acreditación IDEAM u ONAC",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER4",
+   "area": "Ambiental",
+   "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
+   "soporte": "Cadena de custodia",
+   "valida": "Mateo",
+   "norma": "Procedimiento de toma de muestra del informe",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER5",
+   "area": "Ambiental",
+   "p": "¿El informe incluye pH, temperatura, DBO5, DQO, grasas y aceites, sólidos y nutrientes?",
+   "soporte": "Lista de parámetros del informe",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (parámetros de vertimiento)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER6",
+   "area": "Ambiental",
+   "p": "¿Tiene registro de tasa retributiva por vertimientos?",
+   "soporte": "Declaración o registro",
+   "valida": "Sofía",
+   "norma": "Decreto 2667 de 2012 (tasa retributiva)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER7",
+   "area": "Ambiental",
+   "p": "¿Realiza caracterizaciones periódicas de sus aguas residuales?",
+   "soporte": "Historial de informes",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (monitoreo periódico)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "AVI1",
+   "area": "Ambiental",
+   "p": "¿Tiene avisos, vallas o elementos publicitarios fuera de la fachada?",
+   "soporte": "Registro fotográfico",
+   "valida": "Sofía",
+   "norma": "Acuerdo 174 de 2025, art. 6 (avisos) y art. 10 (vallas); artículo de definición por verificar",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Vigente desde su sanción. Artículo de definición pendiente de confirmar."
+   }
+  },
+  {
+   "id": "AVI2",
+   "area": "Ambiental",
+   "p": "Si tiene vallas o avisos separados de la fachada, ¿están registrados ante la autoridad competente?",
+   "soporte": "Constancia de registro",
+   "valida": "Sofía",
+   "norma": "Acuerdo 174 de 2025, art. 36 (registro antes de colocar la publicidad)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Vigente desde su sanción."
+   }
+  },
+  {
+   "id": "AVI3",
+   "area": "Ambiental",
+   "p": "¿El aviso ocupa como máximo el 30 % del área de la fachada?",
+   "soporte": "Medición de fachada",
+   "valida": "Sofía",
+   "norma": "Acuerdo 174 de 2025, art. 6.2 (avisos no superan el 30 % del área de la fachada)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Vigente desde su sanción."
+   }
+  }
+ ],
+ "industria": [
+  {
+   "id": "I1",
+   "area": "Ambiental",
+   "p": "¿Genera residuos peligrosos (aceites, solventes, baterías)?",
+   "soporte": "Gestor y registro",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "I2",
+   "area": "Ambiental",
+   "p": "¿Tiene permiso de vertimiento o de emisiones vigente?",
+   "soporte": "Acto administrativo",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "I3",
+   "area": "SST",
+   "p": "¿Tiene matriz de riesgos y permisos de trabajo en altura o caliente?",
+   "soporte": "Matriz y permisos",
+   "valida": "Ricardo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "I4",
+   "area": "GRD",
+   "p": "¿Almacena sustancias químicas o combustibles?",
+   "soporte": "Inventario y medidas",
+   "valida": "Andrés",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "I5",
+   "area": "Legal",
+   "p": "¿Tiene contratistas con obligaciones SST?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "NSR1",
+   "area": "Gestión del riesgo",
+   "p": "¿El inmueble tiene acceso para vehículos de bomberos por su fachada?",
+   "soporte": "Plano y registro fotográfico",
+   "valida": "Andrés",
+   "norma": "J.2.3.1 de NSR-10 (acceso para el Cuerpo de Bomberos)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR2",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene hidrante a menos de 100 metros del acceso?",
+   "soporte": "Plano de hidrantes",
+   "valida": "Andrés",
+   "norma": "J.2.4.5 de NSR-10 (hidrante a no más de 100 m)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR3",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene dispositivos para cortar gas y electricidad en un lugar accesible?",
+   "soporte": "Foto y señalización",
+   "valida": "Andrés, Ricardo",
+   "norma": "J.2.2.1 de NSR-10 (dispositivos de corte)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR4",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene extintores portátiles en la cantidad y ubicación requeridas?",
+   "soporte": "Registro de recarga y ubicación",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.3 de NSR-10 (extintores portátiles)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR5",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene tomas fijas para bomberos y mangueras de extinción?",
+   "soporte": "Plano y prueba de presión",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.2 de NSR-10 (tomas fijas y mangueras)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR6",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene sistema de detección temprana de incendios?",
+   "soporte": "Certificado de instalación",
+   "valida": "Andrés",
+   "norma": "J.4.2.2 y tabla J.4.2-1 de NSR-10 (detección temprana)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "VER1",
+   "area": "Ambiental",
+   "p": "¿Tiene sistema de tratamiento de aguas residuales?",
+   "soporte": "Diseño y operación",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (vertimientos)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER2",
+   "area": "Ambiental",
+   "p": "¿Tiene caracterización de aguas residuales a la entrada y a la salida del sistema?",
+   "soporte": "Informe de laboratorio",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (caracterización de vertimientos)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER3",
+   "area": "Ambiental",
+   "p": "¿El laboratorio tiene acreditación con alcance para los parámetros analizados?",
+   "soporte": "Certificado de acreditación",
+   "valida": "Mateo",
+   "norma": "NTC-ISO/IEC 17025 y acreditación IDEAM u ONAC",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER4",
+   "area": "Ambiental",
+   "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
+   "soporte": "Cadena de custodia",
+   "valida": "Mateo",
+   "norma": "Procedimiento de toma de muestra del informe",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER5",
+   "area": "Ambiental",
+   "p": "¿El informe incluye pH, temperatura, DBO5, DQO, grasas y aceites, sólidos y nutrientes?",
+   "soporte": "Lista de parámetros del informe",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (parámetros de vertimiento)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER6",
+   "area": "Ambiental",
+   "p": "¿Tiene registro de tasa retributiva por vertimientos?",
+   "soporte": "Declaración o registro",
+   "valida": "Sofía",
+   "norma": "Decreto 2667 de 2012 (tasa retributiva)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER7",
+   "area": "Ambiental",
+   "p": "¿Realiza caracterizaciones periódicas de sus aguas residuales?",
+   "soporte": "Historial de informes",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (monitoreo periódico)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  }
+ ],
+ "construccion": [
+  {
+   "id": "O1",
+   "area": "Ambiental",
+   "p": "¿Tiene plan de manejo ambiental de la obra?",
+   "soporte": "Plan aprobado",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "O2",
+   "area": "Ambiental",
+   "p": "¿Tiene plan de manejo de tránsito si afecta vías?",
+   "soporte": "Plan aprobado",
+   "valida": "Mateo, Sofía",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "O3",
+   "area": "SST",
+   "p": "¿Tiene SG-SST para obra y contratistas?",
+   "soporte": "Programa vigente",
+   "valida": "Ricardo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "O4",
+   "area": "GRD",
+   "p": "¿Tiene plan de emergencia de obra?",
+   "soporte": "Plan y simulacro",
+   "valida": "Andrés",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "O5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con subcontratistas con obligaciones ambientales y SST?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "F1",
+   "area": "Ambiental",
+   "p": "¿Requiere o tiene permiso para aprovechar árboles en su predio?",
+   "soporte": "Acto administrativo vigente",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "F2",
+   "area": "Ambiental",
+   "p": "¿Tiene inventario forestal del predio?",
+   "soporte": "Inventario firmado",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "F3",
+   "area": "Ambiental",
+   "p": "¿Tiene plan de compensación o restauración cuando aplica?",
+   "soporte": "Plan aprobado",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "F4",
+   "area": "Ambiental",
+   "p": "¿Identificó especies protegidas en el área del proyecto?",
+   "soporte": "Estudio de biodiversidad",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "F5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de tala o compensación?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "NSR1",
+   "area": "Gestión del riesgo",
+   "p": "¿El inmueble tiene acceso para vehículos de bomberos por su fachada?",
+   "soporte": "Plano y registro fotográfico",
+   "valida": "Andrés",
+   "norma": "J.2.3.1 de NSR-10 (acceso para el Cuerpo de Bomberos)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR2",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene hidrante a menos de 100 metros del acceso?",
+   "soporte": "Plano de hidrantes",
+   "valida": "Andrés",
+   "norma": "J.2.4.5 de NSR-10 (hidrante a no más de 100 m)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR3",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene dispositivos para cortar gas y electricidad en un lugar accesible?",
+   "soporte": "Foto y señalización",
+   "valida": "Andrés, Ricardo",
+   "norma": "J.2.2.1 de NSR-10 (dispositivos de corte)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR4",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene extintores portátiles en la cantidad y ubicación requeridas?",
+   "soporte": "Registro de recarga y ubicación",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.3 de NSR-10 (extintores portátiles)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR5",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene tomas fijas para bomberos y mangueras de extinción?",
+   "soporte": "Plano y prueba de presión",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.2 de NSR-10 (tomas fijas y mangueras)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR6",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene sistema de detección temprana de incendios?",
+   "soporte": "Certificado de instalación",
+   "valida": "Andrés",
+   "norma": "J.4.2.2 y tabla J.4.2-1 de NSR-10 (detección temprana)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  }
+ ],
+ "eventos": [
+  {
+   "id": "V1",
+   "area": "GRD",
+   "p": "¿Tiene plan de emergencia y contingencia para el evento?",
+   "soporte": "Plan aprobado",
+   "valida": "Andrés",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "V2",
+   "area": "GRD",
+   "p": "¿Tiene puntos de atención médica y rutas de evacuación?",
+   "soporte": "Plano y contrato",
+   "valida": "Andrés",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "V3",
+   "area": "SST",
+   "p": "¿Tiene personal de seguridad y brigada?",
+   "soporte": "Listado y capacitación",
+   "valida": "Ricardo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "V4",
+   "area": "Ambiental",
+   "p": "¿Tiene plan de manejo de residuos del evento?",
+   "soporte": "Plan y gestor",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "V5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de seguridad y ambulancia?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "NSR1",
+   "area": "Gestión del riesgo",
+   "p": "¿El inmueble tiene acceso para vehículos de bomberos por su fachada?",
+   "soporte": "Plano y registro fotográfico",
+   "valida": "Andrés",
+   "norma": "J.2.3.1 de NSR-10 (acceso para el Cuerpo de Bomberos)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR2",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene hidrante a menos de 100 metros del acceso?",
+   "soporte": "Plano de hidrantes",
+   "valida": "Andrés",
+   "norma": "J.2.4.5 de NSR-10 (hidrante a no más de 100 m)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR3",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene dispositivos para cortar gas y electricidad en un lugar accesible?",
+   "soporte": "Foto y señalización",
+   "valida": "Andrés, Ricardo",
+   "norma": "J.2.2.1 de NSR-10 (dispositivos de corte)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR4",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene extintores portátiles en la cantidad y ubicación requeridas?",
+   "soporte": "Registro de recarga y ubicación",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.3 de NSR-10 (extintores portátiles)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR5",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene tomas fijas para bomberos y mangueras de extinción?",
+   "soporte": "Plano y prueba de presión",
+   "valida": "Andrés",
+   "norma": "J.4.3.2.2 de NSR-10 (tomas fijas y mangueras)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  },
+  {
+   "id": "NSR6",
+   "area": "Gestión del riesgo",
+   "p": "¿Tiene sistema de detección temprana de incendios?",
+   "soporte": "Certificado de instalación",
+   "valida": "Andrés",
+   "norma": "J.4.2.2 y tabla J.4.2-1 de NSR-10 (detección temprana)",
+   "revision": {
+    "estado": "texto_verificado",
+    "nota": "Texto consultado en la conversación; vigencia por confirmar."
+   }
+  }
+ ]
+}

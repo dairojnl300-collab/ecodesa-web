@@ -149,41 +149,44 @@
         .then(function (d) { if (d && d.barrios) { BARRIOS = d.barrios.map(function (b) { b.k = nrm(b.clave); return b; }); } cb(BARRIOS); })
         .catch(function () { cb(null); });
     }
-    function buscarBarrio(v) {
-      cargarBarrios(function (lista) {
-        if (!lista) { say("No pude cargar la lista de barrios en este momento."); opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, quiero saber mi UCG.") }, { t: "Volver al menú", fn: function () { menu(false); } }]); return; }
-        var k = nrm(v);
-        var hit = lista.filter(function (b) { return b.k === k || b.k === "EL " + k || b.k === "LA " + k; });
-        hit.sort(function (a, b) { return (a.rural ? 1 : 0) - (b.rural ? 1 : 0); });
-        var b = hit[0];
-        if (!b) {
-          say("No encuentro ese barrio en nuestra lista. Un asesor te ubica por WhatsApp.");
-          opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, quiero saber mi UCG. Mi barrio es " + v + ".") }, { t: "Intentar otro barrio", fn: function () { ubicar(); } }, { t: "Volver al menú", fn: function () { menu(false); } }]);
-          return;
-        }
-        if (b.rural) {
-          say("Ese nombre corresponde a zona rural de " + b.localidad + " (" + b.nombre_localidad + "). Un asesor confirma la UCG de tu predio.");
-          opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, estoy en zona rural de " + b.localidad + " (" + b.barrio + ").") }, { t: "Volver al menú", fn: function () { menu(false); } }]);
-          return;
-        }
-        say("Tu barrio está en la " + b.localidad + ": " + b.nombre_localidad + ". Código de unidad comunera: UCG " + b.ucg + ".");
-        opts([
-          { t: "Ver servicios para mi sector", fn: function () { pick("Ver servicios para mi sector"); menu(false); } },
-          { t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, estoy en " + b.localidad + ", UCG " + b.ucg + " (" + b.barrio + "). Quiero información de servicios ambientales.") }
-        ]);
-      });
-    }
-    function ubicar() {
+    function pedirBarrio(cb) {
       step(function () {
         say("Escribe tu barrio y te digo en qué localidad estás.");
         q.push(function (done) {
           var w = el("form", "as-opts as-form");
           var inp = el("input", "as-in"); inp.type = "text"; inp.placeholder = "Ej.: Manga"; inp.maxLength = 60; inp.setAttribute("aria-label", "Barrio");
           var go = el("button", "as-o", "Buscar"); go.type = "submit";
-          w.appendChild(inp); w.appendChild(go); body.appendChild(w); toEnd(); done();
-          w.addEventListener("submit", function (e) { e.preventDefault(); var v = inp.value.trim(); if (!v) return; w.remove(); pick(v); buscarBarrio(v); });
+          var back = el("button", "as-o", "Volver al menú principal"); back.type = "button";
+          back.addEventListener("click", function () { w.remove(); pick("Volver al menú principal"); menu(false); });
+          w.appendChild(inp); w.appendChild(go); w.appendChild(back); body.appendChild(w); toEnd(); done();
+          w.addEventListener("submit", function (e) { e.preventDefault(); var v = inp.value.trim(); if (!v) return; w.remove(); pick(v); buscarBarrio(v, cb); });
         });
         run();
+      });
+    }
+    function buscarBarrio(v, cb) {
+      cargarBarrios(function (lista) {
+        if (!lista) { say("No pude cargar la lista de barrios en este momento. Un asesor te ubica por WhatsApp."); if (cb) return cb(); opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, quiero saber mi localidad.") }, { t: "Volver al menú principal", fn: function () { menu(false); } }]); return; }
+        var k = nrm(v);
+        var hit = lista.filter(function (b) { return b.k === k || b.k === "EL " + k || b.k === "LA " + k; });
+        hit.sort(function (a, b) { return (a.rural ? 1 : 0) - (b.rural ? 1 : 0); });
+        var b = hit[0];
+        if (!b) {
+          say("No encuentro ese barrio en nuestra lista. Un asesor te ubica por WhatsApp.");
+          if (cb) return cb();
+          opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, quiero saber mi localidad. Mi barrio es " + v + ".") }, { t: "Intentar otro barrio", fn: function () { pedirBarrio(cb); } }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
+          return;
+        }
+        if (b.rural) {
+          say("Ese nombre corresponde a zona rural de " + b.localidad + " (" + b.nombre_localidad + "). Un asesor confirma la UCG de tu predio.");
+          if (cb) return cb();
+          opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, estoy en zona rural de " + b.localidad + " (" + b.barrio + ").") }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
+          return;
+        }
+        say("Tu barrio está en la " + b.localidad + ": " + b.nombre_localidad + ". Código de unidad comunera: UCG " + b.ucg + ".");
+        LOC = b;
+        if (cb) return cb();
+        opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, estoy en " + b.localidad + ", UCG " + b.ucg + " (" + b.barrio + "). Quiero información de servicios ambientales.") }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
       });
     }
 
@@ -192,14 +195,25 @@
       if (!first) { vueltas += 1; ayudaAsesor = vueltas >= 2; }
       if (first) { say("Hola, soy Ethan, el asistente de ECODESA, firma fundada en Cartagena de Indias. Te ayudamos a cumplir la normativa a nivel nacional y a crecer con servicios digitales y marketing digital."); }
       step(function () {
-        if (ayudaAsesor) say("¿No ves tu caso? Un Profesional de nuestro equipo lo revisa contigo por WhatsApp.");
-        else say("¿Qué tipo de negocio tienes?");
-        var l = S.filter(function (s) { return s.id !== "digital" && s.id !== "iso"; }).map(function (s) { return { t: s.n, fn: function () { pick(s.n); track("asistente_" + s.id); show(s); } }; });
-        if (ayudaAsesor) l.unshift({ t: "Hablar con un asesor", id: "menu", href: link("Hola ECODESA, tengo una consulta.") });
-        l.push({ t: "¿En qué localidad está mi negocio?", fn: function () { pick("¿En qué localidad está mi negocio?"); track("asistente_localidad"); ubicar(); } });
-        l.push({ t: "Otra consulta", fn: function () { pick("Otra consulta"); step(function () { say("Eso lo revisa un Profesional de nuestro equipo. Cuéntanos por WhatsApp."); opts([{ t: "Hablar con un asesor", id: "otra", href: link("Hola ECODESA, tengo una consulta.") }, { t: "Volver al menú", fn: function () { menu(false); } }]); }); } });
-        opts(l);
+        if (!CIUDAD) return preguntarCiudad();
+        mostrarSectores(ayudaAsesor);
       });
+    }
+    function preguntarCiudad() {
+      say("¿En qué ciudad está tu negocio?");
+      opts([
+        { t: "Cartagena", fn: function () { pick("Cartagena"); CIUDAD = "cartagena"; step(function () { mostrarSectores(false); }); } },
+        { t: "Otra ciudad", fn: function () { pick("Otra ciudad"); CIUDAD = "otra"; step(function () { say("La ubicación por localidad y UCG solo aplica a Cartagena. Igual te orientamos en cualquier sector."); mostrarSectores(false); }); } }
+      ]);
+    }
+    function mostrarSectores(ayudaAsesor) {
+      if (ayudaAsesor) say("¿No ves tu caso? Un Profesional de nuestro equipo lo revisa contigo por WhatsApp.");
+      else say("¿Qué tipo de negocio tienes?");
+      var l = S.filter(function (s) { return s.id !== "digital" && s.id !== "iso"; }).map(function (s) { return { t: s.n, fn: function () { pick(s.n); track("asistente_" + s.id); show(s); } }; });
+      if (ayudaAsesor) l.unshift({ t: "Hablar con un asesor", id: "menu", href: link("Hola ECODESA, tengo una consulta.") });
+      if (CIUDAD === "cartagena") l.push({ t: "Conocer mi localidad y UCG", fn: function () { pick("Conocer mi localidad y UCG"); track("asistente_localidad"); pedirBarrio(null); } });
+      l.push({ t: "Otra consulta", fn: function () { pick("Otra consulta"); step(function () { say("Eso lo revisa un Profesional de nuestro equipo. Cuéntanos por WhatsApp."); opts([{ t: "Hablar con un asesor", id: "otra", href: link("Hola ECODESA, tengo una consulta.") }, { t: "Volver al menú", fn: function () { menu(false); } }]); }); } });
+      opts(l);
     }
     var DISC = "Aplica según tu actividad y tamaño. ECODESA es una firma privada: no representa a estas autoridades ni emite sus certificados o conceptos. La mención de una autoridad es informativa y no implica aval ni relación con ella. Un asesor te confirma qué aplica a tu caso.";
     function groupsFor(s, c) {
@@ -221,15 +235,20 @@
       if (c.tema) t += " Me interesa: " + c.tema + ".";
       return t;
     }
-    function show(s) {
+    var LOC = null;
+    var CIUDAD = null;
+    function show(s) { showOpc(s); }
+    function showOpc(s) {
       step(function () {
         if (s.txt) { say(s.txt); say({ h: "Te acompañamos con:", items: s.hac, f: s.f }); opts([{ t: "Hablar con un asesor", id: s.id, href: link(s.wa) }, { t: "Ver otro sector", fn: function () { menu(false); } }]); return; }
         say("Perfecto. ¿Qué te gustaría saber sobre " + s.u + "?");
         opts([
-          { t: "La normativa que aplica a mi negocio", fn: function () { pick("La normativa que aplica a mi negocio"); track("asistente_norma_" + s.id); norma(s); } },
-          { t: "Cómo me ayuda ECODESA", fn: function () { pick("Cómo me ayuda ECODESA"); ayuda(s, {}); } },
-          { t: "Conocer nuestros nuevos servicios", fn: function () { pick("Conocer nuestros nuevos servicios"); nuevos(s); } },
-          { t: "Hablar con un asesor", id: s.id, href: link(s.wa) }
+          { t: "¿Quieres conocer la normativa que aplica a tu negocio?", fn: function () { pick("Conocer la normativa que aplica"); track("asistente_norma_" + s.id); norma(s); } },
+          { t: "¿Quieres realizar un diagnóstico inicial?", fn: function () { pick("Realizar un diagnóstico inicial"); track("asistente_diag_" + s.id); diagnostico(s); } },
+          { t: "¿Cómo te ayuda ECODESA en tu negocio?", fn: function () { pick("Cómo te ayuda ECODESA"); ayuda(s, {}); } },
+          { t: "¿Conoces nuestros nuevos servicios?", fn: function () { pick("Nuevos servicios"); nuevos(s); } },
+          { t: "Hablar con un asesor", id: s.id, href: link(s.wa) },
+          { t: "Volver al menú principal", fn: function () { menu(false); } }
         ]);
       });
     }
@@ -243,6 +262,51 @@
         { t: "Ver la normativa", fn: function () { pick("Ver la normativa"); norma(s); } },
         { t: "Ver otro sector", fn: function () { pick("Ver otro sector"); menu(false); } }
       ]);
+    }
+    var CHECK = null;
+    function cargarChecklist(cb) {
+      if (CHECK) return cb(CHECK);
+      fetch("/ethan/checklist.json", { cache: "no-cache" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) { CHECK = d; cb(d); })
+        .catch(function () { cb(null); });
+    }
+    function soporte(it, si, next) {
+      var base = it.norma ? "Base normativa: " + it.norma + "." : "";
+      var nota = it.revision && it.revision.estado === "texto_verificado" ? "" : " Vigencia en confirmación.";
+      var txt = si ? "Registrado como cumplido declarado. " + base + nota : "Requisito pendiente. " + base + nota + " Un Profesional de ECODESA te orienta para cumplirlo.";
+      say(txt.trim());
+      next();
+    }
+    function diagnostico(s) {
+      cargarChecklist(function (d) {
+        var items = d && d[s.id];
+        if (!items || !items.length) {
+          say("Estamos preparando el diagnóstico de tu sector. Un Profesional de ECODESA te acompaña por WhatsApp.");
+          opts([{ t: "Hablar con un asesor", id: s.id, href: link(s.wa) }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
+          return;
+        }
+        say("Responde sí o no. Son " + items.length + " preguntas sobre " + s.u + ".");
+        var yes = 0;
+        function fin() {
+          var pct = Math.round(yes / items.length * 100);
+          var nivel = pct >= 80 ? "Cumplimiento declarado alto" : pct >= 50 ? "Cumplimiento declarado parcial" : "Cumplimiento declarado bajo";
+          say("Resultado: " + pct + " %. " + nivel + ". Es una estimación según tus respuestas; un Profesional la valida.");
+          opts([
+            { t: "Validar mi cumplimiento con un profesional", id: s.id, href: link("Hola ECODESA, hice el diagnóstico inicial de " + s.u + " con " + pct + " % declarado. Quiero validarlo.") },
+            { t: "Volver al menú principal", fn: function () { menu(false); } }
+          ]);
+        }
+        function ask(i) {
+          if (i >= items.length) return fin();
+          say(items[i].p);
+          opts([
+            { t: "Sí", fn: function () { pick("Sí"); yes += 1; soporte(items[i], true, function () { ask(i + 1); }); } },
+            { t: "No", fn: function () { pick("No"); soporte(items[i], false, function () { ask(i + 1); }); } }
+          ]);
+        }
+        ask(0);
+      });
     }
     function norma(s) {
       var c = {};
