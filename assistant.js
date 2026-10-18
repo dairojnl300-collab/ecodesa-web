@@ -149,41 +149,44 @@
         .then(function (d) { if (d && d.barrios) { BARRIOS = d.barrios.map(function (b) { b.k = nrm(b.clave); return b; }); } cb(BARRIOS); })
         .catch(function () { cb(null); });
     }
-    function buscarBarrio(v) {
-      cargarBarrios(function (lista) {
-        if (!lista) { say("No pude cargar la lista de barrios en este momento."); opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, quiero saber mi UCG.") }, { t: "Volver al menú", fn: function () { menu(false); } }]); return; }
-        var k = nrm(v);
-        var hit = lista.filter(function (b) { return b.k === k || b.k === "EL " + k || b.k === "LA " + k; });
-        hit.sort(function (a, b) { return (a.rural ? 1 : 0) - (b.rural ? 1 : 0); });
-        var b = hit[0];
-        if (!b) {
-          say("No encuentro ese barrio en nuestra lista. Un asesor te ubica por WhatsApp.");
-          opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, quiero saber mi UCG. Mi barrio es " + v + ".") }, { t: "Intentar otro barrio", fn: function () { ubicar(); } }, { t: "Volver al menú", fn: function () { menu(false); } }]);
-          return;
-        }
-        if (b.rural) {
-          say("Ese nombre corresponde a zona rural de " + b.localidad + " (" + b.nombre_localidad + "). Un asesor confirma la UCG de tu predio.");
-          opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, estoy en zona rural de " + b.localidad + " (" + b.barrio + ").") }, { t: "Volver al menú", fn: function () { menu(false); } }]);
-          return;
-        }
-        say("Tu barrio está en la " + b.localidad + ": " + b.nombre_localidad + ". Código de unidad comunera: UCG " + b.ucg + ".");
-        opts([
-          { t: "Ver servicios para mi sector", fn: function () { pick("Ver servicios para mi sector"); menu(false); } },
-          { t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, estoy en " + b.localidad + ", UCG " + b.ucg + " (" + b.barrio + "). Quiero información de servicios ambientales.") }
-        ]);
-      });
-    }
-    function ubicar() {
+    function pedirBarrio(cb) {
       step(function () {
         say("Escribe tu barrio y te digo en qué localidad estás.");
         q.push(function (done) {
           var w = el("form", "as-opts as-form");
           var inp = el("input", "as-in"); inp.type = "text"; inp.placeholder = "Ej.: Manga"; inp.maxLength = 60; inp.setAttribute("aria-label", "Barrio");
           var go = el("button", "as-o", "Buscar"); go.type = "submit";
-          w.appendChild(inp); w.appendChild(go); body.appendChild(w); toEnd(); done();
-          w.addEventListener("submit", function (e) { e.preventDefault(); var v = inp.value.trim(); if (!v) return; w.remove(); pick(v); buscarBarrio(v); });
+          var back = el("button", "as-o", "Volver al menú principal"); back.type = "button";
+          back.addEventListener("click", function () { w.remove(); pick("Volver al menú principal"); menu(false); });
+          w.appendChild(inp); w.appendChild(go); w.appendChild(back); body.appendChild(w); toEnd(); done();
+          w.addEventListener("submit", function (e) { e.preventDefault(); var v = inp.value.trim(); if (!v) return; w.remove(); pick(v); buscarBarrio(v, cb); });
         });
         run();
+      });
+    }
+    function buscarBarrio(v, cb) {
+      cargarBarrios(function (lista) {
+        if (!lista) { say("No pude cargar la lista de barrios en este momento. Un asesor te ubica por WhatsApp."); if (cb) return cb(); opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, quiero saber mi localidad.") }, { t: "Volver al menú principal", fn: function () { menu(false); } }]); return; }
+        var k = nrm(v);
+        var hit = lista.filter(function (b) { return b.k === k || b.k === "EL " + k || b.k === "LA " + k; });
+        hit.sort(function (a, b) { return (a.rural ? 1 : 0) - (b.rural ? 1 : 0); });
+        var b = hit[0];
+        if (!b) {
+          say("No encuentro ese barrio en nuestra lista. Un asesor te ubica por WhatsApp.");
+          if (cb) return cb();
+          opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, quiero saber mi localidad. Mi barrio es " + v + ".") }, { t: "Intentar otro barrio", fn: function () { pedirBarrio(cb); } }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
+          return;
+        }
+        if (b.rural) {
+          say("Ese nombre corresponde a zona rural de " + b.localidad + " (" + b.nombre_localidad + "). Un asesor confirma la UCG de tu predio.");
+          if (cb) return cb();
+          opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, estoy en zona rural de " + b.localidad + " (" + b.barrio + ").") }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
+          return;
+        }
+        say("Tu barrio está en la " + b.localidad + ": " + b.nombre_localidad + ". Código de unidad comunera: UCG " + b.ucg + ".");
+        LOC = b;
+        if (cb) return cb();
+        opts([{ t: "Hablar con un asesor", id: "ubicar", href: link("Hola ECODESA, estoy en " + b.localidad + ", UCG " + b.ucg + " (" + b.barrio + "). Quiero información de servicios ambientales.") }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
       });
     }
 
@@ -196,7 +199,6 @@
         else say("¿Qué tipo de negocio tienes?");
         var l = S.filter(function (s) { return s.id !== "digital" && s.id !== "iso"; }).map(function (s) { return { t: s.n, fn: function () { pick(s.n); track("asistente_" + s.id); show(s); } }; });
         if (ayudaAsesor) l.unshift({ t: "Hablar con un asesor", id: "menu", href: link("Hola ECODESA, tengo una consulta.") });
-        l.push({ t: "¿En qué localidad está mi negocio?", fn: function () { pick("¿En qué localidad está mi negocio?"); track("asistente_localidad"); ubicar(); } });
         l.push({ t: "Otra consulta", fn: function () { pick("Otra consulta"); step(function () { say("Eso lo revisa un Profesional de nuestro equipo. Cuéntanos por WhatsApp."); opts([{ t: "Hablar con un asesor", id: "otra", href: link("Hola ECODESA, tengo una consulta.") }, { t: "Volver al menú", fn: function () { menu(false); } }]); }); } });
         opts(l);
       });
@@ -221,7 +223,12 @@
       if (c.tema) t += " Me interesa: " + c.tema + ".";
       return t;
     }
+    var LOC = null;
     function show(s) {
+      if (s.txt || LOC) return showOpc(s);
+      pedirBarrio(function () { showOpc(s); });
+    }
+    function showOpc(s) {
       step(function () {
         if (s.txt) { say(s.txt); say({ h: "Te acompañamos con:", items: s.hac, f: s.f }); opts([{ t: "Hablar con un asesor", id: s.id, href: link(s.wa) }, { t: "Ver otro sector", fn: function () { menu(false); } }]); return; }
         say("Perfecto. ¿Qué te gustaría saber sobre " + s.u + "?");
