@@ -243,8 +243,8 @@
   {
    "id": "BOM1",
    "area": "SST y gestión del riesgo",
-   "p": "¿Su personal ha recibido capacitaciones dictadas por la autoridad competente en gestión del riesgo?",
-   "soporte": "Certificados de asistencia",
+   "p": "¿Su personal ha recibido capacitación en primeros auxilios y manejo de extintores?",
+   "soporte": "Registro de capacitación con temas y asistentes",
    "valida": "Andrés",
    "norma": "Por verificar",
    "revision": {
