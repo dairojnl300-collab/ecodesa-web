@@ -41,14 +41,15 @@
 
     /* Layout */
     main { max-width: 880px; margin: 0 auto; padding: 28px max(16px, env(safe-area-inset-left,0px)) 40px max(16px, env(safe-area-inset-right,0px)); }
-    .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
-    @media (min-width: 820px) { .grid { grid-template-columns: 1.25fr 1fr; align-items: start; } }
+    .grid { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+    @media (min-width: 820px) { .grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: start; } }
 
     .panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; box-shadow: 0 10px 30px -18px rgba(15,36,22,.35); min-width: 0; }
     .map-box { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); height: 56vh; min-height: 340px; background: #0b1410; }
     .map-box .leaflet-container { width: 100%; height: 100%; font-family: var(--fb); }
     .map-notice { position: absolute; z-index: 500; left: 12px; right: 12px; bottom: 12px; padding: 8px 12px; border-radius: 12px; background: rgba(0,0,0,.72); color: #fff; font-size: 12px; backdrop-filter: blur(6px); }
     .map-tools { display: flex; gap: 8px; margin-top: 12px; align-items: center; flex-wrap: wrap; }
+    .map-box, .map-box .leaflet-container { max-width: 100%; }
     .status { font-size: 13px; color: var(--ink2); margin-left: auto; min-height: 1.2em; }
 
     .btn { appearance: none; font: 800 15px var(--fh); min-height: 44px; padding: 0 18px; border-radius: 40px; border: 2px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; transition: transform .25s var(--ease), background .25s, border-color .25s, box-shadow .25s; }
