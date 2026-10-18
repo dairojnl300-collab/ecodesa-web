@@ -967,6 +967,18 @@
    }
   },
   {
+   "id": "CAR1",
+   "area": "Ambiental",
+   "p": "¿Tiene caracterización de aguas residuales por laboratorio acreditado ante ONAC?",
+   "soporte": "Informe de laboratorio",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
    "id": "VER4",
    "area": "Ambiental",
    "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
@@ -1197,6 +1209,18 @@
    }
   },
   {
+   "id": "CAR1",
+   "area": "Ambiental",
+   "p": "¿Tiene caracterización de aguas residuales por laboratorio acreditado ante ONAC?",
+   "soporte": "Informe de laboratorio",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
    "id": "VER4",
    "area": "Ambiental",
    "p": "¿Las muestras se preservaron y refrigeraron durante el transporte?",
@@ -1424,6 +1448,18 @@
    "revision": {
     "estado": "citado",
     "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "CAR1",
+   "area": "Ambiental",
+   "p": "¿Tiene caracterización de aguas residuales por laboratorio acreditado ante ONAC?",
+   "soporte": "Informe de laboratorio",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
    }
   },
   {
