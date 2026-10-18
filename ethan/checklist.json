@@ -243,8 +243,8 @@
   {
    "id": "BOM1",
    "area": "SST y gestión del riesgo",
-   "p": "¿Su personal ha recibido capacitaciones dictadas por el Cuerpo de Bomberos?",
-   "soporte": "Certificados de asistencia del Cuerpo de Bomberos",
+   "p": "¿Su personal ha recibido capacitaciones dictadas por la autoridad competente en gestión del riesgo?",
+   "soporte": "Certificados de asistencia",
    "valida": "Andrés",
    "norma": "Por verificar",
    "revision": {
