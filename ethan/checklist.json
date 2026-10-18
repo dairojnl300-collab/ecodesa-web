@@ -39,8 +39,8 @@
   {
    "id": "R4",
    "area": "Ambiental",
-   "p": "¿Entrega el aceite de cocina usado a un gestor inscrito ante la autoridad ambiental competente, con certificado de disposición?",
-   "soporte": "Contrato del gestor inscrito y certificado de disposición",
+   "p": "¿Entrega el aceite de cocina usado a un gestor inscrito ante la autoridad ambiental competente?",
+   "soporte": "Contrato o constancia del gestor inscrito",
    "valida": "Mateo, Sofía",
    "norma": "Res. 316/2018, art. 9b",
    "revision": {
