@@ -117,10 +117,10 @@
         var b = el("div", "as-m bot");
         if (reduce) { fill(b, t); body.appendChild(b); toEnd(); done(); return; }
         var d = Math.min(1500, 600 + len * 8);
-        b.classList.add("typing"); b.setAttribute("aria-hidden", "true"); face(lookNext(), d);
+        b.classList.add("typing"); b.setAttribute("aria-hidden", "true"); face(lookNext(), d); av.classList.add("pensar"); hav.classList.add("pensar");
         b.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(b); toEnd();
         setTimeout(function () {
-          b.classList.remove("typing"); b.removeAttribute("aria-hidden"); b.textContent = ""; fill(b, t); toEnd(); done();
+          b.classList.remove("typing"); b.removeAttribute("aria-hidden"); av.classList.remove("pensar"); hav.classList.remove("pensar"); b.textContent = ""; fill(b, t); toEnd(); done();
         }, d);
       });
       run();
