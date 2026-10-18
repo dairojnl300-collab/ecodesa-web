@@ -117,7 +117,7 @@
         var b = el("div", "as-m bot");
         if (reduce) { fill(b, t); body.appendChild(b); toEnd(); done(); return; }
         var d = Math.min(1500, 600 + len * 8);
-        b.classList.add("typing"); b.setAttribute("aria-hidden", "true"); face("pensar", d); av.classList.add("pensar"); hav.classList.add("pensar");
+        b.classList.add("typing"); b.setAttribute("aria-hidden", "true"); av.classList.add("pensar"); hav.classList.add("pensar");
         b.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(b); toEnd();
         setTimeout(function () {
           b.classList.remove("typing"); b.removeAttribute("aria-hidden"); av.classList.remove("pensar"); hav.classList.remove("pensar"); b.textContent = ""; fill(b, t); toEnd(); done();
@@ -479,7 +479,7 @@
     var started = false;
     var av = btn.querySelector(".as-av");
     var ANIM = "assets/v2/robot-anim-128.webp", ANIM_SET = "assets/v2/robot-anim-128.webp 1x, assets/v2/robot-anim-256.webp 2x";
-    var CARAS = ["look-l", "look-r", "wide", "happy", "wink", "sleep", "pensar"];
+    var CARAS = ["look-l", "look-r", "wide", "happy", "wink", "sleep"];
     var faceT = null, sleeping = false, asked = false, sleepT = 0, askT = 0, wipeT = 0, rndT = 0;
     function setFace(n) { var u = "assets/v2/robot-" + n + ".webp"; av.srcset = ""; av.src = u; hav.src = u; }
     function restoreFace() { av.srcset = ANIM_SET; av.src = ANIM; hav.removeAttribute("srcset"); hav.src = ANIM; av.classList.remove("lean"); }
