@@ -309,7 +309,7 @@
           ]);
         }
         function mensajeValidar(pct, pctPub) {
-          var t = "Hola ECODESA, hice el diagnóstico inicial de mi " + s.u + " con un " + (pct || 0) + " % de cumplimiento" + (pctPub !== undefined ? " y " + pctPub + " % en publicidad exterior" : "") + ". Quiero validarlo.";
+          var t = "Hola ECODESA, hice el diagnóstico inicial de mi " + s.u.replace(/^tu /, "") + " con un " + (pct || 0) + " % de cumplimiento" + (pctPub !== undefined ? " y " + pctPub + " % en publicidad exterior" : "") + ". Quiero validarlo.";
           if (RES.length) t += "\n\nRespuestas:\n" + RES.map(function (r, n) { return (n + 1) + ". " + r.p + " " + r.r; }).join("\n");
           return t;
         }
@@ -351,7 +351,7 @@
             if (i >= list.length) return fin();
             var it = list[i];
             say(it.p);
-            var noLabel = /capacitaci/i.test(it.p) ? "No tiene capacitaciones" : "No";
+            var noLabel = "No";
             var lista = [
               { t: "Sí", fn: function () { pick("Sí"); aplica += 1; yes += 1; RES.push({ p: it.p, r: "Sí" }); soporte(it, true, function () { progreso(i); }); } },
               { t: noLabel, fn: function () { pick(noLabel); aplica += 1; RES.push({ p: it.p, r: "No" }); soporte(it, false, function () { progreso(i); }); } },
