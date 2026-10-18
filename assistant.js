@@ -290,6 +290,7 @@
           return;
         }
         var RES = [];
+        var CHK = todos;
         var PUB = "Publicidad exterior";
         var items = todos.filter(function (i) { return i.area !== PUB; });
         var avi = todos.filter(function (i) { return i.area === PUB; });
@@ -315,7 +316,21 @@
           t += "Hice el diagnóstico inicial de mi " + sector + " con un *" + (pct || 0) + " % de cumplimiento*";
           if (pctPub !== undefined) t += " y *" + pctPub + " % en publicidad exterior*";
           t += ".\nQuiero validarlo.";
-          if (RES.length) t += "\n\n*Respuestas:*\n" + RES.map(function (r, n) { return (n + 1) + ". " + r.p + "\n   → " + r.r; }).join("\n");
+          if (RES.length) {
+            var grupos = [];
+            RES.forEach(function (r) {
+              var it = (CHK || []).filter(function (x) { return x.p === r.p; })[0];
+              var a = it && it.area ? it.area : "Otros";
+              var g = grupos.filter(function (x) { return x.a === a; })[0];
+              if (!g) { g = { a: a, items: [] }; grupos.push(g); }
+              g.items.push(r);
+            });
+            var n = 0;
+            grupos.forEach(function (g) {
+              t += "\n\n*" + g.a + "*";
+              g.items.forEach(function (r) { n += 1; t += "\n" + n + ". " + r.p + "\n   → " + r.r; });
+            });
+          }
           return t;
         }
         function cierreFinal(pct, pctPub) {
