@@ -53,33 +53,6 @@
     });
   }
 
-  function nearest(lat, lng) {
-    var best = null, bd = Infinity;
-    ZONAS.forEach(function (z) {
-      var d = Math.pow(z.c[0] - lat, 2) + Math.pow(z.c[1] - lng, 2);
-      if (d < bd) { bd = d; best = z; }
-    });
-    return best;
-  }
-
-  function inside(pt, geo) {
-    // Punto en polígono por ray casting sobre el primer anillo de cada feature.
-    var found = null;
-    geo.features.forEach(function (f) {
-      if (found) return;
-      var rings = f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates;
-      rings.forEach(function (poly) {
-        var r = poly[0], x = pt[1], y = pt[0], c = false;
-        for (var i = 0, j = r.length - 1; i < r.length; j = i++) {
-          var xi = r[i][0], yi = r[i][1], xj = r[j][0], yj = r[j][1];
-          if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) c = !c;
-        }
-        if (c) found = f.properties.ucg;
-      });
-    });
-    return found;
-  }
-
   var geo = null;
   fetch("ucg.geojson", { cache: "no-cache" })
     .then(function (r) { return r.ok ? r.json() : null; })
@@ -91,20 +64,5 @@
     card.hidden = true;
     active = null;
     setStatus("");
-  });
-
-  document.getElementById("locate").addEventListener("click", function () {
-    if (!navigator.geolocation) { setStatus("Tu navegador no comparte ubicación. Toca tu zona en el mapa."); return; }
-    setStatus("Buscando tu ubicación…");
-    navigator.geolocation.getCurrentPosition(function (p) {
-      var lat = p.coords.latitude, lng = p.coords.longitude;
-      var id = geo ? inside([lat, lng], geo) : null;
-      var z = ZONAS.find(function (x) { return x.id == id; }) || nearest(lat, lng);
-      map.setView([lat, lng], 14);
-      select(z);
-      setStatus(id ? "Estás en UCG " + z.id + "." : "Zona más cercana: UCG " + z.id + ". Confírmala en el mapa.");
-    }, function () {
-      setStatus("No pudimos leer tu ubicación. Toca tu zona en el mapa.");
-    }, { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 });
   });
 })();
