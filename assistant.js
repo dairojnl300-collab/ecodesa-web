@@ -334,6 +334,19 @@
             say("Cumplimiento hasta ahora: " + pctActual() + " % (" + (i + 1) + " de " + list.length + " preguntas).");
             ask(i + 1);
           }
+          function escribirDetalle(it, i) {
+            var w = el("form", "as-opts as-form");
+            var inp = el("input", "as-in"); inp.type = "text"; inp.maxLength = 300; inp.placeholder = "Ej.: brigada sí; primeros auxilios no"; inp.setAttribute("aria-label", "Detalle de capacitaciones");
+            var go = el("button", "as-o", "Enviar"); go.type = "submit";
+            w.appendChild(inp); w.appendChild(go); body.appendChild(w); toEnd();
+            w.addEventListener("submit", function (e) {
+              e.preventDefault();
+              var v = inp.value.trim();
+              if (!v) return;
+              w.remove(); pick(v); aplica += 1; RES.push({ p: it.p, r: "Detalle: " + v });
+              soporte(it, false, function () { progreso(i); });
+            });
+          }
           function ask(i) {
             if (i >= list.length) return fin();
             var it = list[i];
@@ -344,6 +357,7 @@
               { t: noLabel, fn: function () { pick(noLabel); aplica += 1; RES.push({ p: it.p, r: "No" }); soporte(it, false, function () { progreso(i); }); } },
               { t: "No sé", fn: function () { pick("No sé"); aplica += 1; RES.push({ p: it.p, r: "No sé" }); soporte(it, false, function () { progreso(i); }); } }
             ];
+            if (/capacitaci/i.test(it.p)) lista.push({ t: "Escribir detalle", fn: function () { escribirDetalle(it, i); } });
             if (it.noAplica || /vertim/i.test(it.p)) lista.push({ t: "No aplica", fn: function () { pick("No aplica"); RES.push({ p: it.p, r: "No aplica" }); progreso(i); } });
             opts(lista);
           }
