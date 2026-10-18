@@ -212,7 +212,7 @@
         return;
       }
       CIUDAD = "otra";
-      step(function () { say("La ubicación por localidad y UCG solo aplica a Cartagena. Igual te orientamos en cualquier sector."); mostrarSectores(false); });
+      step(function () { mostrarSectores(false); });
     }
     function escribirCiudad() {
       var w = el("form", "as-opts as-form");
@@ -229,7 +229,7 @@
       });
     }
     function preguntarCiudad() {
-      say("¿Desde dónde nos escribes? Elige tu ciudad o escribe tu municipio, ciudad o corregimiento.");
+      say("¿Desde dónde nos escribes?");
       opts([
         { t: "Cartagena", fn: function () { pick("Cartagena"); elegirCiudad("Cartagena", true); } },
         { t: "Barranquilla", fn: function () { pick("Barranquilla"); elegirCiudad("Barranquilla", false); } },
