@@ -195,13 +195,25 @@
       if (!first) { vueltas += 1; ayudaAsesor = vueltas >= 2; }
       if (first) { say("Hola, soy Ethan, el asistente de ECODESA, firma fundada en Cartagena de Indias. Te ayudamos a cumplir la normativa a nivel nacional y a crecer con servicios digitales y marketing digital."); }
       step(function () {
-        if (ayudaAsesor) say("¿No ves tu caso? Un Profesional de nuestro equipo lo revisa contigo por WhatsApp.");
-        else say("¿Qué tipo de negocio tienes?");
-        var l = S.filter(function (s) { return s.id !== "digital" && s.id !== "iso"; }).map(function (s) { return { t: s.n, fn: function () { pick(s.n); track("asistente_" + s.id); show(s); } }; });
-        if (ayudaAsesor) l.unshift({ t: "Hablar con un asesor", id: "menu", href: link("Hola ECODESA, tengo una consulta.") });
-        l.push({ t: "Otra consulta", fn: function () { pick("Otra consulta"); step(function () { say("Eso lo revisa un Profesional de nuestro equipo. Cuéntanos por WhatsApp."); opts([{ t: "Hablar con un asesor", id: "otra", href: link("Hola ECODESA, tengo una consulta.") }, { t: "Volver al menú", fn: function () { menu(false); } }]); }); } });
-        opts(l);
+        if (!CIUDAD) return preguntarCiudad();
+        mostrarSectores(ayudaAsesor);
       });
+    }
+    function preguntarCiudad() {
+      say("¿En qué ciudad está tu negocio?");
+      opts([
+        { t: "Cartagena", fn: function () { pick("Cartagena"); CIUDAD = "cartagena"; step(function () { mostrarSectores(false); }); } },
+        { t: "Otra ciudad", fn: function () { pick("Otra ciudad"); CIUDAD = "otra"; step(function () { say("La ubicación por localidad y UCG solo aplica a Cartagena. Igual te orientamos en cualquier sector."); mostrarSectores(false); }); } }
+      ]);
+    }
+    function mostrarSectores(ayudaAsesor) {
+      if (ayudaAsesor) say("¿No ves tu caso? Un Profesional de nuestro equipo lo revisa contigo por WhatsApp.");
+      else say("¿Qué tipo de negocio tienes?");
+      var l = S.filter(function (s) { return s.id !== "digital" && s.id !== "iso"; }).map(function (s) { return { t: s.n, fn: function () { pick(s.n); track("asistente_" + s.id); show(s); } }; });
+      if (ayudaAsesor) l.unshift({ t: "Hablar con un asesor", id: "menu", href: link("Hola ECODESA, tengo una consulta.") });
+      if (CIUDAD === "cartagena") l.push({ t: "Conocer mi localidad y UCG", fn: function () { pick("Conocer mi localidad y UCG"); track("asistente_localidad"); pedirBarrio(null); } });
+      l.push({ t: "Otra consulta", fn: function () { pick("Otra consulta"); step(function () { say("Eso lo revisa un Profesional de nuestro equipo. Cuéntanos por WhatsApp."); opts([{ t: "Hablar con un asesor", id: "otra", href: link("Hola ECODESA, tengo una consulta.") }, { t: "Volver al menú", fn: function () { menu(false); } }]); }); } });
+      opts(l);
     }
     var DISC = "Aplica según tu actividad y tamaño. ECODESA es una firma privada: no representa a estas autoridades ni emite sus certificados o conceptos. La mención de una autoridad es informativa y no implica aval ni relación con ella. Un asesor te confirma qué aplica a tu caso.";
     function groupsFor(s, c) {
@@ -224,10 +236,8 @@
       return t;
     }
     var LOC = null;
-    function show(s) {
-      if (s.txt || LOC) return showOpc(s);
-      pedirBarrio(function () { showOpc(s); });
-    }
+    var CIUDAD = null;
+    function show(s) { showOpc(s); }
     function showOpc(s) {
       step(function () {
         if (s.txt) { say(s.txt); say({ h: "Te acompañamos con:", items: s.hac, f: s.f }); opts([{ t: "Hablar con un asesor", id: s.id, href: link(s.wa) }, { t: "Ver otro sector", fn: function () { menu(false); } }]); return; }
