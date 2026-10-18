@@ -1,0 +1,1646 @@
+{
+ "fuente": "Listado de localidades y UCG entregado por Dairo (2026-10-13); verificar contra MIDAS",
+ "total": 205,
+ "barrios": [
+  {
+   "barrio": "20 de Julio Sur",
+   "clave": "20 DE JULIO SUR",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 11,
+   "rural": false
+  },
+  {
+   "barrio": "Alameda La Victoria",
+   "clave": "ALAMEDA LA VICTORIA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Albornoz",
+   "clave": "ALBORNOZ",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 11,
+   "rural": false
+  },
+  {
+   "barrio": "Alcibia",
+   "clave": "ALCIBIA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 4,
+   "rural": false
+  },
+  {
+   "barrio": "Almirante Colón",
+   "clave": "ALMIRANTE COLON",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 12,
+   "rural": false
+  },
+  {
+   "barrio": "Alto Bosque",
+   "clave": "ALTO BOSQUE",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 10,
+   "rural": false
+  },
+  {
+   "barrio": "Altos de San Isidro",
+   "clave": "ALTOS DE SAN ISIDRO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 10,
+   "rural": false
+  },
+  {
+   "barrio": "Amberes",
+   "clave": "AMBERES",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "Anita",
+   "clave": "ANITA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 13,
+   "rural": false
+  },
+  {
+   "barrio": "Antonio José de Sucre",
+   "clave": "ANTONIO JOSE DE SUCRE",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 11,
+   "rural": false
+  },
+  {
+   "barrio": "Ararca",
+   "clave": "ARARCA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Archipiélago de San Bernardo",
+   "clave": "ARCHIPIELAGO DE SAN BERNARDO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Armenia",
+   "clave": "ARMENIA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "Arroyo de las Canoas",
+   "clave": "ARROYO DE LAS CANOAS",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Arroyo de Piedra",
+   "clave": "ARROYO DE PIEDRA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Arroyo Grande",
+   "clave": "ARROYO GRANDE",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Arroz Barato",
+   "clave": "ARROZ BARATO",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 11,
+   "rural": false
+  },
+  {
+   "barrio": "Barrio Chino",
+   "clave": "BARRIO CHINO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "Barú",
+   "clave": "BARU",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Bayunca",
+   "clave": "BAYUNCA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Bellavista",
+   "clave": "BELLAVISTA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 11,
+   "rural": false
+  },
+  {
+   "barrio": "Blas de Lezo",
+   "clave": "BLAS DE LEZO",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 12,
+   "rural": false
+  },
+  {
+   "barrio": "Bocachica",
+   "clave": "BOCACHICA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Bocagrande",
+   "clave": "BOCAGRANDE",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 1,
+   "rural": false
+  },
+  {
+   "barrio": "Bosquecito",
+   "clave": "BOSQUECITO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 10,
+   "rural": false
+  },
+  {
+   "barrio": "Boston",
+   "clave": "BOSTON",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 4,
+   "rural": false
+  },
+  {
+   "barrio": "Bruselas",
+   "clave": "BRUSELAS",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "Buenos Aires",
+   "clave": "BUENOS AIRES",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "Calamares",
+   "clave": "CALAMARES",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "Camagüey",
+   "clave": "CAMAGUEY",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "Camilo Torres",
+   "clave": "CAMILO TORRES",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Canapote",
+   "clave": "CANAPOTE",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 3,
+   "rural": false
+  },
+  {
+   "barrio": "Caño del Oro",
+   "clave": "CANO DEL ORO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Castillogrande",
+   "clave": "CASTILLOGRANDE",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 1,
+   "rural": false
+  },
+  {
+   "barrio": "Ceballos",
+   "clave": "CEBALLOS",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 11,
+   "rural": false
+  },
+  {
+   "barrio": "Centro",
+   "clave": "CENTRO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 1,
+   "rural": false
+  },
+  {
+   "barrio": "Cerro de la Popa",
+   "clave": "CERRO DE LA POPA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "César Flórez",
+   "clave": "CESAR FLOREZ",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Chambacú",
+   "clave": "CHAMBACU",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 1,
+   "rural": false
+  },
+  {
+   "barrio": "Chapacuá",
+   "clave": "CHAPACUA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "Chipre",
+   "clave": "CHIPRE",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "Chiquinquirá",
+   "clave": "CHIQUINQUIRA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 5,
+   "rural": false
+  },
+  {
+   "barrio": "Ciudadela 11 de Noviembre",
+   "clave": "CIUDADELA 11 DE NOVIEMBRE",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Ciudadela 2000",
+   "clave": "CIUDADELA 2000",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Crespo",
+   "clave": "CRESPO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 1,
+   "rural": false
+  },
+  {
+   "barrio": "Daniel Lemaitre",
+   "clave": "DANIEL LEMAITRE",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 3,
+   "rural": false
+  },
+  {
+   "barrio": "El Bosque",
+   "clave": "EL BOSQUE",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 10,
+   "rural": false
+  },
+  {
+   "barrio": "El Cabrero",
+   "clave": "EL CABRERO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 1,
+   "rural": false
+  },
+  {
+   "barrio": "El Campestre",
+   "clave": "EL CAMPESTRE",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 12,
+   "rural": false
+  },
+  {
+   "barrio": "El Carmelo",
+   "clave": "EL CARMELO",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 12,
+   "rural": false
+  },
+  {
+   "barrio": "El Carmen",
+   "clave": "EL CARMEN",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "El Country",
+   "clave": "EL COUNTRY",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "El Educador",
+   "clave": "EL EDUCADOR",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 15,
+   "rural": false
+  },
+  {
+   "barrio": "El Gallo",
+   "clave": "EL GALLO",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "El Laguito",
+   "clave": "EL LAGUITO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 1,
+   "rural": false
+  },
+  {
+   "barrio": "El Libertador",
+   "clave": "EL LIBERTADOR",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 11,
+   "rural": false
+  },
+  {
+   "barrio": "El Milagro",
+   "clave": "EL MILAGRO",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 12,
+   "rural": false
+  },
+  {
+   "barrio": "El Pozón",
+   "clave": "EL POZON",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 6,
+   "rural": false
+  },
+  {
+   "barrio": "El Prado",
+   "clave": "EL PRADO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "El Recreo",
+   "clave": "EL RECREO",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 13,
+   "rural": false
+  },
+  {
+   "barrio": "El Reposo",
+   "clave": "EL REPOSO",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 15,
+   "rural": false
+  },
+  {
+   "barrio": "El Socorro",
+   "clave": "EL SOCORRO",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 12,
+   "rural": false
+  },
+  {
+   "barrio": "Escallón Villa",
+   "clave": "ESCALLON VILLA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "España",
+   "clave": "ESPANA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "Espinal",
+   "clave": "ESPINAL",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "Flor del Campo",
+   "clave": "FLOR DEL CAMPO",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 6,
+   "rural": false
+  },
+  {
+   "barrio": "Fredonia",
+   "clave": "FREDONIA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 6,
+   "rural": false
+  },
+  {
+   "barrio": "Getsemaní",
+   "clave": "GETSEMANI",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 1,
+   "rural": false
+  },
+  {
+   "barrio": "Henequén",
+   "clave": "HENEQUEN",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 15,
+   "rural": false
+  },
+  {
+   "barrio": "Isla Fuerte",
+   "clave": "ISLA FUERTE",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Islas del Rosario",
+   "clave": "ISLAS DEL ROSARIO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Jaime Pardo Leal",
+   "clave": "JAIME PARDO LEAL",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 15,
+   "rural": false
+  },
+  {
+   "barrio": "Jorge Eliécer Gaitán",
+   "clave": "JORGE ELIECER GAITAN",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "José Antonio Galán",
+   "clave": "JOSE ANTONIO GALAN",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "Juan XXIII",
+   "clave": "JUAN XXIII",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "Junín",
+   "clave": "JUNIN",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "La Boquilla",
+   "clave": "LA BOQUILLA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "La Campiña",
+   "clave": "LA CAMPINA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "La Candelaria",
+   "clave": "LA CANDELARIA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 4,
+   "rural": false
+  },
+  {
+   "barrio": "La Castellana",
+   "clave": "LA CASTELLANA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "La Central",
+   "clave": "LA CENTRAL",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 12,
+   "rural": false
+  },
+  {
+   "barrio": "La Concepción",
+   "clave": "LA CONCEPCION",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 13,
+   "rural": false
+  },
+  {
+   "barrio": "La Consolata",
+   "clave": "LA CONSOLATA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 15,
+   "rural": false
+  },
+  {
+   "barrio": "La Esmeralda I",
+   "clave": "LA ESMERALDA I",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "La Esmeralda II",
+   "clave": "LA ESMERALDA II",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "La Esperanza",
+   "clave": "LA ESPERANZA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 4,
+   "rural": false
+  },
+  {
+   "barrio": "La Floresta",
+   "clave": "LA FLORESTA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "La Florida",
+   "clave": "LA FLORIDA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "La India",
+   "clave": "LA INDIA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 6,
+   "rural": false
+  },
+  {
+   "barrio": "La María",
+   "clave": "LA MARIA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 4,
+   "rural": false
+  },
+  {
+   "barrio": "La Matuna",
+   "clave": "LA MATUNA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 1,
+   "rural": false
+  },
+  {
+   "barrio": "La Paz",
+   "clave": "LA PAZ",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "La Quinta",
+   "clave": "LA QUINTA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 4,
+   "rural": false
+  },
+  {
+   "barrio": "La Sierrita",
+   "clave": "LA SIERRITA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "La Troncal",
+   "clave": "LA TRONCAL",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "La Victoria",
+   "clave": "LA VICTORIA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 15,
+   "rural": false
+  },
+  {
+   "barrio": "Las Brisas",
+   "clave": "LAS BRISAS",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "Las Delicias",
+   "clave": "LAS DELICIAS",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "Las Europas",
+   "clave": "LAS EUROPAS",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Las Gaviotas",
+   "clave": "LAS GAVIOTAS",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "Las Palmeras",
+   "clave": "LAS PALMERAS",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "Lo Amador",
+   "clave": "LO AMADOR",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 3,
+   "rural": false
+  },
+  {
+   "barrio": "Loma Fresca",
+   "clave": "LOMA FRESCA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "Los Alpes",
+   "clave": "LOS ALPES",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "Los Ángeles",
+   "clave": "LOS ANGELES",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "Los Caracoles",
+   "clave": "LOS CARACOLES",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 12,
+   "rural": false
+  },
+  {
+   "barrio": "Los Cerros",
+   "clave": "LOS CERROS",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 10,
+   "rural": false
+  },
+  {
+   "barrio": "Los Comuneros",
+   "clave": "LOS COMUNEROS",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "Los Corales",
+   "clave": "LOS CORALES",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 12,
+   "rural": false
+  },
+  {
+   "barrio": "Los Ejecutivos",
+   "clave": "LOS EJECUTIVOS",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "Los Jardines",
+   "clave": "LOS JARDINES",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 15,
+   "rural": false
+  },
+  {
+   "barrio": "Los Santanderes",
+   "clave": "LOS SANTANDERES",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Luis Carlos Galán",
+   "clave": "LUIS CARLOS GALAN",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 15,
+   "rural": false
+  },
+  {
+   "barrio": "Manga",
+   "clave": "MANGA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 1,
+   "rural": false
+  },
+  {
+   "barrio": "Manuela Vergara de Curi",
+   "clave": "MANUELA VERGARA DE CURI",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 15,
+   "rural": false
+  },
+  {
+   "barrio": "Manzanillo del Mar",
+   "clave": "MANZANILLO DEL MAR",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Marbella",
+   "clave": "MARBELLA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 1,
+   "rural": false
+  },
+  {
+   "barrio": "María Cano",
+   "clave": "MARIA CANO",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Martínez Martelo",
+   "clave": "MARTINEZ MARTELO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "Membrillal",
+   "clave": "MEMBRILLAL",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Nariño",
+   "clave": "NARINO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "Nazareno",
+   "clave": "NAZARENO",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Nelson Mandela",
+   "clave": "NELSON MANDELA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Nueva Delhi",
+   "clave": "NUEVA DELHI",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Nueva Granada",
+   "clave": "NUEVA GRANADA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "Nueva Jerusalén",
+   "clave": "NUEVA JERUSALEN",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Nueve de Abril",
+   "clave": "NUEVE DE ABRIL",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "Nuevo Bosque",
+   "clave": "NUEVO BOSQUE",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 10,
+   "rural": false
+  },
+  {
+   "barrio": "Nuevo Paraíso",
+   "clave": "NUEVO PARAISO",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 6,
+   "rural": false
+  },
+  {
+   "barrio": "Nuevo Porvenir",
+   "clave": "NUEVO PORVENIR",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "Olaya S. 11 de Noviembre",
+   "clave": "OLAYA S. 11 DE NOVIEMBRE",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 5,
+   "rural": false
+  },
+  {
+   "barrio": "Olaya S. Central",
+   "clave": "OLAYA S. CENTRAL",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 5,
+   "rural": false
+  },
+  {
+   "barrio": "Olaya S. Estela",
+   "clave": "OLAYA S. ESTELA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 6,
+   "rural": false
+  },
+  {
+   "barrio": "Olaya S. La Magdalena",
+   "clave": "OLAYA S. LA MAGDALENA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 6,
+   "rural": false
+  },
+  {
+   "barrio": "Olaya S. La Puntilla",
+   "clave": "OLAYA S. LA PUNTILLA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 6,
+   "rural": false
+  },
+  {
+   "barrio": "Olaya S. Playa Blanca",
+   "clave": "OLAYA S. PLAYA BLANCA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 6,
+   "rural": false
+  },
+  {
+   "barrio": "Olaya S. Progreso",
+   "clave": "OLAYA S. PROGRESO",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 6,
+   "rural": false
+  },
+  {
+   "barrio": "Olaya S. Rafael Núñez",
+   "clave": "OLAYA S. RAFAEL NUNEZ",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 5,
+   "rural": false
+  },
+  {
+   "barrio": "Olaya S. Ricaurte",
+   "clave": "OLAYA S. RICAURTE",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 5,
+   "rural": false
+  },
+  {
+   "barrio": "Olaya S. Zarabanda",
+   "clave": "OLAYA S. ZARABANDA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 6,
+   "rural": false
+  },
+  {
+   "barrio": "Olaya Villa Olímpica",
+   "clave": "OLAYA VILLA OLIMPICA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 5,
+   "rural": false
+  },
+  {
+   "barrio": "Pablo VI-I",
+   "clave": "PABLO VI-I",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "Pablo VI-II",
+   "clave": "PABLO VI-II",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "Palestina",
+   "clave": "PALESTINA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "Palmarito",
+   "clave": "PALMARITO",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Paraguay",
+   "clave": "PARAGUAY",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "Paraíso II",
+   "clave": "PARAISO II",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "Pasacaballos",
+   "clave": "PASACABALLOS",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Pedro Salazar",
+   "clave": "PEDRO SALAZAR",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "Petare",
+   "clave": "PETARE",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "Pie de la Popa",
+   "clave": "PIE DE LA POPA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 1,
+   "rural": false
+  },
+  {
+   "barrio": "Pie del Cerro",
+   "clave": "PIE DEL CERRO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "Piedra de Bolívar",
+   "clave": "PIEDRA DE BOLIVAR",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 9,
+   "rural": false
+  },
+  {
+   "barrio": "Policarpa",
+   "clave": "POLICARPA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 11,
+   "rural": false
+  },
+  {
+   "barrio": "Pontezuela",
+   "clave": "PONTEZUELA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Providencia",
+   "clave": "PROVIDENCIA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 13,
+   "rural": false
+  },
+  {
+   "barrio": "Puerta de Hierro",
+   "clave": "PUERTA DE HIERRO",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 11,
+   "rural": false
+  },
+  {
+   "barrio": "Puerto Rey",
+   "clave": "PUERTO REY",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Punta Arenas",
+   "clave": "PUNTA ARENAS",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Punta Canoa",
+   "clave": "PUNTA CANOA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Recreo",
+   "clave": "RECREO",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "República de Chile",
+   "clave": "REPUBLICA DE CHILE",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 10,
+   "rural": false
+  },
+  {
+   "barrio": "República de Venezuela",
+   "clave": "REPUBLICA DE VENEZUELA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "República del Caribe",
+   "clave": "REPUBLICA DEL CARIBE",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "República del Líbano",
+   "clave": "REPUBLICA DEL LIBANO",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 5,
+   "rural": false
+  },
+  {
+   "barrio": "Rossedal",
+   "clave": "ROSSEDAL",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Rubí",
+   "clave": "RUBI",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "San Antonio",
+   "clave": "SAN ANTONIO",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "San Bernardo",
+   "clave": "SAN BERNARDO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 3,
+   "rural": false
+  },
+  {
+   "barrio": "San Diego",
+   "clave": "SAN DIEGO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 1,
+   "rural": false
+  },
+  {
+   "barrio": "San Fernando",
+   "clave": "SAN FERNANDO",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "San Francisco",
+   "clave": "SAN FRANCISCO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 3,
+   "rural": false
+  },
+  {
+   "barrio": "San Isidro",
+   "clave": "SAN ISIDRO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 10,
+   "rural": false
+  },
+  {
+   "barrio": "San José de los Campanos",
+   "clave": "SAN JOSE DE LOS CAMPANOS",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 13,
+   "rural": false
+  },
+  {
+   "barrio": "San José Obrero",
+   "clave": "SAN JOSE OBRERO",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "San Pedro",
+   "clave": "SAN PEDRO",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 12,
+   "rural": false
+  },
+  {
+   "barrio": "San Pedro Mártir",
+   "clave": "SAN PEDRO MARTIR",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 15,
+   "rural": false
+  },
+  {
+   "barrio": "San Pedro y Libertad",
+   "clave": "SAN PEDRO Y LIBERTAD",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "Santa Ana",
+   "clave": "SANTA ANA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 10,
+   "rural": false
+  },
+  {
+   "barrio": "Santa Clara",
+   "clave": "SANTA CLARA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 11,
+   "rural": false
+  },
+  {
+   "barrio": "Santa Lucía",
+   "clave": "SANTA LUCIA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 13,
+   "rural": false
+  },
+  {
+   "barrio": "Santa María",
+   "clave": "SANTA MARIA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 3,
+   "rural": false
+  },
+  {
+   "barrio": "Santa Mónica",
+   "clave": "SANTA MONICA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 12,
+   "rural": false
+  },
+  {
+   "barrio": "Sectores Unidos",
+   "clave": "SECTORES UNIDOS",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Siete de Agosto",
+   "clave": "SIETE DE AGOSTO",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 3,
+   "rural": false
+  },
+  {
+   "barrio": "Tacarigua",
+   "clave": "TACARIGUA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "Ternera",
+   "clave": "TERNERA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 13,
+   "rural": false
+  },
+  {
+   "barrio": "Tesca",
+   "clave": "TESCA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 5,
+   "rural": false
+  },
+  {
+   "barrio": "Tierra Baja",
+   "clave": "TIERRA BAJA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Tierra Bomba",
+   "clave": "TIERRA BOMBA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": null,
+   "rural": true
+  },
+  {
+   "barrio": "Torices",
+   "clave": "TORICES",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 2,
+   "rural": false
+  },
+  {
+   "barrio": "Trece de Junio",
+   "clave": "TRECE DE JUNIO",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "Urb. Colombiatón",
+   "clave": "URB. COLOMBIATON",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 6,
+   "rural": false
+  },
+  {
+   "barrio": "Urb. Simón Bolívar",
+   "clave": "URB. SIMON BOLIVAR",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Viejo Porvenir",
+   "clave": "VIEJO PORVENIR",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 7,
+   "rural": false
+  },
+  {
+   "barrio": "Villa Barraza",
+   "clave": "VILLA BARRAZA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 11,
+   "rural": false
+  },
+  {
+   "barrio": "Villa Estrella",
+   "clave": "VILLA ESTRELLA",
+   "localidad": "Localidad 2",
+   "nombre_localidad": "De la Virgen y Turística",
+   "ucg": 6,
+   "rural": false
+  },
+  {
+   "barrio": "Villa Fanny",
+   "clave": "VILLA FANNY",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Villa Hermosa",
+   "clave": "VILLA HERMOSA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Villa Rosa",
+   "clave": "VILLA ROSA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 11,
+   "rural": false
+  },
+  {
+   "barrio": "Villa Rosita",
+   "clave": "VILLA ROSITA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 13,
+   "rural": false
+  },
+  {
+   "barrio": "Villa Rubia",
+   "clave": "VILLA RUBIA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 14,
+   "rural": false
+  },
+  {
+   "barrio": "Villa Sandra",
+   "clave": "VILLA SANDRA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  },
+  {
+   "barrio": "Vista Hermosa",
+   "clave": "VISTA HERMOSA",
+   "localidad": "Localidad 3",
+   "nombre_localidad": "Industrial y de la Bahía",
+   "ucg": 15,
+   "rural": false
+  },
+  {
+   "barrio": "Zaragocilla",
+   "clave": "ZARAGOCILLA",
+   "localidad": "Localidad 1",
+   "nombre_localidad": "Histórica y del Caribe Norte",
+   "ucg": 8,
+   "rural": false
+  }
+ ]
+}
