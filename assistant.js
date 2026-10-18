@@ -261,6 +261,13 @@
         .then(function (d) { CHECK = d; cb(d); })
         .catch(function () { cb(null); });
     }
+    function soporte(it, si, next) {
+      var base = it.norma ? "Base normativa: " + it.norma + "." : "";
+      var nota = it.revision && it.revision.estado === "texto_verificado" ? "" : " Vigencia en confirmación.";
+      var txt = si ? "Registrado como cumplido declarado. " + base + nota : "Requisito pendiente. " + base + nota + " Un Profesional de ECODESA te orienta para cumplirlo.";
+      say(txt.trim());
+      next();
+    }
     function diagnostico(s) {
       cargarChecklist(function (d) {
         var items = d && d[s.id];
@@ -284,8 +291,8 @@
           if (i >= items.length) return fin();
           say(items[i].p);
           opts([
-            { t: "Sí", fn: function () { pick("Sí"); yes += 1; ask(i + 1); } },
-            { t: "No", fn: function () { pick("No"); ask(i + 1); } }
+            { t: "Sí", fn: function () { pick("Sí"); yes += 1; soporte(items[i], true, function () { ask(i + 1); }); } },
+            { t: "No", fn: function () { pick("No"); soporte(items[i], false, function () { ask(i + 1); }); } }
           ]);
         }
         ask(0);
