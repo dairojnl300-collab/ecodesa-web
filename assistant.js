@@ -288,6 +288,7 @@
           opts([{ t: "Hablar con un asesor", id: s.id, href: link(s.wa) }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
           return;
         }
+        var RES = [];
         var PUB = "Publicidad exterior";
         var items = todos.filter(function (i) { return i.area !== PUB; });
         var avi = todos.filter(function (i) { return i.area === PUB; });
@@ -307,30 +308,43 @@
             { t: "No", fn: function () { pick("No"); cierreFinal(pct); } }
           ]);
         }
+        function mensajeValidar(pct, pctPub) {
+          var t = "Hola ECODESA, hice el diagnóstico inicial de mi " + s.u + " con un " + (pct || 0) + " % de cumplimiento" + (pctPub !== undefined ? " y " + pctPub + " % en publicidad exterior" : "") + ". Quiero validarlo.";
+          if (RES.length) t += "\n\nRespuestas:\n" + RES.map(function (r, n) { return (n + 1) + ". " + r.p + " " + r.r; }).join("\n");
+          return t;
+        }
         function cierreFinal(pct, pctPub) {
           if (pctPub !== undefined) say("Publicidad exterior: " + pctPub + " %.");
           opts([
-            { t: "Validar mi cumplimiento con un profesional", id: s.id, href: link("Hola ECODESA, hice el diagnóstico inicial de " + s.u + " con " + (pct || 0) + " % declarado" + (pctPub !== undefined ? " y " + pctPub + " % en publicidad exterior" : "") + ". Quiero validarlo.") },
+            { t: "Validar mi cumplimiento con un profesional", id: s.id, href: link(mensajeValidar(pct, pctPub)) },
             { t: "Volver al menú principal", fn: function () { menu(false); } }
           ]);
         }
         function preguntar(list, siguiente) {
-          say("Responde sí o no. Son " + list.length + " preguntas sobre " + s.u + ".");
+          say("Responde sí, no o no sé. Son " + list.length + " preguntas sobre " + s.u + ".");
           var yes = 0, aplica = 0;
+          function pctActual() { return aplica ? Math.round(yes / aplica * 100) : 0; }
           function fin() {
-            var pct = aplica ? Math.round(yes / aplica * 100) : 0;
+            var pct = pctActual();
             var nivel = pct >= 80 ? "Cumplimiento declarado alto" : pct >= 50 ? "Cumplimiento declarado parcial" : "Cumplimiento declarado bajo";
             say("Resultado: " + pct + " %. " + nivel + ". Es una estimación según tus respuestas; un Profesional la valida.");
             siguiente(pct);
           }
+          function progreso(i) {
+            say("Cumplimiento hasta ahora: " + pctActual() + " % (" + (i + 1) + " de " + list.length + " preguntas).");
+            ask(i + 1);
+          }
           function ask(i) {
             if (i >= list.length) return fin();
-            say(list[i].p);
+            var it = list[i];
+            say(it.p);
+            var noLabel = /capacitaci/i.test(it.p) ? "No tiene capacitaciones" : "No";
             var lista = [
-              { t: "Sí", fn: function () { pick("Sí"); aplica += 1; yes += 1; soporte(list[i], true, function () { ask(i + 1); }); } },
-              { t: "No", fn: function () { pick("No"); aplica += 1; soporte(list[i], false, function () { ask(i + 1); }); } }
+              { t: "Sí", fn: function () { pick("Sí"); aplica += 1; yes += 1; RES.push({ p: it.p, r: "Sí" }); soporte(it, true, function () { progreso(i); }); } },
+              { t: noLabel, fn: function () { pick(noLabel); aplica += 1; RES.push({ p: it.p, r: "No" }); soporte(it, false, function () { progreso(i); }); } },
+              { t: "No sé", fn: function () { pick("No sé"); aplica += 1; RES.push({ p: it.p, r: "No sé" }); soporte(it, false, function () { progreso(i); }); } }
             ];
-            if (list[i].noAplica || /vertim/i.test(list[i].p)) lista.push({ t: "No aplica", fn: function () { pick("No aplica"); ask(i + 1); } });
+            if (it.noAplica || /vertim/i.test(it.p)) lista.push({ t: "No aplica", fn: function () { pick("No aplica"); RES.push({ p: it.p, r: "No aplica" }); progreso(i); } });
             opts(lista);
           }
           ask(0);
