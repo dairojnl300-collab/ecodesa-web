@@ -1,0 +1,546 @@
+{
+ "restaurantes": [
+  {
+   "id": "R1",
+   "area": "Ambiental",
+   "p": "¿Su establecimiento está inscrito ante la autoridad ambiental competente?",
+   "soporte": "Constancia de inscripción",
+   "valida": "Mateo",
+   "norma": "Res. 316/2018, arts. 3, 5, 9a"
+  },
+  {
+   "id": "R2",
+   "area": "Ambiental",
+   "p": "¿La inscripción tiene el volumen mensual de aceite usado actualizado?",
+   "soporte": "Registro actualizado",
+   "valida": "Mateo",
+   "norma": "Res. 316/2018, art. 9a"
+  },
+  {
+   "id": "R3",
+   "area": "Ambiental",
+   "p": "¿Cómo almacena el aceite de cocina usado?",
+   "soporte": "Foto del envase sellado y separado",
+   "valida": "Mateo, Ricardo",
+   "norma": "Res. 316/2018, arts. 8b, 13b"
+  },
+  {
+   "id": "R4",
+   "area": "Ambiental",
+   "p": "¿Quién recibe el aceite de cocina usado?",
+   "soporte": "Contrato o constancia del gestor inscrito",
+   "valida": "Mateo, Sofía",
+   "norma": "Res. 316/2018, art. 9b"
+  },
+  {
+   "id": "R5",
+   "area": "Ambiental",
+   "p": "¿Conserva constancias de esa entrega?",
+   "soporte": "Constancias archivadas",
+   "valida": "Mateo",
+   "norma": "Res. 316/2018, art. 9d"
+  },
+  {
+   "id": "R6",
+   "area": "Ambiental",
+   "p": "¿Su personal ha recibido capacitación sobre manejo de aceite usado?",
+   "soporte": "Registro de capacitación",
+   "valida": "Mateo",
+   "norma": "Res. 316/2018, art. 9c"
+  },
+  {
+   "id": "R7",
+   "area": "Ambiental",
+   "p": "¿Presentó el reporte anual de aceite usado?",
+   "soporte": "Reporte presentado",
+   "valida": "Mateo",
+   "norma": "Res. 316/2018, art. 9d"
+  },
+  {
+   "id": "R8",
+   "area": "Ambiental",
+   "p": "¿Qué ocurre con el aceite cuando no se usa?",
+   "soporte": "Registro de disposición",
+   "valida": "Mateo",
+   "norma": "Res. 316/2018, art. 13a"
+  },
+  {
+   "id": "R9",
+   "area": "Ambiental",
+   "p": "¿Tiene reporte de manejo de lodos de la trampa de grasas?",
+   "soporte": "Reporte del gestor",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "R10",
+   "area": "Ambiental",
+   "p": "¿Tiene caracterización de aguas residuales por laboratorio acreditado ante ONAC?",
+   "soporte": "Informe de laboratorio",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "R11",
+   "area": "Ambiental",
+   "p": "¿Tiene permiso o registro de vertimiento vigente?",
+   "soporte": "Acto administrativo vigente",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "R12",
+   "area": "SST",
+   "p": "¿Tiene plan de emergencia y brigada?",
+   "soporte": "Plan y soporte de brigada",
+   "valida": "Ricardo, Andrés",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "R13",
+   "area": "SST",
+   "p": "¿Tiene matriz de peligros del personal?",
+   "soporte": "Matriz vigente",
+   "valida": "Ricardo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "R14",
+   "area": "GRD",
+   "p": "¿Tiene rutas de evacuación y extintores señalizados?",
+   "soporte": "Registro de extintores y plano",
+   "valida": "Andrés",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "R15",
+   "area": "Legal",
+   "p": "¿Tiene contrato con los proveedores de gestión de residuos?",
+   "soporte": "Contrato firmado",
+   "valida": "Sofía",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "B1",
+   "area": "Sanitario",
+   "p": "¿Tiene plan de limpieza y desinfección documentado?",
+   "soporte": "Plan y registros",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "B2",
+   "area": "Sanitario",
+   "p": "¿Tiene control de plagas con empresa autorizada?",
+   "soporte": "Contrato y certificado",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "B3",
+   "area": "Sanitario",
+   "p": "¿Tiene análisis de calidad del agua de uso?",
+   "soporte": "Informe de laboratorio acreditado ante ONAC",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "B4",
+   "area": "SST",
+   "p": "¿Su personal manipulador ha recibido capacitación en inocuidad?",
+   "soporte": "Registro de capacitación",
+   "valida": "Ricardo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "B5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de servicios de limpieza y plagas?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar"
+  }
+ ],
+ "hoteles": [
+  {
+   "id": "H1",
+   "area": "Ambiental",
+   "p": "¿Tiene sistema de tratamiento de aguas residuales?",
+   "soporte": "Diseño y operación",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "H2",
+   "area": "Ambiental",
+   "p": "¿Separa residuos sólidos en la fuente?",
+   "soporte": "Registro de separación",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "H3",
+   "area": "Ambiental",
+   "p": "¿Tiene caracterización de vertimientos por laboratorio acreditado ante ONAC?",
+   "soporte": "Informe",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "H4",
+   "area": "SST",
+   "p": "¿Tiene programa de seguridad para personal y huéspedes?",
+   "soporte": "Programa vigente",
+   "valida": "Ricardo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "H5",
+   "area": "GRD",
+   "p": "¿Tiene plan de emergencia con simulacros?",
+   "soporte": "Plan y acta de simulacro",
+   "valida": "Andrés",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "H6",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de servicios de residuos o mantenimiento?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "B1",
+   "area": "Sanitario",
+   "p": "¿Tiene plan de limpieza y desinfección documentado?",
+   "soporte": "Plan y registros",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "B2",
+   "area": "Sanitario",
+   "p": "¿Tiene control de plagas con empresa autorizada?",
+   "soporte": "Contrato y certificado",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "B3",
+   "area": "Sanitario",
+   "p": "¿Tiene análisis de calidad del agua de uso?",
+   "soporte": "Informe de laboratorio acreditado ante ONAC",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "B4",
+   "area": "SST",
+   "p": "¿Su personal manipulador ha recibido capacitación en inocuidad?",
+   "soporte": "Registro de capacitación",
+   "valida": "Ricardo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "B5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de servicios de limpieza y plagas?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar"
+  }
+ ],
+ "comercio": [
+  {
+   "id": "C1",
+   "area": "Ambiental",
+   "p": "¿Separa residuos aprovechables y peligrosos?",
+   "soporte": "Registro de separación",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "C2",
+   "area": "Ambiental",
+   "p": "¿Tiene gestor para pilas, bombillas y residuos peligrosos?",
+   "soporte": "Contrato y certificados",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "C3",
+   "area": "SST",
+   "p": "¿Tiene plan de evacuación para el público?",
+   "soporte": "Plan y señalización",
+   "valida": "Andrés",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "C4",
+   "area": "GRD",
+   "p": "¿Tiene plan de emergencia y simulacros?",
+   "soporte": "Plan y acta",
+   "valida": "Andrés",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "C5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de residuos?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar"
+  }
+ ],
+ "clinica": [
+  {
+   "id": "L1",
+   "area": "Ambiental",
+   "p": "¿Tiene gestor autorizado para residuos hospitalarios?",
+   "soporte": "Contrato y certificados",
+   "valida": "Mateo",
+   "norma": "Por verificar (PGIRH)"
+  },
+  {
+   "id": "L2",
+   "area": "Ambiental",
+   "p": "¿Tiene plan de gestión integral de residuos hospitalarios?",
+   "soporte": "Plan vigente",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "L3",
+   "area": "SST",
+   "p": "¿Tiene matriz de riesgo biológico y esquema de vacunación?",
+   "soporte": "Matriz y registros",
+   "valida": "Ricardo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "L4",
+   "area": "GRD",
+   "p": "¿Tiene plan de emergencia y evacuación?",
+   "soporte": "Plan y simulacro",
+   "valida": "Andrés",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "L5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con gestores de residuos?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar"
+  }
+ ],
+ "estacion": [
+  {
+   "id": "E1",
+   "area": "Ambiental",
+   "p": "¿Tiene control de derrames y revisión de tanques?",
+   "soporte": "Registro de inspección",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "E2",
+   "area": "Ambiental",
+   "p": "¿Tiene plan de manejo de suelos y aguas?",
+   "soporte": "Plan vigente",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "E3",
+   "area": "SST",
+   "p": "¿Tiene plan de atención de emergencias por fuga o incendio?",
+   "soporte": "Plan y simulacro",
+   "valida": "Ricardo, Andrés",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "E4",
+   "area": "GRD",
+   "p": "¿Tiene evaluación de riesgo tecnológico?",
+   "soporte": "Análisis vigente",
+   "valida": "Andrés",
+   "norma": "Por verificar (PGRDEPP si aplica)"
+  },
+  {
+   "id": "E5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de mantenimiento de tanques?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar"
+  }
+ ],
+ "industria": [
+  {
+   "id": "I1",
+   "area": "Ambiental",
+   "p": "¿Genera residuos peligrosos (aceites, solventes, baterías)?",
+   "soporte": "Gestor y registro",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "I2",
+   "area": "Ambiental",
+   "p": "¿Tiene permiso de vertimiento o de emisiones vigente?",
+   "soporte": "Acto administrativo",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "I3",
+   "area": "SST",
+   "p": "¿Tiene matriz de riesgos y permisos de trabajo en altura o caliente?",
+   "soporte": "Matriz y permisos",
+   "valida": "Ricardo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "I4",
+   "area": "GRD",
+   "p": "¿Almacena sustancias químicas o combustibles?",
+   "soporte": "Inventario y medidas",
+   "valida": "Andrés",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "I5",
+   "area": "Legal",
+   "p": "¿Tiene contratistas con obligaciones SST?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar"
+  }
+ ],
+ "construccion": [
+  {
+   "id": "O1",
+   "area": "Ambiental",
+   "p": "¿Tiene plan de manejo ambiental de la obra?",
+   "soporte": "Plan aprobado",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "O2",
+   "area": "Ambiental",
+   "p": "¿Tiene plan de manejo de tránsito si afecta vías?",
+   "soporte": "Plan aprobado",
+   "valida": "Mateo, Sofía",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "O3",
+   "area": "SST",
+   "p": "¿Tiene SG-SST para obra y contratistas?",
+   "soporte": "Programa vigente",
+   "valida": "Ricardo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "O4",
+   "area": "GRD",
+   "p": "¿Tiene plan de emergencia de obra?",
+   "soporte": "Plan y simulacro",
+   "valida": "Andrés",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "O5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con subcontratistas con obligaciones ambientales y SST?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "F1",
+   "area": "Ambiental",
+   "p": "¿Requiere o tiene permiso para aprovechar árboles en su predio?",
+   "soporte": "Acto administrativo vigente",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "F2",
+   "area": "Ambiental",
+   "p": "¿Tiene inventario forestal del predio?",
+   "soporte": "Inventario firmado",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "F3",
+   "area": "Ambiental",
+   "p": "¿Tiene plan de compensación o restauración cuando aplica?",
+   "soporte": "Plan aprobado",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "F4",
+   "area": "Ambiental",
+   "p": "¿Identificó especies protegidas en el área del proyecto?",
+   "soporte": "Estudio de biodiversidad",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "F5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de tala o compensación?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar"
+  }
+ ],
+ "eventos": [
+  {
+   "id": "V1",
+   "area": "GRD",
+   "p": "¿Tiene plan de emergencia y contingencia para el evento?",
+   "soporte": "Plan aprobado",
+   "valida": "Andrés",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "V2",
+   "area": "GRD",
+   "p": "¿Tiene puntos de atención médica y rutas de evacuación?",
+   "soporte": "Plano y contrato",
+   "valida": "Andrés",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "V3",
+   "area": "SST",
+   "p": "¿Tiene personal de seguridad y brigada?",
+   "soporte": "Listado y capacitación",
+   "valida": "Ricardo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "V4",
+   "area": "Ambiental",
+   "p": "¿Tiene plan de manejo de residuos del evento?",
+   "soporte": "Plan y gestor",
+   "valida": "Mateo",
+   "norma": "Por verificar"
+  },
+  {
+   "id": "V5",
+   "area": "Legal",
+   "p": "¿Tiene contratos con proveedores de seguridad y ambulancia?",
+   "soporte": "Contratos",
+   "valida": "Sofía",
+   "norma": "Por verificar"
+  }
+ ]
+}

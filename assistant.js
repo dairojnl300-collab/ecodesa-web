@@ -233,10 +233,12 @@
         if (s.txt) { say(s.txt); say({ h: "Te acompañamos con:", items: s.hac, f: s.f }); opts([{ t: "Hablar con un asesor", id: s.id, href: link(s.wa) }, { t: "Ver otro sector", fn: function () { menu(false); } }]); return; }
         say("Perfecto. ¿Qué te gustaría saber sobre " + s.u + "?");
         opts([
-          { t: "La normativa que aplica a mi negocio", fn: function () { pick("La normativa que aplica a mi negocio"); track("asistente_norma_" + s.id); norma(s); } },
-          { t: "Cómo me ayuda ECODESA", fn: function () { pick("Cómo me ayuda ECODESA"); ayuda(s, {}); } },
-          { t: "Conocer nuestros nuevos servicios", fn: function () { pick("Conocer nuestros nuevos servicios"); nuevos(s); } },
-          { t: "Hablar con un asesor", id: s.id, href: link(s.wa) }
+          { t: "¿Quieres conocer la normativa que aplica a tu negocio?", fn: function () { pick("Conocer la normativa que aplica"); track("asistente_norma_" + s.id); norma(s); } },
+          { t: "¿Quieres realizar un diagnóstico inicial?", fn: function () { pick("Realizar un diagnóstico inicial"); track("asistente_diag_" + s.id); diagnostico(s); } },
+          { t: "¿Cómo te ayuda ECODESA en tu negocio?", fn: function () { pick("Cómo te ayuda ECODESA"); ayuda(s, {}); } },
+          { t: "¿Conoces nuestros nuevos servicios?", fn: function () { pick("Nuevos servicios"); nuevos(s); } },
+          { t: "Hablar con un asesor", id: s.id, href: link(s.wa) },
+          { t: "Volver al menú principal", fn: function () { menu(false); } }
         ]);
       });
     }
@@ -250,6 +252,44 @@
         { t: "Ver la normativa", fn: function () { pick("Ver la normativa"); norma(s); } },
         { t: "Ver otro sector", fn: function () { pick("Ver otro sector"); menu(false); } }
       ]);
+    }
+    var CHECK = null;
+    function cargarChecklist(cb) {
+      if (CHECK) return cb(CHECK);
+      fetch("/ethan/checklist.json", { cache: "no-cache" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) { CHECK = d; cb(d); })
+        .catch(function () { cb(null); });
+    }
+    function diagnostico(s) {
+      cargarChecklist(function (d) {
+        var items = d && d[s.id];
+        if (!items || !items.length) {
+          say("Estamos preparando el diagnóstico de tu sector. Un Profesional de ECODESA te acompaña por WhatsApp.");
+          opts([{ t: "Hablar con un asesor", id: s.id, href: link(s.wa) }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
+          return;
+        }
+        say("Responde sí o no. Son " + items.length + " preguntas sobre " + s.u + ".");
+        var yes = 0;
+        function fin() {
+          var pct = Math.round(yes / items.length * 100);
+          var nivel = pct >= 80 ? "Cumplimiento declarado alto" : pct >= 50 ? "Cumplimiento declarado parcial" : "Cumplimiento declarado bajo";
+          say("Resultado: " + pct + " %. " + nivel + ". Es una estimación según tus respuestas; un Profesional la valida.");
+          opts([
+            { t: "Validar mi cumplimiento con un profesional", id: s.id, href: link("Hola ECODESA, hice el diagnóstico inicial de " + s.u + " con " + pct + " % declarado. Quiero validarlo.") },
+            { t: "Volver al menú principal", fn: function () { menu(false); } }
+          ]);
+        }
+        function ask(i) {
+          if (i >= items.length) return fin();
+          say(items[i].p);
+          opts([
+            { t: "Sí", fn: function () { pick("Sí"); yes += 1; ask(i + 1); } },
+            { t: "No", fn: function () { pick("No"); ask(i + 1); } }
+          ]);
+        }
+        ask(0);
+      });
     }
     function norma(s) {
       var c = {};
