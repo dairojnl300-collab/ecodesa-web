@@ -134,7 +134,7 @@
   },
   {
    "id": "R12",
-   "area": "SST",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene plan de emergencia y brigada?",
    "soporte": "Plan y soporte de brigada",
    "valida": "Ricardo, Andrés",
@@ -146,7 +146,7 @@
   },
   {
    "id": "R13",
-   "area": "SST",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene matriz de peligros del personal?",
    "soporte": "Matriz vigente",
    "valida": "Ricardo",
@@ -158,7 +158,7 @@
   },
   {
    "id": "R14",
-   "area": "GRD",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene rutas de evacuación y extintores señalizados?",
    "soporte": "Registro de extintores y plano",
    "valida": "Andrés",
@@ -206,10 +206,22 @@
   },
   {
    "id": "B4",
-   "area": "SST",
+   "area": "SST y gestión del riesgo",
    "p": "¿Su personal manipulador ha recibido capacitación en inocuidad?",
    "soporte": "Registro de capacitación",
    "valida": "Ricardo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
+   "id": "BOM1",
+   "area": "SST y gestión del riesgo",
+   "p": "¿Su personal ha recibido capacitaciones dictadas por el Cuerpo de Bomberos?",
+   "soporte": "Certificados de asistencia del Cuerpo de Bomberos",
+   "valida": "Andrés",
    "norma": "Por verificar",
    "revision": {
     "estado": "sin_fuente",
@@ -230,7 +242,7 @@
   },
   {
    "id": "NSR1",
-   "area": "Gestión del riesgo",
+   "area": "SST y gestión del riesgo",
    "p": "¿El inmueble tiene acceso para vehículos de bomberos por su fachada?",
    "soporte": "Plano y registro fotográfico",
    "valida": "Andrés",
@@ -242,7 +254,7 @@
   },
   {
    "id": "NSR2",
-   "area": "Gestión del riesgo",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene hidrante a menos de 100 metros del acceso?",
    "soporte": "Plano de hidrantes",
    "valida": "Andrés",
@@ -254,7 +266,7 @@
   },
   {
    "id": "NSR3",
-   "area": "Gestión del riesgo",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene dispositivos para cortar gas y electricidad en un lugar accesible?",
    "soporte": "Foto y señalización",
    "valida": "Andrés, Ricardo",
@@ -266,7 +278,7 @@
   },
   {
    "id": "NSR4",
-   "area": "Gestión del riesgo",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene extintores portátiles en la cantidad y ubicación requeridas?",
    "soporte": "Registro de recarga y ubicación",
    "valida": "Andrés",
@@ -278,7 +290,7 @@
   },
   {
    "id": "NSR5",
-   "area": "Gestión del riesgo",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene tomas fijas para bomberos y mangueras de extinción?",
    "soporte": "Plano y prueba de presión",
    "valida": "Andrés",
@@ -290,7 +302,7 @@
   },
   {
    "id": "NSR6",
-   "area": "Gestión del riesgo",
+   "area": "SST y gestión del riesgo",
    "p": "¿Tiene sistema de detección temprana de incendios?",
    "soporte": "Certificado de instalación",
    "valida": "Andrés",
