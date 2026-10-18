@@ -109,6 +109,18 @@
    }
   },
   {
+   "id": "R16",
+   "area": "Ambiental",
+   "p": "¿Ha presentado el reporte de la cantidad de lodos generados según la vigencia publicada por la autoridad ambiental competente?",
+   "soporte": "Reporte radicado de generación de lodos",
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
    "id": "R10",
    "area": "Ambiental",
    "p": "¿Tiene caracterización de aguas residuales por laboratorio acreditado ante ONAC?",
