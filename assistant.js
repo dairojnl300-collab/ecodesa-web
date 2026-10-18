@@ -330,7 +330,7 @@
               { t: "Sí", fn: function () { pick("Sí"); aplica += 1; yes += 1; soporte(list[i], true, function () { ask(i + 1); }); } },
               { t: "No", fn: function () { pick("No"); aplica += 1; soporte(list[i], false, function () { ask(i + 1); }); } }
             ];
-            if (/vertim/i.test(list[i].p)) lista.push({ t: "No aplica", fn: function () { pick("No aplica"); ask(i + 1); } });
+            if (list[i].noAplica || /vertim/i.test(list[i].p)) lista.push({ t: "No aplica", fn: function () { pick("No aplica"); ask(i + 1); } });
             opts(lista);
           }
           ask(0);

@@ -121,6 +121,19 @@
    }
   },
   {
+   "id": "DESC1",
+   "area": "Ambiental",
+   "p": "¿Descarga aguas residuales al alcantarillado o a un cuerpo de agua?",
+   "soporte": "Permiso o registro de vertimiento vigente, o constancia de descarga a alcantarillado",
+   "noAplica": true,
+   "valida": "Mateo",
+   "norma": "Por verificar",
+   "revision": {
+    "estado": "sin_fuente",
+    "nota": "Sin texto de norma en la conversación; por verificar."
+   }
+  },
+  {
    "id": "R10",
    "area": "Ambiental",
    "p": "¿Tiene caracterización de aguas residuales por laboratorio acreditado ante ONAC?",
@@ -613,6 +626,18 @@
     "estado": "citado",
     "nota": "Citado en documento de referencia; texto no revisado."
    }
+  },
+  {
+   "id": "VER7",
+   "area": "Ambiental",
+   "p": "¿Realiza caracterizaciones periódicas de sus aguas residuales?",
+   "soporte": "Historial de informes",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (monitoreo periódico)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
   }
  ],
  "comercio": [
@@ -979,6 +1004,18 @@
    }
   },
   {
+   "id": "VER7",
+   "area": "Ambiental",
+   "p": "¿Realiza caracterizaciones periódicas de sus aguas residuales?",
+   "soporte": "Historial de informes",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (monitoreo periódico)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
    "id": "AVI1",
    "area": "Publicidad exterior",
    "p": "¿Tiene avisos, vallas o elementos publicitarios fuera de la fachada?",
@@ -1209,6 +1246,18 @@
    }
   },
   {
+   "id": "VER7",
+   "area": "Ambiental",
+   "p": "¿Realiza caracterizaciones periódicas de sus aguas residuales?",
+   "soporte": "Historial de informes",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (monitoreo periódico)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
    "id": "AVI1",
    "area": "Publicidad exterior",
    "p": "¿Tiene avisos, vallas o elementos publicitarios fuera de la fachada?",
@@ -1433,6 +1482,18 @@
    "soporte": "Declaración o registro",
    "valida": "Sofía",
    "norma": "Decreto 2667 de 2012 (tasa retributiva)",
+   "revision": {
+    "estado": "citado",
+    "nota": "Citado en documento de referencia; texto no revisado."
+   }
+  },
+  {
+   "id": "VER7",
+   "area": "Ambiental",
+   "p": "¿Realiza caracterizaciones periódicas de sus aguas residuales?",
+   "soporte": "Historial de informes",
+   "valida": "Mateo",
+   "norma": "Decreto 1076 de 2015 (monitoreo periódico)",
    "revision": {
     "estado": "citado",
     "nota": "Citado en documento de referencia; texto no revisado."
