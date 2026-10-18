@@ -62,7 +62,8 @@
         { id: "digital", u: "tu negocio", n: "Digital y marketing", req: [{"a": "Protección de datos", "items": ["Autorización previa e informada del titular, política de tratamiento de datos y atención de sus derechos (Ley 1581 de 2012)."]}, {"a": "Publicidad al consumidor", "items": PUB}], hac: ["Páginas web y apps a la medida", "Software y tableros Power BI para indicadores ambientales, SST y gestión del riesgo", "Automatización con IA", "Marketing digital y gestión de redes sociales", "SEO y posicionamiento web", "Campañas de pauta digital", "Avisos y política de tratamiento de datos", ISOH[0]], wa: "Hola ECODESA, quiero cotizar una página web / app / marketing digital." },
     { id: "iso", n: "Sistema de gestión integral (ISO)", txt: "Cualquier empresa, de cualquier sector, puede implementar un sistema de gestión integral con ISO 9001 (calidad), ISO 14001 (ambiental) e ISO 45001 (seguridad y salud en el trabajo). Son normas voluntarias: sirven para demostrar cumplimiento y mejora continua.", hac: ISOH, f: "La certificación la otorga un organismo certificador externo.", wa: "Hola ECODESA, me interesa un sistema de gestión integral ISO (9001, 14001 y 45001)." }
   ];
-  var link = function (t) { return "https://wa.me/" + WA + "?text=" + encodeURIComponent(t); };
+  function limpiarMsg(t) { return String(t).split("\n").map(function (l) { return l.replace(/\s+/g, " ").trim(); }).join("\n").replace(/\n{3,}/g, "\n\n").trim(); }
+  var link = function (t) { return "https://wa.me/" + WA + "?text=" + encodeURIComponent(limpiarMsg(t)); };
 
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt) e.textContent = txt; return e; }
 
@@ -309,8 +310,12 @@
           ]);
         }
         function mensajeValidar(pct, pctPub) {
-          var t = "Hola ECODESA, hice el diagnóstico inicial de mi " + s.u.replace(/^tu /, "") + " con un " + (pct || 0) + " % de cumplimiento" + (pctPub !== undefined ? " y " + pctPub + " % en publicidad exterior" : "") + ". Quiero validarlo.";
-          if (RES.length) t += "\n\nRespuestas:\n" + RES.map(function (r, n) { return (n + 1) + ". " + r.p + " " + r.r; }).join("\n");
+          var sector = s.u.replace(/^tu /, "");
+          var t = "*Hola ECODESA*\n";
+          t += "Hice el diagnóstico inicial de mi " + sector + " con un *" + (pct || 0) + " % de cumplimiento*";
+          if (pctPub !== undefined) t += " y *" + pctPub + " % en publicidad exterior*";
+          t += ".\nQuiero validarlo.";
+          if (RES.length) t += "\n\n*Respuestas:*\n" + RES.map(function (r, n) { return (n + 1) + ". " + r.p + "\n   → " + r.r; }).join("\n");
           return t;
         }
         function cierreFinal(pct, pctPub) {
