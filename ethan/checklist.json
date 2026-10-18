@@ -220,8 +220,8 @@
   {
    "id": "B4",
    "area": "Sanitario",
-   "p": "¿Su personal manipulador ha recibido capacitación en inocuidad?",
-   "soporte": "Registro de capacitación",
+   "p": "¿Su personal manipulador tiene curso en inocuidad en alimentos?",
+   "soporte": "Certificado del curso en inocuidad",
    "valida": "Ricardo",
    "norma": "Por verificar",
    "revision": {
@@ -477,18 +477,6 @@
    "p": "¿Tiene control de plagas con empresa autorizada?",
    "soporte": "Contrato y certificado",
    "valida": "Mateo",
-   "norma": "Por verificar",
-   "revision": {
-    "estado": "sin_fuente",
-    "nota": "Sin texto de norma en la conversación; por verificar."
-   }
-  },
-  {
-   "id": "B4",
-   "area": "SST",
-   "p": "¿Su personal manipulador ha recibido capacitación en inocuidad?",
-   "soporte": "Registro de capacitación",
-   "valida": "Ricardo",
    "norma": "Por verificar",
    "revision": {
     "estado": "sin_fuente",
