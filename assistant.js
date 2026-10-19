@@ -388,6 +388,7 @@
             var pct = pctActual();
             var nivel = pct >= 80 ? "Cumplimiento declarado alto" : pct >= 50 ? "Cumplimiento declarado parcial" : "Cumplimiento declarado bajo";
             say("Resultado: " + pct + " %. " + nivel + ". Es una estimación según tus respuestas; un Profesional la valida.");
+            if (pct >= 80) q.push(function (done) { face("celebrar", 3000); done(); });
             siguiente(pct);
           }
           function progreso(i) {
@@ -490,7 +491,7 @@
     var started = false;
     var av = btn.querySelector(".as-av");
     var ANIM = "assets/v2/robot-anim-128.webp", ANIM_SET = "assets/v2/robot-anim-128.webp 1x, assets/v2/robot-anim-256.webp 2x";
-    var CARAS = ["look-l", "look-r", "wide", "happy", "wink", "sleep", "pensar", "pregunta", "terminado"];
+    var CARAS = ["look-l", "look-r", "wide", "happy", "wink", "sleep", "pensar", "pregunta", "terminado", "celebrar"];
     var faceT = null, sleeping = false, asked = false, sleepT = 0, askT = 0, wipeT = 0, rndT = 0;
     function setFace(n) { var u = "assets/v2/robot-" + n + ".webp"; av.srcset = ""; av.src = u; hav.src = u; }
     function restoreFace() { av.srcset = ANIM_SET; av.src = ANIM; hav.removeAttribute("srcset"); hav.src = ANIM; av.classList.remove("lean"); }
