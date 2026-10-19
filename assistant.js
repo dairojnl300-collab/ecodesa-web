@@ -134,7 +134,7 @@
         var w = el("div", "as-opts");
         list.forEach(function (o) {
           var e = o.href ? el("a", "as-o as-wa", o.t) : el("button", "as-o", o.t);
-          if (o.href) { e.href = o.href; e.target = "_blank"; e.rel = "noopener"; e.addEventListener("click", function () { track("asistente_asesor_" + (o.id || "")); face("happy", 3500); }); }
+          if (o.href) { e.href = o.href; e.target = "_blank"; e.rel = "noopener"; e.addEventListener("click", function () { track("asistente_asesor_" + (o.id || "")); face("happy", 3500); motion("subida", 900); }); }
           else { e.type = "button"; e.addEventListener("click", function () { w.remove(); o.fn(); }); }
           w.appendChild(e);
         });
@@ -381,14 +381,16 @@
           ]);
         }
         function preguntar(list, siguiente) {
+          q.push(function (done) { motion("trabajando", 0); done(); });
           say("Responde sí, no o no sé. Son " + list.length + " preguntas sobre " + s.u + ".");
           var yes = 0, aplica = 0;
           function pctActual() { return aplica ? Math.round(yes / aplica * 100) : 0; }
           function fin() {
+            stopMotion();
             var pct = pctActual();
             var nivel = pct >= 80 ? "Cumplimiento declarado alto" : pct >= 50 ? "Cumplimiento declarado parcial" : "Cumplimiento declarado bajo";
             say("Resultado: " + pct + " %. " + nivel + ". Es una estimación según tus respuestas; un Profesional la valida.");
-            if (pct >= 80) q.push(function (done) { face("celebrar", 3000); done(); });
+            if (pct >= 80) q.push(function (done) { face("celebrar", 3000); motion("baile", 1400); done(); });
             siguiente(pct);
           }
           function progreso(i) {
@@ -501,6 +503,13 @@
       if (!reduce) { hav.classList.remove("pop"); void hav.offsetWidth; hav.classList.add("pop"); }
       faceT = setTimeout(function () { if (!sleeping) restoreFace(); }, ms || 1800);
     }
+    function motion(n, ms) {
+      if (reduce) return;
+      var c = "mv-" + n;
+      [av, hav].forEach(function (e) { e.classList.remove("mv-subida", "mv-baile", "mv-mareado", "mv-trabajando"); void e.offsetWidth; e.classList.add(c); });
+      setTimeout(function () { if (n !== "trabajando") [av, hav].forEach(function (e) { e.classList.remove(c); }); }, ms);
+    }
+    function stopMotion() { [av, hav].forEach(function (e) { e.classList.remove("mv-subida", "mv-baile", "mv-mareado", "mv-trabajando"); }); }
     function snooze(on) {
       sleeping = on; clearTimeout(faceT);
       btn.classList.toggle("sleep", on); head.classList.toggle("sleep", on);
@@ -514,7 +523,7 @@
       var t = ["happy", "wink", "wide", "look-r", "happy"]; var now = Date.now();
       tapTs = tapTs.filter(function (x) { return now - x < 1200; }); tapTs.push(now);
       sleeping && snooze(false);
-      if (tapTs.length >= 3) { tapTs = []; face("wide", 1800, !reduce); return; }
+      if (tapTs.length >= 3) { tapTs = []; face("wide", 1800, !reduce); motion("mareado", 1600); return; }
       face(t[tapN++ % t.length], 1800);
     });
     hav.addEventListener("mouseenter", function () {
