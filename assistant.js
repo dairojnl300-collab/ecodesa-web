@@ -509,7 +509,18 @@
     setTimeout(function () { CARAS.forEach(function (n) { var i = new Image(); i.src = "assets/v2/robot-" + n + ".webp"; }); }, 2500);
     var lk = 0; function lookNext() { lk = 1 - lk; return lk ? "look-l" : "look-r"; }
     var tapN = 0; hav.style.cursor = "pointer";
-    hav.addEventListener("click", function () { var t = ["happy", "wink", "wide", "look-r", "happy"]; sleeping && snooze(false); face(t[tapN++ % t.length], 1800); });
+    var tapTs = [], hoverT = 0;
+    hav.addEventListener("click", function () {
+      var t = ["happy", "wink", "wide", "look-r", "happy"]; var now = Date.now();
+      tapTs = tapTs.filter(function (x) { return now - x < 1200; }); tapTs.push(now);
+      sleeping && snooze(false);
+      if (tapTs.length >= 3) { tapTs = []; face("wide", 1800, !reduce); return; }
+      face(t[tapN++ % t.length], 1800);
+    });
+    hav.addEventListener("mouseenter", function () {
+      if (reduce || sleeping || Date.now() - hoverT < 4000) return;
+      hoverT = Date.now(); face(lookNext(), 1200);
+    });
     function randomFace() {
       rndT = setTimeout(function () {
         if (!document.hidden && !sleeping && !reduce) {
