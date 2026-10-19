@@ -373,6 +373,7 @@
           return t;
         }
         function cierreFinal(pct, pctPub) {
+          q.push(function (done) { face("terminado", 3000); done(); });
           if (pctPub !== undefined) say("Publicidad exterior: " + pctPub + " %.");
           opts([
             { t: "Validar mi cumplimiento con un profesional", id: s.id, href: link(mensajeValidar(pct, pctPub)) },
@@ -410,6 +411,7 @@
             if (i >= list.length) return fin();
             var it = list[i];
             say(it.p);
+            q.push(function (done) { face("pregunta", 2600); done(); });
             var noLabel = "No";
             var lista = [
               { t: "Sí", fn: function () { pick("Sí"); aplica += 1; yes += 1; RES.push({ p: it.p, r: "Sí" }); soporte(it, true, function () { progreso(i); }); } },
@@ -488,7 +490,7 @@
     var started = false;
     var av = btn.querySelector(".as-av");
     var ANIM = "assets/v2/robot-anim-128.webp", ANIM_SET = "assets/v2/robot-anim-128.webp 1x, assets/v2/robot-anim-256.webp 2x";
-    var CARAS = ["look-l", "look-r", "wide", "happy", "wink", "sleep", "pensar"];
+    var CARAS = ["look-l", "look-r", "wide", "happy", "wink", "sleep", "pensar", "pregunta", "terminado"];
     var faceT = null, sleeping = false, asked = false, sleepT = 0, askT = 0, wipeT = 0, rndT = 0;
     function setFace(n) { var u = "assets/v2/robot-" + n + ".webp"; av.srcset = ""; av.src = u; hav.src = u; }
     function restoreFace() { av.srcset = ANIM_SET; av.src = ANIM; hav.removeAttribute("srcset"); hav.src = ANIM; av.classList.remove("lean"); }
