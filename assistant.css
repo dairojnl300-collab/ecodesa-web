@@ -163,3 +163,7 @@ body.as-flying .as-hi{display:none!important}
   .as-av{position:relative;bottom:auto;top:-14px}
   .as-panel{bottom:calc(158px + env(safe-area-inset-bottom,0px));max-height:calc(100vh - 230px)}
 }
+/* bocadillos y panel por encima de Ethan, sin taparle la cara */
+.as-hi{bottom:204px}
+.as-panel{bottom:196px;max-height:min(560px,calc(100vh - 224px))}
+@media (max-width:760px){.as-hi{bottom:calc(226px + env(safe-area-inset-bottom,0px))}}
