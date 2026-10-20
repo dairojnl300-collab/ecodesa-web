@@ -195,7 +195,9 @@
       });
     }
 
+    var modo = "";
     function menu(first) {
+      modo = "";
       var ayudaAsesor = false;
       if (!first) { vueltas += 1; ayudaAsesor = vueltas >= 2; }
       if (first) { say("Hola, soy Ethan, el asistente de ECODESA, firma fundada en Cartagena de Indias. Te ayudamos a cumplir la normativa a nivel nacional y a crecer con servicios digitales y marketing digital."); }
@@ -243,6 +245,7 @@
       else say("¿Qué tipo de negocio tienes?");
       var l = S.filter(function (s) { return s.id !== "digital" && s.id !== "iso"; }).map(function (s) { return { t: s.n, fn: function () { pick(s.n); track("asistente_" + s.id); show(s); } }; });
       if (ayudaAsesor) l.unshift({ t: "Hablar con un asesor", id: "menu", href: link("Hola ECODESA, tengo una consulta.") });
+      l.push({ t: "Agendar asesoría", fn: function () { pick("Agendar asesoría"); agendaFlow(); } });
       l.push({ t: "Otra consulta", fn: function () { pick("Otra consulta"); step(function () { say("Eso lo revisa un Profesional de nuestro equipo. Cuéntanos por WhatsApp."); opts([{ t: "Hablar con un asesor", id: "otra", href: link("Hola ECODESA, tengo una consulta.") }, { t: "Volver al menú", fn: function () { menu(false); } }]); }); } });
       opts(l);
     }
@@ -311,6 +314,7 @@
       next();
     }
     function diagnostico(s) {
+      modo = "diag";
       cargarChecklist(function (d) {
         var todos = d && d[s.id];
         if (!todos || !todos.length) {
@@ -387,6 +391,7 @@
           var yes = 0, aplica = 0;
           function pctActual() { return aplica ? Math.round(yes / aplica * 100) : 0; }
           function fin() {
+            modo = "";
             stopMotion();
             var pct = pctActual();
             var nivel = pct >= 80 ? "Cumplimiento declarado alto" : pct >= 50 ? "Cumplimiento declarado parcial" : "Cumplimiento declarado bajo";
@@ -563,7 +568,7 @@
     }
     function answered() { asked = false; clearTimeout(wipeT); bump(); }
     function wipe() {
-      stopTimers(); asked = false; q = []; busy = false; body.textContent = ""; started = false; snooze(false);
+      stopTimers(); asked = false; q = []; busy = false; body.textContent = ""; started = false; modo = ""; snooze(false);
       shut(true);
     }
     ["pointerdown", "keydown", "touchstart", "wheel"].forEach(function (ev) { panel.addEventListener(ev, bump, { passive: true }); });
@@ -576,10 +581,11 @@
     }
     function fechaTxt(d) { return d.toLocaleDateString("es-CO", { weekday: "long", day: "numeric", month: "long" }); }
     function agendaFlow() {
-      track("asistente_agendar");
+      track("asistente_agendar"); modo = "agenda";
       var DATA = { tema: "", ciudad: "", fecha: "", franja: "" };
       function resumen() {
         var msg = "Hola ECODESA, quiero agendar una asesoría virtual.\nTema: " + DATA.tema + "\nCiudad: " + DATA.ciudad + "\nFecha preferida: " + DATA.fecha + "\nFranja: " + DATA.franja;
+        modo = "agenda-fin";
         say("Listo. Un Profesional de ECODESA confirma la fecha y la hora exacta por WhatsApp.");
         opts([{ t: "Enviar por WhatsApp", id: "agendar", href: link(msg) }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
       }
@@ -672,8 +678,15 @@
         }, 380);
       }, 5400);
     }
+    function agendaReanudar() {
+      if (modo === "diag") {
+        say("Tienes un diagnóstico en curso. ¿Lo pausamos para agendar, o seguimos?");
+        opts([{ t: "Pausar y agendar", fn: function () { pick("Pausar y agendar"); agendaFlow(); } }, { t: "Seguir con el diagnóstico", fn: function () { pick("Seguir con el diagnóstico"); say("Perfecto. Responde la pregunta anterior y seguimos."); } }]);
+      } else if (modo === "agenda") say("Seguimos con tu agenda donde ibas.");
+      else agendaFlow();
+    }
     function agendar() {
-      if (!panel.hidden) { wipe(); abrirAgenda(); return; }
+      if (!panel.hidden) { agendaReanudar(); return; }
       if (reduce || flying || typeof Element.prototype.animate !== "function") { abrirAgenda(); return; }
       var tg = document.querySelector("[data-agendar]"); flying = true;
       document.body.classList.add("as-flying");
@@ -690,6 +703,8 @@
     function open() {
       hideHi(); panel.hidden = false; btn.setAttribute("aria-expanded", "true"); btn.classList.add("on");
       if (!started) { started = true; if (pendingAgenda) { pendingAgenda = false; agendaFlow(); } else menu(true); track("asistente_abierto"); face("happy", 2400); }
+      else if (pendingAgenda) { pendingAgenda = false; agendaReanudar(); }
+      else if (modo === "agenda-fin") { modo = ""; say("¿Algo más en lo que te ayude?"); menu(false); }
       bump(); close.focus();
     }
     function shut(nofocus) {
