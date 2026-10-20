@@ -694,7 +694,42 @@
     function shut(nofocus) {
       panel.hidden = true; btn.setAttribute("aria-expanded", "false"); btn.classList.remove("on"); stopTimers(); if (!asked) snooze(false); if (nofocus !== true) btn.focus();
     }
-    btn.addEventListener("click", function () { panel.hidden ? open() : shut(); });
+    function entrada() {
+      var av = btn.querySelector(".as-av"), a = av.getBoundingClientRect(), S = 56, hcx = a.left + S / 2, hcy = a.top + S / 2;
+      var hvv = document.querySelector(".as-hav"); flying = true; document.body.classList.add("as-flying");
+      var c = document.createElement("img"); c.className = "as-fly"; c.src = "assets/v2/robot-happy.webp"; c.alt = ""; c.setAttribute("aria-hidden", "true");
+      c.style.cssText = "left:" + a.left + "px;top:" + a.top + "px;width:" + S + "px;height:" + S + "px";
+      document.body.appendChild(c); av.style.visibility = "hidden"; if (hvv) hvv.style.visibility = "hidden";
+      var ET = function (t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }, kf = [], i, s, u;
+      for (i = 0; i <= 40; i++) { s = 1.1 * i / 40; var y = 0, r = 0, sx = 1, sy = 1;
+        if (s < .2) { u = s / .2; sy = 1 - .14 * u; sx = 1 + .1 * u; } else { u = (s - .2) / .9; r = 360 * ET(u); y = -40 * Math.sin(Math.PI * u); sy = 1 + .08 * Math.sin(Math.PI * u); sx = 1 - .05 * Math.sin(Math.PI * u); }
+        kf.push({ transform: "translate(0," + y + "px) rotate(" + r + "deg) scale(" + sx + "," + sy + ")", offset: i / 40 }); }
+      c.animate(kf, { duration: 1100, easing: "linear", fill: "forwards" });
+      var n = 0, T0 = performance.now(), raf;
+      function fx() { var e = (performance.now() - T0) / 1000; if (e > 1.3) return;
+        if (e > .25 && e > n * .055 + .25) { n++; var r = c.getBoundingClientRect(), p = document.createElement("i"); p.className = "as-puff"; p.style.left = (r.left + r.width / 2) + "px"; p.style.top = (r.top + r.height * .8) + "px"; document.body.appendChild(p); setTimeout(function () { p.remove(); }, 1000); }
+        raf = requestAnimationFrame(fx); }
+      raf = requestAnimationFrame(fx);
+      for (var j = 0; j < 7; j++) (function (j) { var sp = document.createElement("b"); sp.className = "as-spk"; sp.textContent = "\u2726"; var ang = -Math.PI / 2 + (j - 3) * .5, d = 44 + (j % 2) * 18;
+        sp.style.cssText = "left:" + hcx + "px;top:" + (hcy - 20) + "px;--dx:" + (Math.cos(ang) * d) + "px;--dy:" + (Math.sin(ang) * d - 10) + "px;animation-delay:" + (.1 + j * .07) + "s"; document.body.appendChild(sp); setTimeout(function () { sp.remove(); }, 1700); })(j);
+      function done() { cancelAnimationFrame(raf); c.remove(); av.style.visibility = ""; if (hvv) hvv.style.visibility = ""; flying = false; document.body.classList.remove("as-flying"); }
+      setTimeout(function () {
+        open();
+        setTimeout(function () {
+          var h = document.querySelector(".as-hav"), r = h ? h.getBoundingClientRect() : null, cr = c.getBoundingClientRect();
+          if (!r || !r.width) { done(); return; }
+          var dx = (r.left + r.width / 2) - (cr.left + cr.width / 2), dy = (r.top + r.height / 2) - (cr.top + cr.height / 2), k = r.width / cr.width;
+          c.getAnimations().forEach(function (x) { x.cancel(); });
+          c.style.transform = "none"; c.style.left = cr.left + "px"; c.style.top = cr.top + "px"; c.style.width = cr.width + "px"; c.style.height = cr.height + "px";
+          c.animate([{ transform: "translate(0,0) scale(1)" }, { transform: "translate(" + dx + "px," + dy + "px) scale(" + k + ")" }], { duration: 650, easing: "cubic-bezier(.5,0,.2,1)", fill: "forwards" }).onfinish = done;
+        }, 120);
+      }, 1150);
+    }
+    btn.addEventListener("click", function () {
+      if (!panel.hidden) { shut(); return; }
+      if (reduce || flying || pendingAgenda || typeof Element.prototype.animate !== "function") { open(); return; }
+      entrada();
+    });
     close.addEventListener("click", function () { shut(); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) shut(); });
   }
