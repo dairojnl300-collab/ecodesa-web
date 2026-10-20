@@ -134,3 +134,13 @@
 .as-av.mv-mareado,.as-hav.mv-mareado{animation:mvMareado 1.6s ease-in-out 1;transform-origin:50% 100%}
 .as-av.mv-trabajando,.as-hav.mv-trabajando{animation:mvTrabajando 1.2s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.as-av.mv-subida,.as-hav.mv-subida,.as-av.mv-baile,.as-hav.mv-baile,.as-av.mv-mareado,.as-hav.mv-mareado,.as-av.mv-trabajando,.as-hav.mv-trabajando{animation:none}}
+
+.as-fly{position:fixed;z-index:70;pointer-events:none;object-fit:contain;transform-origin:50% 50%;filter:drop-shadow(0 8px 10px rgba(0,0,0,.3));will-change:transform}
+.as-puff{position:fixed;z-index:69;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(255,255,255,.95),rgba(255,255,255,.55) 55%,rgba(255,255,255,0) 72%);animation:asPuff .95s ease-out forwards}
+@keyframes asPuff{from{opacity:.9;transform:scale(.4) translateY(0)}to{opacity:0;transform:scale(2.6) translateY(22px)}}
+.as-spk{position:fixed;z-index:71;pointer-events:none;color:#ffd24a;font-size:16px;text-shadow:0 0 6px rgba(255,210,74,.8);opacity:0;animation:asSpk .9s ease-out forwards}
+@keyframes asSpk{0%{opacity:0;transform:translate(0,0) scale(.3)}30%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.1) rotate(40deg)}}
+.as-flyb{position:fixed;z-index:70;pointer-events:none;padding:10px 14px;border-radius:16px 16px 16px 4px;background:var(--card,#fff);color:var(--ink,#10201a);border:1px solid var(--line,#d5e3d8);font-size:14px;line-height:1.35;box-shadow:0 10px 26px rgba(0,0,0,.22);animation:asPop .35s cubic-bezier(.3,1.5,.5,1)}
+@keyframes asPop{from{opacity:0;transform:scale(.6) translateX(-12px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.as-fly,.as-puff,.as-spk,.as-flyb{display:none}}
+body.as-flying .as-hi{display:none!important}
