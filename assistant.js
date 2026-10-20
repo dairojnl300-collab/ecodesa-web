@@ -567,9 +567,64 @@
     }
     ["pointerdown", "keydown", "touchstart", "wheel"].forEach(function (ev) { panel.addEventListener(ev, bump, { passive: true }); });
 
+    var pendingAgenda = false;
+    function diasHabiles(n) {
+      var out = [], d = new Date();
+      while (out.length < n) { d = new Date(d.getTime() + 86400000); var w = d.getDay(); if (w !== 0 && w !== 6) out.push(new Date(d.getTime())); }
+      return out;
+    }
+    function fechaTxt(d) { return d.toLocaleDateString("es-CO", { weekday: "long", day: "numeric", month: "long" }); }
+    function agendaFlow() {
+      track("asistente_agendar");
+      var DATA = { tema: "", ciudad: "", fecha: "", franja: "" };
+      function resumen() {
+        var msg = "Hola ECODESA, quiero agendar una asesoría virtual.\nTema: " + DATA.tema + "\nCiudad: " + DATA.ciudad + "\nFecha preferida: " + DATA.fecha + "\nFranja: " + DATA.franja;
+        say("Listo. Un Profesional de ECODESA confirma la fecha y la hora exacta por WhatsApp.");
+        opts([{ t: "Enviar por WhatsApp", id: "agendar", href: link(msg) }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
+      }
+      function franja() {
+        say("¿En qué franja te viene mejor?");
+        opts([
+          { t: "Mañana · 8:00 a 12:00", fn: function () { pick("Mañana · 8:00 a 12:00"); DATA.franja = "Mañana (8:00 a 12:00)"; resumen(); } },
+          { t: "Tarde · 14:00 a 17:00", fn: function () { pick("Tarde · 14:00 a 17:00"); DATA.franja = "Tarde (14:00 a 17:00)"; resumen(); } }
+        ]);
+      }
+      function fecha() {
+        say("¿Qué día te funciona? Solo días hábiles.");
+        var dias = diasHabiles(3);
+        opts(dias.map(function (d) {
+          var t = fechaTxt(d);
+          return { t: t.charAt(0).toUpperCase() + t.slice(1), fn: function () { pick(t); DATA.fecha = t; franja(); } };
+        }).concat([{ t: "Otra fecha", fn: function () { pick("Otra fecha"); DATA.fecha = "Otra fecha (por confirmar)"; franja(); } }]));
+      }
+      function ciudad() {
+        say("¿Desde qué ciudad nos escribes?");
+        opts([
+          { t: "Cartagena", fn: function () { pick("Cartagena"); DATA.ciudad = "Cartagena"; fecha(); } },
+          { t: "Barranquilla", fn: function () { pick("Barranquilla"); DATA.ciudad = "Barranquilla"; fecha(); } },
+          { t: "Bogotá", fn: function () { pick("Bogotá"); DATA.ciudad = "Bogotá"; fecha(); } },
+          { t: "Otra ciudad", fn: function () { pick("Otra ciudad"); DATA.ciudad = "Otra ciudad"; fecha(); } }
+        ]);
+      }
+      say("Te agendamos una asesoría virtual con un Profesional de ECODESA. Primero, ¿qué necesitas resolver?");
+      opts([
+        { t: "Ambiental", fn: function () { pick("Ambiental"); DATA.tema = "Ambiental"; ciudad(); } },
+        { t: "SST y gestión del riesgo", fn: function () { pick("SST y gestión del riesgo"); DATA.tema = "SST y gestión del riesgo"; ciudad(); } },
+        { t: "Legal", fn: function () { pick("Legal"); DATA.tema = "Legal"; ciudad(); } },
+        { t: "Sanitario", fn: function () { pick("Sanitario"); DATA.tema = "Sanitario"; ciudad(); } }
+      ]);
+    }
+    function agendar() {
+      if (!panel.hidden) wipe();
+      pendingAgenda = true;
+      btn.click();
+    }
+    window.ecodesaAgendar = agendar;
+    document.querySelectorAll("[data-agendar]").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); agendar(); }); });
+
     function open() {
       hideHi(); panel.hidden = false; btn.setAttribute("aria-expanded", "true"); btn.classList.add("on");
-      if (!started) { started = true; menu(true); track("asistente_abierto"); face("happy", 2400); }
+      if (!started) { started = true; if (pendingAgenda) { pendingAgenda = false; agendaFlow(); } else menu(true); track("asistente_abierto"); face("happy", 2400); }
       bump(); close.focus();
     }
     function shut(nofocus) {
