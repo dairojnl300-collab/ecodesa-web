@@ -140,8 +140,8 @@
 @keyframes asPuff{from{opacity:.9;transform:scale(.4) translateY(0)}to{opacity:0;transform:scale(2.6) translateY(22px)}}
 .as-spk{position:fixed;z-index:71;pointer-events:none;color:#ffd24a;font-size:16px;text-shadow:0 0 6px rgba(255,210,74,.8);opacity:0;animation:asSpk .9s ease-out forwards}
 @keyframes asSpk{0%{opacity:0;transform:translate(0,0) scale(.3)}30%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.1) rotate(40deg)}}
-.as-flyb{position:fixed;z-index:70;pointer-events:none;padding:10px 14px;border-radius:16px 16px 16px 4px;background:var(--card,#fff);color:var(--ink,#10201a);border:1px solid var(--line,#d5e3d8);font-size:14px;line-height:1.35;box-shadow:0 10px 26px rgba(0,0,0,.22);animation:asPop .35s cubic-bezier(.3,1.5,.5,1)}
-@keyframes asPop{from{opacity:0;transform:scale(.6) translateX(-12px)}to{opacity:1;transform:none}}
+.as-flyb{position:fixed;z-index:70;pointer-events:none;padding:10px 14px;border-radius:16px 16px 16px 4px;background:var(--card,#fff);color:var(--ink,#10201a);border:1px solid var(--line,#d5e3d8);font-size:14px;line-height:1.35;box-shadow:0 10px 26px rgba(0,0,0,.22);animation:asFlyPop .35s cubic-bezier(.3,1.5,.5,1)}
+@keyframes asFlyPop{from{opacity:0;transform:scale(.6) translateX(-12px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.as-fly,.as-puff,.as-spk,.as-flyb{display:none}}
 body.as-flying .as-hi{display:none!important}
 @media (max-width:760px){.as-btn,.as-btn.on{background:transparent!important;border:0!important;box-shadow:none!important;animation:none!important;backdrop-filter:none}.as-av{width:64px;height:64px}}
