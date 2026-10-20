@@ -156,3 +156,10 @@ body.as-flying .as-hi{display:none!important}
 @media (prefers-reduced-motion:reduce){.as-dock{animation:none}}
 @media print{.as-dock{display:none}}
 @media (max-width:760px){.as-btn{bottom:calc(98px + env(safe-area-inset-bottom,0px))}}
+/* espacio coherente: Ethan flota sobre la nave y ambos lejos de WhatsApp */
+.as-av{bottom:10px}
+@media (max-width:760px){
+  .as-btn{bottom:calc(119px + env(safe-area-inset-bottom,0px))}
+  .as-av{position:relative;bottom:auto;top:-14px}
+  .as-panel{bottom:calc(158px + env(safe-area-inset-bottom,0px));max-height:calc(100vh - 230px)}
+}
