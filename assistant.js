@@ -625,7 +625,7 @@
       var tx = Math.max(60, Math.min(t.left + 52, vw - 80)), ty = Math.max(70, t.top - 62);
       var c = document.createElement("img"); c.className = "as-fly"; c.src = "assets/v2/robot-happy.webp"; c.alt = ""; c.setAttribute("aria-hidden", "true");
       c.style.cssText = "left:" + hx + "px;top:" + hy + "px;width:" + S + "px;height:" + S + "px";
-      document.body.appendChild(c); av.style.visibility = "hidden";
+      document.body.appendChild(c); av.style.visibility = "hidden"; var hvv = document.querySelector(".as-hav"); if (hvv) hvv.style.visibility = "hidden";
       var P = [[hcx, hcy], [hcx + 8, hcy - 140], [tx - 120, ty + 130], [tx, ty]];
       function bez(u) { var m = 1 - u; return [m*m*m*P[0][0] + 3*m*m*u*P[1][0] + 3*m*u*u*P[2][0] + u*u*u*P[3][0], m*m*m*P[0][1] + 3*m*m*u*P[1][1] + 3*m*u*u*P[2][1] + u*u*u*P[3][1]]; }
       function st(s) {
@@ -658,7 +658,7 @@
       setTimeout(function () { c.src = "assets/v2/robot-look-r.webp"; }, 3800);
       setTimeout(function () { c.src = "assets/v2/robot-look-l.webp"; }, 4400);
       setTimeout(function () { c.src = "assets/v2/robot-happy.webp"; }, 5000);
-      function done() { cancelAnimationFrame(raf); c.remove(); av.style.visibility = ""; flying = false; document.body.classList.remove("as-flying"); }
+      function done() { cancelAnimationFrame(raf); c.remove(); av.style.visibility = ""; if (hvv) hvv.style.visibility = ""; flying = false; document.body.classList.remove("as-flying"); }
       setTimeout(function () {
         bb.remove(); abrirAgenda();
         setTimeout(function () {
