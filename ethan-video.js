@@ -3,7 +3,7 @@
   var root = document.documentElement, snd = document.getElementById("evSnd"),
     pp = document.getElementById("evPP"), sk = document.getElementById("evSk"),
     skf = document.getElementById("evSkf"), tm = document.getElementById("evTm"),
-    cta = document.getElementById("evCta"), DUR = 84.5, key = "", near = false, vis = false, started = false, userPaused = false, sent = false;
+    cta = document.getElementById("evCta"), DUR = 84.5, key = "", near = false, vis = false, started = false, userPaused = false, sent = false, userMuted = false, unlocked = false;
   function th() { return root.getAttribute("data-theme") === "dark" ? "d" : "l"; }
   function lay() { return window.innerWidth >= 760 ? "w" : "v"; }
   function fmt(s) { s = Math.max(0, Math.floor(s)); return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
@@ -31,7 +31,9 @@
   }
   function play() {
     if (!v.src) { near = true; apply(true); }
-    var p = v.play(); if (p && p.catch) p.catch(function () {});
+    v.muted = userMuted;
+    var p = v.play();
+    if (p && p.catch) p.catch(function () { if (v.muted) return; v.muted = true; var q = v.play(); if (q && q.catch) q.catch(function () {}); });
   }
   function toggle() {
     if (v.ended) { v.currentTime = 0; userPaused = false; play(); }
@@ -39,16 +41,29 @@
     else { userPaused = true; v.pause(); }
   }
   v.addEventListener("play", function () {
+    if (/unlock\.mp4/.test(v.currentSrc || v.src)) return;
     started = true;
     if (!sent) { sent = true; (window.dataLayer = window.dataLayer || []).push({ event: "induccion_play" }); }
   });
   ["timeupdate", "play", "pause", "ended", "loadedmetadata"].forEach(function (e) { v.addEventListener(e, ui); });
   v.addEventListener("click", toggle); pp.addEventListener("click", toggle);
+  function sndUi() { snd.setAttribute("aria-pressed", String(!v.muted)); snd.setAttribute("aria-label", v.muted ? "Activar sonido" : "Silenciar"); }
+  v.addEventListener("volumechange", sndUi);
   snd.addEventListener("click", function () {
-    v.muted = !v.muted; snd.setAttribute("aria-pressed", String(!v.muted));
-    snd.setAttribute("aria-label", v.muted ? "Activar sonido" : "Silenciar");
+    userMuted = !v.muted; v.muted = userMuted; sndUi();
     if (!v.muted && v.paused && !v.ended) { userPaused = false; play(); }
   });
+  // Primer toque en la página: desbloquea el sonido del video (iOS/Chrome exigen un gesto del usuario)
+  function unlock() {
+    if (unlocked) return; unlocked = true;
+    ["touchend", "click", "keydown"].forEach(function (e) { document.removeEventListener(e, unlock, true); });
+    if (v.src) { if (!v.paused && !userMuted) v.muted = false; return; }
+    v.src = "assets/v2/ev/unlock.mp4"; v.muted = false;
+    var back = function () { v.removeAttribute("src"); try { v.load(); } catch (e) {} key = ""; apply(true); };
+    var p; try { p = v.play(); } catch (e) { back(); return; }
+    if (p && p.then) p.then(function () { v.pause(); back(); }, back); else back();
+  }
+  ["touchend", "click", "keydown"].forEach(function (e) { document.addEventListener(e, unlock, true); });
   function seek(x) {
     var r = sk.getBoundingClientRect(), p = Math.min(1, Math.max(0, (x - r.left) / r.width));
     if (!v.src) { near = true; apply(true); }
