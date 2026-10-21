@@ -113,7 +113,7 @@ body.w #phone{left:735px!important}
 body.w #gshadow{left:720px!important;top:1000px!important;width:480px}
 body.w #side{width:1920px!important;height:1080px!important}
 body.w .msg{width:440px!important;font-size:27px!important;line-height:1.22!important}
-body.w .msg.e{left:240px!important}.msg.u{right:240px!important}
+body.w .msg.e{left:240px!important}body.w .msg.u{right:240px!important}
 body.w .typing{left:250px!important}
 body.w #ff{left:560px!important;right:560px!important;top:330px!important}
 body.w #wa{left:510px!important;width:900px!important;top:250px!important;font-size:26px!important}
@@ -313,7 +313,7 @@ function tick(ts){
   paint(); raf=requestAnimationFrame(tick);
 }
 function play(){
-  if(ended){ T=0; ended=false; }
+  if(ended||!document.body.classList.contains('started')){ T=0; ended=false; }
   document.body.classList.add('started');
   try{ au.currentTime=T; }catch(e){}
   const p=au.play(); if(p&&p.catch) p.catch(()=>{clock=true;});
