@@ -16,4 +16,13 @@
     else if (d.type === "evplay" && window.dataLayer) window.dataLayer.push({ event: "induccion_play" });
   });
   if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { en.forEach(function (x) { if (!x.isIntersecting) send({ type: "pause" }); }); }, { threshold: .15 }).observe(fr);
+  var pv = document.getElementById("paVid");
+  if (pv) {
+    var calm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!calm && "IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) { en.forEach(function (x) {
+        if (x.isIntersecting) { var p = pv.play(); if (p && p.catch) p.catch(function () {}); } else pv.pause();
+      }); }, { threshold: .2 }).observe(pv);
+    }
+  }
 })();

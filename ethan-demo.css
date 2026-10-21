@@ -1,2 +1,12 @@
 .evf{max-width:1180px;margin:0 auto;position:relative}
 .evf iframe{display:block;width:100%;border:0;background:transparent;aspect-ratio:1690/1170}
+
+/* Asesoría virtual 1:1 — mitad texto, mitad figura animada integrada al color de la página */
+.prod-ases{grid-template-columns:1.15fr .85fr;grid-template-areas:"ico fig" "body fig" "buy fig";align-items:start;row-gap:14px;overflow:hidden;padding-bottom:0}
+.prod-ases .prod-ico{grid-area:ico}
+.prod-ases .pa-body{grid-area:body}
+.prod-ases .prod-buy{grid-area:buy;text-align:left;padding-bottom:30px}
+.pa-fig{grid-area:fig;align-self:end;justify-self:center;width:min(100%,340px);margin-right:-4px;line-height:0}
+.pa-fig video{-webkit-mask-image:linear-gradient(#000 92%,transparent);mask-image:linear-gradient(#000 92%,transparent);display:block;width:100%;height:auto;aspect-ratio:2/3;pointer-events:none;mix-blend-mode:multiply}
+[data-theme=dark] .pa-fig video{filter:invert(1);mix-blend-mode:screen;opacity:.92}
+@media (max-width:760px){.prod-ases{grid-template-columns:1fr;grid-template-areas:"ico" "body" "buy" "fig"}.pa-fig{width:min(88%,300px);margin:6px 0 0}.prod-ases .prod-buy{padding-bottom:6px}}
