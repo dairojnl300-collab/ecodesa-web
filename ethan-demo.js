@@ -4,9 +4,9 @@
   var pv = document.getElementById("paVid"), pi = document.getElementById("paImg");
   if (pv) {
     var calm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var vis = false, cur = "", fb = false, tm = 0, wd = 0, pos = 0, N = 80, STEPS = 2 * N - 2;
+    var vis = false, cur = "", fb = true, tm = 0, wd = 0, pos = 0, N = 80, STEPS = 2 * N - 2;
     pv.muted = true; pv.defaultMuted = true; pv.setAttribute("muted", ""); pv.setAttribute("playsinline", "");
-    function dir() { return "assets/v2/asesor/" + (cur === "d" ? "fd" : "fl") + "/"; }
+    function dir() { return "assets/v2/asesor/" + (cur === "d" ? "ta" : "tb") + "/"; }
     function frm(i) { return dir() + (i < 9 ? "0" : "") + (i + 1) + ".webp"; }
     function pose(s) { return s < N ? s : STEPS - s; }
     // Respaldo sin <video>: el navegador (p. ej. iPhone en modo de bajo consumo) bloquea el autoplay -> animamos cuadros por JS
@@ -29,12 +29,12 @@
     }
     var near = false;
     function applySrc() {
-      if (!near) return; var s = "assets/v2/asesor/asesor" + (cur === "d" ? "-d" : "") + ".mp4";
+      return; if (!near) return; var s = "assets/v2/asesor/asesor" + (cur === "d" ? "-d" : "") + ".mp4";
       if (pv.getAttribute("data-s") === s) return; pv.setAttribute("data-s", s); pv.src = s; pv.load();
     }
     function setPa() {
       var d = theme() === "dark", k = d ? "d" : "l"; if (k === cur) return; cur = k;
-      pv.poster = "assets/v2/asesor/asesor-poster" + (d ? "-d" : "") + ".webp";
+      pi.hidden = false;
       applySrc();
       if (fb) { stopFb(); pi.src = frm(pose(pos)); if (vis) startFb(); } else tryPlay();
     }
