@@ -582,9 +582,9 @@
     function fechaTxt(d) { return d.toLocaleDateString("es-CO", { weekday: "long", day: "numeric", month: "long" }); }
     function agendaFlow() {
       track("asistente_agendar"); modo = "agenda";
-      var DATA = { tema: "", ciudad: "", fecha: "", franja: "" };
+      var DATA = { tema: "", ciudad: "", sector: "", fecha: "", franja: "" };
       function resumen() {
-        var msg = "Hola ECODESA, quiero agendar una asesoría virtual.\nTema: " + DATA.tema + "\nCiudad: " + DATA.ciudad + "\nFecha preferida: " + DATA.fecha + "\nFranja: " + DATA.franja;
+        var msg = "Hola ECODESA, quiero agendar una asesoría virtual.\nTema: " + DATA.tema + "\nCiudad: " + DATA.ciudad + "\nSector: " + DATA.sector + "\nFecha preferida: " + DATA.fecha + "\nFranja: " + DATA.franja;
         modo = "agenda-fin";
         say("Listo. Un Profesional de ECODESA confirma la fecha y la hora exacta por WhatsApp.");
         opts([{ t: "Enviar por WhatsApp", id: "agendar", href: link(msg) }, { t: "Volver al menú principal", fn: function () { menu(false); } }]);
@@ -595,6 +595,12 @@
           { t: "Mañana · 8:00 a 12:00", fn: function () { pick("Mañana · 8:00 a 12:00"); DATA.franja = "Mañana (8:00 a 12:00)"; resumen(); } },
           { t: "Tarde · 14:00 a 17:00", fn: function () { pick("Tarde · 14:00 a 17:00"); DATA.franja = "Tarde (14:00 a 17:00)"; resumen(); } }
         ]);
+      }
+      function sector() {
+        say("¿De qué sector es tu negocio?");
+        opts(S.filter(function (x) { return x.id !== "digital" && x.id !== "iso"; }).map(function (x) {
+          return { t: x.n, fn: function () { pick(x.n); DATA.sector = x.n; fecha(); } };
+        }));
       }
       function fecha() {
         say("¿Qué día te funciona? Solo días hábiles.");
@@ -607,10 +613,10 @@
       function ciudad() {
         say("¿Desde qué ciudad nos escribes?");
         opts([
-          { t: "Cartagena", fn: function () { pick("Cartagena"); DATA.ciudad = "Cartagena"; fecha(); } },
-          { t: "Barranquilla", fn: function () { pick("Barranquilla"); DATA.ciudad = "Barranquilla"; fecha(); } },
-          { t: "Bogotá", fn: function () { pick("Bogotá"); DATA.ciudad = "Bogotá"; fecha(); } },
-          { t: "Otra ciudad", fn: function () { pick("Otra ciudad"); DATA.ciudad = "Otra ciudad"; fecha(); } }
+          { t: "Cartagena", fn: function () { pick("Cartagena"); DATA.ciudad = "Cartagena"; sector(); } },
+          { t: "Barranquilla", fn: function () { pick("Barranquilla"); DATA.ciudad = "Barranquilla"; sector(); } },
+          { t: "Bogotá", fn: function () { pick("Bogotá"); DATA.ciudad = "Bogotá"; sector(); } },
+          { t: "Otra ciudad", fn: function () { pick("Otra ciudad"); DATA.ciudad = "Otra ciudad"; sector(); } }
         ]);
       }
       say("Te agendamos una asesoría virtual con un Profesional de ECODESA. Primero, ¿qué necesitas resolver?");
