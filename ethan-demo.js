@@ -5,7 +5,15 @@
   function send(m) { try { fr.contentWindow.postMessage(m, "*"); } catch (e) {} }
   function sendTheme() { send({ type: "theme", v: theme() }); }
   function ratio() { fr.style.aspectRatio = fr.clientWidth >= 760 ? "1690 / 1170" : "1080 / 1620"; }
-  fr.src = "ethan-escena.html?theme=" + theme();
+  var fOn = false;
+  function frameLoad(on) {
+    if (on === fOn) return; fOn = on;
+    fr.src = on ? "ethan-escena.html?theme=" + theme() : "about:blank";
+  }
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) frameLoad(true); }); }, { rootMargin: "700px 0px" }).observe(fr);
+    new IntersectionObserver(function (en) { en.forEach(function (x) { if (!x.isIntersecting) frameLoad(false); }); }, { rootMargin: "1600px 0px" }).observe(fr);
+  } else frameLoad(true);
   fr.addEventListener("load", sendTheme);
   new MutationObserver(sendTheme).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
   ratio(); if (window.ResizeObserver) new ResizeObserver(ratio).observe(fr); else window.addEventListener("resize", ratio);
@@ -42,13 +50,19 @@
       if (p && p.then) p.then(null, startFb);
       clearTimeout(wd); wd = setTimeout(function () { if (vis && !fb && pv.currentTime < .05) startFb(); }, 1500);
     }
+    var near = false;
+    function applySrc() {
+      if (!near) return; var s = "assets/v2/asesor/asesor" + (cur === "d" ? "-d" : "") + ".mp4";
+      if (pv.getAttribute("data-s") === s) return; pv.setAttribute("data-s", s); pv.src = s; pv.load();
+    }
     function setPa() {
       var d = theme() === "dark", k = d ? "d" : "l"; if (k === cur) return; cur = k;
       pv.poster = "assets/v2/asesor/asesor-poster" + (d ? "-d" : "") + ".webp";
-      pv.src = "assets/v2/asesor/asesor" + (d ? "-d" : "") + ".mp4"; pv.load();
+      applySrc();
       if (fb) { stopFb(); pi.src = frm(pose(pos)); if (vis) startFb(); } else tryPlay();
     }
     setPa();
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting && !near) { near = true; applySrc(); tryPlay(); } }); }, { rootMargin: "500px 0px" }).observe(pv); else { near = true; applySrc(); }
     pv.addEventListener("canplay", tryPlay);
     pv.addEventListener("playing", function () { clearTimeout(wd); });
     pv.addEventListener("pause", function () { if (vis && !fb && !pv.ended) setTimeout(function () { if (vis && pv.paused && !fb) tryPlay(); }, 400); });
