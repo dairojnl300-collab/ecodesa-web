@@ -242,9 +242,9 @@ function setT(t){
   const cr=Math.abs(Math.cos(rot*Math.PI/180));
   $('gshadow').style.transform='scaleX('+(0.55+0.45*cr)+')';
   const shrink=seg(t,END+.6,END+1.6);
-  $('phone').style.transform=(WIDE?'translate('+lerp(0,-430,shrink)+'px,'+bob+'px) scale('+lerp(1,.82,shrink)+')':'translateY('+(bob+lerp(0,-170,shrink))+'px) scale('+lerp(1,.66,shrink)+')')+' rotateY('+rot+'deg) rotateX('+(Math.sin(t*1.3)*2.5)+'deg)';
-  const endK=seg(t,END+3.4,END+4.0);
-  $('stage').style.opacity=1-endK; $('gshadow').style.opacity=(1-endK)*(1-shrink);
+  const endK=seg(t,END+3.4,END+4.0), gk=Math.max(.001,1-io(endK));
+  $('phone').style.transform=(WIDE?'translate('+lerp(0,-430,shrink)+'px,'+bob+'px) scale('+lerp(1,.82,shrink)*gk+')':'translateY('+(bob+lerp(0,-170,shrink))+'px) scale('+lerp(1,.66,shrink)*gk+')')+' rotateY('+rot+'deg) rotateX('+(Math.sin(t*1.3)*2.5)+'deg)';
+  $('stage').style.visibility=endK>=1?'hidden':'visible'; $('gshadow').style.opacity=(1-endK)*(1-shrink);
   // taps
   let tapOn=false;
   D.ev.forEach(e=>{ if(e.type==='U'&&e.tap&&e.cap!==6){const d=t-e.tapT; if(d>=-.05&&d<.7){
