@@ -10,9 +10,15 @@
     if (on === fOn) return; fOn = on;
     fr.src = on ? "ethan-escena.html?theme=" + theme() : "about:blank";
   }
+  /* Carga con histéresis: al bajar rápido la escena no se carga/descarga a cada paso (eso saturaba la memoria del iPhone) */
+  var tOn = 0, tOff = 0;
+  function wantOn() { clearTimeout(tOff); tOff = 0; if (!fOn && !tOn) tOn = setTimeout(function () { tOn = 0; frameLoad(true); }, 500); }
+  function cancelOn() { clearTimeout(tOn); tOn = 0; }
+  function wantOff() { if (fOn && !tOff) tOff = setTimeout(function () { tOff = 0; frameLoad(false); }, 3500); }
+  function keepOn() { clearTimeout(tOff); tOff = 0; }
   if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) frameLoad(true); }); }, { rootMargin: "700px 0px" }).observe(fr);
-    new IntersectionObserver(function (en) { en.forEach(function (x) { if (!x.isIntersecting) frameLoad(false); }); }, { rootMargin: "1600px 0px" }).observe(fr);
+    new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) wantOn(); else cancelOn(); }); }, { rootMargin: "700px 0px" }).observe(fr);
+    new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) keepOn(); else wantOff(); }); }, { rootMargin: "1600px 0px" }).observe(fr);
   } else frameLoad(true);
   fr.addEventListener("load", sendTheme);
   new MutationObserver(sendTheme).observe(root, { attributes: true, attributeFilter: ["data-theme"] });

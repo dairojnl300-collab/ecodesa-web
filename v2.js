@@ -117,6 +117,15 @@
     }, { rootMargin: "0px 0px -8% 0px" });
     rv.forEach(function (el) { io.observe(el); });
   } else rv.forEach(function (el) { el.classList.add("is-in"); });
+  /* red de seguridad: tras un scroll rápido, lo que ya quedó a la vista o por encima se muestra sí o sí */
+  if (!reduce) {
+    var rvT = 0;
+    function rvSweep() {
+      var vh = window.innerHeight;
+      rv.forEach(function (el) { if (!el.classList.contains("is-in") && el.getBoundingClientRect().top < vh * 0.95) { el.style.transitionDelay = "0s"; el.classList.add("is-in"); } });
+    }
+    window.addEventListener("scroll", function () { clearTimeout(rvT); rvT = setTimeout(rvSweep, 140); }, { passive: true });
+  }
 
   /* depth parallax (GSAP) */
   window.addEventListener("load", function () {
