@@ -50,7 +50,7 @@
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="preload" as="image" href="assets/v2/sec-restaurantes.webp" fetchpriority="high">
   <link rel="stylesheet" href="v2.css?v=20261020c">
-  <link rel="stylesheet" href="ethan-demo.css?v=10">
+  <link rel="stylesheet" href="ethan-demo.css?v=11">
   <link rel="stylesheet" href="assistant.css?v=26">
   <link rel="stylesheet" href="halloween.css?v=11">
   <link rel="stylesheet" href="consent.css?v=20261015c">
@@ -262,8 +262,19 @@
             <h3>Cómo hacer un diagnóstico de cómo está tu negocio a nivel normativo con Ethan</h3>
             <p>Mira el paso a paso: Ethan te guía por los temas ambiental, SST y gestión del riesgo, legal y sanitario, y tu resultado se envía por WhatsApp a un Profesional de ECODESA para validarlo.</p>
           </div>
-          <div class="evf">
-            <iframe id="evFrame" title="Inducción en video: cómo hacer el diagnóstico normativo de tu negocio con Ethan" loading="lazy" allow="autoplay"></iframe>
+          <div class="evp" id="evp">
+            <div class="evp-stage">
+              <video id="evVid" muted playsinline webkit-playsinline preload="none" poster="assets/v2/ev/escena-wl.webp" aria-label="Inducción en video: cómo hacer el diagnóstico normativo de tu negocio con Ethan"></video>
+              <button type="button" class="evp-snd" id="evSnd" aria-label="Activar sonido" aria-pressed="false">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path class="on" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="on" d="M18.5 5.5a9 9 0 0 1 0 13"/><path class="off" d="m16 9 5 6m0-6-5 6"/></svg>
+              </button>
+            </div>
+            <div class="evp-bar" role="group" aria-label="Controles del video">
+              <button type="button" class="evp-pp" id="evPP" aria-label="Reproducir">▶</button>
+              <div class="evp-sk" id="evSk" role="slider" tabindex="0" aria-label="Progreso del video" aria-valuemin="0" aria-valuemax="84" aria-valuenow="0"><i class="evp-skf" id="evSkf"></i></div>
+              <span class="evp-tm" id="evTm">0:00 / 1:24</span>
+            </div>
+            <div class="evp-cta"><button type="button" class="btn btn-green" id="evCta">Haz tu diagnóstico con Ethan</button></div>
           </div>
         </div>
         <article class="prod prod-ases" data-rv>
@@ -671,7 +682,8 @@
   <script src="lib/gsap.min.js" defer></script>
   <script src="lib/ScrollTrigger.min.js" defer></script>
   <script src="v2.js?v=20261021a" defer></script>
-  <script src="ethan-demo.js?v=9" defer></script>
+  <script src="ethan-demo.js?v=10" defer></script>
+  <script src="ethan-video.js?v=1" defer></script>
   <script src="assistant.js?v=75" defer></script>
   <script src="halloween.js?v=8" defer></script>
   <script src="consent.js?v=20261015c" defer></script>

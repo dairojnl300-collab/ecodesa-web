@@ -1,35 +1,6 @@
 (function () {
-  var fr = document.getElementById("evFrame"); if (!fr) return;
   var root = document.documentElement;
   function theme() { return root.getAttribute("data-theme") === "dark" ? "dark" : "light"; }
-  function send(m) { try { fr.contentWindow.postMessage(m, "*"); } catch (e) {} }
-  function sendTheme() { send({ type: "theme", v: theme() }); }
-  function ratio() { fr.style.aspectRatio = fr.clientWidth >= 760 ? "1690 / 1170" : "1080 / 1620"; }
-  var fOn = false;
-  function frameLoad(on) {
-    if (on === fOn) return; fOn = on;
-    fr.src = on ? "ethan-escena.html?theme=" + theme() : "about:blank";
-  }
-  /* Carga con histéresis: al bajar rápido la escena no se carga/descarga a cada paso (eso saturaba la memoria del iPhone) */
-  var tOn = 0, tOff = 0;
-  function wantOn() { clearTimeout(tOff); tOff = 0; if (!fOn && !tOn) tOn = setTimeout(function () { tOn = 0; frameLoad(true); }, 500); }
-  function cancelOn() { clearTimeout(tOn); tOn = 0; }
-  function wantOff() { if (fOn && !tOff) tOff = setTimeout(function () { tOff = 0; frameLoad(false); }, 3500); }
-  function keepOn() { clearTimeout(tOff); tOff = 0; }
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) wantOn(); else cancelOn(); }); }, { rootMargin: "700px 0px" }).observe(fr);
-    new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) keepOn(); else wantOff(); }); }, { rootMargin: "1600px 0px" }).observe(fr);
-  } else frameLoad(true);
-  fr.addEventListener("load", sendTheme);
-  new MutationObserver(sendTheme).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
-  ratio(); if (window.ResizeObserver) new ResizeObserver(ratio).observe(fr); else window.addEventListener("resize", ratio);
-  window.addEventListener("message", function (e) {
-    if (e.source !== fr.contentWindow) return;
-    var d = e.data || {};
-    if (d.type === "evcta") { var b = document.querySelector(".as-btn"); if (b) b.click(); }
-    else if (d.type === "evplay" && window.dataLayer) window.dataLayer.push({ event: "induccion_play" });
-  });
-  if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { en.forEach(function (x) { if (!x.isIntersecting) send({ type: "pause" }); }); }, { threshold: .15 }).observe(fr);
   var pv = document.getElementById("paVid"), pi = document.getElementById("paImg");
   if (pv) {
     var calm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
