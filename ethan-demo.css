@@ -22,13 +22,11 @@
 .prod-ases .pa-body{grid-area:body;padding-top:34px;align-self:end}
 .prod-ases .prod-buy{grid-area:buy;text-align:left;padding-bottom:34px;align-self:start}
 .pa-fig{position:relative;grid-area:fig;align-self:end;justify-self:end;width:100%;line-height:0;margin-bottom:-11%}
-.pa-fig video{display:block;width:100%;height:auto;aspect-ratio:9/16;pointer-events:none;mix-blend-mode:multiply}
-[data-theme=dark] .pa-fig video{mix-blend-mode:screen}
+.pa-fig video{display:block;width:100%;height:auto;aspect-ratio:9/16;pointer-events:none;visibility:hidden}
 @media (max-width:760px){.prod-ases{grid-template-columns:1fr;grid-template-areas:"body" "buy" "fig";padding:0 22px}.prod-ases .pa-body{padding-top:28px}.prod-ases .prod-buy{padding-bottom:10px}.pa-fig{width:min(78%,300px);justify-self:center;margin-top:6px}}
 
-.pa-img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:contain;pointer-events:none;mix-blend-mode:multiply}
+.pa-img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
 .pa-img[hidden]{display:none}
-[data-theme=dark] .pa-img{mix-blend-mode:screen}
 /* Móvil: título + video + barra caben completos en una pantalla */
 @media (max-width:759px){
 .eind-t{margin-bottom:10px}
