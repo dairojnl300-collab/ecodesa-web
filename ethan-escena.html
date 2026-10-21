@@ -18,9 +18,16 @@ body.started #ctl{opacity:1}
 #sk:before{content:"";position:absolute;left:0;right:0;top:7px;height:4px;border-radius:4px;background:var(--line)}
 #skf{position:absolute;left:0;top:7px;height:4px;border-radius:4px;background:var(--g);width:0}
 #tm{font:700 12px "Instrument Sans";color:var(--ink2);min-width:74px;text-align:right}
-#big{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);z-index:20;border:0;cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px 24px 14px 16px;border-radius:99px;background:linear-gradient(135deg,var(--green2),var(--green));color:#fff;font:800 17px Archivo;box-shadow:0 18px 40px -10px rgba(61,122,32,.7)}
-#big i{width:34px;height:34px;border-radius:50%;background:#fff;color:var(--green);display:grid;place-items:center;font-style:normal;font-size:14px;padding-left:2px}
+#big{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);z-index:20;width:68px;height:68px;border-radius:50%;cursor:pointer;display:grid;place-items:center;padding:0;border:1.5px solid rgba(255,255,255,.7);background:rgba(255,255,255,.22);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;box-shadow:0 8px 28px -8px rgba(10,46,35,.45),inset 0 0 0 1px rgba(255,255,255,.12);transition:transform .2s,background .2s}
+html[data-theme=light] #big{color:var(--green);background:rgba(255,255,255,.5);border-color:rgba(61,122,32,.45)}
+#big:hover{transform:translate(-50%,-50%) scale(1.08);background:rgba(255,255,255,.34)}
+#big:focus-visible{outline:2px solid var(--green2);outline-offset:4px}
+#big i{font-style:normal;font-size:22px;line-height:1;padding-left:4px}
+#big::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:1.5px solid currentColor;opacity:.4;animation:bigp 2.4s ease-out infinite}
+@keyframes bigp{0%{transform:scale(.88);opacity:.5}100%{transform:scale(1.35);opacity:0}}
+@media (prefers-reduced-motion:reduce){#big::after{animation:none}}
 body.started #big{display:none}
+body.fin #stage,body.fin #gshadow,body.fin .msg,body.fin #wa,body.fin #ff,body.fin #sent,body.fin #cap,body.fin #tapA,body.fin #tapB{display:none!important}
 #cta{font-family:Archivo}
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -165,7 +172,7 @@ body.w #cap{right:290px!important}
   <div id="cap"><div class="n" id="capN">1</div><div class="x" id="capT"></div></div>
   <div id="end"><img id="elogo" src="assets/v2/ev/logo-l.webp" alt="ECODESA — Ecología Desarrollo e Ingeniería S.A.S." width="720" height="598"><button id="cta" type="button">Haz tu diagnóstico con Ethan</button><div id="nat">Disponible en <em>todo el país</em></div></div>
   </div>
-<button id="big" type="button"><i>▶</i>Ver y escuchar</button>
+<button id="big" type="button" aria-label="Ver y escuchar el video"><i>▶</i></button>
 <div id="ctl"><button id="pp" type="button" aria-label="Reproducir">▶</button><div id="sk" role="slider" aria-label="Progreso" tabindex="0"><div id="skf"></div></div><span id="tm">0:00 / 1:24</span></div>
 <audio id="au" src="assets/v2/ev/induccion.m4a" preload="none"></audio>
 <script>
@@ -303,7 +310,7 @@ function layout(){
   setT(T);
 }
 function fmt(x){x=Math.max(0,Math.floor(x));return Math.floor(x/60)+':'+String(x%60).padStart(2,'0');}
-function paint(){ setT(T); skf.style.width=(T/TOT*100)+'%'; tm.textContent=fmt(T)+' / '+fmt(TOT); const on=T>=END+3.7; $('end').style.pointerEvents=on?'auto':'none'; }
+function paint(){ document.body.classList.toggle('fin',T>=END+4.4); setT(T); skf.style.width=(T/TOT*100)+'%'; tm.textContent=fmt(T)+' / '+fmt(TOT); const on=T>=END+3.7; $('end').style.pointerEvents=on?'auto':'none'; }
 function tick(ts){
   if(!playing) return;
   if(clock||au.paused){ T+=Math.min(.1,(ts-lastTs)/1000); } else T=au.currentTime;
