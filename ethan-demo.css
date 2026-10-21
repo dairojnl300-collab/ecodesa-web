@@ -39,3 +39,12 @@
 .evp-bar{margin-top:8px}
 .evp-cta{margin-top:12px}
 }
+/* Móvil: tarjeta de Asesoría virtual completa en una pantalla */
+@media (max-width:759px){
+.prod-ases .pa-body{padding-top:20px}
+.prod-ases h3{font-size:19px;line-height:1.18;margin:0 0 6px}
+.prod-ases .pa-body p{font-size:12.5px;line-height:1.4;margin:0}
+.prod-ases .prod-buy{padding-bottom:0}
+.prod-ases .prod-buy .btn{padding:10px 20px;font-size:14px}
+.pa-fig{width:clamp(150px,calc((100svh - 330px) * .5625),300px);margin-top:2px}
+}
