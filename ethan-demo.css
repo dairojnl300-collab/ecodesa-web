@@ -3,7 +3,7 @@
 .evp-stage{position:relative;background:var(--bg);line-height:0}
 .evp video{display:block;width:100%;height:auto;aspect-ratio:2/3;background:var(--bg);cursor:pointer}
 @media (min-width:760px){.evp video{aspect-ratio:1280/886}}
-.evp-snd{position:absolute;right:12px;bottom:12px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;color:var(--ink);background:color-mix(in srgb,var(--card) 70%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1.5px solid var(--line);box-shadow:0 8px 22px -10px rgba(10,46,35,.5)}
+.evp-snd{position:absolute;right:12px;bottom:12px;min-width:44px;height:44px;border-radius:99px;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 14px;font:700 13px var(--fb);cursor:pointer;color:var(--ink);background:color-mix(in srgb,var(--card) 70%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1.5px solid var(--line);box-shadow:0 8px 22px -10px rgba(10,46,35,.5)}
 .evp-snd .off{display:block}.evp-snd .on{display:none}
 .evp-snd[aria-pressed=true] .off{display:none}.evp-snd[aria-pressed=true] .on{display:block}
 .evp-snd[aria-pressed=false]{animation:evpPulse 2.6s ease-out infinite}
@@ -62,3 +62,7 @@
 #sectores .hook{font-size:13px;margin:8px 0 10px}
 #sectores .scard .btn{padding:9px 18px;font-size:13.5px}
 }
+.evp-snd[aria-pressed=true]{padding:0;width:44px}
+.evp-snd[aria-pressed=true] .evp-snd-t{display:none}
+@media (max-width:759px){.evp-snd{left:50%;right:auto;transform:translateX(-50%);bottom:10px}.evp-snd[aria-pressed=true]{left:auto;right:10px;transform:none}}
+.evp-snd{white-space:nowrap}
