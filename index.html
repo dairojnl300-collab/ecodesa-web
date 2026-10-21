@@ -50,6 +50,7 @@
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="preload" as="image" href="assets/v2/sec-restaurantes.webp" fetchpriority="high">
   <link rel="stylesheet" href="v2.css?v=20261020b">
+  <link rel="stylesheet" href="ethan-demo.css?v=1">
   <link rel="stylesheet" href="assistant.css?v=26">
   <link rel="stylesheet" href="halloween.css?v=11">
   <link rel="stylesheet" href="consent.css?v=20261015c">
@@ -266,8 +267,16 @@
           </div>
         </article>
         <div class="eind" data-rv>
-          <div class="eind-v">
-            <video id="eind" src="assets/v2/ethan-diagnostico.mp4" poster="assets/v2/ethan-diagnostico-poster.webp" preload="none" playsinline controls width="1920" height="1080" aria-label="Video: cómo hacer el diagnóstico normativo de tu negocio con Ethan"></video>
+          <div class="eph" id="eph">
+            <div class="eph-phone" role="img" aria-label="Demostración animada: Ethan guía el diagnóstico normativo de un restaurante, desde la ciudad hasta el resultado de cumplimiento">
+              <div class="eph-screen" aria-hidden="true">
+                <span class="eph-isl"></span>
+                <header class="eph-head"><img src="assets/v2/robot-head-128.webp" width="40" height="40" alt=""><div><b>Ethan</b><small>Asistente de ECODESA Ingeniería SAS</small></div></header>
+                <div class="eph-body"><div class="eph-flow"></div></div>
+                <footer class="eph-foot">Información orientativa, no constituye oferta ni asesoría legal. El alcance, valor y condiciones se acuerdan por escrito con un asesor.</footer>
+              </div>
+            </div>
+            <button type="button" class="eph-re" hidden>↻ Ver de nuevo</button>
           </div>
           <div class="eind-t">
             <span class="pill">Inducción</span>
@@ -667,6 +676,7 @@
   <script src="lib/gsap.min.js" defer></script>
   <script src="lib/ScrollTrigger.min.js" defer></script>
   <script src="v2.js?v=20261017a" defer></script>
+  <script src="ethan-demo.js?v=1" defer></script>
   <script src="assistant.js?v=74" defer></script>
   <script src="halloween.js?v=8" defer></script>
   <script src="consent.js?v=20261015c" defer></script>
