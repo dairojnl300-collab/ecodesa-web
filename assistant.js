@@ -200,7 +200,7 @@
       modo = "";
       var ayudaAsesor = false;
       if (!first) { vueltas += 1; ayudaAsesor = vueltas >= 2; }
-      if (first) { say("Hola, soy Ethan, el asistente de ECODESA, firma fundada en Cartagena de Indias. Te ayudamos a cumplir la normativa a nivel nacional y a crecer con servicios digitales y marketing digital."); }
+      if (first) { say("Hola, soy Ethan, el asistente de ECODESA, firma fundada en Cartagena de Indias. Te ayudamos a cumplir la normativa a nivel nacional y a crecer con servicios digitales y de marketing."); }
       step(function () {
         if (!CIUDAD) return preguntarCiudad();
         mostrarSectores(ayudaAsesor);
