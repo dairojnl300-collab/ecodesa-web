@@ -16,4 +16,22 @@
     else if (d.type === "evplay" && window.dataLayer) window.dataLayer.push({ event: "induccion_play" });
   });
   if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { en.forEach(function (x) { if (!x.isIntersecting) send({ type: "pause" }); }); }, { threshold: .15 }).observe(fr);
+  var pv = document.getElementById("paVid");
+  if (pv) {
+    var calm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches, vis = false, cur = "";
+    function setPa() {
+      var d = theme() === "dark", k = d ? "d" : "l"; if (k === cur) return; cur = k;
+      pv.poster = "assets/v2/asesor/asesor-poster" + (d ? "-d" : "") + ".webp";
+      pv.src = "assets/v2/asesor/asesor" + (d ? "-d" : "") + ".mp4"; pv.load();
+      if (vis && !calm) { var p = pv.play(); if (p && p.catch) p.catch(function () {}); }
+    }
+    setPa();
+    new MutationObserver(setPa).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+    if (!calm && "IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) { en.forEach(function (x) {
+        vis = x.isIntersecting;
+        if (vis) { var p = pv.play(); if (p && p.catch) p.catch(function () {}); } else pv.pause();
+      }); }, { threshold: .2 }).observe(pv);
+    }
+  }
 })();
