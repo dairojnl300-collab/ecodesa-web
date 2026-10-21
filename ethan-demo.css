@@ -8,5 +8,5 @@
 .prod-ases .prod-buy{grid-area:buy;text-align:left;padding-bottom:30px}
 .pa-fig{grid-area:fig;align-self:end;justify-self:center;width:min(100%,340px);margin-right:-4px;line-height:0}
 .pa-fig video{-webkit-mask-image:linear-gradient(#000 92%,transparent);mask-image:linear-gradient(#000 92%,transparent);display:block;width:100%;height:auto;aspect-ratio:2/3;pointer-events:none;mix-blend-mode:multiply}
-[data-theme=dark] .pa-fig video{filter:invert(1);mix-blend-mode:screen;opacity:.92}
+[data-theme=dark] .pa-fig video{mix-blend-mode:screen}
 @media (max-width:760px){.prod-ases{grid-template-columns:1fr;grid-template-areas:"ico" "body" "buy" "fig"}.pa-fig{width:min(88%,300px);margin:6px 0 0}.prod-ases .prod-buy{padding-bottom:6px}}
