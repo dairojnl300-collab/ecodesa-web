@@ -1,7 +1,7 @@
 /* Ethan con cuerpo: robot que flota separado de su plataforma, pantalla que se enciende y muestra la "e" de ECODESA */
 .as-btn.eth-on{background:transparent!important;border:0!important;box-shadow:none!important;animation:none!important;overflow:visible}
 .as-btn.eth-on .as-av,.as-btn.eth-on .as-dock{display:none!important}
-.eth{position:absolute;right:-8px;bottom:-22px;width:98px;aspect-ratio:1261/2021;pointer-events:auto;cursor:pointer;z-index:1;contain:layout}
+.eth{position:absolute;right:-8px;bottom:-22px;width:98px;aspect-ratio:1261/2021;pointer-events:none;z-index:1;contain:layout}
 .eth *{position:absolute;display:block;max-width:none}
 .eth-plate{left:0;top:70.6%;width:100%;height:auto;animation:ethPlate 3.2s ease-in-out infinite;filter:drop-shadow(0 10px 10px rgba(0,0,0,.3))}
 .eth-glow{left:22%;top:74.6%;width:56%;height:4%;border-radius:50%;background:radial-gradient(closest-side,rgba(150,255,90,.85),rgba(60,220,120,.35) 55%,rgba(60,220,120,0) 100%);mix-blend-mode:screen;animation:ethGlow 3.2s ease-in-out infinite}
