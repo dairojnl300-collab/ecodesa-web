@@ -167,3 +167,7 @@ body.as-flying .as-hi{display:none!important}
 .as-hi{bottom:204px}
 .as-panel{bottom:196px;max-height:min(560px,calc(100vh - 224px))}
 @media (max-width:760px){.as-hi{bottom:calc(226px + env(safe-area-inset-bottom,0px))}}
+/* chat abierto (escritorio): sin pastilla verde ni zzz; solo la nave sobre cualquier fondo */
+.as-btn.on{background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none;width:64px;padding:0}
+.as-btn.on .as-btn-t,.as-btn.on>.as-zz{display:none!important}
+.as-btn.on .as-dock{left:50%;margin-left:-48px;bottom:-30px}
