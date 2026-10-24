@@ -41,5 +41,29 @@
     }
   }
   function find() { var b = document.querySelector(".as-btn"); if (b) mount(b); else setTimeout(find, 250); }
+  /* Avatar del encabezado del chat: cabeza del nuevo Ethan con la cara dibujada (mismos estados que los sprites) */
+  function headSvg() {
+    return '<svg viewBox="0 0 928 895" aria-hidden="true"><defs><clipPath id="ethHd"><rect x="238" y="353" width="584" height="442" rx="100"/></clipPath></defs>' +
+      '<g clip-path="url(#ethHd)"><g class="eth-face glow"><g class="eth-eyes">' +
+      '<ellipse class="eth-eye l" cx="411" cy="546" rx="36" ry="58" fill="#c9f58a"/><ellipse class="eth-eye r" cx="676" cy="546" rx="36" ry="58" fill="#c9f58a"/>' +
+      '<path class="eth-arc l" d="M372 576 Q411 504 450 576" fill="none" stroke="#c9f58a" stroke-width="26" stroke-linecap="round"/>' +
+      '<path class="eth-arc r" d="M637 576 Q676 504 715 576" fill="none" stroke="#c9f58a" stroke-width="26" stroke-linecap="round"/>' +
+      '</g><path class="eth-mouth" d="M478 640 Q541 708 604 640" fill="none" stroke="#c9f58a" stroke-width="28" stroke-linecap="round"/></g></g></svg>';
+  }
+  function mountHead(hav) {
+    if (hav.dataset.eth) return; hav.dataset.eth = "1";
+    var w = document.createElement("span"); w.className = "eth-hw"; hav.parentNode.insertBefore(w, hav); w.appendChild(hav);
+    var h = document.createElement("span"); h.className = "as-hav eth-hd"; h.setAttribute("aria-hidden", "true");
+    h.innerHTML = '<img src="' + BASE + 'robot2.webp" alt="" width="620" height="866" decoding="async">' + headSvg(); w.appendChild(h);
+    var st = "", FACE = { happy: "happy", celebrar: "happy", terminado: "happy", wide: "wide", pregunta: "wide", sleep: "sleep", wink: "wink", "look-l": "look-l", "look-r": "look-r", pensar: "look-l" };
+    function sync() {
+      var m = /robot-([a-z-]+?)(?:-\d+)?\.webp/.exec(hav.getAttribute("src") || ""), n = m ? m[1] : "anim", f = FACE[n] || "";
+      ["happy", "wide", "sleep", "wink", "look-l", "look-r"].forEach(function (c) { h.classList.toggle(c, c === f); });
+      ["pop", "pensar", "mv-subida", "mv-baile", "mv-mareado", "mv-trabajando"].forEach(function (c) { h.classList.toggle(c, hav.classList.contains(c)); });
+    }
+    new MutationObserver(sync).observe(hav, { attributes: true, attributeFilter: ["src", "class"] }); sync();
+    if (!reduce) (function idle() { setTimeout(function () { if (!h.classList.contains("sleep")) { h.classList.add("blink"); setTimeout(function () { h.classList.remove("blink"); }, 150); } idle(); }, 2200 + Math.random() * 2600); })();
+  }
+  (function findHead() { var h = document.querySelector(".as-hav"); if (h) mountHead(h); else setTimeout(findHead, 300); })();
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", find); else find();
 })();

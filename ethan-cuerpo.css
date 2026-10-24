@@ -58,3 +58,21 @@
 
 html.eth-on .as-hi{bottom:calc(244px + env(safe-area-inset-bottom,0px))}
 @media (min-width:761px){html.eth-on .as-hi{bottom:282px}}
+
+/* avatar del encabezado del chat */
+.eth-hw{position:relative;flex:none;width:52px;height:52px;margin-right:10px;display:block}
+.eth-hw>img.as-hav{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;pointer-events:auto}
+.eth-hd{position:absolute;left:0;top:0;width:100%;aspect-ratio:928/895;height:auto;overflow:hidden;pointer-events:none;margin:0;display:block}
+.eth-hd>img{position:absolute;left:0;top:0;width:100%;max-width:none;height:auto}
+.eth-hd>svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;display:block}
+.eth-hd .glow{filter:drop-shadow(0 0 14px rgba(184,242,124,.9))}
+.eth-hd .eth-face{opacity:1}
+.eth-hd .eth-eyes{transition:transform .22s cubic-bezier(.3,1.4,.5,1)}
+.eth-hd .eth-eye{transform-box:fill-box;transform-origin:50% 50%;transition:transform .12s ease-in}
+.eth-hd.blink .eth-eye,.eth-hd.sleep .eth-eye{transform:scaleY(.08)}
+.eth-hd.wide .eth-eye{transform:scale(1.18)}
+.eth-hd.look-l .eth-eyes{transform:translateX(-30px)}.eth-hd.look-r .eth-eyes{transform:translateX(30px)}
+.eth-hd .eth-arc{opacity:0}
+.eth-hd.wink .eth-eye.r{opacity:0}.eth-hd.wink .eth-arc.r{opacity:1}
+.eth-hd.happy .eth-eye{opacity:0}.eth-hd.happy .eth-arc{opacity:1}
+.eth-hd.sleep .eth-mouth{opacity:.35}
