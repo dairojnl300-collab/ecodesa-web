@@ -145,7 +145,7 @@
 @media (prefers-reduced-motion:reduce){.as-fly,.as-puff,.as-spk,.as-flyb{display:none}}
 body.as-flying .as-hi{display:none!important}
 @media (max-width:760px){.as-btn,.as-btn.on{background:transparent!important;border:0!important;box-shadow:none!important;animation:none!important;backdrop-filter:none}.as-av{width:64px;height:64px}}
-@media (max-width:760px){.as-btn.on .as-av{visibility:hidden}}
+.as-btn.on .as-av{visibility:hidden}
 
 /* nave de carga: queda fija donde vive Ethan */
 .as-dock{position:absolute;left:-16px;bottom:-32px;width:96px;height:61px;pointer-events:none;z-index:0;background:url(assets/v2/nave-base.webp) center/contain no-repeat;filter:drop-shadow(0 0 8px rgba(118,184,42,.55));animation:asNave 3.2s ease-in-out infinite}
