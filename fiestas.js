@@ -167,6 +167,86 @@
     '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="4" y="10" width="56" height="44" rx="8" fill="' + G + '" stroke="' + INK + '" stroke-width="3"/><circle cx="26" cy="20" r="4.5" fill="#fff"/><path d="M26 26 L22 38 L30 40 L26 50 M23 31 L16 34 M27 29 L33 34 M22 38 L16 47" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M38 32 H54 M48 26 L54 32 L48 38" fill="none" stroke="' + Y + '" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
   ];
 
+  /* ---------- decoración en toda la página: banderines, farol colgante y un objeto típico por sección ---------- */
+  function farol(c1, c2) {
+    return '<svg viewBox="0 0 70 130" aria-hidden="true"><path d="M35 0 V34" stroke="' + INK + '" stroke-width="2"/><rect x="27" y="32" width="16" height="8" rx="2" fill="' + Y + '"' + st(2.2) + "/>" +
+      '<ellipse cx="35" cy="72" rx="28" ry="33" fill="' + c1 + '"' + st(3) + '/><path d="M10 60 Q35 68 60 60 M8 76 Q35 84 62 76 M12 92 Q35 98 58 92" fill="none" stroke="' + c2 + '" stroke-width="4"/>' +
+      '<path d="M35 39 V105" stroke="' + INK + '" stroke-width="1.6" opacity=".45"/><rect x="27" y="103" width="16" height="7" rx="2" fill="' + Y + '"' + st(2.2) + "/>" +
+      '<path d="M30 110 l-3 16 M35 110 v18 M40 110 l3 16" stroke="' + c2 + '" stroke-width="2.5" stroke-linecap="round"/></svg>';
+  }
+  function sombrero() {
+    return '<svg viewBox="0 0 130 74" aria-hidden="true"><ellipse cx="65" cy="54" rx="60" ry="16" fill="#f6e7c8"' + st(3) + '/>' +
+      '<ellipse cx="65" cy="54" rx="46" ry="11.5" fill="none" stroke="' + INK + '" stroke-width="2.4"/><ellipse cx="65" cy="54" rx="32" ry="8" fill="none" stroke="' + INK + '" stroke-width="2.4"/>' +
+      '<path d="M40 52 Q38 10 65 8 Q92 10 90 52 Q65 60 40 52Z" fill="#f6e7c8"' + st(3) + '/><path d="M41 40 Q65 47 89 40 M43 28 Q65 34 87 28 M48 17 Q65 22 82 17" fill="none" stroke="' + INK + '" stroke-width="2.4"/></svg>';
+  }
+  function ponchera() {
+    return '<svg viewBox="0 0 130 100" aria-hidden="true">' +
+      '<path d="M44 40 Q40 14 58 6 Q50 24 56 40Z M60 40 Q64 10 82 4 Q72 24 70 40Z" fill="' + Y + '"' + st(2.5) + "/>" +
+      '<ellipse cx="88" cy="36" rx="12" ry="15" fill="' + O + '"' + st(2.5) + '/><path d="M82 22 l-4 -10 l6 6 l2 -10 l3 10 l6 -6 l-3 10" fill="' + G + '"' + st(2) + "/>" +
+      '<circle cx="34" cy="40" r="10" fill="' + R + '"' + st(2.5) + '/><circle cx="104" cy="44" r="9" fill="' + G + '"' + st(2.5) + "/>" +
+      '<path d="M12 46 H118 Q112 86 65 90 Q18 86 12 46Z" fill="#c9ced6"' + st(3) + '/><path d="M24 58 Q65 70 106 58" fill="none" stroke="#fff" stroke-width="3" opacity=".8"/></svg>';
+  }
+  function cayena() {
+    var p = ""; for (var i = 0; i < 5; i++) p += '<ellipse cx="50" cy="26" rx="16" ry="24" fill="' + R + '"' + st(2.5) + ' transform="rotate(' + (i * 72) + ' 50 50)"/>';
+    return '<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 50 L18 86 Q30 60 50 50Z M50 50 L88 84 Q66 62 50 50Z" fill="' + G + '"' + st(2.5) + "/>" + p +
+      '<circle cx="50" cy="50" r="9" fill="' + Y + '"' + st(2.5) + '/><path d="M50 50 L64 20" stroke="' + Y + '" stroke-width="3"/><circle cx="65" cy="18" r="3.5" fill="' + O + '"/></svg>';
+  }
+  function banderita() {
+    return '<svg viewBox="0 0 90 120" aria-hidden="true"><path d="M12 4 V118" stroke="#8a4b16" stroke-width="5" stroke-linecap="round"/><circle cx="12" cy="5" r="5" fill="' + Y + '"' + st(2) + '/>' +
+      '<g class="fi-flagw"><rect x="12" y="10" width="72" height="50" fill="' + R + '"' + st(2.5) + '/><rect x="19" y="17" width="58" height="36" fill="' + Y + '"/><rect x="27" y="24" width="42" height="22" fill="' + G + '"/>' +
+      '<polygon points="' + star8(48, 35, 9, 3.8) + '" fill="#fff"/></g></svg>';
+  }
+  function tamborSolo() {
+    return '<svg viewBox="0 0 110 120" aria-hidden="true"><path d="M14 30 L96 30 L86 110 Q55 120 24 110Z" fill="' + R + '"' + st(3) + '/><path d="M18 42 L32 106 L46 42 L58 112 L70 42 L82 106 L94 42" fill="none" stroke="' + Y + '" stroke-width="3.5" stroke-linejoin="round"/>' +
+      '<ellipse cx="55" cy="30" rx="43" ry="12" fill="' + C + '"' + st(3) + '/><path d="M24 110 Q55 120 86 110" fill="none" stroke="' + G + '" stroke-width="5"/></svg>';
+  }
+  function maracasSolo() {
+    function one(cx, cy, rot, fill, band) {
+      return '<g transform="rotate(' + rot + " " + cx + " " + cy + ')"><rect x="' + (cx - 4) + '" y="' + (cy + 18) + '" width="8" height="40" rx="4" fill="#8a4b16"' + st(3) + "/>" +
+        '<ellipse cx="' + cx + '" cy="' + cy + '" rx="17" ry="22" fill="' + fill + '"' + st(3) + '/><path d="M' + (cx - 15) + " " + (cy - 4) + " Q" + cx + " " + (cy + 6) + " " + (cx + 15) + " " + (cy - 4) + '" fill="none" stroke="' + band + '" stroke-width="4"/></g>';
+    }
+    return '<svg viewBox="0 0 110 130" aria-hidden="true">' + one(40, 40, -22, G, Y) + one(72, 44, 18, Y, R) + "</svg>";
+  }
+  var DECO = [
+    ["fi-o-shake", maracasSolo], ["fi-o-bob", sombrero], ["fi-o-beat", tamborSolo], ["fi-o-bob", ponchera], ["fi-o-spin", cayena], ["fi-o-bob", banderita]
+  ];
+  var FAROL = [[R, Y], [G, Y], [Y, R], [O, G], ["#2f9be0", Y]];
+  function buildWide() {
+    var secs = document.querySelectorAll("main .sec:not(.fi-sec), .foot");
+    var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+      es.forEach(function (e) { e.target.classList.toggle("fi-run", e.isIntersecting); });
+    }, { rootMargin: "120px 0px" }) : null;
+    Array.prototype.forEach.call(secs, function (s, i) {
+      if (s.querySelector(":scope > .fi-wide")) return;
+      var L = document.createElement("div"); L.className = "fi-wide fi-only"; L.setAttribute("aria-hidden", "true");
+      var isFoot = s.classList.contains("foot"), f = FAROL[i % FAROL.length], d = DECO[i % DECO.length];
+      var html = '<i class="fi-tex"></i>';
+      if (!isFoot) html += '<span class="fi-farol ' + (i % 2 ? "fl" : "fr") + '" style="animation-delay:' + (-i * 0.7) + 's">' + farol(f[0], f[1]) + "</span>";
+      html += '<span class="fi-obj ' + d[0] + " " + (i % 2 ? "or" : "ol") + '" style="animation-delay:' + (-i * 0.5) + 's">' + d[1]() + "</span>";
+      L.innerHTML = html;
+      s.classList.add("fi-host");
+      s.insertBefore(L, s.firstChild);
+      if (!isFoot) placeBunting(L, { swags: 3, fh: 22, sag: 14, fhm: 14, sagm: 7 });
+      confetti(L, isFoot ? 8 : 12);
+      if (io) io.observe(L); else L.classList.add("fi-run");
+    });
+  }
+
+  /* ---------- bailarines de las fiestas: uno por sección, en el espacio libre junto al título ---------- */
+  var BAILES = [
+    ["#sectores", "capuchon", "r", 480, 720], ["#servicios", "urbana", "r", 451, 720], ["#campo", "golero", "r", 484, 720],
+    ["#proceso", "pollera", "r", 476, 720], [".sec.video", "vela", "l", 481, 720], [".sec.video", "tambora", "r", 480, 720]
+  ];
+  function buildDancers() {
+    BAILES.forEach(function (b, i) {
+      var s = document.querySelector(b[0]); if (!s || s.querySelector(".fi-dancer.d-" + b[1])) return;
+      var f = document.createElement("figure"); f.className = "fi-dancer fi-only d-" + b[1] + " " + (b[2] === "l" ? "dl" : "dr") + (s.classList.contains("video") ? " dc" : "");
+      f.setAttribute("aria-hidden", "true");
+      f.innerHTML = '<img src="assets/v2/fi-baile-' + b[1] + '.webp" alt="" width="' + b[3] + '" height="' + b[4] + '" loading="lazy" decoding="async" style="animation-delay:' + (-i * 0.6) + 's">';
+      s.appendChild(f);
+    });
+  }
+
   /* ---------- confeti ---------- */
   function confetti(box, n) {
     if (reduce) return;
@@ -216,11 +296,14 @@
     Array.prototype.forEach.call(document.querySelectorAll(".fi-card .fi-ic[data-i]"), function (el) { el.innerHTML = ICONS[+el.getAttribute("data-i")] || ""; });
     var foot = document.querySelector(".foot");
     if (foot) { var f = document.createElement("div"); f.className = "fi-foot fi-only"; f.setAttribute("aria-hidden", "true"); foot.insertBefore(f, foot.firstChild); placeBunting(f, { swags: 3, fh: 26, sag: 18 }); }
+    buildWide();
+    buildDancers();
     var t; window.addEventListener("resize", function () {
       clearTimeout(t); t = setTimeout(function () {
         if (heroL) heroBunting(heroL);
         if (art) placeBunting(art, { swags: 3, fh: 36, sag: 30 });
         var ff = document.querySelector(".fi-foot"); if (ff) placeBunting(ff, { swags: 3, fh: 26, sag: 18 });
+        Array.prototype.forEach.call(document.querySelectorAll("main .fi-wide"), function (w) { placeBunting(w, { swags: 3, fh: 22, sag: 14, fhm: 14, sagm: 7 }); });
       }, 200);
     }, { passive: true });
   }

@@ -169,3 +169,104 @@ html.fi .foot{position:relative}
   .fi-flag,.fi-cf,.fi-sun,.fi-bando *{animation:none!important}
   .fi-conf{display:none}
 }
+
+/* ===== edición en toda la página: cada sección con banderines, farol colgante, un objeto típico y textura de dibujos ===== */
+html.fi .fi-host{isolation:isolate}
+.fi-wide{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+html.fi .fi-wide{display:block!important}
+.fi-wide .fi-bunt{top:0}
+.fi-wide .fi-bunt svg{opacity:.95}
+.fi-tex{position:absolute;inset:0;background:var(--fi-doodle);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M28 20l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M118 30v26a7 6 0 1 1-4-5V24l18-4v26a7 6 0 1 1-4-5V25'/%3E%3Cpath d='M40 120c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M120 120l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='90' cy='88' r='3'/%3E%3Ccircle cx='160' cy='92' r='3'/%3E%3Ccircle cx='14' cy='76' r='3'/%3E%3Cpath d='M86 150c6-8 14-8 20 0'/%3E%3C/g%3E%3C/svg%3E") 0 0/180px 180px;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M28 20l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M118 30v26a7 6 0 1 1-4-5V24l18-4v26a7 6 0 1 1-4-5V25'/%3E%3Cpath d='M40 120c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M120 120l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='90' cy='88' r='3'/%3E%3Ccircle cx='160' cy='92' r='3'/%3E%3Ccircle cx='14' cy='76' r='3'/%3E%3Cpath d='M86 150c6-8 14-8 20 0'/%3E%3C/g%3E%3C/svg%3E") 0 0/180px 180px}
+
+html.fi[data-theme=dark] .foot .fi-tex{background:rgba(255,210,31,.08)}
+/* farol que cuelga de los banderines */
+.fi-farol{position:absolute;top:6px;width:clamp(36px,3.6vw,54px);transform-origin:50% 0;animation:fiFarol 4.4s ease-in-out infinite alternate}
+.fi-farol.fr{right:clamp(14px,6vw,110px)}.fi-farol.fl{right:clamp(60px,14vw,260px)}
+.fi-farol svg{display:block;width:100%;height:auto}
+@keyframes fiFarol{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+[data-theme=dark] .fi-farol svg,.foot .fi-farol svg{filter:drop-shadow(0 0 10px rgba(255,170,0,.65))}
+/* objeto típico en la esquina inferior (en el margen, detrás del contenido) */
+.fi-obj{position:absolute;bottom:clamp(14px,2.5vw,34px);width:clamp(54px,5.4vw,84px);transform-origin:50% 100%}
+.fi-obj.ol{left:clamp(6px,1.4vw,26px)}.fi-obj.or{right:clamp(6px,1.4vw,26px)}
+.fi-obj svg{display:block;width:100%;height:auto;overflow:visible}
+.fi-o-shake{animation:fiShake 2.2s ease-in-out infinite}
+.fi-o-bob{animation:fiBobO 2.6s ease-in-out infinite alternate}
+.fi-o-beat{animation:fiBeat .9s cubic-bezier(.3,0,.3,1) infinite}
+.fi-o-spin svg{animation:fiSpin2 14s linear infinite}
+@keyframes fiBobO{from{transform:translateY(0) rotate(-3deg)}to{transform:translateY(-8px) rotate(3deg)}}
+@keyframes fiShake{0%,40%,100%{transform:rotate(0)}5%{transform:rotate(-14deg)}10%{transform:rotate(12deg)}15%{transform:rotate(-12deg)}20%{transform:rotate(10deg)}25%{transform:rotate(-6deg)}30%{transform:rotate(0)}}
+@keyframes fiBeat{0%,100%{transform:translateY(0) scale(1,1)}12%{transform:translateY(0) scale(1.04,.95)}30%{transform:translateY(-7px) scale(.98,1.03)}55%{transform:translateY(0) scale(1,1)}}
+@keyframes fiSpin2{to{transform:rotate(360deg)}}
+.fi-obj .fi-flagw{transform-box:fill-box}
+/* las animaciones solo corren con la sección en pantalla */
+.fi-wide *{animation-play-state:paused}
+.fi-wide.fi-run *{animation-play-state:running}
+/* etiquetas de sección con franja tricolor de Cartagena */
+html.fi .sec:not(.fi-sec) .pill{background-image:linear-gradient(90deg,var(--fi-r) 0 33.3%,var(--fi-y) 33.3% 66.6%,var(--fi-g) 66.6%);background-size:calc(100% - 28px) 3px;background-position:50% calc(100% - 3px);background-repeat:no-repeat}
+@media (max-width:1279px){.fi-obj{display:none}}
+@media (max-width:700px){.fi-farol{width:32px}.fi-farol.fl{right:18px}.fi-farol.fr{right:18px}}
+@media (prefers-reduced-motion:reduce){.fi-farol,.fi-obj,.fi-obj svg{animation:none!important}}
+
+/* ===== toda la página en clave de fiesta: fondo amarillo cartel (día) / noche cálida y tipografía de las fiestas ===== */
+html.fi:not([data-theme=dark]){--bg:#ffd84a;--card:#fff8e6;--line:rgba(43,20,6,.16);--chip:rgba(255,255,255,.62);--gd:#0f6b34;--ink:#2b1406;--ink2:#4a2a10}
+html.fi[data-theme=dark]{--bg:#160e07;--card:#24170b;--line:rgba(255,210,31,.18);--chip:rgba(255,210,31,.12);--gd:#ffd21f;--ink:#fff1cf;--ink2:#e8d3a8;--dark:#1d1309}
+html.fi:not([data-theme=dark]) .digital,html.fi:not([data-theme=dark]) .contacto{background:#ffcd2e}
+html.fi:not([data-theme=dark]) .video{background:linear-gradient(180deg,var(--bg),#ffcd2e)}
+html.fi:not([data-theme=dark]) .proceso{background:radial-gradient(circle,rgba(227,38,43,.16) 1.2px,transparent 1.4px) 0 0/26px 26px,var(--bg)}
+html.fi:not([data-theme=dark]) .foot{background:#ffc21a}
+html.fi[data-theme=dark] .video{background:linear-gradient(180deg,var(--bg),#1d1309)}
+html.fi[data-theme=dark] .foot{background:#100a04}
+html.fi:not([data-theme=dark]) .mvv,html.fi:not([data-theme=dark]) .cform,html.fi:not([data-theme=dark]) .dtab,html.fi:not([data-theme=dark]) .cinfo a,html.fi:not([data-theme=dark]) .cinfo span{background:var(--card)}
+html.fi:not([data-theme=dark]) .chip{background:var(--card)}
+/* títulos con la letra de cartel */
+html.fi main .sec:not(.fi-sec) h2,html.fi main .sec:not(.fi-sec) h3{font-family:var(--fi-fh);font-weight:400;letter-spacing:.005em}
+html.fi main .sec:not(.fi-sec) h2 em{color:#c8101f}
+html.fi[data-theme=dark] main .sec:not(.fi-sec) h2 em{color:var(--fi-y)}
+html.fi:not([data-theme=dark]) main .sec:not(.fi-sec) h2{text-shadow:0 3px 0 rgba(255,255,255,.55)}
+html.fi[data-theme=dark] main .sec:not(.fi-sec) h2{text-shadow:0 4px 0 rgba(0,0,0,.6)}
+/* el menú fijo acompaña el color de la página */
+html.fi:not([data-theme=dark]) .nav.is-solid{background:rgba(255,216,74,.92)}
+html.fi[data-theme=dark] .nav.is-solid{background:rgba(22,14,7,.92)}
+html.fi[data-theme=dark] .mvv{background:var(--card);border-color:var(--line)}
+
+/* videos enmarcados como cartel sobre el fondo de fiesta */
+html.fi .vbox,html.fi .evp-stage{position:relative;border:3px solid var(--fi-ink);border-radius:26px;overflow:hidden;box-shadow:8px 10px 0 var(--fi-ink),0 30px 60px rgba(43,20,6,.25)}
+html.fi .evp-stage{background:#fff8e6}
+html.fi .vbox::before,html.fi .evp-stage::before{content:"";position:absolute;left:0;right:0;top:0;height:12px;z-index:3;pointer-events:none;
+  background:linear-gradient(90deg,var(--fi-r) 0 33.3%,var(--fi-y) 33.3% 66.6%,var(--fi-g) 66.6%);border-bottom:3px solid var(--fi-ink)}
+html.fi .evp-bar{border:2px solid var(--fi-ink);box-shadow:4px 5px 0 var(--fi-ink)}
+html.fi .prod{border:2.5px solid var(--fi-ink);box-shadow:6px 7px 0 var(--fi-ink)}
+html.fi[data-theme=dark] .vbox,html.fi[data-theme=dark] .evp-stage{border-color:var(--fi-y);box-shadow:8px 10px 0 #000,0 0 40px rgba(255,170,0,.18)}
+html.fi[data-theme=dark] .evp-stage{background:#24170b}
+html.fi[data-theme=dark] .vbox::before,html.fi[data-theme=dark] .evp-stage::before{border-bottom-color:#000}
+html.fi[data-theme=dark] .evp-bar,html.fi[data-theme=dark] .prod{border-color:rgba(255,210,31,.6);box-shadow:5px 6px 0 #000}
+html.fi .vitem{border:2px solid var(--fi-ink);box-shadow:4px 5px 0 var(--fi-ink)}
+html.fi .vitem.on{border-color:var(--fi-r);box-shadow:4px 5px 0 var(--fi-r)}
+html.fi[data-theme=dark] .vitem{border-color:rgba(255,210,31,.45);box-shadow:4px 5px 0 #000}
+html.fi[data-theme=dark] .vitem.on{border-color:var(--fi-y)}
+
+/* ===== bailarines de las fiestas junto a los títulos de sección ===== */
+.fi-dancer{position:absolute;z-index:1;margin:0;pointer-events:none;top:clamp(54px,7vw,96px);width:clamp(150px,15vw,220px)}
+.fi-dancer.dr{right:calc(max(0px,(100% - 1240px)/2) + clamp(8px,2vw,28px))}
+.fi-dancer.dl{left:calc(max(0px,(100% - 1240px)/2) + clamp(8px,2vw,28px))}
+.fi-dancer::before{content:"";position:absolute;left:10%;right:10%;top:10%;bottom:8%;border-radius:50%;z-index:-1;filter:blur(26px);opacity:.7;
+  background:radial-gradient(circle at 50% 40%,rgba(255,255,255,.75),rgba(255,122,26,.45) 50%,transparent 75%)}
+[data-theme=dark] .fi-dancer::before{background:radial-gradient(circle at 50% 40%,rgba(255,210,31,.45),rgba(227,38,43,.35) 50%,transparent 75%)}
+.fi-dancer img{display:block;width:100%;height:auto;transform-origin:50% 100%;animation:fiDance 3.4s ease-in-out infinite;
+  filter:drop-shadow(2px 0 0 var(--fi-ink)) drop-shadow(-2px 0 0 var(--fi-ink)) drop-shadow(0 2px 0 var(--fi-ink)) drop-shadow(0 -2px 0 var(--fi-ink)) drop-shadow(8px 10px 0 rgba(43,20,6,.3))}
+[data-theme=dark] .fi-dancer img{filter:drop-shadow(0 0 1.5px rgba(255,210,31,.9)) drop-shadow(0 0 20px rgba(255,150,0,.3))}
+.fi-dancer.dc{top:clamp(40px,5vw,80px)}
+/* el título no se mete debajo del bailarín en pantallas medianas */
+@media (min-width:1101px){
+  html.fi #sectores .sec-head,html.fi #servicios .sec-head,html.fi #campo .sec-head,html.fi #proceso .sec-head{padding-right:clamp(170px,17vw,250px)}
+}
+/* celular y tableta: bailarín pequeño en la esquina superior, sobre el espacio del encabezado */
+@media (max-width:1100px){
+  .fi-dancer{top:8px;width:clamp(78px,20vw,120px)}
+  .fi-dancer.dr{right:6px}.fi-dancer.dl{left:6px}
+  .fi-dancer.dc{top:8px}
+  html.fi .fi-host:has(.fi-dancer.dr) .fi-farol{display:none}
+  html.fi #sectores .sec-head,html.fi #servicios .sec-head,html.fi #campo .sec-head,html.fi #proceso .sec-head{padding-right:clamp(70px,18vw,110px)}
+  html.fi .sec.video .sec-head{padding-top:clamp(110px,26vw,170px)}
+}
+@media (prefers-reduced-motion:reduce){.fi-dancer img{animation:none}}
