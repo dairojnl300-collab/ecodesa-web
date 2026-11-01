@@ -1,0 +1,171 @@
+/* Edición Fiestas de Independencia (Cartagena, 11 de noviembre) — solo visible con html.fi
+   Temporada 1–16 de noviembre. ?fiestas=1 la fuerza, ?fiestas=0 la apaga. Decoración aria-hidden y sin clics (pointer-events:none).
+   Fuentes autoalojadas: Lilita One y Caveat Brush, SIL OFL 1.1. */
+@font-face{font-family:'Lilita One';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/lilita-one-400.woff2) format('woff2')}
+@font-face{font-family:'Caveat Brush';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/caveat-brush-400.woff2) format('woff2')}
+
+:root{
+  --fi-y:#ffd21f;--fi-r:#e3262b;--fi-g:#14964a;--fi-o:#ff7a1a;--fi-ink:#2b1406;--fi-cream:#fff4d6;
+  --fi-fh:"Lilita One","Archivo",system-ui,sans-serif;--fi-fs:"Caveat Brush","Instrument Sans",cursive;
+  /* día */
+  --fi-bg:#ffd21f;--fi-fg:#2b1406;--fi-sub:#4a2a10;--fi-head:#c8101f;--fi-card:#fff8e6;--fi-card-fg:#2b1406;
+  --fi-card-b:#2b1406;--fi-shadow:#2b1406;--fi-doodle:rgba(196,120,0,.30);--fi-ray:rgba(255,248,214,.55);--fi-glow:rgba(255,255,255,0)
+}
+[data-theme=dark]{
+  /* noche: plaza iluminada */
+  --fi-bg:#150d06;--fi-fg:#fff1cf;--fi-sub:#f3dcae;--fi-head:#ffd21f;--fi-card:#24170b;--fi-card-fg:#fff1cf;
+  --fi-card-b:rgba(255,210,31,.6);--fi-shadow:#000;--fi-doodle:rgba(255,210,31,.10);--fi-ray:rgba(255,210,31,.07);--fi-glow:rgba(255,122,26,.28)
+}
+
+.fi-only{display:none!important}
+html.fi .fi-only{display:block!important}
+html.fi p.fi-pill{display:inline-flex!important}
+
+/* ---------- banderines (papel picado) ---------- */
+.fi-bunt{position:absolute;left:0;right:0;top:0;pointer-events:none;z-index:2}
+.fi-bunt svg{display:block;width:100%;height:auto;overflow:visible}
+.fi-flag{transform-box:view-box;animation:fiSwing 3.4s cubic-bezier(.45,0,.55,1) infinite alternate;animation-delay:var(--d,0s)}
+@keyframes fiSwing{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+
+/* ---------- confeti ---------- */
+.fi-conf{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2}
+.fi-cf{position:absolute;top:-24px;left:var(--x);width:var(--w,9px);height:var(--h,14px);background:var(--c);border-radius:var(--r,2px);opacity:.92;
+  animation:fiFall var(--t,11s) linear infinite;animation-delay:var(--dl,0s);will-change:transform}
+@keyframes fiFall{
+  0%{transform:translate3d(0,0,0) rotate(0)}
+  25%{transform:translate3d(var(--sx,18px),calc(var(--fall,900px)*.25),0) rotate(140deg)}
+  50%{transform:translate3d(calc(var(--sx,18px)*-1),calc(var(--fall,900px)*.5),0) rotate(280deg)}
+  75%{transform:translate3d(var(--sx,18px),calc(var(--fall,900px)*.75),0) rotate(420deg)}
+  100%{transform:translate3d(0,var(--fall,900px),0) rotate(560deg)}
+}
+
+/* ---------- hero ---------- */
+.fi-layer{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.fi-layer .fi-bunt{top:14px}
+.fi-pill{align-items:center;gap:8px;margin:0 0 14px;padding:6px 14px 6px 6px;border-radius:999px;background:var(--fi-y);color:var(--fi-ink);
+  border:2px solid var(--fi-ink);box-shadow:3px 3px 0 var(--fi-ink);font:400 14px/1 var(--fi-fh);letter-spacing:.05em;text-transform:uppercase;transform:rotate(-1.5deg);transform-origin:left center}
+.fi-star{display:inline-grid;place-items:center;width:28px;height:28px;flex:none}
+.fi-star svg{width:100%;height:100%;display:block}
+
+/* ---------- botón de la edición (junto a día/noche) ---------- */
+.fi-btn{position:relative;z-index:3;display:inline-flex;align-items:center;gap:8px;height:44px;min-width:44px;padding:0 10px 0 7px;margin-right:8px;border-radius:999px;
+  border:2px solid var(--fi-y);background:rgba(255,210,31,.16);color:#fff;font:400 14px var(--fi-fh);letter-spacing:.03em;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:transform .16s cubic-bezier(.23,1,.32,1),background-color .2s}
+.fi-btn svg{width:30px;height:30px;flex:none}
+.fi-btn:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.fi-btn:hover{background:rgba(255,210,31,.3)}}
+.fi-btn[aria-pressed="false"]{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.1)}
+.fi-btn[aria-pressed="false"] svg{filter:grayscale(.9);opacity:.75}
+.fi-btn-t{display:none;white-space:nowrap}
+@media (min-width:1101px){.fi-btn-t{display:inline;padding-right:4px}}
+.nav.is-solid .fi-btn{color:var(--fi-ink);background:var(--fi-y);border-color:var(--fi-ink)}
+[data-theme=dark] .nav.is-solid .fi-btn{color:#fff1cf;background:rgba(255,210,31,.14);border-color:var(--fi-y)}
+.fi-btn:focus-visible{outline:2px solid var(--fi-y);outline-offset:3px}
+@media (max-width:480px){.fi-btn::after{content:"";position:absolute;inset:-4px;border-radius:999px}.fi-btn{height:40px;min-width:40px;width:40px;padding:0;justify-content:center;margin-right:4px}.fi-btn svg{width:26px;height:26px}}
+
+/* ---------- sección ---------- */
+.fi-sec{position:relative;overflow:hidden;background:var(--fi-bg);color:var(--fi-fg);padding-top:clamp(104px,10vw,132px);padding-bottom:clamp(310px,30vw,420px);isolation:isolate}
+.fi-sec::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--fi-doodle);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M28 20l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M118 30v26a7 6 0 1 1-4-5V24l18-4v26a7 6 0 1 1-4-5V25'/%3E%3Cpath d='M40 120c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M120 120l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='90' cy='88' r='3'/%3E%3Ccircle cx='160' cy='92' r='3'/%3E%3Ccircle cx='14' cy='76' r='3'/%3E%3Cpath d='M86 150c6-8 14-8 20 0'/%3E%3C/g%3E%3C/svg%3E") 0 0/180px 180px;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M28 20l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M118 30v26a7 6 0 1 1-4-5V24l18-4v26a7 6 0 1 1-4-5V25'/%3E%3Cpath d='M40 120c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M120 120l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='90' cy='88' r='3'/%3E%3Ccircle cx='160' cy='92' r='3'/%3E%3Ccircle cx='14' cy='76' r='3'/%3E%3Cpath d='M86 150c6-8 14-8 20 0'/%3E%3C/g%3E%3C/svg%3E") 0 0/180px 180px}
+.fi-sec::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(700px 420px at 50% 22%,var(--fi-glow),transparent 70%)}
+.fi-art{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.fi-sec .wrap{position:relative;z-index:3}
+.fi-sun{position:absolute;left:50%;top:clamp(150px,16vw,230px);width:min(1100px,180vw);aspect-ratio:1;translate:-50% -50%;border-radius:50%;
+  background:repeating-conic-gradient(var(--fi-ray) 0 7deg,transparent 7deg 18deg);-webkit-mask:radial-gradient(closest-side,#000 25%,transparent 100%);mask:radial-gradient(closest-side,#000 25%,transparent 100%);
+  animation:fiSpin 90s linear infinite}
+@keyframes fiSpin{to{rotate:360deg}}
+
+.fi-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 6px;border-radius:999px;background:var(--fi-r);color:#fff;border:2px solid var(--fi-ink);
+  box-shadow:3px 3px 0 var(--fi-ink);font:400 15px/1 var(--fi-fh);letter-spacing:.05em;text-transform:uppercase;transform:rotate(-1.5deg)}
+.fi-date{margin:16px 0 0;font:400 clamp(24px,3vw,32px)/1 var(--fi-fs);color:var(--fi-fg);text-align:center}
+.fi-h{margin:10px auto 0;max-width:15ch;font:400 clamp(42px,6.4vw,82px)/1.02 var(--fi-fh)!important;letter-spacing:.005em!important;color:var(--fi-head)!important;text-align:center;
+  text-shadow:2px 2px 0 var(--fi-shadow),-2px 2px 0 var(--fi-shadow),2px -2px 0 var(--fi-shadow),-2px -2px 0 var(--fi-shadow),0 7px 0 var(--fi-shadow)}
+.fi-h em{display:inline-block;margin-top:.12em;padding:.02em .28em .1em;font-style:normal;color:var(--fi-y);background:var(--fi-r);border:3px solid var(--fi-ink);border-radius:.18em;transform:rotate(-2deg);
+  text-shadow:2px 2px 0 var(--fi-ink),-2px 2px 0 var(--fi-ink),2px -2px 0 var(--fi-ink),-2px -2px 0 var(--fi-ink);box-shadow:5px 6px 0 var(--fi-shadow)}
+.fi-sub{max-width:620px;margin:22px auto 0;color:var(--fi-sub);text-align:center;font-size:clamp(16px,1.6vw,19px);line-height:1.55}
+
+.fi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:44px}
+.fi-card{position:relative;padding:24px 22px 26px;border-radius:22px;background:var(--fi-card);color:var(--fi-card-fg);border:2.5px solid var(--fi-card-b);box-shadow:5px 6px 0 var(--fi-shadow);
+  transition:transform .3s cubic-bezier(.23,1,.32,1)}
+.fi-card:nth-child(2){transform:rotate(.6deg)}.fi-card:nth-child(3){transform:rotate(-.5deg)}
+@media (hover:hover) and (pointer:fine){.fi-card:hover{transform:translateY(-5px) rotate(-.8deg)}}
+.fi-ic{display:block;width:62px;height:62px;margin-bottom:12px}
+.fi-ic svg{width:100%;height:100%;display:block;overflow:visible}
+.fi-card h3{margin:0 0 8px;font:400 23px/1.15 var(--fi-fh);letter-spacing:.01em;color:var(--fi-card-fg)}
+[data-theme=dark] .fi-card h3{color:var(--fi-y)}
+.fi-card p{margin:0;text-align:left;line-height:1.55;color:var(--fi-card-fg);opacity:.92}
+.fi-cta{text-align:center;margin-top:38px}
+.fi-cta .btn{border:2px solid var(--fi-ink);box-shadow:4px 5px 0 var(--fi-ink)}
+[data-theme=dark] .fi-cta .btn{border-color:#000;box-shadow:4px 5px 0 #000}
+
+/* personajes de la edición: danzante con la bandera (izquierda) y cumbiambera (derecha), completos y sin recortes */
+.fi-duo{display:flex;justify-content:center;align-items:flex-end;gap:2%;margin:0 auto 8px;max-width:520px}
+.fi-model{position:relative;margin:0;z-index:2;flex:0 1 48%}
+.fi-model::before{content:"";position:absolute;left:6%;right:6%;top:8%;bottom:14%;border-radius:50%;z-index:-1;filter:blur(28px);opacity:.75;
+  background:radial-gradient(circle at 50% 30%,rgba(255,210,31,.95),rgba(227,38,43,.7) 45%,rgba(20,150,74,.55) 70%,transparent 80%)}
+[data-theme=dark] .fi-model::before{opacity:.9}
+.fi-model img{display:block;width:100%;height:auto;transform-origin:50% 100%;animation:fiSway 5.5s ease-in-out infinite alternate;
+  filter:drop-shadow(2px 0 0 var(--fi-ink)) drop-shadow(-2px 0 0 var(--fi-ink)) drop-shadow(0 2px 0 var(--fi-ink)) drop-shadow(0 -2px 0 var(--fi-ink)) drop-shadow(8px 10px 0 rgba(43,20,6,.35))}
+[data-theme=dark] .fi-model img{filter:drop-shadow(0 0 1.5px rgba(255,210,31,.9)) drop-shadow(0 0 22px rgba(255,150,0,.35))}
+/* el danzante baila con otro compás; su ruedo se funde suave abajo */
+.fi-dz img{animation:fiDance 3.2s ease-in-out infinite;-webkit-mask:linear-gradient(#000 93%,transparent);mask:linear-gradient(#000 93%,transparent)}
+@keyframes fiSway{from{transform:rotate(-2deg) translateY(0)}to{transform:rotate(2deg) translateY(-6px)}}
+@keyframes fiDance{0%,100%{transform:rotate(-2.5deg) translateY(0)}25%{transform:rotate(1deg) translateY(-8px)}50%{transform:rotate(2.5deg) translateY(0)}75%{transform:rotate(-1deg) translateY(-6px)}}
+@media (min-width:1200px){
+  .fi-duo{display:block;max-width:none;margin:0}
+  .fi-model{position:absolute;top:-56px;width:clamp(240px,19vw,290px)}
+  .fi-cb{right:-1%}
+  .fi-dz{left:-2%;top:-40px;width:clamp(250px,20vw,300px)}
+}
+@media (prefers-reduced-motion:reduce){.fi-model img{animation:none}}
+
+/* escena del Bando: Avenida Santander entre el mar y las murallas */
+:root{--fi-sunc:#ffae00;--fi-lamp:#fff4d6}
+[data-theme=dark]{--fi-sunc:#fff0b8;--fi-lamp:#ffd21f}
+.fi-bando{position:absolute;left:0;right:0;bottom:0;height:clamp(280px,27vw,380px);z-index:1}
+.fi-bando svg{display:block;width:100%;height:100%;overflow:hidden}
+.fi-bando *{transform-box:fill-box}
+.fi-bando .fi-flag{transform-box:view-box}
+.fi-parade{transform-box:view-box!important;animation:fiParade 70s linear infinite}
+@keyframes fiParade{from{transform:translateX(0)}to{transform:translateX(1600px)}}
+.fi-walk{animation:fiBob .46s ease-in-out infinite alternate}
+@keyframes fiBob{from{transform:translateY(0)}to{transform:translateY(-4px)}}
+.fi-sk{transform-origin:50% 0;animation:fiSkirt .92s ease-in-out infinite alternate}
+@keyframes fiSkirt{from{transform:skewX(-9deg) scaleX(1.04)}to{transform:skewX(9deg) scaleX(.96)}}
+.fi-armup{transform-origin:0% 100%;animation:fiArm .92s ease-in-out infinite alternate}
+@keyframes fiArm{from{transform:rotate(-14deg)}to{transform:rotate(10deg)}}
+.fi-armup2{transform-origin:0% 100%;animation:fiArm2 1.6s ease-in-out infinite alternate}
+@keyframes fiArm2{from{transform:rotate(-6deg)}to{transform:rotate(8deg)}}
+.fi-flame{transform-origin:50% 100%;animation:fiFlame .3s ease-in-out infinite alternate}
+@keyframes fiFlame{from{transform:scale(.85,1.05)}to{transform:scale(1.1,.9)}}
+.fi-beat{transform-origin:0% 0%;animation:fiBeat2 .26s ease-in-out infinite alternate}
+@keyframes fiBeat2{from{transform:rotate(-10deg)}to{transform:rotate(12deg)}}
+.fi-flagw{transform-origin:0% 50%;animation:fiFlag 1.1s ease-in-out infinite alternate}
+@keyframes fiFlag{from{transform:skewY(-6deg) scaleX(.94)}to{transform:skewY(5deg) scaleX(1)}}
+.fi-wheel{transform-origin:50% 50%;animation:fiWheel 2.2s linear infinite}
+@keyframes fiWheel{to{transform:rotate(360deg)}}
+.fi-wave{transform-origin:0% 100%;animation:fiWave .7s ease-in-out infinite alternate}
+@keyframes fiWave{from{transform:rotate(-16deg)}to{transform:rotate(14deg)}}
+.fi-queen{animation:fiBob .9s ease-in-out infinite alternate}
+.fi-palm{transform-origin:20% 100%;animation:fiPalm 4.5s ease-in-out infinite alternate}
+@keyframes fiPalm{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+.fi-sea{animation:fiSea 6s linear infinite}
+@keyframes fiSea{from{transform:translateX(0)}to{transform:translateX(60px)}}
+[data-theme=dark] .fi-lamp{filter:drop-shadow(0 0 6px #ffd21f) drop-shadow(0 0 14px rgba(255,180,0,.8))}
+[data-theme=dark] .fi-bando{filter:saturate(.92) brightness(.92)}
+.fi-sec .fi-bunt{top:clamp(10px,1.6vw,22px)}
+
+/* pie de página */
+html.fi .foot{position:relative}
+.fi-foot{position:absolute;left:0;right:0;top:0;height:0;pointer-events:none;z-index:2}
+
+@media (max-width:860px){
+  .fi-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
+  .fi-card:nth-child(n){transform:none}
+}
+@media (max-width:480px){.fi-pill{font-size:12.5px}.fi-tag{font-size:13px}}
+@media (prefers-reduced-motion:reduce){
+  .fi-flag,.fi-cf,.fi-sun,.fi-bando *{animation:none!important}
+  .fi-conf{display:none}
+}
