@@ -169,3 +169,42 @@ html.fi .foot{position:relative}
   .fi-flag,.fi-cf,.fi-sun,.fi-bando *{animation:none!important}
   .fi-conf{display:none}
 }
+
+/* ===== edición en toda la página: cada sección con banderines, farol colgante, un objeto típico y textura de dibujos ===== */
+html.fi .fi-host{isolation:isolate}
+.fi-wide{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+html.fi .fi-wide{display:block!important}
+.fi-wide .fi-bunt{top:0}
+.fi-wide .fi-bunt svg{opacity:.95}
+.fi-tex{position:absolute;inset:0;background:rgba(196,120,0,.09);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M30 24l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M150 40v24a6 5 0 1 1-4-4V34l16-4v24a6 5 0 1 1-4-4V35'/%3E%3Cpath d='M48 150c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M150 150l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='110' cy='100' r='3'/%3E%3Ccircle cx='196' cy='110' r='3'/%3E%3C/g%3E%3C/svg%3E") 0 0/220px 220px;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M30 24l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M150 40v24a6 5 0 1 1-4-4V34l16-4v24a6 5 0 1 1-4-4V35'/%3E%3Cpath d='M48 150c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M150 150l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='110' cy='100' r='3'/%3E%3Ccircle cx='196' cy='110' r='3'/%3E%3C/g%3E%3C/svg%3E") 0 0/220px 220px}
+[data-theme=dark] .fi-tex{background:rgba(255,210,31,.05)}
+.foot .fi-tex{background:rgba(255,210,31,.05)}
+/* farol que cuelga de los banderines */
+.fi-farol{position:absolute;top:6px;width:clamp(36px,3.6vw,54px);transform-origin:50% 0;animation:fiFarol 4.4s ease-in-out infinite alternate}
+.fi-farol.fr{right:clamp(14px,6vw,110px)}.fi-farol.fl{right:clamp(60px,14vw,260px)}
+.fi-farol svg{display:block;width:100%;height:auto}
+@keyframes fiFarol{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+[data-theme=dark] .fi-farol svg,.foot .fi-farol svg{filter:drop-shadow(0 0 10px rgba(255,170,0,.65))}
+/* objeto típico en la esquina inferior (en el margen, detrás del contenido) */
+.fi-obj{position:absolute;bottom:clamp(14px,2.5vw,34px);width:clamp(54px,5.4vw,84px);transform-origin:50% 100%}
+.fi-obj.ol{left:clamp(6px,1.4vw,26px)}.fi-obj.or{right:clamp(6px,1.4vw,26px)}
+.fi-obj svg{display:block;width:100%;height:auto;overflow:visible}
+.fi-o-shake{animation:fiShake 2.2s ease-in-out infinite}
+.fi-o-bob{animation:fiBobO 2.6s ease-in-out infinite alternate}
+.fi-o-beat{animation:fiBeat .9s cubic-bezier(.3,0,.3,1) infinite}
+.fi-o-spin svg{animation:fiSpin2 14s linear infinite}
+@keyframes fiBobO{from{transform:translateY(0) rotate(-3deg)}to{transform:translateY(-8px) rotate(3deg)}}
+@keyframes fiShake{0%,40%,100%{transform:rotate(0)}5%{transform:rotate(-14deg)}10%{transform:rotate(12deg)}15%{transform:rotate(-12deg)}20%{transform:rotate(10deg)}25%{transform:rotate(-6deg)}30%{transform:rotate(0)}}
+@keyframes fiBeat{0%,100%{transform:translateY(0) scale(1,1)}12%{transform:translateY(0) scale(1.04,.95)}30%{transform:translateY(-7px) scale(.98,1.03)}55%{transform:translateY(0) scale(1,1)}}
+@keyframes fiSpin2{to{transform:rotate(360deg)}}
+.fi-obj .fi-flagw{transform-box:fill-box}
+/* las animaciones solo corren con la sección en pantalla */
+.fi-wide *{animation-play-state:paused}
+.fi-wide.fi-run *{animation-play-state:running}
+/* etiquetas de sección con franja tricolor de Cartagena */
+html.fi .sec:not(.fi-sec) .pill{background-image:linear-gradient(90deg,var(--fi-r) 0 33.3%,var(--fi-y) 33.3% 66.6%,var(--fi-g) 66.6%);background-size:calc(100% - 28px) 3px;background-position:50% calc(100% - 3px);background-repeat:no-repeat}
+@media (max-width:1279px){.fi-obj{display:none}}
+@media (max-width:700px){.fi-farol{width:32px}.fi-farol.fl{right:18px}.fi-farol.fr{right:18px}}
+@media (prefers-reduced-motion:reduce){.fi-farol,.fi-obj,.fi-obj svg{animation:none!important}}
