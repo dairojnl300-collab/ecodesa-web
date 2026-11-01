@@ -232,6 +232,21 @@
     });
   }
 
+  /* ---------- bailarines de las fiestas: uno por sección, en el espacio libre junto al título ---------- */
+  var BAILES = [
+    ["#sectores", "capuchon", "r", 480, 720], ["#servicios", "urbana", "r", 451, 720], ["#campo", "golero", "r", 484, 720],
+    ["#proceso", "pollera", "r", 476, 720], [".sec.video", "vela", "l", 481, 720], [".sec.video", "tambora", "r", 480, 720]
+  ];
+  function buildDancers() {
+    BAILES.forEach(function (b, i) {
+      var s = document.querySelector(b[0]); if (!s || s.querySelector(".fi-dancer.d-" + b[1])) return;
+      var f = document.createElement("figure"); f.className = "fi-dancer fi-only d-" + b[1] + " " + (b[2] === "l" ? "dl" : "dr") + (s.classList.contains("video") ? " dc" : "");
+      f.setAttribute("aria-hidden", "true");
+      f.innerHTML = '<img src="assets/v2/fi-baile-' + b[1] + '.webp" alt="" width="' + b[3] + '" height="' + b[4] + '" loading="lazy" decoding="async" style="animation-delay:' + (-i * 0.6) + 's">';
+      s.appendChild(f);
+    });
+  }
+
   /* ---------- confeti ---------- */
   function confetti(box, n) {
     if (reduce) return;
@@ -282,6 +297,7 @@
     var foot = document.querySelector(".foot");
     if (foot) { var f = document.createElement("div"); f.className = "fi-foot fi-only"; f.setAttribute("aria-hidden", "true"); foot.insertBefore(f, foot.firstChild); placeBunting(f, { swags: 3, fh: 26, sag: 18 }); }
     buildWide();
+    buildDancers();
     var t; window.addEventListener("resize", function () {
       clearTimeout(t); t = setTimeout(function () {
         if (heroL) heroBunting(heroL);

@@ -244,3 +244,29 @@ html.fi .vitem{border:2px solid var(--fi-ink);box-shadow:4px 5px 0 var(--fi-ink)
 html.fi .vitem.on{border-color:var(--fi-r);box-shadow:4px 5px 0 var(--fi-r)}
 html.fi[data-theme=dark] .vitem{border-color:rgba(255,210,31,.45);box-shadow:4px 5px 0 #000}
 html.fi[data-theme=dark] .vitem.on{border-color:var(--fi-y)}
+
+/* ===== bailarines de las fiestas junto a los títulos de sección ===== */
+.fi-dancer{position:absolute;z-index:1;margin:0;pointer-events:none;top:clamp(54px,7vw,96px);width:clamp(150px,15vw,220px)}
+.fi-dancer.dr{right:calc(max(0px,(100% - 1240px)/2) + clamp(8px,2vw,28px))}
+.fi-dancer.dl{left:calc(max(0px,(100% - 1240px)/2) + clamp(8px,2vw,28px))}
+.fi-dancer::before{content:"";position:absolute;left:10%;right:10%;top:10%;bottom:8%;border-radius:50%;z-index:-1;filter:blur(26px);opacity:.7;
+  background:radial-gradient(circle at 50% 40%,rgba(255,255,255,.75),rgba(255,122,26,.45) 50%,transparent 75%)}
+[data-theme=dark] .fi-dancer::before{background:radial-gradient(circle at 50% 40%,rgba(255,210,31,.45),rgba(227,38,43,.35) 50%,transparent 75%)}
+.fi-dancer img{display:block;width:100%;height:auto;transform-origin:50% 100%;animation:fiDance 3.4s ease-in-out infinite;
+  filter:drop-shadow(2px 0 0 var(--fi-ink)) drop-shadow(-2px 0 0 var(--fi-ink)) drop-shadow(0 2px 0 var(--fi-ink)) drop-shadow(0 -2px 0 var(--fi-ink)) drop-shadow(8px 10px 0 rgba(43,20,6,.3))}
+[data-theme=dark] .fi-dancer img{filter:drop-shadow(0 0 1.5px rgba(255,210,31,.9)) drop-shadow(0 0 20px rgba(255,150,0,.3))}
+.fi-dancer.dc{top:clamp(40px,5vw,80px)}
+/* el título no se mete debajo del bailarín en pantallas medianas */
+@media (min-width:1101px){
+  html.fi #sectores .sec-head,html.fi #servicios .sec-head,html.fi #campo .sec-head,html.fi #proceso .sec-head{padding-right:clamp(170px,17vw,250px)}
+}
+/* celular y tableta: bailarín pequeño en la esquina superior, sobre el espacio del encabezado */
+@media (max-width:1100px){
+  .fi-dancer{top:8px;width:clamp(78px,20vw,120px)}
+  .fi-dancer.dr{right:6px}.fi-dancer.dl{left:6px}
+  .fi-dancer.dc{top:8px}
+  html.fi .fi-host:has(.fi-dancer.dr) .fi-farol{display:none}
+  html.fi #sectores .sec-head,html.fi #servicios .sec-head,html.fi #campo .sec-head,html.fi #proceso .sec-head{padding-right:clamp(70px,18vw,110px)}
+  html.fi .sec.video .sec-head{padding-top:clamp(110px,26vw,170px)}
+}
+@media (prefers-reduced-motion:reduce){.fi-dancer img{animation:none}}
