@@ -99,6 +99,20 @@ html.fi p.fi-pill{display:inline-flex!important}
 .fi-cta .btn{border:2px solid var(--fi-ink);box-shadow:4px 5px 0 var(--fi-ink)}
 [data-theme=dark] .fi-cta .btn{border-color:#000;box-shadow:4px 5px 0 #000}
 
+/* cumbiambera de la edición (recorte con contorno estilo cartel) */
+.fi-model{position:relative;width:clamp(170px,46vw,220px);margin:0 auto 6px;z-index:2}
+.fi-model::before{content:"";position:absolute;left:8%;right:8%;top:6%;bottom:12%;border-radius:50%;z-index:-1;filter:blur(28px);opacity:.75;
+  background:radial-gradient(circle at 50% 30%,rgba(255,210,31,.95),rgba(227,38,43,.7) 45%,rgba(20,150,74,.55) 70%,transparent 80%)}
+[data-theme=dark] .fi-model::before{opacity:.9}
+.fi-model img{display:block;width:100%;height:auto;transform-origin:50% 100%;animation:fiSway 5.5s ease-in-out infinite alternate;
+  filter:drop-shadow(2px 0 0 var(--fi-ink)) drop-shadow(-2px 0 0 var(--fi-ink)) drop-shadow(0 2px 0 var(--fi-ink)) drop-shadow(0 -2px 0 var(--fi-ink)) drop-shadow(8px 10px 0 rgba(43,20,6,.35))}
+[data-theme=dark] .fi-model img{filter:drop-shadow(0 0 1.5px rgba(255,210,31,.9)) drop-shadow(0 0 22px rgba(255,150,0,.35))}
+@keyframes fiSway{from{transform:rotate(-2deg) translateY(0)}to{transform:rotate(2deg) translateY(-6px)}}
+@media (min-width:1200px){
+  .fi-model{position:absolute;right:-1%;top:-56px;width:clamp(240px,19vw,290px);margin:0}
+}
+@media (prefers-reduced-motion:reduce){.fi-model img{animation:none}}
+
 /* escena del Bando: Avenida Santander entre el mar y las murallas */
 :root{--fi-sunc:#ffae00;--fi-lamp:#fff4d6}
 [data-theme=dark]{--fi-sunc:#fff0b8;--fi-lamp:#ffd21f}
