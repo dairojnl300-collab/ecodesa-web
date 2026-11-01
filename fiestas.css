@@ -1,0 +1,132 @@
+/* Edición Fiestas de Independencia (Cartagena, 11 de noviembre) — solo visible con html.fi
+   Temporada 1–16 de noviembre. ?fiestas=1 la fuerza, ?fiestas=0 la apaga. Decoración aria-hidden y sin clics (pointer-events:none).
+   Fuentes autoalojadas: Lilita One y Caveat Brush, SIL OFL 1.1. */
+@font-face{font-family:'Lilita One';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/lilita-one-400.woff2) format('woff2')}
+@font-face{font-family:'Caveat Brush';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/caveat-brush-400.woff2) format('woff2')}
+
+:root{
+  --fi-y:#ffd21f;--fi-r:#e3262b;--fi-g:#14964a;--fi-o:#ff7a1a;--fi-ink:#2b1406;--fi-cream:#fff4d6;
+  --fi-fh:"Lilita One","Archivo",system-ui,sans-serif;--fi-fs:"Caveat Brush","Instrument Sans",cursive;
+  /* día */
+  --fi-bg:#ffd21f;--fi-fg:#2b1406;--fi-sub:#4a2a10;--fi-head:#c8101f;--fi-card:#fff8e6;--fi-card-fg:#2b1406;
+  --fi-card-b:#2b1406;--fi-shadow:#2b1406;--fi-doodle:rgba(196,120,0,.30);--fi-ray:rgba(255,248,214,.55);--fi-glow:rgba(255,255,255,0)
+}
+[data-theme=dark]{
+  /* noche: plaza iluminada */
+  --fi-bg:#150d06;--fi-fg:#fff1cf;--fi-sub:#f3dcae;--fi-head:#ffd21f;--fi-card:#24170b;--fi-card-fg:#fff1cf;
+  --fi-card-b:rgba(255,210,31,.6);--fi-shadow:#000;--fi-doodle:rgba(255,210,31,.10);--fi-ray:rgba(255,210,31,.07);--fi-glow:rgba(255,122,26,.28)
+}
+
+.fi-only{display:none!important}
+html.fi .fi-only{display:block!important}
+html.fi p.fi-pill{display:inline-flex!important}
+
+/* ---------- banderines (papel picado) ---------- */
+.fi-bunt{position:absolute;left:0;right:0;top:0;pointer-events:none;z-index:2}
+.fi-bunt svg{display:block;width:100%;height:auto;overflow:visible}
+.fi-flag{transform-box:view-box;animation:fiSwing 3.4s cubic-bezier(.45,0,.55,1) infinite alternate;animation-delay:var(--d,0s)}
+@keyframes fiSwing{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+
+/* ---------- confeti ---------- */
+.fi-conf{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2}
+.fi-cf{position:absolute;top:-24px;left:var(--x);width:var(--w,9px);height:var(--h,14px);background:var(--c);border-radius:var(--r,2px);opacity:.92;
+  animation:fiFall var(--t,11s) linear infinite;animation-delay:var(--dl,0s);will-change:transform}
+@keyframes fiFall{
+  0%{transform:translate3d(0,0,0) rotate(0)}
+  25%{transform:translate3d(var(--sx,18px),calc(var(--fall,900px)*.25),0) rotate(140deg)}
+  50%{transform:translate3d(calc(var(--sx,18px)*-1),calc(var(--fall,900px)*.5),0) rotate(280deg)}
+  75%{transform:translate3d(var(--sx,18px),calc(var(--fall,900px)*.75),0) rotate(420deg)}
+  100%{transform:translate3d(0,var(--fall,900px),0) rotate(560deg)}
+}
+
+/* ---------- hero ---------- */
+.fi-layer{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.fi-layer .fi-bunt{top:14px}
+.fi-pill{align-items:center;gap:8px;margin:0 0 14px;padding:6px 14px 6px 6px;border-radius:999px;background:var(--fi-y);color:var(--fi-ink);
+  border:2px solid var(--fi-ink);box-shadow:3px 3px 0 var(--fi-ink);font:400 14px/1 var(--fi-fh);letter-spacing:.05em;text-transform:uppercase;transform:rotate(-1.5deg);transform-origin:left center}
+.fi-star{display:inline-grid;place-items:center;width:28px;height:28px;flex:none}
+.fi-star svg{width:100%;height:100%;display:block}
+
+/* ---------- botón de la edición (junto a día/noche) ---------- */
+.fi-btn{position:relative;z-index:3;display:inline-flex;align-items:center;gap:8px;height:44px;min-width:44px;padding:0 10px 0 7px;margin-right:8px;border-radius:999px;
+  border:2px solid var(--fi-y);background:rgba(255,210,31,.16);color:#fff;font:400 14px var(--fi-fh);letter-spacing:.03em;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:transform .16s cubic-bezier(.23,1,.32,1),background-color .2s}
+.fi-btn svg{width:30px;height:30px;flex:none}
+.fi-btn:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.fi-btn:hover{background:rgba(255,210,31,.3)}}
+.fi-btn[aria-pressed="false"]{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.1)}
+.fi-btn[aria-pressed="false"] svg{filter:grayscale(.9);opacity:.75}
+.fi-btn-t{display:none;white-space:nowrap}
+@media (min-width:1101px){.fi-btn-t{display:inline;padding-right:4px}}
+.nav.is-solid .fi-btn{color:var(--fi-ink);background:var(--fi-y);border-color:var(--fi-ink)}
+[data-theme=dark] .nav.is-solid .fi-btn{color:#fff1cf;background:rgba(255,210,31,.14);border-color:var(--fi-y)}
+.fi-btn:focus-visible{outline:2px solid var(--fi-y);outline-offset:3px}
+@media (max-width:480px){.fi-btn::after{content:"";position:absolute;inset:-4px;border-radius:999px}.fi-btn{height:40px;min-width:40px;width:40px;padding:0;justify-content:center;margin-right:4px}.fi-btn svg{width:26px;height:26px}}
+
+/* ---------- sección ---------- */
+.fi-sec{position:relative;overflow:hidden;background:var(--fi-bg);color:var(--fi-fg);padding-top:clamp(104px,10vw,132px);padding-bottom:clamp(190px,22vw,300px);isolation:isolate}
+.fi-sec::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--fi-doodle);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M28 20l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M118 30v26a7 6 0 1 1-4-5V24l18-4v26a7 6 0 1 1-4-5V25'/%3E%3Cpath d='M40 120c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M120 120l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='90' cy='88' r='3'/%3E%3Ccircle cx='160' cy='92' r='3'/%3E%3Ccircle cx='14' cy='76' r='3'/%3E%3Cpath d='M86 150c6-8 14-8 20 0'/%3E%3C/g%3E%3C/svg%3E") 0 0/180px 180px;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M28 20l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M118 30v26a7 6 0 1 1-4-5V24l18-4v26a7 6 0 1 1-4-5V25'/%3E%3Cpath d='M40 120c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M120 120l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='90' cy='88' r='3'/%3E%3Ccircle cx='160' cy='92' r='3'/%3E%3Ccircle cx='14' cy='76' r='3'/%3E%3Cpath d='M86 150c6-8 14-8 20 0'/%3E%3C/g%3E%3C/svg%3E") 0 0/180px 180px}
+.fi-sec::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(700px 420px at 50% 22%,var(--fi-glow),transparent 70%)}
+.fi-art{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.fi-sec .wrap{position:relative;z-index:3}
+.fi-sun{position:absolute;left:50%;top:clamp(150px,16vw,230px);width:min(1100px,180vw);aspect-ratio:1;translate:-50% -50%;border-radius:50%;
+  background:repeating-conic-gradient(var(--fi-ray) 0 7deg,transparent 7deg 18deg);-webkit-mask:radial-gradient(closest-side,#000 25%,transparent 100%);mask:radial-gradient(closest-side,#000 25%,transparent 100%);
+  animation:fiSpin 90s linear infinite}
+@keyframes fiSpin{to{rotate:360deg}}
+
+.fi-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 6px;border-radius:999px;background:var(--fi-r);color:#fff;border:2px solid var(--fi-ink);
+  box-shadow:3px 3px 0 var(--fi-ink);font:400 15px/1 var(--fi-fh);letter-spacing:.05em;text-transform:uppercase;transform:rotate(-1.5deg)}
+.fi-date{margin:16px 0 0;font:400 clamp(24px,3vw,32px)/1 var(--fi-fs);color:var(--fi-fg);text-align:center}
+.fi-h{margin:10px auto 0;max-width:15ch;font:400 clamp(42px,6.4vw,82px)/1.02 var(--fi-fh)!important;letter-spacing:.005em!important;color:var(--fi-head)!important;text-align:center;
+  text-shadow:2px 2px 0 var(--fi-shadow),-2px 2px 0 var(--fi-shadow),2px -2px 0 var(--fi-shadow),-2px -2px 0 var(--fi-shadow),0 7px 0 var(--fi-shadow)}
+.fi-h em{display:inline-block;margin-top:.12em;padding:.02em .28em .1em;font-style:normal;color:var(--fi-y);background:var(--fi-r);border:3px solid var(--fi-ink);border-radius:.18em;transform:rotate(-2deg);
+  text-shadow:2px 2px 0 var(--fi-ink),-2px 2px 0 var(--fi-ink),2px -2px 0 var(--fi-ink),-2px -2px 0 var(--fi-ink);box-shadow:5px 6px 0 var(--fi-shadow)}
+.fi-sub{max-width:620px;margin:22px auto 0;color:var(--fi-sub);text-align:center;font-size:clamp(16px,1.6vw,19px);line-height:1.55}
+
+.fi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:44px}
+.fi-card{position:relative;padding:24px 22px 26px;border-radius:22px;background:var(--fi-card);color:var(--fi-card-fg);border:2.5px solid var(--fi-card-b);box-shadow:5px 6px 0 var(--fi-shadow);
+  transition:transform .3s cubic-bezier(.23,1,.32,1)}
+.fi-card:nth-child(2){transform:rotate(.6deg)}.fi-card:nth-child(3){transform:rotate(-.5deg)}
+@media (hover:hover) and (pointer:fine){.fi-card:hover{transform:translateY(-5px) rotate(-.8deg)}}
+.fi-ic{display:block;width:62px;height:62px;margin-bottom:12px}
+.fi-ic svg{width:100%;height:100%;display:block;overflow:visible}
+.fi-card h3{margin:0 0 8px;font:400 23px/1.15 var(--fi-fh);letter-spacing:.01em;color:var(--fi-card-fg)}
+[data-theme=dark] .fi-card h3{color:var(--fi-y)}
+.fi-card p{margin:0;text-align:left;line-height:1.55;color:var(--fi-card-fg);opacity:.92}
+.fi-cta{text-align:center;margin-top:38px}
+.fi-cta .btn{border:2px solid var(--fi-ink);box-shadow:4px 5px 0 var(--fi-ink)}
+[data-theme=dark] .fi-cta .btn{border-color:#000;box-shadow:4px 5px 0 #000}
+
+/* ilustraciones de la sección */
+.fi-skyline{position:absolute;left:0;right:0;bottom:-2px;height:clamp(120px,16vw,210px);z-index:1}
+.fi-skyline svg{display:block;width:100%;height:100%}
+.fi-tower{position:absolute;left:clamp(8px,4vw,70px);bottom:clamp(40px,5vw,70px);width:clamp(82px,11vw,150px);z-index:2;transform-origin:50% 100%;animation:fiTower 6s ease-in-out infinite}
+@keyframes fiTower{0%,100%{transform:rotate(-.6deg)}50%{transform:rotate(.6deg)}}
+.fi-band{position:absolute;right:clamp(6px,4vw,70px);bottom:clamp(44px,5.5vw,80px);width:clamp(110px,14vw,190px);z-index:2;display:flex;align-items:flex-end;gap:2%}
+.fi-drum{width:56%;transform-origin:50% 100%;animation:fiBeat .9s cubic-bezier(.3,0,.3,1) infinite}
+@keyframes fiBeat{0%,100%{transform:translateY(0) scale(1,1)}12%{transform:translateY(0) scale(1.04,.95)}30%{transform:translateY(-7px) scale(.98,1.03)}55%{transform:translateY(0) scale(1,1)}}
+.fi-mar{width:44%;transform-origin:30% 90%;animation:fiShake 1.8s ease-in-out infinite}
+@keyframes fiShake{0%,40%,100%{transform:rotate(0)}5%{transform:rotate(-14deg)}10%{transform:rotate(12deg)}15%{transform:rotate(-12deg)}20%{transform:rotate(10deg)}25%{transform:rotate(-6deg)}30%{transform:rotate(0)}}
+.fi-drum svg,.fi-mar svg,.fi-tower svg{display:block;width:100%;height:auto;overflow:visible}
+.fi-note{position:absolute;font:400 30px var(--fi-fh);color:var(--fi-r);opacity:0;animation:fiNote 2.7s ease-out infinite}
+[data-theme=dark] .fi-note{color:var(--fi-y)}
+.fi-note.n1{left:2%;bottom:96%}.fi-note.n2{left:40%;bottom:100%;animation-delay:-.9s}.fi-note.n3{left:78%;bottom:92%;animation-delay:-1.8s}
+@keyframes fiNote{0%{opacity:0;transform:translate(0,10px) rotate(-10deg)}20%{opacity:1}100%{opacity:0;transform:translate(14px,-46px) rotate(12deg)}}
+.fi-sec .fi-bunt{top:clamp(10px,1.6vw,22px)}
+
+/* pie de página */
+html.fi .foot{position:relative}
+.fi-foot{position:absolute;left:0;right:0;top:0;height:0;pointer-events:none;z-index:2}
+
+@media (max-width:860px){
+  .fi-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
+  .fi-card:nth-child(n){transform:none}
+  .fi-band{width:110px}.fi-tower{width:78px}
+}
+@media (max-width:480px){.fi-pill{font-size:12.5px}.fi-tag{font-size:13px}}
+@media (prefers-reduced-motion:reduce){
+  .fi-flag,.fi-cf,.fi-sun,.fi-tower,.fi-drum,.fi-mar,.fi-note{animation:none!important}
+  .fi-conf{display:none}
+}
