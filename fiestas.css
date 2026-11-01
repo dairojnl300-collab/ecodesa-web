@@ -64,7 +64,7 @@ html.fi p.fi-pill{display:inline-flex!important}
 @media (max-width:480px){.fi-btn::after{content:"";position:absolute;inset:-4px;border-radius:999px}.fi-btn{height:40px;min-width:40px;width:40px;padding:0;justify-content:center;margin-right:4px}.fi-btn svg{width:26px;height:26px}}
 
 /* ---------- sección ---------- */
-.fi-sec{position:relative;overflow:hidden;background:var(--fi-bg);color:var(--fi-fg);padding-top:clamp(104px,10vw,132px);padding-bottom:clamp(190px,22vw,300px);isolation:isolate}
+.fi-sec{position:relative;overflow:hidden;background:var(--fi-bg);color:var(--fi-fg);padding-top:clamp(104px,10vw,132px);padding-bottom:clamp(310px,30vw,420px);isolation:isolate}
 .fi-sec::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--fi-doodle);
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M28 20l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M118 30v26a7 6 0 1 1-4-5V24l18-4v26a7 6 0 1 1-4-5V25'/%3E%3Cpath d='M40 120c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M120 120l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='90' cy='88' r='3'/%3E%3Ccircle cx='160' cy='92' r='3'/%3E%3Ccircle cx='14' cy='76' r='3'/%3E%3Cpath d='M86 150c6-8 14-8 20 0'/%3E%3C/g%3E%3C/svg%3E") 0 0/180px 180px;
           mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M28 20l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M118 30v26a7 6 0 1 1-4-5V24l18-4v26a7 6 0 1 1-4-5V25'/%3E%3Cpath d='M40 120c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M120 120l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='90' cy='88' r='3'/%3E%3Ccircle cx='160' cy='92' r='3'/%3E%3Ccircle cx='14' cy='76' r='3'/%3E%3Cpath d='M86 150c6-8 14-8 20 0'/%3E%3C/g%3E%3C/svg%3E") 0 0/180px 180px}
@@ -99,21 +99,40 @@ html.fi p.fi-pill{display:inline-flex!important}
 .fi-cta .btn{border:2px solid var(--fi-ink);box-shadow:4px 5px 0 var(--fi-ink)}
 [data-theme=dark] .fi-cta .btn{border-color:#000;box-shadow:4px 5px 0 #000}
 
-/* ilustraciones de la sección */
-.fi-skyline{position:absolute;left:0;right:0;bottom:-2px;height:clamp(120px,16vw,210px);z-index:1}
-.fi-skyline svg{display:block;width:100%;height:100%}
-.fi-tower{position:absolute;left:clamp(8px,4vw,70px);bottom:clamp(40px,5vw,70px);width:clamp(82px,11vw,150px);z-index:2;transform-origin:50% 100%;animation:fiTower 6s ease-in-out infinite}
-@keyframes fiTower{0%,100%{transform:rotate(-.6deg)}50%{transform:rotate(.6deg)}}
-.fi-band{position:absolute;right:clamp(6px,4vw,70px);bottom:clamp(44px,5.5vw,80px);width:clamp(110px,14vw,190px);z-index:2;display:flex;align-items:flex-end;gap:2%}
-.fi-drum{width:56%;transform-origin:50% 100%;animation:fiBeat .9s cubic-bezier(.3,0,.3,1) infinite}
-@keyframes fiBeat{0%,100%{transform:translateY(0) scale(1,1)}12%{transform:translateY(0) scale(1.04,.95)}30%{transform:translateY(-7px) scale(.98,1.03)}55%{transform:translateY(0) scale(1,1)}}
-.fi-mar{width:44%;transform-origin:30% 90%;animation:fiShake 1.8s ease-in-out infinite}
-@keyframes fiShake{0%,40%,100%{transform:rotate(0)}5%{transform:rotate(-14deg)}10%{transform:rotate(12deg)}15%{transform:rotate(-12deg)}20%{transform:rotate(10deg)}25%{transform:rotate(-6deg)}30%{transform:rotate(0)}}
-.fi-drum svg,.fi-mar svg,.fi-tower svg{display:block;width:100%;height:auto;overflow:visible}
-.fi-note{position:absolute;font:400 30px var(--fi-fh);color:var(--fi-r);opacity:0;animation:fiNote 2.7s ease-out infinite}
-[data-theme=dark] .fi-note{color:var(--fi-y)}
-.fi-note.n1{left:2%;bottom:96%}.fi-note.n2{left:40%;bottom:100%;animation-delay:-.9s}.fi-note.n3{left:78%;bottom:92%;animation-delay:-1.8s}
-@keyframes fiNote{0%{opacity:0;transform:translate(0,10px) rotate(-10deg)}20%{opacity:1}100%{opacity:0;transform:translate(14px,-46px) rotate(12deg)}}
+/* escena del Bando: Avenida Santander entre el mar y las murallas */
+:root{--fi-sunc:#ffae00;--fi-lamp:#fff4d6}
+[data-theme=dark]{--fi-sunc:#fff0b8;--fi-lamp:#ffd21f}
+.fi-bando{position:absolute;left:0;right:0;bottom:0;height:clamp(280px,27vw,380px);z-index:1}
+.fi-bando svg{display:block;width:100%;height:100%;overflow:hidden}
+.fi-bando *{transform-box:fill-box}
+.fi-bando .fi-flag{transform-box:view-box}
+.fi-parade{transform-box:view-box!important;animation:fiParade 70s linear infinite}
+@keyframes fiParade{from{transform:translateX(0)}to{transform:translateX(1600px)}}
+.fi-walk{animation:fiBob .46s ease-in-out infinite alternate}
+@keyframes fiBob{from{transform:translateY(0)}to{transform:translateY(-4px)}}
+.fi-sk{transform-origin:50% 0;animation:fiSkirt .92s ease-in-out infinite alternate}
+@keyframes fiSkirt{from{transform:skewX(-9deg) scaleX(1.04)}to{transform:skewX(9deg) scaleX(.96)}}
+.fi-armup{transform-origin:0% 100%;animation:fiArm .92s ease-in-out infinite alternate}
+@keyframes fiArm{from{transform:rotate(-14deg)}to{transform:rotate(10deg)}}
+.fi-armup2{transform-origin:0% 100%;animation:fiArm2 1.6s ease-in-out infinite alternate}
+@keyframes fiArm2{from{transform:rotate(-6deg)}to{transform:rotate(8deg)}}
+.fi-flame{transform-origin:50% 100%;animation:fiFlame .3s ease-in-out infinite alternate}
+@keyframes fiFlame{from{transform:scale(.85,1.05)}to{transform:scale(1.1,.9)}}
+.fi-beat{transform-origin:0% 0%;animation:fiBeat2 .26s ease-in-out infinite alternate}
+@keyframes fiBeat2{from{transform:rotate(-10deg)}to{transform:rotate(12deg)}}
+.fi-flagw{transform-origin:0% 50%;animation:fiFlag 1.1s ease-in-out infinite alternate}
+@keyframes fiFlag{from{transform:skewY(-6deg) scaleX(.94)}to{transform:skewY(5deg) scaleX(1)}}
+.fi-wheel{transform-origin:50% 50%;animation:fiWheel 2.2s linear infinite}
+@keyframes fiWheel{to{transform:rotate(360deg)}}
+.fi-wave{transform-origin:0% 100%;animation:fiWave .7s ease-in-out infinite alternate}
+@keyframes fiWave{from{transform:rotate(-16deg)}to{transform:rotate(14deg)}}
+.fi-queen{animation:fiBob .9s ease-in-out infinite alternate}
+.fi-palm{transform-origin:20% 100%;animation:fiPalm 4.5s ease-in-out infinite alternate}
+@keyframes fiPalm{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+.fi-sea{animation:fiSea 6s linear infinite}
+@keyframes fiSea{from{transform:translateX(0)}to{transform:translateX(60px)}}
+[data-theme=dark] .fi-lamp{filter:drop-shadow(0 0 6px #ffd21f) drop-shadow(0 0 14px rgba(255,180,0,.8))}
+[data-theme=dark] .fi-bando{filter:saturate(.92) brightness(.92)}
 .fi-sec .fi-bunt{top:clamp(10px,1.6vw,22px)}
 
 /* pie de página */
@@ -123,10 +142,9 @@ html.fi .foot{position:relative}
 @media (max-width:860px){
   .fi-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
   .fi-card:nth-child(n){transform:none}
-  .fi-band{width:110px}.fi-tower{width:78px}
 }
 @media (max-width:480px){.fi-pill{font-size:12.5px}.fi-tag{font-size:13px}}
 @media (prefers-reduced-motion:reduce){
-  .fi-flag,.fi-cf,.fi-sun,.fi-tower,.fi-drum,.fi-mar,.fi-note{animation:none!important}
+  .fi-flag,.fi-cf,.fi-sun,.fi-bando *{animation:none!important}
   .fi-conf{display:none}
 }
