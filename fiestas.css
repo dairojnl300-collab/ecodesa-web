@@ -208,3 +208,25 @@ html.fi .sec:not(.fi-sec) .pill{background-image:linear-gradient(90deg,var(--fi-
 @media (max-width:1279px){.fi-obj{display:none}}
 @media (max-width:700px){.fi-farol{width:32px}.fi-farol.fl{right:18px}.fi-farol.fr{right:18px}}
 @media (prefers-reduced-motion:reduce){.fi-farol,.fi-obj,.fi-obj svg{animation:none!important}}
+
+/* ===== toda la página en clave de fiesta: fondo amarillo cartel (día) / noche cálida y tipografía de las fiestas ===== */
+html.fi:not([data-theme=dark]){--bg:#ffd84a;--card:#fff8e6;--line:rgba(43,20,6,.16);--chip:rgba(255,255,255,.62);--gd:#0f6b34;--ink:#2b1406;--ink2:#4a2a10}
+html.fi[data-theme=dark]{--bg:#160e07;--card:#24170b;--line:rgba(255,210,31,.18);--chip:rgba(255,210,31,.12);--gd:#ffd21f;--ink:#fff1cf;--ink2:#e8d3a8;--dark:#1d1309}
+html.fi:not([data-theme=dark]) .digital,html.fi:not([data-theme=dark]) .contacto{background:#ffcd2e}
+html.fi:not([data-theme=dark]) .video{background:linear-gradient(180deg,var(--bg),#ffcd2e)}
+html.fi:not([data-theme=dark]) .proceso{background:radial-gradient(circle,rgba(227,38,43,.16) 1.2px,transparent 1.4px) 0 0/26px 26px,var(--bg)}
+html.fi:not([data-theme=dark]) .foot{background:#ffc21a}
+html.fi[data-theme=dark] .video{background:linear-gradient(180deg,var(--bg),#1d1309)}
+html.fi[data-theme=dark] .foot{background:#100a04}
+html.fi:not([data-theme=dark]) .mvv,html.fi:not([data-theme=dark]) .cform,html.fi:not([data-theme=dark]) .dtab,html.fi:not([data-theme=dark]) .cinfo a,html.fi:not([data-theme=dark]) .cinfo span{background:var(--card)}
+html.fi:not([data-theme=dark]) .chip{background:var(--card)}
+/* títulos con la letra de cartel */
+html.fi main .sec:not(.fi-sec) h2,html.fi main .sec:not(.fi-sec) h3{font-family:var(--fi-fh);font-weight:400;letter-spacing:.005em}
+html.fi main .sec:not(.fi-sec) h2 em{color:#c8101f}
+html.fi[data-theme=dark] main .sec:not(.fi-sec) h2 em{color:var(--fi-y)}
+html.fi:not([data-theme=dark]) main .sec:not(.fi-sec) h2{text-shadow:0 3px 0 rgba(255,255,255,.55)}
+html.fi[data-theme=dark] main .sec:not(.fi-sec) h2{text-shadow:0 4px 0 rgba(0,0,0,.6)}
+/* el menú fijo acompaña el color de la página */
+html.fi:not([data-theme=dark]) .nav.is-solid{background:rgba(255,216,74,.92)}
+html.fi[data-theme=dark] .nav.is-solid{background:rgba(22,14,7,.92)}
+html.fi[data-theme=dark] .mvv{background:var(--card);border-color:var(--line)}
