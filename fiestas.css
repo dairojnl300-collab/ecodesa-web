@@ -270,3 +270,19 @@ html.fi[data-theme=dark] .vitem.on{border-color:var(--fi-y)}
   html.fi .sec.video .sec-head{padding-top:clamp(110px,26vw,170px)}
 }
 @media (prefers-reduced-motion:reduce){.fi-dancer img{animation:none}}
+
+/* Etiqueta de sección: contraste alto y sin cruzarse con los banderines */
+html.fi .sec:not(.fi-sec) .pill{background:var(--fi-ink);background-image:none;color:var(--fi-y);border:2px solid var(--fi-ink);box-shadow:3px 3px 0 var(--fi-r);position:relative;z-index:4;font-family:var(--fi-fh);letter-spacing:.12em}
+html.fi[data-theme=dark] .sec:not(.fi-sec) .pill{background:var(--fi-y);color:var(--fi-ink);border-color:#000;box-shadow:3px 3px 0 #000}
+html.fi .sec.tienda{padding-top:clamp(52px,7vw,76px)}
+/* Video de inducción: bordes que se desvanecen en vez de cortar globos y tarjetas; aire alrededor */
+html.fi .evp-stage{padding:clamp(6px,1.5vw,14px) clamp(4px,1vw,10px) 0}
+html.fi .evp-stage video{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
+html.fi .evp-stage::after{content:"";display:block;height:10px}
+@media (max-width:759px){
+  html.fi .evp-bar{margin-top:18px}
+  html.fi .evp-cta{margin-top:20px}
+  html.fi .eind-t{margin-bottom:18px}
+  html.fi .evp video{height:calc(100svh - 340px);min-height:360px}
+  html.fi .evp-stage{margin:0 2px}
+}
