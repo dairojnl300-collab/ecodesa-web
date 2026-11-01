@@ -227,7 +227,7 @@
       s.classList.add("fi-host");
       s.insertBefore(L, s.firstChild);
       if (!isFoot) placeBunting(L, { swags: 3, fh: 22, sag: 14, fhm: 14, sagm: 7 });
-      if (!isFoot && i % 2 === 0) confetti(L, 6);
+      confetti(L, isFoot ? 8 : 12);
       if (io) io.observe(L); else L.classList.add("fi-run");
     });
   }
