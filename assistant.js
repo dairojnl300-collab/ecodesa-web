@@ -2,7 +2,15 @@
 (function () {
   var WA = "573246886824";
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var track = function (l) { try { if (window.ecodesaGoogleLoaded && typeof gtag === "function") gtag("event", "click", { event_category: "asistente", event_label: l, value: 1 }); } catch (e) {} };
+  var track = function (l) {
+    try {
+      if (window.ecodesaGoogleLoaded && typeof gtag === "function") {
+        gtag("event", "click", { event_category: "asistente", event_label: l, value: 1 });
+        /* Clic al WhatsApp del asesor desde Ethan = contacto real */
+        if (l.indexOf("asistente_asesor_") === 0) gtag("event", "contacto_whatsapp", { event_label: l });
+      }
+    } catch (e) {}
+  };
   var CERT = "Los certificados y conceptos los emite cada autoridad según sus lineamientos. Nosotros te preparamos y te acompañamos para cumplirlos.";
   var VER = {
     "Sanidad": "Entidades territoriales de salud",

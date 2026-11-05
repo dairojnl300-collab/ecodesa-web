@@ -4,7 +4,13 @@
   window.__v2 = true;
   var WA = "573246886824";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var track = function (label) { if (window.ecodesaGoogleLoaded && typeof gtag === "function") gtag("event", "click", { event_category: "engagement", event_label: label, value: 1 }); };
+  var track = function (label) {
+    if (window.ecodesaGoogleLoaded && typeof gtag === "function") {
+      gtag("event", "click", { event_category: "engagement", event_label: label, value: 1 });
+      /* Conversión de Google Ads / evento clave de GA4: contacto real por WhatsApp */
+      if (label === "whatsapp_contact_click" || label === "form_whatsapp_submit") gtag("event", "contacto_whatsapp", { event_label: label });
+    }
+  };
 
   /* WhatsApp links with prefilled text */
   document.querySelectorAll("[data-wa]").forEach(function (a) {
