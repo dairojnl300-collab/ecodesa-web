@@ -121,16 +121,66 @@ html.fi p.fi-pill{display:inline-flex!important}
 @media (prefers-reduced-motion:reduce){.fi-model img{animation:none}}
 
 /* escena del Bando: Avenida Santander entre el mar y las murallas */
-:root{--fi-sunc:#ffae00;--fi-lamp:#fff4d6}
-[data-theme=dark]{--fi-sunc:#fff0b8;--fi-lamp:#ffd21f}
+:root{--fi-sunc:#ffae00;--fi-lamp:#fff4d6;--fi-lampg:rgba(255,244,214,0);--fi-halo:.22;--fi-rayo:.6;--fi-moon:0;--fi-stars:0;--fi-cloud:1;
+  --fi-far:#f2b40c;--fi-farwin:#f7c62a;--fi-win:#fff4d6;--fi-bulbc:#fff4d6;--fi-notec:#c8101f;--fi-clock:#fff;--fi-flame-g:rgba(255,176,0,.25)}
+[data-theme=dark]{--fi-sunc:#fff0b8;--fi-lamp:#ffd21f;--fi-lampg:rgba(255,200,40,.28);--fi-halo:.12;--fi-rayo:0;--fi-moon:1;--fi-stars:1;--fi-cloud:.12;
+  --fi-far:#2c1b0c;--fi-farwin:#ffc83d;--fi-win:#ffd970;--fi-bulbc:#ffe27a;--fi-notec:#ffd21f;--fi-clock:#fff6d8;--fi-flame-g:rgba(255,176,0,.45)}
 .fi-bando{position:absolute;left:0;right:0;bottom:0;height:clamp(280px,27vw,380px);z-index:1}
 .fi-bando svg{display:block;width:100%;height:100%;overflow:hidden}
 .fi-bando *{transform-box:fill-box}
 .fi-bando .fi-flag{transform-box:view-box}
 .fi-parade{transform-box:view-box!important;animation:fiParade 70s linear infinite}
 @keyframes fiParade{from{transform:translateX(0)}to{transform:translateX(1600px)}}
-.fi-walk{animation:fiBob .46s ease-in-out infinite alternate}
+.fi-walk{animation:fiBob .46s ease-in-out infinite alternate;animation-delay:var(--dl,0s)}
 @keyframes fiBob{from{transform:translateY(0)}to{transform:translateY(-4px)}}
+/* paso alterno, sombra que respira con el paso y balanceo de cadera */
+.fi-leg{transform-origin:50% 0;animation:fiLeg .92s ease-in-out infinite alternate;animation-delay:var(--dl,0s)}
+.fi-leg2{animation-direction:alternate-reverse}
+@keyframes fiLeg{from{transform:rotate(-11deg)}to{transform:rotate(11deg)}}
+.fi-shd{transform-origin:50% 50%;animation:fiShd .46s ease-in-out infinite alternate;animation-delay:var(--dl,0s)}
+@keyframes fiShd{from{transform:scaleX(1);opacity:.22}to{transform:scaleX(.82);opacity:.14}}
+.fi-sway{transform-origin:50% 100%;animation:fiSway 1.84s ease-in-out infinite alternate}
+@keyframes fiSway{from{transform:rotate(-3.5deg)}to{transform:rotate(3.5deg)}}
+.fi-swing{transform-origin:0% 0%;animation:fiSwingA .92s ease-in-out infinite alternate}
+@keyframes fiSwingA{from{transform:rotate(-9deg)}to{transform:rotate(9deg)}}
+.fi-flute{transform-origin:10% 50%;animation:fiFlute .8s ease-in-out infinite alternate}
+@keyframes fiFlute{from{transform:rotate(-3deg)}to{transform:rotate(4deg)}}
+.fi-bump{animation:fiBump .38s ease-in-out infinite alternate}
+@keyframes fiBump{from{transform:translateY(0)}to{transform:translateY(-2.5px)}}
+/* notas que salen de tambores y millo */
+.fi-pn{opacity:0;animation:fiPN 2.6s ease-out infinite}
+.fi-pn text{font:400 22px var(--fi-fh);fill:var(--fi-notec)}
+@keyframes fiPN{0%{opacity:0;transform:translate(0,8px) rotate(-8deg)}15%{opacity:1}100%{opacity:0;transform:translate(12px,-38px) rotate(14deg)}}
+/* confeti que lanza la carroza */
+.fi-cc{opacity:0;animation:fiCC 3.1s cubic-bezier(.2,.7,.4,1) infinite}
+@keyframes fiCC{0%{opacity:0;transform:translate(0,0) rotate(0)}8%{opacity:1}40%{transform:translate(var(--cx),-42px) rotate(220deg)}85%{opacity:1}100%{opacity:0;transform:translate(calc(var(--cx)*1.5),70px) rotate(560deg)}}
+.fi-bulb{animation:fiBulb 1.3s ease-in-out infinite alternate}
+@keyframes fiBulb{from{opacity:.45}to{opacity:1}}
+.fi-glow{transform-origin:50% 50%;animation:fiFlame .3s ease-in-out infinite alternate}
+/* cielo */
+.fi-rays{transform-origin:50% 50%;animation:fiRays 60s linear infinite}
+@keyframes fiRays{to{transform:rotate(360deg)}}
+.fi-tw{transform-origin:50% 50%;animation:fiTw 2.4s ease-in-out infinite}
+@keyframes fiTw{0%,100%{transform:scale(.35);opacity:.4}50%{transform:scale(1);opacity:1}}
+.fi-cloud{animation:fiCloud 50s ease-in-out infinite alternate}
+@keyframes fiCloud{from{transform:translateX(-90px)}to{transform:translateX(90px)}}
+.fi-bird{animation:fiBird 32s linear infinite}
+@keyframes fiBird{0%{transform:translate(-120px,0)}50%{transform:translate(1000px,-14px)}100%{transform:translate(2200px,6px)}}
+.fi-wing{transform-origin:50% 100%;animation:fiWing .42s ease-in-out infinite alternate}
+@keyframes fiWing{from{transform:scaleY(1)}to{transform:scaleY(-.35)}}
+.fi-fwt{opacity:0;animation:fiFwt 4.4s ease-out infinite}
+@keyframes fiFwt{0%{opacity:0;transform:translateY(90px)}3%{opacity:1}15%{opacity:1;transform:translateY(0)}18%,100%{opacity:0;transform:translateY(0)}}
+.fi-fwb{transform-origin:50% 50%;opacity:0;animation:fiFwb 4.4s cubic-bezier(.15,.8,.3,1) infinite}
+@keyframes fiFwb{0%,16%{opacity:0;transform:scale(.12)}19%{opacity:1}42%{opacity:1;transform:scale(1)}62%,100%{opacity:0;transform:scale(1.14) translateY(6px)}}
+.fi-hand{transform-origin:50% 100%;animation:fiWheel 12s linear infinite}
+.fi-hand2{transform-origin:50% 100%;animation:fiWheel 144s linear infinite}
+/* mar en capas */
+.fi-sea2{animation:fiSea 3.6s linear infinite}
+.fi-sea3{animation:fiSea 10s linear infinite}
+.fi-spk{transform-origin:50% 50%;animation:fiTw 2.2s ease-in-out infinite}
+.fi-buga{transform-origin:50% 0;animation:fiPalm 5.5s ease-in-out infinite alternate}
+/* sin animación fuera de pantalla */
+.fi-art.fi-io:not(.fi-run) .fi-bando *{animation-play-state:paused!important}
 .fi-sk{transform-origin:50% 0;animation:fiSkirt .92s ease-in-out infinite alternate}
 @keyframes fiSkirt{from{transform:skewX(-9deg) scaleX(1.04)}to{transform:skewX(9deg) scaleX(.96)}}
 .fi-armup{transform-origin:0% 100%;animation:fiArm .92s ease-in-out infinite alternate}
@@ -286,3 +336,4 @@ html.fi .evp-stage::after{content:"";display:block;height:10px}
   html.fi .evp video{height:calc(100svh - 340px);min-height:360px}
   html.fi .evp-stage{margin:0 2px}
 }
+[data-theme=dark] .fi-win,[data-theme=dark] .fi-farw{filter:drop-shadow(0 0 4px rgba(255,190,50,.75))}
