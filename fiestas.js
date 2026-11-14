@@ -47,10 +47,29 @@
   /* ---------- Bando en la Avenida Santander: mar, vía, murallas con garitas y la ciudad detrás ---------- */
   var SKIN = ["#7b4a2b", "#9a6038", "#5e3a22", "#a8714a"];
   function st(w) { return ' stroke="' + INK + '" stroke-width="' + (w || 3) + '" stroke-linejoin="round" stroke-linecap="round"'; }
+  /* rostro: orejas, cuello, ojos con brillo, cejas, nariz, sonrisa y mejillas */
+  function face(sk, cy, fem) {
+    var r = 14, sh = "rgba(43,20,6,.28)";
+    var s = '<rect x="-4.5" y="' + (cy + 9) + '" width="9" height="9" fill="' + sk + '"' + st(2.2) + "/>" +
+      '<circle cx="-13.5" cy="' + (cy + 1) + '" r="3.6" fill="' + sk + '"' + st(2) + '/><circle cx="13.5" cy="' + (cy + 1) + '" r="3.6" fill="' + sk + '"' + st(2) + "/>" +
+      '<circle cx="0" cy="' + cy + '" r="' + r + '" fill="' + sk + '"' + st(2.5) + "/>";
+    if (fem) s += '<path d="M-14 ' + (cy - 1) + " Q-15 " + (cy - 15) + " 0 " + (cy - 15) + " Q15 " + (cy - 15) + " 14 " + (cy - 1) + " Q8 " + (cy - 9) + " 0 " + (cy - 9) + " Q-8 " + (cy - 9) + " -14 " + (cy - 1) + 'Z" fill="' + INK + '"/>' +
+      '<circle cx="-13.5" cy="' + (cy + 6) + '" r="2.6" fill="none" stroke="' + Y + '" stroke-width="1.8"/><circle cx="13.5" cy="' + (cy + 6) + '" r="2.6" fill="none" stroke="' + Y + '" stroke-width="1.8"/>';
+    else s += '<path d="M-13.5 ' + (cy - 3) + " Q-12 " + (cy + 4) + " -10 " + (cy + 2) + " V" + (cy - 5) + 'Z M13.5 ' + (cy - 3) + " Q12 " + (cy + 4) + " 10 " + (cy + 2) + " V" + (cy - 5) + 'Z" fill="' + INK + '"/>';
+    [-5, 5].forEach(function (ex) {
+      s += '<ellipse cx="' + ex + '" cy="' + cy + '" rx="2.9" ry="3.4" fill="#fff" stroke="' + INK + '" stroke-width="1"/><circle cx="' + (ex + 0.5) + '" cy="' + (cy + 0.6) + '" r="1.8" fill="' + INK + '"/><circle cx="' + (ex + 1.1) + '" cy="' + (cy - 0.4) + '" r=".7" fill="#fff"/>' +
+        '<path d="M' + (ex - 3) + " " + (cy - 5.2) + " Q" + ex + " " + (cy - 7.4) + " " + (ex + 3) + " " + (cy - 5.4) + '" fill="none" stroke="' + INK + '" stroke-width="1.5" stroke-linecap="round"/>';
+      if (fem) s += '<path d="M' + (ex + (ex < 0 ? -2.6 : 2.6)) + " " + (cy - 2.4) + " l" + (ex < 0 ? -1.8 : 1.8) + ' -1.6" stroke="' + INK + '" stroke-width="1.1" stroke-linecap="round"/>';
+    });
+    s += '<path d="M-1 ' + (cy + 3) + " Q0 " + (cy + 5.2) + " 1.6 " + (cy + 3.6) + '" fill="none" stroke="' + sh + '" stroke-width="1.6" stroke-linecap="round"/>' +
+      '<path d="M-4.6 ' + (cy + 6.4) + " Q0 " + (cy + 11.6) + " 4.6 " + (cy + 6.4) + ' Z" fill="' + (fem ? "#b3202a" : "#5a1a10") + '" stroke="' + INK + '" stroke-width="1.2" stroke-linejoin="round"/><path d="M-3.4 ' + (cy + 6.9) + " H3.4" + '" stroke="#fff" stroke-width="1.4"/>' +
+      '<ellipse cx="-8.4" cy="' + (cy + 5) + '" rx="2.8" ry="1.8" fill="#ff6b6b" opacity=".45"/><ellipse cx="8.4" cy="' + (cy + 5) + '" rx="2.8" ry="1.8" fill="#ff6b6b" opacity=".45"/>';
+    return s;
+  }
   function head(sk, hat) {
-    var s = '<circle cx="0" cy="-92" r="11" fill="' + sk + '"' + st(2.5) + "/>";
-    if (hat) s += '<path d="M-11 -100 Q-10 -119 0 -119 Q10 -119 11 -100Z" fill="#f6e7c8"' + st(2.5) + '/><path d="M-10 -108 H10 M-9 -113 H9" stroke="' + INK + '" stroke-width="2"/>' +
-      '<ellipse cx="0" cy="-100" rx="27" ry="6" fill="#f6e7c8"' + st(2.5) + '/><ellipse cx="0" cy="-100" rx="18" ry="3.6" fill="none" stroke="' + INK + '" stroke-width="2"/>';
+    var s = face(sk, -93, false);
+    if (hat) s += '<g transform="translate(0 -6)"><path d="M-12 -100 Q-11 -120 0 -120 Q11 -120 12 -100Z" fill="#f6e7c8"' + st(2.5) + '/><path d="M-11 -108 H11 M-10 -113 H10" stroke="' + INK + '" stroke-width="2"/>' +
+      '<ellipse cx="0" cy="-100" rx="29" ry="6.5" fill="#f6e7c8"' + st(2.5) + '/><ellipse cx="0" cy="-100" rx="19" ry="3.8" fill="none" stroke="' + INK + '" stroke-width="2"/></g>';
     return s;
   }
   /* piernas con paso alterno (cadera como pivote) */
@@ -64,7 +83,11 @@
       '<path d="M-14 -42 L14 -42 L13 -80 Q0 -86 -13 -80Z" fill="' + shirt + '"' + st(2.5) + "/>" +
       '<path d="M-14 -46 H14" stroke="' + INK + '" stroke-width="2"/><path d="M-10 -80 L10 -80 L0 -68Z" fill="' + R + '"' + st(2) + "/>" + armsHTML + head(sk, hat);
   }
-  function arm(d, sk, cls, dl) { return '<path class="' + (cls || "") + '" style="animation-delay:' + (dl || 0) + 's" d="' + d + '" fill="none" stroke="' + sk + '" stroke-width="6.5" stroke-linecap="round"/>'; }
+  function arm(d, sk, cls, dl) {
+    var n = d.match(/-?\d+(\.\d+)?/g), hx = n[n.length - 2], hy = n[n.length - 1];
+    return '<g class="' + (cls || "") + '" style="animation-delay:' + (dl || 0) + 's"><path d="' + d + '" fill="none" stroke="' + INK + '" stroke-width="9.5" stroke-linecap="round"/>' +
+      '<path d="' + d + '" fill="none" stroke="' + sk + '" stroke-width="6" stroke-linecap="round"/><circle cx="' + hx + '" cy="' + hy + '" r="4.6" fill="' + sk + '"' + st(2) + "/></g>";
+  }
   /* figura del desfile: sombra en el piso + cuerpo que camina (+ extra que viaja con ella) */
   function fig(x, dl, inner, extra) {
     return '<g transform="translate(' + x + ' 300)"><ellipse class="fi-shd" style="--dl:' + dl + 's" cx="0" cy="1" rx="25" ry="4.5" fill="' + INK + '" opacity=".22"/>' +
@@ -85,9 +108,9 @@
       '<path d="M-11 -64 L11 -64 L9 -84 L-9 -84Z" fill="' + sk + '"' + st(2.5) + "/>" +
       '<path d="M-17 -84 Q0 -76 17 -84 L15 -70 Q0 -64 -15 -70Z" fill="#fff"' + st(2.5) + "/>" +
       arm("M-13 -80 Q-30 -62 -42 -36", sk) + arm("M13 -82 Q28 -96 32 -116", sk, "fi-armup", dl) +
-      '<circle cx="0" cy="-94" r="11" fill="' + sk + '"' + st(2.5) + "/>" +
-      '<path d="M-12 -98 Q-15 -117 0 -120 Q15 -117 12 -98 Q0 -106 -12 -98Z" fill="' + c2 + '"' + st(2.5) + "/>" +
-      '<circle cx="-8" cy="-116" r="5.5" fill="' + R + '"' + st(1.6) + '/><circle cx="5" cy="-121" r="5.5" fill="' + Y + '"' + st(1.6) + '/><circle cx="13" cy="-110" r="4.5" fill="' + O + '"' + st(1.6) + "/>" +
+      face(sk, -96, true) + '<g transform="translate(0 -5)">' +
+      '<path d="M-14 -98 Q-17 -119 0 -122 Q17 -119 14 -98 Q0 -108 -14 -98Z" fill="' + c2 + '"' + st(2.5) + "/>" +
+      '<circle cx="-9" cy="-118" r="5.5" fill="' + R + '"' + st(1.6) + '/><circle cx="5" cy="-123" r="5.5" fill="' + Y + '"' + st(1.6) + '/><circle cx="14" cy="-112" r="4.5" fill="' + O + '"' + st(1.6) + '/><path d="M-3 -126 q3 -6 7 -4" fill="none" stroke="' + G + '" stroke-width="2.4" stroke-linecap="round"/></g>' +
       '<circle cx="-10" cy="-88" r="2.8" fill="' + Y + '"/><circle cx="10" cy="-88" r="2.8" fill="' + Y + '"/></g>');
   }
   function candles(x, sk, dl) {
@@ -121,7 +144,7 @@
       [[-70, -156], [-40, -178], [0, -186], [40, -178], [70, -156]].map(function (p, i) { return '<circle class="fi-bulb" style="animation-delay:' + (-i * 0.4) + 's;fill:' + [R, Y, O, Y, R][i] + '" cx="' + p[0] + '" cy="' + p[1] + '" r="9"' + st(1.8) + "/>"; }).join("") +
       '<g class="fi-queen"><path d="M-22 -40 Q-30 -70 -12 -96 L12 -96 Q30 -70 22 -40Z" fill="' + Y + '"' + st(2.5) + '/><path d="M-26 -52 Q0 -44 26 -52" fill="none" stroke="' + R + '" stroke-width="5"/>' +
       '<path d="M-14 -94 Q0 -88 14 -94" fill="none" stroke="#fff" stroke-width="3"/>' +
-      '<circle cx="0" cy="-108" r="11" fill="' + sk + '"' + st(2.5) + '/><path d="M-10 -117 L-6 -128 L0 -119 L6 -128 L10 -117Z" fill="' + Y + '"' + st(1.8) + "/>" +
+      face(sk, -110, true) + '<path d="M-11 -122 L-7 -134 L0 -125 L7 -134 L11 -122Z" fill="' + Y + '"' + st(1.8) + '/><circle cx="0" cy="-128" r="2" fill="' + R + '"/>' +
       arm("M12 -92 Q26 -104 28 -122", sk, "fi-wave") + arm("M-12 -92 Q-20 -76 -16 -64", sk) + "</g>" +
       '<path d="M-84 -42 H84 L78 -14 H-78Z" fill="' + G + '"' + st(3) + '/><path d="M-80 -24 H80" stroke="' + Y + '" stroke-width="4"/>' + fl + "</g>" + cc + wheel(-50) + wheel(50) + "</g>";
   }
