@@ -14,19 +14,46 @@
 .bv-btn:disabled{opacity:.7;cursor:wait}
 .bv-shake{animation:bvShake .4s}
 @keyframes bvShake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
-/* puerta */
-.bv-door{position:relative;aspect-ratio:1;width:min(100%,520px);margin-inline:auto;border-radius:32px;overflow:hidden;background:radial-gradient(60% 55% at 50% 45%,#fae4d2,#f3d3bc);box-shadow:0 30px 70px rgba(15,36,22,.22)}
-[data-theme=dark] .bv-door{box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 0 1px rgba(143,209,79,.25)}
-.bv-door img,.bv-door video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.bv-door img{-webkit-mask:radial-gradient(62% 62% at 50% 50%,#000 70%,transparent 100%);mask:radial-gradient(62% 62% at 50% 50%,#000 70%,transparent 100%);transition:transform .8s cubic-bezier(.55,0,.25,1),opacity .5s .2s}
-.bv-door video{opacity:0;transition:opacity .5s}
-.bv-lock{position:absolute;left:50%;top:50%;width:16%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;pointer-events:none}
-.bv-lock::before,.bv-lock::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #e3a400;opacity:0;animation:bvRing 2.2s ease-out infinite}
+/* escenario de la puerta: recorte flotando sobre el fondo de la página */
+.bv-stage{position:relative;aspect-ratio:1;width:min(100%,540px);margin-inline:auto;isolation:isolate}
+.bv-glow{position:absolute;inset:-8%;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgba(118,184,42,.38),rgba(118,184,42,.12) 55%,transparent 72%);filter:blur(6px);animation:bvPulse 5.5s ease-in-out infinite}
+:root:not([data-theme=dark]) .bv-glow{background:radial-gradient(closest-side,rgba(255,196,60,.55),rgba(118,184,42,.16) 55%,transparent 72%)}
+@keyframes bvPulse{50%{transform:scale(1.07);opacity:.78}}
+.bv-floor{position:absolute;left:50%;bottom:3%;width:78%;height:7%;translate:-50% 0;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.42),transparent);animation:bvShadow 6s ease-in-out infinite}
+@keyframes bvShadow{50%{transform:scale(.86);opacity:.6}}
+.bv-fly{position:absolute;inset:3% 4% 7%;animation:bvFloat 6s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes bvFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.bv-img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 22px 26px rgba(0,0,0,.35));transition:transform .8s cubic-bezier(.55,0,.25,1),opacity .5s .2s}
+.bv-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:34px;opacity:0;transition:opacity .5s;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+.bv-lock{position:absolute;left:50%;top:52%;width:15%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;pointer-events:none}
+.bv-lock::before,.bv-lock::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #ffd35a;opacity:0;animation:bvRing 2.2s ease-out infinite}
 .bv-lock::after{animation-delay:1.1s}
 @keyframes bvRing{0%{transform:scale(.6);opacity:.95}100%{transform:scale(1.8);opacity:0}}
-.bv.opening .bv-door img{transform:scale(2.2);opacity:0}
-.bv.opening .bv-door video{opacity:1}
-.bv.opening .bv-lock{visibility:hidden}
+.bv-sparks i{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--g2);opacity:0;animation:bvSpark 5s ease-in-out infinite}
+.bv-sparks i:nth-child(1){left:12%;top:60%;animation-delay:0s}
+.bv-sparks i:nth-child(2){left:86%;top:48%;animation-delay:.8s;width:7px;height:7px}
+.bv-sparks i:nth-child(3){left:20%;top:26%;animation-delay:1.6s;width:6px;height:6px}
+.bv-sparks i:nth-child(4){left:80%;top:20%;animation-delay:2.4s}
+.bv-sparks i:nth-child(5){left:50%;top:6%;animation-delay:3.1s;width:7px;height:7px}
+.bv-sparks i:nth-child(6){left:92%;top:78%;animation-delay:3.8s;width:6px;height:6px}
+.bv-sparks i:nth-child(7){left:6%;top:82%;animation-delay:4.4s;width:7px;height:7px}
+@keyframes bvSpark{0%{opacity:0;transform:translateY(10px) scale(.6)}30%{opacity:.9}100%{opacity:0;transform:translateY(-46px) scale(1.1)}}
+.bv.opening .bv-img{transform:scale(2.1);opacity:0}
+.bv.opening .bv-stage video{opacity:1}
+.bv.opening .bv-lock,.bv.opening .bv-floor{visibility:hidden}
+/* edición Fiestas: rayos de luz, confeti de colores y puerta con sombra de papel picado */
+html.fi .bv-glow{inset:-14%;border-radius:0;filter:none;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.34) 0 7deg,transparent 7deg 20deg);-webkit-mask:radial-gradient(closest-side,#000 40%,transparent 86%);mask:radial-gradient(closest-side,#000 40%,transparent 86%);animation:bvSpin 70s linear infinite}
+html.fi[data-theme=dark] .bv-glow{background:repeating-conic-gradient(from 0deg,rgba(255,210,31,.22) 0 7deg,transparent 7deg 20deg)}
+@keyframes bvSpin{to{transform:rotate(360deg)}}
+html.fi .bv-img{filter:drop-shadow(6px 8px 0 #2b1406) drop-shadow(0 22px 22px rgba(0,0,0,.3))}
+html.fi[data-theme=dark] .bv-img{filter:drop-shadow(0 0 28px rgba(255,210,31,.45)) drop-shadow(0 22px 22px rgba(0,0,0,.5))}
+html.fi .bv-sparks i{width:11px;height:14px;border-radius:2px;background:var(--fi-r,#c8101f)}
+html.fi .bv-sparks i:nth-child(3n+2){background:var(--fi-g,#14964a)}
+html.fi .bv-sparks i:nth-child(3n){background:#fff}
+html.fi[data-theme=dark] .bv-sparks i:nth-child(3n){background:#ffd21f}
+html.fi .bv-stage video{border:3px solid #2b1406;box-shadow:6px 6px 0 #2b1406}
+html.fi .bv-otp{border-color:#2b1406}
+html.fi[data-theme=dark] .bv-otp{border-color:rgba(255,210,31,.6)}
 /* catálogo embebido */
 .bv-app{display:none;margin-top:8px}
 .bv.open .bv-grid{display:none}
@@ -41,5 +68,5 @@
 .bv.full .bv-bar h2{font-size:22px}
 .bv.full .bv-frame{flex:1;height:auto;border-radius:16px}
 html.bv-lock-scroll{overflow:hidden}
-@media (max-width:900px){.bv-grid{grid-template-columns:1fr}.bv-door{order:-1;width:min(100%,380px)}}
-@media (prefers-reduced-motion:reduce){.bv-lock::before,.bv-lock::after{animation:none}}
+@media (max-width:900px){.bv-grid{grid-template-columns:1fr}.bv-stage{order:-1;width:min(100%,400px)}}
+@media (prefers-reduced-motion:reduce){.bv-lock::before,.bv-lock::after,.bv-glow,.bv-fly,.bv-floor,.bv-sparks i{animation:none}.bv-sparks{display:none}}
