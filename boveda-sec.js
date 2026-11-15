@@ -32,7 +32,7 @@
     setTimeout(function () { try { $("bvTitle2").focus({ preventScroll: true }); } catch (e) {} }, 400);
   }
   if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { sec.classList.toggle("bv-off", !e[0].isIntersecting); }, { rootMargin: "100px" }).observe(sec.querySelector(".bv-stage"));
-  var GIF = "boveda/boveda-apertura.gif";
+  var GIF = "boveda/boveda-apertura.webp";
   function open() {
     if (opened) return; opened = true; load();
     if (reduce) return show();
