@@ -138,6 +138,6 @@ html.fi .bv-rays{animation-duration:120s}
 .bv.gif .bv-gif{display:block}
 .bv.gif .bv-fly,.bv.gif .bv-rays,.bv.gif .bv-glow,.bv.gif .bv-sparks,.bv.gif .bv-floor,.bv.gif .bv-burst{display:none}
 .bv.opening.gif .bv-stage{animation:none}
-.bv.gif.zoom .bv-gif{transition:transform .55s cubic-bezier(.6,0,.9,.5),opacity .55s;transform:scale(3.2);opacity:0}
+.bv.gif.zoom .bv-gif{transition:transform .7s cubic-bezier(.4,0,.6,1),opacity .6s ease-in;transform:scale(1.6);opacity:0}
 
 .bv-frame{background:transparent;opacity:0;transition:opacity .35s}.bv-frame.ready{opacity:1}
