@@ -54,6 +54,7 @@
   <link rel="stylesheet" href="assistant.css?v=30">
   <link rel="stylesheet" href="fiestas.css?v=12">
   <link rel="stylesheet" href="eco-look.css?v=1">
+  <link rel="stylesheet" href="boveda-sec.css?v=1">
   <link rel="stylesheet" href="consent.css?v=20261015c">
 </head>
 <body>
@@ -75,7 +76,7 @@
         <a href="#campo" style="--i:4" data-img="assets/v2/campo-extintor.webp"><span class="mi-n">05</span><span class="mi-t">En campo<small>Nuestro trabajo real</small></span><span class="mi-a" aria-hidden="true">→</span></a>
         <a href="#proceso" style="--i:5" data-img="assets/v2/campo-riesgo.webp"><span class="mi-n">06</span><span class="mi-t">Proceso<small>Cuatro pasos y listo</small></span><span class="mi-a" aria-hidden="true">→</span></a>
         <a href="#contacto" style="--i:6" data-img="assets/v2/campo-obra-cauce.webp"><span class="mi-n">07</span><span class="mi-t">Contacto<small>Hablemos de tu negocio</small></span><span class="mi-a" aria-hidden="true">→</span></a>
-        <a href="/boveda/" style="--i:7" data-img="assets/v2/campo-capacitacion-comunidad.webp"><span class="mi-n">08</span><span class="mi-t">Bóveda IA<small>Guías y agentes de IA para tu negocio</small></span><span class="mi-a" aria-hidden="true">→</span></a>
+        <a href="#boveda" style="--i:7" data-img="assets/v2/campo-capacitacion-comunidad.webp"><span class="mi-n">08</span><span class="mi-t">Bóveda IA<small>Guías y agentes de IA para tu negocio</small></span><span class="mi-a" aria-hidden="true">→</span></a>
       </div>
       <aside class="menu-side" aria-hidden="true">
         <div class="menu-pic"><img id="menuPic" src="assets/v2/campo-extractores.webp" alt="" width="2000" height="1116"></div>
@@ -544,6 +545,45 @@
     </section>
 
     <!-- ═══════════ VIDEO ═══════════ -->
+    <section class="sec bv" id="boveda" aria-labelledby="bv-t">
+      <div class="wrap">
+        <div class="bv-grid">
+          <div data-rv>
+            <span class="pill">Bóveda IA · Gratis para seguidores</span>
+            <h2 id="bv-t">La bóveda de <em>inteligencia artificial</em> de ECODESA.</h2>
+            <p class="sec-lead">Agentes, guías y herramientas de IA probadas en proyectos reales de gestión ambiental, SST y gestión del riesgo. Ingresa el código y ábrela aquí mismo.</p>
+            <form class="bv-form" id="bvForm" novalidate>
+              <div id="bvNew">
+                <label for="bvCode">Código de acceso</label>
+                <div class="bv-row">
+                  <input class="bv-otp" id="bvCode" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="20" placeholder="CÓDIGO" aria-describedby="bvErr bvHint">
+                  <button class="btn btn-green bv-btn" id="bvGo" type="submit">Abrir la bóveda</button>
+                </div>
+                <p class="bv-err" id="bvErr" role="alert"></p>
+                <p class="bv-hint" id="bvHint">¿No tienes el código? Está en los videos de <a href="https://www.instagram.com/ecodesa_ingenieria_sas/" target="_blank" rel="noopener">@ecodesa_ingenieria_sas</a> y <a href="https://www.instagram.com/venquetecuento.oficial/" target="_blank" rel="noopener">@venquetecuento.oficial</a>. Síguenos y búscalo.</p>
+              </div>
+              <div id="bvBack" hidden>
+                <p class="bv-hint">Ya tienes acceso. Bienvenido de nuevo.</p>
+                <button class="btn btn-green" id="bvEnter" type="button">Abrir la bóveda</button>
+              </div>
+            </form>
+          </div>
+          <div class="bv-door" data-rv aria-hidden="true">
+            <img src="boveda/boveda-puerta-cerrada.jpg" alt="" width="800" height="875" loading="lazy">
+            <video id="bvVid" playsinline muted preload="metadata"><source src="boveda/boveda-puerta.mp4" type="video/mp4"><source src="boveda/boveda-puerta.webm" type="video/webm"></video>
+            <span class="bv-lock"></span>
+          </div>
+        </div>
+        <div class="bv-app" id="bvApp">
+          <div class="bv-bar">
+            <h2 id="bvTitle2" tabindex="-1">Bóveda IA</h2>
+            <button class="btn btn-green" id="bvFull" type="button" aria-pressed="false">Pantalla completa</button>
+          </div>
+          <iframe class="bv-frame" id="bvFrame" title="Catálogo de la Bóveda IA de ECODESA" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
     <section class="sec video" aria-labelledby="vid-t">
       <div class="wrap">
         <header class="sec-head center" data-rv>
@@ -674,7 +714,7 @@
         <a href="#sectores">Restaurantes</a><a href="#sectores">Hoteles</a><a href="#sectores">Comercio</a><a href="#sectores">Industria</a><a href="#sectores">Puertos</a><a href="#sectores">Construcción</a>
       </nav>
       <nav aria-label="Empresa">
-        <a href="#servicios">Servicios</a><a href="#nosotros">Nosotros</a><a href="#digital">Digital e IA</a><a href="#asesoria">Asesoría virtual</a><a href="/boveda/">Bóveda IA</a>
+        <a href="#servicios">Servicios</a><a href="#nosotros">Nosotros</a><a href="#digital">Digital e IA</a><a href="#asesoria">Asesoría virtual</a><a href="#boveda">Bóveda IA</a>
       </nav>
       <nav aria-label="Contacto">
         <a data-wa="Hola ECODESA" href="https://wa.me/573246886824">WhatsApp</a>
@@ -702,6 +742,7 @@
   <script src="assistant.js?v=76" defer></script>
   <script src="fiestas.js?v=7" defer></script>
   <script src="eco-look.js?v=1" defer></script>
+  <script src="boveda-sec.js?v=1" defer></script>
   <script src="consent.js?v=20261015c" defer></script>
 </body>
 </html>

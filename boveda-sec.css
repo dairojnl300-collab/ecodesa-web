@@ -1,0 +1,45 @@
+/* Bóveda IA dentro de la página principal: puerta con código y catálogo embebido */
+.bv{overflow:hidden}
+.bv-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,72px);align-items:center}
+.bv-form{display:grid;gap:10px;max-width:420px;margin-top:26px}
+.bv-form label{font:700 13px var(--fh);letter-spacing:.12em;text-transform:uppercase;color:var(--gd)}
+.bv-row{display:flex;gap:10px;flex-wrap:wrap}
+.bv-otp{flex:1 1 180px;min-width:0;font:700 20px var(--fh);letter-spacing:.2em;text-transform:uppercase;text-align:center;padding:13px 16px;border-radius:40px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+.bv-otp::placeholder{color:var(--ink2);opacity:.55}
+.bv-otp:focus-visible{outline:3px solid var(--g);outline-offset:2px;border-color:var(--g)}
+.bv-err{min-height:1.3em;font-size:14px;color:#c0392b}
+[data-theme=dark] .bv-err{color:#ff8a7a}
+.bv-hint{font-size:14.5px;color:var(--ink2)}
+.bv-hint a{color:var(--gd);font-weight:700}
+.bv-btn:disabled{opacity:.7;cursor:wait}
+.bv-shake{animation:bvShake .4s}
+@keyframes bvShake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+/* puerta */
+.bv-door{position:relative;aspect-ratio:1;width:min(100%,520px);margin-inline:auto;border-radius:32px;overflow:hidden;background:radial-gradient(60% 55% at 50% 45%,#fae4d2,#f3d3bc);box-shadow:0 30px 70px rgba(15,36,22,.22)}
+[data-theme=dark] .bv-door{box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 0 1px rgba(143,209,79,.25)}
+.bv-door img,.bv-door video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bv-door img{-webkit-mask:radial-gradient(62% 62% at 50% 50%,#000 70%,transparent 100%);mask:radial-gradient(62% 62% at 50% 50%,#000 70%,transparent 100%);transition:transform .8s cubic-bezier(.55,0,.25,1),opacity .5s .2s}
+.bv-door video{opacity:0;transition:opacity .5s}
+.bv-lock{position:absolute;left:50%;top:50%;width:16%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;pointer-events:none}
+.bv-lock::before,.bv-lock::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #e3a400;opacity:0;animation:bvRing 2.2s ease-out infinite}
+.bv-lock::after{animation-delay:1.1s}
+@keyframes bvRing{0%{transform:scale(.6);opacity:.95}100%{transform:scale(1.8);opacity:0}}
+.bv.opening .bv-door img{transform:scale(2.2);opacity:0}
+.bv.opening .bv-door video{opacity:1}
+.bv.opening .bv-lock{visibility:hidden}
+/* catálogo embebido */
+.bv-app{display:none;margin-top:8px}
+.bv.open .bv-grid{display:none}
+.bv.open .bv-app{display:block;animation:bvIn .7s ease both}
+@keyframes bvIn{from{opacity:0;transform:translateY(18px)}}
+.bv-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.bv-bar h2{font-size:clamp(28px,4vw,44px)}
+.bv-frame{display:block;width:100%;height:min(880px,calc(100dvh - 110px));border:0;border-radius:24px;background:var(--card);box-shadow:0 24px 60px rgba(15,36,22,.18);outline:1px solid var(--line)}
+.bv.full{z-index:300}
+.bv.full .bv-app{animation:none;position:fixed;inset:0;z-index:300;margin:0;padding:10px;background:var(--bg);display:flex;flex-direction:column}
+.bv.full .bv-bar{margin-bottom:8px}
+.bv.full .bv-bar h2{font-size:22px}
+.bv.full .bv-frame{flex:1;height:auto;border-radius:16px}
+html.bv-lock-scroll{overflow:hidden}
+@media (max-width:900px){.bv-grid{grid-template-columns:1fr}.bv-door{order:-1;width:min(100%,380px)}}
+@media (prefers-reduced-motion:reduce){.bv-lock::before,.bv-lock::after{animation:none}}
