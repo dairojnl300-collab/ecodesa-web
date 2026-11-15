@@ -32,6 +32,7 @@
     setTimeout(function () { try { $("bvTitle2").focus({ preventScroll: true }); } catch (e) {} }, 400);
   }
   if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { sec.classList.toggle("bv-off", !e[0].isIntersecting); }, { rootMargin: "100px" }).observe(sec.querySelector(".bv-stage"));
+  var GIF = "boveda/boveda-apertura.gif";
   function open() {
     if (opened) return; opened = true; load();
     if (reduce) return show();
@@ -41,7 +42,16 @@
       scrollTo({ top: Math.max(0, r.top + scrollY - Math.max(70, (innerHeight - r.height) / 2)), behavior: "smooth" });
       wait = 600;
     }
-    setTimeout(function () { sec.classList.add("opening"); setTimeout(show, 2200); }, wait);
+    setTimeout(function () {
+      var g = $("bvGif"), go = function () {
+        sec.classList.add("opening", "gif");
+        setTimeout(function () { sec.classList.add("zoom"); }, 3150);
+        setTimeout(show, 3550);
+      };
+      if (!g) { sec.classList.add("opening"); return setTimeout(show, 2200); }
+      g.onload = go; g.onerror = function () { sec.classList.add("opening"); setTimeout(show, 2200); };
+      g.src = GIF + "?t=" + Date.now();
+    }, wait);
   }
 
   inp.addEventListener("input", function () { inp.value = inp.value.toUpperCase().replace(/\s/g, ""); err.textContent = ""; });

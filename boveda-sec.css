@@ -132,3 +132,10 @@ html.fi .bv-rays{animation-duration:120s}
 .bv-fly{animation:none;will-change:auto}
 .bv.opening .bv-pill,.bv.opening h2,.bv.opening .sec-lead,.bv.opening .bv-form{opacity:0;transition:opacity .4s}
 }
+
+/* Apertura con el GIF original */
+.bv-gif{display:none;position:absolute;left:50%;top:50%;height:96%;width:auto;aspect-ratio:292/325;translate:-50% -50%;border-radius:22px;pointer-events:none;-webkit-mask:radial-gradient(ellipse 72% 70% at 50% 50%,#000 62%,transparent 100%);mask:radial-gradient(ellipse 72% 70% at 50% 50%,#000 62%,transparent 100%)}
+.bv.gif .bv-gif{display:block}
+.bv.gif .bv-fly,.bv.gif .bv-rays,.bv.gif .bv-glow,.bv.gif .bv-sparks,.bv.gif .bv-floor,.bv.gif .bv-burst{display:none}
+.bv.opening.gif .bv-stage{animation:none}
+.bv.gif.zoom .bv-gif{transition:transform .55s cubic-bezier(.6,0,.9,.5),opacity .55s;transform:scale(3.2);opacity:0}
