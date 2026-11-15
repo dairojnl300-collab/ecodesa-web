@@ -47,7 +47,7 @@
     setTimeout(function () {
       var g = $("bvGif"), go = function () {
         sec.classList.add("opening", "gif");
-        setTimeout(function () { sec.classList.add("zoom"); }, 3150);
+        setTimeout(function () { sec.classList.add("zoom"); }, 3000);
         setTimeout(show, 3550);
       };
       if (!g) { sec.classList.add("opening"); return setTimeout(show, 2200); }
