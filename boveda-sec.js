@@ -34,8 +34,13 @@
   function open() {
     if (opened) return; opened = true; load();
     if (reduce) return show();
-    sec.classList.add("opening");
-    setTimeout(show, 2200);
+    var st = sec.querySelector(".bv-stage"), r = st.getBoundingClientRect();
+    var off = r.top < 60 || r.bottom > innerHeight - 20, wait = 0;
+    if (off) {
+      scrollTo({ top: Math.max(0, r.top + scrollY - Math.max(70, (innerHeight - r.height) / 2)), behavior: "smooth" });
+      wait = 600;
+    }
+    setTimeout(function () { sec.classList.add("opening"); setTimeout(show, 2200); }, wait);
   }
 
   inp.addEventListener("input", function () { inp.value = inp.value.toUpperCase().replace(/\s/g, ""); err.textContent = ""; });
