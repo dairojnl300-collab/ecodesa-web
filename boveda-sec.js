@@ -3,7 +3,7 @@
   var sec = document.getElementById("boveda"); if (!sec) return;
   var HASH = "4716ee882e39658c7bf9ea3d731458672824656a5642093c472f07e99491f7c5";
   var $ = function (id) { return document.getElementById(id); };
-  var form = $("bvForm"), inp = $("bvCode"), err = $("bvErr"), btn = $("bvGo"), vid = $("bvVid"), frame = $("bvFrame");
+  var form = $("bvForm"), inp = $("bvCode"), err = $("bvErr"), btn = $("bvGo"), frame = $("bvFrame");
   var root = document.documentElement, tries = 0, opened = false;
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   var ls = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
@@ -22,6 +22,7 @@
   }
   function load() {
     ls.set("boveda-theme", theme());
+    ls.set("boveda-fi", root.classList.contains("fi") ? "on" : "off");
     if (!frame.getAttribute("src")) frame.setAttribute("src", "/boveda/?puerta=0&embed=1");
   }
   function show() {
@@ -34,12 +35,7 @@
     if (opened) return; opened = true; load();
     if (reduce) return show();
     sec.classList.add("opening");
-    var done = false, fin = function () { if (!done) { done = true; show(); } };
-    vid.addEventListener("ended", fin); vid.addEventListener("error", fin);
-    var tick = function () { if (vid.currentTime >= 2.4) return fin(); if (!done) requestAnimationFrame(tick); };
-    vid.muted = true; var p = vid.play();
-    if (p && p.then) p.then(function () { requestAnimationFrame(tick); }).catch(fin);
-    setTimeout(fin, 4500);
+    setTimeout(show, 1500);
   }
 
   inp.addEventListener("input", function () { inp.value = inp.value.toUpperCase().replace(/\s/g, ""); err.textContent = ""; });
@@ -57,14 +53,35 @@
   });
   $("bvEnter").addEventListener("click", open);
 
-  $("bvFull").addEventListener("click", function () {
-    var on = !sec.classList.contains("full");
-    sec.classList.toggle("full", on); root.classList.toggle("bv-lock-scroll", on);
-    this.setAttribute("aria-pressed", on); this.textContent = on ? "Salir de pantalla completa" : "Pantalla completa";
+  /* el catálogo crece con su contenido: se lee como parte de la página, sin barra de desplazamiento propia */
+  function fit() {
+    try {
+      var d = frame.contentDocument; if (!d || !d.body) return;
+      var h = Math.max(d.documentElement.scrollHeight, d.body.scrollHeight);
+      if (Math.abs(h - (parseFloat(frame.style.height) || 0)) > 2) frame.style.height = h + "px";
+    } catch (e) {}
+  }
+  frame.addEventListener("load", function () {
+    syncTheme(); fit();
+    var d; try { d = frame.contentDocument; } catch (e) { return; }
+    if (!d) return;
+    if (window.ResizeObserver) new ResizeObserver(fit).observe(d.body); else setInterval(fit, 700);
+    /* enlaces internos (#...) llevan la página principal, no el marco */
+    d.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+      var id = a.getAttribute("href").slice(1), t = id && d.getElementById(id); if (!t) return;
+      e.preventDefault();
+      var y = frame.getBoundingClientRect().top + scrollY + t.getBoundingClientRect().top - 80;
+      scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
+    });
+    /* la ficha emergente aparece donde el visitante está mirando */
+    var m = d.getElementById("modal");
+    if (m) new MutationObserver(function () {
+      if (!m.open) return;
+      var top = Math.max(0, -frame.getBoundingClientRect().top) + 84;
+      m.style.cssText = "position:absolute;margin:0 auto;left:0;right:0;top:" + top + "px;max-height:" + Math.max(320, innerHeight - 104) + "px";
+    }).observe(m, { attributes: true, attributeFilter: ["open"] });
   });
-  addEventListener("keydown", function (e) { if (e.key === "Escape" && sec.classList.contains("full")) $("bvFull").click(); });
-
-  frame.addEventListener("load", syncTheme);
   new MutationObserver(syncTheme).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
 
 })();
