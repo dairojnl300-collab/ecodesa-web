@@ -37,7 +37,7 @@
 .bv-sparks i:nth-child(6){left:92%;top:78%;animation-delay:3.8s;width:6px;height:6px}
 .bv-sparks i:nth-child(7){left:6%;top:82%;animation-delay:4.4s;width:7px;height:7px}
 @keyframes bvSpark{0%{opacity:0;transform:translateY(10px) scale(.6)}30%{opacity:.9}100%{opacity:0;transform:translateY(-46px) scale(1.1)}}
-.bv.opening .bv-lock,.bv.opening .bv-floor{visibility:hidden}
+.bv.opening .bv-floor{visibility:hidden}
 /* edición Fiestas: rayos de luz, confeti de colores y puerta con sombra de papel picado */
 html.fi .bv-glow{background:radial-gradient(closest-side,rgba(255,255,255,.55),rgba(255,226,122,.25) 55%,transparent 72%)}
 html.fi[data-theme=dark] .bv-glow{background:radial-gradient(closest-side,rgba(255,210,31,.4),rgba(255,140,0,.12) 55%,transparent 72%)}
@@ -86,17 +86,32 @@ html.fi .bv-rays{animation-duration:120s}
 .bv-fly .bv-img{position:absolute;inset:0}
 .bv-l{clip-path:inset(0 49.6% 0 0);transform-origin:0 50%}
 .bv-r{clip-path:inset(0 0 0 49.6%);transform-origin:100% 50%}
-.bv-burst{position:absolute;left:50%;top:48%;width:78%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;pointer-events:none;opacity:0;transform:scale(.2);background:radial-gradient(closest-side,#fff 0,#fff7cf 24%,rgba(255,214,90,.92) 50%,rgba(255,180,40,0) 74%)}
-.bv.opening .bv-fly{animation:bvPush 1.5s cubic-bezier(.5,0,.8,.4) forwards}
-.bv.opening .bv-l{animation:bvOpenL 1.25s cubic-bezier(.5,0,.2,1) forwards}
-.bv.opening .bv-r{animation:bvOpenR 1.25s cubic-bezier(.5,0,.2,1) forwards}
-.bv.opening .bv-burst{animation:bvBurst 1.5s ease-in forwards}
-.bv.opening .bv-stage{animation:bvOut .45s 1.1s ease-in forwards}
+.bv-burst{position:absolute;left:50%;top:48%;width:78%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;pointer-events:none;opacity:0;transform:scale(.2);background:radial-gradient(closest-side,#fff 0,#d9ffd0 22%,rgba(60,230,90,.95) 48%,rgba(10,160,50,0) 74%)}
+.bv.opening .bv-fly{animation:bvPush 2.2s cubic-bezier(.5,0,.8,.4) forwards}
+.bv.opening .bv-l{animation:bvOpenL 1.1s .75s cubic-bezier(.5,0,.2,1) forwards}
+.bv.opening .bv-r{animation:bvOpenR 1.1s .75s cubic-bezier(.5,0,.2,1) forwards}
+.bv.opening .bv-burst{animation:bvBurst 1.3s .9s ease-in forwards}
+.bv.opening .bv-stage{animation:bvOut .45s 1.85s ease-in forwards}
 .bv.opening .bv-grid>div:first-child{opacity:0;transition:opacity .5s}
-.bv.opening .bv-lock,.bv.opening .bv-floor,.bv.opening .bv-sparks{visibility:hidden}
+.bv.opening .bv-floor,.bv.opening .bv-sparks{visibility:hidden}
 @keyframes bvOpenL{to{transform:rotateY(-84deg)}}
 @keyframes bvOpenR{to{transform:rotateY(84deg)}}
 @keyframes bvPush{to{transform:scale(1.7)}}
 @keyframes bvBurst{0%{opacity:0;transform:scale(.2)}30%{opacity:1}100%{opacity:1;transform:scale(3.4)}}
 @keyframes bvOut{to{opacity:0}}
 @media (prefers-reduced-motion:reduce){.bv.opening .bv-fly,.bv.opening .bv-l,.bv.opening .bv-r,.bv.opening .bv-burst,.bv.opening .bv-stage{animation:none}}
+
+/* Apertura: candado verde, rendija de luz, portal */
+.bv-portal,.bv-seam{position:absolute;pointer-events:none;opacity:0}
+.bv-portal{left:25%;right:23%;top:9%;bottom:20%;border-radius:50% 50% 0 0/34% 34% 0 0;overflow:hidden;background:radial-gradient(circle,#fff 0,#caffc4 10%,#2fe060 34%,#0a7a2c 70%,#04361a 100%)}
+.bv-portal::before{content:"";position:absolute;inset:-60%;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.3) 0 6deg,rgba(255,255,255,0) 6deg 16deg);animation:bvSpin 1.6s linear infinite;-webkit-mask:radial-gradient(circle,#000 0,transparent 62%);mask:radial-gradient(circle,#000 0,transparent 62%)}
+.bv-seam{left:49.4%;width:1.4%;top:10%;bottom:20%;background:linear-gradient(#fff,#8dff8d 40%,#fff);filter:blur(1.5px);box-shadow:0 0 18px 8px rgba(70,255,110,.8);transform:scaleY(.1)}
+.bv.opening .bv-lock{visibility:visible;width:24%;background:radial-gradient(circle,rgba(190,255,190,.95),rgba(60,230,90,.55) 45%,rgba(60,230,90,0) 70%);animation:bvLockOn .8s ease-out forwards}
+.bv.opening .bv-lock::before,.bv.opening .bv-lock::after{display:none}
+.bv.opening .bv-seam{animation:bvSeam 1.2s .35s ease-out forwards}
+.bv.opening .bv-portal{animation:bvPortal 1.8s .7s ease-out forwards}
+@keyframes bvSpin{to{transform:rotate(360deg)}}
+@keyframes bvLockOn{0%{opacity:0;transform:scale(.4)}35%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.6)}}
+@keyframes bvSeam{0%{opacity:0;transform:scaleY(.1)}25%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(1) scaleX(5)}}
+@keyframes bvPortal{0%{opacity:0}25%{opacity:1}100%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.bv-portal::before{animation:none}.bv.opening .bv-lock,.bv.opening .bv-seam,.bv.opening .bv-portal{animation:none}}

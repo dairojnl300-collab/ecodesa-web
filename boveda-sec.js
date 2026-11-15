@@ -35,7 +35,7 @@
     if (opened) return; opened = true; load();
     if (reduce) return show();
     sec.classList.add("opening");
-    setTimeout(show, 1500);
+    setTimeout(show, 2200);
   }
 
   inp.addEventListener("input", function () { inp.value = inp.value.toUpperCase().replace(/\s/g, ""); err.textContent = ""; });
