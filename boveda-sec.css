@@ -87,3 +87,6 @@ html.fi .bv-rays{animation-duration:120s}
 @media (prefers-reduced-motion:reduce){.bv-rays,.bv-shine,.bv-glint{animation:none}.bv-glint{opacity:.8;transform:none}}
 .bv p{hyphens:manual;-webkit-hyphens:manual;text-align:left}
 .bv-rays{width:230%}
+/* decoración pura: el navegador no debe ofrecer botones sobre el video ni la imagen */
+.bv-stage,.bv-stage *{pointer-events:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none}
+.bv-stage video::-webkit-media-controls,.bv-stage video::-webkit-media-controls-enclosure{display:none!important}
