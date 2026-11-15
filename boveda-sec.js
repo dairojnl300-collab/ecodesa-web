@@ -32,7 +32,9 @@
     setTimeout(function () { try { $("bvTitle2").focus({ preventScroll: true }); } catch (e) {} }, 400);
   }
   if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { sec.classList.toggle("bv-off", !e[0].isIntersecting); }, { rootMargin: "100px" }).observe(sec.querySelector(".bv-stage"));
-  var GIF = "boveda/boveda-apertura.webp";
+  var GIF = "boveda/boveda-apertura.webp", gifBlob = null, gifReq = null;
+  function preGif() { if (!gifReq && window.fetch) gifReq = fetch(GIF).then(function (r) { return r.blob(); }).then(function (b) { gifBlob = b; return b; }).catch(function () {}); return gifReq; }
+  if ("IntersectionObserver" in window) { var po = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { preGif(); po.disconnect(); } }, { rootMargin: "600px" }); po.observe(sec); }
   function open() {
     if (opened) return; opened = true; load();
     if (reduce) return show();
@@ -50,7 +52,8 @@
       };
       if (!g) { sec.classList.add("opening"); return setTimeout(show, 2200); }
       g.onload = go; g.onerror = function () { sec.classList.add("opening"); setTimeout(show, 2200); };
-      g.src = GIF + "?t=" + Date.now();
+      var setSrc = function () { g.src = gifBlob ? URL.createObjectURL(gifBlob) : GIF + "?t=" + Date.now(); };
+      if (gifBlob) setSrc(); else (preGif() || Promise.resolve()).then(setSrc, setSrc);
     }, wait);
   }
 
@@ -79,7 +82,7 @@
     } catch (e) {}
   }
   frame.addEventListener("load", function () {
-    syncTheme(); fit();
+    syncTheme(); fit(); frame.classList.add("ready");
     try { if (frame.contentDocument.fonts && frame.contentDocument.fonts.ready) frame.contentDocument.fonts.ready.then(fit); } catch (e) {}
     addEventListener("load", fit); addEventListener("resize", fit);
     var d; try { d = frame.contentDocument; } catch (e) { return; }
