@@ -4,16 +4,15 @@
 
 html:not(.fi) main .sec h2,html:not(.fi) main .sec h3{font-family:"Lilita One","Archivo",system-ui,sans-serif;font-weight:400;letter-spacing:.005em}
 
-:root{--eco-fig:#2E6B1F;--eco-pat:.075;--eco-big:.26}
-[data-theme=dark]{--eco-fig:#9fd86a;--eco-pat:.05;--eco-big:.22}
+:root{--eco-fig:#2E6B1F;--eco-pat:.16;--eco-big:.26}
+[data-theme=dark]{--eco-fig:#9fd86a;--eco-pat:.10;--eco-big:.22}
 
 .eco-on{isolation:isolate}
 .eco-deco{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;color:var(--eco-fig)}
 html.fi .eco-deco{display:none}
 .eco-pat{position:absolute;inset:0;opacity:var(--eco-pat);background:currentColor;
-  -webkit-mask:var(--eco-tile) 0 0/260px 260px;mask:var(--eco-tile) 0 0/260px 260px;
-  -webkit-mask-image:var(--eco-tile),linear-gradient(transparent,#000 14%,#000 86%,transparent);mask-image:var(--eco-tile),linear-gradient(transparent,#000 14%,#000 86%,transparent);
-  -webkit-mask-composite:source-in;mask-composite:intersect;-webkit-mask-size:260px 260px,100% 100%;mask-size:260px 260px,100% 100%;-webkit-mask-repeat:repeat,no-repeat;mask-repeat:repeat,no-repeat}
+    -webkit-mask-image:var(--eco-tile),linear-gradient(transparent,#000 14%,#000 86%,transparent);mask-image:var(--eco-tile),linear-gradient(transparent,#000 14%,#000 86%,transparent);
+  -webkit-mask-composite:source-in;mask-composite:intersect;-webkit-mask-size:360px 360px,100% 100%;mask-size:360px 360px,100% 100%;-webkit-mask-repeat:repeat,no-repeat;mask-repeat:repeat,no-repeat}
 .eco-fl{position:absolute;width:var(--s);height:var(--s);opacity:var(--eco-big);transform:translate3d(0,var(--py,0px),0);will-change:transform}
 .eco-fl svg{width:100%;height:100%;display:block;fill:none;stroke:currentColor;stroke-width:1.3;fill:color-mix(in srgb,currentColor 12%,transparent);stroke-linecap:round;stroke-linejoin:round;animation:ecoFloat var(--t,9s) ease-in-out infinite;animation-delay:var(--d,0s)}
 @keyframes ecoFloat{0%,100%{transform:translateY(0) rotate(var(--r0,-6deg))}50%{transform:translateY(-18px) rotate(var(--r1,6deg))}}

@@ -15,10 +15,15 @@
   var root = document.documentElement;
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* patrón: 260×260 con las figuras pequeñas en posiciones irregulares */
-  var spots = [["hoja", 18, 22, -12], ["gota", 110, 10, 0], ["engranaje", 196, 40, 0], ["casco", 52, 104, 0], ["escudo", 150, 92, 0], ["reciclaje", 214, 150, 0], ["sol", 24, 186, 0], ["ola", 108, 178, 0], ["alerta", 176, 214, 0], ["arbol", 70, 230, 0]];
-  var tile = '<svg xmlns="http://www.w3.org/2000/svg" width="260" height="260" viewBox="0 0 260 260"><g fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
-    spots.map(function (s) { return '<g transform="translate(' + s[1] + " " + s[2] + ") rotate(" + s[3] + ' 15 15) scale(1.25)">' + I[s[0]] + "</g>"; }).join("") + "</g></svg>";
+  /* patrón: misma escala y trazo que las figuritas de Fiestas (figuras de ~36 px, trazo de 3 px, mosaico de 180 px por figura) */
+  var spots = [["hoja", 14, 10, -10], ["gota", 104, 22, 6], ["engranaje", 196, 8, 0], ["casco", 286, 26, -6],
+    ["escudo", 30, 104, 4], ["reciclaje", 122, 116, 0], ["sol", 214, 100, 0], ["ola", 300, 120, 0],
+    ["alerta", 10, 200, -4], ["arbol", 100, 214, 4], ["hoja", 194, 196, 22], ["gota", 286, 210, -8],
+    ["engranaje", 38, 292, 0], ["escudo", 130, 304, -6], ["casco", 222, 288, 8], ["reciclaje", 306, 300, 0]];
+  var dots = [[90, 88], [176, 64], [270, 176], [60, 176], [170, 262], [344, 258], [254, 344], [80, 350]];
+  var tile = '<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360"><g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">' +
+    spots.map(function (s) { return '<g stroke-width="1.6" transform="translate(' + s[1] + " " + s[2] + ") rotate(" + s[3] + ' 23 23) scale(1.9)">' + I[s[0]] + "</g>"; }).join("") +
+    dots.map(function (d) { return '<circle cx="' + d[0] + '" cy="' + d[1] + '" r="3" stroke-width="3"/>'; }).join("") + "</g></svg>";
   root.style.setProperty("--eco-tile", 'url("data:image/svg+xml,' + encodeURIComponent(tile) + '")');
 
   /* figuras grandes por sección: [figura, lado, arriba %, tamaño px, velocidad parallax] */
