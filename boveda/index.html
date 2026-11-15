@@ -495,6 +495,7 @@ html.fi[data-theme="light"]{--fi-pat:url("data:image/svg+xml,%3Csvg xmlns='http:
 html.fi[data-theme="dark"]{--fi-pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23ffd21f' stroke-opacity='0.11' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M28 20l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M118 30v26a7 6 0 1 1-4-5V24l18-4v26a7 6 0 1 1-4-5V25'/%3E%3Cpath d='M40 120c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M120 120l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='90' cy='88' r='3'/%3E%3Ccircle cx='160' cy='92' r='3'/%3E%3Ccircle cx='14' cy='76' r='3'/%3E%3Cpath d='M86 150c6-8 14-8 20 0'/%3E%3C/g%3E%3C/svg%3E");--fi-pat-soft:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23ffd21f' stroke-opacity='0.06' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M28 20l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M118 30v26a7 6 0 1 1-4-5V24l18-4v26a7 6 0 1 1-4-5V25'/%3E%3Cpath d='M40 120c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M120 120l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='90' cy='88' r='3'/%3E%3Ccircle cx='160' cy='92' r='3'/%3E%3Ccircle cx='14' cy='76' r='3'/%3E%3Cpath d='M86 150c6-8 14-8 20 0'/%3E%3C/g%3E%3C/svg%3E")}
 html.fi body{background-image:var(--fi-pat-soft);background-size:180px 180px;background-attachment:fixed}
 html.fi .hero-band::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:var(--fi-pat) 0 0/180px 180px}
+.back-eco{flex:none;display:inline-flex;align-items:center;height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg-2);color:var(--cream);font:600 13px var(--f-mono,inherit);text-decoration:none;white-space:nowrap}.back-eco:hover{border-color:var(--accent)}@media(max-width:620px){.back-eco{padding:0 11px;font-size:12px}}
 </style>
 
 <script>(function(){var r=document.documentElement,q=null,s=null;try{q=new URLSearchParams(location.search).get("puerta")}catch(e){}try{s=sessionStorage.getItem("boveda-puerta")}catch(e){}if(q!=="0"&&(q==="1"||!s))r.classList.add("gated")})()</script>
@@ -534,6 +535,7 @@ html.fi .hero-band::before{content:"";position:absolute;inset:0;z-index:0;pointe
     <span class="kbd" aria-hidden="true">/</span>
     <button type="button" class="hbtn fi-btn" id="fi-btn" aria-pressed="true"></button>
     <button type="button" class="hbtn" id="theme-btn" aria-label="Cambiar tema"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></button>
+    <a class="back-eco" href="/">← ecodesa.co</a>
     <a class="follow" href="https://www.instagram.com/ecodesa_ingenieria_sas/" target="_blank" rel="noopener">Síguenos</a>
   </div>
 </header>
@@ -773,7 +775,7 @@ html.fi .hero-band::before{content:"";position:absolute;inset:0;z-index:0;pointe
           <a class="btn primary" href="https://www.instagram.com/ecodesa_ingenieria_sas/" target="_blank" rel="noopener">@ecodesa_ingenieria_sas</a>
           <a class="btn primary" href="https://www.instagram.com/venquetecuento.oficial/" target="_blank" rel="noopener">@venquetecuento.oficial</a>
           <a class="btn" href="https://wa.me/573246886824?text=Hola%20ECODESA%2C%20vengo%20de%20la%20B%C3%B3veda%20IA" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-          <a class="btn" href="https://ecodesa.co" target="_blank" rel="noopener">Conocer ECODESA</a>
+          <a class="btn" href="/">Conocer ECODESA</a>
         </div>
       </div>
     </div>
