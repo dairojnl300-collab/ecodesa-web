@@ -1,0 +1,24 @@
+/* Diseño permanente ECODESA: títulos en Lilita One y figurines del oficio (hoja, gota, engranaje, casco, escudo, reciclaje, sol, ola, alerta).
+   Fuera de la edición Fiestas (html.fi conserva su propio estilo). Decoración aria-hidden y sin clics. */
+@font-face{font-family:'Lilita One';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/lilita-one-400.woff2) format('woff2')}
+
+html:not(.fi) main .sec h2,html:not(.fi) main .sec h3{font-family:"Lilita One","Archivo",system-ui,sans-serif;font-weight:400;letter-spacing:.005em}
+
+:root{--eco-fig:#2E6B1F;--eco-pat:.075;--eco-big:.26}
+[data-theme=dark]{--eco-fig:#9fd86a;--eco-pat:.05;--eco-big:.22}
+
+.eco-on{isolation:isolate}
+.eco-deco{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;color:var(--eco-fig)}
+html.fi .eco-deco{display:none}
+.eco-pat{position:absolute;inset:0;opacity:var(--eco-pat);background:currentColor;
+  -webkit-mask:var(--eco-tile) 0 0/260px 260px;mask:var(--eco-tile) 0 0/260px 260px;
+  -webkit-mask-image:var(--eco-tile),linear-gradient(transparent,#000 14%,#000 86%,transparent);mask-image:var(--eco-tile),linear-gradient(transparent,#000 14%,#000 86%,transparent);
+  -webkit-mask-composite:source-in;mask-composite:intersect;-webkit-mask-size:260px 260px,100% 100%;mask-size:260px 260px,100% 100%;-webkit-mask-repeat:repeat,no-repeat;mask-repeat:repeat,no-repeat}
+.eco-fl{position:absolute;width:var(--s);height:var(--s);opacity:var(--eco-big);transform:translate3d(0,var(--py,0px),0);will-change:transform}
+.eco-fl svg{width:100%;height:100%;display:block;fill:none;stroke:currentColor;stroke-width:1.3;fill:color-mix(in srgb,currentColor 12%,transparent);stroke-linecap:round;stroke-linejoin:round;animation:ecoFloat var(--t,9s) ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes ecoFloat{0%,100%{transform:translateY(0) rotate(var(--r0,-6deg))}50%{transform:translateY(-18px) rotate(var(--r1,6deg))}}
+[data-theme=dark] .eco-fl svg{filter:drop-shadow(0 0 10px rgba(159,216,106,.35))}
+.eco-fl.spin svg{animation:ecoSpin 40s linear infinite}
+@keyframes ecoSpin{to{transform:rotate(360deg)}}
+@media (max-width:720px){.eco-fl{--s:64px!important}.eco-fl:nth-of-type(n+3){display:none}}
+@media (prefers-reduced-motion:reduce){.eco-fl svg{animation:none}.eco-fl{transform:none}}
