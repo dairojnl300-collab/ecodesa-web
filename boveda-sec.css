@@ -72,7 +72,7 @@ html.fi .bv-stage{--ray:rgba(255,255,255,.44);--ray2:rgba(200,16,31,.14)}
 html.fi[data-theme=dark] .bv-stage{--ray:rgba(255,210,31,.30);--ray2:rgba(255,120,0,.14)}
 html.fi .bv-rays{animation-duration:120s}
 @media (prefers-reduced-motion:reduce){.bv-rays,.bv-shine,.bv-glint{animation:none}.bv-glint{opacity:.8;transform:none}}
-.bv p{hyphens:manual;-webkit-hyphens:manual;text-align:left}
+.bv p{hyphens:auto;-webkit-hyphens:auto;text-align:justify;text-justify:inter-word}.bv .bv-err,.bv .bv-hint,.bv .bv-back p{text-align:left;hyphens:manual}
 .bv-rays{width:230%}
 /* decoración pura: el navegador no debe ofrecer botones sobre el video ni la imagen */
 .bv-stage,.bv-stage *{pointer-events:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none}
