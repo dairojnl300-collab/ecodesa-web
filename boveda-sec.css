@@ -115,3 +115,20 @@ html.fi .bv-rays{animation-duration:120s}
 @keyframes bvSeam{0%{opacity:0;transform:scaleY(.1)}25%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(1) scaleX(5)}}
 @keyframes bvPortal{0%{opacity:0}25%{opacity:1}100%{opacity:1}}
 @media (prefers-reduced-motion:reduce){.bv-portal::before{animation:none}.bv.opening .bv-lock,.bv.opening .bv-seam,.bv.opening .bv-portal{animation:none}}
+
+/* Rendimiento: pausar animaciones fuera de pantalla */
+.bv{overflow-x:clip}
+.bv.bv-off .bv-stage,.bv.bv-off .bv-stage *,.bv.bv-off .bv-stage *::before,.bv.bv-off .bv-stage *::after{animation-play-state:paused!important}
+.bv-rays,.bv-fly{will-change:transform}
+/* Móvil: texto, puerta y botón debajo, todo en pantalla; efectos livianos */
+@media (max-width:900px){
+.bv-grid>div:first-child{display:contents}
+.bv-grid{row-gap:14px}
+.bv-stage{order:1;width:min(88vw,50svh,470px)}
+.bv-form{order:2;margin-top:0}
+.bv-rays{width:150%;animation:none!important;will-change:auto}
+.bv-glow{filter:none;animation:none}
+.bv-shine,.bv-glint:nth-of-type(n+5),.bv-sparks i:nth-child(n+4){display:none}
+.bv-fly{animation:none;will-change:auto}
+.bv.opening .bv-pill,.bv.opening h2,.bv.opening .sec-lead,.bv.opening .bv-form{opacity:0;transition:opacity .4s}
+}
