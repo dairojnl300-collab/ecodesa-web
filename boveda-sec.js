@@ -57,12 +57,15 @@
   function fit() {
     try {
       var d = frame.contentDocument; if (!d || !d.body) return;
-      var h = Math.max(d.documentElement.scrollHeight, d.body.scrollHeight);
-      if (Math.abs(h - (parseFloat(frame.style.height) || 0)) > 2) frame.style.height = h + "px";
+      /* altura del contenido, no del marco: así puede encoger si el texto se acomoda en menos líneas */
+      var h = Math.ceil(d.body.getBoundingClientRect().height);
+      if (h > 200 && Math.abs(h - (parseFloat(frame.style.height) || 0)) > 1) frame.style.height = h + "px";
     } catch (e) {}
   }
   frame.addEventListener("load", function () {
     syncTheme(); fit();
+    try { if (frame.contentDocument.fonts && frame.contentDocument.fonts.ready) frame.contentDocument.fonts.ready.then(fit); } catch (e) {}
+    addEventListener("load", fit); addEventListener("resize", fit);
     var d; try { d = frame.contentDocument; } catch (e) { return; }
     if (!d) return;
     if (window.ResizeObserver) new ResizeObserver(fit).observe(d.body); else setInterval(fit, 700);
