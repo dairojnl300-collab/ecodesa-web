@@ -50,4 +50,21 @@
   });
 
   /* sin parallax: los figurines no se mueven con el scroll (evita mareo y no compite con el texto) */
+  /* texto directo sobre el fondo de stickers: se marca para darle halo de lectura */
+  function ink() {
+    var TXT = "p,li,figcaption,small,label,dd,dt,blockquote,.pill";
+    [].forEach.call(document.querySelectorAll(".eco-on"), function (sec) {
+      var sb = getComputedStyle(sec).backgroundColor;
+      if (sb !== "transparent" && !/rgba\([^)]*,\s*0\)$/.test(sb)) sec.style.setProperty("--halo", sb);
+      [].forEach.call(sec.querySelectorAll(TXT), function (el) {
+        if (el.closest(".eco-deco,.es-bando,button,.btn")) return;
+        for (var n = el; n && n !== sec; n = n.parentElement) {
+          var cs = getComputedStyle(n), bg = cs.backgroundColor;
+          if (cs.backgroundImage !== "none" || (bg !== "transparent" && !/rgba\([^)]*,\s*0\)$/.test(bg))) return;
+        }
+        el.classList.add("eco-ink");
+      });
+    });
+  }
+  if (document.readyState === "complete") ink(); else addEventListener("load", ink);
 })();
