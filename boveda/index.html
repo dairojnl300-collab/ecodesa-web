@@ -450,7 +450,7 @@ html.fi[data-theme="light"] .fi-pill{background:#fff8e6}
 .fi-cf{position:absolute;top:-24px;left:var(--x);width:var(--w,9px);height:var(--h,14px);background:var(--c);border-radius:var(--r,2px);opacity:.92;animation:fiFall var(--t,11s) linear infinite;animation-delay:var(--dl,0s);will-change:transform}
 @keyframes fiFall{0%{transform:translate3d(0,0,0) rotate(0)}25%{transform:translate3d(var(--sx,18px),calc(var(--fall,700px)*.25),0) rotate(140deg)}50%{transform:translate3d(calc(var(--sx,18px)*-1),calc(var(--fall,700px)*.5),0) rotate(280deg)}75%{transform:translate3d(var(--sx,18px),calc(var(--fall,700px)*.75),0) rotate(420deg)}100%{transform:translate3d(0,var(--fall,700px),0) rotate(560deg)}}
 
-@media (max-width:620px){p{text-align:left;hyphens:manual}}
+@media (max-width:620px){p,.note,.hero p.lead{text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:anywhere}}
 
 /* ===== personaje en el hero ===== */
 .hero-side{display:flex;flex-direction:column;min-width:0}
@@ -532,7 +532,7 @@ html.fi body{background-image:var(--fi-pat-soft);background-size:180px 180px;bac
 html.fi .hero-band::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:var(--fi-pat) 0 0/180px 180px}
 .back-eco{flex:none;display:inline-flex;align-items:center;height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg-2);color:var(--cream);font:600 13px var(--f-mono,inherit);text-decoration:none;white-space:nowrap}.back-eco:hover{border-color:var(--accent)}@media(max-width:620px){.back-eco{padding:0 11px;font-size:12px}}
 html.embed .back-eco,html.embed .gate,html.embed #fi-btn,html.embed #theme-btn{display:none!important}html.embed .top{position:static}html.embed body{min-height:0}
-.cta{grid-template-columns:1fr!important;gap:20px}.cta h2{font-size:clamp(26px,3.2vw,38px);line-height:1.12;max-width:26ch}.cta p{text-align:left;max-width:62ch}
+.cta{grid-template-columns:1fr!important;gap:20px}.cta h2{font-size:clamp(26px,3.2vw,38px);line-height:1.12;max-width:26ch}.cta p{text-align:justify;max-width:62ch}
 </style>
 </head>
 <body>
