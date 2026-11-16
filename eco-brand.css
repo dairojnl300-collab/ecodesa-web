@@ -105,3 +105,5 @@ html:not(.fi) main .sec.tienda.eco-on{padding-top:calc(var(--bh) + 14px)}
 .prod.prod-ases{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important;padding-bottom:clamp(8px,1.5vw,18px)}
 .prod-ases .pa-fig{margin-bottom:0!important}
 .prod-ases .pa-img{-webkit-mask-image:linear-gradient(#000 90%,transparent 99%);mask-image:linear-gradient(#000 90%,transparent 99%)}
+/* documentos legales: el título empieza debajo de la franja del horizonte */
+html:not(.fi) .lbg.eco-on .lmain{padding-top:calc(var(--bh,44px) + clamp(24px,4vw,44px))}
