@@ -465,10 +465,22 @@ html.fi[data-theme="light"] .fi-pill{background:#fff8e6}
 html.fi .eco-only{display:none!important}
 /* Edición empresarial: misma altura y orden que la edición Fiestas */
 html:not(.fi) .hero-band{padding-top:44px}
-/* Edición empresarial: mismo fondo que la página oficial (verde ECODESA + figuritas) */
-html:not(.fi){--bg:#0c2a12;--bg-2:#123a1a;--bg-3:#18461f}
-@media (prefers-color-scheme: light){html:not(.fi):not([data-theme="dark"]){--bg:#c6e98a;--bg-2:#b8e07a;--bg-3:#a9d86a}}
-html:not(.fi)[data-theme="light"]{--bg:#c6e98a;--bg-2:#b8e07a;--bg-3:#a9d86a}
+/* Edición empresarial: mismo diseño que Fiestas (cuadros con borde y sombra, Lilita One, figuritas) con la paleta verde ECODESA */
+@font-face{font-family:'Lilita One';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/lilita-one-400.woff2) format('woff2')}
+@font-face{font-family:'Caveat Brush';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/caveat-brush-400.woff2) format('woff2')}
+html:not(.fi){--f-display:"Lilita One","Fraunces",system-ui,sans-serif;--fi-fs:"Caveat Brush","Inter",cursive;--fi-ink:#0f2416;--fi-sh:#0f2416}
+html:not(.fi)[data-theme="light"]{--bg:#c6e98a;--bg-2:#dcf2b0;--bg-3:#b8e07a;--card:#f4fbe6;--cream:#0f2416;--cream-2:#1d3a24;--muted:#3f5f3a;
+  --accent:#1f7a35;--accent-2:#0a7a35;--accent-dim:rgba(46,107,31,.12);--line:rgba(15,36,22,.38);--line-2:rgba(15,36,22,.18);--on-accent:#fff;color-scheme:light}
+html:not(.fi)[data-theme="dark"]{--bg:#0c2a12;--bg-2:#123a1a;--bg-3:#18461f;--card:#103418;--cream:#eaf7d4;--cream-2:#cfe8a8;--muted:#9fc27a;
+  --accent:#9fd86a;--accent-2:#b6f06a;--accent-dim:rgba(159,216,106,.12);--line:rgba(159,216,106,.34);--line-2:rgba(234,247,212,.13);--on-accent:#06150a;--fi-ink:#020a04;--fi-sh:#020a04;color-scheme:dark}
+html:not(.fi) h1,html:not(.fi) h2,html:not(.fi) h3{font-weight:400;letter-spacing:0}
+html:not(.fi) .hero h1{font-size:clamp(40px,6.6vw,80px);line-height:1.02}
+html:not(.fi) .hero h1 em{font-family:var(--fi-fs);font-style:normal;font-size:1.08em;color:var(--accent-2)}
+html:not(.fi) :is(.ledger,.card,.kit,.hacer-box,.stage,.model,.flow){border:2px solid var(--fi-ink);box-shadow:4px 4px 0 var(--fi-sh)}
+html:not(.fi)[data-theme="dark"] :is(.ledger,.card,.kit,.hacer-box,.stage,.model,.flow){border-color:rgba(159,216,106,.6)}
+html:not(.fi)[data-theme="light"] :is(.kit,.card,.ledger){background:#f4fbe6}
+html:not(.fi) .follow,html:not(.fi) .btn.primary{border:2px solid var(--fi-ink);box-shadow:3px 3px 0 var(--fi-sh)}
+html:not(.fi)[data-theme="dark"] :is(.follow,.btn.primary){border-color:rgba(159,216,106,.6)}
 html:not(.fi) body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:#9fd86a;opacity:.20;-webkit-mask:var(--eco-tile) 0 0/360px 360px repeat;mask:var(--eco-tile) 0 0/360px 360px repeat}
 @media (prefers-color-scheme: light){html:not(.fi):not([data-theme="dark"]) body::after{background:#2E6B1F;opacity:.30}}
 html:not(.fi)[data-theme="light"] body::after{background:#2E6B1F;opacity:.30}
