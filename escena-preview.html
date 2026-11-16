@@ -18,6 +18,18 @@ html[data-theme=dark] .blk{background:#0c2a12}
 @keyframes esPuff{0%{opacity:0;transform:translate(0,0) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(26px,-50px) rotate(90deg)}}
 .es-tree{transform-origin:50% 100%;animation:esTree 3s ease-in-out infinite alternate}
 @keyframes esTree{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
+.es-route{transform-box:view-box!important;animation:esRoute 30s ease-in-out infinite}
+@keyframes esRoute{0%,10%{transform:translate(150px,145px)}16%,26%{transform:translate(390px,115px)}32%,42%{transform:translate(600px,185px)}48%,58%{transform:translate(810px,165px)}64%,74%{transform:translate(1040px,155px)}80%,90%{transform:translate(1310px,195px)}100%{transform:translate(150px,145px)}}
+.es-van{transform-box:view-box!important;animation:esVan 22s linear infinite}
+@keyframes esVan{from{transform:translateX(-120px)}to{transform:translateX(1720px)}}
+.es-write{transform-origin:0 0;animation:esWrite .5s ease-in-out infinite alternate;animation-delay:var(--d,0s)}
+@keyframes esWrite{from{transform:rotate(-4deg)}to{transform:rotate(5deg) translateY(2px)}}
+.es-point{transform-origin:0 0;animation:esPoint 1.6s ease-in-out infinite alternate}
+@keyframes esPoint{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+.es-nod{transform-origin:50% 100%;animation:esNod 2.4s ease-in-out infinite}
+@keyframes esNod{0%,60%,100%{transform:rotate(0)}70%{transform:rotate(-5deg)}80%{transform:rotate(3deg)}}
+.es-look{animation:esLook 2.8s ease-in-out infinite alternate}
+@keyframes esLook{from{transform:translateX(-2px)}to{transform:translateX(3px)}}
 </style></head><body>
 <div class="blk"><div class="es-bando" id="sc"></div></div>
 <script src="eco-scene.js"></script><script>document.getElementById('sc').innerHTML=ecoScene();</script>

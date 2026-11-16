@@ -48,53 +48,42 @@
     return '<g transform="translate(' + x + ' 300)"><ellipse class="fi-shd" style="--dl:' + dl + 's" cx="0" cy="1" rx="25" ry="4.5" fill="' + INK + '" opacity=".22"/>' +
       '<g class="fi-walk" style="--dl:' + dl + 's">' + inner + "</g>" + (extra || "") + "</g>";
   }
-  /* ---------- equipo ECODESA ---------- */
-  function sst(x, sk, dl) {
-    var board = '<rect x="8" y="-82" width="22" height="28" rx="2" fill="#c9924d"' + st(2) + '/><rect x="11" y="-78" width="16" height="21" fill="#fff"/><path d="M14 -72 h10 M14 -67 h10 M14 -62 h7" stroke="' + L + '" stroke-width="2"/><path d="M14 -73 l2 2 3 -4" fill="none" stroke="' + G + '" stroke-width="1.6"/>';
-    return fig(x, dl, legs() + shirt(W, Y) + arm("M-12 -76 Q-21 -60 -18 -46", sk, "fi-swing", dl, W) + board + arm("M12 -78 Q20 -70 18 -62", sk, "", 0, W) + face(sk, -93) + helmet(Y), sign("SG-SST", G));
+  /* ---------- equipo ECODESA en visita técnica (de pie, trabajando) ---------- */
+  function stand(p) { p = p || "#2f3a3a";
+    return '<path d="M-10 -42 L-11 -2 L-2 -2 L-1 -42Z M1 -42 L2 -2 L11 -2 L10 -42Z" fill="' + p + '"' + st(2.5) + '/><ellipse cx="-7" cy="0" rx="7" ry="3.5" fill="' + INK + '"/><ellipse cx="7" cy="0" rx="7" ry="3.5" fill="' + INK + '"/>'; }
+  function at(x, y, inner, flip) { return '<g transform="translate(' + x + " " + y + (flip ? ") scale(-1 1)" : ")") + '"><ellipse cx="0" cy="1" rx="24" ry="4" fill="' + INK + '" opacity=".2"/>' + inner + "</g>"; }
+  function board(cls) { return '<g class="' + (cls || "") + '"><rect x="8" y="-82" width="22" height="28" rx="2" fill="#c9924d"' + st(2) + '/><rect x="11" y="-78" width="16" height="21" fill="#fff"/><path d="M14 -72 h10 M14 -67 h10 M14 -62 h7" stroke="' + L + '" stroke-width="2"/></g>'; }
+  function head(sk, top, fem, nod) { return '<g class="' + (nod ? "es-nod" : "") + '">' + face(sk, -93, fem) + (top || "") + "</g>"; }
+  /* profesional que anota en su planilla */
+  function writer(x, y, sk, top, vest, flip, dl) {
+    return at(x, y, stand() + shirt(W, vest) + board() + arm("M-12 -78 Q4 -70 14 -70", sk, "es-write", dl, W) + arm("M12 -78 Q20 -72 16 -64", sk, "", 0, W) + head(sk, top, false, true), flip);
   }
-  function saneamiento(x, sk, dl) {
-    var probe = '<g class="fi-armup2" style="animation-delay:' + dl + 's">' + arm("M12 -78 Q26 -86 28 -100", sk, "", 0, W) +
-      '<rect x="24" y="-122" width="9" height="20" rx="3" fill="#cfe9ff"' + st(1.8) + '/><rect x="25.5" y="-112" width="6" height="9" fill="' + L + '"/><path d="M28.5 -122 v-6" stroke="' + INK + '" stroke-width="2"/></g>';
-    return fig(x, dl, legs() + shirt(W) + arm("M-12 -76 Q-21 -60 -18 -46", sk, "fi-swing", dl, W) + probe + face(sk, -93) + cap(), sign("Saneamiento", L));
+  /* profesional que señala algo */
+  function pointer(x, y, sk, top, vest, flip, dl) {
+    return at(x, y, stand() + shirt(W, vest) + arm("M-12 -76 Q-18 -60 -16 -46", sk, "", 0, W) + arm("M12 -78 Q30 -86 44 -98", sk, "es-point", dl, W) + head(sk, top), flip);
   }
-  function brigadista(x, sk, dl) {
-    var ext = '<rect x="14" y="-74" width="14" height="34" rx="6" fill="' + R + '"' + st(2.2) + '/><rect x="16" y="-64" width="10" height="9" fill="#fff"/><path d="M21 -74 v-6 h8 l4 -4" fill="none" stroke="' + INK + '" stroke-width="2.4" stroke-linecap="round"/>';
-    return fig(x, dl, legs() + shirt(W, O) + arm("M-12 -76 Q-21 -60 -18 -46", sk, "fi-swing", dl, W) + ext + arm("M12 -78 Q18 -72 20 -76", sk, "", 0, W) + face(sk, -93) + helmet(R), sign("Emergencias", R));
+  /* profesional agachado revisando (trampa de grasas, kit de derrames) */
+  function crouch(x, y, sk, top, flip) {
+    return at(x, y, '<path d="M-12 -2 L-16 -30 L4 -34 L8 -2Z" fill="#2f3a3a"' + st(2.5) + '/><ellipse cx="-10" cy="0" rx="8" ry="3.5" fill="' + INK + '"/><ellipse cx="6" cy="0" rx="8" ry="3.5" fill="' + INK + '"/>' +
+      '<path d="M-16 -30 L12 -30 L14 -64 Q0 -70 -12 -64Z" fill="' + W + '"' + st(2.5) + '/><circle cx="-4" cy="-52" r="4" fill="' + L + '"' + st(1.4) + "/>" +
+      '<g class="es-look"><rect x="20" y="-34" width="12" height="7" rx="2" fill="#ffe27a"' + st(1.6) + '/><path d="M32 -30 l14 6 l0 -12Z" fill="#fff6c8" opacity=".75"/>' + arm("M10 -60 Q22 -46 22 -32", sk, "", 0, W) + "</g>" +
+      '<g transform="translate(2 18)">' + face(sk, -93) + (top || "") + "</g>", flip);
   }
-  function recicladora(x, sk, dl) {
-    var bins = '<g transform="translate(16 -60)"><rect x="0" y="0" width="12" height="18" rx="2" fill="' + L + '"' + st(1.8) + '/><rect x="13" y="0" width="12" height="18" rx="2" fill="#fff"' + st(1.8) + '/><rect x="26" y="0" width="12" height="18" rx="2" fill="#3a3f45"' + st(1.8) + '/><path d="M3 6 h6 M16 6 h6 M29 6 h6" stroke="' + INK + '" stroke-width="1.4" opacity=".5"/></g>';
-    return fig(x, dl, legs("#1f4a6b") + '<path d="M-14 -42 L14 -42 L13 -80 Q0 -86 -13 -80Z" fill="' + L + '"' + st(2.5) + '/><path d="M-6 -80 L0 -72 L6 -80" fill="none" stroke="' + INK + '" stroke-width="2"/>' +
-      arm("M-12 -76 Q-21 -60 -18 -46", sk, "fi-swing", dl, L) + bins + arm("M12 -78 Q20 -66 18 -60", sk, "", 0, L) + face(sk, -93, true), sign("Reciclaje", G));
+  /* cliente o encargado que escucha */
+  function client(x, y, sk, col, fem, flip) {
+    return at(x, y, stand("#3c3f52") + '<path d="M-14 -42 L14 -42 L13 -80 Q0 -86 -13 -80Z" fill="' + col + '"' + st(2.5) + "/>" + arm("M-12 -76 Q-18 -60 -16 -46", sk, "", 0, col) + arm("M12 -76 Q18 -60 16 -46", sk, "", 0, col) + head(sk, "", fem, true), flip);
   }
-  function digital(x, sk, dl) {
-    var lap = '<g transform="translate(-4 -74)"><path d="M0 0 L30 -4 L32 -26 L2 -22Z" fill="#1b1f1c"' + st(2) + '/><path d="M4 -4 L27 -7 L29 -22 L5 -19Z" fill="' + L2 + '"/><path d="M8 -11 h14 M8 -15 h9" stroke="' + G + '" stroke-width="2"/><path d="M-4 2 L34 -3" stroke="' + INK + '" stroke-width="4" stroke-linecap="round"/></g>';
-    return fig(x, dl, legs() + shirt(W) + lap + arm("M-12 -78 Q-4 -72 2 -76", sk, "", 0, W) + arm("M12 -78 Q22 -74 24 -80", sk, "", 0, W) + face(sk, -93) +
-      '<path d="M-14 -100 Q-14 -112 0 -113 Q14 -112 14 -100 Q8 -106 0 -106 Q-8 -106 -14 -100Z" fill="' + INK + '"/><path d="M-11 -94 h9 M2 -94 h9" stroke="' + INK + '" stroke-width="1.6"/><rect x="-11" y="-97" width="8" height="6" rx="2" fill="none" stroke="' + INK + '" stroke-width="1.6"/><rect x="3" y="-97" width="8" height="6" rx="2" fill="none" stroke="' + INK + '" stroke-width="1.6"/>', sign("Web e IA", "#1b6fd8"));
+  /* Ethan recorre la ciudad y se detiene en cada visita */
+  function ethan() {
+    return '<g class="es-route"><g class="es-ethan"><path class="es-beam" d="M-16 -2 L16 -2 L30 46 L-30 46Z" fill="' + L2 + '" opacity=".35"/>' +
+      '<image href="assets/v2/nave-base.webp" x="-40" y="-40" width="80" height="50"/><image href="assets/v2/robot-anim-256.webp" x="-31" y="-102" width="62" height="62"/></g></g>';
   }
-  /* Ethan en su nave */
-  function ethan(x) {
-    return '<g transform="translate(' + x + ' 300)"><ellipse cx="0" cy="1" rx="34" ry="5" fill="' + INK + '" opacity=".18"/>' +
-      '<g class="es-ethan"><path class="es-beam" d="M-20 -40 L20 -40 L36 0 L-36 0Z" fill="' + L2 + '" opacity=".35"/>' +
-      '<image href="assets/v2/nave-base.webp" x="-46" y="-78" width="92" height="58"/><image href="assets/v2/robot-anim-256.webp" x="-36" y="-150" width="72" height="72"/></g>' +
-      sign("¡Hola, soy Ethan!", L) + "</g>";
-  }
-  /* carroza ECODESA: camión de reciclaje con árbol que crece y hojas al viento */
-  function carroza(x) {
-    var wheel = function (cx) { return '<g transform="translate(' + cx + ' -10)"><g class="fi-wheel"><circle r="12" fill="' + INK + '"/><circle r="7" fill="' + L2 + '"/><path d="M-7 0 H7 M0 -7 V7" stroke="' + INK + '" stroke-width="2.2"/></g></g>'; };
-    var lv = ""; for (var j = 0; j < 9; j++) lv += '<path class="fi-cc" style="--cx:' + ((j % 2 ? 1 : -1) * (14 + j * 6)) + "px;animation-delay:" + (-j * 0.34).toFixed(2) + 's" d="M0 -190 q6 -8 12 0 q-6 8 -12 0Z" fill="' + [L, G, L2][j % 3] + '"' + st(1.2) + "/>";
-    return '<g transform="translate(' + x + ' 300)"><ellipse cx="0" cy="2" rx="104" ry="6" fill="' + INK + '" opacity=".22"/><g class="fi-bump">' +
-      /* árbol */
-      '<g class="es-tree"><path d="M-30 -42 V-118" stroke="#8a5a2b" stroke-width="8" stroke-linecap="round"/><path d="M-30 -96 l-16 -12 M-30 -108 l14 -10" stroke="#8a5a2b" stroke-width="4" stroke-linecap="round"/>' +
-      '<circle cx="-30" cy="-140" r="30" fill="' + L + '"' + st(2.5) + '/><circle cx="-54" cy="-122" r="18" fill="' + G + '"' + st(2.5) + '/><circle cx="-6" cy="-122" r="18" fill="' + G + '"' + st(2.5) + '/><circle cx="-38" cy="-150" r="5" fill="' + R + '"/><circle cx="-18" cy="-138" r="4" fill="' + R + '"/></g>' +
-      /* cabina */
-      '<path d="M40 -42 V-92 H72 L92 -64 V-42Z" fill="' + C + '"' + st(3) + '/><path d="M48 -86 H70 L84 -66 H48Z" fill="#bfe3ff"' + st(2) + "/>" +
-      /* plataforma con logo */
-      '<path d="M-96 -42 H96 L90 -14 H-90Z" fill="' + G + '"' + st(3) + '/><path d="M-92 -26 H92" stroke="' + L2 + '" stroke-width="4"/>' +
-      '<g transform="translate(12 -28)"><circle r="16" fill="#fff"' + st(2.2) + '/><circle r="9.5" fill="none" stroke="' + L + '" stroke-width="5" stroke-dasharray="3 2.6"/><path d="M-4 -1 h8 M-4 3 h6" stroke="' + G + '" stroke-width="2.4" stroke-linecap="round"/></g>' +
-      /* canecas de separación */
-      '<g transform="translate(-86 -74)"><rect width="16" height="30" rx="3" fill="' + L + '"' + st(2) + '/><rect x="18" width="16" height="30" rx="3" fill="#fff"' + st(2) + '/><rect x="36" width="16" height="30" rx="3" fill="#3a3f45"' + st(2) + '/><path d="M4 -4 h8 M22 -4 h8 M40 -4 h8" stroke="' + INK + '" stroke-width="3" stroke-linecap="round"/></g>' +
-      "</g>" + lv + wheel(-60) + wheel(60) + "</g>";
+  /* camioneta de servicio ECODESA */
+  function van() {
+    var wheel = function (cx) { return '<g transform="translate(' + cx + ' -8)"><g class="fi-wheel"><circle r="11" fill="' + INK + '"/><circle r="6" fill="#cfd6cf"/></g></g>'; };
+    return '<g class="es-van"><g class="fi-bump"><path d="M-70 -14 V-58 Q-70 -64 -64 -64 H30 L58 -40 L66 -36 V-14Z" fill="#fff"' + st(3) + '/><path d="M34 -60 L54 -40 H34Z" fill="#bfe3ff"' + st(2) + '/>' +
+      '<path d="M-70 -30 H66" stroke="' + L + '" stroke-width="6"/><g transform="translate(-22 -44)"><circle r="12" fill="#fff"' + st(2) + '/><circle r="7" fill="none" stroke="' + L + '" stroke-width="4" stroke-dasharray="2.6 2.2"/></g>' +
+      '<text x="6" y="-40" fill="' + G + '" style="font:400 14px var(--fi-fh,\'Lilita One\',sans-serif)">ecodesa</text><circle cx="62" cy="-24" r="3" fill="#ffd21f"/></g>' + wheel(-44) + wheel(40) + "</g>";
   }
   /* ---------- cielo ---------- */
   function sky() {
@@ -143,66 +132,55 @@
       '<rect x="-48" y="-40" width="18" height="14" fill="var(--es-win)"' + st(2) + '/><rect x="-22" y="-40" width="18" height="14" fill="var(--es-win)"' + st(2) + '/>' +
       '<g transform="translate(-60 -82)"><path d="M0 0 L40 -10 L46 8 L6 18Z" fill="#1f4a6b"' + st(2) + '/><path d="M13 -3 L19 15 M26 -6 L32 12 M3 9 L43 -1" stroke="#7fb8e6" stroke-width="1.6"/><path d="M24 12 V26" stroke="' + INK + '" stroke-width="3"/></g></g>';
   }
+  function label(x, y, txt) { var w = txt.length * 8 + 20; return '<g transform="translate(' + x + " " + y + ')"><rect x="' + (-w / 2) + '" y="-14" width="' + w + '" height="24" rx="6" fill="' + INK + '"/><text x="0" y="3" text-anchor="middle" fill="' + L2 + '" style="font:400 14px var(--fi-fh,\'Lilita One\',sans-serif);letter-spacing:.04em">' + txt + "</text></g>"; }
+  function win(x, y, w, h) { return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="3" fill="var(--es-win)"' + st(2) + "/>"; }
   function scene() {
-    var s = sky() + farCity();
-    var palm = function (x, k) { return '<g transform="translate(' + x + ' 172) scale(' + k + ')"><path d="M0 0 Q-6 -60 6 -118" fill="none" stroke="#8a5a2b" stroke-width="9" stroke-linecap="round"/>' +
+    var s = sky() + farCity(), B = 262;
+    var palm = function (x, k) { return '<g transform="translate(' + x + " " + B + ") scale(" + k + ')"><path d="M0 0 Q-6 -60 6 -118" fill="none" stroke="#8a5a2b" stroke-width="9" stroke-linecap="round"/>' +
       '<g class="fi-palm" fill="' + L + '"' + st(2.5) + '><path d="M6 -118 Q-30 -132 -58 -104 Q-26 -118 6 -112Z"/><path d="M6 -118 Q42 -136 66 -106 Q36 -118 6 -112Z"/><path d="M6 -118 Q-10 -150 -40 -152 Q-12 -140 4 -114Z"/><path d="M6 -118 Q24 -152 54 -150 Q24 -138 8 -114Z"/></g></g>'; };
-    s += palm(60, 1) + turbine(170, 0.9) + turbine(232, 0.7);
-    /* Torre del Reloj */
-    s += '<g transform="translate(400 172)"><rect x="-38" y="-80" width="76" height="80" fill="' + C + '"' + st() + '/><path d="M-14 0 V-30 A14 14 0 0 1 14 -30 V0Z" fill="' + INK + '"/>' +
-      '<rect x="-46" y="-92" width="92" height="12" fill="' + L + '"' + st(2.5) + '/><rect x="-28" y="-138" width="56" height="46" fill="' + L2 + '"' + st() + '/><circle cx="0" cy="-115" r="16" fill="#fff"' + st(2.5) + "/>" +
-      '<g transform="translate(0 -115)"><path class="fi-hand" d="M0 0 V-11" stroke="' + INK + '" stroke-width="3" stroke-linecap="round"/><path class="fi-hand2" d="M0 0 V-7" stroke="' + INK + '" stroke-width="3.4" stroke-linecap="round"/><circle r="2.4" fill="' + INK + '"/></g>' +
-      '<rect x="-34" y="-146" width="68" height="9" fill="' + L + '"' + st(2.5) + '/><path d="M-26 -146 Q0 -184 26 -146Z" fill="' + G + '"' + st() + '/><path d="M0 -176 V-196" stroke="' + INK + '" stroke-width="2.5"/><path d="M0 -196 L16 -191 L0 -186Z" fill="' + L + '"' + st(1.8) + "/></g>";
-    /* restaurante con toldo y hotel */
-    s += '<g transform="translate(540 172)"><rect x="0" y="-78" width="110" height="78" fill="#fff3d6"' + st() + '/><rect x="-4" y="-88" width="118" height="12" fill="' + G + '"' + st(2.5) + "/>" +
-      [0, 1, 2, 3, 4, 5].map(function (k) { return '<path d="M' + (k * 18 + 2) + " -52 h18 v10 q-9 8 -18 0Z" + '" fill="' + (k % 2 ? "#fff" : L) + '"' + st(2) + "/>"; }).join("") +
-      '<rect x="12" y="-74" width="86" height="18" rx="4" fill="' + INK + '"/><text x="55" y="-60" text-anchor="middle" fill="' + L2 + '" style="font:400 13px var(--fi-fh,\'Lilita One\',sans-serif)">RESTAURANTE</text>' +
-      '<rect x="14" y="-38" width="24" height="38" fill="var(--es-win)"' + st(2) + '/><rect x="56" y="-36" width="40" height="22" rx="4" fill="var(--es-win)"' + st(2) + "/></g>";
-    s += '<g transform="translate(680 172)"><rect x="0" y="-122" width="96" height="122" fill="#7fc8e8"' + st() + '/><rect x="-4" y="-132" width="104" height="12" fill="' + C + '"' + st(2.5) + "/>";
-    for (var r = 0; r < 4; r++) for (var c = 0; c < 3; c++) s += '<rect x="' + (12 + c * 28) + '" y="' + (-110 + r * 26) + '" width="16" height="16" rx="3" fill="var(--es-win)"' + st(1.8) + "/>";
-    s += '<text x="48" y="-138" text-anchor="middle" fill="' + INK + '" style="font:400 14px var(--fi-fh,\'Lilita One\',sans-serif)">HOTEL</text></g>';
-    /* cúpula y casas */
-    s += '<g transform="translate(870 172)"><rect x="-34" y="-58" width="68" height="58" fill="' + C + '"' + st() + '/><path d="M-40 -58 Q0 -126 40 -58Z" fill="' + L + '"' + st() + '/><rect x="-7" y="-122" width="14" height="18" fill="' + C + '"' + st(2.5) + '/><path d="M-9 -122 Q0 -134 9 -122Z" fill="' + L + '"' + st(2.5) + '/><path d="M0 -134 V-146 M-5 -141 H5" stroke="' + INK + '" stroke-width="2.5"/><rect x="-8" y="-44" width="16" height="22" rx="8" fill="var(--es-win)"' + st(2) + "/></g>";
-    [[940, 118, "#ff9fc4"], [1036, 104, "#ffd96a"]].forEach(function (h) {
-      s += '<rect x="' + h[0] + '" y="' + h[1] + '" width="96" height="' + (172 - h[1]) + '" fill="' + h[2] + '"' + st() + '/><rect x="' + (h[0] - 4) + '" y="' + (h[1] - 9) + '" width="104" height="11" fill="' + G + '"' + st(2.5) + "/>" +
-        '<rect x="' + (h[0] + 14) + '" y="' + (h[1] + 14) + '" width="20" height="26" rx="8" fill="var(--es-win)"' + st(2) + '/><rect x="' + (h[0] + 62) + '" y="' + (h[1] + 14) + '" width="20" height="26" rx="8" fill="var(--es-win)"' + st(2) + "/>" +
-        '<path d="M' + (h[0] + 6) + " " + (h[1] + 44) + ' h84" stroke="#8a4b16" stroke-width="5"/><circle cx="' + (h[0] + 14) + '" cy="' + (h[1] + 40) + '" r="6" fill="' + L + '"' + st(1.4) + '/><circle cx="' + (h[0] + 24) + '" cy="' + (h[1] + 38) + '" r="5" fill="' + G + '"' + st(1.4) + "/>";
-    });
-    s += plant(1220) + crane(1390) + crane(1500) + palm(1580, 0.9);
-    /* muralla */
-    s += '<rect x="-10" y="170" width="1620" height="94" fill="#dba660"' + st() + '/><rect x="-10" y="236" width="1620" height="28" fill="#b98345" opacity=".35"/><path d="M-10 174 H1610" stroke="#f3cf8e" stroke-width="3"/>';
-    for (var mx = 0; mx < 1600; mx += 44) s += '<rect x="' + mx + '" y="158" width="26" height="14" fill="#dba660"' + st(2.5) + "/>";
-    s += '<path d="M0 196 H1600 M0 222 H1600 M0 246 H1600" stroke="#b37b3a" stroke-width="2.2"/>';
-    for (var bx = 0; bx < 1600; bx += 64) s += '<path d="M' + bx + " 170 V196 M" + (bx + 32) + " 196 V222 M" + bx + " 222 V246 M" + (bx + 32) + ' 246 V262" stroke="#b37b3a" stroke-width="2"/>';
-    /* enredaderas verdes sobre la muralla */
-    [110, 610, 1120].forEach(function (x) {
-      var v = '<g transform="translate(' + x + ' 162)">';
-      [[-24, 0], [-10, -4], [6, 0], [20, -4], [-18, 12], [0, 14], [16, 16], [-6, 28], [10, 34]].forEach(function (p, k) { v += '<path d="M' + p[0] + " " + p[1] + ' q6 -8 12 0 q-6 8 -12 0Z" fill="' + [L, G, L2][k % 3] + '"' + st(1.4) + "/>"; });
-      s += v + "</g>";
-    });
-    /* faroles con banderines verdes */
-    var posts = [120, 520, 920, 1320, 1720];
-    posts.forEach(function (px, i) {
-      s += '<path d="M' + px + ' 266 V176" stroke="#2d3a2d" stroke-width="6"/><path d="M' + (px - 12) + " 178 h24 l-5 -16 h-14Z" + '" fill="#2d3a2d"/><circle cx="' + px + '" cy="186" r="16" style="fill:var(--es-lampg)"/><circle cx="' + px + '" cy="186" r="7" style="fill:var(--es-lamp)"/>';
-      if (i < posts.length - 1) {
-        var x0 = px, x1 = posts[i + 1], cx = (x0 + x1) / 2;
-        var P = function (t) { var mt = 1 - t; return [mt * mt * x0 + 2 * mt * t * cx + t * t * x1, mt * mt * 182 + 2 * mt * t * 222 + t * t * 182]; };
-        s += '<path d="M' + x0 + " 182 Q" + cx + " 222 " + x1 + ' 182" fill="none" stroke="' + INK + '" stroke-width="1.8"/>';
-        for (var k = 1; k < 12; k++) { var f = P(k / 12);
-          s += '<path class="fi-flag" style="--d:' + (-k * 0.3).toFixed(1) + "s;transform-origin:" + f[0].toFixed(1) + "px " + f[1].toFixed(1) + 'px" d="M' + (f[0] - 9).toFixed(1) + " " + f[1].toFixed(1) + ' h18 l-9 15Z" fill="' + [G, "#fff", L, L2][k % 4] + '" stroke="' + INK + '" stroke-width="1.5"/>'; }
-      }
-    });
-    /* avenida */
-    s += '<rect x="-10" y="262" width="1620" height="10" fill="#e8d9c0"' + st(2.5) + '/><rect x="-10" y="272" width="1620" height="44" fill="#5d626e"/><path d="M0 294 H1600" stroke="#fff" stroke-width="4" stroke-dasharray="28 20"/>';
-    function parade() {
-      return sst(70, SKIN[0], 0) + saneamiento(210, SKIN[3], -0.2) + ethan(370) + brigadista(530, SKIN[1], -0.35) + carroza(720, SKIN[2]) +
-        recicladora(910, SKIN[2], -0.1) + digital(1050, SKIN[3], -0.25) + sst(1190, SKIN[1], -0.4) + recicladora(1330, SKIN[0], -0.15) + saneamiento(1470, SKIN[2], -0.3);
-    }
-    s += '<g class="fi-parade"><g transform="translate(-1600 0)">' + parade() + "</g>" + parade() + "</g>";
-    /* mar */
+    s += turbine(40, 0.8) + turbine(96, 0.6);
+    /* 1. Restaurante: trampa de grasas */
+    s += '<g transform="translate(40 0)"><rect x="0" y="' + (B - 130) + '" width="210" height="130" fill="#fff3d6"' + st() + '/><rect x="-6" y="' + (B - 142) + '" width="222" height="14" fill="' + G + '"' + st(2.5) + "/>" +
+      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (k) { return '<path d="M' + (k * 21) + " " + (B - 92) + ' h21 v12 q-10.5 9 -21 0Z" fill="' + (k % 2 ? "#fff" : L) + '"' + st(2) + "/>"; }).join("") +
+      win(14, B - 70, 60, 40) + win(140, B - 70, 56, 40) + '<rect x="86" y="' + (B - 76) + '" width="40" height="76" fill="#8a5a2b"' + st(2.5) + "/>" +
+      '<rect x="150" y="' + (B - 16) + '" width="36" height="16" rx="2" fill="#9aa3a8"' + st(2.2) + '/><path d="M156 ' + (B - 10) + ' h24" stroke="' + INK + '" stroke-width="2"/>' + label(105, B - 116, "RESTAURANTE") + "</g>";
+    s += crouch(250, B, SKIN[3], cap()) + client(118, B, SKIN[0], "#ffffff", false);
+    /* 2. Hotel: extintor y ruta de evacuación */
+    s += '<g transform="translate(310 0)"><rect x="0" y="' + (B - 200) + '" width="150" height="200" fill="#7fc8e8"' + st() + '/><rect x="-6" y="' + (B - 212) + '" width="162" height="14" fill="' + C + '"' + st(2.5) + "/>";
+    for (var r = 0; r < 5; r++) for (var c = 0; c < 4; c++) s += win(14 + c * 34, B - 186 + r * 28, 20, 18);
+    s += '<rect x="52" y="' + (B - 50) + '" width="46" height="50" fill="#bfe3ff"' + st(2.5) + '/><path d="M75 ' + (B - 50) + " V" + B + '" stroke="' + INK + '" stroke-width="2"/>' +
+      '<rect x="112" y="' + (B - 52) + '" width="12" height="28" rx="5" fill="' + R + '"' + st(2) + '/><rect x="106" y="' + (B - 72) + '" width="26" height="14" rx="2" fill="#14964a"' + st(1.6) + '/><path d="M112 ' + (B - 65) + ' h10 l-4 -4 M122 ' + (B - 65) + ' l-4 4" stroke="#fff" stroke-width="2" fill="none"/>' + label(75, B - 222, "HOTEL") + "</g>";
+    s += pointer(400, B, SKIN[1], helmet(R), O, false, -0.6) + client(350, B, SKIN[2], "#1f4a6b", true);
+    /* 3. Comercio */
+    s += '<g transform="translate(500 0)"><rect x="0" y="' + (B - 120) + '" width="140" height="120" fill="#ff9fc4"' + st() + '/><rect x="-6" y="' + (B - 132) + '" width="152" height="14" fill="' + G + '"' + st(2.5) + "/>" +
+      win(12, B - 100, 116, 46) + '<rect x="50" y="' + (B - 48) + '" width="40" height="48" fill="#bfe3ff"' + st(2.5) + "/>" +
+      '<g transform="translate(24 ' + (B - 84) + ')"><rect width="16" height="22" fill="' + L + '"' + st(1.6) + '/><rect x="22" y="6" width="16" height="16" fill="' + Y + '"' + st(1.6) + '/><rect x="70" width="20" height="22" fill="' + O + '"' + st(1.6) + "/></g>" + label(70, B - 146, "COMERCIO") + "</g>";
+    s += writer(668, B, SKIN[0], cap(), null, true, -0.2);
+    /* 4. Industria */
+    s += '<g transform="translate(720 0)"><rect x="0" y="' + (B - 110) + '" width="190" height="110" fill="#dfe8d6"' + st() + '/><path d="M0 ' + (B - 110) + " L25 " + (B - 134) + " L50 " + (B - 110) + " L75 " + (B - 134) + " L100 " + (B - 110) + " L125 " + (B - 134) + " L150 " + (B - 110) + '" fill="#c4d4b6"' + st(2.5) + "/>" +
+      '<rect x="160" y="' + (B - 196) + '" width="20" height="196" fill="#c4d4b6"' + st(2.5) + '/><path d="M160 ' + (B - 176) + " h20 M160 " + (B - 156) + ' h20" stroke="' + R + '" stroke-width="6"/>' +
+      '<g transform="translate(164 ' + (B - 204) + ')">' + '<path class="es-puff" d="M0 0 q8 -10 16 0 q-8 10 -16 0Z" fill="' + L2 + '"' + st(1.4) + '/><path class="es-puff" style="animation-delay:-1.2s" d="M0 0 q8 -10 16 0 q-8 10 -16 0Z" fill="' + L2 + '"' + st(1.4) + '/><path class="es-puff" style="animation-delay:-2.4s" d="M0 0 q8 -10 16 0 q-8 10 -16 0Z" fill="' + L2 + '"' + st(1.4) + "/></g>" +
+      '<g transform="translate(14 ' + (B - 64) + ')"><rect width="40" height="64" rx="18" fill="#cfd6cf"' + st(2.5) + '/><rect x="48" y="8" width="40" height="56" rx="18" fill="#cfd6cf"' + st(2.5) + '/><path d="M0 24 h40 M48 30 h40" stroke="' + INK + '" stroke-width="2" opacity=".4"/></g>' +
+      win(104, B - 90, 44, 26) + '<g transform="translate(14 ' + (B - 150) + ')"><path d="M0 0 L48 -12 L55 8 L7 20Z" fill="#1f4a6b"' + st(2) + '/><path d="M16 -4 L22 16 M32 -8 L38 12" stroke="#7fb8e6" stroke-width="1.6"/></g>' + label(95, B - 160, "INDUSTRIA") + "</g>";
+    s += writer(888, B, SKIN[2], helmet(Y), Y, false, -0.9);
+    /* 5. Construcción */
+    s += '<g transform="translate(960 0)"><path d="M0 ' + B + " V" + (B - 150) + " H150 V" + B + '" fill="none" stroke="#8d939a" stroke-width="7"/><path d="M0 ' + (B - 50) + " H150 M0 " + (B - 100) + " H150 M50 " + B + " V" + (B - 150) + " M100 " + B + " V" + (B - 150) + '" stroke="#8d939a" stroke-width="5"/>' +
+      '<path d="M0 ' + (B - 50) + " L50 " + (B - 100) + " M100 " + (B - 50) + " L150 " + (B - 100) + '" stroke="#b7bcc1" stroke-width="3"/><rect x="-6" y="' + (B - 54) + '" width="162" height="6" fill="' + O + '"' + st(1.6) + "/>" +
+      '<g transform="translate(190 ' + B + ')"><path d="M-8 0 L-4 -230 M8 0 L4 -230" stroke="#e8a316" stroke-width="5"/><path d="M-120 -230 H70 V-222 H-120Z" fill="#e8a316"' + st(2.2) + '/><path d="M-90 -222 V-160" stroke="' + INK + '" stroke-width="2"/><rect x="-104" y="-160" width="28" height="12" fill="#8d939a"' + st(1.6) + "/></g>" + label(75, B - 168, "CONSTRUCCIÓN") + "</g>";
+    s += pointer(1100, B, SKIN[3], helmet(Y), Y, true, -0.3) + client(1036, B, SKIN[1], O, false);
+    /* 6. Puerto */
+    var cont = function (x, y, col) { return '<rect x="' + x + '" y="' + y + '" width="62" height="28" fill="' + col + '"' + st(2.2) + '/><path d="M' + (x + 10) + " " + (y + 4) + " v20 M" + (x + 22) + " " + (y + 4) + " v20 M" + (x + 34) + " " + (y + 4) + " v20 M" + (x + 46) + " " + (y + 4) + ' v20" stroke="' + INK + '" stroke-width="1.5" opacity=".4"/>'; };
+    s += '<g transform="translate(1190 0)">' + cont(0, B - 28, "#2f9be0") + cont(64, B - 28, R) + cont(128, B - 28, L) + cont(32, B - 56, O) + cont(96, B - 56, "#2f9be0") + cont(64, B - 84, Y) +
+      '<g transform="translate(250 ' + B + ')"><path d="M-14 0 L-8 -170 M14 0 L8 -170 M-11 -60 H11 M-12 -110 H12" fill="none" stroke="#e8a316" stroke-width="6"/><path d="M-130 -170 H80 V-160 H-130Z" fill="#e8a316"' + st(2.2) + '/><rect x="-26" y="-190" width="26" height="20" fill="' + C + '"' + st(2) + '/><path d="M-100 -160 V-110" stroke="' + INK + '" stroke-width="2"/><rect x="-118" y="-110" width="36" height="16" fill="' + L + '"' + st(2) + "/></g>" +
+      '<rect x="206" y="' + (B - 26) + '" width="26" height="26" rx="3" fill="' + Y + '"' + st(2) + '/><path d="M210 ' + (B - 18) + ' h18" stroke="' + INK + '" stroke-width="2"/>' + label(96, B - 104, "PUERTO") + "</g>";
+    s += crouch(1450, B, SKIN[0], helmet("#fff"), true) + palm(1570, 0.9);
+    /* acera, vía y mar */
+    s += '<rect x="-10" y="' + B + '" width="1620" height="10" fill="#e8d9c0"' + st(2.5) + '/><rect x="-10" y="' + (B + 10) + '" width="1620" height="44" fill="#5d626e"/><path d="M0 ' + (B + 32) + ' H1600" stroke="#fff" stroke-width="4" stroke-dasharray="28 20"/>';
+    s += '<g transform="translate(0 ' + (B + 44) + ')">' + van() + "</g>";
     var wave = function (y, col, w, op, cls) { var dd = "M-120 " + y; for (var i2 = 0; i2 < 30; i2++) dd += " q15 -7 30 0 t30 0"; return '<g class="' + cls + '"><path d="' + dd + '" fill="none" stroke="' + col + '" stroke-width="' + w + '" stroke-linecap="round" opacity="' + op + '"/></g>'; };
     s += '<rect x="-10" y="314" width="1620" height="10" fill="#cdbfa7"' + st(2.5) + '/><rect x="-10" y="324" width="1620" height="60" fill="#1eb5cc"/>' +
       wave(336, "#0f8ea3", 2.4, 0.8, "fi-sea3") + wave(343, "#fff", 2.6, 0.85, "fi-sea") + wave(355, "#fff", 2.4, 0.55, "fi-sea2");
+    s += ethan();
     return '<svg viewBox="0 0 1600 360" preserveAspectRatio="xMidYMax slice" aria-hidden="true">' + s + "</svg>";
   }
   window.ecoScene = scene;
