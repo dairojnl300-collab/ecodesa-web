@@ -44,16 +44,26 @@
     if (e.key === "Escape" && links.classList.contains("is-open")) { setMenu(false); burger.focus(); }
   });
   links.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
-  var swapTo = function (src) {
+  var picBox = pic ? pic.parentNode : null, cycle = null, cycleI = 0;
+  var showPic = function (src) {
     if (!pic || pic.getAttribute("src") === src) return;
     pic.classList.add("swap");
-    setTimeout(function () { pic.src = src; pic.classList.remove("swap"); }, 200);
+    setTimeout(function () { pic.src = src; if (picBox) picBox.style.setProperty("--mp", 'url("' + src + '")'); pic.classList.remove("swap"); }, 260);
+  };
+  var stopCycle = function () { clearInterval(cycle); cycle = null; };
+  var startItem = function (a) {
+    stopCycle();
+    var list = [a.getAttribute("data-img")].concat((a.getAttribute("data-imgs") || "").split(",").filter(Boolean));
+    cycleI = 0; showPic(list[0]);
+    if (list.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    cycle = setInterval(function () { cycleI = (cycleI + 1) % list.length; showPic(list[cycleI]); }, 2600);
   };
   menuItems.forEach(function (a) {
-    var s = a.getAttribute("data-img");
-    a.addEventListener("mouseenter", function () { swapTo(s); });
-    a.addEventListener("focus", function () { swapTo(s); });
+    a.addEventListener("mouseenter", function () { startItem(a); });
+    a.addEventListener("focus", function () { startItem(a); });
   });
+  links.addEventListener("mouseleave", stopCycle);
+  burger.addEventListener("click", function () { if (burger.getAttribute("aria-expanded") !== "true") stopCycle(); });
 
   /* tema día / noche */
   var tb = document.getElementById("themeBtn"), root = document.documentElement;

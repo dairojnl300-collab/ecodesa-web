@@ -62,3 +62,9 @@ html.fi[data-theme=dark] .mi-t small{color:#e6cfa6!important}
 html.fi[data-theme=dark] .menu-pic{border-color:var(--fi-y)!important;box-shadow:8px 8px 0 #000!important}
 html.fi[data-theme=dark] .menu-contact a{color:var(--fi-cream)!important}
 @media (max-width:720px){.nav-links::after{height:34px;background-size:258px 34px}}
+
+/* Menú: foto completa (sin recortes) con fondo desenfocado de la misma imagen */
+.menu-pic{aspect-ratio:16/10!important}
+.menu-pic::before{content:"";position:absolute;inset:-10%;background:var(--mp,none) center/cover;filter:blur(18px) brightness(.8) saturate(1.1)}
+.menu-pic img{position:relative;object-fit:contain!important;transform:none!important}
+.nav-links.is-open .menu-pic img{transform:none!important}
