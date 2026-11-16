@@ -8,11 +8,58 @@
   function lay() { return window.innerWidth >= 760 ? "w" : "v"; }
   function fmt(s) { s = Math.max(0, Math.floor(s)); return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
   function want() { return lay() + th(); }
-  function base() { return "assets/v2/ev/escena-" + want(); }
+  /* Video con transparencia: cada archivo "alfa-*" trae el color en la mitad de arriba y el canal alfa en la de abajo.
+     Un lienzo WebGL los une, así la escena queda sobre el fondo real de la página en cualquier edición o tema.
+     Sin WebGL se usa el video anterior, con fondo propio. */
+  var stage = v.parentNode, can = document.createElement("canvas"), gl = null, alpha = false, prog, uPx, drawn = false, lastT = -1, loop = 0;
+  can.className = "evp-can"; can.setAttribute("aria-hidden", "true");
+  function initGL() {
+    try { gl = can.getContext("webgl", { alpha: true, premultipliedAlpha: true, antialias: false, powerPreference: "low-power" }); } catch (e) { gl = null; }
+    if (!gl) return false;
+    function sh(type, src) { var o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o); return gl.getShaderParameter(o, gl.COMPILE_STATUS) ? o : null; }
+    var vs = sh(gl.VERTEX_SHADER, "attribute vec2 p;varying vec2 uv;void main(){uv=vec2(p.x*.5+.5,.5-p.y*.5);gl_Position=vec4(p,0.,1.);}"),
+      fs = sh(gl.FRAGMENT_SHADER, "precision mediump float;uniform sampler2D t;uniform float px;varying vec2 uv;void main(){float y=uv.y*.5;vec3 c=texture2D(t,vec2(uv.x,min(y,.5-px))).rgb;float a=texture2D(t,vec2(uv.x,max(y+.5,.5+px))).r;gl_FragColor=vec4(min(c,vec3(a)),a);}");
+    if (!vs || !fs) return false;
+    prog = gl.createProgram(); gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return false;
+    gl.useProgram(prog);
+    var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, "p"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    uPx = gl.getUniformLocation(prog, "px");
+    gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    return true;
+  }
+  function draw(force) {
+    if (!alpha || v.readyState < 2 || !v.videoWidth) return;
+    if (!force && v.currentTime === lastT) return;
+    lastT = v.currentTime;
+    var w = v.videoWidth, h = v.videoHeight >> 1;
+    if (can.width !== w || can.height !== h) { can.width = w; can.height = h; gl.viewport(0, 0, w, h); }
+    try {
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, v);
+      gl.uniform1f(uPx, 1 / v.videoHeight); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    } catch (e) { return; }
+    if (!drawn) { drawn = true; can.style.backgroundImage = "none"; }
+  }
+  function tick() { loop = 0; draw(); if (!v.paused && !v.ended) loop = requestAnimationFrame(tick); }
+  function run() { if (alpha && !loop) loop = requestAnimationFrame(tick); }
+  alpha = initGL();
+  if (alpha) {
+    stage.insertBefore(can, v); stage.classList.add("evp-a");
+    can.addEventListener("webglcontextlost", function (e) { e.preventDefault(); });
+    can.addEventListener("webglcontextrestored", function () { alpha = initGL(); draw(true); });
+    ["play", "playing"].forEach(function (e) { v.addEventListener(e, run); });
+    ["loadeddata", "seeked", "pause", "ended"].forEach(function (e) { v.addEventListener(e, function () { draw(true); }); });
+  }
+  function base() { return "assets/v2/ev/" + (alpha ? "alfa-" : "escena-") + want(); }
   function apply(force) {
     var k = want(); if (k === key && !force) return;
     var t = key ? v.currentTime : 0, was = !v.paused; key = k;
     v.poster = base() + ".webp";
+    if (alpha && !drawn) can.style.backgroundImage = 'url("' + base() + '.webp")';
     if (!near) return;
     v.src = base() + ".mp4"; v.load();
     v.addEventListener("loadedmetadata", function f() {
@@ -43,7 +90,7 @@
     if (!sent) { sent = true; (window.dataLayer = window.dataLayer || []).push({ event: "induccion_play" }); }
   });
   ["timeupdate", "play", "pause", "ended", "loadedmetadata"].forEach(function (e) { v.addEventListener(e, ui); });
-  v.addEventListener("click", toggle); pp.addEventListener("click", toggle);
+  v.addEventListener("click", toggle); can.addEventListener("click", toggle); pp.addEventListener("click", toggle);
   snd.addEventListener("click", function () {
     v.muted = !v.muted; snd.setAttribute("aria-pressed", String(!v.muted));
     snd.setAttribute("aria-label", v.muted ? "Activar sonido" : "Silenciar");

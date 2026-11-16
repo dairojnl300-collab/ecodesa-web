@@ -4,8 +4,8 @@
 
 html:not(.fi) main .sec h2,html:not(.fi) main .sec h3{font-family:"Lilita One","Archivo",system-ui,sans-serif;font-weight:400;letter-spacing:.005em}
 
-:root{--eco-fig:#2E6B1F;--eco-pat:.16;--eco-big:.26}
-[data-theme=dark]{--eco-fig:#9fd86a;--eco-pat:.10;--eco-big:.22}
+:root{--eco-fig:#2E6B1F;--eco-pat:.30;--eco-big:.42}
+[data-theme=dark]{--eco-fig:#9fd86a;--eco-pat:.20;--eco-big:.34}
 
 .eco-on{isolation:isolate}
 .eco-deco{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;color:var(--eco-fig)}

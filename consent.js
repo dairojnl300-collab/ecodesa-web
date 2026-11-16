@@ -1,12 +1,13 @@
-/* Banner y panel de cookies — ECODESA · política v1.1 (Consent Mode v2) */
+/* Banner y panel de cookies — ECODESA · política v1.2 (Consent Mode v2).
+   La v1.2 no cambia las categorías que requieren aceptación: las decisiones tomadas con la v1.1 siguen siendo válidas. */
 (function () {
   "use strict";
-  var KEY = "ecodesa-consent", VER = "1.1";
+  var KEY = "ecodesa-consent", VER = "1.2", OK = { "1.1": 1, "1.2": 1 };
   window.dataLayer = window.dataLayer || [];
   if (typeof window.gtag !== "function") window.gtag = function () { window.dataLayer.push(arguments); };
 
   function read() {
-    try { var c = JSON.parse(localStorage.getItem(KEY) || "null"); return c && c.v === VER ? c : null; } catch (e) { return null; }
+    try { var c = JSON.parse(localStorage.getItem(KEY) || "null"); return c && OK[c.v] ? c : null; } catch (e) { return null; }
   }
   var IDS = ["AW-18359649271", "G-NZR1GJPMJD"], loaded = false, adsCbs = [], adsOn = false;
   function g(x) { return x ? "granted" : "denied"; }
@@ -69,7 +70,7 @@
     panel.innerHTML =
       '<h2 id="ckT" tabindex="-1">Configurar cookies</h2>' +
       '<p class="ck-intro">Elija qué cookies permite. Puede cambiar su decisión en cualquier momento desde «Configurar cookies», en el pie de página.</p>' +
-      '<div class="ck-cat"><h3>Técnicas (necesarias)</h3><p>Permiten que el sitio funcione y recuerdan su tema claro u oscuro y su elección de cookies. No se pueden desactivar.</p><span class="ck-ctl ck-always">Siempre activas</span></div>' +
+      '<div class="ck-cat"><h3>Técnicas (necesarias)</h3><p>Permiten que el sitio funcione y recuerdan su tema claro u oscuro, la edición del sitio y su elección de cookies. No se pueden desactivar.</p><span class="ck-ctl ck-always">Siempre activas</span></div>' +
       '<div class="ck-cat"><h3 id="ckHa">Analíticas</h3><p id="ckDa">Google Analytics nos ayuda a entender, de forma estadística, cómo se usa el sitio para mejorarlo.</p><span class="ck-ctl ck-sw"><input type="checkbox" role="switch" id="ckA" aria-labelledby="ckHa" aria-describedby="ckDa"><span aria-hidden="true"></span></span></div>' +
       '<div class="ck-cat"><h3 id="ckHp">Publicidad y remarketing</h3><p id="ckDp">Google Ads mide el resultado de nuestras campañas y le muestra anuncios de ECODESA en otros sitios. Incluye personalización de anuncios y uso de datos para publicidad.</p><span class="ck-ctl ck-sw"><input type="checkbox" role="switch" id="ckP" aria-labelledby="ckHp" aria-describedby="ckDp"><span aria-hidden="true"></span></span></div>' +
       '<p class="ck-note">Al activar analítica o publicidad, usted autoriza que Google trate sus datos de navegación, incluso fuera de Colombia. Detalles en la <a href="/cookies/">Política de Cookies</a> y la <a href="/datos/">Política de Datos</a>.</p>' +
