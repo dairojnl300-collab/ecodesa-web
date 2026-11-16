@@ -193,10 +193,10 @@
     s += '<path d="M-420 30 H120 V44 H-420Z" fill="#e8a316"' + st(2.2) + '/>';
     for (var jx = -400; jx < 120; jx += 28) s += '<path d="M' + jx + " 44 L" + (jx + 14) + " 30 L" + (jx + 28) + ' 44" fill="none" stroke="' + INK + '" stroke-width="1.4" opacity=".45"/>';
     s += '<rect x="70" y="44" width="50" height="34" fill="#9aa3a8"' + st(2) + '/><rect x="-30" y="44" width="26" height="24" rx="3" fill="' + C + '"' + st(2) + '/><rect x="-26" y="48" width="18" height="10" fill="#bfe3ff"/>' +
-      '<g class="es-trolley"><rect x="-28" y="40" width="28" height="12" rx="2" fill="' + INK + '"/><circle cx="-21" cy="40" r="3" fill="#5d626e"/><circle cx="-7" cy="40" r="3" fill="#5d626e"/>' +
-      '<path class="es-rope" d="M-17 52 V76 M-11 52 V76" stroke="' + INK + '" stroke-width="1.8"/>' +
-      '<g class="es-hook"><rect x="-21" y="76" width="14" height="10" rx="2" fill="' + Y + '"' + st(1.6) + '/><path d="M-14 86 q0 6 4 6" fill="none" stroke="' + INK + '" stroke-width="2.4"/><path d="M-14 90 L-56 104 M-14 90 L28 104" stroke="' + INK + '" stroke-width="1.6"/>' +
-      '<path d="M-60 104 H32 V118 H-60Z" fill="#8d939a"' + st(2) + '/><path d="M-60 111 H32" stroke="' + INK + '" stroke-width="1" opacity=".4"/></g></g></g>';
+      '<g class="es-trolley"><clipPath id="esTc"><rect x="-44" y="50" width="60" height="300"/></clipPath><rect x="-28" y="40" width="28" height="12" rx="2" fill="' + INK + '"/><circle cx="-21" cy="40" r="3" fill="#5d626e"/><circle cx="-7" cy="40" r="3" fill="#5d626e"/>' +
+      '<g clip-path="url(#esTc)"><g class="es-hook"><path d="M-17 -200 V76 M-11 -200 V76" stroke="' + INK + '" stroke-width="1.8"/>' +
+      '<rect x="-21" y="76" width="14" height="10" rx="2" fill="' + Y + '"' + st(1.6) + '/><path d="M-14 86 q0 6 4 6" fill="none" stroke="' + INK + '" stroke-width="2.4"/><path d="M-14 90 L-56 104 M-14 90 L28 104" stroke="' + INK + '" stroke-width="1.6"/>' +
+      '<path d="M-60 104 H32 V118 H-60Z" fill="#8d939a"' + st(2) + '/><path d="M-60 111 H32" stroke="' + INK + '" stroke-width="1" opacity=".4"/></g></g></g></g>';
     s += label(180, B - fl * 2 - 70, "CONSTRUCCIÓN") + "</g>";
     PEOPLE += pointer(x + 190, B + 9, SKIN[3], helmet(Y), Y, true, -0.3) + client(x + 120, B + 9, SKIN[1], O, false);
     return s;
@@ -207,8 +207,10 @@
     s += cont(0, B - chh, cols[0]) + cont(0, B - chh * 2, cols[1]) + cont(0, B - chh * 3, cols[3]) + cont(cw + 4, B - chh, cols[2]);
     s += '<g transform="translate(' + (cw * 2 + 70) + ' 0)"><path d="M-30 ' + B + " V-40 M30 " + B + " V-40" + '" stroke="#e8a316" stroke-width="12"/><path d="M-30 ' + (B - 150) + " H30 M-30 " + (B - 300) + ' H30" stroke="#e8a316" stroke-width="8"/>' +
       '<path d="M-330 30 H90 V50 H-330Z" fill="#e8a316"' + st(2.2) + '/><rect x="-60" y="-10" width="50" height="40" fill="' + C + '"' + st(2) + "/>" +
-      '<rect x="-236" y="44" width="72" height="14" rx="2" fill="' + INK + '"/><path class="es-prope" d="M-290 58 V' + (B - chh * 2 - 152) + " M-110 58 V" + (B - chh * 2 - 152) + '" stroke="' + INK + '" stroke-width="2"/>' +
-      '<g class="es-spreader"><rect x="-316" y="' + (B - chh * 2 - 152) + '" width="232" height="12" rx="2" fill="' + Y + '"' + st(2) + "/>" + cont(-310, B - chh * 2 - 140, cols[4]) + "</g></g>";
+      '<clipPath id="esPc"><rect x="-340" y="52" width="280" height="460"/></clipPath>' +
+      '<rect x="-318" y="42" width="236" height="16" rx="3" fill="' + INK + '"/><rect x="-300" y="36" width="200" height="8" rx="2" fill="#5d626e"' + st(1.6) + '/>' +
+      '<g clip-path="url(#esPc)"><g class="es-spreader"><path d="M-300 -300 V' + (B - chh * 2 - 152) + " M-282 -300 V" + (B - chh * 2 - 152) + " M-118 -300 V" + (B - chh * 2 - 152) + " M-100 -300 V" + (B - chh * 2 - 152) + '" stroke="' + INK + '" stroke-width="2.2"/>' +
+      '<rect x="-316" y="' + (B - chh * 2 - 152) + '" width="232" height="12" rx="2" fill="' + Y + '"' + st(2) + "/>" + cont(-310, B - chh * 2 - 140, cols[4]) + "</g></g></g>";
     s += '<rect x="400" y="' + (B - 30) + '" width="34" height="30" rx="3" fill="' + Y + '"' + st(2) + '/><path d="M406 ' + (B - 20) + ' h22" stroke="' + INK + '" stroke-width="2"/>' + label(110, B - chh * 3 - 30, "PUERTO") + "</g>";
     PEOPLE += crouch(x + 330, B + 9, SKIN[0], helmet("#fff"));
     return s;
@@ -225,13 +227,13 @@
     return '<svg viewBox="0 0 ' + VW + " " + VH + '" preserveAspectRatio="xMinYMax meet" aria-hidden="true">' + s + "</svg>";
   }
   /* paradas de Ethan sobre la avenida, al lado de cada visita */
-  var STOPS = [580, 1030, 1360, 1810, 2270, 2740];
+  var STOPS = [580, 1030, 1360, 1810, 2270, 2740, 2270, 1810, 1360, 1030];
   var GEST = ["robot-anim-256", "robot-pensar", "robot-terminado", "robot-celebrar", "robot-look-r", "robot-look-l"];
   function mount(box) {
     box.innerHTML = '<div class="es-pan">' + scene() + "</div>";
     var pan = box.firstChild, svg = pan.firstChild, $ = function (q) { return svg.querySelector(q); }, $$ = function (q) { return [].slice.call(svg.querySelectorAll(q)); };
     if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    var n = STOPS.length, per = 6000 * n, anims = [];
+    var n = STOPS.length, per = 5200 * n, anims = [];
     var sm = function (t) { return t * t * (3 - 2 * t); };
     /* fotogramas por parada: f = fracción dentro del tramo de 6 s */
     function seq(fn) {
@@ -241,31 +243,35 @@
       return k;
     }
     var T = function (x, y, r, sc) { return "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px) rotate(" + (r || 0) + "deg)" + (sc ? " scale(" + sc + ")" : ""); };
-    function route(i, x, nx) {
-      var back = nx < x, hh = back ? 190 : 80, tl = back ? -10 : 9, lx = function (f) { return x + (nx - x) * sm(f); };
-      return [[0, { y: 0, x: x }], [0.55, { y: 0, x: x, e: "ease-out" }], [0.6, { y: 30, x: x, e: "ease-in" }], [0.65, { y: 0, x: x }],
-        [0.7, { y: 0, x: x, e: "ease-out" }], [0.775, { y: hh, x: lx(0.25), r: tl, e: "ease-in" }], [0.85, { y: 4, x: lx(0.5), r: tl * 0.4, e: "ease-out" }], [0.925, { y: hh, x: lx(0.75), r: tl, e: "ease-in" }]];
+    var sr = function (t) { return t * t * t * (t * (6 * t - 15) + 10); };
+    /* tramo i: flota en la visita y vuela en un solo arco continuo a la siguiente */
+    function path(f, x, nx) {
+      var F = .46, dir = nx < x ? -1 : 1, bob = 6 * Math.sin(f * 6.283 * 3);
+      if (f < F) return { x: x + dir * 6 * Math.sin(f / F * 3.1416), y: 16 + bob, r: 0, sp: 0 };
+      var u = Math.min(1, (f - F) / (1 - F - .02)), e = sr(u), v = (sr(Math.min(1, u + .01)) - e) / .01 / 1.9;
+      return { x: x + (nx - x) * e, y: 16 + bob * (1 - u) + 54 * Math.sin(3.1416 * e) + 6 * Math.sin(u * 6.283 * 2) * Math.sin(3.1416 * u), r: dir * 11 * Math.min(1, v), sp: Math.min(1, v) };
     }
-    function phase(i, x, nx) { return [[0, 0], [0.05, 1], [0.3, 2], [0.52, 3], [0.7, nx < x ? 5 : 4]]; }
+    function phase(i, x, nx) { return [[0, 0], [0.04, 1], [0.2, 2], [0.34, 3], [0.46, nx < x ? 5 : 4]]; }
+    function samples(i, x, nx) { var o = [], N = 56; for (var q = 0; q < N; q++) { var f = q / N, p = path(f, x, nx); p.f = f; o.push(p); } return o; }
     function build() {
       anims.forEach(function (a) { a.cancel(); }); anims = [];
       var H = box.clientHeight, sw = H * VW / VH, cw = box.clientWidth, k = H / VH; pan.style.width = sw + "px";
       var opt = { duration: per, iterations: Infinity, easing: "linear" }, go = function (el, kf) { if (el) anims.push(el.animate(kf, opt)); };
-      go($("#esEthan"), seq(function (i, x, nx) { return route(i, x, nx).map(function (f) { var v = f[1]; return [f[0], { transform: T(v.x, EY - v.y, v.r), easing: v.e || "linear" }]; }); }));
-      go($("#esShd"), seq(function (i, x, nx) { return route(i, x, nx).map(function (f) { var v = f[1]; return [f[0], { transform: T(v.x, B + 44, 0, (1 - v.y / 280).toFixed(2)), opacity: 1 - v.y / 320, easing: v.e || "linear" }]; }); }));
+      go($("#esEthan"), seq(function (i, x, nx) { return samples(i, x, nx).map(function (p) { return [p.f, { transform: T(p.x, EY - p.y, p.r) }]; }); }));
+      go($("#esShd"), seq(function (i, x, nx) { return samples(i, x, nx).map(function (p) { return [p.f, { transform: T(p.x, B + 44, 0, (1 - (p.y - 16) / 150).toFixed(2)), opacity: 1 - (p.y - 16) / 200 }]; }); }));
       /* gestos: piensa (escanea) -> terminado + visto bueno -> celebra -> mira hacia donde va */
       $$(".es-gest").forEach(function (img, g) {
         go(img, seq(function (i, x, nx) { var ph = phase(i, x, nx), out = []; ph.forEach(function (p, j) { var prev = j ? ph[j - 1][1] : -1; if (j) out.push([p[0] - 0.002, { opacity: prev === g ? 1 : 0 }]); out.push([p[0], { opacity: p[1] === g ? 1 : 0 }]); }); return out; }));
       });
-      go($("#esScan"), seq(function () { return [[0, { opacity: 0 }], [0.05, { opacity: 0 }], [0.08, { opacity: 1 }], [0.28, { opacity: 1 }], [0.31, { opacity: 0 }]]; }));
-      go($("#esOk"), seq(function () { return [[0, { opacity: 0, transform: "scale(.3)" }], [0.3, { opacity: 0, transform: "scale(.3)" }], [0.34, { opacity: 1, transform: "scale(1.15)" }], [0.37, { opacity: 1, transform: "scale(1)" }], [0.62, { opacity: 1, transform: "scale(1)" }], [0.66, { opacity: 0, transform: "scale(.5)" }]]; }));
-      /* propulsores: suaves en la parada, a fondo en cada salto */
+      go($("#esScan"), seq(function () { return [[0, { opacity: 0 }], [0.04, { opacity: 0 }], [0.07, { opacity: 1 }], [0.18, { opacity: 1 }], [0.21, { opacity: 0 }]]; }));
+      go($("#esOk"), seq(function () { return [[0, { opacity: 0, transform: "scale(.3)" }], [0.2, { opacity: 0, transform: "scale(.3)" }], [0.23, { opacity: 1, transform: "scale(1.15)" }], [0.26, { opacity: 1, transform: "scale(1)" }], [0.42, { opacity: 1, transform: "scale(1)" }], [0.46, { opacity: 0, transform: "scale(.5)" }]]; }));
+      /* propulsores: suaves en la visita, más fuertes según la velocidad del vuelo */
       $$(".es-boost").forEach(function (b) {
-        go(b, seq(function () { return [[0, { transform: "scaleY(1)" }], [0.55, { transform: "scaleY(1)" }], [0.58, { transform: "scaleY(1.6)" }], [0.65, { transform: "scaleY(1)" }], [0.69, { transform: "scaleY(1)" }], [0.72, { transform: "scaleY(2.1)" }], [0.8, { transform: "scaleY(1.3)" }], [0.86, { transform: "scaleY(2.1)" }], [0.95, { transform: "scaleY(1.3)" }], [0.99, { transform: "scaleY(1)" }]]; }));
+        go(b, seq(function (i, x, nx) { return samples(i, x, nx).map(function (p) { return [p.f, { transform: "scaleY(" + (1 + 1.3 * p.sp).toFixed(2) + ")" }]; }); }));
       });
       if (sw > cw + 2) go(pan, seq(function (i, x, nx) {
         var tx = function (p) { return Math.min(0, Math.max(cw - sw, cw / 2 - p * k)); };
-        return [[0, { transform: "translateX(" + tx(x) + "px)" }], [0.7, { transform: "translateX(" + tx(x) + "px)", easing: "ease-in-out" }]];
+        return samples(i, x, nx).map(function (p) { return [p.f, { transform: "translateX(" + tx(p.x).toFixed(1) + "px)" }]; });
       }));
     }
     build(); var t; addEventListener("resize", function () { clearTimeout(t); t = setTimeout(build, 200); });
