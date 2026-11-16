@@ -1,0 +1,33 @@
+/* Portafolio de servicios — complementa legal.css */
+.lmain.pf{width:min(920px,100% - 32px)}
+.pf-sub{font:700 1rem var(--fh);color:var(--gd);letter-spacing:.02em;margin-bottom:.8rem!important;text-align:left!important}
+.prose blockquote.pf-q{font-size:1.15em;font-style:italic;border-left-width:5px;margin-bottom:1.4rem}
+.pf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:0 0 1.2rem}
+.pf-grid2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.pf-card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--g);border-radius:12px;padding:14px 16px;min-width:0}
+.pf-card h3{margin:0 0 .4rem!important;font:800 1.05rem/1.3 var(--fh)}
+.pf-card p{margin:0 0 .5rem}
+.pf-role{font:700 .9rem/1.4 var(--fh);color:var(--gd);text-align:left!important}
+.pf-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:0 0 1rem;text-align:center}
+.pf-stats div{background:var(--chip);border-radius:12px;padding:14px 10px;min-width:0}
+.pf-stats strong{display:block;font:800 2rem/1.1 var(--fh);color:var(--gd)}
+.pf-stats span{font-size:.88rem;color:var(--ink2)}
+.pf-idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:6px 14px;margin:0 0 2rem}
+.pf-idx a{display:flex;gap:8px;align-items:baseline;min-height:44px;padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);text-decoration:none!important;color:var(--ink)!important;font-size:.95rem;line-height:1.3}
+.pf-idx a:hover{border-color:var(--g);background:var(--chip)}
+.pf-idx b{font:800 .95rem var(--fh);color:var(--gd)}
+.svc{position:relative;margin:0 0 2.2rem;padding:1.2rem 0 0;border-top:3px solid var(--g);scroll-margin-top:84px}
+.svc-n{display:block;font:800 clamp(2.2rem,8vw,3.4rem)/1 var(--fh);color:var(--g);opacity:.45}
+.prose .svc h2{margin-top:.2rem}
+.svc-list{columns:2 280px;column-gap:28px;list-style:disc}
+.svc-list.one{columns:1}
+.svc-list li{break-inside:avoid}
+.svc-box{background:var(--chip);border-radius:10px;padding:.8rem 1rem}
+.svc-res{background:#12301f;color:#fff;border-radius:10px;padding:.8rem 1rem;margin:1rem 0 .5rem!important}
+.svc-note{font-size:.86rem;color:var(--ink2);font-style:italic}
+.pf-chips{list-style:none;padding:0!important;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 1.2rem}
+.pf-chips li{margin:0;padding:6px 14px;border-radius:30px;background:var(--chip);border:1px solid var(--line);font-size:.92rem;text-align:left!important;hyphens:manual!important}
+.pf-steps{padding-left:1.4rem}
+.pf-contact{list-style:none;padding:0!important}
+.pf-contact li{margin:0 0 .5rem}
+@media (max-width:640px){.svc-list{columns:1}.lmain.pf{width:min(920px,100% - 32px)}}
