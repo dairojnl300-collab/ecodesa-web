@@ -1,0 +1,7 @@
+/* Tipografías de la Bóveda IA, autoalojadas (latin). Fraunces, Inter, JetBrains Mono, Lilita One, Caveat Brush: SIL OFL 1.1 */
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:100 900;font-display:swap;src:url(/assets/fonts/fraunces-var.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url(/assets/fonts/inter-var.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/jetbrains-mono-400.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/jetbrains-mono-600.woff2) format('woff2')}
+@font-face{font-family:'Lilita One';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/lilita-one-400.woff2) format('woff2')}
+@font-face{font-family:'Caveat Brush';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/caveat-brush-400.woff2) format('woff2')}

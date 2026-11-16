@@ -1,6 +1,10 @@
-/* Inducción en video (pre-renderizado, mismo color de fondo que la página) */
+/* Inducción en video: escena con transparencia sobre el fondo real de la página (cualquier edición o tema) */
 .evp{max-width:1180px;margin:0 auto}
-.evp-stage{position:relative;background:var(--bg);line-height:0}
+.evp-stage{position:relative;line-height:0}
+.evp-stage:not(.evp-a){background:var(--bg)}
+.evp-can{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:contain;cursor:pointer;background:center/contain no-repeat}
+.evp-stage.evp-a video{position:absolute!important;inset:0;width:100%!important;height:100%!important;opacity:0;pointer-events:none;background:none}
+@media (min-width:760px){.evp-can{aspect-ratio:1280/886}}
 .evp video{display:block;width:100%;height:auto;aspect-ratio:2/3;background:var(--bg);cursor:pointer}
 @media (min-width:760px){.evp video{aspect-ratio:1280/886}}
 .evp-snd{position:absolute;right:12px;bottom:12px;min-width:44px;height:44px;border-radius:99px;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 14px;font:700 13px var(--fb);cursor:pointer;color:var(--ink);background:color-mix(in srgb,var(--card) 70%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1.5px solid var(--line);box-shadow:0 8px 22px -10px rgba(10,46,35,.5)}
