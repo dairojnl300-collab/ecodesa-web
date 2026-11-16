@@ -49,18 +49,5 @@
     [].forEach.call(deco.querySelectorAll(".eco-fl"), function (el) { floaters.push({ el: el, sec: sec, sp: +el.dataset.sp }); });
   });
 
-  if (reduce || !floaters.length) return;
-  var ticking = false;
-  function update() {
-    ticking = false;
-    var vh = innerHeight;
-    for (var i = 0; i < floaters.length; i++) {
-      var f = floaters[i], r = f.sec.getBoundingClientRect();
-      if (r.bottom < -200 || r.top > vh + 200) continue;
-      f.el.style.setProperty("--py", ((r.top + r.height / 2 - vh / 2) * f.sp).toFixed(1) + "px");
-    }
-  }
-  addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-  addEventListener("resize", update);
-  update();
+  /* sin parallax: los figurines no se mueven con el scroll (evita mareo y no compite con el texto) */
 })();
