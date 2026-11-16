@@ -141,3 +141,5 @@ html.fi .bv-rays{animation-duration:120s}
 .bv.gif.zoom .bv-gif{transition:transform .7s cubic-bezier(.4,0,.6,1),opacity .6s ease-in;transform:scale(1.6);opacity:0}
 
 .bv-frame{background:transparent;opacity:0;transition:opacity .35s}.bv-frame.ready{opacity:1}
+
+.bv-hd{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
