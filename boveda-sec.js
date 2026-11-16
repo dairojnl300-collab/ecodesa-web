@@ -20,7 +20,7 @@
   function syncTheme() {
     try { var d = frame.contentDocument; if (d && d.documentElement) d.documentElement.setAttribute("data-theme", theme()); } catch (e) {}
   }
-  var VER = "163";
+  var VER = "177";
   function load() {
     ls.set("boveda-theme", theme());
     ls.set("boveda-fi", root.classList.contains("fi") ? "on" : "off");
