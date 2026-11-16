@@ -18,13 +18,19 @@
   }
   function theme() { return root.getAttribute("data-theme") === "dark" ? "dark" : "light"; }
   function syncTheme() {
-    try { var d = frame.contentDocument; if (d && d.documentElement) d.documentElement.setAttribute("data-theme", theme()); } catch (e) {}
+    try {
+      var d = frame.contentDocument; if (!d || !d.documentElement) return;
+      d.documentElement.setAttribute("data-theme", theme());
+      /* misma edición que la página: con Fiestas activa sale el personaje de carnaval; sin ella, el profesional ECODESA */
+      var fi = root.classList.contains("fi"); d.documentElement.classList.toggle("fi", fi);
+      ls.set("boveda-fi", fi ? "on" : "off");
+    } catch (e) {}
   }
-  var VER = "177";
+  var VER = "178";
   function load() {
     ls.set("boveda-theme", theme());
     ls.set("boveda-fi", root.classList.contains("fi") ? "on" : "off");
-    if (!frame.getAttribute("src")) frame.setAttribute("src", "/boveda/?puerta=0&embed=1&v=" + VER);
+    if (!frame.getAttribute("src")) frame.setAttribute("src", "/boveda/?puerta=0&embed=1&v=" + VER + (/[?&]fiestas=[01]/.test(location.search) ? "&fiestas=" + location.search.match(/[?&]fiestas=([01])/)[1] : ""));
   }
   function show() {
     sec.classList.remove("opening"); sec.classList.add("open");
@@ -97,6 +103,6 @@
       m.style.cssText = "position:absolute;margin:0 auto;left:0;right:0;top:" + top + "px;max-height:" + Math.max(320, innerHeight - 104) + "px";
     }).observe(m, { attributes: true, attributeFilter: ["open"] });
   });
-  new MutationObserver(syncTheme).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+  new MutationObserver(syncTheme).observe(root, { attributes: true, attributeFilter: ["data-theme", "class"] });
 
 })();
