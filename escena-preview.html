@@ -1,28 +1,51 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Escena ECODESA</title>
-<link rel="stylesheet" href="fiestas.css"><style>
-body{margin:0;font-family:sans-serif}
-.blk{position:relative;background:#c6e98a;padding-top:20px}
-html[data-theme=dark] .blk{background:#0c2a12}
-</style><style>:root{--es-sun:#ffd21f;--es-halo:.25;--es-rayo:.6;--es-moon:0;--es-stars:0;--es-cloud:1;--es-far:#a6d867;--es-farwin:#c4ea8c;--es-win:#fbfff2;--es-lamp:#fbfff2;--es-lampg:rgba(255,255,255,0)}
-[data-theme=dark]{--es-sun:#eef7d8;--es-halo:.12;--es-rayo:0;--es-moon:1;--es-stars:1;--es-cloud:.12;--es-far:#123a1a;--es-farwin:#ffd970;--es-win:#ffd970;--es-lamp:#ffd21f;--es-lampg:rgba(255,200,40,.3)}
-.es-bando{position:relative;height:clamp(280px,27vw,380px)}
-.es-bando svg{display:block;width:100%;height:100%}
+<link rel="stylesheet" href="fiestas.css"><style>body{margin:0}.blk{background:#c6e98a;padding-top:10px}html[data-theme=dark] .blk{background:#0c2a12}</style>
+<style>:root{--es-sun:#ffd21f;--es-halo:.25;--es-rayo:.6;--es-moon:0;--es-stars:0;--es-cloud:1;--es-far:#a6d867;--es-win:#fbfff2;--es-lit:#fbfff2}
+[data-theme=dark]{--es-sun:#eef7d8;--es-halo:.12;--es-rayo:0;--es-moon:1;--es-stars:1;--es-cloud:.12;--es-far:#123a1a;--es-win:#ffd970;--es-lit:#4a5a3a}
+.es-bando{position:relative;height:clamp(320px,34vw,470px);overflow:hidden}
+.es-pan{height:100%;will-change:transform}
+.es-pan svg{display:block;width:100%;height:100%}
 .es-bando *{transform-box:fill-box}
-.es-bando .fi-flag{transform-box:view-box}
+.es-route{transform-box:view-box!important}
 .es-ethan{animation:esFloat 2.2s ease-in-out infinite alternate}
-@keyframes esFloat{from{transform:translateY(0)}to{transform:translateY(-10px)}}
-.es-beam{animation:esBeam 1.1s ease-in-out infinite alternate}
-@keyframes esBeam{from{opacity:.15}to{opacity:.45}}
+@keyframes esFloat{from{translate:0 0}to{translate:0 -10px}}
+.es-beam{opacity:.3;animation:esBeam 1.1s ease-in-out infinite alternate}
+@keyframes esBeam{from{opacity:.12}to{opacity:.4}}
+.es-ok{transform-origin:50% 50%;animation:esOk 6s ease-in-out infinite}
+@keyframes esOk{0%,45%{opacity:0;transform:scale(.2)}55%,80%{opacity:1;transform:scale(1)}90%,100%{opacity:0;transform:scale(.6)}}
 .es-rotor{transform-origin:50% 50%;animation:fiRays 5s linear infinite}
-.es-puff{opacity:0;animation:esPuff 3.6s ease-out infinite}
-@keyframes esPuff{0%{opacity:0;transform:translate(0,0) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(26px,-50px) rotate(90deg)}}
-.es-tree{transform-origin:50% 100%;animation:esTree 3s ease-in-out infinite alternate}
-@keyframes esTree{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
-.es-route{transform-box:view-box!important;animation:esRoute 30s ease-in-out infinite}
-@keyframes esRoute{0%,10%{transform:translate(150px,145px)}16%,26%{transform:translate(390px,115px)}32%,42%{transform:translate(600px,185px)}48%,58%{transform:translate(810px,165px)}64%,74%{transform:translate(1040px,155px)}80%,90%{transform:translate(1310px,195px)}100%{transform:translate(150px,145px)}}
-.es-van{transform-box:view-box!important;animation:esVan 22s linear infinite}
-@keyframes esVan{from{transform:translateX(-120px)}to{transform:translateX(1720px)}}
-.es-write{transform-origin:0 0;animation:esWrite .5s ease-in-out infinite alternate;animation-delay:var(--d,0s)}
+.es-steam{opacity:0;animation:esSteam 4.4s ease-out infinite}
+@keyframes esSteam{0%{opacity:0;transform:translate(0,0) scale(.5)}20%{opacity:.9}100%{opacity:0;transform:translate(18px,-70px) scale(1.8)}}
+.es-leafp{opacity:0;animation:esLeaf 4.4s ease-out infinite}
+@keyframes esLeaf{0%{opacity:0;transform:translate(0,0) scale(.5)}20%{opacity:1}100%{opacity:0;transform:translate(40px,-90px) scale(1.3) rotate(120deg)}}
+.es-lit{animation:esLit 9s steps(1) infinite}
+@keyframes esLit{0%,62%{fill:var(--es-win)}63%,80%{fill:var(--es-lit)}81%,100%{fill:var(--es-win)}}
+.es-neon{animation:esNeon 2.2s steps(1) infinite}
+@keyframes esNeon{0%,70%,80%,100%{opacity:1}72%,78%{opacity:.25}}
+.es-flag{transform-origin:0 50%;animation:esFlag .9s ease-in-out infinite alternate}
+@keyframes esFlag{from{transform:skewY(-6deg) scaleX(.92)}to{transform:skewY(6deg) scaleX(1)}}
+.es-awning{transform-origin:50% 0;animation:esAwn 3s ease-in-out infinite alternate}
+@keyframes esAwn{from{transform:scaleY(1)}to{transform:scaleY(1.08)}}
+.es-plant{transform-origin:50% 100%;animation:esTree 2.6s ease-in-out infinite alternate}
+@keyframes esTree{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+.es-fan{transform-origin:50% 50%;animation:fiRays 1.2s linear infinite}
+.es-beacon{animation:esNeon 1.2s steps(1) infinite}
+.es-glint{opacity:0;animation:esGl 3s ease-in-out infinite}
+@keyframes esGl{0%,70%,100%{opacity:0}80%{opacity:1}}
+.es-belt{animation:esBelt 4s linear infinite}
+@keyframes esBelt{from{transform:translateX(-60px)}to{transform:translateX(0)}}
+.es-gauge{transform-origin:0 50%;animation:esGauge 2s ease-in-out infinite alternate}
+@keyframes esGauge{from{transform:scaleX(.3)}to{transform:scaleX(1)}}
+.es-hammer{transform-origin:0 100%;animation:esHam .45s ease-in infinite alternate}
+@keyframes esHam{from{transform:rotate(-14deg)}to{transform:rotate(12deg)}}
+.es-spark{transform-origin:50% 50%;animation:esSpark .9s steps(2) infinite}
+@keyframes esSpark{0%{opacity:1;transform:scale(1)}50%{opacity:0;transform:scale(.4)}}
+.es-trolley{animation:esTrolley 9s ease-in-out infinite alternate}
+@keyframes esTrolley{from{transform:translateX(-300px)}to{transform:translateX(0)}}
+.es-hook{animation:esHook 4.5s ease-in-out infinite alternate}
+@keyframes esHook{from{transform:translateY(0)}to{transform:translateY(120px)}}
+.es-spreader{animation:esHook 5s ease-in-out infinite alternate}
+.es-write{transform-origin:0 0;animation:esWrite .5s ease-in-out infinite alternate}
 @keyframes esWrite{from{transform:rotate(-4deg)}to{transform:rotate(5deg) translateY(2px)}}
 .es-point{transform-origin:0 0;animation:esPoint 1.6s ease-in-out infinite alternate}
 @keyframes esPoint{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
@@ -30,7 +53,7 @@ html[data-theme=dark] .blk{background:#0c2a12}
 @keyframes esNod{0%,60%,100%{transform:rotate(0)}70%{transform:rotate(-5deg)}80%{transform:rotate(3deg)}}
 .es-look{animation:esLook 2.8s ease-in-out infinite alternate}
 @keyframes esLook{from{transform:translateX(-2px)}to{transform:translateX(3px)}}
-</style></head><body>
-<div class="blk"><div class="es-bando" id="sc"></div></div>
-<script src="eco-scene.js"></script><script>document.getElementById('sc').innerHTML=ecoScene();</script>
-</body></html>
+.es-bird{transform-box:view-box!important;animation:esBird 40s linear infinite}
+@keyframes esBird{from{transform:translate(-100px,0)}to{transform:translate(2900px,-20px)}}
+</style></head><body><div class="blk"><div class="es-bando" id="sc"></div></div>
+<script src="eco-scene.js"></script><script>ecoScene.mount(document.getElementById('sc'));</script></body></html>

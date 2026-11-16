@@ -2,6 +2,7 @@
    con el equipo de ECODESA desfilando por la Avenida Santander y Ethan en su nave. Decoración aria-hidden. */
 (function () {
   var INK = "#13240f", Y = "#ffd21f", R = "#e3262b", G = "#2E6B1F", L = "#76b82a", L2 = "#b6e36a", O = "#ff7a1a", C = "#fbfff2", W = "#ffffff";
+  var PK = .6, VW = 3000, VH = 560, B = 470;
   var SKIN = ["#7b4a2b", "#9a6038", "#5e3a22", "#c58c5e"];
   function st(w) { return ' stroke="' + INK + '" stroke-width="' + (w || 3) + '" stroke-linejoin="round" stroke-linecap="round"'; }
   function face(sk, cy, fem) {
@@ -51,7 +52,7 @@
   /* ---------- equipo ECODESA en visita técnica (de pie, trabajando) ---------- */
   function stand(p) { p = p || "#2f3a3a";
     return '<path d="M-10 -42 L-11 -2 L-2 -2 L-1 -42Z M1 -42 L2 -2 L11 -2 L10 -42Z" fill="' + p + '"' + st(2.5) + '/><ellipse cx="-7" cy="0" rx="7" ry="3.5" fill="' + INK + '"/><ellipse cx="7" cy="0" rx="7" ry="3.5" fill="' + INK + '"/>'; }
-  function at(x, y, inner, flip) { return '<g transform="translate(' + x + " " + y + (flip ? ") scale(-1 1)" : ")") + '"><ellipse cx="0" cy="1" rx="24" ry="4" fill="' + INK + '" opacity=".2"/>' + inner + "</g>"; }
+  function at(x, y, inner, flip) { return '<g transform="translate(' + x + " " + y + ") scale(" + (flip ? -PK : PK) + " " + PK + ')"><ellipse cx="0" cy="1" rx="24" ry="4" fill="' + INK + '" opacity=".2"/>' + inner + "</g>"; }
   function board(cls) { return '<g class="' + (cls || "") + '"><rect x="8" y="-82" width="22" height="28" rx="2" fill="#c9924d"' + st(2) + '/><rect x="11" y="-78" width="16" height="21" fill="#fff"/><path d="M14 -72 h10 M14 -67 h10 M14 -62 h7" stroke="' + L + '" stroke-width="2"/></g>'; }
   function head(sk, top, fem, nod) { return '<g class="' + (nod ? "es-nod" : "") + '">' + face(sk, -93, fem) + (top || "") + "</g>"; }
   /* profesional que anota en su planilla */
@@ -74,114 +75,146 @@
     return at(x, y, stand("#3c3f52") + '<path d="M-14 -42 L14 -42 L13 -80 Q0 -86 -13 -80Z" fill="' + col + '"' + st(2.5) + "/>" + arm("M-12 -76 Q-18 -60 -16 -46", sk, "", 0, col) + arm("M12 -76 Q18 -60 16 -46", sk, "", 0, col) + head(sk, "", fem, true), flip);
   }
   /* Ethan recorre la ciudad y se detiene en cada visita */
+
+  /* Ethan supervisa: nave, haz de escaneo y visto bueno */
   function ethan() {
-    return '<g class="es-route"><g class="es-ethan"><path class="es-beam" d="M-16 -2 L16 -2 L30 46 L-30 46Z" fill="' + L2 + '" opacity=".35"/>' +
-      '<image href="assets/v2/nave-base.webp" x="-40" y="-40" width="80" height="50"/><image href="assets/v2/robot-anim-256.webp" x="-31" y="-102" width="62" height="62"/></g></g>';
+    return '<g id="esEthan" class="es-route"><g class="es-ethan" transform="scale(1.15)"><path class="es-beam" d="M-18 -2 L18 -2 L46 120 L-46 120Z" fill="' + L2 + '"/>' +
+      '<image href="assets/v2/nave-base.webp" x="-40" y="-40" width="80" height="50"/><image href="assets/v2/robot-anim-256.webp" x="-31" y="-102" width="62" height="62"/>' +
+      '<g class="es-ok" transform="translate(40 -96)"><circle r="15" fill="' + L + '"' + st(2.4) + '/><path d="M-7 0 l5 5 9 -10" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g></g></g>';
   }
-  /* camioneta de servicio ECODESA */
-  function van() {
-    var wheel = function (cx) { return '<g transform="translate(' + cx + ' -8)"><g class="fi-wheel"><circle r="11" fill="' + INK + '"/><circle r="6" fill="#cfd6cf"/></g></g>'; };
-    return '<g class="es-van"><g class="fi-bump"><path d="M-70 -14 V-58 Q-70 -64 -64 -64 H30 L58 -40 L66 -36 V-14Z" fill="#fff"' + st(3) + '/><path d="M34 -60 L54 -40 H34Z" fill="#bfe3ff"' + st(2) + '/>' +
-      '<path d="M-70 -30 H66" stroke="' + L + '" stroke-width="6"/><g transform="translate(-22 -44)"><circle r="12" fill="#fff"' + st(2) + '/><circle r="7" fill="none" stroke="' + L + '" stroke-width="4" stroke-dasharray="2.6 2.2"/></g>' +
-      '<text x="6" y="-40" fill="' + G + '" style="font:400 14px var(--fi-fh,\'Lilita One\',sans-serif)">ecodesa</text><circle cx="62" cy="-24" r="3" fill="#ffd21f"/></g>' + wheel(-44) + wheel(40) + "</g>";
-  }
-  /* ---------- cielo ---------- */
+  function label(x, y, txt) { var w = txt.length * 10 + 26; return '<g transform="translate(' + x + " " + y + ')"><rect x="' + (-w / 2) + '" y="-17" width="' + w + '" height="30" rx="8" fill="' + INK + '" stroke="' + L2 + '" stroke-width="2"/><text x="0" y="5" text-anchor="middle" fill="' + L2 + '" style="font:400 18px var(--fi-fh,\'Lilita One\',sans-serif);letter-spacing:.04em">' + txt + "</text></g>"; }
+  var wn = 0;
+  function win(x, y, w, h, live) { wn++; return '<rect class="' + (live ? "es-lit" : "") + '" style="animation-delay:' + (-(wn * 1.37) % 9).toFixed(2) + 's" x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="3" fill="var(--es-win)"' + st(2) + "/>"; }
+  function puff(x, y, col, n, cls) { var s = '<g transform="translate(' + x + " " + y + ')">'; for (var i = 0; i < n; i++) s += '<circle class="' + (cls || "es-steam") + '" style="animation-delay:' + (-i * 1.1).toFixed(1) + 's" r="9" fill="' + col + '"' + st(1.4) + "/>"; return s + "</g>"; }
   function sky() {
     var s = "", i, rays = "";
     for (i = 0; i < 16; i++) { var a = i * Math.PI / 8, b = a + 0.09, c2 = a - 0.09;
       rays += '<path d="M' + (84 * Math.cos(c2)).toFixed(1) + " " + (84 * Math.sin(c2)).toFixed(1) + " L" + (116 * Math.cos(a)).toFixed(1) + " " + (116 * Math.sin(a)).toFixed(1) + " L" + (84 * Math.cos(b)).toFixed(1) + " " + (84 * Math.sin(b)).toFixed(1) + 'Z"/>'; }
-    s += '<g transform="translate(1300 96)"><circle r="134" style="fill:var(--es-sun);opacity:var(--es-halo)"/><g style="opacity:var(--es-rayo)"><g class="fi-rays" style="fill:var(--es-sun)">' + rays + "</g></g>" +
-      '<circle r="72" style="fill:var(--es-sun)"/><circle r="72" fill="none" stroke="' + INK + '" stroke-width="3" style="opacity:var(--es-rayo)"/>' +
-      '<g style="opacity:var(--es-moon)" fill="#d9e8c6"><circle cx="-24" cy="-16" r="12"/><circle cx="20" cy="22" r="16"/><circle cx="28" cy="-26" r="7"/></g></g>';
-    s += '<g style="opacity:var(--es-stars)">' + [[90, 40], [250, 22], [430, 60], [560, 26], [760, 48], [880, 18], [1060, 40], [1480, 30], [1560, 78], [140, 96]].map(function (p, k) {
-      return '<g transform="translate(' + p[0] + " " + p[1] + ')"><path class="fi-tw" style="animation-delay:' + (-k * 0.47).toFixed(2) + 's" d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8Z" fill="#eaffd6"/></g>'; }).join("") + "</g>";
-    var cloud = function (x, y, k, dur, dl) {
-      return '<g transform="translate(' + x + " " + y + ") scale(" + k + ')" style="opacity:var(--es-cloud)"><g class="fi-cloud" style="animation-duration:' + dur + "s;animation-delay:" + dl + 's">' +
-        '<path d="M0 0 Q-4 -22 20 -22 Q26 -44 52 -38 Q70 -56 92 -38 Q120 -40 118 -16 Q132 -12 126 0Z" fill="#fbfff2"' + st(2.5) + '/></g></g>'; };
-    s += cloud(80, 60, 0.9, 46, -8) + cloud(700, 44, 0.7, 58, -20) + cloud(1460, 120, 0.6, 52, -30);
-    var bird = function (y, k, dur, dl) {
-      return '<g transform="translate(0 ' + y + ") scale(" + k + ')"><g class="fi-bird" style="animation-duration:' + dur + "s;animation-delay:" + dl + 's"><g class="fi-wing">' +
-        '<path d="M-15 0 Q-8 -10 0 0 Q8 -10 15 0" fill="none" stroke="' + INK + '" stroke-width="2.8" stroke-linecap="round"/></g></g></g>'; };
-    s += bird(70, 1, 30, -4) + bird(92, 0.75, 30, -5.2) + bird(54, 0.85, 38, -21);
+    s += '<g transform="translate(860 110)"><circle r="134" style="fill:var(--es-sun);opacity:var(--es-halo)"/><g style="opacity:var(--es-rayo)"><g class="fi-rays" style="fill:var(--es-sun)">' + rays + "</g></g>" +
+      '<circle r="72" style="fill:var(--es-sun)"/><circle r="72" fill="none" stroke="' + INK + '" stroke-width="3" style="opacity:var(--es-rayo)"/><g style="opacity:var(--es-moon)" fill="#d9e8c6"><circle cx="-24" cy="-16" r="12"/><circle cx="20" cy="22" r="16"/></g></g>';
+    var stars = ""; for (i = 0; i < 26; i++) stars += '<g transform="translate(' + ((i * 397) % 2800) + " " + (20 + (i * 53) % 170) + ')"><path class="fi-tw" style="animation-delay:' + (-i * 0.47).toFixed(2) + 's" d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8Z" fill="#eaffd6"/></g>';
+    s += '<g style="opacity:var(--es-stars)">' + stars + "</g>";
+    var cloud = function (x, y, k, dur, dl) { return '<g transform="translate(' + x + " " + y + ") scale(" + k + ')" style="opacity:var(--es-cloud)"><g class="fi-cloud" style="animation-duration:' + dur + "s;animation-delay:" + dl + 's"><path d="M0 0 Q-4 -22 20 -22 Q26 -44 52 -38 Q70 -56 92 -38 Q120 -40 118 -16 Q132 -12 126 0Z" fill="#fbfff2"' + st(2.5) + "/></g></g>"; };
+    s += cloud(200, 70, 0.9, 46, -8) + cloud(1500, 60, 0.8, 58, -20) + cloud(2250, 110, 0.7, 52, -30) + cloud(640, 150, 0.5, 40, -12);
+    var bird = function (y, k, dur, dl) { return '<g transform="translate(0 ' + y + ") scale(" + k + ')"><g class="es-bird" style="animation-duration:' + dur + "s;animation-delay:" + dl + 's"><g class="fi-wing"><path d="M-15 0 Q-8 -10 0 0 Q8 -10 15 0" fill="none" stroke="' + INK + '" stroke-width="2.8" stroke-linecap="round"/></g></g></g>'; };
+    s += bird(80, 1, 40, -4) + bird(100, 0.75, 40, -5.2) + bird(60, 0.85, 52, -21) + bird(130, 0.7, 46, -33);
     return s;
   }
   function farCity() {
-    var s = "", w = "", x = -10, i = 0;
-    while (x < 1610) {
-      var bw = 38 + ((i * 53) % 5) * 13, h = 36 + ((i * 71) % 6) * 11, top = 168 - h;
-      s += '<rect x="' + x + '" y="' + top + '" width="' + bw + '" height="' + (h + 6) + '"/>';
-      for (var r = 0; r < 2; r++) for (var c = 0; c < Math.floor(bw / 18); c++) if ((i + r + c) % 3) w += '<rect x="' + (x + 7 + c * 18) + '" y="' + (top + 10 + r * 16) + '" width="6" height="8" rx="1"/>';
-      x += bw + (i % 3 ? 0 : 10); i++;
-    }
-    return '<g style="fill:var(--es-far)">' + s + '</g><g style="fill:var(--es-farwin)">' + w + "</g>";
+    var s = "", x = -10, i = 0;
+    while (x < VW + 10) { var bw = 50 + ((i * 53) % 5) * 16, hh = 60 + ((i * 71) % 6) * 22, top = B - 60 - hh; s += '<rect x="' + x + '" y="' + top + '" width="' + bw + '" height="' + (hh + 60) + '"/>'; x += bw + (i % 3 ? 0 : 14); i++; }
+    return '<g style="fill:var(--es-far)">' + s + "</g>";
   }
-  /* aerogenerador, panel solar, planta limpia, grúas del puerto */
-  function turbine(x, k) {
-    return '<g transform="translate(' + x + ' 172) scale(' + k + ')"><path d="M-3 0 L-1.5 -120 H1.5 L3 0Z" fill="#f4f8ef"' + st(2.2) + '/><g transform="translate(0 -120)"><g class="es-rotor">' +
+  function turbine(x, y, k) {
+    return '<g transform="translate(' + x + " " + y + ") scale(" + k + ')"><path d="M-3 0 L-1.5 -120 H1.5 L3 0Z" fill="#f4f8ef"' + st(2.2) + '/><g transform="translate(0 -120)"><g class="es-rotor">' +
       [0, 120, 240].map(function (a) { return '<path transform="rotate(' + a + ')" d="M0 0 Q5 -26 0 -56 Q-5 -26 0 0Z" fill="#fbfff2"' + st(2) + "/>"; }).join("") + '<circle r="5" fill="' + L + '"' + st(2) + "/></g></g></g>";
   }
-  function crane(x) {
-    return '<g transform="translate(' + x + ' 172)"><path d="M-14 0 L-8 -96 M14 0 L8 -96 M-11 -48 H11 M-12 -24 L12 -48 M-12 -48 L12 -24" fill="none" stroke="#e8a316" stroke-width="5"/>' +
-      '<path d="M-30 -96 H70 V-88 H-30Z" fill="#e8a316"' + st(2.2) + '/><path d="M50 -88 V-56" stroke="' + INK + '" stroke-width="2"/><rect x="38" y="-56" width="26" height="16" fill="#2f9be0"' + st(2) + '/><rect x="-26" y="-112" width="22" height="16" fill="' + C + '"' + st(2) + "/></g>";
+  function palm(x, k) { return '<g transform="translate(' + x + " " + B + ") scale(" + k + ')"><path d="M0 0 Q-6 -60 6 -118" fill="none" stroke="#8a5a2b" stroke-width="9" stroke-linecap="round"/>' +
+    '<g class="fi-palm" fill="' + L + '"' + st(2.5) + '><path d="M6 -118 Q-30 -132 -58 -104 Q-26 -118 6 -112Z"/><path d="M6 -118 Q42 -136 66 -106 Q36 -118 6 -112Z"/><path d="M6 -118 Q-10 -150 -40 -152 Q-12 -140 4 -114Z"/><path d="M6 -118 Q24 -152 54 -150 Q24 -138 8 -114Z"/></g></g>'; }
+
+  /* ===== escala real: 1 m = 36 unidades; persona 1,75 m ===== */
+  function restaurante(x) { /* 12 m de frente, 1 piso de 4 m */
+    var w = 432, h = 150, s = '<g transform="translate(' + x + ' 0)"><rect x="0" y="' + (B - h) + '" width="' + w + '" height="' + h + '" fill="#fff3d6"' + st() + '/><rect x="-8" y="' + (B - h - 16) + '" width="' + (w + 16) + '" height="18" fill="' + G + '"' + st(2.5) + "/>";
+    s += '<rect x="300" y="' + (B - h - 90) + '" width="26" height="76" fill="#9aa3a8"' + st(2.2) + "/>" + puff(313, B - h - 96, "#f4f4f4", 4);
+    s += '<g class="es-awning">' + [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(function (k) { return '<path d="M' + (k * 36) + " " + (B - 112) + ' h36 v16 q-18 12 -36 0Z" fill="' + (k % 2 ? "#fff" : L) + '"' + st(2) + "/>"; }).join("") + "</g>";
+    s += win(20, B - 84, 110, 64, 1) + win(300, B - 84, 112, 64, 1) + '<rect x="170" y="' + (B - 96) + '" width="76" height="96" fill="#8a5a2b"' + st(2.5) + '/><circle cx="234" cy="' + (B - 48) + '" r="4" fill="' + Y + '"/>';
+    s += '<g transform="translate(150 ' + (B - h + 26) + ')"><rect x="0" y="-16" width="120" height="30" rx="6" fill="' + INK + '"/><text class="es-neon" x="60" y="6" text-anchor="middle" fill="' + L2 + '" style="font:400 18px var(--fi-fh,\'Lilita One\',sans-serif)">ABIERTO</text></g>';
+    s += '<g transform="translate(40 ' + (B - 30) + ')"><circle cx="20" cy="-20" r="6" fill="#ff6b6b"/><path d="M5 -10 h30" stroke="' + INK + '" stroke-width="2"/></g>';
+    s += '<rect x="358" y="' + (B - 22) + '" width="54" height="22" rx="2" fill="#9aa3a8"' + st(2.2) + '/><path d="M364 ' + (B - 14) + ' h42" stroke="' + INK + '" stroke-width="2"/>' + label(216, B - h - 40, "RESTAURANTE") + "</g>";
+    return s + crouch(x + 340, B + 4, SKIN[3], cap()) + client(x + 280, B + 4, SKIN[0], "#ffffff", false, true);
   }
-  function plant(x) {
-    var leaf = function (dl) { return '<path class="es-puff" style="animation-delay:' + dl + 's" d="M0 0 q8 -10 16 0 q-8 10 -16 0Z" fill="' + L2 + '"' + st(1.4) + "/>"; };
-    return '<g transform="translate(' + x + ' 172)"><rect x="-60" y="-56" width="90" height="56" fill="#dfe8d6"' + st(3) + '/><path d="M-60 -56 L-45 -72 L-30 -56 L-15 -72 L0 -56 L15 -72 L30 -56" fill="#c4d4b6"' + st(2.5) + '/>' +
-      '<rect x="40" y="-120" width="16" height="120" fill="#c4d4b6"' + st(2.5) + '/><path d="M40 -104 h16 M40 -88 h16" stroke="' + R + '" stroke-width="5"/>' +
-      '<g transform="translate(44 -128)">' + leaf(0) + leaf(-1.2) + leaf(-2.4) + "</g>" +
-      '<rect x="-48" y="-40" width="18" height="14" fill="var(--es-win)"' + st(2) + '/><rect x="-22" y="-40" width="18" height="14" fill="var(--es-win)"' + st(2) + '/>' +
-      '<g transform="translate(-60 -82)"><path d="M0 0 L40 -10 L46 8 L6 18Z" fill="#1f4a6b"' + st(2) + '/><path d="M13 -3 L19 15 M26 -6 L32 12 M3 9 L43 -1" stroke="#7fb8e6" stroke-width="1.6"/><path d="M24 12 V26" stroke="' + INK + '" stroke-width="3"/></g></g>';
+  function comercio(x) { /* 8 m, 2 pisos */
+    var w = 288, h = 252, s = '<g transform="translate(' + x + ' 0)"><rect x="0" y="' + (B - h) + '" width="' + w + '" height="' + h + '" fill="#ff9fc4"' + st() + '/><rect x="-8" y="' + (B - h - 14) + '" width="' + (w + 16) + '" height="16" fill="' + G + '"' + st(2.5) + "/>";
+    s += win(30, B - h + 24, 60, 76, 1) + win(114, B - h + 24, 60, 76, 1) + win(198, B - h + 24, 60, 76, 1) + '<path d="M16 ' + (B - h + 112) + " h256" + '" stroke="#8a4b16" stroke-width="7"/>';
+    [40, 124, 208].forEach(function (px, k) { s += '<g class="es-plant" style="animation-delay:' + (-k) + 's"><circle cx="' + (px + 10) + '" cy="' + (B - h + 104) + '" r="9" fill="' + L + '"' + st(1.4) + '/><circle cx="' + (px + 24) + '" cy="' + (B - h + 100) + '" r="8" fill="#ff4fa0"' + st(1.4) + "/></g>"; });
+    s += '<g class="es-awning2"><path d="M10 ' + (B - 120) + " h268 l-14 30 h-240Z" + '" fill="' + Y + '"' + st(2.5) + "/></g>" + win(20, B - 84, 150, 70, 1) + '<rect x="190" y="' + (B - 96) + '" width="74" height="96" fill="#bfe3ff"' + st(2.5) + "/>";
+    s += '<g transform="translate(40 ' + (B - 66) + ')"><rect width="22" height="32" fill="' + L + '"' + st(1.6) + '/><rect x="30" y="8" width="22" height="24" fill="' + O + '"' + st(1.6) + '/><rect x="62" y="2" width="22" height="30" fill="#2f9be0"' + st(1.6) + "/></g>";
+    s += '<g transform="translate(227 ' + (B - 110) + ')"><rect x="-30" y="-12" width="60" height="22" rx="4" fill="' + R + '"' + st(1.8) + '/><text class="es-neon" x="0" y="5" text-anchor="middle" fill="#fff" style="font:400 13px var(--fi-fh,\'Lilita One\',sans-serif)">OPEN</text></g>' + label(144, B - h - 40, "COMERCIO") + "</g>";
+    return s + writer(x + 300, B + 4, SKIN[0], cap(), null, true, -0.2);
   }
-  function label(x, y, txt) { var w = txt.length * 8 + 20; return '<g transform="translate(' + x + " " + y + ')"><rect x="' + (-w / 2) + '" y="-14" width="' + w + '" height="24" rx="6" fill="' + INK + '"/><text x="0" y="3" text-anchor="middle" fill="' + L2 + '" style="font:400 14px var(--fi-fh,\'Lilita One\',sans-serif);letter-spacing:.04em">' + txt + "</text></g>"; }
-  function win(x, y, w, h) { return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="3" fill="var(--es-win)"' + st(2) + "/>"; }
+  function hotel(x) { /* 10 m, 4 pisos + vestíbulo */
+    var w = 360, h = 450, s = '<g transform="translate(' + x + ' 0)"><rect x="0" y="' + (B - h) + '" width="' + w + '" height="' + h + '" fill="#7fc8e8"' + st() + '/><rect x="-10" y="' + (B - h - 16) + '" width="' + (w + 20) + '" height="18" fill="' + C + '"' + st(2.5) + "/>";
+    s += '<g transform="translate(330 ' + (B - h - 16) + ')"><path d="M0 0 V-60" stroke="' + INK + '" stroke-width="3"/><path class="es-flag" d="M0 -60 h34 v20 h-34Z" fill="' + L + '"' + st(2) + "/></g>";
+    s += '<g transform="translate(180 ' + (B - h + 2) + ')"><rect x="-70" y="-18" width="140" height="34" rx="6" fill="' + INK + '"/><text class="es-neon" x="0" y="8" text-anchor="middle" fill="#ffd21f" style="font:400 24px var(--fi-fh,\'Lilita One\',sans-serif);letter-spacing:.12em">HOTEL</text></g>';
+    for (var r = 0; r < 4; r++) { for (var c = 0; c < 5; c++) s += win(22 + c * 66, B - h + 20 + r * 92, 46, 56, 1); s += '<path d="M14 ' + (B - h + 86 + r * 92) + " h332" + '" stroke="#fff" stroke-width="5"/>'; }
+    s += '<rect x="0" y="' + (B - 74) + '" width="' + w + '" height="74" fill="' + C + '"' + st(2.5) + '/><rect x="130" y="' + (B - 72) + '" width="100" height="72" fill="#bfe3ff"' + st(2.5) + '/><g class="es-door"><path d="M180 ' + (B - 72) + " V" + B + '" stroke="' + INK + '" stroke-width="2.4"/></g>' +
+      '<path d="M110 ' + (B - 84) + " h140 l-10 14 h-120Z" + '" fill="' + G + '"' + st(2) + "/>";
+    s += '<rect x="290" y="' + (B - 52) + '" width="14" height="32" rx="5" fill="' + R + '"' + st(2) + '/><rect x="284" y="' + (B - 72) + '" width="28" height="14" rx="2" fill="#14964a"' + st(1.6) + '/><path d="M290 ' + (B - 65) + ' h14 l-4 -4 M304 ' + (B - 65) + ' l-4 4" stroke="#fff" stroke-width="2" fill="none"/>';
+    s += '<g transform="translate(40 ' + B + ')"><rect x="-10" y="-30" width="24" height="30" fill="#c9924d"' + st(2) + '/><g class="es-plant"><circle cx="2" cy="-40" r="14" fill="' + L + '"' + st(2) + "/></g></g>" + "</g>";
+    return s + pointer(x + 262, B + 4, SKIN[1], helmet(R), O, false, -0.6) + client(x + 214, B + 4, SKIN[2], "#1f4a6b", true);
+  }
+  function industria(x) { /* nave de 14 m x 9 m, chimenea de 13 m */
+    var w = 504, h = 324, s = '<g transform="translate(' + x + ' 0)"><rect x="0" y="' + (B - h) + '" width="' + w + '" height="' + h + '" fill="#dfe8d6"' + st() + '/>';
+    s += '<path d="M0 ' + (B - h) + [0, 1, 2, 3, 4, 5].map(function (k) { return " L" + (k * 84 + 42) + " " + (B - h - 40) + " L" + (k * 84 + 84) + " " + (B - h); }).join("") + '" fill="#c4d4b6"' + st(2.5) + "/>";
+    s += '<rect x="440" y="' + (B - 460) + '" width="40" height="460" fill="#c4d4b6"' + st(2.5) + '/><path d="M440 ' + (B - 420) + " h40 M440 " + (B - 380) + ' h40" stroke="' + R + '" stroke-width="10"/><circle class="es-beacon" cx="460" cy="' + (B - 466) + '" r="7" fill="' + R + '"/>' + puff(460, B - 474, L2, 4, "es-leafp");
+    for (var k = 0; k < 5; k++) s += '<g transform="translate(' + (30 + k * 80) + " " + (B - h - 6) + ')"><path d="M0 0 L60 -14 L66 4 L6 18Z" fill="#1f4a6b"' + st(2) + '/><path class="es-glint" style="animation-delay:' + (-k * 0.6) + 's" d="M18 -2 L26 14" stroke="#cfe9ff" stroke-width="3"/></g>';
+    [60, 160, 260].forEach(function (fx, k) { s += '<g transform="translate(' + fx + " " + (B - h + 60) + ')"><circle r="24" fill="#9aa3a8"' + st(2.2) + '/><g class="es-fan" style="animation-duration:' + (1 + k * 0.4) + 's"><path d="M0 0 L0 -18 M0 0 L16 9 M0 0 L-16 9" stroke="' + INK + '" stroke-width="5" stroke-linecap="round"/></g></g>'; });
+    s += '<g transform="translate(20 ' + (B - 150) + ')"><rect width="72" height="150" rx="30" fill="#cfd6cf"' + st(2.5) + '/><rect x="84" y="20" width="72" height="130" rx="30" fill="#cfd6cf"' + st(2.5) + '/><rect class="es-gauge" x="22" y="40" width="28" height="12" rx="3" fill="' + L + '"/></g>';
+    s += '<g transform="translate(200 ' + (B - 60) + ')"><rect width="220" height="12" fill="#5d626e"' + st(2) + '/><circle cx="10" cy="18" r="7" fill="' + INK + '"/><circle cx="210" cy="18" r="7" fill="' + INK + '"/><g class="es-belt">' +
+      [0, 1, 2, 3].map(function (b) { return '<rect x="' + (b * 60) + '" y="-24" width="32" height="24" fill="#c9924d"' + st(1.8) + "/>"; }).join("") + "</g></g>";
+    s += win(250, B - 220, 150, 70, 1) + label(250, B - h - 66, "INDUSTRIA") + "</g>";
+    return s + writer(x + 200, B + 4, SKIN[2], helmet(Y), Y, false, -0.9);
+  }
+  function construccion(x) { /* 4 pisos en obra (12 m) y grúa torre */
+    var w = 360, fl = 108, s = '<g transform="translate(' + x + ' 0)">';
+    s += '<rect x="0" y="' + (B - fl * 2) + '" width="' + w + '" height="' + fl * 2 + '" fill="#d7d2c8"' + st(2.5) + '/>' + win(30, B - fl * 2 + 24, 70, 60) + win(140, B - fl * 2 + 24, 70, 60) + win(250, B - fl * 2 + 24, 70, 60);
+    s += '<path d="M0 ' + B + " V" + (B - fl * 4) + " H" + w + " V" + B + '" fill="none" stroke="#8d939a" stroke-width="8"/>';
+    for (var f = 1; f < 4; f++) s += '<path d="M0 ' + (B - fl * f) + " H" + w + '" stroke="#8d939a" stroke-width="7"/>';
+    s += '<path d="M120 ' + B + " V" + (B - fl * 4) + " M240 " + B + " V" + (B - fl * 4) + '" stroke="#8d939a" stroke-width="6"/><path d="M0 ' + (B - fl * 3) + " L120 " + (B - fl * 4) + " M240 " + (B - fl * 3) + " L360 " + (B - fl * 4) + '" stroke="#b7bcc1" stroke-width="3"/>';
+    s += '<path d="M-14 ' + (B - fl * 2) + " h" + (w + 28) + '" stroke="' + O + '" stroke-width="6"/><path d="M-14 ' + (B - fl * 3) + " h" + (w + 28) + '" stroke="' + O + '" stroke-width="6"/>';
+    /* obrero en andamio martillando y chispa de soldadura */
+    s += at(80, B - fl * 3, stand() + shirt(O) + '<g class="es-hammer">' + arm("M12 -78 Q30 -90 34 -100", SKIN[1], "", 0, O) + '<path d="M34 -100 L40 -118 M32 -120 h16" stroke="' + INK + '" stroke-width="5" stroke-linecap="round"/></g>' + face(SKIN[1], -93) + helmet(Y));
+    s += '<g transform="translate(300 ' + (B - fl * 2 - 40) + ')"><g class="es-spark">' + [0, 45, 90, 135, 180, 225, 270, 315].map(function (a) { return '<path transform="rotate(' + a + ')" d="M4 0 h14" stroke="#ffd21f" stroke-width="3" stroke-linecap="round"/>'; }).join("") + '<circle r="5" fill="#fff"/></g></g>';
+    /* grúa torre: mástil sale del cuadro, carro y gancho con viga */
+    s += '<g transform="translate(' + (w + 60) + ' 0)"><path d="M-10 ' + B + " L-10 -40 M10 " + B + " L10 -40" + '" stroke="#e8a316" stroke-width="7"/>';
+    for (var yy = B - 30; yy > -20; yy -= 40) s += '<path d="M-10 ' + yy + " L10 " + (yy - 40) + '" stroke="#e8a316" stroke-width="3"/>';
+    s += '<path d="M-420 30 H120 V44 H-420Z" fill="#e8a316"' + st(2.2) + '/><rect x="80" y="44" width="40" height="40" fill="#9aa3a8"' + st(2) + '/>' +
+      '<g class="es-trolley"><rect x="-26" y="44" width="24" height="12" fill="' + INK + '"/><g class="es-hook"><path d="M-14 56 V160" stroke="' + INK + '" stroke-width="2"/><path d="M-60 160 H32 V176 H-60Z" fill="#8d939a"' + st(2) + "/></g></g></g>";
+    s += label(180, B - fl * 2 - 24, "CONSTRUCCIÓN") + "</g>";
+    return s + pointer(x + 190, B + 4, SKIN[3], helmet(Y), Y, true, -0.3) + client(x + 120, B + 4, SKIN[1], O, false);
+  }
+  function puerto(x) { /* contenedores de 20 pies (6,1 x 2,6 m) y grúa pórtico */
+    var cw = 220, chh = 94, cols = ["#2f9be0", R, L, O, Y, "#2f9be0"], s = '<g transform="translate(' + x + ' 0)">';
+    var cont = function (cx, cy, col) { var t = '<rect x="' + cx + '" y="' + cy + '" width="' + cw + '" height="' + chh + '" fill="' + col + '"' + st(2.4) + "/>"; for (var i = 1; i < 10; i++) t += '<path d="M' + (cx + i * 22) + " " + (cy + 8) + " v" + (chh - 16) + '" stroke="' + INK + '" stroke-width="1.6" opacity=".35"/>'; return t; };
+    s += cont(0, B - chh, cols[0]) + cont(0, B - chh * 2, cols[1]) + cont(0, B - chh * 3, cols[3]) + cont(cw + 4, B - chh, cols[2]);
+    s += '<g transform="translate(' + (cw * 2 + 70) + ' 0)"><path d="M-30 ' + B + " V-40 M30 " + B + " V-40" + '" stroke="#e8a316" stroke-width="12"/><path d="M-30 ' + (B - 150) + " H30 M-30 " + (B - 300) + ' H30" stroke="#e8a316" stroke-width="8"/>' +
+      '<path d="M-330 30 H90 V50 H-330Z" fill="#e8a316"' + st(2.2) + '/><rect x="-60" y="-10" width="50" height="40" fill="' + C + '"' + st(2) + "/>" +
+      '<g class="es-spreader"><path d="M-200 50 V' + (B - chh * 2 - 140) + '" stroke="' + INK + '" stroke-width="2"/>' + cont(-310, B - chh * 2 - 140, cols[4]) + "</g></g>";
+    s += '<rect x="400" y="' + (B - 30) + '" width="34" height="30" rx="3" fill="' + Y + '"' + st(2) + '/><path d="M406 ' + (B - 20) + ' h22" stroke="' + INK + '" stroke-width="2"/>' + label(110, B - chh * 3 - 30, "PUERTO") + "</g>";
+    return s + crouch(x + 330, B + 4, SKIN[0], helmet("#fff"));
+  }
   function scene() {
-    var s = sky() + farCity(), B = 262;
-    var palm = function (x, k) { return '<g transform="translate(' + x + " " + B + ") scale(" + k + ')"><path d="M0 0 Q-6 -60 6 -118" fill="none" stroke="#8a5a2b" stroke-width="9" stroke-linecap="round"/>' +
-      '<g class="fi-palm" fill="' + L + '"' + st(2.5) + '><path d="M6 -118 Q-30 -132 -58 -104 Q-26 -118 6 -112Z"/><path d="M6 -118 Q42 -136 66 -106 Q36 -118 6 -112Z"/><path d="M6 -118 Q-10 -150 -40 -152 Q-12 -140 4 -114Z"/><path d="M6 -118 Q24 -152 54 -150 Q24 -138 8 -114Z"/></g></g>'; };
-    s += turbine(40, 0.8) + turbine(96, 0.6);
-    /* 1. Restaurante: trampa de grasas */
-    s += '<g transform="translate(40 0)"><rect x="0" y="' + (B - 130) + '" width="210" height="130" fill="#fff3d6"' + st() + '/><rect x="-6" y="' + (B - 142) + '" width="222" height="14" fill="' + G + '"' + st(2.5) + "/>" +
-      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (k) { return '<path d="M' + (k * 21) + " " + (B - 92) + ' h21 v12 q-10.5 9 -21 0Z" fill="' + (k % 2 ? "#fff" : L) + '"' + st(2) + "/>"; }).join("") +
-      win(14, B - 70, 60, 40) + win(140, B - 70, 56, 40) + '<rect x="86" y="' + (B - 76) + '" width="40" height="76" fill="#8a5a2b"' + st(2.5) + "/>" +
-      '<rect x="150" y="' + (B - 16) + '" width="36" height="16" rx="2" fill="#9aa3a8"' + st(2.2) + '/><path d="M156 ' + (B - 10) + ' h24" stroke="' + INK + '" stroke-width="2"/>' + label(105, B - 116, "RESTAURANTE") + "</g>";
-    s += crouch(250, B, SKIN[3], cap()) + client(118, B, SKIN[0], "#ffffff", false);
-    /* 2. Hotel: extintor y ruta de evacuación */
-    s += '<g transform="translate(310 0)"><rect x="0" y="' + (B - 200) + '" width="150" height="200" fill="#7fc8e8"' + st() + '/><rect x="-6" y="' + (B - 212) + '" width="162" height="14" fill="' + C + '"' + st(2.5) + "/>";
-    for (var r = 0; r < 5; r++) for (var c = 0; c < 4; c++) s += win(14 + c * 34, B - 186 + r * 28, 20, 18);
-    s += '<rect x="52" y="' + (B - 50) + '" width="46" height="50" fill="#bfe3ff"' + st(2.5) + '/><path d="M75 ' + (B - 50) + " V" + B + '" stroke="' + INK + '" stroke-width="2"/>' +
-      '<rect x="112" y="' + (B - 52) + '" width="12" height="28" rx="5" fill="' + R + '"' + st(2) + '/><rect x="106" y="' + (B - 72) + '" width="26" height="14" rx="2" fill="#14964a"' + st(1.6) + '/><path d="M112 ' + (B - 65) + ' h10 l-4 -4 M122 ' + (B - 65) + ' l-4 4" stroke="#fff" stroke-width="2" fill="none"/>' + label(75, B - 222, "HOTEL") + "</g>";
-    s += pointer(400, B, SKIN[1], helmet(R), O, false, -0.6) + client(350, B, SKIN[2], "#1f4a6b", true);
-    /* 3. Comercio */
-    s += '<g transform="translate(500 0)"><rect x="0" y="' + (B - 120) + '" width="140" height="120" fill="#ff9fc4"' + st() + '/><rect x="-6" y="' + (B - 132) + '" width="152" height="14" fill="' + G + '"' + st(2.5) + "/>" +
-      win(12, B - 100, 116, 46) + '<rect x="50" y="' + (B - 48) + '" width="40" height="48" fill="#bfe3ff"' + st(2.5) + "/>" +
-      '<g transform="translate(24 ' + (B - 84) + ')"><rect width="16" height="22" fill="' + L + '"' + st(1.6) + '/><rect x="22" y="6" width="16" height="16" fill="' + Y + '"' + st(1.6) + '/><rect x="70" width="20" height="22" fill="' + O + '"' + st(1.6) + "/></g>" + label(70, B - 146, "COMERCIO") + "</g>";
-    s += writer(668, B, SKIN[0], cap(), null, true, -0.2);
-    /* 4. Industria */
-    s += '<g transform="translate(720 0)"><rect x="0" y="' + (B - 110) + '" width="190" height="110" fill="#dfe8d6"' + st() + '/><path d="M0 ' + (B - 110) + " L25 " + (B - 134) + " L50 " + (B - 110) + " L75 " + (B - 134) + " L100 " + (B - 110) + " L125 " + (B - 134) + " L150 " + (B - 110) + '" fill="#c4d4b6"' + st(2.5) + "/>" +
-      '<rect x="160" y="' + (B - 196) + '" width="20" height="196" fill="#c4d4b6"' + st(2.5) + '/><path d="M160 ' + (B - 176) + " h20 M160 " + (B - 156) + ' h20" stroke="' + R + '" stroke-width="6"/>' +
-      '<g transform="translate(164 ' + (B - 204) + ')">' + '<path class="es-puff" d="M0 0 q8 -10 16 0 q-8 10 -16 0Z" fill="' + L2 + '"' + st(1.4) + '/><path class="es-puff" style="animation-delay:-1.2s" d="M0 0 q8 -10 16 0 q-8 10 -16 0Z" fill="' + L2 + '"' + st(1.4) + '/><path class="es-puff" style="animation-delay:-2.4s" d="M0 0 q8 -10 16 0 q-8 10 -16 0Z" fill="' + L2 + '"' + st(1.4) + "/></g>" +
-      '<g transform="translate(14 ' + (B - 64) + ')"><rect width="40" height="64" rx="18" fill="#cfd6cf"' + st(2.5) + '/><rect x="48" y="8" width="40" height="56" rx="18" fill="#cfd6cf"' + st(2.5) + '/><path d="M0 24 h40 M48 30 h40" stroke="' + INK + '" stroke-width="2" opacity=".4"/></g>' +
-      win(104, B - 90, 44, 26) + '<g transform="translate(14 ' + (B - 150) + ')"><path d="M0 0 L48 -12 L55 8 L7 20Z" fill="#1f4a6b"' + st(2) + '/><path d="M16 -4 L22 16 M32 -8 L38 12" stroke="#7fb8e6" stroke-width="1.6"/></g>' + label(95, B - 160, "INDUSTRIA") + "</g>";
-    s += writer(888, B, SKIN[2], helmet(Y), Y, false, -0.9);
-    /* 5. Construcción */
-    s += '<g transform="translate(960 0)"><path d="M0 ' + B + " V" + (B - 150) + " H150 V" + B + '" fill="none" stroke="#8d939a" stroke-width="7"/><path d="M0 ' + (B - 50) + " H150 M0 " + (B - 100) + " H150 M50 " + B + " V" + (B - 150) + " M100 " + B + " V" + (B - 150) + '" stroke="#8d939a" stroke-width="5"/>' +
-      '<path d="M0 ' + (B - 50) + " L50 " + (B - 100) + " M100 " + (B - 50) + " L150 " + (B - 100) + '" stroke="#b7bcc1" stroke-width="3"/><rect x="-6" y="' + (B - 54) + '" width="162" height="6" fill="' + O + '"' + st(1.6) + "/>" +
-      '<g transform="translate(190 ' + B + ')"><path d="M-8 0 L-4 -230 M8 0 L4 -230" stroke="#e8a316" stroke-width="5"/><path d="M-120 -230 H70 V-222 H-120Z" fill="#e8a316"' + st(2.2) + '/><path d="M-90 -222 V-160" stroke="' + INK + '" stroke-width="2"/><rect x="-104" y="-160" width="28" height="12" fill="#8d939a"' + st(1.6) + "/></g>" + label(75, B - 168, "CONSTRUCCIÓN") + "</g>";
-    s += pointer(1100, B, SKIN[3], helmet(Y), Y, true, -0.3) + client(1036, B, SKIN[1], O, false);
-    /* 6. Puerto */
-    var cont = function (x, y, col) { return '<rect x="' + x + '" y="' + y + '" width="62" height="28" fill="' + col + '"' + st(2.2) + '/><path d="M' + (x + 10) + " " + (y + 4) + " v20 M" + (x + 22) + " " + (y + 4) + " v20 M" + (x + 34) + " " + (y + 4) + " v20 M" + (x + 46) + " " + (y + 4) + ' v20" stroke="' + INK + '" stroke-width="1.5" opacity=".4"/>'; };
-    s += '<g transform="translate(1190 0)">' + cont(0, B - 28, "#2f9be0") + cont(64, B - 28, R) + cont(128, B - 28, L) + cont(32, B - 56, O) + cont(96, B - 56, "#2f9be0") + cont(64, B - 84, Y) +
-      '<g transform="translate(250 ' + B + ')"><path d="M-14 0 L-8 -170 M14 0 L8 -170 M-11 -60 H11 M-12 -110 H12" fill="none" stroke="#e8a316" stroke-width="6"/><path d="M-130 -170 H80 V-160 H-130Z" fill="#e8a316"' + st(2.2) + '/><rect x="-26" y="-190" width="26" height="20" fill="' + C + '"' + st(2) + '/><path d="M-100 -160 V-110" stroke="' + INK + '" stroke-width="2"/><rect x="-118" y="-110" width="36" height="16" fill="' + L + '"' + st(2) + "/></g>" +
-      '<rect x="206" y="' + (B - 26) + '" width="26" height="26" rx="3" fill="' + Y + '"' + st(2) + '/><path d="M210 ' + (B - 18) + ' h18" stroke="' + INK + '" stroke-width="2"/>' + label(96, B - 104, "PUERTO") + "</g>";
-    s += crouch(1450, B, SKIN[0], helmet("#fff"), true) + palm(1570, 0.9);
-    /* acera, vía y mar */
-    s += '<rect x="-10" y="' + B + '" width="1620" height="10" fill="#e8d9c0"' + st(2.5) + '/><rect x="-10" y="' + (B + 10) + '" width="1620" height="44" fill="#5d626e"/><path d="M0 ' + (B + 32) + ' H1600" stroke="#fff" stroke-width="4" stroke-dasharray="28 20"/>';
-    s += '<g transform="translate(0 ' + (B + 44) + ')">' + van() + "</g>";
-    var wave = function (y, col, w, op, cls) { var dd = "M-120 " + y; for (var i2 = 0; i2 < 30; i2++) dd += " q15 -7 30 0 t30 0"; return '<g class="' + cls + '"><path d="' + dd + '" fill="none" stroke="' + col + '" stroke-width="' + w + '" stroke-linecap="round" opacity="' + op + '"/></g>'; };
-    s += '<rect x="-10" y="314" width="1620" height="10" fill="#cdbfa7"' + st(2.5) + '/><rect x="-10" y="324" width="1620" height="60" fill="#1eb5cc"/>' +
-      wave(336, "#0f8ea3", 2.4, 0.8, "fi-sea3") + wave(343, "#fff", 2.6, 0.85, "fi-sea") + wave(355, "#fff", 2.4, 0.55, "fi-sea2");
+    var s = sky() + farCity();
+    s += turbine(40, B, 1.1) + turbine(110, B, 0.8) + palm(130, 1);
+    s += restaurante(160) + comercio(660) + hotel(1020) + industria(1440) + construccion(2010) + puerto(2480);
+    s += '<rect x="-10" y="' + B + '" width="' + (VW + 20) + '" height="12" fill="#e8d9c0"' + st(2.5) + '/><rect x="-10" y="' + (B + 12) + '" width="' + (VW + 20) + '" height="44" fill="#5d626e"/><path d="M0 ' + (B + 34) + " H" + VW + '" stroke="#fff" stroke-width="4" stroke-dasharray="28 20"/>';
+    var wave = function (y, col, w, op, cls) { var dd = "M-120 " + y; for (var i2 = 0; i2 < 54; i2++) dd += " q15 -7 30 0 t30 0"; return '<g class="' + cls + '"><path d="' + dd + '" fill="none" stroke="' + col + '" stroke-width="' + w + '" stroke-linecap="round" opacity="' + op + '"/></g>'; };
+    s += '<rect x="-10" y="' + (B + 56) + '" width="' + (VW + 20) + '" height="40" fill="#1eb5cc"/>' + wave(B + 66, "#fff", 2.6, 0.8, "fi-sea") + wave(B + 78, "#fff", 2.2, 0.5, "fi-sea2");
     s += ethan();
-    return '<svg viewBox="0 0 1600 360" preserveAspectRatio="xMidYMax slice" aria-hidden="true">' + s + "</svg>";
+    return '<svg viewBox="0 0 ' + VW + " " + VH + '" preserveAspectRatio="xMinYMax meet" aria-hidden="true">' + s + "</svg>";
   }
-  window.ecoScene = scene;
+  /* paradas de Ethan (x de la visita) y cámara que lo sigue */
+  var STOPS = [[500, 300], [960, 300], [1282, 300], [1640, 300], [2200, 300], [2810, 300]];
+  function mount(box) {
+    box.innerHTML = '<div class="es-pan">' + scene() + "</div>";
+    var pan = box.firstChild, svg = pan.firstChild, eth = svg.querySelector("#esEthan");
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var per = 6000, anims = [];
+    function build() {
+      anims.forEach(function (a) { a.cancel(); }); anims = [];
+      var H = box.clientHeight, sw = H * VW / VH, cw = box.clientWidth; pan.style.width = sw + "px";
+      var kE = [], kP = [], n = STOPS.length;
+      STOPS.concat([STOPS[0]]).forEach(function (p, i) {
+        var off = i / n, hold = Math.min(off + 0.7 / n, 1);
+        var tx = Math.min(0, Math.max(cw - sw, cw / 2 - p[0] * H / VH));
+        kE.push({ offset: off, transform: "translate(" + p[0] + "px," + p[1] + "px)" }); if (i < n) kE.push({ offset: hold, transform: "translate(" + p[0] + "px," + p[1] + "px)" });
+        kP.push({ offset: off, transform: "translateX(" + tx + "px)" }); if (i < n) kP.push({ offset: hold, transform: "translateX(" + tx + "px)" });
+      });
+      var opt = { duration: per * n, iterations: Infinity, easing: "ease-in-out" };
+      anims.push(eth.animate(kE, opt));
+      if (sw > cw + 2) anims.push(pan.animate(kP, opt));
+    }
+    build(); var t; addEventListener("resize", function () { clearTimeout(t); t = setTimeout(build, 200); });
+  }
+  window.ecoScene = { mount: mount };
 })();
