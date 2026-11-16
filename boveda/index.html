@@ -463,8 +463,8 @@ html.fi[data-theme="light"] .fi-pill{background:#fff8e6}
 @media (max-width:860px){.hero-char{height:320px;margin-bottom:26px}}
 /* Edición empresarial: profesional de ECODESA (3 poses, fondo transparente) en lugar del personaje de Fiestas */
 html.fi .eco-only{display:none!important}
-/* Edición empresarial: título y párrafo arriba, alineados con la cabeza del personaje */
-@media (min-width:861px){html:not(.fi) .hero{align-items:start}html:not(.fi) .hero>div:first-child{padding-top:clamp(24px,4vw,64px)}}
+/* Edición empresarial: misma altura y orden que la edición Fiestas */
+html:not(.fi) .hero-band{padding-top:44px}
 /* Edición empresarial: mismo fondo que la página oficial (verde ECODESA + figuritas) */
 html:not(.fi){--bg:#0c2a12;--bg-2:#123a1a;--bg-3:#18461f}
 @media (prefers-color-scheme: light){html:not(.fi):not([data-theme="dark"]){--bg:#c6e98a;--bg-2:#b8e07a;--bg-3:#a9d86a}}
@@ -472,7 +472,7 @@ html:not(.fi)[data-theme="light"]{--bg:#c6e98a;--bg-2:#b8e07a;--bg-3:#a9d86a}
 html:not(.fi) body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:#9fd86a;opacity:.20;-webkit-mask:var(--eco-tile) 0 0/360px 360px repeat;mask:var(--eco-tile) 0 0/360px 360px repeat}
 @media (prefers-color-scheme: light){html:not(.fi):not([data-theme="dark"]) body::after{background:#2E6B1F;opacity:.30}}
 html:not(.fi)[data-theme="light"] body::after{background:#2E6B1F;opacity:.30}
-.eco-char{width:fit-content;margin-left:auto;margin-right:auto;height:clamp(320px,34vw,480px)}
+.eco-char{width:fit-content;margin-left:auto;margin-right:auto;height:clamp(250px,27vw,380px)}
 .eco-char::after{bottom:-6px;width:70%}
 .eco-char img{filter:drop-shadow(0 14px 16px rgba(0,0,0,.22));animation:ecoPose 14s ease-in-out infinite;transform-origin:50% 100%}
 .eco-char .p2,.eco-char .p3{position:absolute;left:0;top:0;opacity:0}
