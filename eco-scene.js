@@ -1,5 +1,5 @@
 /* Escena empresarial ECODESA: "Cartagena que cumple". Mismo lenguaje visual del Bando de Fiestas:
-   profesionales de ECODESA en visitas técnicas por sector y Ethan supervisando desde su nave. Decoración aria-hidden. */
+   profesionales de ECODESA en visitas técnicas por sector; Ethan, la mascota, los acompaña en su nave. Decoración aria-hidden. */
 (function () {
   var INK = "#13240f", Y = "#ffd21f", R = "#e3262b", G = "#2E6B1F", L = "#76b82a", L2 = "#b6e36a", O = "#ff7a1a", C = "#fbfff2", W = "#ffffff";
   var PEOPLE = "", PK = .6, VW = 3000, VH = 560, B = 470;
@@ -228,7 +228,7 @@
   }
   /* paradas de Ethan sobre la avenida, al lado de cada visita */
   var STOPS = [580, 1030, 1360, 1810, 2270, 2740, 2270, 1810, 1360, 1030];
-  var GEST = ["robot-anim-256", "robot-pensar", "robot-terminado", "robot-celebrar", "robot-look-r", "robot-look-l"];
+  var GEST = ["robot-anim-256", "robot-happy", "robot-wink", "robot-celebrar", "robot-look-r", "robot-look-l"];
   function mount(box) {
     box.innerHTML = '<div class="es-pan">' + scene() + "</div>";
     var pan = box.firstChild, svg = pan.firstChild, $ = function (q) { return svg.querySelector(q); }, $$ = function (q) { return [].slice.call(svg.querySelectorAll(q)); };
@@ -259,12 +259,10 @@
       var opt = { duration: per, iterations: Infinity, easing: "linear" }, go = function (el, kf) { if (el) anims.push(el.animate(kf, opt)); };
       go($("#esEthan"), seq(function (i, x, nx) { return samples(i, x, nx).map(function (p) { return [p.f, { transform: T(p.x, EY - p.y, p.r) }]; }); }));
       go($("#esShd"), seq(function (i, x, nx) { return samples(i, x, nx).map(function (p) { return [p.f, { transform: T(p.x, B + 44, 0, (1 - (p.y - 16) / 150).toFixed(2)), opacity: 1 - (p.y - 16) / 200 }]; }); }));
-      /* gestos: piensa (escanea) -> terminado + visto bueno -> celebra -> mira hacia donde va */
+      /* gestos de mascota: saluda, guiña, celebra y mira hacia donde va (la revisión la hacen los profesionales) */
       $$(".es-gest").forEach(function (img, g) {
         go(img, seq(function (i, x, nx) { var ph = phase(i, x, nx), out = []; ph.forEach(function (p, j) { var prev = j ? ph[j - 1][1] : -1; if (j) out.push([p[0] - 0.002, { opacity: prev === g ? 1 : 0 }]); out.push([p[0], { opacity: p[1] === g ? 1 : 0 }]); }); return out; }));
       });
-      go($("#esScan"), seq(function () { return [[0, { opacity: 0 }], [0.04, { opacity: 0 }], [0.07, { opacity: 1 }], [0.18, { opacity: 1 }], [0.21, { opacity: 0 }]]; }));
-      go($("#esOk"), seq(function () { return [[0, { opacity: 0, transform: "scale(.3)" }], [0.2, { opacity: 0, transform: "scale(.3)" }], [0.23, { opacity: 1, transform: "scale(1.15)" }], [0.26, { opacity: 1, transform: "scale(1)" }], [0.42, { opacity: 1, transform: "scale(1)" }], [0.46, { opacity: 0, transform: "scale(.5)" }]]; }));
       /* propulsores: suaves en la visita, más fuertes según la velocidad del vuelo */
       $$(".es-boost").forEach(function (b) {
         go(b, seq(function (i, x, nx) { return samples(i, x, nx).map(function (p) { return [p.f, { transform: "scaleY(" + (1 + 1.3 * p.sp).toFixed(2) + ")" }]; }); }));

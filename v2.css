@@ -922,6 +922,7 @@ html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
 
 /* compactación: un botón por bloque y sectores en carrusel móvil */
 .cat-cta{margin-top:28px;text-align:center}
+.cat-note{margin:22px auto 0;max-width:780px;text-align:center;font-size:13.5px;line-height:1.5;color:var(--ink2)}
 @media (max-width:760px){
   .sgrid{display:flex;grid-template-columns:none;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .sgrid::-webkit-scrollbar{display:none}
