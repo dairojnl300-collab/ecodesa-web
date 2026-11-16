@@ -101,3 +101,7 @@ html:not(.fi){--bh:80px;--bsz:1392px 80px}
 @media (max-width:720px){html:not(.fi) main .sec.eco-on:not(.tienda){padding-top:calc(var(--bh) + 22px)}}
 html:not(.fi) main .sec.tienda.eco-on{padding-top:calc(var(--bh) + 14px)}
 @media (max-width:720px){html:not(.fi) main #sectores.sec{padding-top:calc(var(--bh) + 22px)}}
+/* Asesoría virtual: el fondo de la tarjeta es el de la página (cualquier edición/tema) y la figura se ve completa, sin recorte */
+.prod.prod-ases{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important;padding-bottom:clamp(8px,1.5vw,18px)}
+.prod-ases .pa-fig{margin-bottom:0!important}
+.prod-ases .pa-img{-webkit-mask-image:linear-gradient(#000 90%,transparent 99%);mask-image:linear-gradient(#000 90%,transparent 99%)}
