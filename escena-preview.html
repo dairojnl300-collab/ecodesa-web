@@ -1,0 +1,24 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Escena ECODESA</title>
+<link rel="stylesheet" href="fiestas.css"><style>
+body{margin:0;font-family:sans-serif}
+.blk{position:relative;background:#c6e98a;padding-top:20px}
+html[data-theme=dark] .blk{background:#0c2a12}
+</style><style>:root{--es-sun:#ffd21f;--es-halo:.25;--es-rayo:.6;--es-moon:0;--es-stars:0;--es-cloud:1;--es-far:#a6d867;--es-farwin:#c4ea8c;--es-win:#fbfff2;--es-lamp:#fbfff2;--es-lampg:rgba(255,255,255,0)}
+[data-theme=dark]{--es-sun:#eef7d8;--es-halo:.12;--es-rayo:0;--es-moon:1;--es-stars:1;--es-cloud:.12;--es-far:#123a1a;--es-farwin:#ffd970;--es-win:#ffd970;--es-lamp:#ffd21f;--es-lampg:rgba(255,200,40,.3)}
+.es-bando{position:relative;height:clamp(280px,27vw,380px)}
+.es-bando svg{display:block;width:100%;height:100%}
+.es-bando *{transform-box:fill-box}
+.es-bando .fi-flag{transform-box:view-box}
+.es-ethan{animation:esFloat 2.2s ease-in-out infinite alternate}
+@keyframes esFloat{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+.es-beam{animation:esBeam 1.1s ease-in-out infinite alternate}
+@keyframes esBeam{from{opacity:.15}to{opacity:.45}}
+.es-rotor{transform-origin:50% 50%;animation:fiRays 5s linear infinite}
+.es-puff{opacity:0;animation:esPuff 3.6s ease-out infinite}
+@keyframes esPuff{0%{opacity:0;transform:translate(0,0) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(26px,-50px) rotate(90deg)}}
+.es-tree{transform-origin:50% 100%;animation:esTree 3s ease-in-out infinite alternate}
+@keyframes esTree{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
+</style></head><body>
+<div class="blk"><div class="es-bando" id="sc"></div></div>
+<script src="eco-scene.js"></script><script>document.getElementById('sc').innerHTML=ecoScene();</script>
+</body></html>
