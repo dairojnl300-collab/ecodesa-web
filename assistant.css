@@ -175,3 +175,6 @@ body.as-flying .as-hi{display:none!important}
   .as-av{bottom:46px}
   .as-hi{bottom:226px}
 }
+
+/* celular: Ethan más compacto para no tapar el texto de la página */
+@media (max-width:760px){.as-btn{scale:.78;transform-origin:100% 100%}}

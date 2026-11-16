@@ -109,6 +109,11 @@
       });
     }, 3000));
     hix.addEventListener("click", hideHi);
+    /* en celular el saludo se retira al desplazarse para no tapar el contenido */
+    if (window.matchMedia && matchMedia("(max-width: 760px)").matches) {
+      var hy = null, onS = function () { if (hi.hidden) return; if (hy === null) hy = scrollY; if (Math.abs(scrollY - hy) > 280) { hideHi(); removeEventListener("scroll", onS); } };
+      addEventListener("scroll", onS, { passive: true });
+    }
 
     var q = [], busy = false;
     function run() { if (busy || !q.length) return; busy = true; q.shift()(function () { busy = false; run(); }); }

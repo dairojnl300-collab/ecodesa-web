@@ -1,0 +1,72 @@
+/* Escena empresarial ECODESA */
+:root{--es-sun:#ffd21f;--es-halo:.25;--es-rayo:.6;--es-moon:0;--es-stars:0;--es-cloud:1;--es-far:#a6d867;--es-win:#fbfff2;--es-lit:#fbfff2}
+[data-theme=dark]{--es-sun:#eef7d8;--es-halo:.12;--es-rayo:0;--es-moon:1;--es-stars:1;--es-cloud:.12;--es-far:#123a1a;--es-win:#ffd970;--es-lit:#4a5a3a}
+.es-bando{position:relative;height:clamp(320px,34vw,470px);overflow:hidden}
+.es-pan{height:100%;will-change:transform}
+.es-pan svg{display:block;width:100%;height:100%}
+.es-bando *{transform-box:fill-box}.es-bando [transform]{transform-box:view-box}
+.es-route{transform-box:view-box!important}
+.es-ethan{animation:esFloat 2.2s ease-in-out infinite alternate}
+@keyframes esFloat{from{translate:0 0}to{translate:0 -10px}}
+.es-ethan{animation-duration:1.6s}
+#esOk{transform-origin:50% 50%}
+.es-boost{transform-origin:50% 0}
+.es-flame{transform-origin:50% 0;animation:esFlame .14s ease-in-out infinite alternate}
+@keyframes esFlame{from{transform:scale(.85,.8);opacity:.85}to{transform:scale(1.1,1.12);opacity:1}}
+.es-ring{transform-origin:50% 50%;animation:esRing 1.5s ease-out infinite}
+@keyframes esRing{from{transform:scale(.4);opacity:.9}to{transform:scale(2.6);opacity:0}}
+.es-roll{transform-origin:50% 50%;animation:esSpin .5s linear infinite}
+@keyframes esSpin{to{transform:rotate(360deg)}}
+.es-press{animation:esPress 2s ease-in-out infinite}
+@keyframes esPress{0%,55%,100%{transform:translateY(0)}72%{transform:translateY(12px)}}
+.es-laser{animation:esNeon .6s steps(1) infinite}
+.es-qc{animation:esQc 2s steps(1) infinite}
+@keyframes esQc{0%,40%{fill:#76b82a}45%,55%{fill:#ffd21f}60%,100%{fill:#76b82a}}
+.es-rotor{transform-origin:50% 50%;animation:fiRays 5s linear infinite}
+.es-steam{opacity:0;animation:esSteam 4.4s ease-out infinite}
+@keyframes esSteam{0%{opacity:0;transform:translate(0,0) scale(.5)}20%{opacity:.9}100%{opacity:0;transform:translate(18px,-70px) scale(1.8)}}
+.es-leafp{opacity:0;animation:esLeaf 4.4s ease-out infinite}
+@keyframes esLeaf{0%{opacity:0;transform:translate(0,0) scale(.5)}20%{opacity:1}100%{opacity:0;transform:translate(40px,-90px) scale(1.3) rotate(120deg)}}
+.es-lit{animation:esLit 9s steps(1) infinite}
+@keyframes esLit{0%,62%{fill:var(--es-win)}63%,80%{fill:var(--es-lit)}81%,100%{fill:var(--es-win)}}
+.es-neon{animation:esNeon 2.2s steps(1) infinite}
+@keyframes esNeon{0%,70%,80%,100%{opacity:1}72%,78%{opacity:.25}}
+.es-flag{transform-origin:0 50%;animation:esFlag .9s ease-in-out infinite alternate}
+@keyframes esFlag{from{transform:skewY(-6deg) scaleX(.92)}to{transform:skewY(6deg) scaleX(1)}}
+.es-awning{transform-origin:50% 0;animation:esAwn 3s ease-in-out infinite alternate}
+@keyframes esAwn{from{transform:scaleY(1)}to{transform:scaleY(1.08)}}
+.es-plant{transform-origin:50% 100%;animation:esTree 2.6s ease-in-out infinite alternate}
+@keyframes esTree{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+.es-fan{transform-origin:50% 50%;animation:fiRays 1.2s linear infinite}
+.es-beacon{animation:esNeon 1.2s steps(1) infinite}
+.es-glint{opacity:0;animation:esGl 3s ease-in-out infinite}
+@keyframes esGl{0%,70%,100%{opacity:0}80%{opacity:1}}
+.es-belt{animation:esBelt 2s linear infinite}
+@keyframes esBelt{from{transform:translateX(0)}to{transform:translateX(60px)}}
+.es-gauge{transform-origin:0 50%;animation:esGauge 2s ease-in-out infinite alternate}
+@keyframes esGauge{from{transform:scaleX(.3)}to{transform:scaleX(1)}}
+.es-hammer{transform-origin:0 100%;animation:esHam .45s ease-in infinite alternate}
+@keyframes esHam{from{transform:rotate(-14deg)}to{transform:rotate(12deg)}}
+.es-spark{transform-origin:50% 50%;animation:esSpark .9s steps(2) infinite}
+@keyframes esSpark{0%{opacity:1;transform:scale(1)}50%{opacity:0;transform:scale(.4)}}
+.es-trolley{animation:esTrolley 9s ease-in-out infinite alternate}
+@keyframes esTrolley{from{transform:translateX(-300px)}to{transform:translateX(0)}}
+.es-hook{animation:esHook 4.5s ease-in-out infinite alternate}
+@keyframes esHook{from{transform:translateY(0)}to{transform:translateY(30px)}}
+.es-spreader{animation:esSpr 5s ease-in-out infinite alternate}
+@keyframes esSpr{from{transform:translateY(0)}to{transform:translateY(120px)}}
+.es-write{transform-origin:0 0;animation:esWrite .5s ease-in-out infinite alternate}
+@keyframes esWrite{from{transform:rotate(-4deg)}to{transform:rotate(5deg) translateY(2px)}}
+.es-point{transform-origin:0 0;animation:esPoint 1.6s ease-in-out infinite alternate}
+@keyframes esPoint{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+.es-nod{transform-origin:50% 100%;animation:esNod 2.4s ease-in-out infinite}
+@keyframes esNod{0%,60%,100%{transform:rotate(0)}70%{transform:rotate(-5deg)}80%{transform:rotate(3deg)}}
+.es-look{animation:esLook 2.8s ease-in-out infinite alternate}
+@keyframes esLook{from{transform:translateX(-2px)}to{transform:translateX(3px)}}
+.es-bird{transform-box:view-box!important;animation:esBird 40s linear infinite}
+@keyframes esBird{from{transform:translate(-100px,0)}to{transform:translate(2900px,-20px)}}
+html.fi .es-only{display:none!important}
+.es-sec{padding-bottom:0!important;overflow:hidden}
+.es-sec .es-bando{margin-top:clamp(8px,2vw,24px)}
+.es-bando.es-off *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){.es-bando *{animation:none!important}}
