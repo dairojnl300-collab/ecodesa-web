@@ -14,3 +14,51 @@ html:not(.fi)[data-theme=dark] .cform input,html:not(.fi)[data-theme=dark] .cfor
 html:not(.fi) .pill{background:#0f2416;color:#d7f28a}
 html:not(.fi)[data-theme=dark] .pill{background:#b6f06a;color:#0c2a12}
 @media (max-width:720px){html:not(.fi) .eco-deco::before{height:34px;background-size:258px 34px}}
+
+/* ===== Menú adaptado a cada edición ===== */
+.nav-links::before,.nav-links::after{content:"";position:absolute;pointer-events:none}
+.nav-links{isolation:isolate}.nav-links::before{inset:0;z-index:-1}
+.nav-links::after{left:0;right:0;top:0;height:44px;background:var(--bunt) 0 0/336px 44px repeat-x;filter:drop-shadow(0 3px 0 rgba(0,0,0,.15))}
+.menu-pic{position:relative;background:radial-gradient(circle at 50% 55%,#2fe060 0,#0b7a2a 55%,#04361a 100%)}
+.menu-pic img[src*="boveda"]{object-fit:contain;padding:5% 8%;filter:drop-shadow(0 20px 22px rgba(0,0,0,.45))}
+.mi-t{font-family:"Lilita One","Archivo",system-ui,sans-serif;font-weight:400;letter-spacing:.005em}
+/* empresarial */
+html:not(.fi) .nav-links{background:var(--bg)!important}
+html:not(.fi) .nav-links::before{background:var(--eco-fig);opacity:var(--eco-pat);-webkit-mask:var(--eco-tile) 0 0/360px 360px repeat;mask:var(--eco-tile) 0 0/360px 360px repeat}
+html:not(.fi) .menu-list a{color:#0f2416!important;border-bottom:2px solid rgba(15,36,22,.18)!important}
+html:not(.fi) .mi-t{text-shadow:3px 3px 0 #fff!important}
+html:not(.fi) .mi-n{display:grid!important;place-items:center!important;min-width:40px!important;height:30px!important;border-radius:20px!important;background:#0f2416!important;color:#d7f28a!important;font-size:13px!important}
+html:not(.fi) .menu-list a:hover,html:not(.fi) .menu-list a:focus-visible{color:#0e5a1f!important}
+html:not(.fi) .mi-t small{color:#28432f!important;text-shadow:none!important}
+html:not(.fi) .menu-pic{border:3px solid #0f2416!important;box-shadow:8px 8px 0 #0f2416!important}
+html:not(.fi) .menu-contact p{color:#0e5a1f!important}
+html:not(.fi) .menu-contact a{color:#0f2416!important;font-weight:500!important}
+html:not(.fi)[data-theme=dark] .menu-list a{color:#e8f0e6!important;border-bottom-color:rgba(166,224,106,.22)!important}
+html:not(.fi)[data-theme=dark] .mi-t{text-shadow:3px 3px 0 #000!important}
+html:not(.fi)[data-theme=dark] .mi-n{background:#b6f06a!important;color:#0c2a12!important}
+html:not(.fi)[data-theme=dark] .menu-list a:hover,html:not(.fi)[data-theme=dark] .menu-list a:focus-visible{color:#b6f06a!important}
+html:not(.fi)[data-theme=dark] .mi-t small{color:#b9cdbd!important}
+html:not(.fi)[data-theme=dark] .menu-pic{border-color:#b6f06a!important;box-shadow:8px 8px 0 #000!important}
+html:not(.fi)[data-theme=dark] .menu-contact p{color:#b6f06a!important}
+html:not(.fi)[data-theme=dark] .menu-contact a{color:#e8f0e6!important}
+/* Fiestas */
+html.fi .nav-links{background:var(--fi-bg)!important;--bunt:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22336%22%20height%3D%2244%22%3E%3Cpath%20d%3D%22M0%206%20Q168%2010%20336%206%22%20fill%3D%22none%22%20stroke%3D%22%232b1406%22%20stroke-width%3D%222.6%22/%3E%3Cpath%20d%3D%22M4%206%20L52%207%20L28%2040Z%22%20fill%3D%22%23e3262b%22%20stroke%3D%22%232b1406%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M16%2016%20l6%206%206-6%206%206%22%20fill%3D%22none%22%20stroke%3D%22%232b1406%22%20stroke-opacity%3D%22.35%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M60%206%20L108%207%20L84%2040Z%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%232b1406%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M72%2016%20l6%206%206-6%206%206%22%20fill%3D%22none%22%20stroke%3D%22%232b1406%22%20stroke-opacity%3D%22.35%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M116%206%20L164%207%20L140%2040Z%22%20fill%3D%22%2314964a%22%20stroke%3D%22%232b1406%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M128%2016%20l6%206%206-6%206%206%22%20fill%3D%22none%22%20stroke%3D%22%232b1406%22%20stroke-opacity%3D%22.35%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M172%206%20L220%207%20L196%2040Z%22%20fill%3D%22%23ffd21f%22%20stroke%3D%22%232b1406%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M184%2016%20l6%206%206-6%206%206%22%20fill%3D%22none%22%20stroke%3D%22%232b1406%22%20stroke-opacity%3D%22.35%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M228%206%20L276%207%20L252%2040Z%22%20fill%3D%22%23f07d1a%22%20stroke%3D%22%232b1406%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M240%2016%20l6%206%206-6%206%206%22%20fill%3D%22none%22%20stroke%3D%22%232b1406%22%20stroke-opacity%3D%22.35%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M284%206%20L332%207%20L308%2040Z%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%232b1406%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M296%2016%20l6%206%206-6%206%206%22%20fill%3D%22none%22%20stroke%3D%22%232b1406%22%20stroke-opacity%3D%22.35%22%20stroke-width%3D%222%22/%3E%3C/svg%3E")}
+html.fi[data-theme=dark] .nav-links{--bunt:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22336%22%20height%3D%2244%22%3E%3Cpath%20d%3D%22M0%206%20Q168%2010%20336%206%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222.6%22/%3E%3Cpath%20d%3D%22M4%206%20L52%207%20L28%2040Z%22%20fill%3D%22%23e3262b%22%20stroke%3D%22%23000%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M16%2016%20l6%206%206-6%206%206%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-opacity%3D%22.35%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M60%206%20L108%207%20L84%2040Z%22%20fill%3D%22%23fff4d6%22%20stroke%3D%22%23000%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M72%2016%20l6%206%206-6%206%206%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-opacity%3D%22.35%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M116%206%20L164%207%20L140%2040Z%22%20fill%3D%22%2314964a%22%20stroke%3D%22%23000%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M128%2016%20l6%206%206-6%206%206%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-opacity%3D%22.35%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M172%206%20L220%207%20L196%2040Z%22%20fill%3D%22%23ffd21f%22%20stroke%3D%22%23000%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M184%2016%20l6%206%206-6%206%206%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-opacity%3D%22.35%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M228%206%20L276%207%20L252%2040Z%22%20fill%3D%22%23f07d1a%22%20stroke%3D%22%23000%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M240%2016%20l6%206%206-6%206%206%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-opacity%3D%22.35%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M284%206%20L332%207%20L308%2040Z%22%20fill%3D%22%23fff4d6%22%20stroke%3D%22%23000%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M296%2016%20l6%206%206-6%206%206%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-opacity%3D%22.35%22%20stroke-width%3D%222%22/%3E%3C/svg%3E")}
+html.fi .nav-links::before{background:var(--fi-doodle);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M28 20l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M118 30v26a7 6 0 1 1-4-5V24l18-4v26a7 6 0 1 1-4-5V25'/%3E%3Cpath d='M40 120c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M120 120l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='90' cy='88' r='3'/%3E%3Ccircle cx='160' cy='92' r='3'/%3E%3Ccircle cx='14' cy='76' r='3'/%3E%3Cpath d='M86 150c6-8 14-8 20 0'/%3E%3C/g%3E%3C/svg%3E") 0 0/180px 180px repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M28 20l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z'/%3E%3Cpath d='M118 30v26a7 6 0 1 1-4-5V24l18-4v26a7 6 0 1 1-4-5V25'/%3E%3Cpath d='M40 120c0-10 14-10 14 0s-24 14-24 0 30-20 34 0'/%3E%3Cpath d='M120 120l8 10 8-10 8 10 8-10'/%3E%3Ccircle cx='90' cy='88' r='3'/%3E%3Ccircle cx='160' cy='92' r='3'/%3E%3Ccircle cx='14' cy='76' r='3'/%3E%3Cpath d='M86 150c6-8 14-8 20 0'/%3E%3C/g%3E%3C/svg%3E") 0 0/180px 180px repeat}
+html.fi .menu-list a{color:var(--fi-ink)!important;border-bottom:2px solid rgba(43,20,6,.2)!important}
+html.fi .mi-t{text-shadow:0 3px 0 rgba(255,255,255,.55)!important}
+html.fi .mi-n{display:grid!important;place-items:center!important;min-width:40px!important;height:30px!important;border-radius:20px!important;background:var(--fi-ink)!important;color:var(--fi-y)!important;font-size:13px!important;box-shadow:2px 2px 0 var(--fi-r)!important}
+html.fi .menu-list a:hover,html.fi .menu-list a:focus-visible{color:#c8101f!important}
+html.fi .mi-a{color:#c8101f!important}
+html.fi .mi-t small{color:#5a3a1a!important;text-shadow:none!important}
+html.fi .menu-pic{border:3px solid var(--fi-ink)!important;box-shadow:8px 8px 0 var(--fi-r)!important}
+html.fi .menu-contact p{color:#c8101f!important}
+html.fi .menu-contact a{color:var(--fi-ink)!important;font-weight:500!important}
+html.fi[data-theme=dark] .menu-list a{color:var(--fi-cream)!important;border-bottom-color:rgba(255,210,31,.22)!important}
+html.fi[data-theme=dark] .mi-t{text-shadow:0 4px 0 rgba(0,0,0,.6)!important}
+html.fi[data-theme=dark] .mi-n{background:var(--fi-y)!important;color:var(--fi-ink)!important;box-shadow:2px 2px 0 #000!important}
+html.fi[data-theme=dark] .menu-list a:hover,html.fi[data-theme=dark] .menu-list a:focus-visible,html.fi[data-theme=dark] .mi-a,html.fi[data-theme=dark] .menu-contact p{color:var(--fi-y)!important}
+html.fi[data-theme=dark] .mi-t small{color:#e6cfa6!important}
+html.fi[data-theme=dark] .menu-pic{border-color:var(--fi-y)!important;box-shadow:8px 8px 0 #000!important}
+html.fi[data-theme=dark] .menu-contact a{color:var(--fi-cream)!important}
+@media (max-width:720px){.nav-links::after{height:34px;background-size:258px 34px}}
