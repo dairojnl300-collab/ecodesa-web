@@ -79,3 +79,18 @@ html.fi[data-theme=dark] .menu-contact a{color:var(--fi-cream)!important}
 .menu-pic::before{content:"";position:absolute;inset:-10%;background:var(--mp,none) center/cover;filter:blur(18px) brightness(.8) saturate(1.1)}
 .menu-pic img{position:relative;object-fit:contain!important;transform:none!important}
 .nav-links.is-open .menu-pic img{transform:none!important}
+
+/* ===== Pie de página (sitio y documentos legales): mismo diseño de la edición empresarial ===== */
+html:not(.fi) .foot,html:not(.fi) .lfoot{position:relative;isolation:isolate;overflow:hidden;background:var(--bg)!important;color:var(--ink)!important}
+html:not(.fi) .foot::before,html:not(.fi) .lfoot::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--eco-fig);opacity:var(--eco-pat);
+  -webkit-mask:var(--eco-tile) 0 0/360px 360px repeat;mask:var(--eco-tile) 0 0/360px 360px repeat}
+html:not(.fi) .foot::after,html:not(.fi) .lfoot::after{content:"";position:absolute;left:0;right:0;top:0;height:44px;z-index:1;pointer-events:none;background:var(--bunt) 0 0/336px 44px repeat-x;filter:drop-shadow(0 3px 0 rgba(15,36,22,.18))}
+html:not(.fi) .foot{padding-top:84px}
+html:not(.fi) .lfoot{padding-top:76px}
+html:not(.fi) .foot p,html:not(.fi) .foot-grid p,html:not(.fi) .lfoot p,html:not(.fi) .foot-c,html:not(.fi) .foot-c>p:first-child{color:var(--ink)!important;opacity:1!important;font-weight:500;text-shadow:none;-webkit-font-smoothing:antialiased}
+html:not(.fi) .foot nav a,html:not(.fi) .foot-c a,html:not(.fi) .lfoot a,html:not(.fi) .lfoot .linkbtn,html:not(.fi) .foot-c .foot-legal a,html:not(.fi) .foot-c .foot-legal .linkbtn{color:var(--ink)!important;font-weight:600;text-shadow:none}
+html:not(.fi) .foot nav a:hover,html:not(.fi) .lfoot a:hover{color:var(--gd)!important}
+html:not(.fi) .foot-c a,html:not(.fi) .lfoot p a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:#2E6B1F}
+html:not(.fi) .foot-c{border-top-color:rgba(15,36,22,.28)!important}
+html:not(.fi)[data-theme=dark] .foot-c{border-top-color:rgba(232,240,230,.22)!important}
+@media (max-width:720px){html:not(.fi) .foot::after,html:not(.fi) .lfoot::after{height:34px;background-size:258px 34px}html:not(.fi) .foot{padding-top:72px}html:not(.fi) .lfoot{padding-top:64px}}
