@@ -6,13 +6,13 @@ html:not(.fi) main .sec:not(.digital):not(.fi-sec){background:var(--bg)!importan
 html:not(.fi) .eco-pat{-webkit-mask-image:var(--eco-tile);mask-image:var(--eco-tile);-webkit-mask-size:360px 360px;mask-size:360px 360px;-webkit-mask-repeat:repeat;mask-repeat:repeat}
 /* stickers en toda la página (como Fiestas), quietos: nada se mueve con el scroll */
 .eco-fl{transform:none!important;will-change:auto}.eco-fl svg{animation:none!important}
-/* lectura cómoda: los párrafos sobre el fondo de stickers van en un panel translúcido con filo verde,
-   sin brillos ni sombras en las letras */
-html:not(.fi) .eco-ink{text-shadow:none;color:var(--ink);position:relative;padding:.7em 1.1em .7em 1.25em;border-radius:14px;
-  background:color-mix(in srgb,var(--halo,var(--bg)) 84%,transparent);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);
-  box-shadow:inset 3px 0 0 #76b82a,0 1px 0 rgba(255,255,255,.35)}
-html:not(.fi)[data-theme=dark] .eco-ink{box-shadow:inset 3px 0 0 #76b82a,0 1px 0 rgba(255,255,255,.04)}
-@media (max-width:720px){html:not(.fi) .eco-ink{padding:.6em .8em .6em 1em;border-radius:12px}}
+/* lectura: párrafos sin fondo ni sombras; letra sólida y nítida en el color de la marca */
+html:not(.fi) .eco-ink{color:var(--ink);font-weight:500;text-shadow:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+/* edición empresarial sin fondos amarillos: rayos y brillo de la bóveda en verde */
+html:not(.fi) .bv-stage{--ray:rgba(255,255,255,.30);--ray2:rgba(46,107,31,.16)}
+html:not(.fi)[data-theme=dark] .bv-stage{--ray:rgba(143,209,79,.22);--ray2:rgba(46,107,31,.18)}
+html:not(.fi) .bv-glow{background:radial-gradient(closest-side,rgba(255,255,255,.5),rgba(118,184,42,.18) 55%,transparent 72%)}
+html:not(.fi)[data-theme=dark] .bv-glow{background:radial-gradient(closest-side,rgba(118,184,42,.38),rgba(118,184,42,.12) 55%,transparent 72%)}
 html:not(.fi) main .sec:not(.digital) .sec-head h2{text-shadow:3px 3px 0 #fff}
 html:not(.fi)[data-theme=dark] main .sec:not(.digital) .sec-head h2{text-shadow:3px 3px 0 #000}
 html:not(.fi) .eco-deco::before{content:"";position:absolute;left:0;right:0;top:0;height:44px;background:var(--bunt) 0 0/336px 44px repeat-x;z-index:1;filter:drop-shadow(0 3px 0 rgba(15,36,22,.18))}
