@@ -479,11 +479,17 @@ html:not(.fi) .hero h1 em{font-family:var(--fi-fs);font-style:normal;font-size:1
 html:not(.fi) :is(.ledger,.card,.kit,.hacer-box,.stage,.model,.flow){border:2px solid var(--fi-ink);box-shadow:4px 4px 0 var(--fi-sh)}
 html:not(.fi)[data-theme="dark"] :is(.ledger,.card,.kit,.hacer-box,.stage,.model,.flow){border-color:rgba(159,216,106,.6)}
 html:not(.fi)[data-theme="light"] :is(.kit,.card,.ledger){background:#f4fbe6}
+/* lectura: texto con más contraste y figuritas más suaves detrás */
+html:not(.fi) :is(p,li,small,.lead,.sec-lead,.note,.fill-help,ol.steps li>div){color:var(--cream);font-weight:500;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html:not(.fi) :is(.hero p.lead,.hero .eyebrow,.eyebrow){color:var(--cream)}
+html:not(.fi)[data-theme="light"] :is(.card p,.kit p,.ledger small){color:#0a1a0e}
+html:not(.fi)[data-theme="light"] .eyebrow{font-weight:700;color:#0a4d22}
+html:not(.fi)[data-theme="dark"] :is(p,li,small,.lead,.note){color:#f2fbe0}
 html:not(.fi) .follow,html:not(.fi) .btn.primary{border:2px solid var(--fi-ink);box-shadow:3px 3px 0 var(--fi-sh)}
 html:not(.fi)[data-theme="dark"] :is(.follow,.btn.primary){border-color:rgba(159,216,106,.6)}
-html:not(.fi) body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:#9fd86a;opacity:.20;-webkit-mask:var(--eco-tile) 0 0/360px 360px repeat;mask:var(--eco-tile) 0 0/360px 360px repeat}
-@media (prefers-color-scheme: light){html:not(.fi):not([data-theme="dark"]) body::after{background:#2E6B1F;opacity:.30}}
-html:not(.fi)[data-theme="light"] body::after{background:#2E6B1F;opacity:.30}
+html:not(.fi) body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:#9fd86a;opacity:.10;-webkit-mask:var(--eco-tile) 0 0/360px 360px repeat;mask:var(--eco-tile) 0 0/360px 360px repeat}
+@media (prefers-color-scheme: light){html:not(.fi):not([data-theme="dark"]) body::after{background:#2E6B1F;opacity:.15}}
+html:not(.fi)[data-theme="light"] body::after{background:#2E6B1F;opacity:.15}
 .eco-char{width:fit-content;margin-left:auto;margin-right:auto;height:clamp(250px,27vw,380px)}
 .eco-char::after{bottom:-6px;width:70%}
 .eco-char img{filter:drop-shadow(0 14px 16px rgba(0,0,0,.22));animation:ecoPose 14s ease-in-out infinite;transform-origin:50% 100%}
