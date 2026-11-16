@@ -52,7 +52,7 @@
   /* sin parallax: los figurines no se mueven con el scroll (evita mareo y no compite con el texto) */
   /* texto directo sobre el fondo de stickers: se marca para darle halo de lectura */
   function ink() {
-    var TXT = "p,li,figcaption,small,label,dd,dt,blockquote,.pill";
+    var TXT = "p";
     [].forEach.call(document.querySelectorAll(".eco-on"), function (sec) {
       var sb = getComputedStyle(sec).backgroundColor;
       if (sb !== "transparent" && !/rgba\([^)]*,\s*0\)$/.test(sb)) sec.style.setProperty("--halo", sb);
