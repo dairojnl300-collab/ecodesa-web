@@ -20,10 +20,11 @@
   function syncTheme() {
     try { var d = frame.contentDocument; if (d && d.documentElement) d.documentElement.setAttribute("data-theme", theme()); } catch (e) {}
   }
+  var VER = "163";
   function load() {
     ls.set("boveda-theme", theme());
     ls.set("boveda-fi", root.classList.contains("fi") ? "on" : "off");
-    if (!frame.getAttribute("src")) frame.setAttribute("src", "/boveda/?puerta=0&embed=1");
+    if (!frame.getAttribute("src")) frame.setAttribute("src", "/boveda/?puerta=0&embed=1&v=" + VER);
   }
   function show() {
     sec.classList.remove("opening"); sec.classList.add("open");
