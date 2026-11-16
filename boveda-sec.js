@@ -20,10 +20,11 @@
   function syncTheme() {
     try { var d = frame.contentDocument; if (d && d.documentElement) d.documentElement.setAttribute("data-theme", theme()); } catch (e) {}
   }
+  var VER = "163";
   function load() {
     ls.set("boveda-theme", theme());
     ls.set("boveda-fi", root.classList.contains("fi") ? "on" : "off");
-    if (!frame.getAttribute("src")) frame.setAttribute("src", "/boveda/?puerta=0&embed=1");
+    if (!frame.getAttribute("src")) frame.setAttribute("src", "/boveda/?puerta=0&embed=1&v=" + VER);
   }
   function show() {
     sec.classList.remove("opening"); sec.classList.add("open");
@@ -32,9 +33,7 @@
     setTimeout(function () { try { $("bvTitle2").focus({ preventScroll: true }); } catch (e) {} }, 400);
   }
   if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { sec.classList.toggle("bv-off", !e[0].isIntersecting); }, { rootMargin: "100px" }).observe(sec.querySelector(".bv-stage"));
-  var GIF = "boveda/boveda-apertura.webp", gifBlob = null, gifReq = null;
-  function preGif() { if (!gifReq && window.fetch) gifReq = fetch(GIF).then(function (r) { return r.blob(); }).then(function (b) { gifBlob = b; return b; }).catch(function () {}); return gifReq; }
-  if ("IntersectionObserver" in window) { var po = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { preGif(); po.disconnect(); } }, { rootMargin: "600px" }); po.observe(sec); }
+  if ("IntersectionObserver" in window && window.bvOpenHD) { var po = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { window.bvOpenHD.preload(); po.disconnect(); } }, { rootMargin: "600px" }); po.observe(sec); }
   function open() {
     if (opened) return; opened = true; load();
     if (reduce) return show();
@@ -45,15 +44,9 @@
       wait = 600;
     }
     setTimeout(function () {
-      var g = $("bvGif"), go = function () {
-        sec.classList.add("opening", "gif");
-        setTimeout(function () { sec.classList.add("zoom"); }, 3000);
-        setTimeout(show, 3550);
-      };
-      if (!g) { sec.classList.add("opening"); return setTimeout(show, 2200); }
-      g.onload = go; g.onerror = function () { sec.classList.add("opening"); setTimeout(show, 2200); };
-      var setSrc = function () { g.src = gifBlob ? URL.createObjectURL(gifBlob) : GIF + "?t=" + Date.now(); };
-      if (gifBlob) setSrc(); else (preGif() || Promise.resolve()).then(setSrc, setSrc);
+      if (!window.bvOpenHD) { sec.classList.add("opening"); return setTimeout(show, 2200); }
+      sec.classList.add("opening", "gif");
+      window.bvOpenHD.play(st, show);
     }, wait);
   }
 
