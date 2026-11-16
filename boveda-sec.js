@@ -26,7 +26,7 @@
       ls.set("boveda-fi", fi ? "on" : "off");
     } catch (e) {}
   }
-  var VER = "179";
+  var VER = "180";
   function load() {
     ls.set("boveda-theme", theme());
     ls.set("boveda-fi", root.classList.contains("fi") ? "on" : "off");
