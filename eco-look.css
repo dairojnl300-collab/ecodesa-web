@@ -21,3 +21,6 @@ html.fi .eco-deco{display:none}
 @keyframes ecoSpin{to{transform:rotate(360deg)}}
 @media (max-width:720px){.eco-fl{--s:64px!important}.eco-fl:nth-of-type(n+3){display:none}}
 @media (prefers-reduced-motion:reduce){.eco-fl svg{animation:none}.eco-fl{transform:none}}
+
+/* documentos (/datos, /cookies, /politica, /portafolio): mismo fondo que la edición del sitio */
+.lbg{position:relative}

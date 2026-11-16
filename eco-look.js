@@ -35,7 +35,7 @@
     [["gota", "l", 8, 136, .07], ["engranaje", "r", 40, 116, -.05, 1], ["casco", "l", 70, 84, .06], ["arbol", "r", 90, 70, .05]]
   ];
   var floaters = [], k = 0;
-  [].forEach.call(document.querySelectorAll("main .sec"), function (sec) {
+  [].forEach.call(document.querySelectorAll("main .sec, .lbg"), function (sec) {
     if (sec.classList.contains("fi-sec")) return;
     var deco = document.createElement("div");
     deco.className = "eco-deco"; deco.setAttribute("aria-hidden", "true");
