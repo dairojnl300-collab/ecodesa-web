@@ -45,7 +45,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-2)}
 .top .wrap{display:flex;align-items:center;gap:16px;padding-block:12px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--cream);font-weight:600;white-space:nowrap}
-.brand svg{flex:none}
+.brand svg{flex:none}.brand-logo{flex:none;width:36px;height:36px;border-radius:50%;background:#fff;padding:2px;box-shadow:0 1px 4px rgba(0,0,0,.18)}
 .brand small{display:block;font:500 11px var(--f-mono);color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
 .search{flex:1;min-width:0;position:relative}
 .search input{width:100%;background:var(--bg-2);border:1px solid var(--line);color:var(--cream);border-radius:999px;padding:10px 14px 10px 38px;font:inherit}
@@ -539,7 +539,7 @@ html.embed .back-eco,html.embed .gate,html.embed #fi-btn,html.embed #theme-btn{d
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#inicio" aria-label="Inicio de la bóveda">
-      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="8" fill="none" stroke="currentColor" stroke-opacity=".3"/><path d="M16 6c-5 4-7 8-7 12a7 7 0 0 0 14 0c0-4-2-8-7-12Z" fill="var(--accent)"/><path d="M16 12v14" stroke="var(--bg)" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <img class="brand-logo" src="/assets/logo/ecodesa-favicon.svg" width="36" height="36" alt="ECODESA">
       <span>Bóveda IA<small>ECODESA Ingeniería</small></span>
     </a>
     <label class="search" for="q">
